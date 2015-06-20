@@ -1,0 +1,17 @@
+---
+layout: default
+img: pyFire.jpg
+category: Projects
+title: RS/GIS Python Package
+
+description: |
+---
+_`Remote Sensing, GIS, Python, GDAL`_
+
+Package [pyFire](https://github.com/guoliu/pyFire) written in Python for fire analysis. It provides: 
+
+* GIS functions e.g. reprojection, vector masking, area cacluation, and scripts for handeling MODIS data;
+* statistic analysis e.g. quantile regression, seasonality decomposition and correlation plots; 
+* classes for handling Community Earth System Model landsurface data and modeling vegetation growth. 
+
+This package relies on [GDAL](http://www.gdal.org/).    

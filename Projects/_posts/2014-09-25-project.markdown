@@ -1,8 +1,0 @@
----
-layout: default
-img: ipad.png
-category: projects
-title: Paleo-Vegetation Reconstruction
-description: |
----
-  Reconstructing vegetion in Northern China

@@ -3,10 +3,10 @@
 # ----------------------- #
 
 url: http://guoliu.github.io/ 
-title: Guo Liu's Personal Website
+title: Guo Liu
 email: liuguomailbox@gmail.com
 author: Guo Liu
-description: Guo Liu's Personal Website on remote sensing, model optimization, photography.
+description: Guo Liu's project website on remote sensing, model optimization, climate feedbacks.
 
 # ----------------------- #
 #    Jekyll & Plugins     #
@@ -25,4 +25,4 @@ social:
   - title: github
     url: https://github.com/guoliu
   - title: linkedin
-    url: 
+    url: https://www.linkedin.com/pub/guo-liu/a5/370/a73

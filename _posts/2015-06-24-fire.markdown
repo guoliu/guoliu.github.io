@@ -1,0 +1,11 @@
+---
+layout: default
+img: fire.jpg
+category: Projects
+title: Fire in Earth System
+
+description: |
+---
+_`Remote Sensing, Vegetation Ecology, Climate Model`_
+
+This project models the role of fire in Earth System. Datasets of fire, population, grazing and treecover are used to model the relationship between fire and vegetation growth. The result is then used to force the [Community Earth System Model](http://www2.cesm.ucar.edu/), an Earth system model developed at National Center for Atmospheric Research. Manuscripts under perparation.

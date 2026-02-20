@@ -1,0 +1,11 @@
+node_modules/
+.DS_Store
+.moss/*
+!.moss/site/
+
+videos/aimeili.MOV
+videos/Winter-Song.mov
+videos/Home-starts-from-the-kitchen-sd-cn.mov
+videos/Ave-Maria.mov
+videos/Yelanggu-Lusheng.mov
+videos/Morning-Mist.mov

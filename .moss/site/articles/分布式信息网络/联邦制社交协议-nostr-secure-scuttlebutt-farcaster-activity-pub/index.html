@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>联邦制社交协议：Nostr，Secure Scuttlebutt，Farcaster，ActivityPub - 刘果</title>
+    <meta name="description" content="Nostr 最近引起很多关注。获得了 Twitter 前 CEO Jack Dorsey 的支持，客户端 Damus 一度进入 Apple store 下载前十，注册用户据说已经超过一百万。前几天在 Web3 101 播客聊了聊它和 Farcaster、Secure Scuttlebutt、ActivityPub...">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="联邦制社交协议：Nostr，Secure Scuttlebutt，Farcaster，ActivityPub">
+    <meta property="og:url" content="/articles/分布式信息网络/联邦制社交协议-nostr-secure-scuttlebutt-farcaster-activity-pub/">
+    <meta property="og:site_name" content="刘果">
+    <meta property="og:description" content="Nostr 最近引起很多关注。获得了 Twitter 前 CEO Jack Dorsey 的支持，客户端 Damus 一度进入 Apple store 下载前十，注册用户据说已经超过一百万。前几天在 Web3 101 播客聊了聊它和 Farcaster、Secure Scuttlebutt、ActivityPub...">
+    <meta property="article:published_time" content="2023-02-16T22:20:37.522Z">
+    <meta property="og:image" content="assets/020c1a3f-91c8-4e1e-acd0-b2c6578f2692.png">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "联邦制社交协议：Nostr，Secure Scuttlebutt，Farcaster，ActivityPub",
+  "url": "/articles/分布式信息网络/联邦制社交协议-nostr-secure-scuttlebutt-farcaster-activity-pub/",
+  "description": "Nostr 最近引起很多关注。获得了 Twitter 前 CEO Jack Dorsey 的支持，客户端 Damus 一度进入 Apple store 下载前十，注册用户据说已经超过一百万。前几天在 Web3 101 播客聊了聊它和 Farcaster、Secure Scuttlebutt、ActivityPub...",
+  "datePublished": "2023-02-16T22:20:37.522Z",
+  "image": "assets/020c1a3f-91c8-4e1e-acd0-b2c6578f2692.png",
+  "publisher": {
+    "@type": "Organization",
+    "name": "刘果"
+  }
+}
+</script>
+    
+    
+    
+    
+    <link rel="stylesheet" href="../../../style.css?v=e9469913b04e3b93">
+</head>
+<body class="">
+    <header>
+        <nav class="main-nav container">
+            <div class="nav-content">
+                <div class="nav-left"><a href="../../../" class="site-name">刘果</a></div><div class="nav-right"><div class="nav-icons"><button class="theme-toggle" onclick="toggleTheme()" aria-label="切换深色模式" type="button" title="切换深色模式"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="1em" height="1em" fill="currentColor" stroke-linecap="round" class="theme-toggle__classic" viewBox="0 0 32 32"><clipPath id="theme-toggle__classic__cutout"><path d="M0-5h30a1 1 0 0 0 9 13v24H0Z"/></clipPath><g clip-path="url(#theme-toggle__classic__cutout)"><circle cx="16" cy="16" r="9.34"/><g stroke="currentColor" stroke-width="1.5"><path d="M16 5.5v-4"/><path d="M16 30.5v-4"/><path d="M1.5 16h4"/><path d="M26.5 16h4"/><path d="m23.4 8.6 2.8-2.8"/><path d="m5.7 26.3 2.9-2.9"/><path d="m5.8 5.8 2.8 2.8"/><path d="m23.4 23.4 2.9 2.9"/></g></g></svg></button></div></div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <article class="container">
+            <h1 class="article-title">联邦制社交协议：Nostr，Secure Scuttlebutt，Farcaster，ActivityPub</h1>
+            <p><span class="date">2023 · 2 · 16</span></p>
+            <p>Nostr 最近引起很多关注。获得了 Twitter 前 CEO Jack Dorsey 的支持，客户端 Damus 一度进入 Apple store 下载前十，注册用户据说已经超过一百万。前几天在 Web3 101 播客聊了聊它和 Farcaster、Secure Scuttlebutt、ActivityPub 这几个联邦制社交协议，正好把一些背景和想法记下来。</p>
+<figure>
+  <img src="../../../assets/020c1a3f-91c8-4e1e-acd0-b2c6578f2692.png" data-placeholder-src="../../../assets/020c1a3f-91c8-4e1e-acd0-b2c6578f2692.png" width="800" height="600" loading="lazy" alt="" />
+  <figcaption>联邦制（federated）网络结构。网络由许多自由加入的服务器组成，用户通过自己的客户端和一个或多个服务器相连。</figcaption>
+</figure>
+<h2><strong>Nostr</strong></h2>
+<p>Nostr 由比特币社区的匿名开发者发起，早期开发者和使用者很多都是比特币支持者，一些客户端也整合了比特币的闪电网络。这导致有人误以为 Nostr 是基于比特币网络，也让不少人开始关注起比特币生态。</p>
+<p>Nostr 形成的网络结构是联邦制的（federated），和另外几个协议形成的结构一样。联邦制网络由许多自由加入的服务器组成，用户通过自己的客户端和一个或多个服务器相连。电子邮件系统就是一个联邦制网络，区块链其实也是，不过各个系统中对服务器的叫法不同。Nostr 中叫 relay，Farcaster 中叫 hub，Secure Scuttlebutt 中叫 pub，ActivityPub 中叫 instance。</p>
+<p>Nostr 的设计极为简洁，不惜以灵活性为代价。基本思想是，客户端之间的通讯以中继服务器（relay）为桥梁，通过密码学确认彼此身份。中继服务器替用户 24 小时在线，但因为身份由公钥得来，用户替换服务器非常容易，并且可以同时使用多个。</p>
+<p>它最特别的地方是，服务器之间不进行通讯。这意味着，两个用户只有在用同一个服务器时才能相互通讯。这一方面简化了协议，不需要全局共识，也不需要服务器之间的信任。另一方面，这也意味着服务器会有很强的马太效应，因为人们在共用同一个服务器时才能沟通。</p>
+<p>相比 Nostr，另一个最近兴起的协议 Farcaster 就要复杂很多，想解决的问题也多很多。</p>
+<h2>Farcaster</h2>
+<p>Farcaster 中，服务器之间以流言协议（<a href="https://github.com/libp2p/specs/blob/master/pubsub/gossipsub/gossipsub-v1.0.md">gossipsub protocol</a>）通讯，通过更新 <a href="https://github.com/farcasterxyz/protocol/blob/main/README.md#3-delta-graph">delta graph</a> 共同维护社交网络的状态。delta graph 是一种 Farcaster 设计的数据结构，也是一种新的共识算法，让整个网络具备一致的状态，同时每个服务器只需要保存部分数据。</p>
+<p>除了 delta graph 之外，Farcaster 另一个有趣的地方是它的身份系统。通过与以太坊整合，Farcaster 中用户身份由以太坊地址和类似 ENS 的域名系统组成，同时还有一个 <a href="https://github.com/farcasterxyz/contracts/">Farcaster 智能合约</a>中的 ID。这个 ID 的设计是为了让用户丢失私钥时，能够通过社交关系等方式找回自己的身份。</p>
+<p>Farcaster 中不管是新的共识算法，还是内置找回机制的分布式身份，都很有野心，但实际效果也都还未知。另一个协议 Secure Scuttlebutt（SSB），在 Web3 概念出现之前就已经逐步成熟了。</p>
+<h2>SSB</h2>
+<p><a href="https://www.scuttlebutt.nz/">SSB</a> 的设计非常优雅巧妙，受到许多开发者的喜爱。它主要为了点对点通讯设计，网络节点都是用户的客户端，在本地存储用户和朋友的信息，并通过流言协议发送和获取信息。实际使用中，用户常常与被称作“<a href="https://ssbc.github.io/scuttlebutt-protocol-guide/#pubs">pub</a>”的超级节点相互关注，pub 为用户中继信息、发现新的内容。这实际上形成了和 Nostr 类似的联邦结构，只是用户仍然可以点对点通讯。</p>
+<p>SSB 针对点对点通讯的设计使得它比 Nostr 复杂，这一方面增加了客户端的门槛，另一方面对联邦制的使用场景增加了束缚。比如，如果客户端是网页型态，就需要大幅改动 SSB 客户端本地优先的思路。那些 SSB 真正不可替代的场景，都比较极端，比如当互联网完全无法使用时，它的点对点通讯仍然可用。</p>
+<p>SBB 第一个版本 14 年发布，许多年来一直有稳定的用户群体，并且是在进行真实的交流，而不是只关注使用的产品和协议。不过从落地场景和使用者的角度，更为成功的协议是 ActivityPub，特别是采用 ActivityPub 的软件长毛象（Mastodon）。</p>
+<h2>ActivityPub</h2>
+<p>ActivityPub 第一版是 18 年发布，设计时吸取了 <a href="https://en.wikipedia.org/wiki/Fediverse">Fediverse</a> 中 GNU social 等软件和 OStatus 等协议的经验，并作为 W3C 的推荐标准。 现在，仅 Mastodon 的使用者就已经超过了 6m，人们可以在上面找到围绕各种话题形成的活跃社群。</p>
+<p>ActivityPub 的思路很简单直接，每个服务器（instance）类似电子邮件服务器，帮用户收信、发信，并托管身份。它标准化了服务器之间的通讯，让自由加入的服务器彼此之间可以联通；它也标准化了客户端与服务器之间的通讯，让用户可以在同一个 APP 上接入不同的服务器。这给了服务器运维者和用户都提供了很大的自由度。</p>
+<p>ActivityPub 有个问题是，用户的身份和数据与服务器绑定，难以迁移。服务器一般都是志愿运行的，没有商业模式，不太持久。服务器一旦停止，用户的身份和数据也就丢失了。相比之下，其他三个协议都以用户的公钥为身份，并且在多个服务器中保存数据，迁移也比较容易。</p>
+<p>ActivityPub / Mastodon 还有个特点，每个服务器就是一个社群；社群是非常有效的自组织方式，但服务器作为社群基础，提高了创建社群的门槛，因为创建社群就意味着运维服务器。这导致 Mastodon 上的社群多样性还是不如 Reddit、豆瓣小组等中心化的产品高。</p>
+<p>不过，这里提到的另外三个协议还没有演变出社群的形态。理论上 SSB 的 pub 和 Nostr 的 relay 也可以当成社群使用，但这样的话同样会面临社群门槛的问题。</p>
+<h2>什么样的协议对于分布式应用有价值？</h2>
+<p>Matters 的团队和用户都提出过设想，如何将 Matters 的社交网络转成邦联制结构，让用户自行架设服务器加入。一个自然的问题是，不同服务器之间的人和内容如何交互。在 Nostr 之前，最可靠的方式是 ActivityPub，标准成熟，采用广泛。</p>
+<p>Nostr 则带来了一条新的思路：不同服务器之间可以不交互。社交网络被拆分成了许多重叠但又独立的切片，用户可以选择自己想要的切片。那些需要全局状态的地方，可以通过其他协议和技术来补充，比如通过内容寻址引用媒体文件，或者通过区块链运行经济系统、进行内容发现。Nostr 还没来得及在实际应用中慢慢成熟，但设计上的高度简洁，意味着有它有足够大的演变空间。</p>
+<p>不过，对于已经有用户和社群的应用来说，似乎并没有动力采用 Nostr。采用 Nostr，功能上的迭代受到了 Nostr 现行标准和客户端的限制，用户更容易迁移到其他的客户端或者服务器；与此同时，并未扩大原有的社交网络，也不能为用户增加新的功能。</p>
+<p>另一方面，采用 ActivityPub、特别是服务器间的通讯标准，是能够扩大原有社交网络的；因为能与其他服务器进行通讯，就能让用户触达到更多的人。但为了实现一个用户自主、方便迁移的全局身份系统和内容网络，又必须要大幅改动 ActivityPub，丢失了部分与其他客户端互操作的能力。不过这些问题大都可以通过其他比较成熟的协议来补足，比如以太坊地址为身份、IPFS 指纹为内容 ID。</p>
+<p>ActivityPub 的设计思路来自 <a href="https://en.wikipedia.org/wiki/Fediverse">Fediverse</a>，社交网络伊始便已存在。这个思路也非常简单：一群服务器组成分治的网络，相互收发信息。这条思路从 GNU social 到 Mastadon 等不同的软件，从 OStatus 到 ActivityPub 等不同的协议，积累了近二十年来人们探索分布式社交网络的经验，有很强的可扩展性。</p>
+<p>Nostr 的热度只持续了很短的时间，而短短时间内出现的话题和内容，仍然没有脱离 Nostr 本身。不够真实的使用场景，难以说明 Nostr 多大程度满足了需求。但短时间超过 1M 人来尝试，倒说明了许多人已经苦于传统的中心化社交网络，正在寻找新的选项。这是发展分布式社交网络的先决条件，也才是 Nostr 出圈故事中最有意思的一点。</p>
+<p>Nostr 本身的极端简洁也让这个实验很有价值。不管最终能否形成新的社交网络范式，它已经做到了 Secure Scuttlebutt 的精妙设计和 Farcaster 的资本投入都没做到的事，给分布式社交应用提供了一条极端简洁的思路。</p>
+<nav class="series-nav">
+  <div class="series-nav-links">
+    <a href="../../../articles/分布式信息网络/去中心化社交媒体的博弈机制/index.html" class="series-nav-link series-nav-prev"><span class="series-nav-arrow">&lt;</span> <span class="series-nav-title">去中心化社交媒体的博弈机制</span></a>
+    <span class="series-nav-link series-nav-next empty"></span>
+  </div>
+  <div class="series-nav-collection-row">
+    <a href="../../../articles/分布式信息网络/index.html" class="series-nav-collection">分布式信息网络</a>
+  </div>
+</nav>
+        </article>
+    </main>
+
+    <footer class="container">
+    <div class="footer-content">
+        <p class="footer-label">订阅</p>
+        <a href="../../../feed.xml" class="footer-link" data-external>RSS</a>
+    </div>
+</footer>
+
+    <script src="../../../js/theme.js"></script>
+    <script src="../../../js/video-placeholder.js"></script>
+</body>
+</html>

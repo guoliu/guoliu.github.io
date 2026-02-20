@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Particle Universe</title>
+  <style>
+    * { margin: 0; padding: 0; overflow: hidden; }
+    body { background: #fff; }
+    body.dark { background: #000; }
+    canvas { display: block; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <canvas id="canvas"></canvas>
+  <script>
+    // Constants
+    const PARTICLE_COUNT = 50
+    const SPEED = 0.005
+    const REPULSION = 0.000005
+    const ATTRACTION = 0.0015
+    const CONNECT_DIST = 0.25
+    const CONNECT_DIST_SQ = CONNECT_DIST * CONNECT_DIST
+
+    // State
+    let darkMode = false
+    let mouseX = 0.5
+    let mouseY = 0.5
+
+    // Canvas setup
+    const canvas = document.getElementById('canvas')
+    const ctx = canvas.getContext('2d')
+
+    // Particles (plain objects for performance)
+    const particles = Array.from({ length: PARTICLE_COUNT }, () => ({
+      x: Math.random(),
+      y: Math.random(),
+      vx: (Math.random() - 0.5) * SPEED * 2,
+      vy: (Math.random() - 0.5) * SPEED * 2,
+      radius: 0.002
+    }))
+
+    // Pre-allocated lines array (reused each frame)
+    const lines = []
+
+    // Physics update
+    function updatePhysics() {
+      lines.length = 0
+
+      for (let i = 0; i < PARTICLE_COUNT; i++) {
+        const p = particles[i]
+
+        // Apply velocity
+        p.x += p.vx
+        p.y += p.vy
+
+        // Particle-particle interactions (j > i avoids duplicate calculations)
+        for (let j = i + 1; j < PARTICLE_COUNT; j++) {
+          const q = particles[j]
+          const dx = q.x - p.x
+          const dy = q.y - p.y
+          const distSq = dx * dx + dy * dy
+
+          // Repulsion force (using squared distance)
+          const force = REPULSION / distSq
+          const fx = force * dx
+          const fy = force * dy
+          p.vx -= fx
+          p.vy -= fy
+          q.vx += fx
+          q.vy += fy
+
+          // Connection lines
+          if (distSq < CONNECT_DIST_SQ) {
+            const dist = Math.sqrt(distSq)
+            lines.push({
+              x1: p.x, y1: p.y,
+              x2: q.x, y2: q.y,
+              strength: 1 - dist / CONNECT_DIST
+            })
+          }
+        }
+
+        // Mouse attraction
+        const mdx = mouseX - p.x
+        const mdy = mouseY - p.y
+        const mDistSq = mdx * mdx + mdy * mdy
+        p.vx += ATTRACTION * mdx * mDistSq
+        p.vy += ATTRACTION * mdy * mDistSq
+
+        // Mouse connection line
+        if (mDistSq < CONNECT_DIST_SQ) {
+          const mDist = Math.sqrt(mDistSq)
+          lines.push({
+            x1: p.x, y1: p.y,
+            x2: mouseX, y2: mouseY,
+            strength: 1 - mDist / CONNECT_DIST
+          })
+        }
+
+        // Cap velocity
+        const speedSq = p.vx * p.vx + p.vy * p.vy
+        if (speedSq > SPEED * SPEED) {
+          const scale = SPEED / Math.sqrt(speedSq)
+          p.vx *= scale
+          p.vy *= scale
+        }
+      }
+    }
+
+    // Render
+    function render() {
+      const w = canvas.width
+      const h = canvas.height
+
+      ctx.clearRect(0, 0, w, h)
+
+      // Draw particles (light mode only)
+      if (!darkMode) {
+        ctx.strokeStyle = '#000'
+        ctx.lineWidth = 1
+        for (const p of particles) {
+          ctx.beginPath()
+          ctx.arc(p.x * w, p.y * h, p.radius * h, 0, Math.PI * 2)
+          ctx.stroke()
+        }
+      }
+
+      // Draw connection lines
+      for (const line of lines) {
+        ctx.beginPath()
+        ctx.moveTo(line.x1 * w, line.y1 * h)
+        ctx.lineTo(line.x2 * w, line.y2 * h)
+        ctx.lineWidth = line.strength / 2
+        if (darkMode) {
+          const c = Math.floor(line.strength * 255)
+          ctx.strokeStyle = `rgba(${c},${c},${c},0.3)`
+        } else {
+          ctx.strokeStyle = '#000'
+        }
+        ctx.stroke()
+      }
+    }
+
+    // Animation loop
+    function loop() {
+      updatePhysics()
+      render()
+      requestAnimationFrame(loop)
+    }
+
+    // Resize handler
+    function resize() {
+      canvas.width = window.innerWidth
+      canvas.height = window.innerHeight
+    }
+
+    // Event listeners
+    window.addEventListener('resize', resize)
+
+    canvas.addEventListener('mousemove', e => {
+      mouseX = e.clientX / canvas.width
+      mouseY = e.clientY / canvas.height
+    })
+
+    canvas.addEventListener('touchmove', e => {
+      e.preventDefault()
+      mouseX = e.touches[0].clientX / canvas.width
+      mouseY = e.touches[0].clientY / canvas.height
+    }, { passive: false })
+
+    canvas.addEventListener('click', () => {
+      darkMode = !darkMode
+      document.body.classList.toggle('dark', darkMode)
+    })
+
+    // Initialize
+    resize()
+    loop()
+  </script>
+</body>
+</html>

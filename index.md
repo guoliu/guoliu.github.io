@@ -1,8 +1,7 @@
 ---
-title: "刘果"
+title: 刘果的小站
 ---
-
-看星星，食烟火。
+👋 欢迎来到我的互联网的角落。这里存有我的[文字](./articles)，[视频](./videos)和[交互实验](./interactives)。
 
 :::grid 3
 [无用之旅](/articles/无用之旅/)

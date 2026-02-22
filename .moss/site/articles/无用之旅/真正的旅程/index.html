@@ -27,7 +27,7 @@
   }
 }
 </script>
-    
+    <link rel="icon" type="image/svg+xml" href="../../../assets/favicon.svg">
     
     
     
@@ -101,9 +101,13 @@
 
     <footer class="container">
     <div class="footer-content">
-        <p class="footer-label">订阅</p>
-        <a href="../../../feed.xml" class="footer-link" data-external>RSS</a>
-    </div>
+    <a href="/feed.xml" class="footer-link" data-external>RSS</a>
+    <form action="https://buttondown.com/api/emails/embed-subscribe/liuguo" method="post" class="footer-subscribe-form">
+        <input type="email" name="email" placeholder="your@email.com" required />
+        <input type="hidden" value="1" name="embed" />
+        <button type="submit">Subscribe</button>
+    </form>
+</div>
 </footer>
 
     <script src="../../../js/theme.js"></script>

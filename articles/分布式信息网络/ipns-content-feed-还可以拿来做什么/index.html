@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IPNS Content Feed 还可以拿来做什么？ - 刘果</title>
+    <meta name="description" content="Matters 开始测试基于 IPNS 的 content feed，目前拥有 Traveloggers 的朋友可以提前试用。点击个人主页右边“信号”图标，会显示 Content Feed 弹窗，绿色部分即是 IPNS hash。 !Matters.News 个人主页中的 IPNS hash IPNS 是 IPFS...">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="IPNS Content Feed 还可以拿来做什么？">
+    <meta property="og:url" content="/articles/分布式信息网络/ipns-content-feed-还可以拿来做什么/">
+    <meta property="og:site_name" content="刘果">
+    <meta property="og:description" content="Matters 开始测试基于 IPNS 的 content feed，目前拥有 Traveloggers 的朋友可以提前试用。点击个人主页右边“信号”图标，会显示 Content Feed 弹窗，绿色部分即是 IPNS hash。 !Matters.News 个人主页中的 IPNS hash IPNS 是 IPFS...">
+    <meta property="article:published_time" content="2022-10-24T23:06:16.302Z">
+    <meta property="og:image" content="assets/fd813bb8-7c42-4cd4-b867-5aad37e9f873.png">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "IPNS Content Feed 还可以拿来做什么？",
+  "url": "/articles/分布式信息网络/ipns-content-feed-还可以拿来做什么/",
+  "description": "Matters 开始测试基于 IPNS 的 content feed，目前拥有 Traveloggers 的朋友可以提前试用。点击个人主页右边“信号”图标，会显示 Content Feed 弹窗，绿色部分即是 IPNS hash。 !Matters.News 个人主页中的 IPNS hash IPNS 是 IPFS...",
+  "datePublished": "2022-10-24T23:06:16.302Z",
+  "image": "assets/fd813bb8-7c42-4cd4-b867-5aad37e9f873.png",
+  "publisher": {
+    "@type": "Organization",
+    "name": "刘果"
+  }
+}
+</script>
+    <link rel="icon" type="image/svg+xml" href="../../../assets/favicon.svg">
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="../../../feed.xml">
+    
+    
+    <link rel="stylesheet" href="../../../style.css?v=e9469913b04e3b93">
+</head>
+<body class="">
+    <header>
+        <nav class="main-nav container">
+            <div class="nav-content">
+                <div class="nav-left"><a href="../../../" class="site-name">刘果</a></div><div class="nav-right"><div class="nav-icons"><button class="theme-toggle" onclick="toggleTheme()" aria-label="切换深色模式" type="button" title="切换深色模式"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="1em" height="1em" fill="currentColor" stroke-linecap="round" class="theme-toggle__classic" viewBox="0 0 32 32"><clipPath id="theme-toggle__classic__cutout"><path d="M0-5h30a1 1 0 0 0 9 13v24H0Z"/></clipPath><g clip-path="url(#theme-toggle__classic__cutout)"><circle cx="16" cy="16" r="9.34"/><g stroke="currentColor" stroke-width="1.5"><path d="M16 5.5v-4"/><path d="M16 30.5v-4"/><path d="M1.5 16h4"/><path d="M26.5 16h4"/><path d="m23.4 8.6 2.8-2.8"/><path d="m5.7 26.3 2.9-2.9"/><path d="m5.8 5.8 2.8 2.8"/><path d="m23.4 23.4 2.9 2.9"/></g></g></svg></button></div></div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <article class="container">
+            <h1 class="article-title">IPNS Content Feed 还可以拿来做什么？</h1>
+            <p><span class="date">2022 · 10 · 24</span></p>
+            <p>Matters 开始测试基于 IPNS 的 content feed，目前拥有 Traveloggers 的朋友可以提前试用。点击个人主页右边“信号”图标，会显示 Content Feed 弹窗，绿色部分即是 IPNS hash。</p>
+<figure>
+  <img src="../../../assets/42d29741-a094-49e3-94fe-3bf3749f64bf.png" data-placeholder-src="../../../assets/42d29741-a094-49e3-94fe-3bf3749f64bf.png" width="800" height="600" loading="lazy" alt="" />
+  <figcaption>Matters.News 个人主页中的 IPNS hash</figcaption>
+</figure>
+<p><a href="https://docs.ipfs.tech/concepts/ipns/">IPNS</a> 是 IPFS 设计中用于处理动态数据的部分。用 IPNS hash 指向主页和内容，让用户能够不断更新和增减内容，同时内容指纹保持不变。</p>
+<p>实现的方式是，每个用户有一对密钥，每次发布时通过密钥签署、证明内容的真实性。目前密钥存在 Matters 的数据库中，由 Matters 服务器代为签署。</p>
+<p>配合 <a href="https://www.planetable.xyz/">Planet</a>，用户可以通过 IPNS hash 来点对点传输数据，不再需要经过 Matters 的服务器，也不再依赖互联网的域名系统。</p>
+<p>除此之外，IPNS hash 可以用来做什么？</p>
+<h2>1. 为珍视的内容进行备份</h2>
+<p>Matters 上的内容存储在 IPFS 上，让内容更难以被删除和封锁，但无法保证“永久存储”，因为依然依赖 Matters 提供的 IPFS node pin 数据。</p>
+<p>最理想的让内容免于丢失和封锁的存储方式，是使用者各自在本地存一份。Planet 的订阅功能正是这么实现的，订阅者同时在本地存储了订阅的内容，并在后续协助内容以点对点的形式分发。</p>
+<p>下载 Planet 后，点击左下角“+”，并选择“Follow Planet”，输入个人主页中得到的 IPNS 指纹，便可以点对点订阅内容，同时为内容进行备份。</p>
+<figure>
+  <img src="../../../assets/d809d85d-1892-4972-81be-4340af1da94f.png" data-placeholder-src="../../../assets/d809d85d-1892-4972-81be-4340af1da94f.png" width="800" height="600" loading="lazy" alt="" />
+  <figcaption>Planet 中通过 IPNS hash 点对点订阅与备份内容</figcaption>
+</figure>
+<h2>2. 为自己的 ENS 配置个人页面</h2>
+<p>Matters 提供的 IPNS hash 中不仅存有用户发布的内容，还存有一个简单的静态个人主页。在任意一个支持 IPNS 的 IPFS 公共网关中直接打开 IPNS hash，就可以看到这个个人主页。比如，这是我的 IPNS hash 在 ipfs.io 网关中的路径：</p>
+<pre><code>https://ipfs.io/ipns/k51qzi5uqu5dhihcpntbdym8g6desc80za48wshqs85no166wq3c8ee26cysotda
+</code></pre>
+<p>IPNS 也是 ENS 支持的标准，意味着用户可以通过 <a href="https://eips.ethereum.org/EIPS/eip-1577">EIP-1577 标准</a>将这个静态页面设为自己在 Web3 中完全分布式分发的个人主页。</p>
+<p>进入 <a href="https://app.ens.domains/">ENS 管理界面</a>，选择想要使用的域名，点击“add/edit record”，并在“content”一栏填入“ipns://”加上 Matters 生成的 IPNS hash。最后点击 save，在钱包上确认并支付 gas fee。</p>
+<figure>
+  <img src="../../../assets/4921cdf5-3287-4652-acce-48d39baf70b9.png" data-placeholder-src="../../../assets/4921cdf5-3287-4652-acce-48d39baf70b9.png" width="800" height="600" loading="lazy" alt="" />
+  <figcaption>app.ens.domains 中将 IPNS hash 设为 ENS 的 content hash</figcaption>
+</figure>
+<p>几分钟后，就可以通过 eth.link、eth.limo 等服务或者 Brave 浏览器等支持 ENS 的客户端访问自己在 ENS 上的个人主页了。Planet 用户可以通过 liuguo.eth 订阅我的内容，而这是我的 ENS 域名通过 eth.limo 访问的结果：</p>
+<figure>
+  <img src="../../../assets/e4bb2e27-e745-446d-b791-1c79e14ed6a5.png" data-placeholder-src="../../../assets/e4bb2e27-e745-446d-b791-1c79e14ed6a5.png" width="800" height="600" loading="lazy" alt="" />
+  <figcaption>配置好的 ENS 个人主页</figcaption>
+</figure>
+<p>未来已来，我们让它均匀分布。Enjoy!</p>
+<nav class="series-nav">
+  <div class="series-nav-links">
+    <a href="../../../articles/分布式信息网络/关于-d-do-s-与去中心化的碎碎念/index.html" class="series-nav-link series-nav-prev"><span class="series-nav-arrow">&lt;</span> <span class="series-nav-title">关于 DDoS 与去中心化的碎碎念</span></a>
+    <a href="../../../articles/分布式信息网络/去中心化社交媒体的博弈机制/index.html" class="series-nav-link series-nav-next"><span class="series-nav-title">去中心化社交媒体的博弈机制</span> <span class="series-nav-arrow">&gt;</span></a>
+  </div>
+  <div class="series-nav-collection-row">
+    <a href="../../../articles/分布式信息网络/index.html" class="series-nav-collection">分布式信息网络</a>
+  </div>
+</nav>
+        </article>
+    </main>
+
+    <footer class="container">
+    <div class="footer-content">
+    <a href="/feed.xml" class="footer-link" data-external>RSS</a>
+    <form action="https://buttondown.com/api/emails/embed-subscribe/liuguo" method="post" class="footer-subscribe-form">
+        <input type="email" name="email" placeholder="your@email.com" required />
+        <input type="hidden" value="1" name="embed" />
+        <button type="submit">Subscribe</button>
+    </form>
+</div>
+</footer>
+
+    <script src="../../../js/theme.js"></script>
+</body>
+</html>

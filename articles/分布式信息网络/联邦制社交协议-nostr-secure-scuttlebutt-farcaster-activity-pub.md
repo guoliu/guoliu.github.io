@@ -1,5 +1,6 @@
 ---
 title: "联邦制社交协议：Nostr，Secure Scuttlebutt，Farcaster，ActivityPub"
+uid: 37e49dd6
 date: "2023-02-16T22:20:37.522Z"
 updated: "2023-02-16T22:23:53.992Z"
 tags:

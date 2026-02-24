@@ -1,5 +1,6 @@
 ---
 title: 无用之旅
+uid: c0355c74
 is_collection: "true"
 description: 一场穿越时空的公路旅行，一场无用之旅。
 cover: "[[assets/a6833b1a-eeba-419a-9c4b-a60d92b1d828.jpg]]"

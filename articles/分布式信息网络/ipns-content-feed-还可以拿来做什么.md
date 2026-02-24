@@ -1,5 +1,6 @@
 ---
 title: "IPNS Content Feed 还可以拿来做什么？"
+uid: d3811787
 date: "2022-10-24T23:06:16.302Z"
 updated: "2022-10-25T17:58:22.049Z"
 tags:

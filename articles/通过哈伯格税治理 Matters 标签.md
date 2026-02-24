@@ -10,6 +10,7 @@ tags:
 cover: "[[assets/dcf1562d-afba-4cb7-b60b-e198cd3cd7ce.jpg]]"
 syndicated:
   - "https://matters.town/@guo/通过哈伯格税治理-matters-标签-pkebrljhlagy"
+uid: 007ec9e9
 ---
 
 ![](../assets/77697bad-74c6-402c-a0af-78249480bea1.jpg)

@@ -1,5 +1,6 @@
 ---
 title: 分布式信息网络
+uid: fb61e5ef
 is_collection: "true"
 cover: "[[assets/99cdfdfc-b9fe-4dc0-9a4f-af1dbc711ffd.jpg]]"
 order:

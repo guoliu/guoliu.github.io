@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-hans">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -29,7 +29,26 @@
     <link rel="alternate" type="application/rss+xml" title="RSS" href="../../feed.xml">
     
     
-    <link rel="stylesheet" href="../../style.css?v=e9469913b04e3b93">
+    <link rel="stylesheet" href="../../style.css?v=dee9f975d540ccf3">
+<style class="moss-email-style">/* Email subscribe form — injected by email plugin enhance hook */
+.footer-subscribe-form {
+  display: flex;
+  gap: var(--moss-space-sm);
+  align-items: baseline;
+  max-width: 18rem;
+}
+
+.footer-subscribe-form .moss-input {
+  flex: 1;
+}
+
+@media (max-width: 48rem) {
+  .footer-subscribe-form .moss-input {
+    width: 10ch;
+    flex: none;
+  }
+}
+</style>
 </head>
 <body class="immersive-ready">
     <header>
@@ -51,11 +70,11 @@
 
     <footer class="container">
     <div class="footer-content">
-    <a href="/feed.xml" class="footer-link" data-external>RSS</a>
+    <a href="../../feed.xml" class="footer-link" data-external>RSS</a>
     <form action="https://buttondown.com/api/emails/embed-subscribe/liuguo" method="post" class="footer-subscribe-form">
-        <input type="email" name="email" placeholder="your@email.com" required />
+        <input type="email" name="email" class="moss-input" placeholder="邮箱" required />
         <input type="hidden" value="1" name="embed" />
-        <button type="submit">Subscribe</button>
+        <button type="submit" class="moss-btn">订阅</button>
     </form>
 </div>
 </footer>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-hans">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +8,26 @@
     <link rel="alternate" type="application/rss+xml" title="RSS" href="../feed.xml">
     
     
-    <link rel="stylesheet" href="../style.css?v=e9469913b04e3b93">
+    <link rel="stylesheet" href="../style.css?v=dee9f975d540ccf3">
+<style class="moss-email-style">/* Email subscribe form — injected by email plugin enhance hook */
+.footer-subscribe-form {
+  display: flex;
+  gap: var(--moss-space-sm);
+  align-items: baseline;
+  max-width: 18rem;
+}
+
+.footer-subscribe-form .moss-input {
+  flex: 1;
+}
+
+@media (max-width: 48rem) {
+  .footer-subscribe-form .moss-input {
+    width: 10ch;
+    flex: none;
+  }
+}
+</style>
 </head>
 <body>
     <header>
@@ -54,8 +73,10 @@
 </section>
 <section class="year-group minimal">
 <h2>2019</h2>
+<p class="article-item"><a href="如何保持网络匿名/index.html" class="prefix-link"><span class="prefix-link-prefix date">07</span><span class="prefix-link-title title">如何保持网络匿名</span></a></p>
 <p class="article-item"><a href="ipfs開發者大會記錄/index.html" class="prefix-link"><span class="prefix-link-prefix date">07</span><span class="prefix-link-title title">IPFS開發者大會記錄</span></a></p>
 <p class="article-item"><a href="維園影像/index.html" class="prefix-link"><span class="prefix-link-prefix date">06</span><span class="prefix-link-title title">維園影像</span></a></p>
+<p class="article-item"><a href="如何使用自己的ipfs节点/index.html" class="prefix-link"><span class="prefix-link-prefix date">05</span><span class="prefix-link-title title">如何使用自己的IPFS节点</span></a></p>
 <p class="article-item"><a href="如何建立分布式的版權生態/index.html" class="prefix-link"><span class="prefix-link-prefix date">03</span><span class="prefix-link-title title">如何建立分布式的版權生態</span></a></p>
 <p class="article-item"><a href="工程日誌-3-19-如何建立分布式的版權生態/index.html" class="prefix-link"><span class="prefix-link-prefix date">03</span><span class="prefix-link-title title">工程日誌 3/19：如何建立分布式的版權生態？</span></a></p>
 </section>
@@ -69,11 +90,11 @@
 
     <footer class="container">
     <div class="footer-content">
-    <a href="/feed.xml" class="footer-link" data-external>RSS</a>
+    <a href="../feed.xml" class="footer-link" data-external>RSS</a>
     <form action="https://buttondown.com/api/emails/embed-subscribe/liuguo" method="post" class="footer-subscribe-form">
-        <input type="email" name="email" placeholder="your@email.com" required />
+        <input type="email" name="email" class="moss-input" placeholder="邮箱" required />
         <input type="hidden" value="1" name="embed" />
-        <button type="submit">Subscribe</button>
+        <button type="submit" class="moss-btn">订阅</button>
     </form>
 </div>
 </footer>

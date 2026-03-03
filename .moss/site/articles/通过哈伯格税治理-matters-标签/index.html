@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-hans">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -31,7 +31,350 @@
     <link rel="alternate" type="application/rss+xml" title="RSS" href="../../feed.xml">
     
     
-    <link rel="stylesheet" href="../../style.css?v=e9469913b04e3b93">
+    <link rel="stylesheet" href="../../style.css?v=dee9f975d540ccf3">
+<style class="moss-comments-style">/* ==========================================================================
+   moss Comments Plugin - Styles
+
+   Collapsible comment section with solid thread borders,
+   underline-style form inputs, and responsive grid layout.
+   Uses CSS custom properties from moss default.css.
+   ========================================================================== */
+
+/* Comment Section */
+.moss-comments {
+  margin-top: var(--moss-space-xl, 3rem);
+  padding-top: var(--moss-space-lg, 2rem);
+  border-top: 1px solid var(--moss-border-light, #e6e2db);
+}
+
+/* ==========================================================================
+   Collapsible Details/Summary
+   ========================================================================== */
+
+.comments-toggle {
+  display: flex;
+  align-items: center;
+  gap: var(--moss-space-xs, 0.5rem);
+  cursor: pointer;
+  list-style: none;
+  font-size: var(--moss-font-sm, 1rem);
+  color: var(--moss-text-muted, #8a8580);
+  user-select: none;
+  padding: 0;
+}
+
+/* Hide WebKit default disclosure triangle */
+.comments-toggle::-webkit-details-marker {
+  display: none;
+}
+
+.comments-toggle .comments-icon {
+  flex-shrink: 0;
+}
+
+.comments-toggle:hover {
+  color: var(--moss-text-primary, #2c2825);
+}
+
+/* Chevron indicator */
+.comments-toggle::after {
+  content: "▸";
+  margin-left: auto;
+  font-size: 1.25rem;
+  color: var(--moss-text-secondary, #5d5853);
+  transition: transform 0.15s ease;
+}
+
+details[open] > .comments-toggle::after {
+  content: "▾";
+}
+
+/* Space between summary and content when open */
+details[open] > .comments-toggle {
+  margin-bottom: var(--moss-space-md, 1.5rem);
+}
+
+/* ==========================================================================
+   Comment List
+   ========================================================================== */
+
+.comment-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.comment-item {
+  padding: var(--moss-space-md, 1.5rem) 0;
+  border-bottom: 1px solid var(--moss-border-light, #e6e2db);
+}
+
+.comment-item:first-child {
+  padding-top: 0;
+}
+
+.comment-item:last-child {
+  border-bottom: none;
+}
+
+/* Comment Header: author name + date */
+.comment-header {
+  display: flex;
+  align-items: baseline;
+  gap: var(--moss-space-xs, 0.5rem);
+  margin-bottom: var(--moss-space-xs, 0.5rem);
+}
+
+.comment-author {
+  font-weight: 480;
+  font-size: var(--moss-font-sm, 1rem);
+  color: var(--moss-text-primary, #2c2825);
+  text-decoration: none;
+}
+
+a.comment-author:hover {
+  color: var(--moss-accent, #2d5a2d);
+}
+
+.comment-date {
+  font-size: 0.875rem;
+  color: var(--moss-text-muted, #8a8580);
+}
+
+/* Comment Body */
+.comment-body {
+  font-size: var(--moss-font-base, 1.125rem);
+  line-height: 1.7;
+  color: var(--moss-text-primary, #2c2825);
+}
+
+.comment-body p {
+  margin: 0 0 var(--moss-space-sm, 1rem) 0;
+}
+
+.comment-body p:last-child {
+  margin-bottom: 0;
+}
+
+.comment-body blockquote {
+  font-size: inherit;
+}
+
+.comment-body a {
+  color: var(--moss-text-primary, #2c2825);
+  text-decoration: underline;
+}
+
+.comment-body a:hover {
+  color: var(--moss-accent, #2d5a2d);
+}
+
+/* ==========================================================================
+   Nested Replies — Solid Left Border Threading
+   ========================================================================== */
+
+.comment-replies {
+  list-style: none;
+  padding: 0 0 0 var(--moss-space-sm, 1rem);
+  margin: 0 0 0 var(--moss-space-xs, 0.5rem);
+  border-left: 2px solid var(--moss-border-medium, #d1cdc4);
+}
+
+.comment-replies .comment-item {
+  padding: var(--moss-space-sm, 1rem) 0;
+}
+
+/* ==========================================================================
+   Comment Form
+   ========================================================================== */
+
+.comment-form {
+  background: var(--moss-background-alt, #f4f1ec);
+  border-radius: 8px;
+  padding: 1.25rem;
+  margin-top: var(--moss-space-lg, 2rem);
+}
+
+/* Textarea — underline style */
+.comment-form textarea {
+  display: block;
+  width: 100%;
+  min-height: 3rem;
+  padding: 0.25rem 0;
+  border: none;
+  border-bottom: 1px solid var(--moss-border-medium, #d1cdc4);
+  font-family: inherit;
+  font-size: var(--moss-font-base, 1.125rem);
+  line-height: 1.7;
+  color: var(--moss-text-primary, #2c2825);
+  background: transparent;
+  resize: none;
+  overflow: hidden;
+  box-sizing: border-box;
+  transition: border-color 0.15s ease;
+}
+
+.comment-form textarea:focus {
+  outline: none;
+  border-bottom: 2px solid var(--moss-accent, #2d5a2d);
+}
+
+.comment-form textarea::placeholder {
+  color: var(--moss-text-muted, #8a8580);
+}
+
+/* ==========================================================================
+   Form Meta Row — Name + Email + Website + Submit (single row on desktop)
+   ========================================================================== */
+
+.comment-form-meta {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr 1.1fr auto;
+  gap: 0.75rem;
+  align-items: end;
+  margin-top: var(--moss-space-sm, 1rem);
+}
+
+/* Underline-style input fields */
+.comment-field {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--moss-border-medium, #d1cdc4);
+  padding: 0.5rem 0;
+  font-family: inherit;
+  font-size: var(--moss-font-sm, 1rem);
+  color: var(--moss-text-primary, #2c2825);
+  box-sizing: border-box;
+  transition: border-color 0.15s ease;
+  min-width: 0;
+}
+
+.comment-field:focus {
+  outline: none;
+  border-bottom: 2px solid var(--moss-accent, #2d5a2d);
+}
+
+.comment-field::placeholder {
+  color: var(--moss-text-muted, #8a8580);
+}
+
+/* ==========================================================================
+   Submit Button — Filled Tonal Style
+   ========================================================================== */
+
+.comment-form-submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1.25rem;
+  background: color-mix(in srgb, var(--moss-accent, #2d5a2d) 8%, transparent);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  color: var(--moss-accent, #2d5a2d);
+  font-family: inherit;
+  font-size: var(--moss-font-sm, 1rem);
+  font-weight: 480;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.comment-form-submit:hover {
+  background: color-mix(in srgb, var(--moss-accent, #2d5a2d) 15%, transparent);
+}
+
+.comment-form-submit:focus {
+  outline: 2px solid var(--moss-accent, #2d5a2d);
+  outline-offset: 2px;
+}
+
+.comment-form-submit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ==========================================================================
+   Accessible Visually Hidden
+   ========================================================================== */
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ==========================================================================
+   Status Messages
+   ========================================================================== */
+
+.comment-form-status {
+  margin-top: var(--moss-space-sm, 1rem);
+  font-size: 0.875rem;
+}
+
+.comment-form-status:empty {
+  display: none;
+}
+
+.comment-form-status--error {
+  color: #a83232;
+}
+
+.comment-form-status--success {
+  color: var(--moss-accent, #2d5a2d);
+}
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+
+/* 2+2 layout: name+email on row 1, website+button on row 2 */
+@media (max-width: 37.5rem) {
+  .comment-form-meta {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .comment-replies {
+    padding-left: var(--moss-space-xs, 0.5rem);
+    margin-left: 0.25rem;
+  }
+}
+
+/* Full stack on very narrow screens */
+@media (max-width: 25rem) {
+  .comment-form-meta {
+    grid-template-columns: 1fr;
+  }
+
+  .comment-form-submit {
+    justify-self: end;
+  }
+}
+</style>
+<style class="moss-email-style">/* Email subscribe form — injected by email plugin enhance hook */
+.footer-subscribe-form {
+  display: flex;
+  gap: var(--moss-space-sm);
+  align-items: baseline;
+  max-width: 18rem;
+}
+
+.footer-subscribe-form .moss-input {
+  flex: 1;
+}
+
+@media (max-width: 48rem) {
+  .footer-subscribe-form .moss-input {
+    width: 10ch;
+    flex: none;
+  }
+}
+</style>
 </head>
 <body class="">
     <header>
@@ -68,16 +411,529 @@
 <p>但实际的实施过程是能够让人容易接受的。一来，大部分标签并没有多少人争夺，这些标签会保留价格 0，没有税收，和现在逻辑完全一致。再者，税率可以定得非常低，只要足够阻挡 troll 们随意定价即可，比如 1% 的税率意味着 1 元钱的标签每年税收只有 1 分钱。最后，这形成了标签的市场，让管理者可以在维护标签后售卖，成为一种新的收入来源。</p>
 <p>哈伯格税尚未有过大规模的应用，所以其实我们并不能确定其有效性。但是，Matters 标签会是一个非常合适的试验田。如果试验失败了，所有标签标价依然是 0、无人竞争，那也无人损失；如果成功了，标签得以进行有效的管理和分配，标签管理者能够从中获利，Matters 站方也能够通过税收扩大团队或者补贴提现手续费等成本。进一步，成功的机制也可以通过智能合约实现，变成 Matters 基建的一部分，开放给所有其他项目使用。</p>
 
-        </article>
+        
+<section class="moss-comments" id="moss-comments">
+  <details>
+    <summary class="comments-toggle"><svg class="comments-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></svg><span>57条评论</span></summary>
+    <ol class="comment-list"><li class="comment-item" id="comment-Q29tbWVudDo0OTUzMzQ">
+  <div class="comment-header">
+    <a href="https://matters.town/@wancat" class="comment-author" rel="nofollow noopener" target="_blank">林宏信</a>
+    <time class="comment-date" datetime="2021-03-10T00:06:23.157Z">2021年3月9日</time>
+  </div>
+  <div class="comment-body"><p>期待實施這個方法！</p></div>
+</li><li class="comment-item" id="comment-Q29tbWVudDo0OTUzNDM">
+  <div class="comment-header">
+    <a href="https://matters.town/@guo" class="comment-author" rel="nofollow noopener" target="_blank">刘果</a>
+    <time class="comment-date" datetime="2021-03-10T00:08:50.711Z">2021年3月9日</time>
+  </div>
+  <div class="comment-body"><p><a href="/@septentrium">﻿@不明飞行兔﻿</a> <a href="/@seenzhao">﻿@SinChaos﻿</a> 虽然 Matters 标签用量不大，但是我觉得会是一个好的验证机会，看看哈伯格税究竟是人类之光、演化必然，还是愚蠢、邪恶而无用之物。不知二位怎么觉得 😄</p></div>
+  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDo0OTY3MzM">
+  <div class="comment-header">
+    <a href="https://matters.town/@septentrium" class="comment-author" rel="nofollow noopener" target="_blank">不明飞行兔</a>
+    <time class="comment-date" datetime="2021-03-10T19:30:23.849Z">2021年3月10日</time>
+  </div>
+  <div class="comment-body"><p>支持果，如果真的可以试起来就太好了，加油加油！</p></div>
+</li>
+  </ol>
+</li><li class="comment-item" id="comment-Q29tbWVudDo0OTUzOTU">
+  <div class="comment-header">
+    <a href="https://matters.town/@luxun" class="comment-author" rel="nofollow noopener" target="_blank">Valkyrie (女武神)</a>
+    <time class="comment-date" datetime="2021-03-10T01:04:24.802Z">2021年3月9日</time>
+  </div>
+  <div class="comment-body"><p>您这篇文章很有启发性。我同意标签是公产，如果给我来管理，我的权力必须得到认可，如果有什么我要尽的责任也应该事先讲清楚。</p><p>我现在正为几个诉状烦心呢！</p><p>如果真要购买标签，我愿意无偿将标签如数奉还，省事、省心。</p></div>
+</li><li class="comment-item" id="comment-Q29tbWVudDo0OTU0MzY">
+  <div class="comment-header">
+    <a href="https://matters.town/@wudunyi" class="comment-author" rel="nofollow noopener" target="_blank">吳郭義</a>
+    <time class="comment-date" datetime="2021-03-10T01:34:50.315Z">2021年3月9日</time>
+  </div>
+  <div class="comment-body"><p>非常好的設想。不過，標籤本身是沒有辦法盈利的，它並不能視作常規的資產。另一方面，Matty鼓勵用戶管理標籤是因為這樣可以分擔管理壓力以及推動馬特市的分區更加明顯化。這些狀況是否符合進行哈伯格税試驗的條件呢？</p></div>
+  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDo0OTU1NzU">
+  <div class="comment-header">
+    <a href="https://matters.town/@guo" class="comment-author" rel="nofollow noopener" target="_blank">刘果</a>
+    <time class="comment-date" datetime="2021-03-10T02:39:03.728Z">2021年3月9日</time>
+  </div>
+  <div class="comment-body"><blockquote>標籤本身是沒有辦法盈利的，它並不能視作常規的資產。</blockquote><p>物理世界中的資產估價也與盈利不直接相關，目前有爭奪標籤的情況出現，應該足以說明有掌握標籤的需求；這種需求能夠對應到什麼樣的市場價格則只有試試才知道了。不過其實標籤也應當可以被捐贈甚至付費訂閱，以犒勞管理者的勞動，但這是另一個產品問題了。</p><blockquote>Matty鼓勵用戶管理標籤是因為這樣可以分擔管理壓力以及推動馬特市的分區更加明顯化。</blockquote><p>的確是的。但是分擔管理壓力、義務分類整理的標籤應當不會有人競爭，標價為 0，也沒有稅收；反之，如果是有人競爭的標籤，就說明不是純義務勞動、而是有需求、可形成對應市場價格。</p></div>
+  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDo0OTU3MTk">
+  <div class="comment-header">
+    <a href="https://matters.town/@wudunyi" class="comment-author" rel="nofollow noopener" target="_blank">吳郭義</a>
+    <time class="comment-date" datetime="2021-03-10T03:41:06.084Z">2021年3月9日</time>
+  </div>
+  <div class="comment-body"><blockquote>物理世界中的資產估價也與盈利不直接相關，目前有爭奪標籤的情況出現，應該足以說明有掌握標籤的需求；</blockquote><p>確實是這樣。不過目前的需求其實是源於用戶之間的矛盾和衝突，雙方通過在標籤上的爭奪來攻擊和反制。我們引入這種競爭機制是不是對這樣衝突的一種鼓勵呢？如果一位優質用戶因為無法適應這樣的競爭而選擇離開馬特市，那是不是造成馬特市社區的損失？</p><p>另外，目前馬特市的政策是把標籤分為公共標籤和私有標籤。對於私有標籤，馬特市是承認管理者擁有所有處置權的。目前的爭議是在公共標籤上。這些標籤裡的文章數量眾多，構成馬特市內容的主要部分。市民對這些標籤的捍衛只要出現一次失誤，讓破壞者擁有了這個標籤一段時間，破壞者完全可以把標籤內的文章全部移除造成不可挽回的破壞。在這種機制下，我們的社區是非常脆弱的。不知道有沒有技術上的手段可以預防這一點？</p><p>還有一問題就是對馬特市市民的信心沒有那麼充足。馬特市雖然以政治和公共討論起家，但今天的主體是非政治的內容。佔據人口多數，而又對政治並不感興趣的市民們，他們是否願意來競爭標籤達到維護社區的目的呢？</p></div>
+  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDo0OTU4Mjk">
+  <div class="comment-header">
+    <a href="https://matters.town/@guo" class="comment-author" rel="nofollow noopener" target="_blank">刘果</a>
+    <time class="comment-date" datetime="2021-03-10T04:58:34.949Z">2021年3月9日</time>
+  </div>
+  <div class="comment-body"><blockquote>我們引入這種競爭機制是不是對這樣衝突的一種鼓勵呢？</blockquote><p>我覺得不會，因為這種競爭機制引入了成本，應該只是讓有人爭奪的標籤獲得市場價格。</p><blockquote>目前馬特市的政策是把標籤分為公共標籤和私有標籤... 市民對這些標籤的捍衛只要出現一次失誤，讓破壞者擁有了這個標籤一段時間，破壞者完全可以把標籤內的文章全部移除造成不可挽回的破壞。</blockquote><p>公共標籤和私有標籤的確有在社區管理層面區分，但其實在產品上目前並沒有區分，區分起來也會很困難。在設計上加入足夠長的回應期，比如一個月的時間，應當能夠防止“失誤”。但是的確，能夠權限移交就增大了不同形式破壞的可能。</p><blockquote>佔據人口多數，而又對政治並不感興趣的市民們，他們是否願意來競爭標籤達到維護社區的目的呢？</blockquote><p>這樣的結果應當是大部分標籤價格為 0。如果有少數作惡者惡意佔領一些標籤、同時沒有任何用戶願意挑戰，Matty 可以介入；超出了 Matty 的承受力，的確用戶就還是得另用其他標籤了，稅收就反哺社區了。</p></div>
+  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDo0OTY1MjM">
+  <div class="comment-header">
+    <a href="https://matters.town/@fkh01" class="comment-author" rel="nofollow noopener" target="_blank">WrightFu</a>
+    <time class="comment-date" datetime="2021-03-10T13:59:04.540Z">2021年3月10日</time>
+  </div>
+  <div class="comment-body"><blockquote>如果有少數作惡者惡意佔領一些標籤、同時沒有任何用戶願意挑戰，Matty 可以介入</blockquote><p>我的concern會是，可能原有在使用該標籤的用戶有意奪國該標籤，但因（惡意）侵佔者財力太巨大，集液成裘仍無法取回標籤，這情況下帶來的傷害也不能小覷</p></div>
+  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDo0OTcyNTY">
+  <div class="comment-header">
+    <a href="https://matters.town/@guo" class="comment-author" rel="nofollow noopener" target="_blank">刘果</a>
+    <time class="comment-date" datetime="2021-03-11T06:28:02.315Z">2021年3月11日</time>
+  </div>
+  <div class="comment-body"><blockquote>我的concern會是，可能原有在使用該標籤的用戶有意奪國該標籤，但因（惡意）侵佔者財力太巨大，集液成裘仍無法取回標籤，這情況下帶來的傷害也不能小覷</blockquote><p>的確是的。我覺得稅收比例需要既低到大家還願意參加這個遊戲，又需要高到發生此種情況時稅收能夠反哺社區、彌補傷害。</p></div>
+</li>
+  </ol>
+</li>
+  </ol>
+</li>
+  </ol>
+</li>
+  </ol>
+</li>
+  </ol>
+</li><li class="comment-item" id="comment-Q29tbWVudDo0OTU1Mjg">
+  <div class="comment-header">
+    <a href="https://matters.town/@MrBeIng" class="comment-author" rel="nofollow noopener" target="_blank">Xa</a>
+    <time class="comment-date" datetime="2021-03-10T02:23:00.254Z">2021年3月9日</time>
+  </div>
+  <div class="comment-body"><p>我會比較懷疑這個機制：</p><ol><li>如果 Matty 可以下場參加交易，因為不存在納稅問題，且站方財力雄厚，幾乎可以拿到任何想要的標籤。這和專斷的站方權力幾乎等價。唯一差異是，matty 不必再解釋自己收回標籤管理權的行為。</li><li>如果僅限普通用戶交易，在目前有爭議的例子中，似乎 troll 才會獲取收益（通過改公共標籤的描述來發聲），而普通用戶介入維護，則像是既為站方做志願者，還要給站方付錢，看上去是個吃力不討好的事情。換言之，激勵機制是偏好 troll 的。</li><li>如果用戶私人策展的標籤也需要定價和納稅，則一方面會帶來很強的不安全感，而為了保住自己的標籤就需要訂一個很高的價格。這就像站方也變相在為策展標籤服務收費（雖然稅收可能會返還到用戶）...而許多私人標籤顯然不太適合他人管理（例如我可能會有一個 “Xa 的旅行日記”）</li></ol></div>
+  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDo0OTU2MDQ">
+  <div class="comment-header">
+    <a href="https://matters.town/@guo" class="comment-author" rel="nofollow noopener" target="_blank">刘果</a>
+    <time class="comment-date" datetime="2021-03-10T02:48:56.468Z">2021年3月9日</time>
+  </div>
+  <div class="comment-body"><blockquote>如果 Matty 可以下場參加交易，因為不存在納稅問題，且站方財力雄厚，幾乎可以拿到任何想要的標籤。這和專斷的站方權力幾乎等價。唯一差異是，matty 不必再解釋自己收回標籤管理權的行為。</blockquote><p>Matty 的確不存在稅收問題，因為站方也是收稅方；也可以假設站方財力超過過站上任意用戶。但是 Matty 仍然需要對標籤進行購買，在這一步中付出的成本和任意其他用戶相同。Matty 能夠專斷的地方在於，能夠不顧稅收給自己的標籤任意標價、形成難以突破的價格護城河，但這樣也就和現在不能移交的標籤是一樣的。</p><blockquote>似乎 troll 才會獲取收益（通過改公共標籤的描述來發聲），而普通用戶介入維護，則像是既為站方做志願者，還要給站方付錢，看上去是個吃力不討好的事情。</blockquote><p>對於普通標籤（作為志願者為大家整理內容的標籤）而言，不應當會有市場競爭，所以最後價格為 0、沒有稅收、和現在一樣；反之有市場競爭則說明該標籤不完全是義務維護，也就應當平衡到對應的市場價格。</p><blockquote>如果用戶私人策展的標籤也需要定價和納稅，則一方面會帶來很強的不安全感，而為了保住自己的標籤就需要訂一個很高的價格。</blockquote><p>接上，正常情況下私人策展不應該有競爭，繼續價格為 0；如果出現競爭，則說明已經有了市場價格，而管理者可以評估是否值得出售。從用戶體驗的安全感的角度，一方面可以延長回應週期；另一方面可以讓用戶在創建和認領標籤時感知不到哈伯格稅的邏輯，只有在受到挑戰時才需要決定是否願意出售。</p></div>
+  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDo0OTU2NDM">
+  <div class="comment-header">
+    <a href="https://matters.town/@MrBeIng" class="comment-author" rel="nofollow noopener" target="_blank">Xa</a>
+    <time class="comment-date" datetime="2021-03-10T03:02:19.510Z">2021年3月9日</time>
+  </div>
+  <div class="comment-body"><blockquote>對於普通標籤（作為志願者為大家整理內容的標籤）而言，不應當會有市場競爭，所以最後價格為 0、沒有稅收、和現在一樣；反之有市場競爭則說明該標籤不完全是義務維護，也就應當平衡到對應的市場價格。</blockquote><p>我懷疑的是，troll 會願意用比市場均衡價格稍高的價位，來獲得標籤的掌控權。此時沒有正常用戶願意去競價。</p><p>標籤管理的目標不是讓標籤資產達到均衡價格，而是讓標籤掌握在善意用戶的手中。但善意用戶的激勵似乎是較弱的，極端份子的動力更強。</p><blockquote>正常情況下私人策展不應該有競爭，繼續價格為 0；如果出現競爭，則說明已經有了市場價格，而管理者可以評估是否值得出售。</blockquote><p>同樣問題，這裡我擔心的不是市場均衡價格，而是惡意用戶奪走別人的私人標籤為樂（哪怕長久來看，惡意用戶要付出很大成本。）。這和 <a href="/@seenzhao">﻿@SinChaos﻿</a> 提到的“飛機杯”問題類似。</p><blockquote>只有在受到挑戰時才需要決定是否願意出售。</blockquote><p>這個沒懂。哈柏格税模式下，難道不是價格出夠了就可以獲得嗎？</p></div>
+</li><li class="comment-item" id="comment-Q29tbWVudDo0OTU2NzY">
+  <div class="comment-header">
+    <a href="https://matters.town/@MrBeIng" class="comment-author" rel="nofollow noopener" target="_blank">Xa</a>
+    <time class="comment-date" datetime="2021-03-10T03:13:12.694Z">2021年3月9日</time>
+  </div>
+  <div class="comment-body"><p>似乎需要假設，站上用戶是由<em>少量而貧窮的 troll和大量富裕且有正義感的善良用戶組成</em>。這樣那些重要的標籤最終就會掌握在善良正義的一方。</p></div>
+  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDo0OTU3MDc">
+  <div class="comment-header">
+    <a href="https://matters.town/@guo" class="comment-author" rel="nofollow noopener" target="_blank">刘果</a>
+    <time class="comment-date" datetime="2021-03-10T03:33:48.593Z">2021年3月9日</time>
+  </div>
+  <div class="comment-body"><blockquote>標籤管理的目標不是讓標籤資產達到均衡價格，而是讓標籤掌握在善意用戶的手中。</blockquote><p>不太同意這一點，因為“善惡”是主觀標準，每個人都不相同，無法作為機制設計的一部分或者目標。對於有爭議性的話題，我覺得標籤管理的目標是呈現不同觀點的“共識”，不管這種“共識”在我主觀看來是善還是惡。這種共識會指引我對群體善惡標準的認知，而不是倒過來。市場機制則是最常見的達成共識的方式。</p><blockquote>我懷疑的是，troll 會願意用比市場均衡價格稍高的價位，來獲得標籤的掌控權... 我擔心的不是市場均衡價格，而是惡意用戶奪走別人的私人標籤為樂（哪怕長久來看，惡意用戶要付出很大成本。）</blockquote><p>如果有用戶願意持續提供稅收來作“惡”，這確實是我能想到“惡意”最不壞的出口了：稅收反哺社區，其餘用戶轉用其他標籤。</p><blockquote>哈柏格税模式下，難道不是價格出夠了就可以獲得嗎？</blockquote><p>在文中描述了一種“挑戰-回應”的機制，挑戰者通過更高的價格挑戰，但是原管理者有一段時間可以選擇是否回應；回應需要提高標價，不回應的話就等於賣給挑戰者了。</p></div>
+</li>
+  </ol>
+</li>
+  </ol>
+</li>
+  </ol>
+</li><li class="comment-item" id="comment-Q29tbWVudDo0OTU1MzA">
+  <div class="comment-header">
+    <a href="https://matters.town/@lincalvino" class="comment-author" rel="nofollow noopener" target="_blank">寓森</a>
+    <time class="comment-date" datetime="2021-03-10T02:23:04.220Z">2021年3月9日</time>
+  </div>
+  <div class="comment-body"><p>我也很期待有哈伯格稅的試驗。</p><p>但是正如<a href="/@wudunyi">﻿@吳郭義﻿</a> 所言，標籤本身並無營利，多的是責任耶！雖然如此，但是實施對於原有的影響很小，但有助於標籤出現爭議時的處理，反正吃力不討好的標籤應該也沒人去競價，負擔很小甚至沒有。</p><p>我贊成。</p></div>
+  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDo0OTU2MTE">
+  <div class="comment-header">
+    <a href="https://matters.town/@guo" class="comment-author" rel="nofollow noopener" target="_blank">刘果</a>
+    <time class="comment-date" datetime="2021-03-10T02:50:39.102Z">2021年3月9日</time>
+  </div>
+  <div class="comment-body"><p>是的，大部分標籤不應該受到任何影響，和現在完全一樣，受到影響的應該是有爭議的標籤。而當爭議出現時，也說明該標籤不完全是“義務勞動”了，應當接受市場的估價。</p></div>
+</li>
+  </ol>
+</li><li class="comment-item" id="comment-Q29tbWVudDo0OTU3NzQ">
+  <div class="comment-header">
+    <a href="https://matters.town/@MrBeIng" class="comment-author" rel="nofollow noopener" target="_blank">Xa</a>
+    <time class="comment-date" datetime="2021-03-10T04:13:06.721Z">2021年3月9日</time>
+  </div>
+  <div class="comment-body"><p>話說回來，標籤成為一個戰場，和產品設計很有關係。如果標籤沒有描述和移除的功能，其實就解決了大部分爭訟。</p><p>或者將描述和移除功能限制在“私人標籤”這個範疇。而私人標籤可以標註出來且設置個數上限。</p><p>現在並沒有感覺到公共標籤被管理之後， 有什麼體驗上的提升。</p></div>
+  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDo0OTU3ODQ">
+  <div class="comment-header">
+    <a href="https://matters.town/@mthree" class="comment-author" rel="nofollow noopener" target="_blank">用爱心说诚实话</a>
+    <time class="comment-date" datetime="2021-03-10T04:22:16.436Z">2021年3月9日</time>
+  </div>
+  <div class="comment-body"><p>这里的功能很多都有病，莫名其妙来着</p></div>
+</li><li class="comment-item" id="comment-Q29tbWVudDo0OTU3ODY">
+  <div class="comment-header">
+    <a href="https://matters.town/@luxun" class="comment-author" rel="nofollow noopener" target="_blank">Valkyrie (女武神)</a>
+    <time class="comment-date" datetime="2021-03-10T04:23:13.687Z">2021年3月9日</time>
+  </div>
+  <div class="comment-body"><p>我查过，马特市并没有一个明确的定义、规范和列表，指明哪些是公共标签，哪些是私人标签。</p><p>有规矩，自然会遵守。</p><p>我被投诉是因为移除了别人的文章，而别人移除我的文章就可以。如果那些是我的私人标签，我难道没有那个权力去定义和移除吗？</p><p>如果是公共标签，为什么没人事先讲好呢？</p><p><a href="/@hi176">﻿@Matty﻿</a> </p></div>
+  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDo0OTU4MDc">
+  <div class="comment-header">
+    <a href="https://matters.town/@wudunyi" class="comment-author" rel="nofollow noopener" target="_blank">吳郭義</a>
+    <time class="comment-date" datetime="2021-03-10T04:39:56.791Z">2021年3月9日</time>
+  </div>
+  <div class="comment-body"><p>AOC或者說阿特拉斯你好，好久不見。其實你之前的@我都有收到通知 ，但是因為我感覺這是你與方可成先生之間的私事，所以並沒有露面也沒有做評論。不過，今天標籤的爭議屬於公共討論的範疇，所以我就想冒昧的回覆並給一些個人意見。</p><blockquote>我查过，马特市并没有一个明确的定义、规范和列表，指明哪些是公共标签，哪些是私人标签。</blockquote><p>這個說法不太正確。自從上次的標籤風波解決後，Matty就有對公共標籤做了詳細的定義。</p><blockquote>公共標籤是指創建日期在主理標籤功能上線之前（即 2020 年 7 月 27 日），使用這個標籤的作者數達到 40 人或以上的標籤。</blockquote><p>按照這個標準，雖然你持有的「種族主義」很像是公共標籤，但實際上卻並不被馬特市認定為公共的。因為整個標籤總共也只有26篇文章</p></div>
+  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDo0OTU4MTQ">
+  <div class="comment-header">
+    <a href="https://matters.town/@luxun" class="comment-author" rel="nofollow noopener" target="_blank">Valkyrie (女武神)</a>
+    <time class="comment-date" datetime="2021-03-10T04:48:56.095Z">2021年3月9日</time>
+  </div>
+  <div class="comment-body"><p>您好，其实我<strong>完全理解</strong>您没有回复我的做法。<strong>我完全理解，甚至觉得内疚</strong>，感觉是拉您的大旗作虎皮，拉您下水。</p><p>我确实不爽方可成当初拉黑您的做法，更何况他是一个媒体人员。我认为方可成拉黑您，和推特封杀特朗普，和微信微博封杀方可成，都是同一性质的。当然这件事上公说公有理，婆说婆有理。</p><p>我上次在标签事件中，听了您的建议。我这次也愿意聆听您的建议。</p><p>--------------------------------------------------------------------------------</p><p>我不喜欢与人为敌，被方可成写了那篇文章（自由开放社会那篇），让我非常愤怒。<strong>我介怀于他的“反科学”“反平权”的指控，也介怀于他的傲慢与偏见。</strong></p><p>现在我愿意到此为止，放下心中的怨念。谢谢您提供的信息，我绝不希望您被我拖累影响。</p><p>诉状结果如何，我不再挂念，来马特市是为了结识朋友，增长见闻。我愿意以虚心的态度，在日后做一个好学生，多读多问，少少自以为是。这也是我对醉马所说的。</p><p>一下子写了很多，呵呵。</p></div>
+  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDo0OTU4MzI">
+  <div class="comment-header">
+    <a href="https://matters.town/@wudunyi" class="comment-author" rel="nofollow noopener" target="_blank">吳郭義</a>
+    <time class="comment-date" datetime="2021-03-10T05:00:37.334Z">2021年3月10日</time>
+  </div>
+  <div class="comment-body"><blockquote>我绝不希望您被我拖累影响。</blockquote><p>不會的。這是對於社區和公共事務的討論，不會拖累到我的。</p><p>在您離開馬特市的這段時間，馬特市的制度出現了一些變化。為了進一步推動社區自治，馬特市由用戶和Matty推薦和挑選出了20位用戶組成了馬特市建築師團隊。一些關於社區的問題經過建築師團隊討論並得出的結論是有建議權的。我已經將您的案例以及劉果先生的文章送去建築師團隊進行討論了。希望可以給您一個滿意的結果</p></div>
+</li>
+  </ol>
+</li>
+  </ol>
+</li>
+  </ol>
+</li><li class="comment-item" id="comment-Q29tbWVudDo0OTU3ODk">
+  <div class="comment-header">
+    <a href="https://matters.town/@guo" class="comment-author" rel="nofollow noopener" target="_blank">刘果</a>
+    <time class="comment-date" datetime="2021-03-10T04:25:28.438Z">2021年3月9日</time>
+  </div>
+  <div class="comment-body"><blockquote>如果標籤沒有描述和移除的功能，其實就解決了大部分爭訟。</blockquote><p>的確是的。不過這樣就不能滿足很多策展和整理的需求了。</p><blockquote>或者將描述和移除功能限制在“私人標籤”這個範疇。而私人標籤可以標註出來且設置個數上限。</blockquote><p>但甚麼算是公共標籤、甚麼算是私人標籤，如何申請、如何界定，都不是容易解決的。</p></div>
+  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDo0OTU4MDk">
+  <div class="comment-header">
+    <a href="https://matters.town/@wudunyi" class="comment-author" rel="nofollow noopener" target="_blank">吳郭義</a>
+    <time class="comment-date" datetime="2021-03-10T04:40:45.723Z">2021年3月9日</time>
+  </div>
+  <div class="comment-body"><blockquote>但甚麼算是公共標籤、甚麼算是私人標籤，如何申請、如何界定，都不是容易解決的。</blockquote><p>劉果兄，其實馬特市是有明確定義的</p><blockquote>公共標籤是指創建日期在主理標籤功能上線之前（即 2020 年 7 月 27 日），使用這個標籤的作者數達到 40 人或以上的標籤。</blockquote></div>
+  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDo0OTU4MzQ">
+  <div class="comment-header">
+    <a href="https://matters.town/@guo" class="comment-author" rel="nofollow noopener" target="_blank">刘果</a>
+    <time class="comment-date" datetime="2021-03-10T05:01:28.937Z">2021年3月10日</time>
+  </div>
+  <div class="comment-body"><blockquote>劉果兄，其實馬特市是有明確定義的</blockquote><p>謝謝指出，抱歉描述不準確，社區共建基地的確有定義。只是這個定義無法用在產品上進行權限等功能的區分，比如我們無法規定 2020 年 7 月 27 日 之後就再不能產生任何公共標籤了。</p></div>
+  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDo0OTU4NDM">
+  <div class="comment-header">
+    <a href="https://matters.town/@wudunyi" class="comment-author" rel="nofollow noopener" target="_blank">吳郭義</a>
+    <time class="comment-date" datetime="2021-03-10T05:10:04.398Z">2021年3月10日</time>
+  </div>
+  <div class="comment-body"><blockquote>只是這個定義無法用在產品上進行權限等功能的區分</blockquote><p>是這樣的。而且我們也不能保證以後不會出現新的符合人們印象的「公共標籤」</p></div>
+</li>
+  </ol>
+</li>
+  </ol>
+</li>
+  </ol>
+</li>
+  </ol>
+</li><li class="comment-item" id="comment-Q29tbWVudDo0OTU4MjQ">
+  <div class="comment-header">
+    <a href="https://matters.town/@luxun" class="comment-author" rel="nofollow noopener" target="_blank">Valkyrie (女武神)</a>
+    <time class="comment-date" datetime="2021-03-10T04:55:20.920Z">2021年3月9日</time>
+  </div>
+  <div class="comment-body"><p>除了标签，名字 也是。</p><p>我之前因为冒用方可成的名字、图片和简介而被注销，没问题，我同意。</p><p>但我后来问<a href="/@hi176">﻿@Matty﻿</a> ，如果我只将名字换成“方可成”，图片和简介都声明自己不是那一位可以吗？答案是不行！为了不致混淆，马特市只能有一个人叫“方可成”。</p><p>后来我再问<a href="/@hi176">﻿@Matty﻿</a> ，如果有一个人也叫方可成，来马特市能够使用“方可成”的名字吗？他还未回复。</p><p>作为一个公众人物，他们的名字是公共标签还是私人标签呢？</p></div>
+  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDo2MjUwMTk">
+  <div class="comment-header">
+    <a href="https://matters.town/@nornifi" class="comment-author" rel="nofollow noopener" target="_blank">马特市历史编委会</a>
+    <time class="comment-date" datetime="2021-05-25T14:31:11.751Z">2021年5月25日</time>
+  </div>
+  <div class="comment-body"><p><a href="/@hi176">﻿@Matty﻿</a> 其他人可以使用方可成的名字吗？</p></div>
+  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDo2MjUwMzQ">
+  <div class="comment-header">
+    <a href="https://matters.town/@luxun" class="comment-author" rel="nofollow noopener" target="_blank">Valkyrie (女武神)</a>
+    <time class="comment-date" datetime="2021-05-25T14:43:16.225Z">2021年5月25日</time>
+  </div>
+  <div class="comment-body"><p>如果一个人真的叫方X成，当然可以啊。</p><p>不过若是一个人成心叫方X成，然后四处点火，摆明要抹黑，可能管理员就要出手了。</p><p>而且账号照片、简介这些不可以刻意和方某本人的雷同。否则管理员会直接注销账号。</p></div>
+</li>
+  </ol>
+</li>
+  </ol>
+</li><li class="comment-item" id="comment-Q29tbWVudDo0OTYxMDk">
+  <div class="comment-header">
+    <a href="https://matters.town/@philipmak_hk" class="comment-author" rel="nofollow noopener" target="_blank">PhilipMak</a>
+    <time class="comment-date" datetime="2021-03-10T08:47:59.931Z">2021年3月10日</time>
+  </div>
+  <div class="comment-body"><p>這個是一個很新穎的提意！會不會形成一個標籤被炒賣的情況呢？又或者標籤會有編輯去經營呢？這個方向也是很有趣的。</p></div>
+  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDo0OTcyMTU">
+  <div class="comment-header">
+    <a href="https://matters.town/@guo" class="comment-author" rel="nofollow noopener" target="_blank">刘果</a>
+    <time class="comment-date" datetime="2021-03-11T05:37:11.992Z">2021年3月11日</time>
+  </div>
+  <div class="comment-body"><p>標籤炒賣是指被抬價嗎？抬價應該不會有什麼好處，一來不會有人購買，二來需要支付對應的稅收。</p></div>
+  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDo0OTc0MTg">
+  <div class="comment-header">
+    <a href="https://matters.town/@philipmak_hk" class="comment-author" rel="nofollow noopener" target="_blank">PhilipMak</a>
+    <time class="comment-date" datetime="2021-03-11T09:14:54.161Z">2021年3月11日</time>
+  </div>
+  <div class="comment-body"><p>會不會有人會團積標簽呢？即是有人不想經營但只是覺得某一個標簽有潛力，就先開等收購呢？這樣有心的編輯就要花錢去買。</p><p>我沒有太多的技術分析，只是個人的感受。謝謝你的解答！</p></div>
+  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDo0OTc0Njg">
+  <div class="comment-header">
+    <a href="https://matters.town/@MrBeIng" class="comment-author" rel="nofollow noopener" target="_blank">Xa</a>
+    <time class="comment-date" datetime="2021-03-11T10:03:28.678Z">2021年3月11日</time>
+  </div>
+  <div class="comment-body"><p>有趣。哈伯格稅的制度下其實不存在囤積。因為每個財產都可以強行被交易。</p></div>
+</li><li class="comment-item" id="comment-Q29tbWVudDo0OTgwNDA">
+  <div class="comment-header">
+    <a href="https://matters.town/@guo" class="comment-author" rel="nofollow noopener" target="_blank">刘果</a>
+    <time class="comment-date" datetime="2021-03-11T17:58:15.638Z">2021年3月11日</time>
+  </div>
+  <div class="comment-body"><p>的確可以先拿到一個標籤標上很高的價格，但這樣的話一方面要給 matters 社區繳稅、另一方面也就不會有人來買，所以價格過高是得不償失的，最後還是會穩定在一個市場價格。</p></div>
+  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDo0OTgxOTk">
+  <div class="comment-header">
+    <a href="https://matters.town/@philipmak_hk" class="comment-author" rel="nofollow noopener" target="_blank">PhilipMak</a>
+    <time class="comment-date" datetime="2021-03-12T01:17:54.696Z">2021年3月11日</time>
+  </div>
+  <div class="comment-body"><p>還有標簽的擁有者會有甚麼的效益呢？</p></div>
+  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDo0OTk1NDk">
+  <div class="comment-header">
+    <a href="https://matters.town/@guo" class="comment-author" rel="nofollow noopener" target="_blank">刘果</a>
+    <time class="comment-date" datetime="2021-03-12T23:18:40.383Z">2021年3月12日</time>
+  </div>
+  <div class="comment-body"><blockquote>還有標簽的擁有者會有甚麼的效益呢？</blockquote><p>並沒有直接經濟收益，除非同時把標籤稅收再分發給標籤管理者。但是是有對標籤擁有的動機，正如之前爭議中所看到的；所以形成市場來說，有動機應該就足夠了。</p></div>
+</li>
+  </ol>
+</li>
+  </ol>
+</li>
+  </ol>
+</li>
+  </ol>
+</li>
+  </ol>
+</li><li class="comment-item" id="comment-Q29tbWVudDo0OTY3MzU">
+  <div class="comment-header">
+    <a href="https://matters.town/@septentrium" class="comment-author" rel="nofollow noopener" target="_blank">不明飞行兔</a>
+    <time class="comment-date" datetime="2021-03-10T19:46:06.575Z">2021年3月10日</time>
+  </div>
+  <div class="comment-body"><p>具体到这个方案，改字、换字甚至简繁转换下，就能建一个新标签，与本打算竞标的标签意义相同，比如哈伯格税、哈伯格稅、哈伯格稅研究、關於哈伯格稅的思考、哈伯格稅好文精選⋯⋯哈伯格税本质上是对稀缺资源的拍卖机制，稀缺性会不会出不來？</p><p>如果稀缺性过低，那么资产周转率就会低。哈伯格税的税率大体上等于资产的周转率乘以一个大于0小于1的常数，这个常数一般是零点几，所以税率与资产周转率的数量级基本是一致的。你举例说1%的税率，其实相当于是在假设Matters社区每个征税周期内每100个标签中会有一个发生转手。可以据此设计合理税率与合理征税周期。</p><p>因为要缴税，那么最好还有正向激励，比如以往讨论过的，主理人可获得策展收益，然后正常情况下策展收益就可以够日常缴税了，策展收益丰厚就能支持这个标签卖得出去，而这个策展收益也是主理人评估标签价格的依据。否则又要为标签操心又要交钱，不合理嘛。</p></div>
+  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDo0OTY4OTk">
+  <div class="comment-header">
+    <a href="https://matters.town/@wudunyi" class="comment-author" rel="nofollow noopener" target="_blank">吳郭義</a>
+    <time class="comment-date" datetime="2021-03-11T01:39:00.216Z">2021年3月10日</time>
+  </div>
+  <div class="comment-body"><p>好久不見</p></div>
+  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDo0OTc2NTc">
+  <div class="comment-header">
+    <a href="https://matters.town/@septentrium" class="comment-author" rel="nofollow noopener" target="_blank">不明飞行兔</a>
+    <time class="comment-date" datetime="2021-03-11T12:40:24.429Z">2021年3月11日</time>
+  </div>
+  <div class="comment-body"><p>是呀，么么哒～</p></div>
+</li><li class="comment-item" id="comment-Q29tbWVudDo0OTc2NTg">
+  <div class="comment-header">
+    <a href="https://matters.town/@septentrium" class="comment-author" rel="nofollow noopener" target="_blank">不明飞行兔</a>
+    <time class="comment-date" datetime="2021-03-11T12:41:16.225Z">2021年3月11日</time>
+  </div>
+  <div class="comment-body"><p>是呀，么么哒～</p></div>
+</li>
+  </ol>
+</li><li class="comment-item" id="comment-Q29tbWVudDo0OTcyMTQ">
+  <div class="comment-header">
+    <a href="https://matters.town/@guo" class="comment-author" rel="nofollow noopener" target="_blank">刘果</a>
+    <time class="comment-date" datetime="2021-03-11T05:36:18.764Z">2021年3月11日</time>
+  </div>
+  <div class="comment-body"><blockquote>哈伯格税的税率大体上等于资产的周转率乘以一个大于0小于1的常数，这个常数一般是零点几，所以税率与资产周转率的数量级基本是一致的。你举例说1%的税率，其实相当于是在假设Matters社区每个征税周期内每100个标签中会有一个发生转手。可以据此设计合理税率与合理征税周期。</blockquote><p>这个好有意思，周转率与税率的关系在哪里可以看到解释呢？</p><blockquote>具体到这个方案，改字、换字甚至简繁转换下，就能建一个新标签，与本打算竞标的标签意义相同，比如哈伯格税、哈伯格稅、哈伯格稅研究、關於哈伯格稅的思考、哈伯格稅好文精選⋯⋯哈伯格税本质上是对稀缺资源的拍卖机制，稀缺性会不会出不來？<br /></blockquote><p>我觉得在同一个主题下面，不同标签仍然会有价值差异，取决于影响范围，包括有多少文章在用、有多少用户追踪、未来人们讨论这个主题时有多可能用到。所以还是会有价值高低，但是的确降低了稀缺性，也会降低价格。</p><blockquote>因为要缴税，那么最好还有正向激励... 否则又要为标签操心又要交钱，不合理嘛。</blockquote><p>我觉得需要操劳又无收益（收益比如宣传政治观点、占据话语权、个人品牌、收藏等，应该会比不少 NFT 多）的标签价格应该就会是 0，因为不会有人愿意出价挑战，估计绝大部分标签都会是这样。但是的确，标签应该有正向激励，比如捐赠甚至订阅。</p></div>
+  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDo0OTc2NDg">
+  <div class="comment-header">
+    <a href="https://matters.town/@septentrium" class="comment-author" rel="nofollow noopener" target="_blank">不明飞行兔</a>
+    <time class="comment-date" datetime="2021-03-11T12:37:37.806Z">2021年3月11日</time>
+  </div>
+  <div class="comment-body"><p>关于税率和周转率的关系，Weyl在《激进市场》（简体版）第1章的“报出你的价格和你的税”以及“事实真相”这两节里有说明，然后我在《真正的私有制！深度探究哈伯格税》这篇文的第8章里对此有一个诠释～</p></div>
+</li><li class="comment-item" id="comment-Q29tbWVudDo0OTc2NTQ">
+  <div class="comment-header">
+    <a href="https://matters.town/@septentrium" class="comment-author" rel="nofollow noopener" target="_blank">不明飞行兔</a>
+    <time class="comment-date" datetime="2021-03-11T12:39:24.877Z">2021年3月11日</time>
+  </div>
+  <div class="comment-body"><p>……对于任何低于周转率的税率，所有者将始终将价格设定在她愿意接受的金额之上。42当税率为零时，所有者可以不承担成本，自由地设定任何价格，并以此来设定垄断价格。当税率等于周转率时，所有者则不得不透露她的真实价值。对于处于中间水平的税率，她因为税的存在而不会去设定一个高得离谱的价格，但她也不会有充分的动机报出她的真实价值。相反，她将在她的真实价值和她期望买家支付的垄断价格之间设定一个中间价。随着税收从零上升到周转率，她的报价将逐渐从垄断价格下降到她的真实估价。</p><p>埃里克·A. 波斯纳（Eric A.Posner）,E.格伦·韦尔（E.Glen Weyl）. 激进市场 (Chinese Edition) (Kindle 位置 996-1001). Kindle 版本. </p><p>……</p><p>4）因为在理想情况下，税率会根据周转率来调整，所以有些不太可能经常周转的资产（如家族传家宝、照片和日记本）将以极低的税率缴税，而其他的（如新潮的小玩意）需要承担较高的税率。当税率很低的时候，拥有者可以通过支付少量的税来阻止其他人购买。对于典型的资产，我们估计每14年周转一次是合理的，因此（结合其他因素考虑）每年7%的税[1]是一个比较好的目标。</p><p>埃里克·A. 波斯纳（Eric A.Posner）,E.格伦·韦尔（E.Glen Weyl）. 激进市场 (Chinese Edition) (Kindle 位置 1068-1072). Kindle 版本. </p></div>
+  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDo0OTgwOTU">
+  <div class="comment-header">
+    <a href="https://matters.town/@guo" class="comment-author" rel="nofollow noopener" target="_blank">刘果</a>
+    <time class="comment-date" datetime="2021-03-11T23:01:46.711Z">2021年3月11日</time>
+  </div>
+  <div class="comment-body"><blockquote>当税率为零时，所有者可以不承担成本，自由地设定任何价格，并以此来设定垄断价格。当税率等于周转率时，所有者则不得不透露她的真实价值。对于处于中间水平的税率，她因为税的存在而不会去设定一个高得离谱的价格，但她也不会有充分的动机报出她的真实价值。相反，她将在她的真实价值和她期望买家支付的垄断价格之间设定一个中间价。随着税收从零上升到周转率，她的报价将逐渐从垄断价格下降到她的真实估价。</blockquote><p>大致明白这个思路了！感觉甚至可以用动态税率、依据周转率来调整。不过这样有个问题，不同的标签的需求会很不一样，有的属于舆论战场，有的只是义务服务，那周转率也大不相同，用平均周转率来作为税率会不会不太合适？</p><p>我之前直接默认了价格是公开的，但是的确如果不公开价格的话会是另外一种博弈，还没有想明白两者的利弊。直觉上好像明码标价规则更简洁。</p><p>另一个想法是，哈伯格税常常和 UBI 搭配设计。那标签的税收是不是可以作为标签管理者们的 UBI 呢，这样等于补贴了义务劳动的管理者。也好奇兔兔君以及 <a href="/@lincalvino">﻿@寓森﻿</a> 医生和 <a href="/@MrBeIng">﻿@Xa﻿</a> 会怎么觉得～</p></div>
+  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDo0OTk3Njg">
+  <div class="comment-header">
+    <a href="https://matters.town/@lincalvino" class="comment-author" rel="nofollow noopener" target="_blank">寓森</a>
+    <time class="comment-date" datetime="2021-03-13T02:42:24.295Z">2021年3月12日</time>
+  </div>
+  <div class="comment-body"><p>剛看這篇文章時就想到：收到的稅要如何分配？</p><p>平均分給所有馬特市民比較符合 UBI 的精神，但是感覺怪怪的；技術上也複雜，可能直接回歸「資金池」比較簡單。而且分配的量太少，意義也不大，UBI 是要足以維生的收入，所以這在目前的情況是不需要考慮的。</p><p>分給所有的標籤管理者確實是比較可行的作法，但是標籤管理比較複雜，他除了可能被視為「資產」，也可能是「勞動」。我正在思考是否有「負」哈伯格稅的可能性，這讓比較可能是屬於付出「勞動」的標籤管理者，在市場機制下，可以以「負稅率」獲得由市場機制決定的報酬。也就是說「正收入」的稅，扣除「負收入」的稅後，再平均分給所有的標籤管理者。</p><p>這是我的狂想，哈！大家討論看看。</p></div>
+  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDo1MDA3NzA">
+  <div class="comment-header">
+    <a href="https://matters.town/@guo" class="comment-author" rel="nofollow noopener" target="_blank">刘果</a>
+    <time class="comment-date" datetime="2021-03-13T17:38:26.576Z">2021年3月13日</time>
+  </div>
+  <div class="comment-body"><p>的確是的，在開放的虛擬世界裡定義 UBI 中的「universal」很困難。除了目前分配量小以外，還有一個重要原因是任何人都可以註冊任意多個號，使得騙取 UBI 毫無成本。即時僅對標籤管理者發放 UBI，仍然可以通過自己註冊、自己管理標籤的方式獲得更多 UBI。</p><p>非常同意標籤的「勞動」維度需要報酬，負利率的想法很有意思，可以涵蓋這種需求。利率如果不是全局統一、對於所有標籤相同的話，就需要制定一種公平的利率計算方式。有沒有一種計算利率的方式可以統一正負利率呢？</p><p>我在思考的是，能否向標籤管理者發放 UBI，但不是一視同仁，而是以標籤追蹤者數量進行加權呢？一來提高了騙取 UBI 的難度和容易被發現的程度，二來追蹤者數也可以指代管理者「勞動」的社區價值、讓稅收分配更加合理。</p></div>
+  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDo1MDA5MzA">
+  <div class="comment-header">
+    <a href="https://matters.town/@lincalvino" class="comment-author" rel="nofollow noopener" target="_blank">寓森</a>
+    <time class="comment-date" datetime="2021-03-14T01:53:30.993Z">2021年3月13日</time>
+  </div>
+  <div class="comment-body"><p>我直覺想法是，正負的稅率還是維持一樣，因為是經過計算的結果，變動的是訂價。</p><p>至於以標籤下的人數來分配，雖然是合理的想法，但還是有開多個戶頭作弊的問題，但也不失為一個好的修正方式。</p></div>
+</li>
+  </ol>
+</li><li class="comment-item" id="comment-Q29tbWVudDo1MDA4MTQ">
+  <div class="comment-header">
+    <a href="https://matters.town/@septentrium" class="comment-author" rel="nofollow noopener" target="_blank">不明飞行兔</a>
+    <time class="comment-date" datetime="2021-03-13T19:37:08.243Z">2021年3月13日</time>
+  </div>
+  <div class="comment-body"><p>哈伯格税是负数意味着：只要有人愿意接手我手中的这项资产，我就给他钱。</p><p>虽然会很少见，但其实是可能的，比如下面这种情形：</p><p>倘若某天我国开始清查境内所有Matters活跃用户并试图将我们入罪，然后“在Matters任标签主理人”是一项罪状，而Matters管理层严格尊重哈伯格税机制拒绝用后台修改的方式帮助这些用户注销标签主理人身份的话，那么对这些用户来说，标签就是烫手山芋，他们可以通过自评负价格的方式把标签出手（就像去年原油期货负数），在这个周期内缴纳的哈伯格税就是负数，即整个社区所有的标签主理人给他补贴“慰问金”：）</p></div>
+</li>
+  </ol>
+</li><li class="comment-item" id="comment-Q29tbWVudDo1MDA4MDc">
+  <div class="comment-header">
+    <a href="https://matters.town/@septentrium" class="comment-author" rel="nofollow noopener" target="_blank">不明飞行兔</a>
+    <time class="comment-date" datetime="2021-03-13T19:19:09.835Z">2021年3月13日</time>
+  </div>
+  <div class="comment-body"><p>哈伯格税是基于维克里拍卖设计的，维克里拍卖是一种密封拍卖，即价格一定是隐藏的。哈伯格税的一个核心机制就是，产权人和求购者都是秘密报价，这样一来，每个人不知道他人的出价，产权人不敢为了避税报价太低，怕被别人抢走，报价人不敢报太高，怕以不合理的价格中标导致损失，每个人都要为资产价值在心中做一个合乎自己真实预期的自评。</p><p>又及，有的房子是三室一厅公寓，有的是独栋别墅，有的是小平房，地段也各不相同，有的金融投资属性强，有的刚需属性强，有的学区属性强，不同细分类型的房子的周转率显然差异很大，但它们显然都是房子，这个逻辑也适用于标签。当然，如果标签很多，可以划分出不同的板块（好比股票行业板块），细分地估算不同板块的周转率，提高合理性。个人觉得必要性不太大，如果站内各种资产都已经有定价、征税和交易，那么其中某种交易量大的龙头资产的市场机制可以设计得复杂些；但如果只是一种资产试水定价、征税和交易，一下子就设计得复杂没有必要。</p><p>又又及，理论上，哈伯格税本来就是所有纳税人的ubi来源（而且我认为是唯一合理来源），所以把税收作为所有标签管理者的ubi是精确地符合理论的，只是实操起来会怎样，需要一些推演。试举一例：比如哈伯格税是要强制全量缴纳的，不是一个自愿的东西，相应的，ubi也是要强行发放到账的，不可自愿放弃，如果有人说我自愿放弃ubi换取不缴税，那么他就无权持有标签，否则就构成了对其他所有人产权的侵犯，那么产品上如何结合实际来设计，可能需要较多推演。</p></div>
+  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDo1MDIwMjE">
+  <div class="comment-header">
+    <a href="https://matters.town/@guo" class="comment-author" rel="nofollow noopener" target="_blank">刘果</a>
+    <time class="comment-date" datetime="2021-03-14T18:40:03.533Z">2021年3月14日</time>
+  </div>
+  <div class="comment-body"><p>明白隐藏价格的原因了，的确有道理。不过在区块链上实现的话，交易和价格都会是公开的；这样公开价格会影响博弈的最终结果吗？或者兔兔君有了解区块链上已有应用的案例吗？</p><p>UBI 的问题在于虚拟世界非实名、且开放，意味着可以注册任意多账号骗取 UBI。有一个想法是，不是平均分配税收，而是分配给标签管理者、并按照标签关注者数量来加权；这样应该会增加骗取的难度、或者增加被发现的可能。兔兔君觉得这样的思路可行吗？</p></div>
+  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDo1MDM3OTU">
+  <div class="comment-header">
+    <a href="https://matters.town/@septentrium" class="comment-author" rel="nofollow noopener" target="_blank">不明飞行兔</a>
+    <time class="comment-date" datetime="2021-03-15T19:36:36.241Z">2021年3月15日</time>
+  </div>
+  <div class="comment-body"><p>呃没听说过有哪个币把价格放到链上的吧……</p><p>哈伯格税就是要在所有标签管理者之间平均分配ubi，不是所有用户平均分哦。你说的这种hack的情况，相当于有人为了赚ubi认领标签，然后给标签报一个极低的价格，缴税额也极低，从而通过ubi骗取差价。这种情况是不会发生的。只要有人报的价比他高，他就失去了缴税权，就出局了，也就无权分ubi了。如果担心无人挑战骗子的报价，可以通过社区运营者以及 <a href="/@datters">﻿@Datters﻿</a> 在每个征税周期锁定可疑账号批量挑战。</p><p>你说的idea恐怕问题很大哦，首先加权就不是哈伯格税了，哈伯格税本来就是对高价值资产课重税、对低价值资产课轻税的，其次，关注者数量跟标签的价格肯定是正相关的，那么你这个想法不就变成按标签价值课税后再按同比例退税，等于缴税的币出去一圈又回来了……</p><p>另外，我再补充一个点：由于标签创建者最初不是从Matters手中花钱买的这个标签，所以标签转手可以设定为不通过“花钱购买”这种古典行为实现，而是只通过哈伯格税实现，买家和卖家所做的事情仅仅是报价和缴税，只要报得高就可以得到标签了，而不需要付一笔钱，代价是要按照自己报的高价缴税，而且是立即缴纳而不是等下一周期再交（这样可以避免挑战骗子还要给骗子交钱）。</p></div>
+  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDo1MDM4OTQ">
+  <div class="comment-header">
+    <a href="https://matters.town/@guo" class="comment-author" rel="nofollow noopener" target="_blank">刘果</a>
+    <time class="comment-date" datetime="2021-03-15T22:44:47.950Z">2021年3月15日</time>
+  </div>
+  <div class="comment-body"><blockquote>呃没听说过有哪个币把价格放到链上的吧……</blockquote><p>嗯是的，币价只有在不同币种对价时才会存在，所以不会出现在链上；不过此处是一件物品和币的对价，是一件物品在一个货币系统中的属性。“通过报价判断是否应该转移所有权”、“通过交易转移所有权”、“通过价格计算税收”这三个操作都需要公开透明的价格，也都会写到链上；是否存在不公开价格、又能够在区块链上实现这些操作的方式呢？<br /><br />我看了下两个在以太坊上实现的例子（<a href="https://yos.io/2018/11/18/harberger-taxes/">1</a>，<a href="https://programtheblockchain.com/posts/2018/09/19/implementing-harberger-tax-deeds/">2</a>），价格都是物品的公开属性。这样公开会带来什么不希望的后果吗？</p><blockquote>哈伯格税就是要在所有标签管理者之间平均分配ubi，不是所有用户平均分哦...如果担心无人挑战骗子的报价，可以通过社区运营者以及 <a href="/@datters">﻿@Datters﻿</a> 在每个征税周期锁定可疑账号批量挑战。</blockquote><p>所有标签管理者平分 ubi 的话，是否可以注册小号并创建或认领标签，不需要做任何事情就获得 ubi 呢？识别这样的账号本身可能会很困难；而在识别之后，如果通过通过购买收回这些标签的话，似乎给了小号另一种营收模式 🤔</p><blockquote>首先加权就不是哈伯格税了，哈伯格税本来就是对高价值资产课重税、对低价值资产课轻税的，其次，关注者数量跟标签的价格肯定是正相关的，那么你这个想法不就变成按标签价值课税后再按同比例退税，等于缴税的币出去一圈又回来了……</blockquote><p>我上面提到的加权不是针对哈伯格税，而是针对税收的分配，即之后 ubi 的计算这一步。如上一条，平均分配给所有管理者似乎有漏洞可钻，且不同管理者管理的标签数量、标签影响的人的数量也很不相同；所以想到 ubi 是否可以按照管理标签的关注人数来分配，这样一方面增加钻漏洞的难度和易被发现的程度，另一方面似乎对管理者的付出更加合理，管理者也会有动力增长标签关注者。</p><blockquote>由于标签创建者最初不是从Matters手中花钱买的这个标签，所以标签转手可以设定为不通过“花钱购买”这种古典行为实现，而是只通过哈伯格税实现，买家和卖家所做的事情仅仅是报价和缴税，只要报得高就可以得到标签了，而不需要付一笔钱，代价是要按照自己报的高价缴税，而且是立即缴纳而不是等下一周期再交（这样可以避免挑战骗子还要给骗子交钱）。</blockquote><p>这样的确也是行的通的。不过对于一个善意的标签维护者，购买逻辑应该能够让 ta 有动力把标签维护得更好、这样还可能卖个好价钱，而只需要报价、无需购买的话则降低了恶意管理者抢夺标签的成本。但如你所言，取消掉“购买”也降低了打击恶意管理者的门槛。目前我看到的理论和以太坊上的实现都还包含购买逻辑，不包含购买逻辑的讨论或者例子有哪里可以看到呢～</p></div>
+  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDo1MDQzMjI">
+  <div class="comment-header">
+    <a href="https://matters.town/@septentrium" class="comment-author" rel="nofollow noopener" target="_blank">不明飞行兔</a>
+    <time class="comment-date" datetime="2021-03-16T04:01:47.020Z">2021年3月16日</time>
+  </div>
+  <div class="comment-body"><blockquote>“通过报价判断是否应该转移所有权”、“通过交易转移所有权”、“通过价格计算税收”这三个操作都需要公开透明的价格，也都会写到链上；是否存在不公开价格、又能够在区块链上实现这些操作的方式呢？……这样公开会带来什么不希望的后果吗？</blockquote><p>果你说的这个问题真的很有意思，我看过你给的那两个例子，我说密封拍卖不能公开价格意思是说，产权人和竞拍人为这一轮可能的产权转换而各自报出的价格在交易/缴税发生的那一瞬间之前不能公开，而交易/缴税发生之后，上一轮的价格显然是解除密封、自然公开的，并可能影响下一轮双方的秘密出价。简单说：可以想象成双方在本地各写一个价格，在缴税那天上传到智能合约来比价，而绝对不是产权人写了一个价立即上传服务器然后一直扔在那里公开着，直到有人突然袭击给出一个高1分钱的价格然后产权人立刻失去了产权。所有人都可以看到一个产权人对资产的“标价”，它确实是公开透明的，但这个标价不是最新报价，它本质上其实是产权人在上一个缴税周期对资产的历史报价，由于已经缴完上一周期的税了，相当于上一周期的密封拍卖已经有了结果（流拍），因此解除了密封，变成了公开标价。只要有人想买，就要再密封拍卖一次，此时产权人是可以提出新的报价的，否则是严重对产权人不利的。</p><blockquote>所有标签管理者平分 ubi 的话，是否可以注册小号并创建或认领标签，不需要做任何事情就获得 ubi 呢？识别这样的账号本身可能会很困难；而在识别之后，如果通过通过购买收回这些标签的话，似乎给了小号另一种营收模式 🤔</blockquote><blockquote>这样的确也是行的通的。不过对于一个善意的标签维护者，购买逻辑应该能够让 ta 有动力把标签维护得更好、这样还可能卖个好价钱，而只需要报价、无需购买的话则降低了恶意管理者抢夺标签的成本。</blockquote><p>这里关键就是标签的收益模式，是从标签的存在上获利，还是从标签的增值上获利。如果是前者，这就相当于标签只要存在就有一个固有价值，增值价值是附加在上面的，这就是购买的逻辑；如果是后者，那么标签的固有价值是0，只有增值价值，这个增值价值不是增到固有价值上把它从0变成10，而是随时增值随时从每一笔增值里获利。</p><p>如果允许小号可以0元获得标签，然后一点儿都不经营就转手卖10元，相当于标签的固有价值是0，却可以什么都不做获得增值价值并加到固有价值上，就变成两种收益模式的嵌合体，在逻辑上就不成立了，所以一定是选择某一种收益模式，或者同时兼容两种模式，而不是把两种模式的元素拼接出一个四不像的模式。</p><p>如果是从标签的存在上获利，那么认领标签就一定得交钱，如果是从增值上获利，那么就应该是让经营者直接从经营行为里获利，而不是让经营者非要把他经营行为的增值价值先附着到固有价值上才能获利。如果经营标签不能从标签对文章的策展增益里直接获利，而只能做大后把标签整个卖掉来赚钱，就相当于开工厂不是为了从生产销售里获利，而只能通过把厂子做大后卖掉来赚钱，这是不合常理的。</p><p>何况建厂时土地、设备、厂房都是要花钱的，这才能支持卖掉厂子的逻辑，建标签时如果不需要花币，那么就不能支持买卖标签实现流转的逻辑——但可以支持缴哈伯格税实现流转的逻辑，因为哈伯格税的基础是财产共有制，就像社会生活中的公共服务，纳税人不是通过购买而获得，而是通过缴税获得的，放弃缴税就等于放弃国籍（或犯罪），也就是放弃你在这个国家里的公民权利，把你的社会福利流转给他人，因此，人在出生时获得国籍是不需要花钱的，这与标签在创建时不用花钱是一个意思，相应的，你显然也不能卖掉你的国籍。</p><blockquote>我上面提到的加权不是针对哈伯格税，而是针对税收的分配，即之后 ubi 的计算这一步……</blockquote><p>我的意思是，甲做一标签，有1000个follower，然后报价1000元，缴10%的税，缴了10块，乙做一标签，有10个follower，然后报价10元，缴10%的税，缴了1块，丙做一标签，有1个follower，然后报价1元，缴10%的税，交了0.1元，然后如果按follower数量加权返还ubi，相当于把各人交的税又各自返还回去了啊。所以你的这个idea本质上是赌标签主理人报的价格跟标签的follower数量的比例关系是否不是一次增函数……如果接近一次增函数，那么就等于原封不动交上去又退回来，如果接近二次增函数或逻辑斯蒂曲线，才能起到均贫富的作用，这就要求很大的流量才能显出意义，因为逻辑斯蒂曲线上的点如果太少，就会接近一次增函数。更何况无条件基本收入一定是无条件的，无论在政治伦理上还是在经济学上，都是要无条件才能成立，不能说甲对社会贡献大就多拿ubi，乙有抑郁症每天躺平就少拿ubi……</p></div>
+</li>
+  </ol>
+</li>
+  </ol>
+</li>
+  </ol>
+</li>
+  </ol>
+</li>
+  </ol>
+</li>
+  </ol>
+</li>
+  </ol>
+</li>
+  </ol>
+</li><li class="comment-item" id="comment-Q29tbWVudDoxMjExNjI1">
+  <div class="comment-header">
+    <a href="https://matters.town/@swiftevo" class="comment-author" rel="nofollow noopener" target="_blank">swiftevo</a>
+    <time class="comment-date" datetime="2022-07-06T17:51:05.710Z">2022年7月6日</time>
+  </div>
+  <div class="comment-body"><p>現在The Space 正式引入哈伯格稅了。劉果你也會參與或者加入研究嗎？</p></div>
+  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDoxMjExNjQ0">
+  <div class="comment-header">
+    <a href="https://matters.town/@guo" class="comment-author" rel="nofollow noopener" target="_blank">刘果</a>
+    <time class="comment-date" datetime="2022-07-06T21:11:02.828Z">2022年7月6日</time>
+  </div>
+  <div class="comment-body"><p>會的，全力支持！</p></div>
+</li>
+  </ol>
+</li></ol>
+    <form class="comment-form" id="moss-comment-form">
+  <textarea id="moss-comment-text" name="content" required rows="2" placeholder="留下你的想法"></textarea>
+  <div class="comment-form-meta">
+    <input type="text" name="name" class="comment-field" placeholder="名字" required>
+    <input type="email" name="email" class="comment-field" placeholder="邮箱（选填）">
+    <input type="url" name="link" class="comment-field" placeholder="网站（选填）">
+    <button type="submit" class="comment-form-submit">回复</button>
+  </div>
+  <div class="comment-form-status" id="moss-comment-status"></div>
+</form>
+    <script>(function() {
+  var form = document.getElementById('moss-comment-form');
+  if (!form) return;
+
+  var textarea = document.getElementById('moss-comment-text');
+  var statusEl = document.getElementById('moss-comment-status');
+  var commentList = document.querySelector('.moss-comments .comment-list');
+
+  // Auto-grow textarea
+  if (textarea) {
+    function autoGrow() {
+      textarea.style.height = 'auto';
+      textarea.style.height = textarea.scrollHeight + 'px';
+    }
+    textarea.addEventListener('input', autoGrow);
+  }
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    var btn = form.querySelector('.comment-form-submit');
+    btn.disabled = true;
+    btn.textContent = '提交中...';
+    if (statusEl) { statusEl.textContent = ''; statusEl.className = 'comment-form-status'; }
+
+    var body = {
+      content: form.elements['content'].value,
+      name: form.elements['name'].value,
+      email: form.elements['email'].value,
+      link: form.elements['link'].value || '',
+      page_key: '007ec9e9',
+      site_name: 'liu-guo.com',
+      ua: navigator.userAgent
+    };
+
+    fetch('https://api.moss.host/comment/api/v2/comments', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body)
+    })
+    .then(function(res) {
+      if (!res.ok) {
+        return res.json().catch(function() {
+          throw new Error('Server error (' + res.status + ')');
+        }).then(function(data) {
+          throw new Error(data.msg || 'Server error (' + res.status + ')');
+        });
+      }
+      return res.json();
+    })
+    .then(function(data) {
+      btn.disabled = false;
+      btn.textContent = '回复';
+
+      if (statusEl) {
+        statusEl.textContent = '评论已提交！';
+        statusEl.className = 'comment-form-status comment-form-status--success';
+      }
+
+      if (!commentList) {
+        commentList = document.createElement('ol');
+        commentList.className = 'comment-list';
+        form.before(commentList);
+      }
+
+      var li = document.createElement('li');
+      li.className = 'comment-item';
+      var now = new Date().toLocaleDateString('en-US', {year:'numeric',month:'short',day:'numeric'});
+      var authorName = body.name || 'Anonymous';
+      li.innerHTML = '<div class="comment-header">'
+        + '<span class="comment-author">' + authorName.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;') + '</span>'
+        + '<time class="comment-date">' + now + '</time>'
+        + '</div>'
+        + '<div class="comment-body"><p>' + body.content.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;') + '</p></div>';
+      commentList.appendChild(li);
+
+      form.elements['content'].value = '';
+      if (textarea) { textarea.style.height = 'auto'; }
+    })
+    .catch(function(err) {
+      btn.disabled = false;
+      btn.textContent = '回复';
+      if (statusEl) {
+        statusEl.textContent = err.message || '网络错误，请重试。';
+        statusEl.className = 'comment-form-status comment-form-status--error';
+      }
+    });
+  });
+})();</script>
+  </details>
+</section>
+</article>
     </main>
 
     <footer class="container">
     <div class="footer-content">
-    <a href="/feed.xml" class="footer-link" data-external>RSS</a>
+    <a href="../../feed.xml" class="footer-link" data-external>RSS</a>
     <form action="https://buttondown.com/api/emails/embed-subscribe/liuguo" method="post" class="footer-subscribe-form">
-        <input type="email" name="email" placeholder="your@email.com" required />
+        <input type="email" name="email" class="moss-input" placeholder="邮箱" required />
         <input type="hidden" value="1" name="embed" />
-        <button type="submit">Subscribe</button>
+        <button type="submit" class="moss-btn">订阅</button>
     </form>
 </div>
 </footer>

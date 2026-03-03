@@ -1,12 +1,8 @@
-/* ==========================================================================
-   MOSS - Typography-first design for Writers & Publishers
-   ========================================================================== */
-
-/* ==========================================================================
-   1. CSS Custom Properties
-   ========================================================================== */
+/* moss Design System — Shared Design Tokens */
 
 :root {
+  color-scheme: light dark;
+
   /* Color System - Warm, paper-inspired */
   --moss-text-primary: #2c2825;
   --moss-text-secondary: #5d5853;
@@ -19,6 +15,182 @@
   --moss-border-light: #e6e2db;
   --moss-border-medium: #d1cdc4;
 
+  /* Interaction overlays */
+  --moss-hover-overlay: rgba(0, 0, 0, 0.06);
+  --moss-active-overlay: rgba(0, 0, 0, 0.10);
+
+  /* Status backgrounds (subtle tints for badges/pills) */
+  --moss-success-subtle: rgba(16, 185, 129, 0.1);
+  --moss-warning-subtle: rgba(245, 158, 11, 0.1);
+  --moss-error-subtle: rgba(200, 84, 80, 0.1);
+}
+
+/* Dark mode - explicit toggle */
+[data-theme="dark"] {
+  --moss-text-primary: #e8e6e3;
+  --moss-text-secondary: #b8b5b0;
+  --moss-text-muted: #8a8580;
+  --moss-background: #1a1816;
+  --moss-background-alt: #242018;
+  --moss-border-light: #3a362f;
+  --moss-border-medium: #4a453c;
+  --moss-accent: #4a7c4a;
+  --moss-accent-hover: #5a8c5a;
+  --moss-accent-light: rgba(74, 124, 74, 0.2);
+  --moss-hover-overlay: rgba(255, 255, 255, 0.08);
+  --moss-active-overlay: rgba(255, 255, 255, 0.14);
+  --moss-success-subtle: rgba(16, 185, 129, 0.15);
+  --moss-warning-subtle: rgba(245, 158, 11, 0.15);
+  --moss-error-subtle: rgba(200, 84, 80, 0.15);
+}
+
+/* Dark mode - system preference (when no explicit theme set) */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --moss-text-primary: #e8e6e3;
+    --moss-text-secondary: #b8b5b0;
+    --moss-text-muted: #8a8580;
+    --moss-background: #1a1816;
+    --moss-background-alt: #242018;
+    --moss-border-light: #3a362f;
+    --moss-border-medium: #4a453c;
+    --moss-accent: #4a7c4a;
+    --moss-accent-hover: #5a8c5a;
+    --moss-accent-light: rgba(74, 124, 74, 0.2);
+    --moss-hover-overlay: rgba(255, 255, 255, 0.08);
+    --moss-active-overlay: rgba(255, 255, 255, 0.14);
+    --moss-success-subtle: rgba(16, 185, 129, 0.15);
+    --moss-warning-subtle: rgba(245, 158, 11, 0.15);
+    --moss-error-subtle: rgba(200, 84, 80, 0.15);
+  }
+}
+/* moss Design System — Shared Component Primitives */
+
+/* Button primitive - structural only, no colors */
+.moss-btn {
+  font-family: inherit;
+  font-size: var(--moss-font-sm, 1rem);
+  font-weight: 500;
+  border: none;
+  border-radius: 4px;
+  padding: var(--moss-space-xs, 0.5rem) var(--moss-space-md, 1.5rem);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: opacity 0.15s ease;
+}
+.moss-btn:focus-visible {
+  outline: 2px solid var(--moss-accent);
+  outline-offset: 2px;
+}
+
+/* Input primitive - underline style, structural only, no colors */
+.moss-input {
+  font-family: inherit;
+  font-size: var(--moss-font-base, 1.125rem);
+  border: none;
+  border-bottom: 1px solid var(--moss-border-medium);
+  border-radius: 0;
+  padding: var(--moss-space-xs, 0.5rem) 0;
+  width: 100%;
+  outline: none;
+  background: transparent;
+  transition: border-color 0.2s ease;
+}
+.moss-input:focus {
+  border-bottom-color: var(--moss-text-primary);
+}
+.moss-input:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Label primitive - structural only */
+.moss-label {
+  display: block;
+  font-size: var(--moss-font-sm, 1rem);
+  margin-bottom: var(--moss-space-xs, 0.5rem);
+}
+
+/* Small label variant */
+.moss-label--small {
+  font-size: 0.875rem;
+}
+
+/* Form field - vertical label + input */
+.moss-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.moss-field--inline {
+  flex-direction: row;
+  align-items: center;
+}
+.moss-field--inline .moss-input {
+  flex: 1;
+}
+
+/* Info grid — aligned label + value rows (two-column grid) */
+.moss-info-grid {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 12px 16px;
+  align-items: baseline;
+}
+.moss-info-grid > .moss-field--inline {
+  display: contents;
+}
+.moss-info-grid > .moss-field--inline > .moss-label {
+  margin-bottom: 0;
+}
+
+/* Clickable text link */
+.moss-link {
+  color: var(--moss-accent);
+  text-decoration: none;
+  cursor: pointer;
+}
+.moss-link:hover {
+  text-decoration: underline;
+}
+
+/* Form row - horizontal layout */
+.moss-row {
+  display: flex;
+  gap: 12px;
+}
+.moss-row > .moss-field { flex: 1; }
+
+/* Input feedback — auto-save status hint */
+.moss-input-feedback {
+  font-size: 0.75rem;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  min-height: 1em;
+}
+.moss-input-feedback--success {
+  color: var(--moss-success, #10b981);
+  opacity: 1;
+}
+.moss-input-feedback--error {
+  color: var(--moss-error, #c85450);
+  opacity: 1;
+}
+.moss-input-feedback--fade-out {
+  opacity: 0;
+}
+/* moss Design System — Site Styles (Generated Websites) */
+
+/* ==========================================================================
+   MOSS - Typography-first design for Writers & Publishers
+   ========================================================================== */
+
+/* ==========================================================================
+   1. CSS Custom Properties — Site-specific tokens
+   ========================================================================== */
+
+:root {
   /* Code Block Colors */
   --moss-code-background: #f8f6f3;
   --moss-code-border: #e0ddd6;
@@ -49,19 +221,8 @@
   --moss-container-padding: clamp(1rem, 5vw, 2rem);
 }
 
-/* Dark mode - explicit toggle */
+/* Dark mode - explicit toggle (site-specific tokens) */
 [data-theme="dark"] {
-  --moss-text-primary: #e8e6e3;
-  --moss-text-secondary: #b8b5b0;
-  --moss-text-muted: #8a8580;
-  --moss-background: #1a1816;
-  --moss-background-alt: #242018;
-  --moss-border-light: #3a362f;
-  --moss-border-medium: #4a453c;
-  --moss-accent: #4a7c4a;
-  --moss-accent-hover: #5a8c5a;
-  --moss-accent-light: rgba(74, 124, 74, 0.2);
-
   --moss-code-background: #1e1e1e;
   --moss-code-border: #3a3a3a;
   --moss-code-accent-primary: #4a7c4a;
@@ -70,20 +231,9 @@
   --moss-code-accent-quaternary: #9b8b7f;
 }
 
-/* Dark mode - system preference (when no explicit theme set) */
+/* Dark mode - system preference (site-specific tokens) */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --moss-text-primary: #e8e6e3;
-    --moss-text-secondary: #b8b5b0;
-    --moss-text-muted: #8a8580;
-    --moss-background: #1a1816;
-    --moss-background-alt: #242018;
-    --moss-border-light: #3a362f;
-    --moss-border-medium: #4a453c;
-    --moss-accent: #4a7c4a;
-    --moss-accent-hover: #5a8c5a;
-    --moss-accent-light: rgba(74, 124, 74, 0.2);
-
     --moss-code-background: #1e1e1e;
     --moss-code-border: #3a3a3a;
     --moss-code-accent-primary: #4a7c4a;
@@ -327,59 +477,29 @@ footer.container {
 }
 
 .footer-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   border-top: 1px solid var(--moss-border-light);
   padding-top: var(--moss-space-lg);
   padding-bottom: var(--moss-space-2xl);
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
 }
 
-.footer-label {
+.footer-description {
   color: var(--moss-text-muted);
   margin: 0;
-  font-size: var(--moss-font-base);
 }
 
 .footer-link {
   color: var(--moss-text-primary);
-  text-decoration: none;
-  font-size: var(--moss-font-base);
+  text-decoration: underline;
+  text-decoration-color: var(--moss-text-muted);
+  text-underline-offset: 3px;
 }
 
 .footer-link:hover {
   color: var(--moss-accent);
-}
-
-/* Email subscribe form injected by email plugin enhance hook */
-.footer-subscribe-form {
-  display: flex;
-  gap: var(--moss-space-sm);
-  align-items: center;
-}
-
-.footer-subscribe-form input[type="email"] {
-  font-size: var(--moss-font-base);
-  padding: var(--moss-space-xs) var(--moss-space-sm);
-  border: 1px solid var(--moss-border-light);
-  border-radius: 4px;
-  background: transparent;
-  color: var(--moss-text-primary);
-}
-
-.footer-subscribe-form button {
-  font-size: var(--moss-font-base);
-  padding: var(--moss-space-xs) var(--moss-space-sm);
-  background: transparent;
-  border: 1px solid var(--moss-border-light);
-  border-radius: 4px;
-  color: var(--moss-text-primary);
-  cursor: pointer;
-}
-
-.footer-subscribe-form button:hover {
-  color: var(--moss-accent);
-  border-color: var(--moss-accent);
+  text-decoration-color: var(--moss-accent);
 }
 
 /* ==========================================================================
@@ -445,7 +565,7 @@ header:has(+ .moss-hero) .main-nav {
   align-items: center;
   flex: 1;
   justify-content: flex-end;
-  gap: var(--moss-space-md);
+  gap: var(--moss-space-sm);
 }
 
 /* Site Name */
@@ -470,7 +590,6 @@ header:has(+ .moss-hero) .main-nav {
   display: flex;
   align-items: center;
   gap: var(--moss-space-md);
-  margin-left: auto;  /* Push to far right, even when nav-links wrap */
 }
 
 .nav-divider {
@@ -1030,68 +1149,59 @@ tr:last-child td {
   border-bottom: none;
 }
 
-/* Horizontal Rule */
+/* Horizontal Rule — three-dot content divider (Matters Town style) */
 hr {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 0.5rem;
   border: none;
-  height: 1px;
-  background: var(--moss-border-light);
+  background: none;
   margin: var(--moss-space-2xl) 0;
 }
 
+hr::before {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 3.5rem;
+  height: 0.5rem;
+  margin: 0 auto;
+  content: '';
+  background-image: radial-gradient(
+    circle,
+    var(--moss-border-light) 0.25rem,
+    transparent 0.25rem
+  );
+  background-size: 33.33% 100%;
+  background-repeat-x: repeat;
+}
+
 /* ==========================================================================
-   9. Forms
+   8b. Site Component Colors (Design System)
    ========================================================================== */
 
-.email-subscription form {
-  display: flex;
-  gap: var(--moss-space-sm);
-  justify-content: flex-end;
-  align-items: center;
-}
-
-.email-subscription input[type="email"] {
-  flex: 0 0 auto;
-  width: 240px;
-  padding: 0.5rem 0.75rem;
-  border: 1px solid var(--moss-border-medium);
-  border-radius: 4px;
-  font-size: 0.875rem;
-  font-family: inherit;
-  background: var(--moss-background);
+/* Site-specific input colors */
+.moss-input {
   color: var(--moss-text-primary);
+  background: transparent;
+}
+.moss-input::placeholder {
+  color: var(--moss-text-muted);
 }
 
-.email-subscription input[type="email"]:focus {
-  outline: 2px solid var(--moss-accent);
-  outline-offset: 2px;
-  border-color: var(--moss-accent);
-}
+/* Site-specific button colors */
+.moss-btn { background: var(--moss-text-primary); color: var(--moss-background); }
+.moss-btn:hover { background: var(--moss-accent); }
+.moss-btn:disabled { opacity: 0.5; cursor: not-allowed; }
 
-.email-subscription button[type="submit"] {
-  padding: 0.5rem 1rem;
-  background: var(--moss-accent);
-  color: white;
-  border: none;
-  border-radius: 4px;
-  font-size: 0.875rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-
-.email-subscription button[type="submit"]:hover {
-  background: var(--moss-accent-hover);
-}
-
-.email-subscription iframe {
-  width: 100%;
-  max-width: 100%;
-  border: none;
-  min-height: 120px;
+/* Site-specific label colors */
+.moss-label {
+  color: var(--moss-text-muted);
 }
 
 /* ==========================================================================
-   10. Layout Variants - Minimal Layout
+   9. Layout Variants - Minimal Layout
    ========================================================================== */
 
 /* Year headings: keep visible but remove underline */
@@ -1198,19 +1308,6 @@ article a:focus {
     padding: 0.25rem;
   }
 
-  /* Email form mobile */
-  .email-subscription form {
-    justify-content: center;
-  }
-
-  .email-subscription input[type="email"],
-  .email-subscription button[type="submit"] {
-    max-width: 320px;
-  }
-
-  .email-subscription iframe {
-    min-height: 150px;
-  }
 }
 
 /* Mobile menu button - hidden by default, shown only on narrow screens */
@@ -1383,9 +1480,17 @@ article a:focus {
 
 .collection-card-cover {
   aspect-ratio: 4 / 3;
-  background-size: cover;
-  background-position: center;
+  overflow: hidden;
   background-color: var(--moss-background-alt);
+}
+
+.collection-card-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  margin: 0;
+  border-radius: 0;
 }
 
 .collection-card-no-cover {
@@ -2252,5 +2357,104 @@ body:not(.immersive-fs-active) main > article.container > *:not(.immersive-ifram
 
   .immersive-ready main > article.container > iframe {
     min-height: 50vh;
+  }
+}
+
+/* ==========================================================================
+   17. Callouts (Obsidian-compatible callout syntax)
+
+   Rendered from:
+     > [!warning] Watch Out
+     > Be careful here.
+
+   Into:
+     <div class="callout callout-warning">
+       <div class="callout-title">Watch Out</div>
+       <div class="callout-content">...</div>
+     </div>
+
+   Supported types: note, tip, warning, caution, important, info, abstract,
+   todo, success, question, failure, danger, bug, example, quote
+   ========================================================================== */
+
+/* Callout custom properties — one per type */
+:root {
+  --callout-note:      #448aff;
+  --callout-info:      #448aff;
+  --callout-tip:       #00bfa5;
+  --callout-warning:   #ff9100;
+  --callout-caution:   #ff9100;
+  --callout-important: #ff5252;
+  --callout-danger:    #ff5252;
+  --callout-success:   #00c853;
+  --callout-question:  #ffab00;
+  --callout-failure:   #ff6d00;
+  --callout-bug:       #ff6d00;
+  --callout-abstract:  #7c4dff;
+  --callout-todo:      #7c4dff;
+  --callout-example:   #536dfe;
+  --callout-quote:     #9e9e9e;
+}
+
+/* Base callout container */
+.callout {
+  --callout-color: #448aff; /* default: note/info blue */
+  border-left: 3px solid var(--callout-color);
+  border-radius: 6px;
+  background-color: color-mix(in srgb, var(--callout-color) 8%, var(--moss-background));
+  margin: var(--moss-space-md) 0;
+  padding: var(--moss-space-sm) var(--moss-space-md);
+  max-width: var(--moss-content-width);
+}
+
+/* Callout title */
+.callout-title {
+  font-weight: 480;
+  color: var(--callout-color);
+  margin-bottom: var(--moss-space-xs);
+  line-height: 1.4;
+}
+
+/* Callout body */
+.callout-content {
+  color: var(--moss-text-secondary);
+  line-height: 1.6;
+}
+
+.callout-content p {
+  margin: 0 0 var(--moss-space-xs) 0;
+  max-width: none;
+  width: auto;
+}
+
+.callout-content p:last-child {
+  margin-bottom: 0;
+}
+
+/* Per-type accent colors */
+.callout-note     { --callout-color: var(--callout-note); }
+.callout-info     { --callout-color: var(--callout-info); }
+.callout-tip      { --callout-color: var(--callout-tip); }
+.callout-warning  { --callout-color: var(--callout-warning); }
+.callout-caution  { --callout-color: var(--callout-caution); }
+.callout-important { --callout-color: var(--callout-important); }
+.callout-danger   { --callout-color: var(--callout-danger); }
+.callout-success  { --callout-color: var(--callout-success); }
+.callout-question { --callout-color: var(--callout-question); }
+.callout-failure  { --callout-color: var(--callout-failure); }
+.callout-bug      { --callout-color: var(--callout-bug); }
+.callout-abstract { --callout-color: var(--callout-abstract); }
+.callout-todo     { --callout-color: var(--callout-todo); }
+.callout-example  { --callout-color: var(--callout-example); }
+.callout-quote    { --callout-color: var(--callout-quote); }
+
+/* Dark mode — deepen background tint so it reads against dark surfaces */
+[data-theme="dark"] .callout {
+  background-color: color-mix(in srgb, var(--callout-color) 12%, var(--moss-background));
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .callout {
+    background-color: color-mix(in srgb, var(--callout-color) 12%, var(--moss-background));
   }
 }

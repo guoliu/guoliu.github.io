@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-hans">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -29,7 +29,26 @@
     <link rel="alternate" type="application/rss+xml" title="RSS" href="../../../feed.xml">
     
     
-    <link rel="stylesheet" href="../../../style.css?v=e9469913b04e3b93">
+    <link rel="stylesheet" href="../../../style.css?v=dee9f975d540ccf3">
+<style class="moss-email-style">/* Email subscribe form — injected by email plugin enhance hook */
+.footer-subscribe-form {
+  display: flex;
+  gap: var(--moss-space-sm);
+  align-items: baseline;
+  max-width: 18rem;
+}
+
+.footer-subscribe-form .moss-input {
+  flex: 1;
+}
+
+@media (max-width: 48rem) {
+  .footer-subscribe-form .moss-input {
+    width: 10ch;
+    flex: none;
+  }
+}
+</style>
 </head>
 <body class="">
     <header>
@@ -61,17 +80,25 @@
 <p>副驾驶的妈妈，和车后的妻儿，都已经睡着了，车厢里一片宁静。这一路上的美景之外，是风餐露宿，和许多坎坷与劳作。当有诸多坎坷需要共同面对时，第一次共同生活的一大家子人，尽自己所能相互迁就与照顾。一同在车轮上披星戴月，一同在篝火边灰头土脸，一同分享喜悦与负担。广阔的天地剥去了原本的家庭角色，换来了一段人人平等的集体生活。</p>
 <p>越过水草丰美的克拉马斯河，我们继续向北，开往太平洋西北。曾经生活在身后土地上的居民们，追求性别、长幼的平等，将劳作精神化，成全了彼此的自由。而居住在眼前土地的人们，贬低饮食起居、照顾彼此等劳作，也成全了对彼此的奴役。宏大的理念和社会结构，与柔软的家庭、细碎的日常相距甚远，却又总是生活最私密之处的分工，编织起社会的形状，成为了一群人共同的世界。</p>
 <p>我忽然记起周梦蝶，那个终日默坐繁华街头的诗人。在《我选择》的开头，他写，“我选择非必不得已，一切事，无分巨细，总自己动手。”曾经读到时，我不知它为何打动了我。现在我想，也许是内心某种远古的记忆，还记得这也是选择了一种共同的自由。</p>
-
+<nav class="series-nav">
+  <div class="series-nav-links">
+    <a href="../../../articles/无用之旅/文明的代价/index.html" class="series-nav-link series-nav-prev"><span class="series-nav-arrow">&lt;</span> <span class="series-nav-title">文明的代价</span></a>
+    <a href="../../../articles/无用之旅/如果人们在一个地方呆得足够久-那里的生灵也会开始向他们说话/index.html" class="series-nav-link series-nav-next"><span class="series-nav-title">如果人们在一个地方呆得足够久，那里的生灵也会开始向他们说话</span> <span class="series-nav-arrow">&gt;</span></a>
+  </div>
+  <div class="series-nav-collection-row">
+    <a href="../../../articles/无用之旅/index.html" class="series-nav-collection">无用之旅</a>
+  </div>
+</nav>
         </article>
     </main>
 
     <footer class="container">
     <div class="footer-content">
-    <a href="/feed.xml" class="footer-link" data-external>RSS</a>
+    <a href="../../../feed.xml" class="footer-link" data-external>RSS</a>
     <form action="https://buttondown.com/api/emails/embed-subscribe/liuguo" method="post" class="footer-subscribe-form">
-        <input type="email" name="email" placeholder="your@email.com" required />
+        <input type="email" name="email" class="moss-input" placeholder="邮箱" required />
         <input type="hidden" value="1" name="embed" />
-        <button type="submit">Subscribe</button>
+        <button type="submit" class="moss-btn">订阅</button>
     </form>
 </div>
 </footer>

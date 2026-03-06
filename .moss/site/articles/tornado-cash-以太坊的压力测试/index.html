@@ -29,13 +29,58 @@
     <link rel="alternate" type="application/rss+xml" title="RSS" href="../../feed.xml">
     
     
-    <link rel="stylesheet" href="../../style.css?v=dee9f975d540ccf3">
-<style class="moss-comments-style">/* ==========================================================================
+    <link rel="stylesheet" href="../../style.css?v=2d0441b1384f5323">
+<style>/* ==========================================================================
    moss Comments Plugin - Styles
 
    Collapsible comment section with solid thread borders,
    underline-style form inputs, and responsive grid layout.
    Uses CSS custom properties from moss default.css.
+   ========================================================================== */
+
+/* ==========================================================================
+   Design Decision Record: Flattened Comment Form
+   --------------------------------------------------------------------------
+
+   Research found that the best comment sections treat comments as editorial
+   content on the same surface as the article, not as a separate widget.
+
+   Six principles guide the comment form styling:
+
+   P1. One surface
+       Remove the tinted card background from .comment-form. Form and
+       comments share the page background. Modeled after NYT/Guardian
+       "Letters to the Editor" — comments as editorial content, same surface.
+
+   P2. Border language consistency
+       Comments use border-bottom: 1px solid. The form uses the same 1px
+       border as its boundary, not a background fill + border-radius.
+
+   P3. Typographic continuity
+       Placeholder text, field labels, comment body, author names — same
+       type family, proportional sizes. Follows iA design philosophy
+       (ia.net): "web design is 95% typography", content-first.
+
+   P4. The form is the first comment
+       Visually, the compose area reads like an empty comment slot. Same
+       padding rhythm, same width, same vertical spacing as comment items.
+       Inspired by CSS-Tricks threading (css-tricks.com) — forms inline in
+       thread, not separate cards.
+
+   P5. Distinguish through state, not surface
+       The textarea is interactive because of cursor/focus behavior, not
+       because it sits on a different background. Focus states (accent
+       underline) provide sufficient affordance.
+
+   P6. Density matching
+       Spacing between form elements echoes spacing between comment items.
+
+   References:
+   - NYT/Guardian "Letters to the Editor" model
+   - Ahmad Shadeed's comment component (ishadeed.com)
+   - CSS-Tricks threading (css-tricks.com)
+   - iA design philosophy (ia.net)
+   - ResultFirst 2026 trends — "stripping away non-essential frills"
    ========================================================================== */
 
 /* Comment Section */
@@ -56,7 +101,7 @@
   cursor: pointer;
   list-style: none;
   font-size: var(--moss-font-sm, 1rem);
-  color: var(--moss-text-muted, #8a8580);
+  color: var(--moss-color-muted, #8a8580);
   user-select: none;
   padding: 0;
 }
@@ -71,20 +116,17 @@
 }
 
 .comments-toggle:hover {
-  color: var(--moss-text-primary, #2c2825);
+  color: var(--moss-color-text, #2c2825);
 }
 
-/* Chevron indicator */
-.comments-toggle::after {
-  content: "▸";
-  margin-left: auto;
-  font-size: 1.25rem;
-  color: var(--moss-text-secondary, #5d5853);
-  transition: transform 0.15s ease;
+/* Chevron indicator — points right when collapsed, down when expanded */
+.comments-toggle .comments-chevron {
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
 }
 
-details[open] > .comments-toggle::after {
-  content: "▾";
+details[open] > .comments-toggle .comments-chevron {
+  transform: rotate(90deg);
 }
 
 /* Space between summary and content when open */
@@ -126,24 +168,24 @@ details[open] > .comments-toggle {
 .comment-author {
   font-weight: 480;
   font-size: var(--moss-font-sm, 1rem);
-  color: var(--moss-text-primary, #2c2825);
+  color: var(--moss-color-text, #2c2825);
   text-decoration: none;
 }
 
 a.comment-author:hover {
-  color: var(--moss-accent, #2d5a2d);
+  color: var(--moss-color-accent, #2d5a2d);
 }
 
 .comment-date {
   font-size: 0.875rem;
-  color: var(--moss-text-muted, #8a8580);
+  color: var(--moss-color-muted, #8a8580);
 }
 
 /* Comment Body */
 .comment-body {
-  font-size: var(--moss-font-base, 1.125rem);
+  font-size: var(--moss-font-size, 1.125rem);
   line-height: 1.7;
-  color: var(--moss-text-primary, #2c2825);
+  color: var(--moss-color-text, #2c2825);
 }
 
 .comment-body p {
@@ -156,15 +198,20 @@ a.comment-author:hover {
 
 .comment-body blockquote {
   font-size: inherit;
+  font-style: normal;
+  border-left: 3px solid var(--moss-color-muted, #8a8580);
+  margin: var(--moss-space-xs, 0.5rem) 0 var(--moss-space-xs, 0.5rem) 1rem;
+  padding-left: var(--moss-space-sm, 1rem);
+  color: var(--moss-text-secondary, #5d5853);
 }
 
 .comment-body a {
-  color: var(--moss-text-primary, #2c2825);
+  color: var(--moss-color-text, #2c2825);
   text-decoration: underline;
 }
 
 .comment-body a:hover {
-  color: var(--moss-accent, #2d5a2d);
+  color: var(--moss-color-accent, #2d5a2d);
 }
 
 /* ==========================================================================
@@ -187,10 +234,8 @@ a.comment-author:hover {
    ========================================================================== */
 
 .comment-form {
-  background: var(--moss-background-alt, #f4f1ec);
-  border-radius: 8px;
-  padding: 1.25rem;
-  margin-top: var(--moss-space-lg, 2rem);
+  padding: var(--moss-space-md, 1.5rem) 0;
+  margin: 0 0 var(--moss-space-md, 1.5rem) 0;
 }
 
 /* Textarea — underline style */
@@ -202,9 +247,9 @@ a.comment-author:hover {
   border: none;
   border-bottom: 1px solid var(--moss-border-medium, #d1cdc4);
   font-family: inherit;
-  font-size: var(--moss-font-base, 1.125rem);
+  font-size: var(--moss-font-size, 1.125rem);
   line-height: 1.7;
-  color: var(--moss-text-primary, #2c2825);
+  color: var(--moss-color-text, #2c2825);
   background: transparent;
   resize: none;
   overflow: hidden;
@@ -214,11 +259,11 @@ a.comment-author:hover {
 
 .comment-form textarea:focus {
   outline: none;
-  border-bottom: 2px solid var(--moss-accent, #2d5a2d);
+  border-bottom: 2px solid var(--moss-color-accent, #2d5a2d);
 }
 
 .comment-form textarea::placeholder {
-  color: var(--moss-text-muted, #8a8580);
+  color: var(--moss-color-muted, #8a8580);
 }
 
 /* ==========================================================================
@@ -241,7 +286,7 @@ a.comment-author:hover {
   padding: 0.5rem 0;
   font-family: inherit;
   font-size: var(--moss-font-sm, 1rem);
-  color: var(--moss-text-primary, #2c2825);
+  color: var(--moss-color-text, #2c2825);
   box-sizing: border-box;
   transition: border-color 0.15s ease;
   min-width: 0;
@@ -249,11 +294,11 @@ a.comment-author:hover {
 
 .comment-field:focus {
   outline: none;
-  border-bottom: 2px solid var(--moss-accent, #2d5a2d);
+  border-bottom: 2px solid var(--moss-color-accent, #2d5a2d);
 }
 
 .comment-field::placeholder {
-  color: var(--moss-text-muted, #8a8580);
+  color: var(--moss-color-muted, #8a8580);
 }
 
 /* ==========================================================================
@@ -265,11 +310,11 @@ a.comment-author:hover {
   align-items: center;
   justify-content: center;
   padding: 0.5rem 1.25rem;
-  background: color-mix(in srgb, var(--moss-accent, #2d5a2d) 8%, transparent);
+  background: color-mix(in srgb, var(--moss-color-accent, #2d5a2d) 8%, transparent);
   border: none;
   border-radius: 6px;
   cursor: pointer;
-  color: var(--moss-accent, #2d5a2d);
+  color: var(--moss-color-accent, #2d5a2d);
   font-family: inherit;
   font-size: var(--moss-font-sm, 1rem);
   font-weight: 480;
@@ -277,11 +322,11 @@ a.comment-author:hover {
 }
 
 .comment-form-submit:hover {
-  background: color-mix(in srgb, var(--moss-accent, #2d5a2d) 15%, transparent);
+  background: color-mix(in srgb, var(--moss-color-accent, #2d5a2d) 15%, transparent);
 }
 
 .comment-form-submit:focus {
-  outline: 2px solid var(--moss-accent, #2d5a2d);
+  outline: 2px solid var(--moss-color-accent, #2d5a2d);
   outline-offset: 2px;
 }
 
@@ -324,7 +369,7 @@ a.comment-author:hover {
 }
 
 .comment-form-status--success {
-  color: var(--moss-accent, #2d5a2d);
+  color: var(--moss-color-accent, #2d5a2d);
 }
 
 /* ==========================================================================
@@ -366,6 +411,10 @@ a.comment-author:hover {
   flex: 1;
 }
 
+.footer-subscribe-form .moss-btn {
+  font-size: inherit;
+}
+
 @media (max-width: 48rem) {
   .footer-subscribe-form .moss-input {
     width: 10ch;
@@ -389,7 +438,7 @@ a.comment-author:hover {
             <p><span class="date">2024 · 12 · 22</span></p>
             <p>上个月，美国联邦上诉法院推翻了之前的判决，认定美国财政部对 Tornado Cash 的制裁不合法。至此，Tornado Cash 案件算是告了一个段落。</p>
 <p>虽然围绕 Tornado Cash 的争议远未结束，现在是时候回顾这桩案子的来龙去脉，看看这场变革到底走到了哪里。</p>
-<h2>隐私补丁</h2>
+<h2 id="隐私补丁">隐私补丁</h2>
 <p>Tornado Cash 的来历，得从比特币说起。</p>
 <p>比特币被称作”数字黄金“，却没有黄金的一大优点：隐私。“真金不怕火”，黄金容易验，也容易熔，容易抹去来历。但在比特币上，每个地址的余额需要通过历史交易计算出来的，每笔交易都明明白白写链上，没有隐私。</p>
 <p>比特币之后的许多项目，比如 Monero 和 Zcash，尝试从一开始就支持交易记录的隐私。这样，整个网络能够确认一个地址有多少钱，却无法知道钱从哪里来。比特币则需要用混币器，给隐私打个补丁：一堆地址转钱给混币器，另一堆地址把钱取走，从外面看不出是谁转给了谁。</p>
@@ -403,7 +452,7 @@ a.comment-author:hover {
 <p>制裁压力逐步渗透之后真正触及的，是以太坊的验证人们。验证人负责将交易打包为区块，然后将区块广播至网络。</p>
 <p>是否接受来自于 Tornado Cash 的交易，由每个验证人自行决定。验证人们的行为合在一起，成为以太坊上 Tornado Cash 受到制裁的程度。</p>
 <p>就这样，一个分布式网络抵抗审查的压力，落在了每个节点身上。</p>
-<h2>压力测试</h2>
+<h2 id="压力测试">压力测试</h2>
 <p>2022年10月，哥伦比亚还是初夏，高原上的首都波哥大天气温热。全世界数万以太坊开发者、从业者、信仰者聚集到这里，参加以太坊开发者大会 Devcon。五层会议中心眼花缭乱的议题里，最火的当属合规问题：以太坊要与监管合作，还是与旧权力针锋相对、划出自己的疆域？</p>
 <p>越来越多的证据表明，有验证人开始配合审查了。于是开发者们开发出工具，用于监控每个区块的状态。会场的人们传阅着 <a href="http://mevwatch.info">mevwatch.info</a> 上对审查状况的统计，看着 <a href="http://inclusion.watch">inclusion.watch</a> 上计算的 Tornado Cash 交易花费的时间。在一次演讲中，讲者提出是否应该惩罚参与审查的验证人，销毁他们质押的代币；而台下的听众们，议论着是哪些验证人在配合审查。</p>
 <p>Devcon 之后，以太坊社区提出了“提议者-构建者分离”，以增强抗审查能力。在这种设计中，验证人分为了建构者和提议者：前者将交易打包为区块、并发送给后者，后者再将其广播至网络。提议者只能看见区块的收益，无法看见区块的内容，这样只能考虑经济收益、而无法筛选交易地址。</p>
@@ -416,7 +465,7 @@ a.comment-author:hover {
 <p>这些屈指可数的验证人，为什么顶住压力不审查 Tornado Cash？人们原先设想，经济诱因能够成为抵抗审查的动力。但<a href="https://www.newyorkfed.org/medialibrary/media/research/staff_reports/sr1112.pdf?sc_lang=en">研究者们统计</a>了包含 Tornado Cash 的区块，发现它们比同期其他区块收益更低。这意味着，不配合监管的动力不是利益，而是某种观念。</p>
 <p>2024年11月，联邦上诉法院重新审理了该案，推翻了德州地区法院的决定，认为 OFAC 的制裁并不合法。以太坊险胜。</p>
 <p>监管部门没有达成目的，但同时制裁接近了以太坊抗审查能力的上限。这个上限，靠的是以太坊的去中心化与经济机制，也靠是以太坊社群的观念。</p>
-<h2>新的开始</h2>
+<h2 id="新的开始">新的开始</h2>
 <p>Tornado Cash 在联邦上诉法院翻案的重点，是法院确认了不可更改的智能合约不算资产，不在财政部的管辖范围内。智能合约是个新东西，法律上该如何定义、又该由哪个政府部门负责，都没有先例。但 OFAC 直接套上“资产”这个旧概念，与事实不相符。</p>
 <p><a href="https://www.ca5.uscourts.gov/opinions/pub/23/23-50669-CV0.pdf">判决书</a>结论中的一句话意味深长：“修补法律的盲点和弊端超出了我们的职权范围”。执笔的法官 Don Willett 继续写到：“立法是国会的职责 — 也只能由国会执行。”</p>
 <p>判决书的背景是刚过去的美国大选，特朗普和他代表的共和党胜出。共和党支持更小的政府和更宽松的监管，特朗普多次表示对支持数字货币，并已经通过数字货币募捐近千万。而负责判决的法官 Don Willett，是特朗普在上一届总统任期中任命的联邦法官之一。</p>
@@ -427,7 +476,7 @@ a.comment-author:hover {
 <p>这场变革既是剧烈的权力争夺，也是两个系统剧烈的融合。不过争夺和融合的底层逻辑，已经彻底改变了。</p>
 <p>一直以来，政府和资本控制信息最常见的方式是向信息中介施压。比如 Google、Facebook 或者互联网运营商，有层层法律要求它们配合政府或者版权方的审查。但区块链带来的去中介化，彻底改变了游戏规则：Tornado Cash 不是一个平台或者服务，而是一个协议，不受任何人控制。这不同于原来的中介：它的创造者没有提供服务，政府也无法要求它的创造者承受审查的责任。</p>
 <p>所有不可更改的合约都与 Tornado Cash 一样，是种新型的协议。在法律上如何规范这种协议的生产和使用，是一个全新的开始。</p>
-<h2>命运共同体</h2>
+<h2 id="命运共同体">命运共同体</h2>
 <p>也许 Tornado Cash 的故事中最重要的未知数，是几个真正的受害者们的命运。</p>
 <p>他们是 Tornado Cash 的三位开发者，目前被各国政府打击报复。Alexey Pertsev 被荷兰政府逮捕，以洗钱为名被判入狱五年四个月；Roman Storm 被美国司法部起诉洗钱、违反制裁，面临最高20年刑期；Roman Semenov 同样被美国司法部起诉，目前下落不明。</p>
 <p>既然法院否决了智能合约是“资产”，那三位开发者也不应当因洗钱被起诉。也许美国司法部、荷兰政府会逐渐跟进，撤销诉讼。但这只是“应当”和“也许”，他们的未来是否有牢狱之灾，还是未知。人们<a href="https://x.com/FreeAlexeyRoman">仍在筹款</a>，为 Alexey 与 Storm 聘请律师、争取自由。</p>
@@ -440,10 +489,46 @@ a.comment-author:hover {
 <p>就像以太坊的抗审查能力取决于每个验证人一样，数字空间的命运共同体，终究取决于每个参与者。而我们每个人，都是其中一员。</p>
 
         
-<section class="moss-comments" id="moss-comments">
+<section class="moss-comments" id="moss-comments" data-built-at="2026-03-06T16:31:57.355Z">
   <details>
-    <summary class="comments-toggle"><svg class="comments-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></svg><span>7条评论</span></summary>
-    <ol class="comment-list"><li class="comment-item" id="comment-Q29tbWVudDoxNTIyODMy">
+    <summary class="comments-toggle"><svg class="comments-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></svg><span>7条评论</span><svg class="comments-chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></summary>
+    <form class="comment-form" id="moss-comment-form">
+  <textarea id="moss-comment-text" name="content" required rows="2" placeholder="留下你的想法"></textarea>
+  <div class="comment-form-meta">
+    <input type="text" name="name" class="comment-field" placeholder="名字" required>
+    <input type="email" name="email" class="comment-field" placeholder="邮箱（选填）">
+    <input type="url" name="link" class="comment-field" placeholder="网站（选填）">
+    <button type="submit" class="comment-form-submit">回复</button>
+  </div>
+  <div class="comment-form-status" id="moss-comment-status"></div>
+</form>
+    <ol class="comment-list"><li class="comment-item" id="comment-Q29tbWVudDoxNTM5MTQ0">
+  <div class="comment-header">
+    <a href="https://matters.town/@wancat" class="comment-author" rel="nofollow noopener" target="_blank">林宏信</a>
+    <time class="comment-date" datetime="2025-03-06T17:00:52.108Z">2025年3月6日</time>
+  </div>
+  <div class="comment-body"><p>Bybit 被盜後，混幣器估計也會再次受到龐大壓力。不過提供隱私的工具，的確是平時無人知曉，只有被重大犯罪事件使用時才會被公眾討論（然後就被罵）。</p><p>今年 RightsCon 期間去聽了 Tor 創辦人的演講，得到的一點啟發：並不是只有「需要的人才需要使用 Tor」，而是我們本來就該擁有更高的隱私。也許就是需要經歷像 HTTP - HTTPS 這樣的變革，人們才會開始將隱私和安全視為理所當然。到那時，使用混幣器、隱私幣、或是 Tor 才不再是「心裡有鬼」而是自然而然的行為了。</p></div>
+</li><li class="comment-item" id="comment-Q29tbWVudDoxNTI1MDE5">
+  <div class="comment-header">
+    <a href="https://matters.town/@web3matters" class="comment-author" rel="nofollow noopener" target="_blank">Web3Matters 馬特週報</a>
+    <time class="comment-date" datetime="2025-01-04T08:41:29.669Z">2025年1月4日</time>
+  </div>
+  <div class="comment-body"><p>您的文章獲編選收錄到<a href="https://web3matters.substack.com/p/112">《Web3Matters 馬特週報》第 112 期</a>！已匯入獎勵 4 USDT（<a href="https://optimistic.etherscan.io/tx/0x49e7ced0fdc2966bd2ed26056de87d7eeaf3b58585f53e6ec175b77110313101">明細</a>）🥳</p></div>
+  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDoxNTI1MDgx">
+  <div class="comment-header">
+    <a href="https://matters.town/@guo" class="comment-author" rel="nofollow noopener" target="_blank">刘果</a>
+    <time class="comment-date" datetime="2025-01-05T02:55:32.888Z">2025年1月4日</time>
+  </div>
+  <div class="comment-body"><p><a href="/@web3matters">@Web3Matters 馬特週報</a> 感谢！</p></div>
+</li>
+  </ol>
+</li><li class="comment-item" id="comment-Q29tbWVudDoxNTIyOTU1">
+  <div class="comment-header">
+    <a href="https://matters.town/@vara20241223211" class="comment-author" rel="nofollow noopener" target="_blank">yushengchen28</a>
+    <time class="comment-date" datetime="2024-12-23T13:22:28.894Z">2024年12月23日</time>
+  </div>
+  <div class="comment-body"><p>谢谢作者，了解到很多关于人权的事。</p></div>
+</li><li class="comment-item" id="comment-Q29tbWVudDoxNTIyODMy">
   <div class="comment-header">
     <a href="https://matters.town/@robert" class="comment-author" rel="nofollow noopener" target="_blank">Robert</a>
     <time class="comment-date" datetime="2024-12-23T01:51:02.747Z">2024年12月22日</time>
@@ -465,43 +550,7 @@ a.comment-author:hover {
   </ol>
 </li>
   </ol>
-</li><li class="comment-item" id="comment-Q29tbWVudDoxNTIyOTU1">
-  <div class="comment-header">
-    <a href="https://matters.town/@vara20241223211" class="comment-author" rel="nofollow noopener" target="_blank">yushengchen28</a>
-    <time class="comment-date" datetime="2024-12-23T13:22:28.894Z">2024年12月23日</time>
-  </div>
-  <div class="comment-body"><p>谢谢作者，了解到很多关于人权的事。</p></div>
-</li><li class="comment-item" id="comment-Q29tbWVudDoxNTI1MDE5">
-  <div class="comment-header">
-    <a href="https://matters.town/@web3matters" class="comment-author" rel="nofollow noopener" target="_blank">Web3Matters 馬特週報</a>
-    <time class="comment-date" datetime="2025-01-04T08:41:29.669Z">2025年1月4日</time>
-  </div>
-  <div class="comment-body"><p>您的文章獲編選收錄到<a href="https://web3matters.substack.com/p/112">《Web3Matters 馬特週報》第 112 期</a>！已匯入獎勵 4 USDT（<a href="https://optimistic.etherscan.io/tx/0x49e7ced0fdc2966bd2ed26056de87d7eeaf3b58585f53e6ec175b77110313101">明細</a>）🥳</p></div>
-  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDoxNTI1MDgx">
-  <div class="comment-header">
-    <a href="https://matters.town/@guo" class="comment-author" rel="nofollow noopener" target="_blank">刘果</a>
-    <time class="comment-date" datetime="2025-01-05T02:55:32.888Z">2025年1月4日</time>
-  </div>
-  <div class="comment-body"><p><a href="/@web3matters">@Web3Matters 馬特週報</a> 感谢！</p></div>
-</li>
-  </ol>
-</li><li class="comment-item" id="comment-Q29tbWVudDoxNTM5MTQ0">
-  <div class="comment-header">
-    <a href="https://matters.town/@wancat" class="comment-author" rel="nofollow noopener" target="_blank">林宏信</a>
-    <time class="comment-date" datetime="2025-03-06T17:00:52.108Z">2025年3月6日</time>
-  </div>
-  <div class="comment-body"><p>Bybit 被盜後，混幣器估計也會再次受到龐大壓力。不過提供隱私的工具，的確是平時無人知曉，只有被重大犯罪事件使用時才會被公眾討論（然後就被罵）。</p><p>今年 RightsCon 期間去聽了 Tor 創辦人的演講，得到的一點啟發：並不是只有「需要的人才需要使用 Tor」，而是我們本來就該擁有更高的隱私。也許就是需要經歷像 HTTP - HTTPS 這樣的變革，人們才會開始將隱私和安全視為理所當然。到那時，使用混幣器、隱私幣、或是 Tor 才不再是「心裡有鬼」而是自然而然的行為了。</p></div>
 </li></ol>
-    <form class="comment-form" id="moss-comment-form">
-  <textarea id="moss-comment-text" name="content" required rows="2" placeholder="留下你的想法"></textarea>
-  <div class="comment-form-meta">
-    <input type="text" name="name" class="comment-field" placeholder="名字" required>
-    <input type="email" name="email" class="comment-field" placeholder="邮箱（选填）">
-    <input type="url" name="link" class="comment-field" placeholder="网站（选填）">
-    <button type="submit" class="comment-form-submit">回复</button>
-  </div>
-  <div class="comment-form-status" id="moss-comment-status"></div>
-</form>
     <script>(function() {
   var form = document.getElementById('moss-comment-form');
   if (!form) return;
@@ -563,19 +612,21 @@ a.comment-author:hover {
       if (!commentList) {
         commentList = document.createElement('ol');
         commentList.className = 'comment-list';
-        form.before(commentList);
+        form.after(commentList);
       }
 
       var li = document.createElement('li');
       li.className = 'comment-item';
-      var now = new Date().toLocaleDateString('en-US', {year:'numeric',month:'short',day:'numeric'});
+      li.id = 'comment-' + data.id;
+      var now = new Date().toLocaleDateString('zh-CN', {year:'numeric',month:'short',day:'numeric'});
       var authorName = body.name || 'Anonymous';
       li.innerHTML = '<div class="comment-header">'
         + '<span class="comment-author">' + authorName.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;') + '</span>'
         + '<time class="comment-date">' + now + '</time>'
         + '</div>'
         + '<div class="comment-body"><p>' + body.content.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;') + '</p></div>';
-      commentList.appendChild(li);
+      // Newest first: prepend so the just-submitted comment appears at the top
+      commentList.insertBefore(li, commentList.firstChild);
 
       form.elements['content'].value = '';
       if (textarea) { textarea.style.height = 'auto'; }
@@ -589,6 +640,91 @@ a.comment-author:hover {
       }
     });
   });
+
+  /*
+   * Stale-while-revalidate / progressive enhancement for comments.
+   *
+   * Static HTML already contains all comments known at build time, so the page
+   * is immediately readable without JS. When the user opens the comment section
+   * (<details> toggle), we fetch comments from the Artalk server that may have
+   * been posted after the last build.
+   *
+   * Why date-based filtering instead of offset/count:
+   *   Comments can be deleted or moderated between builds. A purely offset-based
+   *   approach would miss or duplicate entries. By comparing each comment's
+   *   created_at against the build timestamp (data-built-at), we robustly find
+   *   only the comments that are genuinely new.
+   *
+   * Three-layer deduplication:
+   *   1. Date boundary  — stop iterating when we hit a comment older than the
+   *      build timestamp (comments are sorted newest-first).
+   *   2. ID guard       — skip any comment whose DOM node already exists
+   *      (handles edge cases where build-time and fetch overlap).
+   *   3. Fire-once listener — the toggle handler removes itself after the first
+   *      invocation so we never fetch twice.
+   *
+   * Trust model: Artalk performs server-side HTML sanitization, so we use
+   * innerHTML for comment content (same as the static render path).
+   */
+  var section = document.getElementById('moss-comments');
+  var builtAtStr = section && section.getAttribute('data-built-at');
+  var builtAtMs = builtAtStr ? new Date(builtAtStr).getTime() : 0;
+  var details = section && section.querySelector('details');
+
+  if (details && builtAtMs) {
+    function onToggle() {
+      if (!details.open) return;
+      details.removeEventListener('toggle', onToggle);
+
+      fetch('https://api.moss.host/comment/api/v2/comments?page_key=bf172a40&site_name=liu-guo.com&flat_mode=true&sort_by=date_desc&limit=100')
+        .then(function(res) { return res.ok ? res.json() : null; })
+        .then(function(json) {
+          if (!json) return;
+          var list = (json.data && json.data.comments) || [];
+          var added = 0;
+          // Anchor = first build-time comment. Hydrated comments go before it
+          // to maintain newest-first order (API returns date_desc).
+          var anchor = commentList ? commentList.firstChild : null;
+          for (var i = 0; i < list.length; i++) {
+            var c = list[i];
+            if (new Date(c.created_at).getTime() <= builtAtMs) break;
+            if (document.getElementById('comment-' + c.id)) continue;
+
+            var li = document.createElement('li');
+            li.className = 'comment-item';
+            li.id = 'comment-' + c.id;
+            var authorName = (c.nick || 'Anonymous').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+            var dateStr = new Date(c.created_at).toLocaleDateString('zh-CN', {year:'numeric',month:'short',day:'numeric'});
+            li.innerHTML = '<div class="comment-header">'
+              + '<span class="comment-author">' + authorName + '</span>'
+              + '<time class="comment-date">' + dateStr + '</time>'
+              + '</div>'
+              + '<div class="comment-body">' + c.content + '</div>';
+
+            if (!commentList) {
+              commentList = document.createElement('ol');
+              commentList.className = 'comment-list';
+              var formEl = document.getElementById('moss-comment-form');
+              if (formEl) formEl.after(commentList);
+              anchor = null;
+            }
+            // Newest first: insert before the anchor (first build-time comment)
+            commentList.insertBefore(li, anchor);
+            added++;
+          }
+
+          if (added > 0) {
+            var total = (commentList ? commentList.children.length : 0);
+            var summarySpan = details.querySelector('summary span');
+            if (summarySpan) {
+              summarySpan.textContent = total === 1 ? '1条评论' : '{n}条评论'.replace('{n}', total);
+            }
+          }
+        })
+        .catch(function() { /* silent — static comments still visible */ });
+    }
+    details.addEventListener('toggle', onToggle);
+  }
 })();</script>
   </details>
 </section>

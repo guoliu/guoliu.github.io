@@ -11,7 +11,7 @@
     <meta property="og:site_name" content="刘果">
     <meta property="og:description" content="! 八年前，我在四川漫游了一个多月。没有既定的路线和目的，只是漫游，看缘分会带我到何处。 在成都时，与同住青旅的旅人聊天，偶然间说起色达：藏在青藏高原的群山中，有着世界上最大的佛学院“喇荣五明佛学院”，和一处大型天葬台。我想去看一看，却并不知道该如何前往。...">
     <meta property="article:published_time" content="2021-04-09T04:44:30.168Z">
-    <meta property="og:image" content="assets/9cbeab27-1907-4ca7-a686-9346d70d6448.jpg">
+    <meta property="og:image" content="../../../assets/9cbeab27-1907-4ca7-a686-9346d70d6448.jpg">
     <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -20,7 +20,7 @@
   "url": "/articles/游记/色达-宁静的日常和生死的边界/",
   "description": "! 八年前，我在四川漫游了一个多月。没有既定的路线和目的，只是漫游，看缘分会带我到何处。 在成都时，与同住青旅的旅人聊天，偶然间说起色达：藏在青藏高原的群山中，有着世界上最大的佛学院“喇荣五明佛学院”，和一处大型天葬台。我想去看一看，却并不知道该如何前往。...",
   "datePublished": "2021-04-09T04:44:30.168Z",
-  "image": "assets/9cbeab27-1907-4ca7-a686-9346d70d6448.jpg",
+  "image": "../../../assets/9cbeab27-1907-4ca7-a686-9346d70d6448.jpg",
   "publisher": {
     "@type": "Organization",
     "name": "刘果"
@@ -31,13 +31,58 @@
     <link rel="alternate" type="application/rss+xml" title="RSS" href="../../../feed.xml">
     
     
-    <link rel="stylesheet" href="../../../style.css?v=dee9f975d540ccf3">
-<style class="moss-comments-style">/* ==========================================================================
+    <link rel="stylesheet" href="../../../style.css?v=2d0441b1384f5323">
+<style>/* ==========================================================================
    moss Comments Plugin - Styles
 
    Collapsible comment section with solid thread borders,
    underline-style form inputs, and responsive grid layout.
    Uses CSS custom properties from moss default.css.
+   ========================================================================== */
+
+/* ==========================================================================
+   Design Decision Record: Flattened Comment Form
+   --------------------------------------------------------------------------
+
+   Research found that the best comment sections treat comments as editorial
+   content on the same surface as the article, not as a separate widget.
+
+   Six principles guide the comment form styling:
+
+   P1. One surface
+       Remove the tinted card background from .comment-form. Form and
+       comments share the page background. Modeled after NYT/Guardian
+       "Letters to the Editor" — comments as editorial content, same surface.
+
+   P2. Border language consistency
+       Comments use border-bottom: 1px solid. The form uses the same 1px
+       border as its boundary, not a background fill + border-radius.
+
+   P3. Typographic continuity
+       Placeholder text, field labels, comment body, author names — same
+       type family, proportional sizes. Follows iA design philosophy
+       (ia.net): "web design is 95% typography", content-first.
+
+   P4. The form is the first comment
+       Visually, the compose area reads like an empty comment slot. Same
+       padding rhythm, same width, same vertical spacing as comment items.
+       Inspired by CSS-Tricks threading (css-tricks.com) — forms inline in
+       thread, not separate cards.
+
+   P5. Distinguish through state, not surface
+       The textarea is interactive because of cursor/focus behavior, not
+       because it sits on a different background. Focus states (accent
+       underline) provide sufficient affordance.
+
+   P6. Density matching
+       Spacing between form elements echoes spacing between comment items.
+
+   References:
+   - NYT/Guardian "Letters to the Editor" model
+   - Ahmad Shadeed's comment component (ishadeed.com)
+   - CSS-Tricks threading (css-tricks.com)
+   - iA design philosophy (ia.net)
+   - ResultFirst 2026 trends — "stripping away non-essential frills"
    ========================================================================== */
 
 /* Comment Section */
@@ -58,7 +103,7 @@
   cursor: pointer;
   list-style: none;
   font-size: var(--moss-font-sm, 1rem);
-  color: var(--moss-text-muted, #8a8580);
+  color: var(--moss-color-muted, #8a8580);
   user-select: none;
   padding: 0;
 }
@@ -73,20 +118,17 @@
 }
 
 .comments-toggle:hover {
-  color: var(--moss-text-primary, #2c2825);
+  color: var(--moss-color-text, #2c2825);
 }
 
-/* Chevron indicator */
-.comments-toggle::after {
-  content: "▸";
-  margin-left: auto;
-  font-size: 1.25rem;
-  color: var(--moss-text-secondary, #5d5853);
-  transition: transform 0.15s ease;
+/* Chevron indicator — points right when collapsed, down when expanded */
+.comments-toggle .comments-chevron {
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
 }
 
-details[open] > .comments-toggle::after {
-  content: "▾";
+details[open] > .comments-toggle .comments-chevron {
+  transform: rotate(90deg);
 }
 
 /* Space between summary and content when open */
@@ -128,24 +170,24 @@ details[open] > .comments-toggle {
 .comment-author {
   font-weight: 480;
   font-size: var(--moss-font-sm, 1rem);
-  color: var(--moss-text-primary, #2c2825);
+  color: var(--moss-color-text, #2c2825);
   text-decoration: none;
 }
 
 a.comment-author:hover {
-  color: var(--moss-accent, #2d5a2d);
+  color: var(--moss-color-accent, #2d5a2d);
 }
 
 .comment-date {
   font-size: 0.875rem;
-  color: var(--moss-text-muted, #8a8580);
+  color: var(--moss-color-muted, #8a8580);
 }
 
 /* Comment Body */
 .comment-body {
-  font-size: var(--moss-font-base, 1.125rem);
+  font-size: var(--moss-font-size, 1.125rem);
   line-height: 1.7;
-  color: var(--moss-text-primary, #2c2825);
+  color: var(--moss-color-text, #2c2825);
 }
 
 .comment-body p {
@@ -158,15 +200,20 @@ a.comment-author:hover {
 
 .comment-body blockquote {
   font-size: inherit;
+  font-style: normal;
+  border-left: 3px solid var(--moss-color-muted, #8a8580);
+  margin: var(--moss-space-xs, 0.5rem) 0 var(--moss-space-xs, 0.5rem) 1rem;
+  padding-left: var(--moss-space-sm, 1rem);
+  color: var(--moss-text-secondary, #5d5853);
 }
 
 .comment-body a {
-  color: var(--moss-text-primary, #2c2825);
+  color: var(--moss-color-text, #2c2825);
   text-decoration: underline;
 }
 
 .comment-body a:hover {
-  color: var(--moss-accent, #2d5a2d);
+  color: var(--moss-color-accent, #2d5a2d);
 }
 
 /* ==========================================================================
@@ -189,10 +236,8 @@ a.comment-author:hover {
    ========================================================================== */
 
 .comment-form {
-  background: var(--moss-background-alt, #f4f1ec);
-  border-radius: 8px;
-  padding: 1.25rem;
-  margin-top: var(--moss-space-lg, 2rem);
+  padding: var(--moss-space-md, 1.5rem) 0;
+  margin: 0 0 var(--moss-space-md, 1.5rem) 0;
 }
 
 /* Textarea — underline style */
@@ -204,9 +249,9 @@ a.comment-author:hover {
   border: none;
   border-bottom: 1px solid var(--moss-border-medium, #d1cdc4);
   font-family: inherit;
-  font-size: var(--moss-font-base, 1.125rem);
+  font-size: var(--moss-font-size, 1.125rem);
   line-height: 1.7;
-  color: var(--moss-text-primary, #2c2825);
+  color: var(--moss-color-text, #2c2825);
   background: transparent;
   resize: none;
   overflow: hidden;
@@ -216,11 +261,11 @@ a.comment-author:hover {
 
 .comment-form textarea:focus {
   outline: none;
-  border-bottom: 2px solid var(--moss-accent, #2d5a2d);
+  border-bottom: 2px solid var(--moss-color-accent, #2d5a2d);
 }
 
 .comment-form textarea::placeholder {
-  color: var(--moss-text-muted, #8a8580);
+  color: var(--moss-color-muted, #8a8580);
 }
 
 /* ==========================================================================
@@ -243,7 +288,7 @@ a.comment-author:hover {
   padding: 0.5rem 0;
   font-family: inherit;
   font-size: var(--moss-font-sm, 1rem);
-  color: var(--moss-text-primary, #2c2825);
+  color: var(--moss-color-text, #2c2825);
   box-sizing: border-box;
   transition: border-color 0.15s ease;
   min-width: 0;
@@ -251,11 +296,11 @@ a.comment-author:hover {
 
 .comment-field:focus {
   outline: none;
-  border-bottom: 2px solid var(--moss-accent, #2d5a2d);
+  border-bottom: 2px solid var(--moss-color-accent, #2d5a2d);
 }
 
 .comment-field::placeholder {
-  color: var(--moss-text-muted, #8a8580);
+  color: var(--moss-color-muted, #8a8580);
 }
 
 /* ==========================================================================
@@ -267,11 +312,11 @@ a.comment-author:hover {
   align-items: center;
   justify-content: center;
   padding: 0.5rem 1.25rem;
-  background: color-mix(in srgb, var(--moss-accent, #2d5a2d) 8%, transparent);
+  background: color-mix(in srgb, var(--moss-color-accent, #2d5a2d) 8%, transparent);
   border: none;
   border-radius: 6px;
   cursor: pointer;
-  color: var(--moss-accent, #2d5a2d);
+  color: var(--moss-color-accent, #2d5a2d);
   font-family: inherit;
   font-size: var(--moss-font-sm, 1rem);
   font-weight: 480;
@@ -279,11 +324,11 @@ a.comment-author:hover {
 }
 
 .comment-form-submit:hover {
-  background: color-mix(in srgb, var(--moss-accent, #2d5a2d) 15%, transparent);
+  background: color-mix(in srgb, var(--moss-color-accent, #2d5a2d) 15%, transparent);
 }
 
 .comment-form-submit:focus {
-  outline: 2px solid var(--moss-accent, #2d5a2d);
+  outline: 2px solid var(--moss-color-accent, #2d5a2d);
   outline-offset: 2px;
 }
 
@@ -326,7 +371,7 @@ a.comment-author:hover {
 }
 
 .comment-form-status--success {
-  color: var(--moss-accent, #2d5a2d);
+  color: var(--moss-color-accent, #2d5a2d);
 }
 
 /* ==========================================================================
@@ -366,6 +411,10 @@ a.comment-author:hover {
 
 .footer-subscribe-form .moss-input {
   flex: 1;
+}
+
+.footer-subscribe-form .moss-btn {
+  font-size: inherit;
 }
 
 @media (max-width: 48rem) {
@@ -431,79 +480,83 @@ a.comment-author:hover {
 <p><img src="../../../assets/6e6bc6ce-c973-4365-b9cd-1817e39a6b2e.jpg" data-placeholder-src="../../../assets/6e6bc6ce-c973-4365-b9cd-1817e39a6b2e.jpg" width="800" height="600" loading="lazy" alt="" /></p>
 <p><img src="../../../assets/1570c6b2-f2f7-4036-bff9-47206b0ba878.jpg" data-placeholder-src="../../../assets/1570c6b2-f2f7-4036-bff9-47206b0ba878.jpg" width="800" height="600" loading="lazy" alt="" /></p>
 <p>天葬台附近弥漫着一种脂肪腐败后的气味，在我脑海中挥之不散，让我很长一段时间之后都不想吃肉食。最后我没有成为素食者，只是一直觉得，如果我生前吃下其他动物变成我的一部分，那死后融入其他动物回归自然，是再自然不过的了。</p>
-<nav class="series-nav">
-  <div class="series-nav-links">
-    <span class="series-nav-link series-nav-prev empty"></span>
-    <a href="../../../articles/游记/科隆群岛-烈火中诞生的伊甸园/index.html" class="series-nav-link series-nav-next"><span class="series-nav-title">科隆群岛：烈火中诞生的伊甸园</span> <span class="series-nav-arrow">&gt;</span></a>
-  </div>
-  <div class="series-nav-collection-row">
-    <a href="../../../articles/游记/index.html" class="series-nav-collection">游记</a>
-  </div>
-</nav>
+
         
-<section class="moss-comments" id="moss-comments">
+<section class="moss-comments" id="moss-comments" data-built-at="2026-03-06T16:31:57.342Z">
   <details>
-    <summary class="comments-toggle"><svg class="comments-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></svg><span>24条评论</span></summary>
-    <ol class="comment-list"><li class="comment-item" id="comment-Q29tbWVudDo1NDA4NDk">
-  <div class="comment-header">
-    <a href="https://matters.town/@fide" class="comment-author" rel="nofollow noopener" target="_blank">fide</a>
-    <time class="comment-date" datetime="2021-04-09T22:08:50.281Z">2021年4月9日</time>
+    <summary class="comments-toggle"><svg class="comments-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></svg><span>24条评论</span><svg class="comments-chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></summary>
+    <form class="comment-form" id="moss-comment-form">
+  <textarea id="moss-comment-text" name="content" required rows="2" placeholder="留下你的想法"></textarea>
+  <div class="comment-form-meta">
+    <input type="text" name="name" class="comment-field" placeholder="名字" required>
+    <input type="email" name="email" class="comment-field" placeholder="邮箱（选填）">
+    <input type="url" name="link" class="comment-field" placeholder="网站（选填）">
+    <button type="submit" class="comment-form-submit">回复</button>
   </div>
-  <div class="comment-body"><p>these photos are priceless!</p></div>
-  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDo1NDIzMTU">
+  <div class="comment-form-status" id="moss-comment-status"></div>
+</form>
+    <ol class="comment-list"><li class="comment-item" id="comment-Q29tbWVudDoxNTkzMzYx">
   <div class="comment-header">
-    <a href="https://matters.town/@guo" class="comment-author" rel="nofollow noopener" target="_blank">刘果</a>
-    <time class="comment-date" datetime="2021-04-11T00:40:19.249Z">2021年4月10日</time>
+    <a href="https://matters.town/@ouekisan" class="comment-author" rel="nofollow noopener" target="_blank">Old Shenzhen</a>
+    <time class="comment-date" datetime="2025-10-06T18:29:12.874Z">2025年10月6日</time>
   </div>
-  <div class="comment-body"><p>也是很無價的回憶 😄</p></div>
-</li>
-  </ol>
-</li><li class="comment-item" id="comment-Q29tbWVudDo1NDA5OTE">
+  <div class="comment-body"><p>旅游，是为了发现世界之大，从而人的心胸将更宽广</p></div>
+</li><li class="comment-item" id="comment-Q29tbWVudDoxNTQ1NDg0">
   <div class="comment-header">
-    <a href="https://matters.town/@Rollopinion" class="comment-author" rel="nofollow noopener" target="_blank">YZ｜捲</a>
-    <time class="comment-date" datetime="2021-04-10T01:14:46.273Z">2021年4月9日</time>
+    <a href="https://matters.town/@owenzhang" class="comment-author" rel="nofollow noopener" target="_blank">Owen</a>
+    <time class="comment-date" datetime="2025-04-09T09:04:40.543Z">2025年4月9日</time>
   </div>
-  <div class="comment-body"><p>謝謝你的影像和文字，有一年我本來要去色達，都買好機票，卻沒去，然後就再也沒能去了，還好有這一篇。</p></div>
-  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDo1NDIzMTc">
+  <div class="comment-body"><p>最后这段天葬描写 很震撼我</p></div>
+</li><li class="comment-item" id="comment-Q29tbWVudDo4NDY4NDU">
   <div class="comment-header">
-    <a href="https://matters.town/@guo" class="comment-author" rel="nofollow noopener" target="_blank">刘果</a>
-    <time class="comment-date" datetime="2021-04-11T00:41:04.719Z">2021年4月10日</time>
+    <a href="https://matters.town/@seenzhao" class="comment-author" rel="nofollow noopener" target="_blank">SinChaos</a>
+    <time class="comment-date" datetime="2021-10-11T02:45:05.030Z">2021年10月10日</time>
   </div>
-  <div class="comment-body"><p>謝謝你的閱讀。很值得小住的地方，希望變化不大。</p></div>
-</li>
-  </ol>
-</li><li class="comment-item" id="comment-Q29tbWVudDo1NDExODk">
-  <div class="comment-header">
-    <a href="https://matters.town/@nameless12547" class="comment-author" rel="nofollow noopener" target="_blank">無名星人12547</a>
-    <time class="comment-date" datetime="2021-04-10T03:02:49.579Z">2021年4月9日</time>
-  </div>
-  <div class="comment-body"><p>「我满怀感激地吃下了这辈子吃过最酸的酸奶。」</p></div>
-</li><li class="comment-item" id="comment-Q29tbWVudDo1NDQ2NDY">
-  <div class="comment-header">
-    <a href="https://matters.town/@smog_again" class="comment-author" rel="nofollow noopener" target="_blank">鬼撞墙</a>
-    <time class="comment-date" datetime="2021-04-12T09:36:55.654Z">2021年4月12日</time>
-  </div>
-  <div class="comment-body"><p>现在没有法子居高临下地拍秃鹫了，围栏将秃鹫和人类隔开，那边挤满了准备一饱口福的秃鹫，这边挤满了准备一饱眼福的人类。</p></div>
-</li><li class="comment-item" id="comment-Q29tbWVudDo1NDg1ODQ">
-  <div class="comment-header">
-    <a href="https://matters.town/@flyhigh2011" class="comment-author" rel="nofollow noopener" target="_blank">廖珮岑</a>
-    <time class="comment-date" datetime="2021-04-14T14:11:51.773Z">2021年4月14日</time>
-  </div>
-  <div class="comment-body"><p>我之前在川北旅行時，也有打算去趟色達，可惜後來因為各種因素沒有前往。</p><p>感謝你的文字，很美。</p></div>
-  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDo1NDg3NDI">
+  <div class="comment-body"><p>Hi，好久没见刘果写东西了，忙什么呢</p></div>
+  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDo4NDk3NzM">
   <div class="comment-header">
     <a href="https://matters.town/@guo" class="comment-author" rel="nofollow noopener" target="_blank">刘果</a>
-    <time class="comment-date" datetime="2021-04-14T15:11:11.477Z">2021年4月14日</time>
+    <time class="comment-date" datetime="2021-10-12T17:09:38.830Z">2021年10月12日</time>
   </div>
-  <div class="comment-body"><p>謝謝！希望你下次還有機會去</p></div>
+  <div class="comment-body"><p>最近在筹备 Matters 的 NFT 计划，很快就会看到第一个阶段的形态了 😊</p><p>你的创业项目（记得还有想写的书对吗）进展如何了呢</p></div>
+  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDo4NTc1MzY">
+  <div class="comment-header">
+    <a href="https://matters.town/@seenzhao" class="comment-author" rel="nofollow noopener" target="_blank">SinChaos</a>
+    <time class="comment-date" datetime="2021-10-17T11:21:36.062Z">2021年10月17日</time>
+  </div>
+  <div class="comment-body"><p>回头约时间telegram聊啊，咱俩有电报</p></div>
+</li><li class="comment-item" id="comment-Q29tbWVudDo4NTc1MzA">
+  <div class="comment-header">
+    <a href="https://matters.town/@seenzhao" class="comment-author" rel="nofollow noopener" target="_blank">SinChaos</a>
+    <time class="comment-date" datetime="2021-10-17T11:20:31.085Z">2021年10月17日</time>
+  </div>
+  <div class="comment-body"><p>书稿还剩下一块难啃的骨头，用一句话来描述是：</p><p>Crypto token如何防范金融危机？</p></div>
 </li>
   </ol>
-</li><li class="comment-item" id="comment-Q29tbWVudDo1NTAxMDU">
+</li>
+  </ol>
+</li><li class="comment-item" id="comment-Q29tbWVudDo1NTY2MjA">
   <div class="comment-header">
-    <a href="https://matters.town/@redcheng89" class="comment-author" rel="nofollow noopener" target="_blank">RedCheng</a>
-    <time class="comment-date" datetime="2021-04-15T09:14:04.849Z">2021年4月15日</time>
+    <a href="https://matters.town/@luxun" class="comment-author" rel="nofollow noopener" target="_blank">Valkyrie (女武神)</a>
+    <time class="comment-date" datetime="2021-04-19T03:14:01.378Z">2021年4月18日</time>
   </div>
-  <div class="comment-body"><p>我去过，实在是太美的地方。以后有机会肯定会一而再再而三地去。</p><p>当时有幸有当地藏民带着我们从山上看天葬，还路过了秃鹰的聚集地。</p></div>
+  <div class="comment-body"><p>美景、美图、美文，多谢分享。</p><p>------------------------------------------------</p><p>打扰您一下——之前您曾经封禁过我，对吗？我发现现在又可以留言了，请问之前是如何得罪您了？</p><p>请不要误会，我无意引战。只是想了解一下自己错在哪里。希望您坦承相告，谢谢。</p><p>有则改之，这个态度我还是有的。您尽可知无不言。</p></div>
+  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDo1NTY2NzE">
+  <div class="comment-header">
+    <a href="https://matters.town/@guo" class="comment-author" rel="nofollow noopener" target="_blank">刘果</a>
+    <time class="comment-date" datetime="2021-04-19T03:50:38.329Z">2021年4月18日</time>
+  </div>
+  <div class="comment-body"><p>没有封禁过您，不太清楚您如何获得这个印象；除非是不断 spam 评论的用户，我不封禁任何人。</p></div>
+  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDo1NTY2NzI">
+  <div class="comment-header">
+    <a href="https://matters.town/@luxun" class="comment-author" rel="nofollow noopener" target="_blank">Valkyrie (女武神)</a>
+    <time class="comment-date" datetime="2021-04-19T03:52:27.889Z">2021年4月18日</time>
+  </div>
+  <div class="comment-body"><p>那一定是我弄错了，或者是那天我已经被管理员封禁了，哈哈！</p><p>不过说实话，我有时讲话挺无礼的。哪天头脑发热起来，您就把我封禁吧，免得破坏了您的宝地。</p><p>谢谢您的回应。</p></div>
+</li>
+  </ol>
+</li>
+  </ol>
 </li><li class="comment-item" id="comment-Q29tbWVudDo1NTE0OTg">
   <div class="comment-header">
     <a href="https://matters.town/@seenzhao" class="comment-author" rel="nofollow noopener" target="_blank">SinChaos</a>
@@ -542,79 +595,67 @@ a.comment-author:hover {
   </ol>
 </li>
   </ol>
-</li><li class="comment-item" id="comment-Q29tbWVudDo1NTY2MjA">
+</li><li class="comment-item" id="comment-Q29tbWVudDo1NTAxMDU">
   <div class="comment-header">
-    <a href="https://matters.town/@luxun" class="comment-author" rel="nofollow noopener" target="_blank">Valkyrie (女武神)</a>
-    <time class="comment-date" datetime="2021-04-19T03:14:01.378Z">2021年4月18日</time>
+    <a href="https://matters.town/@redcheng89" class="comment-author" rel="nofollow noopener" target="_blank">RedCheng</a>
+    <time class="comment-date" datetime="2021-04-15T09:14:04.849Z">2021年4月15日</time>
   </div>
-  <div class="comment-body"><p>美景、美图、美文，多谢分享。</p><p>------------------------------------------------</p><p>打扰您一下——之前您曾经封禁过我，对吗？我发现现在又可以留言了，请问之前是如何得罪您了？</p><p>请不要误会，我无意引战。只是想了解一下自己错在哪里。希望您坦承相告，谢谢。</p><p>有则改之，这个态度我还是有的。您尽可知无不言。</p></div>
-  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDo1NTY2NzE">
+  <div class="comment-body"><p>我去过，实在是太美的地方。以后有机会肯定会一而再再而三地去。</p><p>当时有幸有当地藏民带着我们从山上看天葬，还路过了秃鹰的聚集地。</p></div>
+</li><li class="comment-item" id="comment-Q29tbWVudDo1NDg1ODQ">
   <div class="comment-header">
-    <a href="https://matters.town/@guo" class="comment-author" rel="nofollow noopener" target="_blank">刘果</a>
-    <time class="comment-date" datetime="2021-04-19T03:50:38.329Z">2021年4月18日</time>
+    <a href="https://matters.town/@flyhigh2011" class="comment-author" rel="nofollow noopener" target="_blank">廖珮岑</a>
+    <time class="comment-date" datetime="2021-04-14T14:11:51.773Z">2021年4月14日</time>
   </div>
-  <div class="comment-body"><p>没有封禁过您，不太清楚您如何获得这个印象；除非是不断 spam 评论的用户，我不封禁任何人。</p></div>
-  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDo1NTY2NzI">
-  <div class="comment-header">
-    <a href="https://matters.town/@luxun" class="comment-author" rel="nofollow noopener" target="_blank">Valkyrie (女武神)</a>
-    <time class="comment-date" datetime="2021-04-19T03:52:27.889Z">2021年4月18日</time>
-  </div>
-  <div class="comment-body"><p>那一定是我弄错了，或者是那天我已经被管理员封禁了，哈哈！</p><p>不过说实话，我有时讲话挺无礼的。哪天头脑发热起来，您就把我封禁吧，免得破坏了您的宝地。</p><p>谢谢您的回应。</p></div>
-</li>
-  </ol>
-</li>
-  </ol>
-</li><li class="comment-item" id="comment-Q29tbWVudDo4NDY4NDU">
-  <div class="comment-header">
-    <a href="https://matters.town/@seenzhao" class="comment-author" rel="nofollow noopener" target="_blank">SinChaos</a>
-    <time class="comment-date" datetime="2021-10-11T02:45:05.030Z">2021年10月10日</time>
-  </div>
-  <div class="comment-body"><p>Hi，好久没见刘果写东西了，忙什么呢</p></div>
-  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDo4NDk3NzM">
+  <div class="comment-body"><p>我之前在川北旅行時，也有打算去趟色達，可惜後來因為各種因素沒有前往。</p><p>感謝你的文字，很美。</p></div>
+  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDo1NDg3NDI">
   <div class="comment-header">
     <a href="https://matters.town/@guo" class="comment-author" rel="nofollow noopener" target="_blank">刘果</a>
-    <time class="comment-date" datetime="2021-10-12T17:09:38.830Z">2021年10月12日</time>
+    <time class="comment-date" datetime="2021-04-14T15:11:11.477Z">2021年4月14日</time>
   </div>
-  <div class="comment-body"><p>最近在筹备 Matters 的 NFT 计划，很快就会看到第一个阶段的形态了 😊</p><p>你的创业项目（记得还有想写的书对吗）进展如何了呢</p></div>
-  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDo4NTc1MzA">
-  <div class="comment-header">
-    <a href="https://matters.town/@seenzhao" class="comment-author" rel="nofollow noopener" target="_blank">SinChaos</a>
-    <time class="comment-date" datetime="2021-10-17T11:20:31.085Z">2021年10月17日</time>
-  </div>
-  <div class="comment-body"><p>书稿还剩下一块难啃的骨头，用一句话来描述是：</p><p>Crypto token如何防范金融危机？</p></div>
-</li><li class="comment-item" id="comment-Q29tbWVudDo4NTc1MzY">
-  <div class="comment-header">
-    <a href="https://matters.town/@seenzhao" class="comment-author" rel="nofollow noopener" target="_blank">SinChaos</a>
-    <time class="comment-date" datetime="2021-10-17T11:21:36.062Z">2021年10月17日</time>
-  </div>
-  <div class="comment-body"><p>回头约时间telegram聊啊，咱俩有电报</p></div>
+  <div class="comment-body"><p>謝謝！希望你下次還有機會去</p></div>
 </li>
   </ol>
+</li><li class="comment-item" id="comment-Q29tbWVudDo1NDQ2NDY">
+  <div class="comment-header">
+    <a href="https://matters.town/@smog_again" class="comment-author" rel="nofollow noopener" target="_blank">鬼撞墙</a>
+    <time class="comment-date" datetime="2021-04-12T09:36:55.654Z">2021年4月12日</time>
+  </div>
+  <div class="comment-body"><p>现在没有法子居高临下地拍秃鹫了，围栏将秃鹫和人类隔开，那边挤满了准备一饱口福的秃鹫，这边挤满了准备一饱眼福的人类。</p></div>
+</li><li class="comment-item" id="comment-Q29tbWVudDo1NDExODk">
+  <div class="comment-header">
+    <a href="https://matters.town/@nameless12547" class="comment-author" rel="nofollow noopener" target="_blank">無名星人12547</a>
+    <time class="comment-date" datetime="2021-04-10T03:02:49.579Z">2021年4月9日</time>
+  </div>
+  <div class="comment-body"><p>「我满怀感激地吃下了这辈子吃过最酸的酸奶。」</p></div>
+</li><li class="comment-item" id="comment-Q29tbWVudDo1NDA5OTE">
+  <div class="comment-header">
+    <a href="https://matters.town/@Rollopinion" class="comment-author" rel="nofollow noopener" target="_blank">YZ｜捲</a>
+    <time class="comment-date" datetime="2021-04-10T01:14:46.273Z">2021年4月9日</time>
+  </div>
+  <div class="comment-body"><p>謝謝你的影像和文字，有一年我本來要去色達，都買好機票，卻沒去，然後就再也沒能去了，還好有這一篇。</p></div>
+  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDo1NDIzMTc">
+  <div class="comment-header">
+    <a href="https://matters.town/@guo" class="comment-author" rel="nofollow noopener" target="_blank">刘果</a>
+    <time class="comment-date" datetime="2021-04-11T00:41:04.719Z">2021年4月10日</time>
+  </div>
+  <div class="comment-body"><p>謝謝你的閱讀。很值得小住的地方，希望變化不大。</p></div>
 </li>
   </ol>
-</li><li class="comment-item" id="comment-Q29tbWVudDoxNTQ1NDg0">
+</li><li class="comment-item" id="comment-Q29tbWVudDo1NDA4NDk">
   <div class="comment-header">
-    <a href="https://matters.town/@owenzhang" class="comment-author" rel="nofollow noopener" target="_blank">Owen</a>
-    <time class="comment-date" datetime="2025-04-09T09:04:40.543Z">2025年4月9日</time>
+    <a href="https://matters.town/@fide" class="comment-author" rel="nofollow noopener" target="_blank">fide</a>
+    <time class="comment-date" datetime="2021-04-09T22:08:50.281Z">2021年4月9日</time>
   </div>
-  <div class="comment-body"><p>最后这段天葬描写 很震撼我</p></div>
-</li><li class="comment-item" id="comment-Q29tbWVudDoxNTkzMzYx">
+  <div class="comment-body"><p>these photos are priceless!</p></div>
+  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDo1NDIzMTU">
   <div class="comment-header">
-    <a href="https://matters.town/@ouekisan" class="comment-author" rel="nofollow noopener" target="_blank">Old Shenzhen</a>
-    <time class="comment-date" datetime="2025-10-06T18:29:12.874Z">2025年10月6日</time>
+    <a href="https://matters.town/@guo" class="comment-author" rel="nofollow noopener" target="_blank">刘果</a>
+    <time class="comment-date" datetime="2021-04-11T00:40:19.249Z">2021年4月10日</time>
   </div>
-  <div class="comment-body"><p>旅游，是为了发现世界之大，从而人的心胸将更宽广</p></div>
+  <div class="comment-body"><p>也是很無價的回憶 😄</p></div>
+</li>
+  </ol>
 </li></ol>
-    <form class="comment-form" id="moss-comment-form">
-  <textarea id="moss-comment-text" name="content" required rows="2" placeholder="留下你的想法"></textarea>
-  <div class="comment-form-meta">
-    <input type="text" name="name" class="comment-field" placeholder="名字" required>
-    <input type="email" name="email" class="comment-field" placeholder="邮箱（选填）">
-    <input type="url" name="link" class="comment-field" placeholder="网站（选填）">
-    <button type="submit" class="comment-form-submit">回复</button>
-  </div>
-  <div class="comment-form-status" id="moss-comment-status"></div>
-</form>
     <script>(function() {
   var form = document.getElementById('moss-comment-form');
   if (!form) return;
@@ -676,19 +717,21 @@ a.comment-author:hover {
       if (!commentList) {
         commentList = document.createElement('ol');
         commentList.className = 'comment-list';
-        form.before(commentList);
+        form.after(commentList);
       }
 
       var li = document.createElement('li');
       li.className = 'comment-item';
-      var now = new Date().toLocaleDateString('en-US', {year:'numeric',month:'short',day:'numeric'});
+      li.id = 'comment-' + data.id;
+      var now = new Date().toLocaleDateString('zh-CN', {year:'numeric',month:'short',day:'numeric'});
       var authorName = body.name || 'Anonymous';
       li.innerHTML = '<div class="comment-header">'
         + '<span class="comment-author">' + authorName.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;') + '</span>'
         + '<time class="comment-date">' + now + '</time>'
         + '</div>'
         + '<div class="comment-body"><p>' + body.content.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;') + '</p></div>';
-      commentList.appendChild(li);
+      // Newest first: prepend so the just-submitted comment appears at the top
+      commentList.insertBefore(li, commentList.firstChild);
 
       form.elements['content'].value = '';
       if (textarea) { textarea.style.height = 'auto'; }
@@ -702,6 +745,91 @@ a.comment-author:hover {
       }
     });
   });
+
+  /*
+   * Stale-while-revalidate / progressive enhancement for comments.
+   *
+   * Static HTML already contains all comments known at build time, so the page
+   * is immediately readable without JS. When the user opens the comment section
+   * (<details> toggle), we fetch comments from the Artalk server that may have
+   * been posted after the last build.
+   *
+   * Why date-based filtering instead of offset/count:
+   *   Comments can be deleted or moderated between builds. A purely offset-based
+   *   approach would miss or duplicate entries. By comparing each comment's
+   *   created_at against the build timestamp (data-built-at), we robustly find
+   *   only the comments that are genuinely new.
+   *
+   * Three-layer deduplication:
+   *   1. Date boundary  — stop iterating when we hit a comment older than the
+   *      build timestamp (comments are sorted newest-first).
+   *   2. ID guard       — skip any comment whose DOM node already exists
+   *      (handles edge cases where build-time and fetch overlap).
+   *   3. Fire-once listener — the toggle handler removes itself after the first
+   *      invocation so we never fetch twice.
+   *
+   * Trust model: Artalk performs server-side HTML sanitization, so we use
+   * innerHTML for comment content (same as the static render path).
+   */
+  var section = document.getElementById('moss-comments');
+  var builtAtStr = section && section.getAttribute('data-built-at');
+  var builtAtMs = builtAtStr ? new Date(builtAtStr).getTime() : 0;
+  var details = section && section.querySelector('details');
+
+  if (details && builtAtMs) {
+    function onToggle() {
+      if (!details.open) return;
+      details.removeEventListener('toggle', onToggle);
+
+      fetch('https://api.moss.host/comment/api/v2/comments?page_key=d4924e28&site_name=liu-guo.com&flat_mode=true&sort_by=date_desc&limit=100')
+        .then(function(res) { return res.ok ? res.json() : null; })
+        .then(function(json) {
+          if (!json) return;
+          var list = (json.data && json.data.comments) || [];
+          var added = 0;
+          // Anchor = first build-time comment. Hydrated comments go before it
+          // to maintain newest-first order (API returns date_desc).
+          var anchor = commentList ? commentList.firstChild : null;
+          for (var i = 0; i < list.length; i++) {
+            var c = list[i];
+            if (new Date(c.created_at).getTime() <= builtAtMs) break;
+            if (document.getElementById('comment-' + c.id)) continue;
+
+            var li = document.createElement('li');
+            li.className = 'comment-item';
+            li.id = 'comment-' + c.id;
+            var authorName = (c.nick || 'Anonymous').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+            var dateStr = new Date(c.created_at).toLocaleDateString('zh-CN', {year:'numeric',month:'short',day:'numeric'});
+            li.innerHTML = '<div class="comment-header">'
+              + '<span class="comment-author">' + authorName + '</span>'
+              + '<time class="comment-date">' + dateStr + '</time>'
+              + '</div>'
+              + '<div class="comment-body">' + c.content + '</div>';
+
+            if (!commentList) {
+              commentList = document.createElement('ol');
+              commentList.className = 'comment-list';
+              var formEl = document.getElementById('moss-comment-form');
+              if (formEl) formEl.after(commentList);
+              anchor = null;
+            }
+            // Newest first: insert before the anchor (first build-time comment)
+            commentList.insertBefore(li, anchor);
+            added++;
+          }
+
+          if (added > 0) {
+            var total = (commentList ? commentList.children.length : 0);
+            var summarySpan = details.querySelector('summary span');
+            if (summarySpan) {
+              summarySpan.textContent = total === 1 ? '1条评论' : '{n}条评论'.replace('{n}', total);
+            }
+          }
+        })
+        .catch(function() { /* silent — static comments still visible */ });
+    }
+    details.addEventListener('toggle', onToggle);
+  }
 })();</script>
   </details>
 </section>

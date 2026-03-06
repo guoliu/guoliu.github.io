@@ -11,7 +11,7 @@
     <meta property="og:site_name" content="刘果">
     <meta property="og:description" content="东村在曼哈顿的东南角。在寸土寸金的南曼哈顿，这里是相对便宜的，容纳了不少独立店铺和年轻人。东村的夜晚是年轻人的盛会，餐厅的座椅沿街铺开，一排排灯红酒绿。每个街区都有那么一家酒吧，要用自己的音乐覆满街道。走在街道上，每几步就换一次背景音乐，回荡着不同的语言，仿佛穿过一个个夜色中涌出的小世界。...">
     <meta property="article:published_time" content="2024-10-17T20:32:56.057Z">
-    <meta property="og:image" content="assets/aeba66d0-5681-48a9-ad7d-d66448f9ceb5.png">
+    <meta property="og:image" content="../../../assets/aeba66d0-5681-48a9-ad7d-d66448f9ceb5.png">
     <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -20,7 +20,7 @@
   "url": "/articles/纽约诸法门/东村夜晚的摩诃真言/",
   "description": "东村在曼哈顿的东南角。在寸土寸金的南曼哈顿，这里是相对便宜的，容纳了不少独立店铺和年轻人。东村的夜晚是年轻人的盛会，餐厅的座椅沿街铺开，一排排灯红酒绿。每个街区都有那么一家酒吧，要用自己的音乐覆满街道。走在街道上，每几步就换一次背景音乐，回荡着不同的语言，仿佛穿过一个个夜色中涌出的小世界。...",
   "datePublished": "2024-10-17T20:32:56.057Z",
-  "image": "assets/aeba66d0-5681-48a9-ad7d-d66448f9ceb5.png",
+  "image": "../../../assets/aeba66d0-5681-48a9-ad7d-d66448f9ceb5.png",
   "publisher": {
     "@type": "Organization",
     "name": "刘果"
@@ -31,13 +31,58 @@
     <link rel="alternate" type="application/rss+xml" title="RSS" href="../../../feed.xml">
     
     
-    <link rel="stylesheet" href="../../../style.css?v=dee9f975d540ccf3">
-<style class="moss-comments-style">/* ==========================================================================
+    <link rel="stylesheet" href="../../../style.css?v=2d0441b1384f5323">
+<style>/* ==========================================================================
    moss Comments Plugin - Styles
 
    Collapsible comment section with solid thread borders,
    underline-style form inputs, and responsive grid layout.
    Uses CSS custom properties from moss default.css.
+   ========================================================================== */
+
+/* ==========================================================================
+   Design Decision Record: Flattened Comment Form
+   --------------------------------------------------------------------------
+
+   Research found that the best comment sections treat comments as editorial
+   content on the same surface as the article, not as a separate widget.
+
+   Six principles guide the comment form styling:
+
+   P1. One surface
+       Remove the tinted card background from .comment-form. Form and
+       comments share the page background. Modeled after NYT/Guardian
+       "Letters to the Editor" — comments as editorial content, same surface.
+
+   P2. Border language consistency
+       Comments use border-bottom: 1px solid. The form uses the same 1px
+       border as its boundary, not a background fill + border-radius.
+
+   P3. Typographic continuity
+       Placeholder text, field labels, comment body, author names — same
+       type family, proportional sizes. Follows iA design philosophy
+       (ia.net): "web design is 95% typography", content-first.
+
+   P4. The form is the first comment
+       Visually, the compose area reads like an empty comment slot. Same
+       padding rhythm, same width, same vertical spacing as comment items.
+       Inspired by CSS-Tricks threading (css-tricks.com) — forms inline in
+       thread, not separate cards.
+
+   P5. Distinguish through state, not surface
+       The textarea is interactive because of cursor/focus behavior, not
+       because it sits on a different background. Focus states (accent
+       underline) provide sufficient affordance.
+
+   P6. Density matching
+       Spacing between form elements echoes spacing between comment items.
+
+   References:
+   - NYT/Guardian "Letters to the Editor" model
+   - Ahmad Shadeed's comment component (ishadeed.com)
+   - CSS-Tricks threading (css-tricks.com)
+   - iA design philosophy (ia.net)
+   - ResultFirst 2026 trends — "stripping away non-essential frills"
    ========================================================================== */
 
 /* Comment Section */
@@ -58,7 +103,7 @@
   cursor: pointer;
   list-style: none;
   font-size: var(--moss-font-sm, 1rem);
-  color: var(--moss-text-muted, #8a8580);
+  color: var(--moss-color-muted, #8a8580);
   user-select: none;
   padding: 0;
 }
@@ -73,20 +118,17 @@
 }
 
 .comments-toggle:hover {
-  color: var(--moss-text-primary, #2c2825);
+  color: var(--moss-color-text, #2c2825);
 }
 
-/* Chevron indicator */
-.comments-toggle::after {
-  content: "▸";
-  margin-left: auto;
-  font-size: 1.25rem;
-  color: var(--moss-text-secondary, #5d5853);
-  transition: transform 0.15s ease;
+/* Chevron indicator — points right when collapsed, down when expanded */
+.comments-toggle .comments-chevron {
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
 }
 
-details[open] > .comments-toggle::after {
-  content: "▾";
+details[open] > .comments-toggle .comments-chevron {
+  transform: rotate(90deg);
 }
 
 /* Space between summary and content when open */
@@ -128,24 +170,24 @@ details[open] > .comments-toggle {
 .comment-author {
   font-weight: 480;
   font-size: var(--moss-font-sm, 1rem);
-  color: var(--moss-text-primary, #2c2825);
+  color: var(--moss-color-text, #2c2825);
   text-decoration: none;
 }
 
 a.comment-author:hover {
-  color: var(--moss-accent, #2d5a2d);
+  color: var(--moss-color-accent, #2d5a2d);
 }
 
 .comment-date {
   font-size: 0.875rem;
-  color: var(--moss-text-muted, #8a8580);
+  color: var(--moss-color-muted, #8a8580);
 }
 
 /* Comment Body */
 .comment-body {
-  font-size: var(--moss-font-base, 1.125rem);
+  font-size: var(--moss-font-size, 1.125rem);
   line-height: 1.7;
-  color: var(--moss-text-primary, #2c2825);
+  color: var(--moss-color-text, #2c2825);
 }
 
 .comment-body p {
@@ -158,15 +200,20 @@ a.comment-author:hover {
 
 .comment-body blockquote {
   font-size: inherit;
+  font-style: normal;
+  border-left: 3px solid var(--moss-color-muted, #8a8580);
+  margin: var(--moss-space-xs, 0.5rem) 0 var(--moss-space-xs, 0.5rem) 1rem;
+  padding-left: var(--moss-space-sm, 1rem);
+  color: var(--moss-text-secondary, #5d5853);
 }
 
 .comment-body a {
-  color: var(--moss-text-primary, #2c2825);
+  color: var(--moss-color-text, #2c2825);
   text-decoration: underline;
 }
 
 .comment-body a:hover {
-  color: var(--moss-accent, #2d5a2d);
+  color: var(--moss-color-accent, #2d5a2d);
 }
 
 /* ==========================================================================
@@ -189,10 +236,8 @@ a.comment-author:hover {
    ========================================================================== */
 
 .comment-form {
-  background: var(--moss-background-alt, #f4f1ec);
-  border-radius: 8px;
-  padding: 1.25rem;
-  margin-top: var(--moss-space-lg, 2rem);
+  padding: var(--moss-space-md, 1.5rem) 0;
+  margin: 0 0 var(--moss-space-md, 1.5rem) 0;
 }
 
 /* Textarea — underline style */
@@ -204,9 +249,9 @@ a.comment-author:hover {
   border: none;
   border-bottom: 1px solid var(--moss-border-medium, #d1cdc4);
   font-family: inherit;
-  font-size: var(--moss-font-base, 1.125rem);
+  font-size: var(--moss-font-size, 1.125rem);
   line-height: 1.7;
-  color: var(--moss-text-primary, #2c2825);
+  color: var(--moss-color-text, #2c2825);
   background: transparent;
   resize: none;
   overflow: hidden;
@@ -216,11 +261,11 @@ a.comment-author:hover {
 
 .comment-form textarea:focus {
   outline: none;
-  border-bottom: 2px solid var(--moss-accent, #2d5a2d);
+  border-bottom: 2px solid var(--moss-color-accent, #2d5a2d);
 }
 
 .comment-form textarea::placeholder {
-  color: var(--moss-text-muted, #8a8580);
+  color: var(--moss-color-muted, #8a8580);
 }
 
 /* ==========================================================================
@@ -243,7 +288,7 @@ a.comment-author:hover {
   padding: 0.5rem 0;
   font-family: inherit;
   font-size: var(--moss-font-sm, 1rem);
-  color: var(--moss-text-primary, #2c2825);
+  color: var(--moss-color-text, #2c2825);
   box-sizing: border-box;
   transition: border-color 0.15s ease;
   min-width: 0;
@@ -251,11 +296,11 @@ a.comment-author:hover {
 
 .comment-field:focus {
   outline: none;
-  border-bottom: 2px solid var(--moss-accent, #2d5a2d);
+  border-bottom: 2px solid var(--moss-color-accent, #2d5a2d);
 }
 
 .comment-field::placeholder {
-  color: var(--moss-text-muted, #8a8580);
+  color: var(--moss-color-muted, #8a8580);
 }
 
 /* ==========================================================================
@@ -267,11 +312,11 @@ a.comment-author:hover {
   align-items: center;
   justify-content: center;
   padding: 0.5rem 1.25rem;
-  background: color-mix(in srgb, var(--moss-accent, #2d5a2d) 8%, transparent);
+  background: color-mix(in srgb, var(--moss-color-accent, #2d5a2d) 8%, transparent);
   border: none;
   border-radius: 6px;
   cursor: pointer;
-  color: var(--moss-accent, #2d5a2d);
+  color: var(--moss-color-accent, #2d5a2d);
   font-family: inherit;
   font-size: var(--moss-font-sm, 1rem);
   font-weight: 480;
@@ -279,11 +324,11 @@ a.comment-author:hover {
 }
 
 .comment-form-submit:hover {
-  background: color-mix(in srgb, var(--moss-accent, #2d5a2d) 15%, transparent);
+  background: color-mix(in srgb, var(--moss-color-accent, #2d5a2d) 15%, transparent);
 }
 
 .comment-form-submit:focus {
-  outline: 2px solid var(--moss-accent, #2d5a2d);
+  outline: 2px solid var(--moss-color-accent, #2d5a2d);
   outline-offset: 2px;
 }
 
@@ -326,7 +371,7 @@ a.comment-author:hover {
 }
 
 .comment-form-status--success {
-  color: var(--moss-accent, #2d5a2d);
+  color: var(--moss-color-accent, #2d5a2d);
 }
 
 /* ==========================================================================
@@ -368,6 +413,10 @@ a.comment-author:hover {
   flex: 1;
 }
 
+.footer-subscribe-form .moss-btn {
+  font-size: inherit;
+}
+
 @media (max-width: 48rem) {
   .footer-subscribe-form .moss-input {
     width: 10ch;
@@ -389,7 +438,7 @@ a.comment-author:hover {
         <article class="container">
             <h1 class="article-title">东村夜晚的摩诃真言</h1>
             <p><span class="date">2024 · 10 · 17</span></p>
-            <h2>一</h2>
+            <h2 id="一">一</h2>
 <p>东村在曼哈顿的东南角。在寸土寸金的南曼哈顿，这里是相对便宜的，容纳了不少独立店铺和年轻人。东村的夜晚是年轻人的盛会，餐厅的座椅沿街铺开，一排排灯红酒绿。每个街区都有那么一家酒吧，要用自己的音乐覆满街道。走在街道上，每几步就换一次背景音乐，回荡着不同的语言，仿佛穿过一个个夜色中涌出的小世界。</p>
 <p>今晚我在找巴克提中心（Bhakti Center），听说这里晚上有科尔坦（Kirtan），一种诵咒祈祷的活动。科尔坦虽然不算通常意义上的冥想，但同样会使人进入一种不同于日常的心理状态。</p>
 <p>梵文“巴克提”常译作“奉爱”，指对神的虔诚与依恋。六世纪时，印度南部的诗人们掀起了奉爱运动，到十一、二世纪传播到整个印度，以诗和歌的方式，将吠陀经典不分种姓、不分信仰地传播给各地民众。奉爱运动的一个重要方法便是科尔坦，通过不断地吟唱咒语而进入狂喜，让参与者能够直接接近神。</p>
@@ -398,27 +447,27 @@ a.comment-author:hover {
 <p>有许多其他年轻人已经在排队，背着背包，大约是刚下班。看起来，这是个香火兴旺的大庙。一进门，黄褐相间的色调，小小的前台，前台背后狭窄的楼梯。上了楼梯，右手边一个小商店和一个瑜伽教室。左手边一个更大的屋子，是今晚科尔坦的地方，人已经逐渐多了起来。进屋之前，是一面宽敞的鞋架，看上去常常容纳很多人。</p>
 <p>屋子里，最远处有一排乐手，面向观众席地而坐。然后是六、七排红色的坐垫，已经满是席地而坐的人，再后面则是一排排椅子。环顾四周，一屋子坐满了四、五十人，大都是二、三十岁的年轻人。人们坐在座位上，合着乐声轻轻摇摆。</p>
 <p>我脱鞋进屋，在后排椅子坐下。</p>
-<h2>二</h2>
+<h2 id="二">二</h2>
 <p>在纽约街头，许多地方我都见到过科尔坦。在联合广场或者哥伦布环岛，常常会有一群衣着橙色僧袍的人，带着手鼓和簧风琴，一遍遍唱着奎师那（Krishna）的名字。不断重复的念诵中，他们神情恍惚而喜悦。在华盛顿广场一年一度的哈瑞奎师那（Hare Krishna）节日中，衣着鲜艳的人们汇成色彩的海洋。人们围着吟唱的僧侣，或席地而坐，或拍手转圈，融化在此起彼伏的声浪中。</p>
 <p>这些科尔坦的传统，以及巴克提中心本身，都可以追溯到一九六五年。六十九岁的印度僧侣帕布帕德，只身乘坐一艘货船，经历了一个多月的海上漂泊、两次心脏病发作，终于来到了纽约。这不是帕布帕德一时兴起的冒险，而是他毕生使命的一部分。</p>
 <p>帕布帕德出生在一个信奉高迪亚毗湿奴派的家庭。高迪亚毗湿奴派是印度教的一个分支，在孟加拉地区有很大影响力。帕布帕德二十多岁时，正值甘地领导的非暴力不合作运动，印度开始寻求独立。他刚成为药剂师，遇见了同一教派的著名学者巴克提斯达塔。巴克提斯达塔成为了他的导师，并说服他用英文传播教义。此后的几十年中，帕布帕德出家修行，并遵循导师的建议，以英文写作、出版，将《博伽梵往世书》、《博伽梵歌》翻译为英文。</p>
 <p>年近古稀的帕布帕德来到纽约，在公园唱起科尔坦。举目无亲的他几经波折，逐渐吸引了纽约人的注意，积累起来许多追随者。他在纽约建立了寺庙，名声也扩大到了美国西海岸的嬉皮士圈子中。高迪亚毗湿奴派的教导中戒律颇多，拒绝鱼肉蛋、婚外性行为、赌博和任何形式的娱乐药物，甚至包括咖啡和茶。这与嬉皮们的生活方式形成巨大反差，但他仍然成为了当时反文化运动关注的焦点。</p>
 <p>两年后，他来到三藩市，一下飞机迎接他的是著名诗人金斯伯格，以及近一百名唱诵着摩诃真言的年轻嬉皮。金斯伯格与作家艾伦·瓦茨、刚被哈佛开除的心理学教授蒂莫西·利里、乐队感恩至死等，组织了一场名为“真言摇滚舞会”的活动，将帕布帕德与他的修行法门介绍给三藩市的嬉皮们。</p>
 <figure>
-  <img src="../../../assets/d0505029-6be1-4875-aa7d-666bc2e6e372.jpg" data-placeholder-src="../../../assets/d0505029-6be1-4875-aa7d-666bc2e6e372.jpg" width="800" height="600" loading="lazy" alt="" />
-  <figcaption>真言摇滚舞会海报。Harvey W. Cohen</figcaption>
+<img src="../../../assets/d0505029-6be1-4875-aa7d-666bc2e6e372.jpg" data-placeholder-src="../../../assets/d0505029-6be1-4875-aa7d-666bc2e6e372.jpg" width="800" height="600" loading="lazy" alt="" />
+<figcaption>真言摇滚舞会海报。Harvey W. Cohen</figcaption>
 </figure>
 <p>超过三千名观众，穿着五颜六色的衣服、带着各式各样的乐器、抽着大麻，将活动场地挤得水泄不通。早在印度旅行时，金斯伯格就已经学会了摩诃真言，并一直大力推崇。而这次的科尔坦，是来自一位真正的印度修行者。他对台下的人们说，如果你刚从 LSD 的旅程中回到现实，科尔坦能帮你重新稳定下来。</p>
 <p>帕布帕德从人群中登场，如摩西分开红海般穿过人群。几千名嬉皮在这位印度僧侣的领唱下学会了梵文的摩诃真言，一同歌唱和演奏，沉浸在群体仪式的喜悦中。对于许多参与者，这是反文化运动中的高光时刻。金斯伯格说，三藩市终于有了一场所有人都能够参与的音乐会。直到四十年之后，人们仍在伯克利举行真言摇滚舞会的纪念活动。</p>
 <figure>
-  <img src="../../../assets/aeba66d0-5681-48a9-ad7d-d66448f9ceb5.png" data-placeholder-src="../../../assets/aeba66d0-5681-48a9-ad7d-d66448f9ceb5.png" width="800" height="600" loading="lazy" alt="" />
-  <figcaption>帕布帕德在三藩金门公园。Mukunda Goswami</figcaption>
+<img src="../../../assets/aeba66d0-5681-48a9-ad7d-d66448f9ceb5.png" data-placeholder-src="../../../assets/aeba66d0-5681-48a9-ad7d-d66448f9ceb5.png" width="800" height="600" loading="lazy" alt="" />
+<figcaption>帕布帕德在三藩金门公园。Mukunda Goswami</figcaption>
 </figure>
 <p>与此同时，帕布帕德录制的摩诃真言，漂洋过海传到英国，到了披头士乐队的乔治·哈里森与约翰·列侬手里。本就在学习印度音乐的乔治·哈里森，与帕布帕德在伦敦的信徒们合作，录制了单曲《摩诃真言》。披头士的唱片公司发行了单曲，大获成功。从此，摩诃真言出现在许许多多的流行音乐中。</p>
 <p>到了七十年代，带着西方的追随者们，帕布帕德重新回到了印度。此时正在全面西化的印度社会，惊讶地看见西方社会对于印度传统的兴趣和信仰，导致印度掀起了一场宗教与传统的复兴。而北边的苏联解体后，东欧各国从共产主义的政治神话中苏醒过来，开始寻找信仰，于是与印度一起成为帕布帕德教义传播最快的地方。</p>
 <p>将摩诃真言传播开的帕布帕得，是将印度教带到西方最成功的布道者。他创建的“国际奎师那知觉协会（ISKCON）”，目前在全世界管理着八百多个活动场所，其中就包括巴克提中心。</p>
 <p>在这些地方，奎师那的信仰者们仍然在歌颂着祂。</p>
-<h2>三</h2>
+<h2 id="三">三</h2>
 <p>屋子里，最前面一排乐手演奏者轻柔的音乐，面向观众席地而坐。他们分别持簧风琴、木丹加鼓、贝斯、吉他和笛子。簧风琴是键盘乐器，通过推拉风箱发声，声音类似手风琴，但更繁复、悠长。木丹加鼓则是一种双面手鼓，两面鼓面大小不同，配合起来能发出许多不同的声音。</p>
 <p>手持手鼓的是一位金发姑娘，看上去二、三十岁，声音洪亮，在拨弄手鼓的同时说着与祷词相关的故事。她讲起某个印度村庄，她在那里听见这个祷词。村庄里的人们一贫如洗却乐善好施，透着无关物质生活的喜乐。她也讲起六十年代，帕布帕德对嬉皮士年轻人们说，你们嗑药能飞高一小会儿，为什么不戒掉药物，留在高处呢？她的语气里满是兴奋与向往，脸庞上透出按捺不住的喜悦和满足。</p>
 <p>手持手鼓与簧风琴的两名女子轮流领唱，不断重复祷词。每句过后，众人则重复吟唱作为回应。梵文祷词的大意如下：</p>
@@ -441,7 +490,7 @@ Rama Rama Hare Hare</p>
 <p>对话从此开始。奎师那向阿周那解释，为何在超脱了欲望与执念之后，还是要去行动，又如何不执着于行动的结果。这一过程中，奎师那向阿周那教授了禅定与瑜伽的方法，解释了自性、神我和意识，并表示自己才是无所不在、至高无上的神，也是那欲望与幻象之下真正的自我。</p>
 <p>作为奥义书之一，《薄伽梵歌》被许多文化和宗教奉为经典，其中就包括帕布帕德及 ISKCON 传承的高迪亚毗湿奴派。高迪亚毗湿奴派是一神教，将奎师那视作唯一信仰，与基督教的耶和华、伊斯兰教的安拉、佛教的大日如来是同一个神。尽管是一神教，却依然保留了万物有灵的色彩，也因此更加尊重其他生命，不将文明与自然对立。</p>
 <p>除了能够将人们团结起来的科尔坦之外，也许这样融合不同宗教的态度，也是高迪亚毗湿奴派能在基督教地区广泛传播的原因之一。</p>
-<h2>四</h2>
+<h2 id="四">四</h2>
 <p>领唱摩诃真言的女声悠长缭绕，风琴呜咽，众人以缭绕应合。随着一句句的重复，缭绕的苍凉逐渐丰满起来，转为激昂。手鼓、贝斯逐渐加入进来，然后是笛子。接过手鼓的黑人小伙进入了忘我的境界，变换着越来越复杂的节拍。人们在愈加丰满的乐声中渐渐放开了嗓子，形成色彩丰富的合声。</p>
 <p>有人拍起手来，于是众人也跟着拍手。随着拍子的配合，人们的歌声愈加嘹亮。在众声激昂的顶点，乐手们突然停止了演奏。歌声持续着，失去了乐器的承托，变成了更加纯粹的能量，一浪一浪地推着人们向前。在这能量散掉之前，乐器的声音又回来了，举托住节奏与旋律，让情绪舒缓下来，慢慢回到地面。</p>
 <p>许多人已经从座位上站了起来，手舞足蹈。每个人脸上都挂着微笑、透着爱意，水草一般随音乐摇摆。这狂喜的场域竟有些像夜店和摇滚音乐节，只是没有药物和酒精，没有喧闹的电音和炫目的灯光，而是依赖人们由内而外激发的喜悦与共振。我自认为不太容易受到群体情绪感染，但端详着身边的陌生人在音乐和舞蹈中忘却自己，也不禁感受到了喜悦与满足。</p>
@@ -456,26 +505,11 @@ Rama Rama Hare Hare</p>
 <p>许多进入超越性体验的传统，比如冥想和瑜伽，都已经脱离原来的宗教语境，成为人们调整身心的技巧，开始接受科学与实证的审视。但除了可被剥离出来的技巧，宗教也包含的许多集会方式，让人们相聚，给人们带来与世界的连接，所谓的“海洋感觉”。人们仍然需要相聚、需要这种感觉，于是在诸神死去后，继续寻找和建立着新的共同体，以拙劣的替代品，重新对立起彼此。</p>
 <p>也许科尔坦也能够脱离宗教语境，成为一种不再有表演者与观众的区分、每个人都可以融入其中的灵性体验。相比一场演出，科尔坦多了虔诚和信仰，多了歌咏的对象，多了喜乐的原因。或许，我们会找到不依赖人格化的神、而是直接指向生命与自然的信仰；保有传统宗教的力量，也为无神论者提供心灵家园。</p>
 <p>这些遐想，与身后逐渐远去的巴克提中心，消散在了脚步匆匆的夜色里。</p>
-<nav class="series-nav">
-  <div class="series-nav-links">
-    <a href="../../../articles/纽约诸法门/从伍德斯托克-到整体瑜伽中心/index.html" class="series-nav-link series-nav-prev"><span class="series-nav-arrow">&lt;</span> <span class="series-nav-title">从伍德斯托克，到整体瑜伽中心</span></a>
-    <a href="../../../articles/纽约诸法门/藏传佛教寺庙里的瑜伽/index.html" class="series-nav-link series-nav-next"><span class="series-nav-title">藏传佛教寺庙里的瑜伽</span> <span class="series-nav-arrow">&gt;</span></a>
-  </div>
-  <div class="series-nav-collection-row">
-    <a href="../../../articles/纽约诸法门/index.html" class="series-nav-collection">纽约诸法门</a>
-  </div>
-</nav>
+
         
-<section class="moss-comments" id="moss-comments">
+<section class="moss-comments" id="moss-comments" data-built-at="2026-03-06T16:31:57.347Z">
   <details>
-    <summary class="comments-toggle"><svg class="comments-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></svg><span>1条评论</span></summary>
-    <ol class="comment-list"><li class="comment-item" id="comment-Q29tbWVudDoxNTA4NDg4">
-  <div class="comment-header">
-    <a href="https://matters.town/@robert" class="comment-author" rel="nofollow noopener" target="_blank">Robert</a>
-    <time class="comment-date" datetime="2024-10-18T00:05:22.971Z">2024年10月17日</time>
-  </div>
-  <div class="comment-body"><p>大麻很重要，或换酒精亦可</p></div>
-</li></ol>
+    <summary class="comments-toggle"><svg class="comments-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></svg><span>1条评论</span><svg class="comments-chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></summary>
     <form class="comment-form" id="moss-comment-form">
   <textarea id="moss-comment-text" name="content" required rows="2" placeholder="留下你的想法"></textarea>
   <div class="comment-form-meta">
@@ -486,6 +520,13 @@ Rama Rama Hare Hare</p>
   </div>
   <div class="comment-form-status" id="moss-comment-status"></div>
 </form>
+    <ol class="comment-list"><li class="comment-item" id="comment-Q29tbWVudDoxNTA4NDg4">
+  <div class="comment-header">
+    <a href="https://matters.town/@robert" class="comment-author" rel="nofollow noopener" target="_blank">Robert</a>
+    <time class="comment-date" datetime="2024-10-18T00:05:22.971Z">2024年10月17日</time>
+  </div>
+  <div class="comment-body"><p>大麻很重要，或换酒精亦可</p></div>
+</li></ol>
     <script>(function() {
   var form = document.getElementById('moss-comment-form');
   if (!form) return;
@@ -547,19 +588,21 @@ Rama Rama Hare Hare</p>
       if (!commentList) {
         commentList = document.createElement('ol');
         commentList.className = 'comment-list';
-        form.before(commentList);
+        form.after(commentList);
       }
 
       var li = document.createElement('li');
       li.className = 'comment-item';
-      var now = new Date().toLocaleDateString('en-US', {year:'numeric',month:'short',day:'numeric'});
+      li.id = 'comment-' + data.id;
+      var now = new Date().toLocaleDateString('zh-CN', {year:'numeric',month:'short',day:'numeric'});
       var authorName = body.name || 'Anonymous';
       li.innerHTML = '<div class="comment-header">'
         + '<span class="comment-author">' + authorName.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;') + '</span>'
         + '<time class="comment-date">' + now + '</time>'
         + '</div>'
         + '<div class="comment-body"><p>' + body.content.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;') + '</p></div>';
-      commentList.appendChild(li);
+      // Newest first: prepend so the just-submitted comment appears at the top
+      commentList.insertBefore(li, commentList.firstChild);
 
       form.elements['content'].value = '';
       if (textarea) { textarea.style.height = 'auto'; }
@@ -573,6 +616,91 @@ Rama Rama Hare Hare</p>
       }
     });
   });
+
+  /*
+   * Stale-while-revalidate / progressive enhancement for comments.
+   *
+   * Static HTML already contains all comments known at build time, so the page
+   * is immediately readable without JS. When the user opens the comment section
+   * (<details> toggle), we fetch comments from the Artalk server that may have
+   * been posted after the last build.
+   *
+   * Why date-based filtering instead of offset/count:
+   *   Comments can be deleted or moderated between builds. A purely offset-based
+   *   approach would miss or duplicate entries. By comparing each comment's
+   *   created_at against the build timestamp (data-built-at), we robustly find
+   *   only the comments that are genuinely new.
+   *
+   * Three-layer deduplication:
+   *   1. Date boundary  — stop iterating when we hit a comment older than the
+   *      build timestamp (comments are sorted newest-first).
+   *   2. ID guard       — skip any comment whose DOM node already exists
+   *      (handles edge cases where build-time and fetch overlap).
+   *   3. Fire-once listener — the toggle handler removes itself after the first
+   *      invocation so we never fetch twice.
+   *
+   * Trust model: Artalk performs server-side HTML sanitization, so we use
+   * innerHTML for comment content (same as the static render path).
+   */
+  var section = document.getElementById('moss-comments');
+  var builtAtStr = section && section.getAttribute('data-built-at');
+  var builtAtMs = builtAtStr ? new Date(builtAtStr).getTime() : 0;
+  var details = section && section.querySelector('details');
+
+  if (details && builtAtMs) {
+    function onToggle() {
+      if (!details.open) return;
+      details.removeEventListener('toggle', onToggle);
+
+      fetch('https://api.moss.host/comment/api/v2/comments?page_key=cd78b1ad&site_name=liu-guo.com&flat_mode=true&sort_by=date_desc&limit=100')
+        .then(function(res) { return res.ok ? res.json() : null; })
+        .then(function(json) {
+          if (!json) return;
+          var list = (json.data && json.data.comments) || [];
+          var added = 0;
+          // Anchor = first build-time comment. Hydrated comments go before it
+          // to maintain newest-first order (API returns date_desc).
+          var anchor = commentList ? commentList.firstChild : null;
+          for (var i = 0; i < list.length; i++) {
+            var c = list[i];
+            if (new Date(c.created_at).getTime() <= builtAtMs) break;
+            if (document.getElementById('comment-' + c.id)) continue;
+
+            var li = document.createElement('li');
+            li.className = 'comment-item';
+            li.id = 'comment-' + c.id;
+            var authorName = (c.nick || 'Anonymous').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+            var dateStr = new Date(c.created_at).toLocaleDateString('zh-CN', {year:'numeric',month:'short',day:'numeric'});
+            li.innerHTML = '<div class="comment-header">'
+              + '<span class="comment-author">' + authorName + '</span>'
+              + '<time class="comment-date">' + dateStr + '</time>'
+              + '</div>'
+              + '<div class="comment-body">' + c.content + '</div>';
+
+            if (!commentList) {
+              commentList = document.createElement('ol');
+              commentList.className = 'comment-list';
+              var formEl = document.getElementById('moss-comment-form');
+              if (formEl) formEl.after(commentList);
+              anchor = null;
+            }
+            // Newest first: insert before the anchor (first build-time comment)
+            commentList.insertBefore(li, anchor);
+            added++;
+          }
+
+          if (added > 0) {
+            var total = (commentList ? commentList.children.length : 0);
+            var summarySpan = details.querySelector('summary span');
+            if (summarySpan) {
+              summarySpan.textContent = total === 1 ? '1条评论' : '{n}条评论'.replace('{n}', total);
+            }
+          }
+        })
+        .catch(function() { /* silent — static comments still visible */ });
+    }
+    details.addEventListener('toggle', onToggle);
+  }
 })();</script>
   </details>
 </section>

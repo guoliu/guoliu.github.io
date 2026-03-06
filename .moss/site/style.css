@@ -1,70 +1,110 @@
-/* moss Design System — Shared Design Tokens */
+/* moss Design System — Site Styles (Generated Websites) */
+
+/* ==========================================================================
+   MOSS - Typography-first design for Writers & Publishers
+   ========================================================================== */
+
+/* ==========================================================================
+   1. CSS Custom Properties — Site-specific tokens
+   ========================================================================== */
 
 :root {
-  color-scheme: light dark;
+  /* ── 11-Variable Customization Contract ── */
+  --moss-font-body: system-ui, -apple-system, sans-serif;
+  --moss-font-heading: var(--moss-font-body);
+  --moss-font-mono: ui-monospace, SFMono-Regular, monospace;
+  --moss-font-size: 1.125rem;
+  --moss-font-weight: 320;
+  --moss-content-width: 70ch;
+  --moss-content-width-sidebar: 65ch;
+  --moss-sidebar-width: 280px;
+  --moss-color-accent: #2d5a2d;
+  --moss-color-bg: #faf8f5;
+  --moss-color-text: #2c2825;
+  --moss-color-muted: #8a8580;
+  --moss-color-surface: #f4f1ec;
 
-  /* Color System - Warm, paper-inspired */
-  --moss-text-primary: #2c2825;
+  /* ── Derived tokens (internal) ── */
   --moss-text-secondary: #5d5853;
-  --moss-text-muted: #8a8580;
-  --moss-background: #faf8f5;
-  --moss-background-alt: #f4f1ec;
-  --moss-accent: #2d5a2d;
   --moss-accent-hover: #1e3d1e;
-  --moss-accent-light: rgba(45, 90, 45, 0.15);
   --moss-border-light: #e6e2db;
   --moss-border-medium: #d1cdc4;
 
-  /* Interaction overlays */
-  --moss-hover-overlay: rgba(0, 0, 0, 0.06);
-  --moss-active-overlay: rgba(0, 0, 0, 0.10);
+  /* Code Block Colors */
+  --moss-code-background: #f8f6f3;
+  --moss-code-border: #e0ddd6;
+  --moss-code-accent-primary: #2d5a2d; /* moss green - systems/primary */
+  --moss-code-accent-secondary: #5d5853; /* warm gray - web languages */
+  --moss-code-accent-tertiary: #8a8580; /* muted brown - scripting */
+  --moss-code-accent-quaternary: #6b5b4f; /* deeper brown - config/data */
 
-  /* Status backgrounds (subtle tints for badges/pills) */
-  --moss-success-subtle: rgba(16, 185, 129, 0.1);
-  --moss-warning-subtle: rgba(245, 158, 11, 0.1);
-  --moss-error-subtle: rgba(200, 84, 80, 0.1);
+  /* Typography Scale - Derived from --moss-font-size */
+  --moss-font-sm: 1rem; /* 16px */
+  --moss-font-lg: 1.25rem; /* 20px */
+  --moss-font-xl: 1.375rem; /* 22px */
+  --moss-font-2xl: 1.625rem; /* 26px */
+  --moss-font-3xl: 2rem; /* 32px */
+
+  /* Spacing Scale (8pt grid) */
+  --moss-space-xs: 0.5rem; /* 8px */
+  --moss-space-sm: 1rem; /* 16px */
+  --moss-space-md: 1.5rem; /* 24px */
+  --moss-space-lg: 2rem; /* 32px */
+  --moss-space-xl: 3rem; /* 48px */
+  --moss-space-2xl: 4rem; /* 64px */
+
+  /* Layout */
+  --moss-site-max-width: 1200px;
+  --moss-container-padding: clamp(1rem, 5vw, 2rem);
 }
 
-/* Dark mode - explicit toggle */
+/* Dark mode - explicit toggle (site-specific tokens) */
 [data-theme="dark"] {
-  --moss-text-primary: #e8e6e3;
+  --moss-color-accent: #4a7c4a;
+  --moss-color-bg: #1a1816;
+  --moss-color-text: #e8e6e3;
+  --moss-color-muted: #8a8580;
+  --moss-color-surface: #242018;
+
   --moss-text-secondary: #b8b5b0;
-  --moss-text-muted: #8a8580;
-  --moss-background: #1a1816;
-  --moss-background-alt: #242018;
+  --moss-accent-hover: #5a8c5a;
   --moss-border-light: #3a362f;
   --moss-border-medium: #4a453c;
-  --moss-accent: #4a7c4a;
-  --moss-accent-hover: #5a8c5a;
-  --moss-accent-light: rgba(74, 124, 74, 0.2);
-  --moss-hover-overlay: rgba(255, 255, 255, 0.08);
-  --moss-active-overlay: rgba(255, 255, 255, 0.14);
-  --moss-success-subtle: rgba(16, 185, 129, 0.15);
-  --moss-warning-subtle: rgba(245, 158, 11, 0.15);
-  --moss-error-subtle: rgba(200, 84, 80, 0.15);
+
+  --moss-code-background: #1e1e1e;
+  --moss-code-border: #3a3a3a;
+  --moss-code-accent-primary: #4a7c4a;
+  --moss-code-accent-secondary: #b8b5b0;
+  --moss-code-accent-tertiary: #a8a19a;
+  --moss-code-accent-quaternary: #9b8b7f;
 }
 
-/* Dark mode - system preference (when no explicit theme set) */
+/* Dark mode - system preference (site-specific tokens) */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --moss-text-primary: #e8e6e3;
+    --moss-color-accent: #4a7c4a;
+    --moss-color-bg: #1a1816;
+    --moss-color-text: #e8e6e3;
+    --moss-color-muted: #8a8580;
+    --moss-color-surface: #242018;
+
     --moss-text-secondary: #b8b5b0;
-    --moss-text-muted: #8a8580;
-    --moss-background: #1a1816;
-    --moss-background-alt: #242018;
+    --moss-accent-hover: #5a8c5a;
     --moss-border-light: #3a362f;
     --moss-border-medium: #4a453c;
-    --moss-accent: #4a7c4a;
-    --moss-accent-hover: #5a8c5a;
-    --moss-accent-light: rgba(74, 124, 74, 0.2);
-    --moss-hover-overlay: rgba(255, 255, 255, 0.08);
-    --moss-active-overlay: rgba(255, 255, 255, 0.14);
-    --moss-success-subtle: rgba(16, 185, 129, 0.15);
-    --moss-warning-subtle: rgba(245, 158, 11, 0.15);
-    --moss-error-subtle: rgba(200, 84, 80, 0.15);
+
+    --moss-code-background: #1e1e1e;
+    --moss-code-border: #3a3a3a;
+    --moss-code-accent-primary: #4a7c4a;
+    --moss-code-accent-secondary: #b8b5b0;
+    --moss-code-accent-tertiary: #a8a19a;
+    --moss-code-accent-quaternary: #9b8b7f;
   }
 }
-/* moss Design System — Shared Component Primitives */
+
+/* ==========================================================================
+   Component Primitives (shared structural styles)
+   ========================================================================== */
 
 /* Button primitive - structural only, no colors */
 .moss-btn {
@@ -79,14 +119,14 @@
   transition: opacity 0.15s ease;
 }
 .moss-btn:focus-visible {
-  outline: 2px solid var(--moss-accent);
+  outline: 2px solid var(--moss-color-accent);
   outline-offset: 2px;
 }
 
 /* Input primitive - underline style, structural only, no colors */
 .moss-input {
   font-family: inherit;
-  font-size: var(--moss-font-base, 1.125rem);
+  font-size: var(--moss-font-size, 1.125rem);
   border: none;
   border-bottom: 1px solid var(--moss-border-medium);
   border-radius: 0;
@@ -97,7 +137,7 @@
   transition: border-color 0.2s ease;
 }
 .moss-input:focus {
-  border-bottom-color: var(--moss-text-primary);
+  border-bottom-color: var(--moss-color-text);
 }
 .moss-input:disabled {
   opacity: 0.5;
@@ -146,7 +186,7 @@
 
 /* Clickable text link */
 .moss-link {
-  color: var(--moss-accent);
+  color: var(--moss-color-accent);
   text-decoration: none;
   cursor: pointer;
 }
@@ -179,68 +219,6 @@
 }
 .moss-input-feedback--fade-out {
   opacity: 0;
-}
-/* moss Design System — Site Styles (Generated Websites) */
-
-/* ==========================================================================
-   MOSS - Typography-first design for Writers & Publishers
-   ========================================================================== */
-
-/* ==========================================================================
-   1. CSS Custom Properties — Site-specific tokens
-   ========================================================================== */
-
-:root {
-  /* Code Block Colors */
-  --moss-code-background: #f8f6f3;
-  --moss-code-border: #e0ddd6;
-  --moss-code-accent-primary: #2d5a2d; /* moss green - systems/primary */
-  --moss-code-accent-secondary: #5d5853; /* warm gray - web languages */
-  --moss-code-accent-tertiary: #8a8580; /* muted brown - scripting */
-  --moss-code-accent-quaternary: #6b5b4f; /* deeper brown - config/data */
-
-  /* Typography Scale - Optimized for long-form reading */
-  --moss-font-base: 1.125rem; /* 18px */
-  --moss-font-sm: 1rem; /* 16px */
-  --moss-font-lg: 1.25rem; /* 20px */
-  --moss-font-xl: 1.375rem; /* 22px */
-  --moss-font-2xl: 1.625rem; /* 26px */
-  --moss-font-3xl: 2rem; /* 32px */
-
-  /* Spacing Scale (8pt grid) */
-  --moss-space-xs: 0.5rem; /* 8px */
-  --moss-space-sm: 1rem; /* 16px */
-  --moss-space-md: 1.5rem; /* 24px */
-  --moss-space-lg: 2rem; /* 32px */
-  --moss-space-xl: 3rem; /* 48px */
-  --moss-space-2xl: 4rem; /* 64px */
-
-  /* Layout */
-  --moss-content-width: 65ch;
-  --moss-site-max-width: 1200px;
-  --moss-container-padding: clamp(1rem, 5vw, 2rem);
-}
-
-/* Dark mode - explicit toggle (site-specific tokens) */
-[data-theme="dark"] {
-  --moss-code-background: #1e1e1e;
-  --moss-code-border: #3a3a3a;
-  --moss-code-accent-primary: #4a7c4a;
-  --moss-code-accent-secondary: #b8b5b0;
-  --moss-code-accent-tertiary: #a8a19a;
-  --moss-code-accent-quaternary: #9b8b7f;
-}
-
-/* Dark mode - system preference (site-specific tokens) */
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --moss-code-background: #1e1e1e;
-    --moss-code-border: #3a3a3a;
-    --moss-code-accent-primary: #4a7c4a;
-    --moss-code-accent-secondary: #b8b5b0;
-    --moss-code-accent-tertiary: #a8a19a;
-    --moss-code-accent-quaternary: #9b8b7f;
-  }
 }
 
 /* ==========================================================================
@@ -279,13 +257,12 @@ html {
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Inter",
-    system-ui, sans-serif;
-  font-size: var(--moss-font-base);
-  font-weight: 320;
+  font-family: var(--moss-font-body);
+  font-size: var(--moss-font-size);
+  font-weight: var(--moss-font-weight);
   line-height: 1.7;
-  color: var(--moss-text-primary);
-  background: var(--moss-background);
+  color: var(--moss-color-text);
+  background: var(--moss-color-bg);
   margin: 0;
   padding: 0;
   display: flex;
@@ -310,9 +287,10 @@ h3,
 h4,
 h5,
 h6 {
+  font-family: var(--moss-font-heading);
   font-weight: 480;
   line-height: 1.3;
-  color: var(--moss-text-primary);
+  color: var(--moss-color-text);
   margin: var(--moss-space-xl) 0 var(--moss-space-md) 0;
 }
 
@@ -338,7 +316,7 @@ h4 {
 
 h5,
 h6 {
-  font-size: var(--moss-font-base);
+  font-size: var(--moss-font-size);
 }
 
 /* Paragraphs */
@@ -376,7 +354,7 @@ li > ol {
 
 /* Links */
 a {
-  color: var(--moss-accent);
+  color: var(--moss-color-accent);
   text-decoration: none;
   transition: background-color 0.15s ease;
 }
@@ -439,6 +417,11 @@ main > article.container {
   padding: 0 var(--moss-container-padding);
 }
 
+/* Content width:
+   --moss-content-width: all non-sidebar pages (default 70ch)
+   --moss-content-width-sidebar: sidebar page content area (default 65ch)
+   Both defined in :root so user custom.css overrides always win. */
+
 /* Sidebar layout - flexbox-based */
 main.has-sidebar {
   display: flex;
@@ -450,7 +433,7 @@ main.has-sidebar {
 
 main.has-sidebar > article.container {
   flex: 1;
-  max-width: var(--moss-content-width);
+  max-width: var(--moss-content-width-sidebar);
   margin: 0;
   padding: 0;
 }
@@ -460,9 +443,19 @@ main.has-sidebar > .latest-sidebar {
   flex-shrink: 0;
   position: sticky;
   top: var(--moss-space-lg);
-  max-height: calc(100vh - var(--moss-space-2xl));
-  overflow-y: auto;
   align-self: flex-start;
+}
+
+.latest-sidebar .sidebar-more {
+  display: inline-block;
+  margin-top: var(--moss-space-sm);
+  font-size: var(--moss-font-sm);
+  color: var(--moss-color-muted);
+  text-decoration: none;
+}
+
+.latest-sidebar .sidebar-more:hover {
+  color: var(--moss-color-text);
 }
 
 footer {
@@ -486,20 +479,20 @@ footer.container {
 }
 
 .footer-description {
-  color: var(--moss-text-muted);
+  color: var(--moss-color-muted);
   margin: 0;
 }
 
 .footer-link {
-  color: var(--moss-text-primary);
+  color: var(--moss-color-text);
   text-decoration: underline;
-  text-decoration-color: var(--moss-text-muted);
+  text-decoration-color: var(--moss-color-muted);
   text-underline-offset: 3px;
 }
 
 .footer-link:hover {
-  color: var(--moss-accent);
-  text-decoration-color: var(--moss-accent);
+  color: var(--moss-color-accent);
+  text-decoration-color: var(--moss-color-accent);
 }
 
 /* ==========================================================================
@@ -520,12 +513,12 @@ footer.container {
 }
 
 .main-nav a:hover {
-  color: var(--moss-accent);
+  color: var(--moss-color-accent);
 }
 
 .main-nav a.active {
-  color: var(--moss-accent);
-  border-bottom: 2px solid var(--moss-accent);
+  color: var(--moss-color-accent);
+  border-bottom: 2px solid var(--moss-color-accent);
   padding-bottom: 2px;
 }
 
@@ -570,13 +563,34 @@ header:has(+ .moss-hero) .main-nav {
 
 /* Site Name */
 .site-name {
-  color: var(--moss-text-primary);
+  color: var(--moss-color-text);
   font-size: var(--moss-font-lg);
   font-weight: 600;
 }
 
 .site-name:hover {
-  color: var(--moss-accent);
+  color: var(--moss-color-accent);
+}
+
+/* Breadcrumb Navigation */
+.breadcrumb-separator {
+  margin: 0 0.35em;
+  color: var(--moss-color-muted);
+  font-weight: 300;
+}
+
+.breadcrumb-segment {
+  color: var(--moss-color-muted);
+  text-decoration: none;
+}
+
+.breadcrumb-segment:hover {
+  color: var(--moss-color-text);
+}
+
+.breadcrumb-current {
+  color: var(--moss-color-text);
+  font-weight: 500;
 }
 
 /* Nav Links & Icons */
@@ -609,7 +623,7 @@ header:has(+ .moss-hero) .main-nav {
 }
 
 .article-date {
-  color: var(--moss-text-muted);
+  color: var(--moss-color-muted);
   font-size: 1.1em;
   white-space: nowrap;
   flex-shrink: 0;
@@ -630,12 +644,12 @@ header:has(+ .moss-hero) .main-nav {
 }
 
 .theme-toggle:hover {
-  background: var(--moss-background-alt);
-  color: var(--moss-text-primary);
+  background: var(--moss-color-surface);
+  color: var(--moss-color-text);
 }
 
 .theme-toggle:focus {
-  outline: 2px solid var(--moss-accent);
+  outline: 2px solid var(--moss-color-accent);
   outline-offset: 2px;
 }
 
@@ -698,8 +712,8 @@ header:has(+ .moss-hero) .main-nav {
 }
 
 .github-link:hover {
-  background: var(--moss-background-alt);
-  color: var(--moss-accent);
+  background: var(--moss-color-surface);
+  color: var(--moss-color-accent);
 }
 
 .github-link svg {
@@ -718,8 +732,8 @@ header:has(+ .moss-hero) .main-nav {
 }
 
 .mobile-menu-button:hover {
-  background: var(--moss-background-alt);
-  color: var(--moss-text-primary);
+  background: var(--moss-color-surface);
+  color: var(--moss-color-text);
 }
 
 .mobile-menu-button svg {
@@ -739,13 +753,13 @@ header:has(+ .moss-hero) .main-nav {
 .topic-articles a,
 .year-group a,
 .article-listing a {
-  color: var(--moss-text-primary);
+  color: var(--moss-color-text);
 }
 
 .topic-articles a:hover,
 .year-group a:hover,
 .article-listing a:hover {
-  color: var(--moss-accent);
+  color: var(--moss-color-accent);
 }
 
 /* ==========================================================================
@@ -765,20 +779,20 @@ header:has(+ .moss-hero) .main-nav {
 
 .prefix-link-prefix {
   flex-shrink: 0;
-  color: var(--moss-text-muted);
+  color: var(--moss-color-muted);
 }
 
 /* Prefix doesn't change color on hover - stays muted */
 .prefix-link:hover .prefix-link-prefix {
-  color: var(--moss-text-muted);
+  color: var(--moss-color-muted);
 }
 
 .prefix-link-title {
-  color: var(--moss-text-primary);
+  color: var(--moss-color-text);
 }
 
 .prefix-link:hover .prefix-link-title {
-  color: var(--moss-accent);
+  color: var(--moss-color-accent);
   text-decoration: underline;  /* Underline only title on hover */
 }
 
@@ -791,11 +805,11 @@ article .article-item a,
 
 /* Keep backward compatibility with existing .date and .title classes */
 .article-item .title {
-  color: var(--moss-text-primary);
+  color: var(--moss-color-text);
 }
 
 .article-item a:hover .title {
-  color: var(--moss-accent);
+  color: var(--moss-color-accent);
   text-decoration: underline;  /* Underline only title on hover */
 }
 
@@ -837,7 +851,7 @@ article .article-item a,
 .latest-list .entry-date {
   display: block;
   font-size: var(--moss-font-sm);
-  color: var(--moss-text-muted);
+  color: var(--moss-color-muted);
   margin-bottom: 0.25rem;
 }
 
@@ -850,11 +864,11 @@ article .article-item a,
 }
 
 .latest-list a:hover {
-  color: var(--moss-accent);
+  color: var(--moss-color-accent);
 }
 
 .no-posts {
-  color: var(--moss-text-muted);
+  color: var(--moss-color-muted);
   font-style: italic;
   margin: 0;
 }
@@ -875,12 +889,12 @@ article {
 }
 
 .article-meta time {
-  color: var(--moss-text-muted);
-  font-size: var(--moss-font-base);
+  color: var(--moss-color-muted);
+  font-size: var(--moss-font-size);
 }
 
 .date {
-  color: var(--moss-text-muted);
+  color: var(--moss-color-muted);
 }
 
 /* Blog Feed */
@@ -910,13 +924,13 @@ article {
 }
 
 .blog-entry-title a {
-  color: var(--moss-text-primary);
+  color: var(--moss-color-text);
   text-decoration: none;
   border-bottom: none;
 }
 
 .blog-entry-title a:hover {
-  color: var(--moss-accent);
+  color: var(--moss-color-accent);
 }
 
 .blog-entry-date {
@@ -938,7 +952,7 @@ article {
 
 .read-more {
   font-weight: 500;
-  color: var(--moss-accent) !important;
+  color: var(--moss-color-accent) !important;
   border-bottom: 1px solid transparent !important;
 }
 
@@ -954,7 +968,7 @@ article {
 .content-table h1,
 .content-table h2 {
   margin-bottom: var(--moss-space-lg);
-  color: var(--moss-text-primary);
+  color: var(--moss-color-text);
 }
 
 .content-table table {
@@ -964,7 +978,7 @@ article {
 }
 
 .content-table th {
-  background: var(--moss-background-alt);
+  background: var(--moss-color-surface);
   padding: var(--moss-space-sm) var(--moss-space-md);
   text-align: left;
   font-weight: 600;
@@ -977,16 +991,16 @@ article {
 }
 
 .content-table tr:hover {
-  background: var(--moss-background-alt);
+  background: var(--moss-color-surface);
 }
 
 .content-table a {
-  color: var(--moss-text-primary);
+  color: var(--moss-color-text);
   font-weight: 500;
 }
 
 .content-table a:hover {
-  color: var(--moss-accent);
+  color: var(--moss-color-accent);
 }
 
 /* Post Metadata */
@@ -1006,11 +1020,11 @@ article {
 }
 
 .post-meta .topic {
-  background: var(--moss-background-alt);
+  background: var(--moss-color-surface);
   padding: 0.25rem 0.5rem;
   border-radius: 4px;
   font-size: var(--moss-font-sm);
-  color: var(--moss-accent);
+  color: var(--moss-color-accent);
   border: 1px solid var(--moss-border-light);
 }
 
@@ -1020,12 +1034,12 @@ article {
 
 /* Code */
 code {
-  font-family: "SF Mono", "Monaco", "Cascadia Code", "Roboto Mono", monospace;
+  font-family: var(--moss-font-mono);
   font-size: 0.9em;
-  background: var(--moss-background-alt);
+  background: var(--moss-color-surface);
   padding: 0.2em 0.4em;
   border-radius: 3px;
-  color: var(--moss-text-primary);
+  color: var(--moss-color-text);
 }
 
 pre {
@@ -1089,7 +1103,7 @@ pre:has(code[class*="language-ini"]) {
 
 /* Blockquotes */
 blockquote {
-  border-left: 4px solid var(--moss-accent);
+  border-left: 4px solid var(--moss-color-accent);
   margin: var(--moss-space-lg) 0;
   padding-left: var(--moss-space-lg);
   color: var(--moss-text-secondary);
@@ -1140,9 +1154,9 @@ td {
 }
 
 th {
-  background: var(--moss-background-alt);
+  background: var(--moss-color-surface);
   font-weight: 600;
-  color: var(--moss-text-primary);
+  color: var(--moss-color-text);
 }
 
 tr:last-child td {
@@ -1183,21 +1197,21 @@ hr::before {
 
 /* Site-specific input colors */
 .moss-input {
-  color: var(--moss-text-primary);
+  color: var(--moss-color-text);
   background: transparent;
 }
 .moss-input::placeholder {
-  color: var(--moss-text-muted);
+  color: var(--moss-color-muted);
 }
 
 /* Site-specific button colors */
-.moss-btn { background: var(--moss-text-primary); color: var(--moss-background); }
-.moss-btn:hover { background: var(--moss-accent); }
+.moss-btn { background: var(--moss-color-text); color: var(--moss-color-bg); }
+.moss-btn:hover { background: var(--moss-color-accent); }
 .moss-btn:disabled { opacity: 0.5; cursor: not-allowed; }
 
 /* Site-specific label colors */
 .moss-label {
-  color: var(--moss-text-muted);
+  color: var(--moss-color-muted);
 }
 
 /* ==========================================================================
@@ -1229,12 +1243,12 @@ hr::before {
 
 .year-group.minimal .article-item .title {
   flex: 1;
-  color: var(--moss-text-primary);
+  color: var(--moss-color-text);
   transition: color 0.2s ease;
 }
 
 .year-group.minimal .article-item:hover .title {
-  color: var(--moss-accent);
+  color: var(--moss-color-accent);
 }
 
 /* Article title styling */
@@ -1248,13 +1262,13 @@ hr::before {
 
 /* Article content links: blend with text, underlined, green on hover */
 article a {
-  color: var(--moss-text-primary);
+  color: var(--moss-color-text);
   text-decoration: underline;
 }
 
 article a:hover,
 article a:focus {
-  color: var(--moss-accent);
+  color: var(--moss-color-accent);
 }
 
 /* ==========================================================================
@@ -1271,7 +1285,7 @@ article a:focus {
 
 @media (max-width: 48rem) {
   :root {
-    --moss-font-base: 1rem;
+    --moss-font-size: 1rem;
     --moss-font-2xl: 1.5rem;
     --moss-font-3xl: 1.75rem;
     /* Slightly larger container padding on mobile for better margins */
@@ -1349,7 +1363,7 @@ article a:focus {
     gap: 0;
 
     /* Clean appearance */
-    background: var(--moss-background);
+    background: var(--moss-color-bg);
     border: none;
     box-shadow: none;
     padding: 0;
@@ -1368,7 +1382,7 @@ article a:focus {
 
   .nav-links a:hover {
     background: transparent;
-    color: var(--moss-accent);
+    color: var(--moss-color-accent);
   }
 }
 
@@ -1401,7 +1415,7 @@ article a:focus {
 }
 
 .collection-item a:hover {
-  background-color: var(--moss-background-alt);
+  background-color: var(--moss-color-surface);
 }
 
 .collection-header {
@@ -1414,12 +1428,12 @@ article a:focus {
 .collection-name {
   font-size: var(--moss-font-lg);
   font-weight: 500;
-  color: var(--moss-text-primary);
+  color: var(--moss-color-text);
 }
 
 .collection-count {
   font-size: var(--moss-font-sm);
-  color: var(--moss-text-muted);
+  color: var(--moss-color-muted);
   white-space: nowrap;
 }
 
@@ -1436,11 +1450,11 @@ article a:focus {
 }
 
 .dark .collection-item a:hover {
-  background-color: var(--moss-background-alt);
+  background-color: var(--moss-color-surface);
 }
 
 .dark .collection-name {
-  color: var(--moss-text-primary);
+  color: var(--moss-color-text);
 }
 
 /* Collection Grid (Card-based layout for homepage) */
@@ -1469,7 +1483,7 @@ article a:focus {
   color: inherit;
   border-radius: 6px;
   overflow: hidden;
-  background: var(--moss-background-alt);
+  background: var(--moss-color-surface);
   transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
@@ -1481,7 +1495,7 @@ article a:focus {
 .collection-card-cover {
   aspect-ratio: 4 / 3;
   overflow: hidden;
-  background-color: var(--moss-background-alt);
+  background-color: var(--moss-color-surface);
 }
 
 .collection-card-cover img {
@@ -1494,7 +1508,7 @@ article a:focus {
 }
 
 .collection-card-no-cover {
-  background: linear-gradient(135deg, var(--moss-background-alt) 0%, var(--moss-border-light) 100%);
+  background: linear-gradient(135deg, var(--moss-color-surface) 0%, var(--moss-border-light) 100%);
 }
 
 .collection-card-content {
@@ -1502,7 +1516,7 @@ article a:focus {
   justify-content: space-between;
   align-items: baseline;
   padding: var(--moss-space-sm);
-  background: var(--moss-background-alt);
+  background: var(--moss-color-surface);
   gap: var(--moss-space-sm);
 }
 
@@ -1518,7 +1532,7 @@ article a:focus {
 
 .collection-card-count {
   font-size: var(--moss-font-xs);
-  color: var(--moss-text-muted);
+  color: var(--moss-color-muted);
   white-space: nowrap;
 }
 
@@ -1528,7 +1542,18 @@ article a:focus {
 }
 
 [data-theme="dark"] .collection-card-no-cover {
-  background: linear-gradient(135deg, var(--moss-background-alt) 0%, rgba(255, 255, 255, 0.05) 100%);
+  background: linear-gradient(135deg, var(--moss-color-surface) 0%, rgba(255, 255, 255, 0.05) 100%);
+}
+
+/* Collection cover — inline cover image on folder index pages */
+.collection-cover {
+  margin: var(--moss-space-lg) 0;
+}
+
+.collection-cover img {
+  width: 100%;
+  border-radius: 6px;
+  margin: 0;
 }
 
 /* ==========================================================================
@@ -1584,7 +1609,7 @@ article a:focus {
   }
 
   .moss-hero-content p {
-    font-size: var(--moss-font-base);
+    font-size: var(--moss-font-size);
   }
 }
 
@@ -1651,7 +1676,7 @@ article a:focus {
 
 .moss-grid-card h2 {
   margin-top: 0;
-  color: var(--moss-accent);
+  color: var(--moss-color-accent);
 }
 
 /* Responsive: collapse to single column on mobile */
@@ -1665,6 +1690,54 @@ article a:focus {
     margin: 0 auto;
     display: block;
   }
+}
+
+/* Gallery Shortcode */
+.moss-gallery {
+  display: grid;
+  grid-template-columns: repeat(var(--gallery-columns, auto-fill), minmax(200px, 1fr));
+  gap: var(--moss-space-sm, 1rem);
+  margin: var(--moss-space-lg, 2rem) 0;
+}
+
+.moss-gallery-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 4px;
+  object-fit: cover;
+}
+
+/* Table of Contents */
+.moss-toc {
+  padding: var(--moss-space-sm, 1rem) var(--moss-space-md, 1.5rem);
+  margin: var(--moss-space-md, 1.5rem) 0;
+  border-left: 3px solid var(--moss-color-accent, #2d5a2d);
+  background: var(--moss-color-surface, #f5f5f4);
+  border-radius: 4px;
+}
+
+.moss-toc ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.moss-toc ul ul {
+  padding-left: 1.25em;
+}
+
+.moss-toc li {
+  margin: 0.25em 0;
+}
+
+.moss-toc a {
+  text-decoration: none;
+  color: var(--moss-color-text, #1a1a1a);
+}
+
+.moss-toc a:hover {
+  color: var(--moss-color-accent, #2d5a2d);
 }
 
 /* ==========================================================================
@@ -1696,7 +1769,7 @@ article a:focus {
   width: 50%;
   font-size: var(--moss-font-sm);
   line-height: 1.4;
-  color: var(--moss-text-muted);
+  color: var(--moss-color-muted);
   text-decoration: none;  /* Override article a default */
 }
 
@@ -1774,7 +1847,7 @@ article a:focus {
   overflow: hidden;
   border-radius: 6px;
   cursor: pointer;
-  background: var(--moss-background-alt);
+  background: var(--moss-color-surface);
 }
 
 .media-item img,
@@ -1904,7 +1977,7 @@ article a:focus {
 }
 
 .lightbox-article-link {
-  color: var(--moss-accent);
+  color: var(--moss-color-accent);
   text-decoration: none;
   font-size: var(--moss-font-sm);
 }
@@ -1993,7 +2066,7 @@ article video {
   height: auto;
   aspect-ratio: 16 / 9;
   border-radius: 6px;
-  background: var(--moss-background-alt);
+  background: var(--moss-color-surface);
   object-fit: contain;
 }
 
@@ -2028,7 +2101,7 @@ article video[height] {
 }
 
 /* ==========================================================================
-   15. Latest Sidebar (list_style: sidebar)
+   15. Latest Sidebar (sidebar: "[[Folder]]")
 
    Design: Centered content with absolutely positioned sidebar.
 
@@ -2051,7 +2124,7 @@ article video[height] {
   font-size: var(--moss-font-xl);
   font-weight: 600;
   margin: 0 0 var(--moss-space-md) 0;
-  color: var(--moss-text-primary);
+  color: var(--moss-color-text);
 }
 
 .latest-sidebar ul {
@@ -2070,12 +2143,12 @@ article video[height] {
   padding: var(--moss-space-xs) 0;
   color: var(--moss-text-secondary);
   text-decoration: none;
-  font-size: var(--moss-font-base);
+  font-size: var(--moss-font-size);
   line-height: 1.4;
 }
 
 .latest-sidebar .prefix-link:hover {
-  color: var(--moss-text-primary);
+  color: var(--moss-color-text);
 }
 
 .latest-sidebar .prefix-link-prefix {
@@ -2167,7 +2240,7 @@ article video[height] {
   height: 60vh;
   border: none;
   border-radius: 8px;
-  background: var(--moss-background-alt);
+  background: var(--moss-color-surface);
   margin-top: var(--moss-space-lg);
   display: block;
 }
@@ -2401,7 +2474,7 @@ body:not(.immersive-fs-active) main > article.container > *:not(.immersive-ifram
   --callout-color: #448aff; /* default: note/info blue */
   border-left: 3px solid var(--callout-color);
   border-radius: 6px;
-  background-color: color-mix(in srgb, var(--callout-color) 8%, var(--moss-background));
+  background-color: color-mix(in srgb, var(--callout-color) 8%, var(--moss-color-bg));
   margin: var(--moss-space-md) 0;
   padding: var(--moss-space-sm) var(--moss-space-md);
   max-width: var(--moss-content-width);
@@ -2450,11 +2523,11 @@ body:not(.immersive-fs-active) main > article.container > *:not(.immersive-ifram
 
 /* Dark mode — deepen background tint so it reads against dark surfaces */
 [data-theme="dark"] .callout {
-  background-color: color-mix(in srgb, var(--callout-color) 12%, var(--moss-background));
+  background-color: color-mix(in srgb, var(--callout-color) 12%, var(--moss-color-bg));
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) .callout {
-    background-color: color-mix(in srgb, var(--callout-color) 12%, var(--moss-background));
+    background-color: color-mix(in srgb, var(--callout-color) 12%, var(--moss-color-bg));
   }
 }

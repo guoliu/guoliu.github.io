@@ -11,7 +11,7 @@
     <meta property="og:site_name" content="刘果">
     <meta property="og:description" content="! 旧金山以北的海岸山脉上，常常能看见巨大的海岸红杉。这些世上最高的树，暗红的树干，深绿的树叶，于不经意间从路边升起，指向天空。...">
     <meta property="article:published_time" content="2025-11-17T00:50:43.135Z">
-    <meta property="og:image" content="articles/assets/22c0e9b7-8093-48fa-97af-14881cce91d9.jpg">
+    <meta property="og:image" content="../../../assets/22c0e9b7-8093-48fa-97af-14881cce91d9.jpg">
     <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -20,7 +20,7 @@
   "url": "/articles/无用之旅/如果人们在一个地方呆得足够久-那里的生灵也会开始向他们说话/",
   "description": "! 旧金山以北的海岸山脉上，常常能看见巨大的海岸红杉。这些世上最高的树，暗红的树干，深绿的树叶，于不经意间从路边升起，指向天空。...",
   "datePublished": "2025-11-17T00:50:43.135Z",
-  "image": "articles/assets/22c0e9b7-8093-48fa-97af-14881cce91d9.jpg",
+  "image": "../../../assets/22c0e9b7-8093-48fa-97af-14881cce91d9.jpg",
   "publisher": {
     "@type": "Organization",
     "name": "刘果"
@@ -31,13 +31,58 @@
     <link rel="alternate" type="application/rss+xml" title="RSS" href="../../../feed.xml">
     
     
-    <link rel="stylesheet" href="../../../style.css?v=dee9f975d540ccf3">
-<style class="moss-comments-style">/* ==========================================================================
+    <link rel="stylesheet" href="../../../style.css?v=2d0441b1384f5323">
+<style>/* ==========================================================================
    moss Comments Plugin - Styles
 
    Collapsible comment section with solid thread borders,
    underline-style form inputs, and responsive grid layout.
    Uses CSS custom properties from moss default.css.
+   ========================================================================== */
+
+/* ==========================================================================
+   Design Decision Record: Flattened Comment Form
+   --------------------------------------------------------------------------
+
+   Research found that the best comment sections treat comments as editorial
+   content on the same surface as the article, not as a separate widget.
+
+   Six principles guide the comment form styling:
+
+   P1. One surface
+       Remove the tinted card background from .comment-form. Form and
+       comments share the page background. Modeled after NYT/Guardian
+       "Letters to the Editor" — comments as editorial content, same surface.
+
+   P2. Border language consistency
+       Comments use border-bottom: 1px solid. The form uses the same 1px
+       border as its boundary, not a background fill + border-radius.
+
+   P3. Typographic continuity
+       Placeholder text, field labels, comment body, author names — same
+       type family, proportional sizes. Follows iA design philosophy
+       (ia.net): "web design is 95% typography", content-first.
+
+   P4. The form is the first comment
+       Visually, the compose area reads like an empty comment slot. Same
+       padding rhythm, same width, same vertical spacing as comment items.
+       Inspired by CSS-Tricks threading (css-tricks.com) — forms inline in
+       thread, not separate cards.
+
+   P5. Distinguish through state, not surface
+       The textarea is interactive because of cursor/focus behavior, not
+       because it sits on a different background. Focus states (accent
+       underline) provide sufficient affordance.
+
+   P6. Density matching
+       Spacing between form elements echoes spacing between comment items.
+
+   References:
+   - NYT/Guardian "Letters to the Editor" model
+   - Ahmad Shadeed's comment component (ishadeed.com)
+   - CSS-Tricks threading (css-tricks.com)
+   - iA design philosophy (ia.net)
+   - ResultFirst 2026 trends — "stripping away non-essential frills"
    ========================================================================== */
 
 /* Comment Section */
@@ -58,7 +103,7 @@
   cursor: pointer;
   list-style: none;
   font-size: var(--moss-font-sm, 1rem);
-  color: var(--moss-text-muted, #8a8580);
+  color: var(--moss-color-muted, #8a8580);
   user-select: none;
   padding: 0;
 }
@@ -73,20 +118,17 @@
 }
 
 .comments-toggle:hover {
-  color: var(--moss-text-primary, #2c2825);
+  color: var(--moss-color-text, #2c2825);
 }
 
-/* Chevron indicator */
-.comments-toggle::after {
-  content: "▸";
-  margin-left: auto;
-  font-size: 1.25rem;
-  color: var(--moss-text-secondary, #5d5853);
-  transition: transform 0.15s ease;
+/* Chevron indicator — points right when collapsed, down when expanded */
+.comments-toggle .comments-chevron {
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
 }
 
-details[open] > .comments-toggle::after {
-  content: "▾";
+details[open] > .comments-toggle .comments-chevron {
+  transform: rotate(90deg);
 }
 
 /* Space between summary and content when open */
@@ -128,24 +170,24 @@ details[open] > .comments-toggle {
 .comment-author {
   font-weight: 480;
   font-size: var(--moss-font-sm, 1rem);
-  color: var(--moss-text-primary, #2c2825);
+  color: var(--moss-color-text, #2c2825);
   text-decoration: none;
 }
 
 a.comment-author:hover {
-  color: var(--moss-accent, #2d5a2d);
+  color: var(--moss-color-accent, #2d5a2d);
 }
 
 .comment-date {
   font-size: 0.875rem;
-  color: var(--moss-text-muted, #8a8580);
+  color: var(--moss-color-muted, #8a8580);
 }
 
 /* Comment Body */
 .comment-body {
-  font-size: var(--moss-font-base, 1.125rem);
+  font-size: var(--moss-font-size, 1.125rem);
   line-height: 1.7;
-  color: var(--moss-text-primary, #2c2825);
+  color: var(--moss-color-text, #2c2825);
 }
 
 .comment-body p {
@@ -158,15 +200,20 @@ a.comment-author:hover {
 
 .comment-body blockquote {
   font-size: inherit;
+  font-style: normal;
+  border-left: 3px solid var(--moss-color-muted, #8a8580);
+  margin: var(--moss-space-xs, 0.5rem) 0 var(--moss-space-xs, 0.5rem) 1rem;
+  padding-left: var(--moss-space-sm, 1rem);
+  color: var(--moss-text-secondary, #5d5853);
 }
 
 .comment-body a {
-  color: var(--moss-text-primary, #2c2825);
+  color: var(--moss-color-text, #2c2825);
   text-decoration: underline;
 }
 
 .comment-body a:hover {
-  color: var(--moss-accent, #2d5a2d);
+  color: var(--moss-color-accent, #2d5a2d);
 }
 
 /* ==========================================================================
@@ -189,10 +236,8 @@ a.comment-author:hover {
    ========================================================================== */
 
 .comment-form {
-  background: var(--moss-background-alt, #f4f1ec);
-  border-radius: 8px;
-  padding: 1.25rem;
-  margin-top: var(--moss-space-lg, 2rem);
+  padding: var(--moss-space-md, 1.5rem) 0;
+  margin: 0 0 var(--moss-space-md, 1.5rem) 0;
 }
 
 /* Textarea — underline style */
@@ -204,9 +249,9 @@ a.comment-author:hover {
   border: none;
   border-bottom: 1px solid var(--moss-border-medium, #d1cdc4);
   font-family: inherit;
-  font-size: var(--moss-font-base, 1.125rem);
+  font-size: var(--moss-font-size, 1.125rem);
   line-height: 1.7;
-  color: var(--moss-text-primary, #2c2825);
+  color: var(--moss-color-text, #2c2825);
   background: transparent;
   resize: none;
   overflow: hidden;
@@ -216,11 +261,11 @@ a.comment-author:hover {
 
 .comment-form textarea:focus {
   outline: none;
-  border-bottom: 2px solid var(--moss-accent, #2d5a2d);
+  border-bottom: 2px solid var(--moss-color-accent, #2d5a2d);
 }
 
 .comment-form textarea::placeholder {
-  color: var(--moss-text-muted, #8a8580);
+  color: var(--moss-color-muted, #8a8580);
 }
 
 /* ==========================================================================
@@ -243,7 +288,7 @@ a.comment-author:hover {
   padding: 0.5rem 0;
   font-family: inherit;
   font-size: var(--moss-font-sm, 1rem);
-  color: var(--moss-text-primary, #2c2825);
+  color: var(--moss-color-text, #2c2825);
   box-sizing: border-box;
   transition: border-color 0.15s ease;
   min-width: 0;
@@ -251,11 +296,11 @@ a.comment-author:hover {
 
 .comment-field:focus {
   outline: none;
-  border-bottom: 2px solid var(--moss-accent, #2d5a2d);
+  border-bottom: 2px solid var(--moss-color-accent, #2d5a2d);
 }
 
 .comment-field::placeholder {
-  color: var(--moss-text-muted, #8a8580);
+  color: var(--moss-color-muted, #8a8580);
 }
 
 /* ==========================================================================
@@ -267,11 +312,11 @@ a.comment-author:hover {
   align-items: center;
   justify-content: center;
   padding: 0.5rem 1.25rem;
-  background: color-mix(in srgb, var(--moss-accent, #2d5a2d) 8%, transparent);
+  background: color-mix(in srgb, var(--moss-color-accent, #2d5a2d) 8%, transparent);
   border: none;
   border-radius: 6px;
   cursor: pointer;
-  color: var(--moss-accent, #2d5a2d);
+  color: var(--moss-color-accent, #2d5a2d);
   font-family: inherit;
   font-size: var(--moss-font-sm, 1rem);
   font-weight: 480;
@@ -279,11 +324,11 @@ a.comment-author:hover {
 }
 
 .comment-form-submit:hover {
-  background: color-mix(in srgb, var(--moss-accent, #2d5a2d) 15%, transparent);
+  background: color-mix(in srgb, var(--moss-color-accent, #2d5a2d) 15%, transparent);
 }
 
 .comment-form-submit:focus {
-  outline: 2px solid var(--moss-accent, #2d5a2d);
+  outline: 2px solid var(--moss-color-accent, #2d5a2d);
   outline-offset: 2px;
 }
 
@@ -326,7 +371,7 @@ a.comment-author:hover {
 }
 
 .comment-form-status--success {
-  color: var(--moss-accent, #2d5a2d);
+  color: var(--moss-color-accent, #2d5a2d);
 }
 
 /* ==========================================================================
@@ -366,6 +411,10 @@ a.comment-author:hover {
 
 .footer-subscribe-form .moss-input {
   flex: 1;
+}
+
+.footer-subscribe-form .moss-btn {
+  font-size: inherit;
 }
 
 @media (max-width: 48rem) {
@@ -413,8 +462,8 @@ a.comment-author:hover {
 <p>在这场漫长的拉锯中，加州州立公园与国家公园逐渐开始联手，将这许多个分离的保护区统一管理。经历了许多灾难与斗争，皆伐已不再被人们接受，保护基本成为了共识。这最后5%的红杉，算是留了下来。</p>
 <p>但红杉林的故事还没有结束，也不会结束。2017年，特朗普上台后，将17个保护区从联合国生物圈保护区中撤出，其中就包含红杉林。下一步会是什么，没有人知道。</p>
 <figure>
-  <img src="../../../assets/8c0e7411-7ccf-4d8e-8679-433432a4a73e.png" data-placeholder-src="../../../assets/8c0e7411-7ccf-4d8e-8679-433432a4a73e.png" width="800" height="600" loading="lazy" alt="" />
-  <figcaption>比尔施塔特1874年绘制的红杉林</figcaption>
+<img src="../../../assets/8c0e7411-7ccf-4d8e-8679-433432a4a73e.png" data-placeholder-src="../../../assets/8c0e7411-7ccf-4d8e-8679-433432a4a73e.png" width="800" height="600" loading="lazy" alt="" />
+<figcaption>比尔施塔特1874年绘制的红杉林</figcaption>
 </figure>
 <p>在洪堡红杉州立公园，有一个小而温馨的访客中心，展示红杉的进化过程和生态角色，也纪念当地从砍伐到保护的历史。门口展示着一个巨大的红杉横切面，一圈圈的树轮上，标记着这棵红杉经历过的时代：一千多年前牛津大学建立，然后巴黎大学建立、成吉思汗征服波斯、明朝建立、文艺复兴开始、印刷术发明、科尔特斯摧毁阿兹特克帝国，一直到二十世纪红杉林公园的建立。</p>
 <p>访客中心里，我和几个友好的工作人员聊天，询问周边值得的去处。他们几乎全是退休的老人，作为志愿者帮助来自世界各地的访客们。每个人都有自己最喜欢的去处，讲着讲着就掏出一张最适合的地图，转过来面朝我，自己倒着在地图上标出每一个转弯，甚至具体一棵树的位置。等我转过头去，他们又用同样的热情向其他访客介绍，这片如自己手心般熟悉的土地。</p>
@@ -422,31 +471,55 @@ a.comment-author:hover {
 <p>人类的社会里，对财富和权力的渴望会永远存在，资本的意志、机器的意志也会继续驱动着一代又一代脱离了土地的游魂们。然而大自然，一如既往地在更长的时间尺度上运行。当红杉在两亿年前第一次出现在地球上时，恐龙还未称霸海陆空，人类的祖先是状如老鼠、在夜间捕捉昆虫的小动物。红杉有足够的耐心，这些生灵们有足够的耐心，等人们在一个地方呆得足够久，等我们这一代代移民们真正定居下来，向我们说话。</p>
 <p>也许有的人会听见，有的人不会；但也许这并不重要。在红杉漫长的一生中，想必见证过不少被贪婪与无知裹挟的人类文明。在文明的废墟里，生命会再次涌出，交织着指向天空，如同一条河流汇入另一条河流。</p>
 <p><img src="../../../assets/22c0e9b7-8093-48fa-97af-14881cce91d9.jpg" data-placeholder-src="../../../assets/22c0e9b7-8093-48fa-97af-14881cce91d9.jpg" width="800" height="600" loading="lazy" alt="" /></p>
-<nav class="series-nav">
-  <div class="series-nav-links">
-    <a href="../../../articles/无用之旅/一条大河-两种对自由的选择/index.html" class="series-nav-link series-nav-prev"><span class="series-nav-arrow">&lt;</span> <span class="series-nav-title">一条大河，两种对自由的选择</span></a>
-    <a href="../../../articles/无用之旅/真正的旅程/index.html" class="series-nav-link series-nav-next"><span class="series-nav-title">真正的旅程</span> <span class="series-nav-arrow">&gt;</span></a>
-  </div>
-  <div class="series-nav-collection-row">
-    <a href="../../../articles/无用之旅/index.html" class="series-nav-collection">无用之旅</a>
-  </div>
-</nav>
+
         
-<section class="moss-comments" id="moss-comments">
+<section class="moss-comments" id="moss-comments" data-built-at="2026-03-06T16:31:57.345Z">
   <details>
-    <summary class="comments-toggle"><svg class="comments-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></svg><span>11条评论</span></summary>
-    <ol class="comment-list"><li class="comment-item" id="comment-Q29tbWVudDoxNjA1OTQy">
-  <div class="comment-header">
-    <a href="https://matters.town/@robert" class="comment-author" rel="nofollow noopener" target="_blank">Robert</a>
-    <time class="comment-date" datetime="2025-11-17T01:20:18.402Z">2025年11月16日</time>
+    <summary class="comments-toggle"><svg class="comments-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></svg><span>11条评论</span><svg class="comments-chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></summary>
+    <form class="comment-form" id="moss-comment-form">
+  <textarea id="moss-comment-text" name="content" required rows="2" placeholder="留下你的想法"></textarea>
+  <div class="comment-form-meta">
+    <input type="text" name="name" class="comment-field" placeholder="名字" required>
+    <input type="email" name="email" class="comment-field" placeholder="邮箱（选填）">
+    <input type="url" name="link" class="comment-field" placeholder="网站（选填）">
+    <button type="submit" class="comment-form-submit">回复</button>
   </div>
-  <div class="comment-body"><p>孤独产生了幻觉</p></div>
-</li><li class="comment-item" id="comment-Q29tbWVudDoxNjA2MTgx">
+  <div class="comment-form-status" id="moss-comment-status"></div>
+</form>
+    <ol class="comment-list"><li class="comment-item" id="comment-Q29tbWVudDoxNjA3NzU5">
   <div class="comment-header">
-    <a href="https://matters.town/@qish" class="comment-author" rel="nofollow noopener" target="_blank">為人而建</a>
-    <time class="comment-date" datetime="2025-11-18T02:55:07.691Z">2025年11月17日</time>
+    <a href="https://matters.town/@capybara" class="comment-author" rel="nofollow noopener" target="_blank">快樂卡皮巴拉</a>
+    <time class="comment-date" datetime="2025-11-24T18:10:50.237Z">2025年11月24日</time>
   </div>
-  <div class="comment-body"><p>不仅是关于树的命运，更是关于人类文明与自然界关系的寓言。🙂‍↕️</p></div>
+  <div class="comment-body"><p>會的 萬物有靈</p></div>
+</li><li class="comment-item" id="comment-Q29tbWVudDoxNjA3NjI0">
+  <div class="comment-header">
+    <a href="https://matters.town/@444455dd" class="comment-author" rel="nofollow noopener" target="_blank">你所瀏覽的都在污染你</a>
+    <time class="comment-date" datetime="2025-11-24T04:20:19.118Z">2025年11月23日</time>
+  </div>
+  <div class="comment-body"><p>我很愛站在百年老樹之下，我們的那些煩惱在他們百年裏只是鼻屎大的塵埃。</p><p>樹的療癒力量是驚人的，尤其是老樹。</p></div>
+  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDoxNjA3NzU3">
+  <div class="comment-header">
+    <a href="https://matters.town/@guo" class="comment-author" rel="nofollow noopener" target="_blank">刘果</a>
+    <time class="comment-date" datetime="2025-11-24T15:15:24.832Z">2025年11月24日</time>
+  </div>
+  <div class="comment-body"><p><a href="/@444455dd">@寫，日子</a> 是啊，人活在不只有人的世界裡時，變得自由很多。</p></div>
+</li>
+  </ol>
+</li><li class="comment-item" id="comment-Q29tbWVudDoxNjA3Mjky">
+  <div class="comment-header">
+    <a href="https://matters.town/@abetterself" class="comment-author" rel="nofollow noopener" target="_blank">章芮芮-----为什么？</a>
+    <time class="comment-date" datetime="2025-11-22T02:51:48.639Z">2025年11月21日</time>
+  </div>
+  <div class="comment-body"><p>我喜欢这篇文章。</p><p>人的破坏力是这样的惊人。仅仅是红杉的年龄和高度就让我油然生出一种畏惧和敬意，历经那么久长得那么高，砍掉多可惜！如果千年红杉会说话，它们会对我们说什么呢？还有什么好说的吗？</p></div>
+  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDoxNjA3Mzc0">
+  <div class="comment-header">
+    <a href="https://matters.town/@guo" class="comment-author" rel="nofollow noopener" target="_blank">刘果</a>
+    <time class="comment-date" datetime="2025-11-22T13:13:46.276Z">2025年11月22日</time>
+  </div>
+  <div class="comment-body"><p><a href="/@abetterself">@章芮芮-----为什么？</a> 也许它会说，慢慢来！</p></div>
+</li>
+  </ol>
 </li><li class="comment-item" id="comment-Q29tbWVudDoxNjA2NjQ3">
   <div class="comment-header">
     <a href="https://matters.town/@lunatian" class="comment-author" rel="nofollow noopener" target="_blank">鹿娜的彼岸王國</a>
@@ -477,51 +550,19 @@ a.comment-author:hover {
   </ol>
 </li>
   </ol>
-</li><li class="comment-item" id="comment-Q29tbWVudDoxNjA3Mjky">
+</li><li class="comment-item" id="comment-Q29tbWVudDoxNjA2MTgx">
   <div class="comment-header">
-    <a href="https://matters.town/@abetterself" class="comment-author" rel="nofollow noopener" target="_blank">章芮芮-----为什么？</a>
-    <time class="comment-date" datetime="2025-11-22T02:51:48.639Z">2025年11月21日</time>
+    <a href="https://matters.town/@qish" class="comment-author" rel="nofollow noopener" target="_blank">為人而建</a>
+    <time class="comment-date" datetime="2025-11-18T02:55:07.691Z">2025年11月17日</time>
   </div>
-  <div class="comment-body"><p>我喜欢这篇文章。</p><p>人的破坏力是这样的惊人。仅仅是红杉的年龄和高度就让我油然生出一种畏惧和敬意，历经那么久长得那么高，砍掉多可惜！如果千年红杉会说话，它们会对我们说什么呢？还有什么好说的吗？</p></div>
-  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDoxNjA3Mzc0">
+  <div class="comment-body"><p>不仅是关于树的命运，更是关于人类文明与自然界关系的寓言。🙂‍↕️</p></div>
+</li><li class="comment-item" id="comment-Q29tbWVudDoxNjA1OTQy">
   <div class="comment-header">
-    <a href="https://matters.town/@guo" class="comment-author" rel="nofollow noopener" target="_blank">刘果</a>
-    <time class="comment-date" datetime="2025-11-22T13:13:46.276Z">2025年11月22日</time>
+    <a href="https://matters.town/@robert" class="comment-author" rel="nofollow noopener" target="_blank">Robert</a>
+    <time class="comment-date" datetime="2025-11-17T01:20:18.402Z">2025年11月16日</time>
   </div>
-  <div class="comment-body"><p><a href="/@abetterself">@章芮芮-----为什么？</a> 也许它会说，慢慢来！</p></div>
-</li>
-  </ol>
-</li><li class="comment-item" id="comment-Q29tbWVudDoxNjA3NjI0">
-  <div class="comment-header">
-    <a href="https://matters.town/@444455dd" class="comment-author" rel="nofollow noopener" target="_blank">你所瀏覽的都在污染你</a>
-    <time class="comment-date" datetime="2025-11-24T04:20:19.118Z">2025年11月23日</time>
-  </div>
-  <div class="comment-body"><p>我很愛站在百年老樹之下，我們的那些煩惱在他們百年裏只是鼻屎大的塵埃。</p><p>樹的療癒力量是驚人的，尤其是老樹。</p></div>
-  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDoxNjA3NzU3">
-  <div class="comment-header">
-    <a href="https://matters.town/@guo" class="comment-author" rel="nofollow noopener" target="_blank">刘果</a>
-    <time class="comment-date" datetime="2025-11-24T15:15:24.832Z">2025年11月24日</time>
-  </div>
-  <div class="comment-body"><p><a href="/@444455dd">@寫，日子</a> 是啊，人活在不只有人的世界裡時，變得自由很多。</p></div>
-</li>
-  </ol>
-</li><li class="comment-item" id="comment-Q29tbWVudDoxNjA3NzU5">
-  <div class="comment-header">
-    <a href="https://matters.town/@capybara" class="comment-author" rel="nofollow noopener" target="_blank">快樂卡皮巴拉</a>
-    <time class="comment-date" datetime="2025-11-24T18:10:50.237Z">2025年11月24日</time>
-  </div>
-  <div class="comment-body"><p>會的 萬物有靈</p></div>
+  <div class="comment-body"><p>孤独产生了幻觉</p></div>
 </li></ol>
-    <form class="comment-form" id="moss-comment-form">
-  <textarea id="moss-comment-text" name="content" required rows="2" placeholder="留下你的想法"></textarea>
-  <div class="comment-form-meta">
-    <input type="text" name="name" class="comment-field" placeholder="名字" required>
-    <input type="email" name="email" class="comment-field" placeholder="邮箱（选填）">
-    <input type="url" name="link" class="comment-field" placeholder="网站（选填）">
-    <button type="submit" class="comment-form-submit">回复</button>
-  </div>
-  <div class="comment-form-status" id="moss-comment-status"></div>
-</form>
     <script>(function() {
   var form = document.getElementById('moss-comment-form');
   if (!form) return;
@@ -583,19 +624,21 @@ a.comment-author:hover {
       if (!commentList) {
         commentList = document.createElement('ol');
         commentList.className = 'comment-list';
-        form.before(commentList);
+        form.after(commentList);
       }
 
       var li = document.createElement('li');
       li.className = 'comment-item';
-      var now = new Date().toLocaleDateString('en-US', {year:'numeric',month:'short',day:'numeric'});
+      li.id = 'comment-' + data.id;
+      var now = new Date().toLocaleDateString('zh-CN', {year:'numeric',month:'short',day:'numeric'});
       var authorName = body.name || 'Anonymous';
       li.innerHTML = '<div class="comment-header">'
         + '<span class="comment-author">' + authorName.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;') + '</span>'
         + '<time class="comment-date">' + now + '</time>'
         + '</div>'
         + '<div class="comment-body"><p>' + body.content.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;') + '</p></div>';
-      commentList.appendChild(li);
+      // Newest first: prepend so the just-submitted comment appears at the top
+      commentList.insertBefore(li, commentList.firstChild);
 
       form.elements['content'].value = '';
       if (textarea) { textarea.style.height = 'auto'; }
@@ -609,6 +652,91 @@ a.comment-author:hover {
       }
     });
   });
+
+  /*
+   * Stale-while-revalidate / progressive enhancement for comments.
+   *
+   * Static HTML already contains all comments known at build time, so the page
+   * is immediately readable without JS. When the user opens the comment section
+   * (<details> toggle), we fetch comments from the Artalk server that may have
+   * been posted after the last build.
+   *
+   * Why date-based filtering instead of offset/count:
+   *   Comments can be deleted or moderated between builds. A purely offset-based
+   *   approach would miss or duplicate entries. By comparing each comment's
+   *   created_at against the build timestamp (data-built-at), we robustly find
+   *   only the comments that are genuinely new.
+   *
+   * Three-layer deduplication:
+   *   1. Date boundary  — stop iterating when we hit a comment older than the
+   *      build timestamp (comments are sorted newest-first).
+   *   2. ID guard       — skip any comment whose DOM node already exists
+   *      (handles edge cases where build-time and fetch overlap).
+   *   3. Fire-once listener — the toggle handler removes itself after the first
+   *      invocation so we never fetch twice.
+   *
+   * Trust model: Artalk performs server-side HTML sanitization, so we use
+   * innerHTML for comment content (same as the static render path).
+   */
+  var section = document.getElementById('moss-comments');
+  var builtAtStr = section && section.getAttribute('data-built-at');
+  var builtAtMs = builtAtStr ? new Date(builtAtStr).getTime() : 0;
+  var details = section && section.querySelector('details');
+
+  if (details && builtAtMs) {
+    function onToggle() {
+      if (!details.open) return;
+      details.removeEventListener('toggle', onToggle);
+
+      fetch('https://api.moss.host/comment/api/v2/comments?page_key=066334b9&site_name=liu-guo.com&flat_mode=true&sort_by=date_desc&limit=100')
+        .then(function(res) { return res.ok ? res.json() : null; })
+        .then(function(json) {
+          if (!json) return;
+          var list = (json.data && json.data.comments) || [];
+          var added = 0;
+          // Anchor = first build-time comment. Hydrated comments go before it
+          // to maintain newest-first order (API returns date_desc).
+          var anchor = commentList ? commentList.firstChild : null;
+          for (var i = 0; i < list.length; i++) {
+            var c = list[i];
+            if (new Date(c.created_at).getTime() <= builtAtMs) break;
+            if (document.getElementById('comment-' + c.id)) continue;
+
+            var li = document.createElement('li');
+            li.className = 'comment-item';
+            li.id = 'comment-' + c.id;
+            var authorName = (c.nick || 'Anonymous').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+            var dateStr = new Date(c.created_at).toLocaleDateString('zh-CN', {year:'numeric',month:'short',day:'numeric'});
+            li.innerHTML = '<div class="comment-header">'
+              + '<span class="comment-author">' + authorName + '</span>'
+              + '<time class="comment-date">' + dateStr + '</time>'
+              + '</div>'
+              + '<div class="comment-body">' + c.content + '</div>';
+
+            if (!commentList) {
+              commentList = document.createElement('ol');
+              commentList.className = 'comment-list';
+              var formEl = document.getElementById('moss-comment-form');
+              if (formEl) formEl.after(commentList);
+              anchor = null;
+            }
+            // Newest first: insert before the anchor (first build-time comment)
+            commentList.insertBefore(li, anchor);
+            added++;
+          }
+
+          if (added > 0) {
+            var total = (commentList ? commentList.children.length : 0);
+            var summarySpan = details.querySelector('summary span');
+            if (summarySpan) {
+              summarySpan.textContent = total === 1 ? '1条评论' : '{n}条评论'.replace('{n}', total);
+            }
+          }
+        })
+        .catch(function() { /* silent — static comments still visible */ });
+    }
+    details.addEventListener('toggle', onToggle);
+  }
 })();</script>
   </details>
 </section>

@@ -11,7 +11,7 @@
     <meta property="og:site_name" content="刘果">
     <meta property="og:description" content="最近在西藏之家的图书馆里，找到了一本小书，Arthur Wright（芮沃寿）的 Buddhism in Chinese History（《中国历史中的佛教》）。芮沃寿是耶鲁著名的历史学家，与哈佛的费正清同为美国学术界中国研究的奠基人。...">
     <meta property="article:published_time" content="2025-05-08T21:10:51.834Z">
-    <meta property="og:image" content="assets/2de0c228-36c8-47ec-9f22-000af45b1943.jpg">
+    <meta property="og:image" content="../../assets/2de0c228-36c8-47ec-9f22-000af45b1943.jpg">
     <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -20,7 +20,7 @@
   "url": "/articles/中国历史中的佛教-笔记/",
   "description": "最近在西藏之家的图书馆里，找到了一本小书，Arthur Wright（芮沃寿）的 Buddhism in Chinese History（《中国历史中的佛教》）。芮沃寿是耶鲁著名的历史学家，与哈佛的费正清同为美国学术界中国研究的奠基人。...",
   "datePublished": "2025-05-08T21:10:51.834Z",
-  "image": "assets/2de0c228-36c8-47ec-9f22-000af45b1943.jpg",
+  "image": "../../assets/2de0c228-36c8-47ec-9f22-000af45b1943.jpg",
   "publisher": {
     "@type": "Organization",
     "name": "刘果"
@@ -31,13 +31,58 @@
     <link rel="alternate" type="application/rss+xml" title="RSS" href="../../feed.xml">
     
     
-    <link rel="stylesheet" href="../../style.css?v=dee9f975d540ccf3">
-<style class="moss-comments-style">/* ==========================================================================
+    <link rel="stylesheet" href="../../style.css?v=2d0441b1384f5323">
+<style>/* ==========================================================================
    moss Comments Plugin - Styles
 
    Collapsible comment section with solid thread borders,
    underline-style form inputs, and responsive grid layout.
    Uses CSS custom properties from moss default.css.
+   ========================================================================== */
+
+/* ==========================================================================
+   Design Decision Record: Flattened Comment Form
+   --------------------------------------------------------------------------
+
+   Research found that the best comment sections treat comments as editorial
+   content on the same surface as the article, not as a separate widget.
+
+   Six principles guide the comment form styling:
+
+   P1. One surface
+       Remove the tinted card background from .comment-form. Form and
+       comments share the page background. Modeled after NYT/Guardian
+       "Letters to the Editor" — comments as editorial content, same surface.
+
+   P2. Border language consistency
+       Comments use border-bottom: 1px solid. The form uses the same 1px
+       border as its boundary, not a background fill + border-radius.
+
+   P3. Typographic continuity
+       Placeholder text, field labels, comment body, author names — same
+       type family, proportional sizes. Follows iA design philosophy
+       (ia.net): "web design is 95% typography", content-first.
+
+   P4. The form is the first comment
+       Visually, the compose area reads like an empty comment slot. Same
+       padding rhythm, same width, same vertical spacing as comment items.
+       Inspired by CSS-Tricks threading (css-tricks.com) — forms inline in
+       thread, not separate cards.
+
+   P5. Distinguish through state, not surface
+       The textarea is interactive because of cursor/focus behavior, not
+       because it sits on a different background. Focus states (accent
+       underline) provide sufficient affordance.
+
+   P6. Density matching
+       Spacing between form elements echoes spacing between comment items.
+
+   References:
+   - NYT/Guardian "Letters to the Editor" model
+   - Ahmad Shadeed's comment component (ishadeed.com)
+   - CSS-Tricks threading (css-tricks.com)
+   - iA design philosophy (ia.net)
+   - ResultFirst 2026 trends — "stripping away non-essential frills"
    ========================================================================== */
 
 /* Comment Section */
@@ -58,7 +103,7 @@
   cursor: pointer;
   list-style: none;
   font-size: var(--moss-font-sm, 1rem);
-  color: var(--moss-text-muted, #8a8580);
+  color: var(--moss-color-muted, #8a8580);
   user-select: none;
   padding: 0;
 }
@@ -73,20 +118,17 @@
 }
 
 .comments-toggle:hover {
-  color: var(--moss-text-primary, #2c2825);
+  color: var(--moss-color-text, #2c2825);
 }
 
-/* Chevron indicator */
-.comments-toggle::after {
-  content: "▸";
-  margin-left: auto;
-  font-size: 1.25rem;
-  color: var(--moss-text-secondary, #5d5853);
-  transition: transform 0.15s ease;
+/* Chevron indicator — points right when collapsed, down when expanded */
+.comments-toggle .comments-chevron {
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
 }
 
-details[open] > .comments-toggle::after {
-  content: "▾";
+details[open] > .comments-toggle .comments-chevron {
+  transform: rotate(90deg);
 }
 
 /* Space between summary and content when open */
@@ -128,24 +170,24 @@ details[open] > .comments-toggle {
 .comment-author {
   font-weight: 480;
   font-size: var(--moss-font-sm, 1rem);
-  color: var(--moss-text-primary, #2c2825);
+  color: var(--moss-color-text, #2c2825);
   text-decoration: none;
 }
 
 a.comment-author:hover {
-  color: var(--moss-accent, #2d5a2d);
+  color: var(--moss-color-accent, #2d5a2d);
 }
 
 .comment-date {
   font-size: 0.875rem;
-  color: var(--moss-text-muted, #8a8580);
+  color: var(--moss-color-muted, #8a8580);
 }
 
 /* Comment Body */
 .comment-body {
-  font-size: var(--moss-font-base, 1.125rem);
+  font-size: var(--moss-font-size, 1.125rem);
   line-height: 1.7;
-  color: var(--moss-text-primary, #2c2825);
+  color: var(--moss-color-text, #2c2825);
 }
 
 .comment-body p {
@@ -158,15 +200,20 @@ a.comment-author:hover {
 
 .comment-body blockquote {
   font-size: inherit;
+  font-style: normal;
+  border-left: 3px solid var(--moss-color-muted, #8a8580);
+  margin: var(--moss-space-xs, 0.5rem) 0 var(--moss-space-xs, 0.5rem) 1rem;
+  padding-left: var(--moss-space-sm, 1rem);
+  color: var(--moss-text-secondary, #5d5853);
 }
 
 .comment-body a {
-  color: var(--moss-text-primary, #2c2825);
+  color: var(--moss-color-text, #2c2825);
   text-decoration: underline;
 }
 
 .comment-body a:hover {
-  color: var(--moss-accent, #2d5a2d);
+  color: var(--moss-color-accent, #2d5a2d);
 }
 
 /* ==========================================================================
@@ -189,10 +236,8 @@ a.comment-author:hover {
    ========================================================================== */
 
 .comment-form {
-  background: var(--moss-background-alt, #f4f1ec);
-  border-radius: 8px;
-  padding: 1.25rem;
-  margin-top: var(--moss-space-lg, 2rem);
+  padding: var(--moss-space-md, 1.5rem) 0;
+  margin: 0 0 var(--moss-space-md, 1.5rem) 0;
 }
 
 /* Textarea — underline style */
@@ -204,9 +249,9 @@ a.comment-author:hover {
   border: none;
   border-bottom: 1px solid var(--moss-border-medium, #d1cdc4);
   font-family: inherit;
-  font-size: var(--moss-font-base, 1.125rem);
+  font-size: var(--moss-font-size, 1.125rem);
   line-height: 1.7;
-  color: var(--moss-text-primary, #2c2825);
+  color: var(--moss-color-text, #2c2825);
   background: transparent;
   resize: none;
   overflow: hidden;
@@ -216,11 +261,11 @@ a.comment-author:hover {
 
 .comment-form textarea:focus {
   outline: none;
-  border-bottom: 2px solid var(--moss-accent, #2d5a2d);
+  border-bottom: 2px solid var(--moss-color-accent, #2d5a2d);
 }
 
 .comment-form textarea::placeholder {
-  color: var(--moss-text-muted, #8a8580);
+  color: var(--moss-color-muted, #8a8580);
 }
 
 /* ==========================================================================
@@ -243,7 +288,7 @@ a.comment-author:hover {
   padding: 0.5rem 0;
   font-family: inherit;
   font-size: var(--moss-font-sm, 1rem);
-  color: var(--moss-text-primary, #2c2825);
+  color: var(--moss-color-text, #2c2825);
   box-sizing: border-box;
   transition: border-color 0.15s ease;
   min-width: 0;
@@ -251,11 +296,11 @@ a.comment-author:hover {
 
 .comment-field:focus {
   outline: none;
-  border-bottom: 2px solid var(--moss-accent, #2d5a2d);
+  border-bottom: 2px solid var(--moss-color-accent, #2d5a2d);
 }
 
 .comment-field::placeholder {
-  color: var(--moss-text-muted, #8a8580);
+  color: var(--moss-color-muted, #8a8580);
 }
 
 /* ==========================================================================
@@ -267,11 +312,11 @@ a.comment-author:hover {
   align-items: center;
   justify-content: center;
   padding: 0.5rem 1.25rem;
-  background: color-mix(in srgb, var(--moss-accent, #2d5a2d) 8%, transparent);
+  background: color-mix(in srgb, var(--moss-color-accent, #2d5a2d) 8%, transparent);
   border: none;
   border-radius: 6px;
   cursor: pointer;
-  color: var(--moss-accent, #2d5a2d);
+  color: var(--moss-color-accent, #2d5a2d);
   font-family: inherit;
   font-size: var(--moss-font-sm, 1rem);
   font-weight: 480;
@@ -279,11 +324,11 @@ a.comment-author:hover {
 }
 
 .comment-form-submit:hover {
-  background: color-mix(in srgb, var(--moss-accent, #2d5a2d) 15%, transparent);
+  background: color-mix(in srgb, var(--moss-color-accent, #2d5a2d) 15%, transparent);
 }
 
 .comment-form-submit:focus {
-  outline: 2px solid var(--moss-accent, #2d5a2d);
+  outline: 2px solid var(--moss-color-accent, #2d5a2d);
   outline-offset: 2px;
 }
 
@@ -326,7 +371,7 @@ a.comment-author:hover {
 }
 
 .comment-form-status--success {
-  color: var(--moss-accent, #2d5a2d);
+  color: var(--moss-color-accent, #2d5a2d);
 }
 
 /* ==========================================================================
@@ -368,6 +413,10 @@ a.comment-author:hover {
   flex: 1;
 }
 
+.footer-subscribe-form .moss-btn {
+  font-size: inherit;
+}
+
 @media (max-width: 48rem) {
   .footer-subscribe-form .moss-input {
     width: 10ch;
@@ -399,7 +448,7 @@ a.comment-author:hover {
 <p>也许其他有强烈自我认同感的文化，甚至个人，都是类似的：危机与困顿，往往是创新和成长的契机。文化的边界永远是模糊和流动的，危机与平顺，则成为了边界流动的节律。近代中国面临的危机，也正是这样的成长契机，使得自然科学、社会科学、民主观念、以及共产主义能够传入并扎根。而当下中国重回世界强国之列，也许意味着这不再是新思想扎根和发展的时代，而是重塑自洽整体的时代。不过，正如芮沃寿所言，历史不会以一种可预测的方式重复。</p>
 <p>北京大学出版社曾在2017年出版了中译本《中国历史中的佛教》，但因为我手边并没有该译本，以下摘抄中未能参考，但通过其他资料查证了相应史料。</p>
 <p><img src="../../assets/2de0c228-36c8-47ec-9f22-000af45b1943.jpg" data-placeholder-src="../../assets/2de0c228-36c8-47ec-9f22-000af45b1943.jpg" width="800" height="600" loading="lazy" alt="" /></p>
-<h2>一世纪：扎根与发展</h2>
+<h2 id="一世纪：扎根与发展">一世纪：扎根与发展</h2>
 <p>芮沃寿在分析中国历史时借用了罗伯特·雷德菲尔德的理论，将精英阶层与农民阶层分开看待。佛教传入的过程，可以看成是这两层文化之间的动态。</p>
 <blockquote>
 <p>这两个社会阶层的文化分别可称作“大传统”和“小传统”。前者是识字的、理性的、自觉的，涵盖了艺术、哲学和制度形式中社会理想的继承与发展。后者则是不自觉、不批判的民间传统，包含世代相传的行为和信仰规范。</p>
@@ -449,7 +498,7 @@ a.comment-author:hover {
 <blockquote>
 <p>一派认为悟道是一瞬间的彻底与全面的开悟；另一派则认为悟道需要通过漫长的、多阶段的修行和冥想。禅宗的顿悟派与本土道教传统关系更为密切，但无论哪一派，都可以看作是佛教与道教思想复杂结合的产物。对语言的怀疑、丰富的具体隐喻与类比、对悖论的热爱、对书本的轻视、对直接且往往无言的心灵交流的信仰、以及认为与自然密切接触的生活有助于开悟的观念，所有这些都深受道教影响。其实，禅宗可以被视为中国传统思想对印度佛教文本冗长、繁琐的逻辑论证的一种反应。尤其在占主导地位的顿悟派中，它提倡一种救赎理想，呼应了中国持久的信念，相信人可以通过自身努力在一生中达到巅峰，这是与印度的种姓制度格格不入的。在儒家传统中，这种信念体现为“人皆可以为尧舜”；而在道教中，则表现为无名匠人的故事，其对“道”的把握超越了社会地位中的上位者。</p>
 </blockquote>
-<h2>八世纪：裂解与衰退</h2>
+<h2 id="八世纪：裂解与衰退">八世纪：裂解与衰退</h2>
 <p>到了八世纪的盛唐，佛教已在中国完全扎根，渗透到了帝国普通百姓和精英阶层生活的方方面面。然而从九世纪开始，佛教开始缓慢衰退。其原因内外皆有。</p>
 <blockquote>
 <p>印度佛教的衰落导致流入中国的新思想逐渐减少，并在十一世纪完全中断。755年至763年，唐朝因安史之乱而遭受巨大打击。此次叛乱使统治家族蒙羞、国家贫困，并间接导致地方势力的崛起，进一步削弱了中央王朝。叛乱及其后果削弱了唐朝的自信心，繁盛时代的世界主义让位于文化上的防御性，偶尔演变为排外情绪。最终，来自中亚的威胁以及回鹘与突厥的频繁干预进一步恶化了帝国局势。</p>
@@ -491,7 +540,7 @@ a.comment-author:hover {
 <blockquote>
 <p>在故事与戏剧中，它是一种现成的情节装置，用来解释意外事件，以及为何善未得报而恶却繁茂如青松。在所有阶层的日常思维中，业力成为一种普遍的因果报应解释，这种解释的本质可以追溯到佛教传播之前。在佛教之前，神的报应被认为降临于整个家族；佛教引入了基于个人的业力因果观念。最终，这两者结合成了一种自宋代以来普遍流行的观点，即神的报应既作用于家族，也通过生生世世的因果链条发生。</p>
 </blockquote>
-<h2>二十世纪：黄昏</h2>
+<h2 id="二十世纪：黄昏">二十世纪：黄昏</h2>
 <p>在之后的历史中，佛教裂解、演变，整合进入了中国本土文化的方方面面，成为中国人日常生活的一部分。一直到十九世纪末、二十世纪初出现的巨大危机，人们才试图将佛教作为一个独立传统，重新审视和定位。</p>
 <blockquote>
 <p>在现代危机中，中国社会受到的一种批判，是知识分子阶层的新儒学生活方式，与农民大众佛道混合的信仰之间隔着巨大的鸿沟。面对社会日益加深的危机，现代中国的观察者将解决方案寄希望于现代化的西方，认为西方国家因共同信仰而实现了社会的团结与活力。对于曾一度深入研究佛教的改革家康有为（公元1858-1927），解决之道在于重塑儒学，将之作为现代化国家的宗教。另一些人则转向中国的佛教遗产。</p>
@@ -520,7 +569,7 @@ a.comment-author:hover {
 <p>这一观点在20年代的反宗教运动中得到了集中体现，其中的一个观点是，西方通过传教士试图让强加给中国原本已经摆脱的宗教包袱。不平等条约中包含了传播基督教的权利，受到了各方的反复批评和谴责。日本在其强加于中国的不平等条约中，也包含了派遣佛教传教士的权利。1925年泰戈尔访华，宣扬“东方精神性优于西方物质主义”，被时人批评为东方宗教无用的活化石，而这种无效性导致了印度的殖民化以及中国的半殖民化。他呼吁重开中印之间已经荒草丛生的小路，以共同的精神性联合两国，却无人响应。不管是泰戈尔还是佛教改革者的信息，都未能提供拯救中国的具体方案。</p>
 <p>正如我们所见，自隋唐以来，中国政府就利用佛教作为外交政策的工具，从满清王朝利用喇嘛教，一直到毛泽东在亚洲的国际关系策略上使用佛教。然而，也有一些中国人真诚地认为，佛教作为超民族的信仰，能够将东亚各国团结在一起，共同抵抗西方并解决共同的问题。尽管泰戈尔的精神泛亚洲主义被拒绝，但中国佛教团体一直努力建立自己的中国式佛教国际主义。然而，当他们宣扬佛教的国际性时，却遭遇了两种形式的强大抵抗。一种是普遍的排外主义，在近一个世纪的危机中由外国压力和中国的挫折感所产生的；另一种则是1919年后日益高涨的民族主义，将越来越多的中国人团结在排外的民族认同之下。当日本出于自身帝国利益，推动一种旨在铺平征服道路、驯服被征服者的佛教国际主义时，佛教在爱国和民族主义的中国人眼中变得极其可憎。他们不仅对日本利用佛教作为心理战工具感到愤怒，还注意到日本“现代化”的佛教僧侣对专制且侵略性国家意志的服从。从中他们得出了结论，认为中国现代化的佛教僧侣也可能成为专制与反动的工具；而这一结论是否公正，已经并不重要。</p>
 </blockquote>
-<h2>佛教历史作为视角</h2>
+<h2 id="佛教历史作为视角">佛教历史作为视角</h2>
 <p>佛教在中国漫长的发展历史中，我们能够学到什么，描绘出关于中华文明什么样的特质？</p>
 <blockquote>
 <p>首先，我们应当注意到，中国人长期坚持的一个理想，是把自己的文化视为一个完整且自洽的整体。尽管历史上充满了与这一理想相矛盾的现实，但中国人却一次又一次地回到这个理想上来，追求一个由统一思想体系支撑并加以合理化的单一社会、经济与政治秩序。这一思想体系既与自身一致，也与其所支撑的制度保持一致。汉朝的秩序曾接近这一理想，而在隋唐时期，佛教也或多或少被成功整合进这一“恢复汉制”的努力之中。然而，随着社会环境的变化，宋代的思想体系拒绝将佛教作为一个独立传统，认为它违背了中国古代关于整体文明的理想，而仅仅采纳了其中与这一理想相容的部分。最近，我们看到了一种比中国历史上任何一次都更全面、更极权的整合，再次由国家强制推行的正统思想，支撑并合理化了一套制度秩序，而任何与官方认定思想体系不一致的宗教或世俗思想，都被排斥或压制。</p>
@@ -532,16 +581,9 @@ a.comment-author:hover {
 </blockquote>
 
         
-<section class="moss-comments" id="moss-comments">
+<section class="moss-comments" id="moss-comments" data-built-at="2026-03-06T16:31:57.355Z">
   <details>
-    <summary class="comments-toggle"><svg class="comments-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></svg><span>1条评论</span></summary>
-    <ol class="comment-list"><li class="comment-item" id="comment-Q29tbWVudDoxNTUyNDAz">
-  <div class="comment-header">
-    <a href="https://matters.town/@robert" class="comment-author" rel="nofollow noopener" target="_blank">Robert</a>
-    <time class="comment-date" datetime="2025-05-10T00:02:06.619Z">2025年5月9日</time>
-  </div>
-  <div class="comment-body"><p>在美国，我遇到许多研究佛教的人，也看见佛教逐渐融入城市居民的心智，成为身心灵文化的一部分。追溯其短短历史，我发美国的佛教影响多来自于日本</p><p>最后一句，当为~我发现~少了一个~现~字</p></div>
-</li></ol>
+    <summary class="comments-toggle"><svg class="comments-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></svg><span>1条评论</span><svg class="comments-chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></summary>
     <form class="comment-form" id="moss-comment-form">
   <textarea id="moss-comment-text" name="content" required rows="2" placeholder="留下你的想法"></textarea>
   <div class="comment-form-meta">
@@ -552,6 +594,13 @@ a.comment-author:hover {
   </div>
   <div class="comment-form-status" id="moss-comment-status"></div>
 </form>
+    <ol class="comment-list"><li class="comment-item" id="comment-Q29tbWVudDoxNTUyNDAz">
+  <div class="comment-header">
+    <a href="https://matters.town/@robert" class="comment-author" rel="nofollow noopener" target="_blank">Robert</a>
+    <time class="comment-date" datetime="2025-05-10T00:02:06.619Z">2025年5月9日</time>
+  </div>
+  <div class="comment-body"><p>在美国，我遇到许多研究佛教的人，也看见佛教逐渐融入城市居民的心智，成为身心灵文化的一部分。追溯其短短历史，我发美国的佛教影响多来自于日本</p><p>最后一句，当为~我发现~少了一个~现~字</p></div>
+</li></ol>
     <script>(function() {
   var form = document.getElementById('moss-comment-form');
   if (!form) return;
@@ -613,19 +662,21 @@ a.comment-author:hover {
       if (!commentList) {
         commentList = document.createElement('ol');
         commentList.className = 'comment-list';
-        form.before(commentList);
+        form.after(commentList);
       }
 
       var li = document.createElement('li');
       li.className = 'comment-item';
-      var now = new Date().toLocaleDateString('en-US', {year:'numeric',month:'short',day:'numeric'});
+      li.id = 'comment-' + data.id;
+      var now = new Date().toLocaleDateString('zh-CN', {year:'numeric',month:'short',day:'numeric'});
       var authorName = body.name || 'Anonymous';
       li.innerHTML = '<div class="comment-header">'
         + '<span class="comment-author">' + authorName.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;') + '</span>'
         + '<time class="comment-date">' + now + '</time>'
         + '</div>'
         + '<div class="comment-body"><p>' + body.content.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;') + '</p></div>';
-      commentList.appendChild(li);
+      // Newest first: prepend so the just-submitted comment appears at the top
+      commentList.insertBefore(li, commentList.firstChild);
 
       form.elements['content'].value = '';
       if (textarea) { textarea.style.height = 'auto'; }
@@ -639,6 +690,91 @@ a.comment-author:hover {
       }
     });
   });
+
+  /*
+   * Stale-while-revalidate / progressive enhancement for comments.
+   *
+   * Static HTML already contains all comments known at build time, so the page
+   * is immediately readable without JS. When the user opens the comment section
+   * (<details> toggle), we fetch comments from the Artalk server that may have
+   * been posted after the last build.
+   *
+   * Why date-based filtering instead of offset/count:
+   *   Comments can be deleted or moderated between builds. A purely offset-based
+   *   approach would miss or duplicate entries. By comparing each comment's
+   *   created_at against the build timestamp (data-built-at), we robustly find
+   *   only the comments that are genuinely new.
+   *
+   * Three-layer deduplication:
+   *   1. Date boundary  — stop iterating when we hit a comment older than the
+   *      build timestamp (comments are sorted newest-first).
+   *   2. ID guard       — skip any comment whose DOM node already exists
+   *      (handles edge cases where build-time and fetch overlap).
+   *   3. Fire-once listener — the toggle handler removes itself after the first
+   *      invocation so we never fetch twice.
+   *
+   * Trust model: Artalk performs server-side HTML sanitization, so we use
+   * innerHTML for comment content (same as the static render path).
+   */
+  var section = document.getElementById('moss-comments');
+  var builtAtStr = section && section.getAttribute('data-built-at');
+  var builtAtMs = builtAtStr ? new Date(builtAtStr).getTime() : 0;
+  var details = section && section.querySelector('details');
+
+  if (details && builtAtMs) {
+    function onToggle() {
+      if (!details.open) return;
+      details.removeEventListener('toggle', onToggle);
+
+      fetch('https://api.moss.host/comment/api/v2/comments?page_key=6f3f7f47&site_name=liu-guo.com&flat_mode=true&sort_by=date_desc&limit=100')
+        .then(function(res) { return res.ok ? res.json() : null; })
+        .then(function(json) {
+          if (!json) return;
+          var list = (json.data && json.data.comments) || [];
+          var added = 0;
+          // Anchor = first build-time comment. Hydrated comments go before it
+          // to maintain newest-first order (API returns date_desc).
+          var anchor = commentList ? commentList.firstChild : null;
+          for (var i = 0; i < list.length; i++) {
+            var c = list[i];
+            if (new Date(c.created_at).getTime() <= builtAtMs) break;
+            if (document.getElementById('comment-' + c.id)) continue;
+
+            var li = document.createElement('li');
+            li.className = 'comment-item';
+            li.id = 'comment-' + c.id;
+            var authorName = (c.nick || 'Anonymous').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+            var dateStr = new Date(c.created_at).toLocaleDateString('zh-CN', {year:'numeric',month:'short',day:'numeric'});
+            li.innerHTML = '<div class="comment-header">'
+              + '<span class="comment-author">' + authorName + '</span>'
+              + '<time class="comment-date">' + dateStr + '</time>'
+              + '</div>'
+              + '<div class="comment-body">' + c.content + '</div>';
+
+            if (!commentList) {
+              commentList = document.createElement('ol');
+              commentList.className = 'comment-list';
+              var formEl = document.getElementById('moss-comment-form');
+              if (formEl) formEl.after(commentList);
+              anchor = null;
+            }
+            // Newest first: insert before the anchor (first build-time comment)
+            commentList.insertBefore(li, anchor);
+            added++;
+          }
+
+          if (added > 0) {
+            var total = (commentList ? commentList.children.length : 0);
+            var summarySpan = details.querySelector('summary span');
+            if (summarySpan) {
+              summarySpan.textContent = total === 1 ? '1条评论' : '{n}条评论'.replace('{n}', total);
+            }
+          }
+        })
+        .catch(function() { /* silent — static comments still visible */ });
+    }
+    details.addEventListener('toggle', onToggle);
+  }
 })();</script>
   </details>
 </section>

@@ -11,7 +11,7 @@
     <meta property="og:site_name" content="刘果">
     <meta property="og:description" content="这是英国作家 E.M. Forster 发表于1909的短篇小说。原文版权已进入公共领域，中文由我译出。...">
     <meta property="article:published_time" content="2025-05-01T15:30:44.072Z">
-    <meta property="og:image" content="assets/57566d1a-9394-4f5a-a429-8314a7b664ef.jpg">
+    <meta property="og:image" content="../../assets/57566d1a-9394-4f5a-a429-8314a7b664ef.jpg">
     <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -20,7 +20,7 @@
   "url": "/articles/机器停转/",
   "description": "这是英国作家 E.M. Forster 发表于1909的短篇小说。原文版权已进入公共领域，中文由我译出。...",
   "datePublished": "2025-05-01T15:30:44.072Z",
-  "image": "assets/57566d1a-9394-4f5a-a429-8314a7b664ef.jpg",
+  "image": "../../assets/57566d1a-9394-4f5a-a429-8314a7b664ef.jpg",
   "publisher": {
     "@type": "Organization",
     "name": "刘果"
@@ -31,13 +31,58 @@
     <link rel="alternate" type="application/rss+xml" title="RSS" href="../../feed.xml">
     
     
-    <link rel="stylesheet" href="../../style.css?v=dee9f975d540ccf3">
-<style class="moss-comments-style">/* ==========================================================================
+    <link rel="stylesheet" href="../../style.css?v=2d0441b1384f5323">
+<style>/* ==========================================================================
    moss Comments Plugin - Styles
 
    Collapsible comment section with solid thread borders,
    underline-style form inputs, and responsive grid layout.
    Uses CSS custom properties from moss default.css.
+   ========================================================================== */
+
+/* ==========================================================================
+   Design Decision Record: Flattened Comment Form
+   --------------------------------------------------------------------------
+
+   Research found that the best comment sections treat comments as editorial
+   content on the same surface as the article, not as a separate widget.
+
+   Six principles guide the comment form styling:
+
+   P1. One surface
+       Remove the tinted card background from .comment-form. Form and
+       comments share the page background. Modeled after NYT/Guardian
+       "Letters to the Editor" — comments as editorial content, same surface.
+
+   P2. Border language consistency
+       Comments use border-bottom: 1px solid. The form uses the same 1px
+       border as its boundary, not a background fill + border-radius.
+
+   P3. Typographic continuity
+       Placeholder text, field labels, comment body, author names — same
+       type family, proportional sizes. Follows iA design philosophy
+       (ia.net): "web design is 95% typography", content-first.
+
+   P4. The form is the first comment
+       Visually, the compose area reads like an empty comment slot. Same
+       padding rhythm, same width, same vertical spacing as comment items.
+       Inspired by CSS-Tricks threading (css-tricks.com) — forms inline in
+       thread, not separate cards.
+
+   P5. Distinguish through state, not surface
+       The textarea is interactive because of cursor/focus behavior, not
+       because it sits on a different background. Focus states (accent
+       underline) provide sufficient affordance.
+
+   P6. Density matching
+       Spacing between form elements echoes spacing between comment items.
+
+   References:
+   - NYT/Guardian "Letters to the Editor" model
+   - Ahmad Shadeed's comment component (ishadeed.com)
+   - CSS-Tricks threading (css-tricks.com)
+   - iA design philosophy (ia.net)
+   - ResultFirst 2026 trends — "stripping away non-essential frills"
    ========================================================================== */
 
 /* Comment Section */
@@ -58,7 +103,7 @@
   cursor: pointer;
   list-style: none;
   font-size: var(--moss-font-sm, 1rem);
-  color: var(--moss-text-muted, #8a8580);
+  color: var(--moss-color-muted, #8a8580);
   user-select: none;
   padding: 0;
 }
@@ -73,20 +118,17 @@
 }
 
 .comments-toggle:hover {
-  color: var(--moss-text-primary, #2c2825);
+  color: var(--moss-color-text, #2c2825);
 }
 
-/* Chevron indicator */
-.comments-toggle::after {
-  content: "▸";
-  margin-left: auto;
-  font-size: 1.25rem;
-  color: var(--moss-text-secondary, #5d5853);
-  transition: transform 0.15s ease;
+/* Chevron indicator — points right when collapsed, down when expanded */
+.comments-toggle .comments-chevron {
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
 }
 
-details[open] > .comments-toggle::after {
-  content: "▾";
+details[open] > .comments-toggle .comments-chevron {
+  transform: rotate(90deg);
 }
 
 /* Space between summary and content when open */
@@ -128,24 +170,24 @@ details[open] > .comments-toggle {
 .comment-author {
   font-weight: 480;
   font-size: var(--moss-font-sm, 1rem);
-  color: var(--moss-text-primary, #2c2825);
+  color: var(--moss-color-text, #2c2825);
   text-decoration: none;
 }
 
 a.comment-author:hover {
-  color: var(--moss-accent, #2d5a2d);
+  color: var(--moss-color-accent, #2d5a2d);
 }
 
 .comment-date {
   font-size: 0.875rem;
-  color: var(--moss-text-muted, #8a8580);
+  color: var(--moss-color-muted, #8a8580);
 }
 
 /* Comment Body */
 .comment-body {
-  font-size: var(--moss-font-base, 1.125rem);
+  font-size: var(--moss-font-size, 1.125rem);
   line-height: 1.7;
-  color: var(--moss-text-primary, #2c2825);
+  color: var(--moss-color-text, #2c2825);
 }
 
 .comment-body p {
@@ -158,15 +200,20 @@ a.comment-author:hover {
 
 .comment-body blockquote {
   font-size: inherit;
+  font-style: normal;
+  border-left: 3px solid var(--moss-color-muted, #8a8580);
+  margin: var(--moss-space-xs, 0.5rem) 0 var(--moss-space-xs, 0.5rem) 1rem;
+  padding-left: var(--moss-space-sm, 1rem);
+  color: var(--moss-text-secondary, #5d5853);
 }
 
 .comment-body a {
-  color: var(--moss-text-primary, #2c2825);
+  color: var(--moss-color-text, #2c2825);
   text-decoration: underline;
 }
 
 .comment-body a:hover {
-  color: var(--moss-accent, #2d5a2d);
+  color: var(--moss-color-accent, #2d5a2d);
 }
 
 /* ==========================================================================
@@ -189,10 +236,8 @@ a.comment-author:hover {
    ========================================================================== */
 
 .comment-form {
-  background: var(--moss-background-alt, #f4f1ec);
-  border-radius: 8px;
-  padding: 1.25rem;
-  margin-top: var(--moss-space-lg, 2rem);
+  padding: var(--moss-space-md, 1.5rem) 0;
+  margin: 0 0 var(--moss-space-md, 1.5rem) 0;
 }
 
 /* Textarea — underline style */
@@ -204,9 +249,9 @@ a.comment-author:hover {
   border: none;
   border-bottom: 1px solid var(--moss-border-medium, #d1cdc4);
   font-family: inherit;
-  font-size: var(--moss-font-base, 1.125rem);
+  font-size: var(--moss-font-size, 1.125rem);
   line-height: 1.7;
-  color: var(--moss-text-primary, #2c2825);
+  color: var(--moss-color-text, #2c2825);
   background: transparent;
   resize: none;
   overflow: hidden;
@@ -216,11 +261,11 @@ a.comment-author:hover {
 
 .comment-form textarea:focus {
   outline: none;
-  border-bottom: 2px solid var(--moss-accent, #2d5a2d);
+  border-bottom: 2px solid var(--moss-color-accent, #2d5a2d);
 }
 
 .comment-form textarea::placeholder {
-  color: var(--moss-text-muted, #8a8580);
+  color: var(--moss-color-muted, #8a8580);
 }
 
 /* ==========================================================================
@@ -243,7 +288,7 @@ a.comment-author:hover {
   padding: 0.5rem 0;
   font-family: inherit;
   font-size: var(--moss-font-sm, 1rem);
-  color: var(--moss-text-primary, #2c2825);
+  color: var(--moss-color-text, #2c2825);
   box-sizing: border-box;
   transition: border-color 0.15s ease;
   min-width: 0;
@@ -251,11 +296,11 @@ a.comment-author:hover {
 
 .comment-field:focus {
   outline: none;
-  border-bottom: 2px solid var(--moss-accent, #2d5a2d);
+  border-bottom: 2px solid var(--moss-color-accent, #2d5a2d);
 }
 
 .comment-field::placeholder {
-  color: var(--moss-text-muted, #8a8580);
+  color: var(--moss-color-muted, #8a8580);
 }
 
 /* ==========================================================================
@@ -267,11 +312,11 @@ a.comment-author:hover {
   align-items: center;
   justify-content: center;
   padding: 0.5rem 1.25rem;
-  background: color-mix(in srgb, var(--moss-accent, #2d5a2d) 8%, transparent);
+  background: color-mix(in srgb, var(--moss-color-accent, #2d5a2d) 8%, transparent);
   border: none;
   border-radius: 6px;
   cursor: pointer;
-  color: var(--moss-accent, #2d5a2d);
+  color: var(--moss-color-accent, #2d5a2d);
   font-family: inherit;
   font-size: var(--moss-font-sm, 1rem);
   font-weight: 480;
@@ -279,11 +324,11 @@ a.comment-author:hover {
 }
 
 .comment-form-submit:hover {
-  background: color-mix(in srgb, var(--moss-accent, #2d5a2d) 15%, transparent);
+  background: color-mix(in srgb, var(--moss-color-accent, #2d5a2d) 15%, transparent);
 }
 
 .comment-form-submit:focus {
-  outline: 2px solid var(--moss-accent, #2d5a2d);
+  outline: 2px solid var(--moss-color-accent, #2d5a2d);
   outline-offset: 2px;
 }
 
@@ -326,7 +371,7 @@ a.comment-author:hover {
 }
 
 .comment-form-status--success {
-  color: var(--moss-accent, #2d5a2d);
+  color: var(--moss-color-accent, #2d5a2d);
 }
 
 /* ==========================================================================
@@ -368,6 +413,10 @@ a.comment-author:hover {
   flex: 1;
 }
 
+.footer-subscribe-form .moss-btn {
+  font-size: inherit;
+}
+
 @media (max-width: 48rem) {
   .footer-subscribe-form .moss-input {
     width: 10ch;
@@ -393,7 +442,7 @@ a.comment-author:hover {
 <p>1909年的英国，电报网络已建成，电话技术刚兴起。跑着蒸汽火车的铁路网已成型，蒸汽汽车刚开始替代马车。而在中国，末代皇帝溥仪还是个孩子，清朝剩下最后两年。电报网络刚起步，同年建成第一条独立施工的铁路，从北京到张家口。</p>
 <p>一百多年来，日新月异，加速再加速。然而在互联网和人工智能的时代，这篇小说却更加切时了。机器加快了进化的脚步，但我们不会。</p>
 <p><img src="../../assets/e7c80abe-cc39-42cf-9ea5-3b448bf84c11.jpg" data-placeholder-src="../../assets/e7c80abe-cc39-42cf-9ea5-3b448bf84c11.jpg" width="800" height="600" loading="lazy" alt="" /></p>
-<h2>一、飞船</h2>
+<h2 id="一、飞船">一、飞船</h2>
 <p>试想一个小房间，六边形，如蜂巢中的巢室。没有窗户，也没有灯，却充盈着柔和的光辉。没有通风口，却空气清新。也没有乐器，但就在我开始沉思时，房间回响着悠扬的乐声。中央一把扶手椅，旁边一张阅读桌，就是全部的家具了。扶手椅里一个裹得严严实实的肉团：一个身高约一米五、脸色白得像蘑菇的女人。这间小屋，是属于她的。</p>
 <p>铃声响起。</p>
 <p>女人碰了一下开关，音乐戛然而止。</p>
@@ -510,7 +559,7 @@ a.comment-author:hover {
 <p>白昼无精打采地拖着步子向前。乘客们待在各自的舱室，彼此互相躲避着，带着一种几乎是生理性的厌恶，巴不得赶紧回到地下世界去。一共有八、九人，大多是年轻男性，从公共育婴室被派往地球各地逝者的空房间入住。昨晚那位掉书的男子正在返乡途中，他曾被派往苏门答腊负责人类繁衍。唯有瓦希蒂，是出于私愿而旅行。</p>
 <p>中午时分，她又看了一眼地面。飞船正飞越另一道山脉，但云雾缭绕，她看不太清。成团的黑色岩块在她脚下漂浮，模糊地融入灰暗。山体形状奇崛，有一座像个卧倒的人体。</p>
 <p>“这里也没什么想法。”瓦希蒂喃喃道，然后把那片高加索山脉也用金属窗帘遮住。傍晚时她又看了一眼。 他们正飞越一片金色的海洋，海里布满无数小岛和一个半岛。她又重复道：“这里也没什么想法。”然后把希腊也遮在了金属窗帘后。</p>
-<h2>二、维修装置</h2>
+<h2 id="二、维修装置">二、维修装置</h2>
 <p>穿过前厅，穿过电梯，穿过地铁，穿过站台，穿过滑动门。沿着离开时的每一步，瓦西蒂原路返回，最终抵达了她儿子的房间，而这个房间和她自己的房间一模一样。难怪她会说这次拜访完全是多此一举。按钮、旋钮、摆着那本书的阅读桌、温度、空气、照明，一切都一模一样。即便此时此刻库诺，她的亲骨肉，终于站在了她身旁，又有什么意义呢？她教养良好，甚至没有和他握手。</p>
 <p>她避开他的目光，说道：</p>
 <p>“我来了。这趟旅程糟糕透顶，严重影响了我灵魂的修养。真不值得，库诺，真不值得。我的时间太宝贵了。阳光差点照到我，我还遇到了极其粗鲁的人。我只能停留几分钟。你有什么话就快说吧，说完我就得回去了。”</p>
@@ -599,7 +648,7 @@ a.comment-author:hover {
 <p>“见过什么？”</p>
 <p>“因为我在暮色中见过她。因为我呼救时她来帮过我。因为她也被那些蠕虫缠住了，而且比我幸运，她被其中一条刺穿喉咙，当场死去了。”</p>
 <p>他疯了。瓦西蒂离开了。在随后的动荡中，她再也没有见过他的脸。</p>
-<h2>三、流放</h2>
+<h2 id="三、流放">三、流放</h2>
 <p>在库诺出逃之后的几年，机器中发生了两件大事。这两件事看上去是巨变，但其实人们在思想上早有准备，它们不过是顺应了早已有之的倾向。第一件大事，就是取消呼吸器。</p>
 <p>先进的思想者们，比如瓦希蒂，一向认为去地面游览是愚蠢的。飞船或许还有必要，但仅仅出于好奇跑出去，再坐着地面车缓慢挪动一两英里，有什么意义呢？这种习惯既粗俗又不合理，它不会带来什么想法，而且与真正重要的习惯毫不相干。于是呼吸器被取消了，当然还有地面车。极少数讲师抱怨自己无法接触研究对象，但除此之外这一变化几乎没引起什么波澜。那些仍然想了解地表世界的人，去听录音、看录像就够了。甚至连讲师们，最终也默认了这一点，因为他们发现，即便不亲临其境，从现有素材拼凑一场关于大海的讲座，效果也丝毫不减。“要提防原创的想法！”一位最先进的讲师宣称，“原创的想法根本不存在。它们不过是由爱与惧这些情感在肉体上产生的印象罢了，从这粗鄙的根基上能建立起什么哲学呢？你的想法得是二手的，若能先转手十遍更好，因为只有这样，它们才能远离阻碍人们的直接观察。不要去学习任何关于这个讲座主题直接资料，比如‘法国大革命’；相反，你要去了解，我如何看待伊尼加蒙认为尤里森认为葛奇认为何永认为池步生认为卡莱尔认为米拉波关于法国大革命的言论。</p>
 <p>通过这八位伟大思想者的中介，巴黎洒下的鲜血、凡尔赛打碎的窗户，提炼澄成了一种你们能在日常生活中能够有效运用的想法。但务必要确保中介越多越丰富越好，因为在历史领域，总需要用一个权威来制衡另一个权威。尤里森必须去对抗何永的怀疑论和伊尼加蒙的偏见，而我本人也得去对抗葛奇的浮躁。你们这些听我演讲的人，比起我来，更有条件判断法国大革命的真谛。你们的后代则会比你们的条件更好，因为他们将了解到你们认为我在想什么，这条链条中又将新增一重中介。随着时间推移，”他的声调高昂起来，“终有一天，会出现这样一代人：他们超越了一切事实，超越了一切感官印象，成为一代 ——”</p>
@@ -679,16 +728,9 @@ a.comment-author:hover {
 <p>话音刚落，整座地下城就像蜂巢一样分崩离析。一艘飞船从出口通道闯入，径直撞上了一处坍塌的空港码头。它一路向下坠毁，一路爆炸，钢铁的机翼撕裂了一层又一层回廊。有一瞬间，他们看到了成片成片的死者遗体，而就在他们自己也成为其中一员之前，他们看到到了几缕纯净无瑕的天空。</p>
 
         
-<section class="moss-comments" id="moss-comments">
+<section class="moss-comments" id="moss-comments" data-built-at="2026-03-06T16:31:57.352Z">
   <details>
-    <summary class="comments-toggle"><svg class="comments-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></svg><span>1条评论</span></summary>
-    <ol class="comment-list"><li class="comment-item" id="comment-Q29tbWVudDoxNTUwMzg3">
-  <div class="comment-header">
-    <a href="https://matters.town/@andymloa" class="comment-author" rel="nofollow noopener" target="_blank">andymloa</a>
-    <time class="comment-date" datetime="2025-05-05T07:01:39.625Z">2025年5月5日</time>
-  </div>
-  <div class="comment-body"><p>公共利益一般很少吸取教训，团伙个人利益一般吸取多一点。</p><p><a href="https://matters.town/a/u9df4rklm7a0">当权力如同病毒，通过母婴，血液和性传播时，政权倒台比比皆是（转）</a></p></div>
-</li></ol>
+    <summary class="comments-toggle"><svg class="comments-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></svg><span>1条评论</span><svg class="comments-chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></summary>
     <form class="comment-form" id="moss-comment-form">
   <textarea id="moss-comment-text" name="content" required rows="2" placeholder="留下你的想法"></textarea>
   <div class="comment-form-meta">
@@ -699,6 +741,13 @@ a.comment-author:hover {
   </div>
   <div class="comment-form-status" id="moss-comment-status"></div>
 </form>
+    <ol class="comment-list"><li class="comment-item" id="comment-Q29tbWVudDoxNTUwMzg3">
+  <div class="comment-header">
+    <a href="https://matters.town/@andymloa" class="comment-author" rel="nofollow noopener" target="_blank">andymloa</a>
+    <time class="comment-date" datetime="2025-05-05T07:01:39.625Z">2025年5月5日</time>
+  </div>
+  <div class="comment-body"><p>公共利益一般很少吸取教训，团伙个人利益一般吸取多一点。</p><p><a href="https://matters.town/a/u9df4rklm7a0">当权力如同病毒，通过母婴，血液和性传播时，政权倒台比比皆是（转）</a></p></div>
+</li></ol>
     <script>(function() {
   var form = document.getElementById('moss-comment-form');
   if (!form) return;
@@ -760,19 +809,21 @@ a.comment-author:hover {
       if (!commentList) {
         commentList = document.createElement('ol');
         commentList.className = 'comment-list';
-        form.before(commentList);
+        form.after(commentList);
       }
 
       var li = document.createElement('li');
       li.className = 'comment-item';
-      var now = new Date().toLocaleDateString('en-US', {year:'numeric',month:'short',day:'numeric'});
+      li.id = 'comment-' + data.id;
+      var now = new Date().toLocaleDateString('zh-CN', {year:'numeric',month:'short',day:'numeric'});
       var authorName = body.name || 'Anonymous';
       li.innerHTML = '<div class="comment-header">'
         + '<span class="comment-author">' + authorName.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;') + '</span>'
         + '<time class="comment-date">' + now + '</time>'
         + '</div>'
         + '<div class="comment-body"><p>' + body.content.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;') + '</p></div>';
-      commentList.appendChild(li);
+      // Newest first: prepend so the just-submitted comment appears at the top
+      commentList.insertBefore(li, commentList.firstChild);
 
       form.elements['content'].value = '';
       if (textarea) { textarea.style.height = 'auto'; }
@@ -786,6 +837,91 @@ a.comment-author:hover {
       }
     });
   });
+
+  /*
+   * Stale-while-revalidate / progressive enhancement for comments.
+   *
+   * Static HTML already contains all comments known at build time, so the page
+   * is immediately readable without JS. When the user opens the comment section
+   * (<details> toggle), we fetch comments from the Artalk server that may have
+   * been posted after the last build.
+   *
+   * Why date-based filtering instead of offset/count:
+   *   Comments can be deleted or moderated between builds. A purely offset-based
+   *   approach would miss or duplicate entries. By comparing each comment's
+   *   created_at against the build timestamp (data-built-at), we robustly find
+   *   only the comments that are genuinely new.
+   *
+   * Three-layer deduplication:
+   *   1. Date boundary  — stop iterating when we hit a comment older than the
+   *      build timestamp (comments are sorted newest-first).
+   *   2. ID guard       — skip any comment whose DOM node already exists
+   *      (handles edge cases where build-time and fetch overlap).
+   *   3. Fire-once listener — the toggle handler removes itself after the first
+   *      invocation so we never fetch twice.
+   *
+   * Trust model: Artalk performs server-side HTML sanitization, so we use
+   * innerHTML for comment content (same as the static render path).
+   */
+  var section = document.getElementById('moss-comments');
+  var builtAtStr = section && section.getAttribute('data-built-at');
+  var builtAtMs = builtAtStr ? new Date(builtAtStr).getTime() : 0;
+  var details = section && section.querySelector('details');
+
+  if (details && builtAtMs) {
+    function onToggle() {
+      if (!details.open) return;
+      details.removeEventListener('toggle', onToggle);
+
+      fetch('https://api.moss.host/comment/api/v2/comments?page_key=def52cba&site_name=liu-guo.com&flat_mode=true&sort_by=date_desc&limit=100')
+        .then(function(res) { return res.ok ? res.json() : null; })
+        .then(function(json) {
+          if (!json) return;
+          var list = (json.data && json.data.comments) || [];
+          var added = 0;
+          // Anchor = first build-time comment. Hydrated comments go before it
+          // to maintain newest-first order (API returns date_desc).
+          var anchor = commentList ? commentList.firstChild : null;
+          for (var i = 0; i < list.length; i++) {
+            var c = list[i];
+            if (new Date(c.created_at).getTime() <= builtAtMs) break;
+            if (document.getElementById('comment-' + c.id)) continue;
+
+            var li = document.createElement('li');
+            li.className = 'comment-item';
+            li.id = 'comment-' + c.id;
+            var authorName = (c.nick || 'Anonymous').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+            var dateStr = new Date(c.created_at).toLocaleDateString('zh-CN', {year:'numeric',month:'short',day:'numeric'});
+            li.innerHTML = '<div class="comment-header">'
+              + '<span class="comment-author">' + authorName + '</span>'
+              + '<time class="comment-date">' + dateStr + '</time>'
+              + '</div>'
+              + '<div class="comment-body">' + c.content + '</div>';
+
+            if (!commentList) {
+              commentList = document.createElement('ol');
+              commentList.className = 'comment-list';
+              var formEl = document.getElementById('moss-comment-form');
+              if (formEl) formEl.after(commentList);
+              anchor = null;
+            }
+            // Newest first: insert before the anchor (first build-time comment)
+            commentList.insertBefore(li, anchor);
+            added++;
+          }
+
+          if (added > 0) {
+            var total = (commentList ? commentList.children.length : 0);
+            var summarySpan = details.querySelector('summary span');
+            if (summarySpan) {
+              summarySpan.textContent = total === 1 ? '1条评论' : '{n}条评论'.replace('{n}', total);
+            }
+          }
+        })
+        .catch(function() { /* silent — static comments still visible */ });
+    }
+    details.addEventListener('toggle', onToggle);
+  }
 })();</script>
   </details>
 </section>

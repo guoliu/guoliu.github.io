@@ -513,7 +513,7 @@ a.comment-author:hover {
 <p>原載於<a href="http://perspiceremagazine.org/generated-art.html">視角雜誌</a></p>
 
         
-<section class="moss-comments" id="moss-comments" data-built-at="2026-03-06T16:31:57.343Z">
+<section class="moss-comments" id="moss-comments" data-built-at="2026-03-07T02:06:31.771Z">
   <details>
     <summary class="comments-toggle"><svg class="comments-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></svg><span>3条评论</span><svg class="comments-chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></summary>
     <form class="comment-form" id="moss-comment-form">
@@ -521,7 +521,7 @@ a.comment-author:hover {
   <div class="comment-form-meta">
     <input type="text" name="name" class="comment-field" placeholder="名字" required>
     <input type="email" name="email" class="comment-field" placeholder="邮箱（选填）">
-    <input type="url" name="link" class="comment-field" placeholder="网站（选填）">
+    <input type="text" name="link" class="comment-field" placeholder="网站（选填）">
     <button type="submit" class="comment-form-submit">回复</button>
   </div>
   <div class="comment-form-status" id="moss-comment-status"></div>
@@ -571,17 +571,20 @@ a.comment-author:hover {
     btn.textContent = '提交中...';
     if (statusEl) { statusEl.textContent = ''; statusEl.className = 'comment-form-status'; }
 
+    var rawLink = (form.elements['link'].value || '').trim();
+    if (rawLink && !/^https?:\/\//.test(rawLink)) { rawLink = 'https://' + rawLink; }
+
     var body = {
       content: form.elements['content'].value,
       name: form.elements['name'].value,
       email: form.elements['email'].value,
-      link: form.elements['link'].value || '',
+      link: rawLink,
       page_key: '8c89a614',
       site_name: 'liu-guo.com',
       ua: navigator.userAgent
     };
 
-    fetch('https://api.moss.host/comment/api/v2/comments', {
+    fetch('https://api.moss.host/comments/api/v2/comments', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(body)
@@ -672,7 +675,7 @@ a.comment-author:hover {
       if (!details.open) return;
       details.removeEventListener('toggle', onToggle);
 
-      fetch('https://api.moss.host/comment/api/v2/comments?page_key=8c89a614&site_name=liu-guo.com&flat_mode=true&sort_by=date_desc&limit=100')
+      fetch('https://api.moss.host/comments/api/v2/comments?page_key=8c89a614&site_name=liu-guo.com&flat_mode=true&sort_by=date_desc&limit=100')
         .then(function(res) { return res.ok ? res.json() : null; })
         .then(function(json) {
           if (!json) return;

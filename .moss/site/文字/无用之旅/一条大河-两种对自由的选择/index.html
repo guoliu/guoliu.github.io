@@ -855,98 +855,101 @@ a.comment-author:hover {
   }
 
   /*
-   * Stale-while-revalidate / progressive enhancement for comments.
+   * Eager hydration — fetch new comments on page load, not on toggle.
    *
-   * Static HTML already contains all comments known at build time, so the page
-   * is immediately readable without JS. When the user opens the comment section
-   * (<details> toggle), we fetch comments from the Artalk server that may have
-   * been posted after the last build.
+   * Design decision:
+   *   Static HTML contains all comments known at build time (stale-while-
+   *   revalidate). Previously, hydration was deferred to the <details> toggle
+   *   event, so the summary count stayed stale until the user expanded the
+   *   section. Now we fetch eagerly on page load so the count is correct as
+   *   soon as possible, while not blocking page render (the fetch is async).
    *
-   * Why date-based filtering instead of offset/count:
-   *   Comments can be deleted or moderated between builds. A purely offset-based
-   *   approach would miss or duplicate entries. By comparing each comment's
-   *   created_at against the build timestamp (data-built-at), we robustly find
-   *   only the comments that are genuinely new.
+   * How others handle this:
+   *   - Disqus, Commento, Utterances: fully client-rendered. No static HTML
+   *     at all — the entire comment thread loads via JS. Fast count, but no
+   *     content until JS runs.
+   *   - Staticman: commits to git repo, rebuilt into static HTML. No client
+   *     hydration — count is always stale until next build.
+   *   - Artalk's own JS client: fully client-rendered, same as Disqus.
+   *   - moss is unique: SSR + client hydration, like Next.js/Remix's approach
+   *     to static content. We get the best of both — immediate content without
+   *     JS, plus live updates via hydration.
    *
-   * Three-layer deduplication:
+   * Trade-off:
+   *   One background fetch per page load (~1 KB JSON response) vs accurate
+   *   comment count. Worth it because the fetch is small, non-blocking, and
+   *   the count being wrong is a worse UX than a tiny network request.
+   *
+   * Deduplication (two layers):
    *   1. Date boundary  — stop iterating when we hit a comment older than the
-   *      build timestamp (comments are sorted newest-first).
+   *      build timestamp (comments are sorted newest-first from the API).
    *   2. ID guard       — skip any comment whose DOM node already exists
    *      (handles edge cases where build-time and fetch overlap).
-   *   3. Fire-once listener — the toggle handler removes itself after the first
-   *      invocation so we never fetch twice.
    *
    * Trust model: Artalk performs server-side HTML sanitization, so we use
    * innerHTML for comment content (same as the static render path).
    */
   var builtAtStr = section && section.getAttribute('data-built-at');
   var builtAtMs = builtAtStr ? new Date(builtAtStr).getTime() : 0;
-  var details = section && section.querySelector('details');
 
-  if (details && builtAtMs) {
-    function onToggle() {
-      if (!details.open) return;
-      details.removeEventListener('toggle', onToggle);
+  if (builtAtMs) {
+    fetch('https://api.moss.host/comments/api/v2/comments?page_key=6a559bc6&site_name=liu-guo.com&flat_mode=true&sort_by=date_desc&limit=100')
+      .then(function(res) { return res.ok ? res.json() : null; })
+      .then(function(json) {
+        if (!json) return;
+        var list = json.comments || (json.data && json.data.comments) || [];
+        var added = 0;
+        // Anchor = first build-time comment. Hydrated comments go before it
+        // to maintain newest-first order (API returns date_desc).
+        var anchor = commentList ? commentList.firstChild : null;
+        for (var i = 0; i < list.length; i++) {
+          var c = list[i];
+          if (new Date(c.date).getTime() <= builtAtMs) break;
+          if (document.getElementById('comment-' + c.id)) continue;
 
-      fetch('https://api.moss.host/comments/api/v2/comments?page_key=6a559bc6&site_name=liu-guo.com&flat_mode=true&sort_by=date_desc&limit=100')
-        .then(function(res) { return res.ok ? res.json() : null; })
-        .then(function(json) {
-          if (!json) return;
-          var list = json.comments || (json.data && json.data.comments) || [];
-          var added = 0;
-          // Anchor = first build-time comment. Hydrated comments go before it
-          // to maintain newest-first order (API returns date_desc).
-          var anchor = commentList ? commentList.firstChild : null;
-          for (var i = 0; i < list.length; i++) {
-            var c = list[i];
-            if (new Date(c.date).getTime() <= builtAtMs) break;
-            if (document.getElementById('comment-' + c.id)) continue;
+          var li = document.createElement('li');
+          li.className = 'comment-item';
+          li.id = 'comment-' + c.id;
+          var authorName = (c.nick || 'Anonymous').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+          var dateStr = new Date(c.date).toLocaleDateString('zh-CN', {year:'numeric',month:'short',day:'numeric'});
+          li.innerHTML = '<div class="comment-header">'
+            + '<span class="comment-author">' + authorName + '</span>'
+            + '<time class="comment-date">' + dateStr + '</time>'
+            + '<button type="button" class="comment-reply-btn" data-reply-id="' + c.id + '" data-reply-name="' + authorName + '">\u21a9 回复</button>'
+            + '</div>'
+            + '<div class="comment-body">' + c.content + '</div>';
 
-            var li = document.createElement('li');
-            li.className = 'comment-item';
-            li.id = 'comment-' + c.id;
-            var authorName = (c.nick || 'Anonymous').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-            var dateStr = new Date(c.date).toLocaleDateString('zh-CN', {year:'numeric',month:'short',day:'numeric'});
-            li.innerHTML = '<div class="comment-header">'
-              + '<span class="comment-author">' + authorName + '</span>'
-              + '<time class="comment-date">' + dateStr + '</time>'
-              + '<button type="button" class="comment-reply-btn" data-reply-id="' + c.id + '" data-reply-name="' + authorName + '">\u21a9 回复</button>'
-              + '</div>'
-              + '<div class="comment-body">' + c.content + '</div>';
-
-            if (c.rid > 0) {
-              var parentLi = document.getElementById('comment-' + c.rid);
-              if (parentLi) {
-                var repliesOl = parentLi.querySelector('.comment-replies');
-                if (!repliesOl) {
-                  repliesOl = document.createElement('ol');
-                  repliesOl.className = 'comment-replies';
-                  parentLi.appendChild(repliesOl);
-                }
-                repliesOl.insertBefore(li, null);
-                added++;
-                continue;
+          if (c.rid > 0) {
+            var parentLi = document.getElementById('comment-' + c.rid);
+            if (parentLi) {
+              var repliesOl = parentLi.querySelector('.comment-replies');
+              if (!repliesOl) {
+                repliesOl = document.createElement('ol');
+                repliesOl.className = 'comment-replies';
+                parentLi.appendChild(repliesOl);
               }
+              repliesOl.insertBefore(li, null);
+              added++;
+              continue;
             }
-
-            if (!commentList) {
-              commentList = document.createElement('ol');
-              commentList.className = 'comment-list';
-              var formEl = document.getElementById('moss-comment-form');
-              if (formEl) formEl.after(commentList);
-              anchor = null;
-            }
-            commentList.insertBefore(li, anchor);
-            added++;
           }
 
-          if (added > 0) {
-            updateCommentCount();
+          if (!commentList) {
+            commentList = document.createElement('ol');
+            commentList.className = 'comment-list';
+            var formEl = document.getElementById('moss-comment-form');
+            if (formEl) formEl.after(commentList);
+            anchor = null;
           }
-        })
-        .catch(function() { /* silent — static comments still visible */ });
-    }
-    details.addEventListener('toggle', onToggle);
+          commentList.insertBefore(li, anchor);
+          added++;
+        }
+
+        if (added > 0) {
+          updateCommentCount();
+        }
+      })
+      .catch(function() { /* silent — static comments still visible */ });
   }
 })();</script>
   </details>

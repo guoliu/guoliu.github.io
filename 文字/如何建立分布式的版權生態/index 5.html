@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="zh-hans">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>如何建立分布式的版權生態 - 刘果</title>
+    <meta name="description" content="Matters目前使用的部分技術棧。編輯器通過Quill搭建，其他前端邏輯與渲染通過React開發，SSR與路由則由Next.js負責；GraphQL負責前後端耦合；Knex為SQL語句提供查詢構造，接入PostgreSQL數據庫；ElasticSearch提供搜索與推薦服務，調用由Spark訓練的推薦模型；IPFS節...">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="如何建立分布式的版權生態">
+    <meta property="og:url" content="/文字/如何建立分布式的版權生態/">
+    <meta property="og:site_name" content="刘果">
+    <meta property="og:description" content="Matters目前使用的部分技術棧。編輯器通過Quill搭建，其他前端邏輯與渲染通過React開發，SSR與路由則由Next.js負責；GraphQL負責前後端耦合；Knex為SQL語句提供查詢構造，接入PostgreSQL數據庫；ElasticSearch提供搜索與推薦服務，調用由Spark訓練的推薦模型；IPFS節...">
+    <meta property="article:published_time" content="2019-03-19T19:11:45.340Z">
+    <meta property="og:image" content="/图片/ead5ef5a-d140-4292-93cc-431d13a1a179.png">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "如何建立分布式的版權生態",
+  "url": "/文字/如何建立分布式的版權生態/",
+  "description": "Matters目前使用的部分技術棧。編輯器通過Quill搭建，其他前端邏輯與渲染通過React開發，SSR與路由則由Next.js負責；GraphQL負責前後端耦合；Knex為SQL語句提供查詢構造，接入PostgreSQL數據庫；ElasticSearch提供搜索與推薦服務，調用由Spark訓練的推薦模型；IPFS節...",
+  "datePublished": "2019-03-19T19:11:45.340Z",
+  "image": "/图片/ead5ef5a-d140-4292-93cc-431d13a1a179.png",
+  "publisher": {
+    "@type": "Organization",
+    "name": "刘果"
+  }
+}
+</script>
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml">
+    <script data-goatcounter="https://guo.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+    
+    <link rel="stylesheet" href="/style.css?v=d3d3d52ec931f2b0">
+    <style class="moss-comments-style">/* ==========================================================================
+   moss Comments Plugin - Styles
+
+   Collapsible comment section with solid thread borders,
+   underline-style form inputs, and responsive grid layout.
+   Uses CSS custom properties from moss default.css.
+   ========================================================================== */
+
+/* ==========================================================================
+   Design Decision Record: Flattened Comment Form
+   --------------------------------------------------------------------------
+
+   Research found that the best comment sections treat comments as editorial
+   content on the same surface as the article, not as a separate widget.
+
+   Six principles guide the comment form styling:
+
+   P1. One surface
+       Remove the tinted card background from .comment-form. Form and
+       comments share the page background. Modeled after NYT/Guardian
+       "Letters to the Editor" — comments as editorial content, same surface.
+
+   P2. Border language consistency
+       Comments use border-bottom: 1px solid. The form uses the same 1px
+       border as its boundary, not a background fill + border-radius.
+
+   P3. Typographic continuity
+       Placeholder text, field labels, comment body, author names — same
+       type family, proportional sizes. Follows iA design philosophy
+       (ia.net): "web design is 95% typography", content-first.
+
+   P4. The form is the first comment
+       Visually, the compose area reads like an empty comment slot. Same
+       padding rhythm, same width, same vertical spacing as comment items.
+       Inspired by CSS-Tricks threading (css-tricks.com) — forms inline in
+       thread, not separate cards.
+
+   P5. Distinguish through state, not surface
+       The textarea is interactive because of cursor/focus behavior, not
+       because it sits on a different background. Focus states (accent
+       underline) provide sufficient affordance.
+
+   P6. Density matching
+       Spacing between form elements echoes spacing between comment items.
+
+   References:
+   - NYT/Guardian "Letters to the Editor" model
+   - Ahmad Shadeed's comment component (ishadeed.com)
+   - CSS-Tricks threading (css-tricks.com)
+   - iA design philosophy (ia.net)
+   - ResultFirst 2026 trends — "stripping away non-essential frills"
+   ========================================================================== */
+
+/* Comment Section — width controlled by site theme (main > .moss-comments) */
+.moss-comments {
+  margin-top: 6rem;
+}
+
+/* Divider above comment section */
+.moss-comments > details {
+  padding-top: var(--moss-space-lg, 2rem);
+  border-top: 1px solid var(--moss-border-light, #e6e2db);
+}
+
+/* ==========================================================================
+   Collapsible Details/Summary
+   ========================================================================== */
+
+.comments-toggle {
+  display: flex;
+  align-items: center;
+  gap: var(--moss-space-xs, 0.5rem);
+  cursor: pointer;
+  list-style: none;
+  font-size: var(--moss-font-sm, 1rem);
+  color: var(--moss-color-muted, #8a8580);
+  user-select: none;
+  padding: 0;
+}
+
+/* Hide WebKit default disclosure triangle */
+.comments-toggle::-webkit-details-marker {
+  display: none;
+}
+
+.comments-toggle .comments-icon {
+  flex-shrink: 0;
+}
+
+.comments-toggle:hover {
+  color: var(--moss-color-text, #2c2825);
+}
+
+/* Chevron indicator — points right when collapsed, down when expanded */
+.comments-toggle .comments-chevron {
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+details[open] > .comments-toggle .comments-chevron {
+  transform: rotate(90deg);
+}
+
+/* Space between summary and content when open */
+details[open] > .comments-toggle {
+  margin-bottom: var(--moss-space-md, 1.5rem);
+}
+
+/* ==========================================================================
+   Comment List
+   ========================================================================== */
+
+.comment-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.comment-item {
+  padding: var(--moss-space-md, 1.5rem) 0;
+  border-bottom: 1px solid var(--moss-border-light, #e6e2db);
+}
+
+.comment-item:first-child {
+  padding-top: 0;
+}
+
+.comment-item:last-child {
+  border-bottom: none;
+}
+
+/* Comment Header: author name + date */
+.comment-header {
+  display: flex;
+  align-items: baseline;
+  gap: var(--moss-space-xs, 0.5rem);
+  margin-bottom: var(--moss-space-xs, 0.5rem);
+}
+
+.comment-author {
+  font-weight: 480;
+  font-size: var(--moss-font-sm, 1rem);
+  color: var(--moss-color-text, #2c2825);
+  text-decoration: none;
+}
+
+a.comment-author:hover {
+  color: var(--moss-color-accent, #2d5a2d);
+}
+
+.comment-date {
+  font-size: 0.875rem;
+  color: var(--moss-color-muted, #8a8580);
+}
+
+/* Comment Body */
+.comment-body {
+  font-size: var(--moss-font-size, 1.125rem);
+  line-height: 1.7;
+  color: var(--moss-color-text, #2c2825);
+}
+
+.comment-body p {
+  margin: 0 0 var(--moss-space-sm, 1rem) 0;
+}
+
+.comment-body p:last-child {
+  margin-bottom: 0;
+}
+
+.comment-body blockquote {
+  font-size: inherit;
+  font-style: normal;
+  border-left: 3px solid var(--moss-color-muted, #8a8580);
+  margin: var(--moss-space-xs, 0.5rem) 0 var(--moss-space-xs, 0.5rem) 1rem;
+  padding-left: var(--moss-space-sm, 1rem);
+  color: var(--moss-text-secondary, #5d5853);
+}
+
+.comment-body a {
+  color: var(--moss-color-text, #2c2825);
+  text-decoration: underline;
+}
+
+.comment-body a:hover {
+  color: var(--moss-color-accent, #2d5a2d);
+}
+
+/* ==========================================================================
+   Nested Replies — Solid Left Border Threading
+   ========================================================================== */
+
+.comment-replies {
+  list-style: none;
+  padding: 0 0 0 var(--moss-space-sm, 1rem);
+  margin: 0 0 0 var(--moss-space-xs, 0.5rem);
+  border-left: 2px solid var(--moss-border-medium, #d1cdc4);
+}
+
+.comment-replies .comment-item {
+  padding: var(--moss-space-sm, 1rem) 0;
+}
+
+/* ==========================================================================
+   Comment Form
+   ========================================================================== */
+
+.comment-form {
+  padding: var(--moss-space-md, 1.5rem) 0;
+  margin: 0 0 var(--moss-space-md, 1.5rem) 0;
+}
+
+/* Textarea — underline style */
+.comment-form textarea {
+  display: block;
+  width: 100%;
+  min-height: 3rem;
+  padding: 0.25rem 0;
+  border: none;
+  border-bottom: 1px solid var(--moss-border-medium, #d1cdc4);
+  font-family: inherit;
+  font-size: var(--moss-font-size, 1.125rem);
+  line-height: 1.7;
+  color: var(--moss-color-text, #2c2825);
+  background: transparent;
+  resize: none;
+  overflow: hidden;
+  box-sizing: border-box;
+  transition: border-color 0.15s ease;
+}
+
+.comment-form textarea:focus {
+  outline: none;
+  border-bottom: 2px solid var(--moss-color-accent, #2d5a2d);
+}
+
+.comment-form textarea::placeholder {
+  color: var(--moss-color-muted, #8a8580);
+}
+
+/* ==========================================================================
+   Form Meta Row — Name + Email + Website + Submit (single row on desktop)
+   ========================================================================== */
+
+.comment-form-meta {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr 1.1fr auto;
+  gap: 0.75rem;
+  align-items: end;
+  margin-top: var(--moss-space-sm, 1rem);
+}
+
+/* Underline-style input fields */
+.comment-field {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--moss-border-medium, #d1cdc4);
+  padding: 0.5rem 0;
+  font-family: inherit;
+  font-size: var(--moss-font-sm, 1rem);
+  color: var(--moss-color-text, #2c2825);
+  box-sizing: border-box;
+  transition: border-color 0.15s ease;
+  min-width: 0;
+}
+
+.comment-field:focus {
+  outline: none;
+  border-bottom: 2px solid var(--moss-color-accent, #2d5a2d);
+}
+
+.comment-field::placeholder {
+  color: var(--moss-color-muted, #8a8580);
+}
+
+/* ==========================================================================
+   Submit Button — Filled Tonal Style
+   ========================================================================== */
+
+.comment-form-submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1.25rem;
+  background: color-mix(in srgb, var(--moss-color-accent, #2d5a2d) 8%, transparent);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  color: var(--moss-color-accent, #2d5a2d);
+  font-family: inherit;
+  font-size: var(--moss-font-sm, 1rem);
+  font-weight: 480;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.comment-form-submit:hover {
+  background: color-mix(in srgb, var(--moss-color-accent, #2d5a2d) 15%, transparent);
+}
+
+.comment-form-submit:focus {
+  outline: 2px solid var(--moss-color-accent, #2d5a2d);
+  outline-offset: 2px;
+}
+
+.comment-form-submit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ==========================================================================
+   Accessible Visually Hidden
+   ========================================================================== */
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ==========================================================================
+   Status Messages
+   ========================================================================== */
+
+.comment-form-status {
+  margin-top: var(--moss-space-sm, 1rem);
+  font-size: 0.875rem;
+}
+
+.comment-form-status:empty {
+  display: none;
+}
+
+.comment-form-status--error {
+  color: #a83232;
+}
+
+.comment-form-status--success {
+  color: var(--moss-color-accent, #2d5a2d);
+}
+
+/* Default form slot — collapses when form relocates */
+.comment-form-slot {
+  overflow: hidden;
+  transition: max-height 0.3s ease, opacity 0.2s ease;
+}
+.comment-form-slot--collapsed {
+  max-height: 0;
+  opacity: 0;
+}
+
+/* Reply form wrapper — indented like a reply thread */
+.comment-reply-form-wrapper {
+  margin-top: var(--moss-space-sm, 1rem);
+  padding: var(--moss-space-sm, 1rem) 0 0 var(--moss-space-sm, 1rem);
+  margin-left: var(--moss-space-xs, 0.5rem);
+  border-left: 2px solid var(--moss-border-medium, #d1cdc4);
+  overflow: hidden;
+  animation: slideDown 0.25s ease-out;
+}
+
+@keyframes slideDown {
+  from { max-height: 0; opacity: 0; }
+  to { max-height: 500px; opacity: 1; }
+}
+
+/* Smaller typography in reply form */
+.comment-reply-form-wrapper .comment-form textarea {
+  font-size: var(--moss-font-sm, 1rem);
+  min-height: 2.5rem;
+}
+.comment-reply-form-wrapper .comment-field {
+  font-size: 0.875rem;
+  padding: 0.375rem 0;
+}
+.comment-reply-form-wrapper .comment-form-submit {
+  font-size: 0.875rem;
+  padding: 0.375rem 1rem;
+}
+.comment-reply-form-wrapper .comment-form {
+  padding-top: 0;
+}
+
+/* Reply button in comment header */
+.comment-reply-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.8125rem;
+  color: var(--moss-color-muted, #8a8580);
+  padding: 0;
+  margin-left: auto;
+  transition: color 0.15s ease;
+}
+.comment-reply-btn:hover {
+  color: var(--moss-color-accent, #2d5a2d);
+}
+
+/* Reply indicator */
+.comment-reply-indicator {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--moss-color-muted, #8a8580);
+  margin-bottom: var(--moss-space-xs, 0.5rem);
+}
+.comment-reply-indicator strong {
+  color: var(--moss-color-text, #2c2825);
+  font-weight: 480;
+}
+.comment-reply-cancel {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--moss-color-muted, #8a8580);
+  font-size: 0.875rem;
+  padding: 0;
+  margin-left: 0.25rem;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.comment-reply-cancel:hover {
+  color: var(--moss-color-text, #2c2825);
+}
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+
+/* 2+2 layout: name+email on row 1, website+button on row 2 */
+@media (max-width: 37.5rem) {
+  .comment-form-meta {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .comment-replies {
+    padding-left: var(--moss-space-xs, 0.5rem);
+    margin-left: 0.25rem;
+  }
+
+  .comment-reply-form-wrapper .comment-form-meta {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Full stack on very narrow screens */
+@media (max-width: 25rem) {
+  .comment-form-meta {
+    grid-template-columns: 1fr;
+  }
+
+  .comment-form-submit {
+    justify-self: end;
+  }
+
+  .comment-reply-form-wrapper .comment-form-meta {
+    grid-template-columns: 1fr;
+  }
+  .comment-reply-form-wrapper {
+    padding-left: var(--moss-space-xs, 0.5rem);
+    margin-left: 0.25rem;
+  }
+}
+</style>
+<style class="moss-email-style">/* Email subscribe form — injected by email plugin enhance hook */
+.footer-subscribe-form {
+  display: flex;
+  gap: var(--moss-space-sm);
+  align-items: baseline;
+  max-width: 18rem;
+}
+
+.footer-subscribe-form .moss-input {
+  flex: 1;
+}
+
+.footer-subscribe-form .moss-btn {
+  font-size: inherit;
+}
+
+@media (max-width: 48rem) {
+  .footer-subscribe-form .moss-input {
+    width: 10ch;
+    flex: none;
+  }
+}
+</style>
+<style class="moss-review-style">/* Review plugin — header and colophon styles
+ * Uses moss design tokens. Works in light and dark mode.
+ */
+
+.review-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin: 1rem 0 2rem;
+}
+
+.review-cover {
+  width: 80px;
+  height: auto;
+  object-fit: cover;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.review-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0;
+  font-size: 0.95em;
+  color: var(--moss-color-muted, #666);
+  padding-top: 4px;
+}
+
+.review-creator {
+  font-weight: 500;
+}
+
+.review-sep {
+  color: var(--moss-color-muted, #666);
+  margin: 0 0.15em;
+}
+
+/* Colophon */
+.review-colophon {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--moss-color-border, #e0e0e0);
+  font-size: 0.9em;
+  color: var(--moss-color-muted, #666);
+}
+
+.review-rating {
+  font-size: 1.2em;
+  color: var(--moss-color-accent, #c9a84c);
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.05em;
+}
+
+.review-community-rating {
+  font-size: 0.85em;
+  margin-bottom: 0.5rem;
+}
+
+.review-biblio {
+  margin-bottom: 0.75rem;
+  line-height: 1.6;
+}
+
+.review-links a {
+  color: var(--moss-color-accent, #c9a84c);
+  text-decoration: none;
+}
+
+.review-links a:hover {
+  text-decoration: underline;
+}
+
+/* Mobile: stack cover above meta */
+@media (max-width: 32rem) {
+  .review-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+</style>
+</head>
+<body class="">
+    <header>
+        <nav class="main-nav container">
+            <div class="nav-content">
+                <div class="nav-left"><a href="/" class="site-name">刘果</a><span class="breadcrumb-separator">/</span><a href="/文字/" class="breadcrumb-segment">文字</a></div><div class="nav-right"><div class="nav-icons"><button class="theme-toggle" onclick="toggleTheme()" aria-label="切换深色模式" type="button" title="切换深色模式"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="1em" height="1em" fill="currentColor" stroke-linecap="round" class="theme-toggle__classic" viewBox="0 0 32 32"><clipPath id="theme-toggle__classic__cutout"><path d="M0-5h30a1 1 0 0 0 9 13v24H0Z"/></clipPath><g clip-path="url(#theme-toggle__classic__cutout)"><circle cx="16" cy="16" r="9.34"/><g stroke="currentColor" stroke-width="1.5"><path d="M16 5.5v-4"/><path d="M16 30.5v-4"/><path d="M1.5 16h4"/><path d="M26.5 16h4"/><path d="m23.4 8.6 2.8-2.8"/><path d="m5.7 26.3 2.9-2.9"/><path d="m5.8 5.8 2.8 2.8"/><path d="m23.4 23.4 2.9 2.9"/></g></g></svg></button></div></div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <article class="container">
+            <h1 class="article-title">如何建立分布式的版權生態</h1>
+            <p><span class="date">2019 · 3 · 19</span></p>
+            
+            <figure>
+<img src="../../%E5%9B%BE%E7%89%87/ead5ef5a-d140-4292-93cc-431d13a1a179.png" data-placeholder-src="../../%E5%9B%BE%E7%89%87/ead5ef5a-d140-4292-93cc-431d13a1a179.png" width="1400" height="801" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAALABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDXyQWPJ9qYLV2GMSz4w4yvY1NtbjbWw+MEIAc8ep5piHYoATau/fj5sYzQK3UWgZ//2Q==);background-size:cover" alt="" />
+<figcaption>Matters目前使用的部分技術棧。編輯器通過Quill搭建，其他前端邏輯與渲染通過React開發，SSR與路由則由Next.js負責；GraphQL負責前後端耦合；Knex為SQL語句提供查詢構造，接入PostgreSQL數據庫；ElasticSearch提供搜索與推薦服務，調用由Spark訓練的推薦模型；IPFS節點提供文章的分布式存儲功能。</figcaption>
+</figure>
+<hr />
+<h2 id="平台更新">平台更新</h2>
+<p>在過去一年的內測中，Matters通過原型產品開始了內容發現與金流體系的探索。同時，我們也觸到了原型的瓶頸，所以在過去的四個月內，Matters一邊重組技術團隊，一邊對網站進行了重寫，准備處理更大規模的用戶與流量，與更快速的迭代與探索。</p>
+<p>在UI/UX方面，我們重新思考了產品邏輯，給網站賦予了全新的面貌，成為你現在看到的界面。但新的界面意味著新的棱角和問題，需要我們一起重新打磨與試錯。</p>
+<p>在系統性能方面，服務器數據庫一直是Matters原型的瓶頸。在這一層，我們從適合原型開發的MongoDB數據庫遷移到了高性能的PostgreSQL數據庫，存儲模型也從半結構化數據（semi-structured）遷移到了關系模型數據（relational model），為日後的擴展打下基礎。</p>
+<p>在內容發現方面，除了主頁中兼顧用戶動態與運營篩選的瀑布流外，我們也通過協同過濾（collaborative filtering）模型搭建了一個簡易的文章推薦引擎，在每篇文章之後為讀者推薦類似的文章。和推薦功能一起，搜索功能也遷移到了ElasticSearch引擎，提供更快更精確的搜索結果。</p>
+<p>在推薦引擎與內容搜索的背後，是Matters後台開始搭建的數據管道。數據管道每日調用Spark集群重新訓練推薦引擎，適應平台不斷更新的內容和讀者不斷變化的興趣。同時，數據管道為Matters的數據工程師打開了窗口，得以了解用戶習慣、優化產品、並探索發現內容的新方式。</p>
+<p>但在內容發現中，技術是把雙刃劍：協同過濾這樣的發現機制既能為讀者找到感興趣的文章，也能造成同溫層的固化和假新聞的傳播。在利用技術協助內容發現的同時，Matters也會展開產品與社區層面的探索，引入策展人（curator）角色，為內容發現的過程加入人性，也為媒體口碑的建立和注意力經濟的分潤提供新的模式。</p>
+<h2 id="全新的api">全新的API</h2>
+<p>在發現機制與數據隱私方面，我們需要用戶與我們共同試驗與反思。這個試驗的重要部分，也許是數據和算法的使用規則。在說明文檔齊全之後，Matters將會開放我們全新的GraphQL API，方便感興趣的用戶調取公共內容，一同探索公開與隱私的權衡。</p>
+<p>新版的代碼結構中另一個重要改變便是查詢語言GraphQL的引入。UI的快速迭代需要一個穩定的數據模式，從15年逐步流行開來的GraphQL正好提供了前後端之間的查詢語言和類型系統，為UI提供了可靠的數據模式定義。</p>
+<p>更重要的是，相比傳統的RESTful的API風格，GraphQL不依據HTTP或某個特定傳輸協議設計，更適合傳輸方式多樣的分布式系統。同時，因為大量分布式項目都基於有向無環圖（Directed Acyclic Graph）數據結構，基於圖（graph）的GraphQL非常適合從分布式網絡調取數據。類似於<a href="https://thegraph.com/">The Graph</a>這樣的工具項目在快速成熟中，讓開發者直接向IPFS、以太坊等分布式資源發起GraphQL請求，進一步簡化了開發流程。</p>
+<p>GraphQL也讓Matters得以逐步遷移為分布式應用。當Matters部分功能有了成熟的分布式實現後，前端可以通過模式拼接（schema stitching）的方式復寫HTTP部分的邏輯。存儲於IPFS或以太坊的Matters內容數據也可以由此成為公共資源開放使用，協助生態系統成長。</p>
+<h2 id="從網站平台到分布式網絡">從網站平台到分布式網絡</h2>
+<p>Matters平台雖然經歷了重新設計與開發，但是產品邏輯並未改變。平台仍是一個傳統的網頁，用戶仍需經由域名服務器查找到Matters服務器IP，再與服務器之間通過HTTP建立連接。盡管每一篇文章都已經發布至IPFS，囿於網頁形式，用戶仍然受制於中心化服務，用戶信息和金流體系也都還存儲在中心數據庫中。</p>
+<p>但在重構的過程中，我們開始了分布式網絡的准備與鋪墊。Matters網站會持續作為內容發現的中心化窗口， 探索不同的內容發現與分潤的方式；與此同時，這個窗口會通向更大的網絡，任何人都可以加入，建立自己的窗口與社區、擁有自己的數據與回報。</p>
+<p>接入一個分布式的網絡，意味著用戶需要下載一個客戶端，不管是以桌面程序還是手機App的形式。對於互聯網，這是網頁瀏覽器；BitTorrent或者eDonkey網絡，這是迅雷、電騾、快播等客戶端；對於比特幣或者以太坊，這是電子錢包。</p>
+<p>對於Matters，這個客戶端需要讓用戶能夠不經中心節點交易、瀏覽多媒體網頁，讓創作者自主創作、打包、定價、分發與分潤。通過分布式賬本技術，我們能夠將創作者與讀者直接相連，既能像BitTorrent一樣高效地分發數據，又能像Amazon等中心化的服務一樣維持一個良性的版權生態。長遠來看，這個客戶端也需要和諸多快速興起的分布式內容庫聯通，讓用戶能夠隨時調取屬於全人類的共同知識庫，不管是<a href="https://blog.ipfs.io/24-uncensorable-wikipedia/">維基百科</a>、<a href="http://damahub.org/">科研數據</a>還是<a href="https://sciencefair-app.com/">研究論文</a>。</p>
+<p>在Matters網站繼續進行迭代的同時，Matters工程團隊將會著手試驗這樣一個客戶端，從桌面版開始。盡管具體的產品邏輯和形態還在討論之中，技術層面已經有了不少線索。分布式存儲功能會由目前已經投入試驗的IPFS提供，而分布式賬本功能則會是目前相對成熟的區塊鏈形式（與合作伙伴<a href="https://medium.com/likecoin/likechain-technical-introduction-2728fbca649a">Likecoin</a>聯手）。同時，我們在原型階段會采用Electron.js平台，以便復用網站平台中成熟的UI與業務邏輯代碼。</p>
+<p>新版上線之前，我們已經將Matters所有文章重新發布至IPFS，一方面調整了版式，另一方面對圖片也進行了分布式存儲。同時，我們也重新設計了文章鏈接：文章鏈接末尾長度為49的字符串，是文章元數據在IPFS中的哈希值，包含文章的作者、發布平台、文章指紋等信息。例如，用戶可以復制文章的元數據哈希值，替換到以下鏈接（或者任何IPFS節點）中並打開 ”<em>https://ipfs.io/api/v0/dag/get?arg=${哈希值}/author”</em>，就可以看到作者的相關信息。這意味著，我們設想的桌面版本可以不經服務器，直接打開Matters文章的鏈接，調取作者與內容數據。</p>
+<figure>
+<img src="https://d2mxuefqeaa7sj.cloudfront.net/s_9FD106869F1DE8C0CB9CBEB5F6C313C0E74A1C1353FAD12210FC355B8B3C3741_1552533843081_image.png" data-placeholder-src="https://d2mxuefqeaa7sj.cloudfront.net/s_9FD106869F1DE8C0CB9CBEB5F6C313C0E74A1C1353FAD12210FC355B8B3C3741_1552533843081_image.png" width="800" height="600" loading="lazy" alt="" />
+<figcaption>Matters設想中的分布式客戶端架構。綠色部分是分布式的核心功能，黃色部分是中心化的附加功能。客客戶端通過IPFS與以太坊實現核心功能，而搜索、推薦等本質上中心化的功能則作為附屬，依舊由Matters服務器提供。GraphQL負責整合遠程與本地模式，讓應用在能夠在連接服務器與斷開服務器之間切換。</figcaption>
+</figure>
+<hr />
+<p>不過，這裡的構想僅僅是大致脈絡，產品邏輯也還在探討之中。一個能夠支持版權的分布式網絡是一種嶄新的交互形態，技術與設計層面都有許多未知需要摸索。我們希望與用戶一起來定義這種全新的交互，為中文網絡世界提供更可靠的傳播工具和更合理的游戲規則。</p>
+<p>盡管分布式網絡有潛力帶來一個更加穩定、開放與公平的賽博空間，對於能夠選擇中心化服務的單個用戶，分布式應用並不一定帶來體驗的提升，這是分布式應用項目的難題。但在特定的應用場景中，分布式網絡是不可替代的工具，正如跨境轉賬之於比特幣、文件共享之於BitTorrent、<a href="https://hackernoon.com/how-mesh-networking-will-make-iot-real-b5b88baab63b">物聯網之於無線網狀網絡</a>。</p>
+<p>Matters設想的內容與作者的分布式網絡，甚至在全球互聯網割裂為國家局域網時，仍能正常運作；但在網絡信息相對自由的今天，我們的產品不僅要解決技術問題，更要有新穎的商業模式和多樣的應用場景，才能與傳統互聯網產品競爭。</p>
+<p>這些問題需要更大範圍的論證與不同領域的思路，問題的答案也該由社區共同決定。所以，Matters的產品與工程團隊會在開發之余，以這樣日志的方式向大家同步最新想法，希望以此激起討論和暢想，更希望獲得社區中各路高手的協助。既關乎技術路線，也關乎產品形態。</p>
+<p>在你的想像中，這樣一個分布式網絡需要什麼樣的工具，又有什麼樣合適的應用場景？</p>
+
+            
+        </article>
+        <section class="moss-comments" id="moss-comments" data-built-at="2026-03-13T19:21:26.894Z">
+  <details>
+    <summary class="comments-toggle"><svg class="comments-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></svg><span>5条评论</span><svg class="comments-chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></summary>
+    <div class="comment-form-slot" id="default-form-slot"><form class="comment-form" id="moss-comment-form">
+  <textarea id="moss-comment-text" name="content" required rows="2" placeholder="留下你的想法"></textarea>
+  <div class="comment-form-meta">
+    <input type="text" name="name" class="comment-field" placeholder="名字" required>
+    <input type="email" name="email" class="comment-field" placeholder="邮箱（选填）">
+    <input type="text" name="link" class="comment-field" placeholder="网站（选填）">
+    <button type="submit" class="comment-form-submit">回复</button>
+  </div>
+  <div class="comment-form-status" id="moss-comment-status"></div>
+</form></div>
+    <ol class="comment-list"><li class="comment-item" id="comment-Q29tbWVudDoyMTI2MQ">
+  <div class="comment-header">
+    <a href="https://matters.town/@septentrium" class="comment-author" rel="nofollow noopener" target="_blank">不明飞行兔</a>
+    <time class="comment-date" datetime="2019-03-21T03:55:00.428Z">2019年3月20日</time>
+    
+  </div>
+  <div class="comment-body">我一直寄希望于这样一个能够最大限度保护私人版权的理想技术底层：作者可以控制他原创的信息，控制它的传播、修改、删除、付费，这个原创信息不仅包括作品，也包括他的个人信息和隐私，包括他在平台里的行为数据。直接的控制行为并不一定由作者人工操作，大多数情况下都有作者委托的个人助理（PA）自动完成，PA早期可能是一套作者信任的简单的开源算法，之后可能是一个AI。
+
+IPFS对内容的“保护”令人感觉很尴尬，给人一种我生出的儿子不是我儿子的感觉。而且，Matters是否可以允许自愿上链而非强制上链呢？（不过，这样一来，上IPFS的内容可能会大减）</div>
+  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDoxNzQyNDk">
+  <div class="comment-header">
+    <a href="https://matters.town/@OpenEA" class="comment-author" rel="nofollow noopener" target="_blank">陈胜</a>
+    <time class="comment-date" datetime="2020-03-18T17:57:12.444Z">2020年3月18日</time>
+    
+  </div>
+  <div class="comment-body"><p>从信息开源的角度讲，不存在控制它的传播修改删除等等行为。</p><p>这个基本立场就不合适。</p><p>但从出生到成长的路径，恰恰是区块连技术要解决的问题。</p></div>
+</li><li class="comment-item" id="comment-Q29tbWVudDoyMTMyNg">
+  <div class="comment-header">
+    <a href="https://matters.town/@guo" class="comment-author" rel="nofollow noopener" target="_blank">刘果</a>
+    <time class="comment-date" datetime="2019-03-22T06:03:03.717Z">2019年3月22日</time>
+    
+  </div>
+  <div class="comment-body">我觉得数码版权的许多问题在于数据本身可以随意复制这个特性：唯一能够控制数据的方式是把它留在自己硬盘里，但这也就意味着除了自己没人能读取。
+
+IPFS（或类似的Dat protocol）是一套定义数据如何连接、如何p2p传播的协议，本身不会对版权有什么影响；但是通过把数据转换为hash来传播/控制，能够简化一些版权逻辑设计。比如，“我要把数据保管在哪里”这个问题就变成了“我要把hash保管在哪里”。
+
+我觉得也许关键会在于产品设计中如何引导用户行为。例如，Matters目前是公开内容，我们将hash比喻为“指纹”，用户可以用它传播、确权等；而对于非公开/收费内容，也许更形象的比喻是“密码”，因为这是通往内容的钥匙，只应该给想要允许的人看。
+
+Matters的确应该允许自愿上链，特别是在引入区块链、需要花费gas之后。但这也意味着用户实际上把Matters当成内容的唯一托管平台，和其他中心化平台也就一样了，应该需要对用户进行相应提示。</div>
+</li>
+  </ol>
+</li><li class="comment-item" id="comment-Q29tbWVudDoyMTI0Ng">
+  <div class="comment-header">
+    <a href="https://matters.town/@wancat" class="comment-author" rel="nofollow noopener" target="_blank">林宏信</a>
+    <time class="comment-date" datetime="2019-03-20T12:47:41.535Z">2019年3月20日</time>
+    
+  </div>
+  <div class="comment-body">嘗試理解目前的狀態：保護版權，藉由將整篇文章的 hash 值儲存到 IPFS，來證明文章所有權，因此不方便做修改（需要存一筆新的紀錄）。
+
+關於 GraphQL ：我不了解該怎麼從 IPFS 中找到在 Matters 上的文章？如果我是直接向 IPFS 發 Request，因為我需要 Matters 的內容名單，而這目前仍是中心化管理的。所以如果今天 Matters 伺服器停止運作，要怎麼在 IPFS 中撈出以前的內容？
+
+然後關於權重設計取消：該如何挖出新礦？還是只能透過拿法幣購買取得呢？不然一給一，總數仍然是固定的，可能會讓使用者給予意願降低。
+
+在 IPFS 儲存的作者訊息會是以什麼形式？會幫用戶建立帳號（錢包？公私鑰？）嗎？</div>
+  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDoyMTI2NA">
+  <div class="comment-header">
+    <a href="https://matters.town/@guo" class="comment-author" rel="nofollow noopener" target="_blank">刘果</a>
+    <time class="comment-date" datetime="2019-03-21T04:07:30.056Z">2019年3月21日</time>
+    
+  </div>
+  <div class="comment-body">文章元數據的hash可以用來驗證所有權，但不會是主要方式。分佈式客戶端的話，用戶身份是公私鑰對，驗證方式會是由區塊鏈地址（由用戶公鑰生成）發出的一筆包含hash的transaction。這一點與po.et策略類似。
+
+目前只有網站的確沒法在matters之外調出文章列表，只能通過單篇文章hash調出。在有客戶端之後，全局文章列表可從區塊鏈上獲取；單個用戶的文章列表可以類似filter出來，同時每個用戶自己的IPFS node也會發佈自己的文章列表，可以通過IPNS（同樣也是由公鑰生成）調取。Matters服務器停止的話，數據會在網絡中緩存一段時間，但是最後仍然需要自己或者另一個服務來pin hash，類似bittorrent的做種。
+
+MAT金流體系還不太確定，我個人的想法是客戶端應該盡量通用、支持不同類型的電子貨幣，MAT也許會作為中轉。礦工的角色和這個問題相關，應該會需要承擔pin hash和scan blockchain的任務；likecoin團隊在探索server provider的角色，也是類似。
+
+作者訊息的關鍵會是公鑰（及公鑰生成的區塊鏈地址或IPFS nodeId），從公鑰能夠獲取存儲在IPNS/區塊鏈上的個人信息。如果用戶自行創建公私鑰on board太困難，Matters的確需要考慮想交易所一樣幫用戶創建錢包；但是這也是下策，如果UX上能夠簡化還是應該用戶從客戶端自行創建。</div>
+</li>
+  </ol>
+</li></ol>
+    <script>(function() {
+  var form = document.getElementById('moss-comment-form');
+  if (!form) return;
+
+  var textarea = document.getElementById('moss-comment-text');
+  var statusEl = document.getElementById('moss-comment-status');
+  var commentList = document.querySelector('.moss-comments .comment-list');
+  var currentReplyId = null;
+  var currentReplyWrapper = null;
+  var defaultFormSlot = document.getElementById('default-form-slot');
+
+  function updateCommentCount() {
+    var s = document.getElementById('moss-comments');
+    if (!s) return;
+    var total = s.querySelectorAll('.comment-item').length;
+    var d = s.querySelector('details');
+    if (!d) return;
+    var sp = d.querySelector('summary span');
+    if (sp) {
+      sp.textContent = total === 1 ? '1条评论' : '{n}条评论'.replace('{n}', total);
+    }
+  }
+
+  // Auto-grow textarea
+  if (textarea) {
+    function autoGrow() {
+      textarea.style.height = 'auto';
+      textarea.style.height = textarea.scrollHeight + 'px';
+    }
+    textarea.addEventListener('input', autoGrow);
+  }
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    var btn = form.querySelector('.comment-form-submit');
+    btn.disabled = true;
+    btn.textContent = '提交中...';
+    if (statusEl) { statusEl.textContent = ''; statusEl.className = 'comment-form-status'; }
+
+    var rawLink = (form.elements['link'].value || '').trim();
+    if (rawLink && !/^https?:\/\//.test(rawLink)) { rawLink = 'https://' + rawLink; }
+
+    var body = {
+      content: form.elements['content'].value,
+      name: form.elements['name'].value,
+      email: form.elements['email'].value,
+      link: rawLink,
+      rid: currentReplyId ? parseInt(currentReplyId, 10) : 0,
+      page_key: '0b850857',
+      site_name: 'liu-guo.com',
+      ua: navigator.userAgent
+    };
+
+    fetch('https://api.moss.host/comments/api/v2/comments', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body)
+    })
+    .then(function(res) {
+      if (!res.ok) {
+        return res.json().catch(function() {
+          throw new Error('Server error (' + res.status + ')');
+        }).then(function(data) {
+          throw new Error(data.msg || 'Server error (' + res.status + ')');
+        });
+      }
+      return res.json();
+    })
+    .then(function(data) {
+      btn.disabled = false;
+      btn.textContent = '回复';
+
+      if (statusEl) {
+        statusEl.textContent = '评论已提交！';
+        statusEl.className = 'comment-form-status comment-form-status--success';
+      }
+
+      var li = document.createElement('li');
+      li.className = 'comment-item';
+      li.id = 'comment-' + data.id;
+      var now = new Date().toLocaleDateString('zh-CN', {year:'numeric',month:'short',day:'numeric'});
+      var authorName = body.name || 'Anonymous';
+      var safeAuthor = authorName.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+      li.innerHTML = '<div class="comment-header">'
+        + '<span class="comment-author">' + safeAuthor + '</span>'
+        + '<time class="comment-date">' + now + '</time>'
+        + '<button type="button" class="comment-reply-btn" data-reply-id="' + data.id + '" data-reply-name="' + safeAuthor + '">\u21a9 回复</button>'
+        + '</div>'
+        + '<div class="comment-body"><p>' + body.content.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;') + '</p></div>';
+
+      if (currentReplyId) {
+        // Insert as nested reply under the parent comment
+        var parentLi = document.getElementById('comment-' + currentReplyId);
+        if (parentLi) {
+          var repliesOl = parentLi.querySelector('.comment-replies');
+          if (!repliesOl) {
+            repliesOl = document.createElement('ol');
+            repliesOl.className = 'comment-replies';
+            parentLi.appendChild(repliesOl);
+          }
+          repliesOl.insertBefore(li, null);
+        }
+        cancelReply(false);
+      } else {
+        if (!commentList) {
+          commentList = document.createElement('ol');
+          commentList.className = 'comment-list';
+          var defaultSlot = document.getElementById('default-form-slot');
+          if (defaultSlot) defaultSlot.after(commentList);
+          else form.after(commentList);
+        }
+        // Newest first: prepend so the just-submitted comment appears at the top
+        commentList.insertBefore(li, commentList.firstChild);
+      }
+
+      updateCommentCount();
+      form.elements['content'].value = '';
+      if (textarea) { textarea.style.height = 'auto'; }
+    })
+    .catch(function(err) {
+      btn.disabled = false;
+      btn.textContent = '回复';
+      if (statusEl) {
+        statusEl.textContent = err.message || '网络错误，请重试。';
+        statusEl.className = 'comment-form-status comment-form-status--error';
+      }
+    });
+  });
+
+  /* --- Reply logic: relocating form pattern --- */
+  function cancelReply(skipScroll) {
+    if (!currentReplyWrapper) return;
+    if (defaultFormSlot) {
+      defaultFormSlot.appendChild(form);
+      defaultFormSlot.classList.remove('comment-form-slot--collapsed');
+    }
+    currentReplyWrapper.remove();
+    currentReplyWrapper = null;
+    currentReplyId = null;
+    if (!skipScroll && defaultFormSlot) {
+      defaultFormSlot.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  }
+
+  var section = document.getElementById('moss-comments');
+  if (section) {
+    section.addEventListener('click', function(e) {
+      var btn = e.target.closest('.comment-reply-btn');
+      if (!btn) return;
+
+      var replyId = btn.getAttribute('data-reply-id');
+      var replyName = btn.getAttribute('data-reply-name');
+      var commentItem = document.getElementById('comment-' + replyId);
+      if (!commentItem) return;
+
+      // If already replying to this comment, just focus
+      if (currentReplyId === replyId) { textarea.focus(); return; }
+
+      // Cancel any existing reply
+      cancelReply(true);
+
+      // Collapse default form slot
+      if (defaultFormSlot) defaultFormSlot.classList.add('comment-form-slot--collapsed');
+
+      // Create reply wrapper with thread indent
+      var wrapper = document.createElement('div');
+      wrapper.className = 'comment-reply-form-wrapper';
+
+      // Reply indicator
+      var indicator = document.createElement('div');
+      indicator.className = 'comment-reply-indicator';
+      indicator.innerHTML = '<span>\u21a9 回复 <strong>' + replyName.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') + '</strong> \u00b7</span>';
+      var cancelBtn = document.createElement('button');
+      cancelBtn.type = 'button';
+      cancelBtn.className = 'comment-reply-cancel';
+      cancelBtn.textContent = '取消';
+      cancelBtn.addEventListener('click', function() { cancelReply(false); });
+      indicator.appendChild(cancelBtn);
+      wrapper.appendChild(indicator);
+
+      // Move form into wrapper
+      wrapper.appendChild(form);
+      commentItem.appendChild(wrapper);
+
+      currentReplyWrapper = wrapper;
+      currentReplyId = replyId;
+
+      textarea.focus();
+      wrapper.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+  }
+
+  /*
+   * Eager hydration — fetch new comments on page load, not on toggle.
+   *
+   * Design decision:
+   *   Static HTML contains all comments known at build time (stale-while-
+   *   revalidate). Previously, hydration was deferred to the <details> toggle
+   *   event, so the summary count stayed stale until the user expanded the
+   *   section. Now we fetch eagerly on page load so the count is correct as
+   *   soon as possible, while not blocking page render (the fetch is async).
+   *
+   * How others handle this:
+   *   - Disqus, Commento, Utterances: fully client-rendered. No static HTML
+   *     at all — the entire comment thread loads via JS. Fast count, but no
+   *     content until JS runs.
+   *   - Staticman: commits to git repo, rebuilt into static HTML. No client
+   *     hydration — count is always stale until next build.
+   *   - Artalk's own JS client: fully client-rendered, same as Disqus.
+   *   - moss is unique: SSR + client hydration, like Next.js/Remix's approach
+   *     to static content. We get the best of both — immediate content without
+   *     JS, plus live updates via hydration.
+   *
+   * Trade-off:
+   *   One background fetch per page load (~1 KB JSON response) vs accurate
+   *   comment count. Worth it because the fetch is small, non-blocking, and
+   *   the count being wrong is a worse UX than a tiny network request.
+   *
+   * Deduplication (two layers):
+   *   1. Date boundary  — stop iterating when we hit a comment older than the
+   *      build timestamp (comments are sorted newest-first from the API).
+   *   2. ID guard       — skip any comment whose DOM node already exists
+   *      (handles edge cases where build-time and fetch overlap).
+   *
+   * Trust model: Artalk performs server-side HTML sanitization, so we use
+   * innerHTML for comment content (same as the static render path).
+   */
+  var builtAtStr = section && section.getAttribute('data-built-at');
+  var builtAtMs = builtAtStr ? new Date(builtAtStr).getTime() : 0;
+
+  if (builtAtMs) {
+    fetch('https://api.moss.host/comments/api/v2/comments?page_key=0b850857&site_name=liu-guo.com&flat_mode=true&sort_by=date_desc&limit=100')
+      .then(function(res) { return res.ok ? res.json() : null; })
+      .then(function(json) {
+        if (!json) return;
+        var list = json.comments || (json.data && json.data.comments) || [];
+        var added = 0;
+        // Anchor = first build-time comment. Hydrated comments go before it
+        // to maintain newest-first order (API returns date_desc).
+        var anchor = commentList ? commentList.firstChild : null;
+        for (var i = 0; i < list.length; i++) {
+          var c = list[i];
+          if (new Date(c.date).getTime() <= builtAtMs) break;
+          if (document.getElementById('comment-' + c.id)) continue;
+
+          var li = document.createElement('li');
+          li.className = 'comment-item';
+          li.id = 'comment-' + c.id;
+          var authorName = (c.nick || 'Anonymous').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+          var dateStr = new Date(c.date).toLocaleDateString('zh-CN', {year:'numeric',month:'short',day:'numeric'});
+          li.innerHTML = '<div class="comment-header">'
+            + '<span class="comment-author">' + authorName + '</span>'
+            + '<time class="comment-date">' + dateStr + '</time>'
+            + '<button type="button" class="comment-reply-btn" data-reply-id="' + c.id + '" data-reply-name="' + authorName + '">\u21a9 回复</button>'
+            + '</div>'
+            + '<div class="comment-body">' + c.content + '</div>';
+
+          if (c.rid > 0) {
+            var parentLi = document.getElementById('comment-' + c.rid);
+            if (parentLi) {
+              var repliesOl = parentLi.querySelector('.comment-replies');
+              if (!repliesOl) {
+                repliesOl = document.createElement('ol');
+                repliesOl.className = 'comment-replies';
+                parentLi.appendChild(repliesOl);
+              }
+              repliesOl.insertBefore(li, null);
+              added++;
+              continue;
+            }
+          }
+
+          if (!commentList) {
+            commentList = document.createElement('ol');
+            commentList.className = 'comment-list';
+            var formEl = document.getElementById('moss-comment-form');
+            if (formEl) formEl.after(commentList);
+            anchor = null;
+          }
+          commentList.insertBefore(li, anchor);
+          added++;
+        }
+
+        if (added > 0) {
+          updateCommentCount();
+        }
+      })
+      .catch(function() { /* silent — static comments still visible */ });
+  }
+})();</script>
+  </details>
+</section>
+    </main>
+
+    <footer class="container">
+    <div class="footer-content">
+        <div class="footer-left">
+            <a href="/links/" class="footer-link">友链</a>
+            <a href="/feed.xml" class="footer-link" data-external>RSS</a>
+        </div>
+        <div class="footer-right">
+            <form action="https://buttondown.com/api/emails/embed-subscribe/liuguo" method="post" class="footer-subscribe-form">
+            <input type="email" name="email" class="moss-input" placeholder="邮箱" required />
+            <input type="hidden" value="1" name="embed" />
+            <button type="submit" class="moss-btn">订阅</button>
+        </form>
+        </div>
+    </div>
+</footer>
+
+    <script src="/js/theme.js"></script>
+    
+</body>
+</html>

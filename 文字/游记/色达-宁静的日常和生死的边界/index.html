@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html lang="zh-hans">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>色达：宁静的日常和生死的边界 - 刘果</title>
+    <meta name="description" content="八年前，我在四川漫游了一个多月。没有既定的路线和目的，只是漫游，看缘分会带我到何处。">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="色达：宁静的日常和生死的边界">
+    <meta property="og:url" content="/文字/游记/色达-宁静的日常和生死的边界/">
+    <meta property="og:site_name" content="刘果">
+    <meta property="og:description" content="八年前，我在四川漫游了一个多月。没有既定的路线和目的，只是漫游，看缘分会带我到何处。">
+    <meta property="article:published_time" content="2021-04-09T04:44:30.168Z">
+    <meta property="og:image" content="/图片/9cbeab27-1907-4ca7-a686-9346d70d6448.jpg">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "色达：宁静的日常和生死的边界",
+  "url": "/文字/游记/色达-宁静的日常和生死的边界/",
+  "description": "八年前，我在四川漫游了一个多月。没有既定的路线和目的，只是漫游，看缘分会带我到何处。",
+  "datePublished": "2021-04-09T04:44:30.168Z",
+  "image": "/图片/9cbeab27-1907-4ca7-a686-9346d70d6448.jpg",
+  "publisher": {
+    "@type": "Organization",
+    "name": "刘果"
+  }
+}
+</script>
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml">
+    <script data-goatcounter="https://guo.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+    
+    <link rel="stylesheet" href="/style.css?v=d3d3d52ec931f2b0">
+    <style class="moss-comments-style">/* ==========================================================================
+   moss Comments Plugin - Styles
+
+   Collapsible comment section with solid thread borders,
+   underline-style form inputs, and responsive grid layout.
+   Uses CSS custom properties from moss default.css.
+   ========================================================================== */
+
+/* ==========================================================================
+   Design Decision Record: Flattened Comment Form
+   --------------------------------------------------------------------------
+
+   Research found that the best comment sections treat comments as editorial
+   content on the same surface as the article, not as a separate widget.
+
+   Six principles guide the comment form styling:
+
+   P1. One surface
+       Remove the tinted card background from .comment-form. Form and
+       comments share the page background. Modeled after NYT/Guardian
+       "Letters to the Editor" — comments as editorial content, same surface.
+
+   P2. Border language consistency
+       Comments use border-bottom: 1px solid. The form uses the same 1px
+       border as its boundary, not a background fill + border-radius.
+
+   P3. Typographic continuity
+       Placeholder text, field labels, comment body, author names — same
+       type family, proportional sizes. Follows iA design philosophy
+       (ia.net): "web design is 95% typography", content-first.
+
+   P4. The form is the first comment
+       Visually, the compose area reads like an empty comment slot. Same
+       padding rhythm, same width, same vertical spacing as comment items.
+       Inspired by CSS-Tricks threading (css-tricks.com) — forms inline in
+       thread, not separate cards.
+
+   P5. Distinguish through state, not surface
+       The textarea is interactive because of cursor/focus behavior, not
+       because it sits on a different background. Focus states (accent
+       underline) provide sufficient affordance.
+
+   P6. Density matching
+       Spacing between form elements echoes spacing between comment items.
+
+   References:
+   - NYT/Guardian "Letters to the Editor" model
+   - Ahmad Shadeed's comment component (ishadeed.com)
+   - CSS-Tricks threading (css-tricks.com)
+   - iA design philosophy (ia.net)
+   - ResultFirst 2026 trends — "stripping away non-essential frills"
+   ========================================================================== */
+
+/* Comment Section — width controlled by site theme (main > .moss-comments) */
+.moss-comments {
+  margin-top: 6rem;
+}
+
+/* Divider above comment section */
+.moss-comments > details {
+  padding-top: var(--moss-space-lg, 2rem);
+  border-top: 1px solid var(--moss-border-light, #e6e2db);
+}
+
+/* ==========================================================================
+   Collapsible Details/Summary
+   ========================================================================== */
+
+.comments-toggle {
+  display: flex;
+  align-items: center;
+  gap: var(--moss-space-xs, 0.5rem);
+  cursor: pointer;
+  list-style: none;
+  font-size: var(--moss-font-sm, 1rem);
+  color: var(--moss-color-muted, #8a8580);
+  user-select: none;
+  padding: 0;
+}
+
+/* Hide WebKit default disclosure triangle */
+.comments-toggle::-webkit-details-marker {
+  display: none;
+}
+
+.comments-toggle .comments-icon {
+  flex-shrink: 0;
+}
+
+.comments-toggle:hover {
+  color: var(--moss-color-text, #2c2825);
+}
+
+/* Chevron indicator — points right when collapsed, down when expanded */
+.comments-toggle .comments-chevron {
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+details[open] > .comments-toggle .comments-chevron {
+  transform: rotate(90deg);
+}
+
+/* Space between summary and content when open */
+details[open] > .comments-toggle {
+  margin-bottom: var(--moss-space-md, 1.5rem);
+}
+
+/* ==========================================================================
+   Comment List
+   ========================================================================== */
+
+.comment-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.comment-item {
+  padding: var(--moss-space-md, 1.5rem) 0;
+  border-bottom: 1px solid var(--moss-border-light, #e6e2db);
+}
+
+.comment-item:first-child {
+  padding-top: 0;
+}
+
+.comment-item:last-child {
+  border-bottom: none;
+}
+
+/* Comment Header: author name + date */
+.comment-header {
+  display: flex;
+  align-items: baseline;
+  gap: var(--moss-space-xs, 0.5rem);
+  margin-bottom: var(--moss-space-xs, 0.5rem);
+}
+
+.comment-author {
+  font-weight: 480;
+  font-size: var(--moss-font-sm, 1rem);
+  color: var(--moss-color-text, #2c2825);
+  text-decoration: none;
+}
+
+a.comment-author:hover {
+  color: var(--moss-color-accent, #2d5a2d);
+}
+
+.comment-date {
+  font-size: 0.875rem;
+  color: var(--moss-color-muted, #8a8580);
+}
+
+/* Comment Body */
+.comment-body {
+  font-size: var(--moss-font-size, 1.125rem);
+  line-height: 1.7;
+  color: var(--moss-color-text, #2c2825);
+}
+
+.comment-body p {
+  margin: 0 0 var(--moss-space-sm, 1rem) 0;
+}
+
+.comment-body p:last-child {
+  margin-bottom: 0;
+}
+
+.comment-body blockquote {
+  font-size: inherit;
+  font-style: normal;
+  border-left: 3px solid var(--moss-color-muted, #8a8580);
+  margin: var(--moss-space-xs, 0.5rem) 0 var(--moss-space-xs, 0.5rem) 1rem;
+  padding-left: var(--moss-space-sm, 1rem);
+  color: var(--moss-text-secondary, #5d5853);
+}
+
+.comment-body a {
+  color: var(--moss-color-text, #2c2825);
+  text-decoration: underline;
+}
+
+.comment-body a:hover {
+  color: var(--moss-color-accent, #2d5a2d);
+}
+
+/* ==========================================================================
+   Nested Replies — Solid Left Border Threading
+   ========================================================================== */
+
+.comment-replies {
+  list-style: none;
+  padding: 0 0 0 var(--moss-space-sm, 1rem);
+  margin: 0 0 0 var(--moss-space-xs, 0.5rem);
+  border-left: 2px solid var(--moss-border-medium, #d1cdc4);
+}
+
+.comment-replies .comment-item {
+  padding: var(--moss-space-sm, 1rem) 0;
+}
+
+/* ==========================================================================
+   Comment Form
+   ========================================================================== */
+
+.comment-form {
+  padding: var(--moss-space-md, 1.5rem) 0;
+  margin: 0 0 var(--moss-space-md, 1.5rem) 0;
+}
+
+/* Textarea — underline style */
+.comment-form textarea {
+  display: block;
+  width: 100%;
+  min-height: 3rem;
+  padding: 0.25rem 0;
+  border: none;
+  border-bottom: 1px solid var(--moss-border-medium, #d1cdc4);
+  font-family: inherit;
+  font-size: var(--moss-font-size, 1.125rem);
+  line-height: 1.7;
+  color: var(--moss-color-text, #2c2825);
+  background: transparent;
+  resize: none;
+  overflow: hidden;
+  box-sizing: border-box;
+  transition: border-color 0.15s ease;
+}
+
+.comment-form textarea:focus {
+  outline: none;
+  border-bottom: 2px solid var(--moss-color-accent, #2d5a2d);
+}
+
+.comment-form textarea::placeholder {
+  color: var(--moss-color-muted, #8a8580);
+}
+
+/* ==========================================================================
+   Form Meta Row — Name + Email + Website + Submit (single row on desktop)
+   ========================================================================== */
+
+.comment-form-meta {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr 1.1fr auto;
+  gap: 0.75rem;
+  align-items: end;
+  margin-top: var(--moss-space-sm, 1rem);
+}
+
+/* Underline-style input fields */
+.comment-field {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--moss-border-medium, #d1cdc4);
+  padding: 0.5rem 0;
+  font-family: inherit;
+  font-size: var(--moss-font-sm, 1rem);
+  color: var(--moss-color-text, #2c2825);
+  box-sizing: border-box;
+  transition: border-color 0.15s ease;
+  min-width: 0;
+}
+
+.comment-field:focus {
+  outline: none;
+  border-bottom: 2px solid var(--moss-color-accent, #2d5a2d);
+}
+
+.comment-field::placeholder {
+  color: var(--moss-color-muted, #8a8580);
+}
+
+/* ==========================================================================
+   Submit Button — Filled Tonal Style
+   ========================================================================== */
+
+.comment-form-submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1.25rem;
+  background: color-mix(in srgb, var(--moss-color-accent, #2d5a2d) 8%, transparent);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  color: var(--moss-color-accent, #2d5a2d);
+  font-family: inherit;
+  font-size: var(--moss-font-sm, 1rem);
+  font-weight: 480;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.comment-form-submit:hover {
+  background: color-mix(in srgb, var(--moss-color-accent, #2d5a2d) 15%, transparent);
+}
+
+.comment-form-submit:focus {
+  outline: 2px solid var(--moss-color-accent, #2d5a2d);
+  outline-offset: 2px;
+}
+
+.comment-form-submit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ==========================================================================
+   Accessible Visually Hidden
+   ========================================================================== */
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ==========================================================================
+   Status Messages
+   ========================================================================== */
+
+.comment-form-status {
+  margin-top: var(--moss-space-sm, 1rem);
+  font-size: 0.875rem;
+}
+
+.comment-form-status:empty {
+  display: none;
+}
+
+.comment-form-status--error {
+  color: #a83232;
+}
+
+.comment-form-status--success {
+  color: var(--moss-color-accent, #2d5a2d);
+}
+
+/* Default form slot — collapses when form relocates */
+.comment-form-slot {
+  overflow: hidden;
+  transition: max-height 0.3s ease, opacity 0.2s ease;
+}
+.comment-form-slot--collapsed {
+  max-height: 0;
+  opacity: 0;
+}
+
+/* Reply form wrapper — indented like a reply thread */
+.comment-reply-form-wrapper {
+  margin-top: var(--moss-space-sm, 1rem);
+  padding: var(--moss-space-sm, 1rem) 0 0 var(--moss-space-sm, 1rem);
+  margin-left: var(--moss-space-xs, 0.5rem);
+  border-left: 2px solid var(--moss-border-medium, #d1cdc4);
+  overflow: hidden;
+  animation: slideDown 0.25s ease-out;
+}
+
+@keyframes slideDown {
+  from { max-height: 0; opacity: 0; }
+  to { max-height: 500px; opacity: 1; }
+}
+
+/* Smaller typography in reply form */
+.comment-reply-form-wrapper .comment-form textarea {
+  font-size: var(--moss-font-sm, 1rem);
+  min-height: 2.5rem;
+}
+.comment-reply-form-wrapper .comment-field {
+  font-size: 0.875rem;
+  padding: 0.375rem 0;
+}
+.comment-reply-form-wrapper .comment-form-submit {
+  font-size: 0.875rem;
+  padding: 0.375rem 1rem;
+}
+.comment-reply-form-wrapper .comment-form {
+  padding-top: 0;
+}
+
+/* Reply button in comment header */
+.comment-reply-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.8125rem;
+  color: var(--moss-color-muted, #8a8580);
+  padding: 0;
+  margin-left: auto;
+  transition: color 0.15s ease;
+}
+.comment-reply-btn:hover {
+  color: var(--moss-color-accent, #2d5a2d);
+}
+
+/* Reply indicator */
+.comment-reply-indicator {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--moss-color-muted, #8a8580);
+  margin-bottom: var(--moss-space-xs, 0.5rem);
+}
+.comment-reply-indicator strong {
+  color: var(--moss-color-text, #2c2825);
+  font-weight: 480;
+}
+.comment-reply-cancel {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--moss-color-muted, #8a8580);
+  font-size: 0.875rem;
+  padding: 0;
+  margin-left: 0.25rem;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.comment-reply-cancel:hover {
+  color: var(--moss-color-text, #2c2825);
+}
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+
+/* 2+2 layout: name+email on row 1, website+button on row 2 */
+@media (max-width: 37.5rem) {
+  .comment-form-meta {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .comment-replies {
+    padding-left: var(--moss-space-xs, 0.5rem);
+    margin-left: 0.25rem;
+  }
+
+  .comment-reply-form-wrapper .comment-form-meta {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Full stack on very narrow screens */
+@media (max-width: 25rem) {
+  .comment-form-meta {
+    grid-template-columns: 1fr;
+  }
+
+  .comment-form-submit {
+    justify-self: end;
+  }
+
+  .comment-reply-form-wrapper .comment-form-meta {
+    grid-template-columns: 1fr;
+  }
+  .comment-reply-form-wrapper {
+    padding-left: var(--moss-space-xs, 0.5rem);
+    margin-left: 0.25rem;
+  }
+}
+</style>
+<style class="moss-email-style">/* Email subscribe form — injected by email plugin enhance hook */
+.footer-subscribe-form {
+  display: flex;
+  gap: var(--moss-space-sm);
+  align-items: baseline;
+  max-width: 18rem;
+}
+
+.footer-subscribe-form .moss-input {
+  flex: 1;
+}
+
+.footer-subscribe-form .moss-btn {
+  font-size: inherit;
+}
+
+@media (max-width: 48rem) {
+  .footer-subscribe-form .moss-input {
+    width: 10ch;
+    flex: none;
+  }
+}
+</style>
+<style class="moss-review-style">/* Review plugin — header and colophon styles
+ * Uses moss design tokens. Works in light and dark mode.
+ */
+
+.review-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin: 1rem 0 2rem;
+}
+
+.review-cover {
+  width: 80px;
+  height: auto;
+  object-fit: cover;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.review-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0;
+  font-size: 0.95em;
+  color: var(--moss-color-muted, #666);
+  padding-top: 4px;
+}
+
+.review-creator {
+  font-weight: 500;
+}
+
+.review-sep {
+  color: var(--moss-color-muted, #666);
+  margin: 0 0.15em;
+}
+
+/* Colophon */
+.review-colophon {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--moss-color-border, #e0e0e0);
+  font-size: 0.9em;
+  color: var(--moss-color-muted, #666);
+}
+
+.review-rating {
+  font-size: 1.2em;
+  color: var(--moss-color-accent, #c9a84c);
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.05em;
+}
+
+.review-community-rating {
+  font-size: 0.85em;
+  margin-bottom: 0.5rem;
+}
+
+.review-biblio {
+  margin-bottom: 0.75rem;
+  line-height: 1.6;
+}
+
+.review-links a {
+  color: var(--moss-color-accent, #c9a84c);
+  text-decoration: none;
+}
+
+.review-links a:hover {
+  text-decoration: underline;
+}
+
+/* Mobile: stack cover above meta */
+@media (max-width: 32rem) {
+  .review-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+</style>
+</head>
+<body class="">
+    <header>
+        <nav class="main-nav container">
+            <div class="nav-content">
+                <div class="nav-left"><a href="/" class="site-name">刘果</a><span class="breadcrumb-separator">/</span><a href="/文字/" class="breadcrumb-segment">文字</a><span class="breadcrumb-separator">/</span><a href="/文字/游记/" class="breadcrumb-segment">游记</a></div><div class="nav-right"><div class="nav-icons"><button class="theme-toggle" onclick="toggleTheme()" aria-label="切换深色模式" type="button" title="切换深色模式"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="1em" height="1em" fill="currentColor" stroke-linecap="round" class="theme-toggle__classic" viewBox="0 0 32 32"><clipPath id="theme-toggle__classic__cutout"><path d="M0-5h30a1 1 0 0 0 9 13v24H0Z"/></clipPath><g clip-path="url(#theme-toggle__classic__cutout)"><circle cx="16" cy="16" r="9.34"/><g stroke="currentColor" stroke-width="1.5"><path d="M16 5.5v-4"/><path d="M16 30.5v-4"/><path d="M1.5 16h4"/><path d="M26.5 16h4"/><path d="m23.4 8.6 2.8-2.8"/><path d="m5.7 26.3 2.9-2.9"/><path d="m5.8 5.8 2.8 2.8"/><path d="m23.4 23.4 2.9 2.9"/></g></g></svg></button></div></div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <article class="container">
+            <h1 class="article-title">色达：宁静的日常和生死的边界</h1>
+            <p><span class="date">2021 · 4 · 9</span></p>
+            
+            <p><img src="../../../%E5%9B%BE%E7%89%87/2ef1d558-bca4-4792-bb63-41ee12fa95ac.jpg" data-placeholder-src="../../../%E5%9B%BE%E7%89%87/2ef1d558-bca4-4792-bb63-41ee12fa95ac.jpg" width="1400" height="933" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAANABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCOKZHBy4ytAyZlXbkn8c0BYrM5BwG4/CgVjPR2RsqeaAHPK7/eYn8aAI6AP//Z);background-size:cover" alt="" /></p>
+<p>八年前，我在四川漫游了一个多月。没有既定的路线和目的，只是漫游，看缘分会带我到何处。</p>
+<p>在成都时，与同住青旅的旅人聊天，偶然间说起色达：藏在青藏高原的群山中，有着世界上最大的佛学院“喇荣五明佛学院”，和一处大型天葬台。我想去看一看，却并不知道该如何前往。</p>
+<p>几日后的早上，我在青旅上铺睡得正香，突然被重重地弹了起来。匆忙披上衣服冲到楼下，从聚集的人群里听说，雅安地震了。下午消息传开，雅安伤亡惨重，急缺物资和人手。当夜我动身前往雅安，加入了前线的救援队，协助运送和分配物资、调查和汇总疾病信息。</p>
+<p>过了几日，更多的救援队和物资陆续到达，我知道自己帮不上多少忙，是时候继续上路了。这几日里，遭遇了几次余震、暴雨、滑坡和房屋倒塌，看见了多少被夷为废墟的家，多少孑然一身守护着废墟的孩子、父母和爱人，和他们抹也抹不尽的泪水。</p>
+<p>我和幸存下来的人们一样，在自然的无情和生命的脆弱面前不知所措，常常不知自己身在何处，更无所谓前路何方。我只知道是时候离开了。所以我背上队友赠予的帐篷，告别了队友们，向色达的方向出发。</p>
+<p><img src="../../../%E5%9B%BE%E7%89%87/38f0bb25-a988-447b-880f-0dbf96992d95.jpg" data-placeholder-src="../../../%E5%9B%BE%E7%89%87/38f0bb25-a988-447b-880f-0dbf96992d95.jpg" width="1400" height="863" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAAMABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDRE0RGRIp/GgBrzRKCS68DPWgCI3UA/wCWi0AYQOaAEzQA0nmgD//Z);background-size:cover" alt="" /></p>
+<p><img src="../../../%E5%9B%BE%E7%89%87/fd5e607a-e94f-4f40-8412-dfcc745dcd5f.jpg" data-placeholder-src="../../../%E5%9B%BE%E7%89%87/fd5e607a-e94f-4f40-8412-dfcc745dcd5f.jpg" width="1400" height="788" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAALABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCRry2LZ3sdvYcU7isRm9LZMKqAO/pU3KsVnnuS2TO/4cUXCxSVj6mgC3AA7BWHHp0pDJ5BhuOKQH//2Q==);background-size:cover" alt="" /></p>
+<p><img src="../../../%E5%9B%BE%E7%89%87/b922129f-c2cd-42de-b86b-37ecc3a23c72.png" data-placeholder-src="../../../%E5%9B%BE%E7%89%87/b922129f-c2cd-42de-b86b-37ecc3a23c72.png" width="1400" height="933" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAANABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwAt55bYFHUjn8KEBK+okjAGKAIvtjGgBI3JO3sevekMYY1MhXp3B9OKAKzSlDgYoEf/2Q==);background-size:cover" alt="" /></p>
+<p><img src="../../../%E5%9B%BE%E7%89%87/1641eab1-17ff-4ced-99a7-367ae7cdc656.png" data-placeholder-src="../../../%E5%9B%BE%E7%89%87/1641eab1-17ff-4ced-99a7-367ae7cdc656.png" width="1400" height="933" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAANABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCZb+MqC2Qe9MQ4XUbjg/nQBG1wuetAxDZoTwcD0xQIebZSu35frtoAZ9jHdv0oGf/Z);background-size:cover" alt="" /></p>
+<p><img src="../../../%E5%9B%BE%E7%89%87/abfc71fe-7fec-45f9-926d-7e1009eb0320.png" data-placeholder-src="../../../%E5%9B%BE%E7%89%87/abfc71fe-7fec-45f9-926d-7e1009eb0320.png" width="1400" height="933" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAANABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwBLe73ALI79eq0J2AbefKwKucEc5NLcLWKbbicgGgC2IQpOGPFMCxbRK24MAfw6ZpAV2DBiMjjjpQM//9k=);background-size:cover" alt="" /></p>
+<p>四川西部位于青藏高原，在文化和语言上也属于藏区。高原上的春来得晚，四月仍是一片萧瑟。</p>
+<p>川西山间的公路常常悬在崖边，一侧是静默神圣的雪山，另一侧是滚下悬崖的货车残骸。公路之外星星点点的聚落编织成了细小的路网，千百年来维系着人和马的交通。这些路网跨过溪流和海子，穿过松林和草甸，通往石头搭建的寨子。寨口的吊桥挂满了经幡，走在上面时木板在风中嘎吱作响。</p>
+<p>一路搭车、拼车、乘公交，海拔越来越高，阳光越来越明亮透彻，云影与光斑在无垠的草原上交错。途经泸定、新都桥、道孚、炉霍，我终于抵达了色达佛学院。</p>
+<p><img src="../../../%E5%9B%BE%E7%89%87/9d13b990-5b91-4c42-a47a-bc9c24ea3fc9.jpg" data-placeholder-src="../../../%E5%9B%BE%E7%89%87/9d13b990-5b91-4c42-a47a-bc9c24ea3fc9.jpg" width="1400" height="933" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAANABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCgsXAwRn0ouFiX7M23c2AKXMFioy/MeKq4WGh2Hc/nSAd5rY6mgBhYnvQB/9k=);background-size:cover" alt="" /></p>
+<p><img src="../../../%E5%9B%BE%E7%89%87/4d1edfba-912f-4a5a-befd-7597be4f094e.jpg" data-placeholder-src="../../../%E5%9B%BE%E7%89%87/4d1edfba-912f-4a5a-befd-7597be4f094e.jpg" width="1400" height="2100" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAAUAA0DAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDS3gDPGD3FMQh2nnI/OncVio7RoPnas7llWW5LN+7Hyj0qrgMIGOlSMRiR04oA/9k=);background-size:cover" alt="" /></p>
+<p><img src="../../../%E5%9B%BE%E7%89%87/14435097-0a88-422e-abc7-cb59db6ed153.jpg" data-placeholder-src="../../../%E5%9B%BE%E7%89%87/14435097-0a88-422e-abc7-cb59db6ed153.jpg" width="1400" height="2019" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAAUAA4DAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCyk0DNhZVJP4VVybEu3nh/yp3FYwTxKqZ61ma20LapIBxIwo5hWM4sd6nvmgZbiZmzljRYR//Z);background-size:cover" alt="" /></p>
+<p><img src="../../../%E5%9B%BE%E7%89%87/9cbeab27-1907-4ca7-a686-9346d70d6448.jpg" data-placeholder-src="../../../%E5%9B%BE%E7%89%87/9cbeab27-1907-4ca7-a686-9346d70d6448.jpg" width="1400" height="933" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAANABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwBTCB1rp5jn5COYxQj5m59B1pOaQKncpNcnPCjHvUe1ZfskPubySVsDCr6Cs3Js0SsVTknk0hiYoA//2Q==);background-size:cover" alt="" /></p>
+<p><img src="../../../%E5%9B%BE%E7%89%87/5be8bbef-c77c-431f-bc66-952ff9fd3976.jpg" data-placeholder-src="../../../%E5%9B%BE%E7%89%87/5be8bbef-c77c-431f-bc66-952ff9fd3976.jpg" width="1400" height="933" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAANABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwAe4ZuF4o5mHKi7HIjKCTgkU+YXKTq64/1gpAUPLXPSouaAFA6cY4ouIcQR3NO4WP/Z);background-size:cover" alt="" /></p>
+<p><img src="../../../%E5%9B%BE%E7%89%87/8b194555-57fc-48d7-b448-05fbc4e46862.jpg" data-placeholder-src="../../../%E5%9B%BE%E7%89%87/8b194555-57fc-48d7-b448-05fbc4e46862.jpg" width="1400" height="933" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAANABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCOKZHBy4ytAyZlXbkn8c0BYrM5BwG4/CgVjPR2RsqeaAHPK7/eYn8aAI6AP//Z);background-size:cover" alt="" /></p>
+<p>学院藏在群山中，坐卧山谷间。山谷四周的山脊挂满了经幡，望出去是永恒的静谧与安详。终日的阳光照耀着雪山和溪流，还有沿着溪流散落的牧民和牦牛。每日清晨，僧人们爬上山脊，冥想、诵经，或只是静默地望着远方，再缓缓地走回学院。</p>
+<p>高峰时期，学院有四、五万修行者，共同生活在小小的山谷里。人们晚上住在自己小木屋中，白天上课辩经、挑水做饭，在山路上来来往往。山谷里充满了烟火和生气，和山谷外的空旷形成了巨大的反差，让我有时分不清自己是在远离尘嚣的群山里，还是在热闹繁荣的小镇上。</p>
+<p>过了几日，学院的生活慢慢变得没那么特别，更像是一座大学城。这里的人们衣食简单，但科目繁多。辩经时人们激动、生气或是开心，一如别处的日常，充满着情绪。晚上还有公开的讲座，像我这样的访客也可以参加，听上师解答修行路上的问题。</p>
+<p>这里特别的是，对视都饱含善意，步伐都充满平和。有一日我在小木屋之间穿行，一位修行者邀请我进家坐坐。他拿出一碗酸奶，和一只勺子，用袖子擦了擦，递给了我。我只会说汉语，他只会说藏语。于是我们静默着相伴而坐，我满怀感激地吃下了这辈子吃过最酸的酸奶。</p>
+<p><img src="../../../%E5%9B%BE%E7%89%87/19d19851-1a67-41dc-88e9-d7b6f3539ca2.jpg" data-placeholder-src="../../../%E5%9B%BE%E7%89%87/19d19851-1a67-41dc-88e9-d7b6f3539ca2.jpg" width="1400" height="788" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAALABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwAEsoXhhg0DEMsgHLUCIzPJ6/pQMXYu4HHtUjF2Luxg4x60CImUbqYH/9k=);background-size:cover" alt="" /></p>
+<p><img src="../../../%E5%9B%BE%E7%89%87/2705fa19-c187-48a0-b809-034acdfd6e57.jpg" data-placeholder-src="../../../%E5%9B%BE%E7%89%87/2705fa19-c187-48a0-b809-034acdfd6e57.jpg" width="1400" height="875" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAANABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCqpJ5B560DJRI2MMCKLisBbHencLEBlaMLswCRyfWpKLdlCJ4/MY5cnqeaQEM8ghmZNu7B65xTA//Z);background-size:cover" alt="" /></p>
+<p><img src="../../../%E5%9B%BE%E7%89%87/b0cd85d4-e061-4bed-bdf4-01d7c64b5a35.jpg" data-placeholder-src="../../../%E5%9B%BE%E7%89%87/b0cd85d4-e061-4bed-bdf4-01d7c64b5a35.jpg" width="1400" height="2100" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAAUAA0DAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCvuGDxjHQVJQhycZBPpxQAm8D1OODTAUMG6c/UE/yoAuG1jQMBn1z3pARg7Seh+op3Ef/Z);background-size:cover" alt="" /></p>
+<p><img src="../../../%E5%9B%BE%E7%89%87/c929f3f9-f654-4ce5-a9a7-7358a6caebc3.jpg" data-placeholder-src="../../../%E5%9B%BE%E7%89%87/c929f3f9-f654-4ce5-a9a7-7358a6caebc3.jpg" width="1400" height="1035" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAAPABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCAOSMhiPfdikOwp3EbjyPUmgdhuHP3V49qAJvKYtsVVIx3pAOVWCgtjA4FADzJHx9/p2OKAP/Z);background-size:cover" alt="" /></p>
+<p><img src="../../../%E5%9B%BE%E7%89%87/6f13bd9d-cada-4522-a173-69b1a679d4fc.jpg" data-placeholder-src="../../../%E5%9B%BE%E7%89%87/6f13bd9d-cada-4522-a173-69b1a679d4fc.jpg" width="1400" height="933" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAANABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwBwvH6FQppXHYiknYn7zE/lQOxG0zk8ID+FAWJEQIoPU+tIBIlBkyep70AQMgDsPc0DbP/Z);background-size:cover" alt="" /></p>
+<p><img src="../../../%E5%9B%BE%E7%89%87/456cacf5-0dc1-48aa-8079-5bc7095a8294.jpg" data-placeholder-src="../../../%E5%9B%BE%E7%89%87/456cacf5-0dc1-48aa-8079-5bc7095a8294.jpg" width="1400" height="933" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAANABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwBsVzJJkZNK47IlUuwOXKj0JouBG0SZ6k0gIYztUFeM0wH2oxIw68d6QyZ5NjYxQB//2Q==);background-size:cover" alt="" /></p>
+<p><img src="../../../%E5%9B%BE%E7%89%87/0a0d2519-ad00-47ff-850f-ef4e78ede45a.jpg" data-placeholder-src="../../../%E5%9B%BE%E7%89%87/0a0d2519-ad00-47ff-850f-ef4e78ede45a.jpg" width="1400" height="2100" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAAUAA0DAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDRjmzGpblsckdDQBTmlbz3KsVzj+VIu2mxD5zW6Koxj3pDUbkTXPOeTnvigdkwuBukjz360xJ6MntADAM+ppCluf/Z);background-size:cover" alt="" /></p>
+<p><img src="../../../%E5%9B%BE%E7%89%87/5695cbe9-5d9b-4d7e-8d6c-6d9040f2999a.jpg" data-placeholder-src="../../../%E5%9B%BE%E7%89%87/5695cbe9-5d9b-4d7e-8d6c-6d9040f2999a.jpg" width="1400" height="1867" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAAUAA8DAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwC5tEaF24UDJrVsySY22uVlXG7kngH0qEy3G2xBfXS+V5YXO4VLZpCGlyhDOYZAwHbpmkUWdRRUEW0Y4NA47MonrTA//9k=);background-size:cover" alt="" /></p>
+<p>在佛学院附近的山谷里，有一座天葬台。附近的牧民家里有人去世后，先请高僧超度，再抬着遗体围转坛城七周，最后送来天葬台。</p>
+<p>天葬意味着，遗体被秃鹫全部吞下，甚至包括所有的骨头。亡灵借此返回天空，方得从轮回里解脱。</p>
+<p>到了天葬的时辰，附近的山坡上落满了秃鹫，黑压压的一片，每只站起来都接近一人高。几位出家人站在秃鹫们面前，在时辰未到时阻止它们前进。天葬师搬出遗体，开始将遗体肢解成小块，以便秃鹫能够全部吞下。秃鹫们等着，看着、嗅着、听着。</p>
+<p>时辰到了，秃鹫们涌向坡底的天葬台，如黑色的潮水一般，跳着、飞着、抢着，发出咿咿呀呀的叫声。天葬师一身漆黑，站在秃鹫漩涡的中心，不紧不慢，继续把骨头敲碎，让死者的每一片都返回天空。</p>
+<p>一旁的僧人一边摇拨浪鼓一边诵经，为亡灵超度。秃鹫们继续飞着、叫着，一直到天葬台上什么也不剩下。</p>
+<p><img src="../../../%E5%9B%BE%E7%89%87/98f8f73a-0d71-44ce-b8fa-68e97786845a.jpg" data-placeholder-src="../../../%E5%9B%BE%E7%89%87/98f8f73a-0d71-44ce-b8fa-68e97786845a.jpg" width="1400" height="788" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAALABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwC2t0cdGpXHYQ3Eh6AD680rhYiaaTP+sP5Ci4WGKaQxxoAjY80Af//Z);background-size:cover" alt="" /></p>
+<p><img src="../../../%E5%9B%BE%E7%89%87/4ea17506-109f-47f9-b487-7105e562fa22.jpg" data-placeholder-src="../../../%E5%9B%BE%E7%89%87/4ea17506-109f-47f9-b487-7105e562fa22.jpg" width="1400" height="751" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAALABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCTduhOM56VJQwMXXJ5GPu5oAhWaJchlGQfSgAvJXSbarYBoAiyQxUHg9qAGk8mgD//2Q==);background-size:cover" alt="" /></p>
+<p><img src="../../../%E5%9B%BE%E7%89%87/6e6bc6ce-c973-4365-b9cd-1817e39a6b2e.jpg" data-placeholder-src="../../../%E5%9B%BE%E7%89%87/6e6bc6ce-c973-4365-b9cd-1817e39a6b2e.jpg" width="1400" height="1006" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAAOABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwC55sTc7WBouFhGmjA7/lRcLFc3LE/JGCPUmlzD5RqcjLEmpGD8jC/KPagCEDyxtBOKAP/Z);background-size:cover" alt="" /></p>
+<p><img src="../../../%E5%9B%BE%E7%89%87/1570c6b2-f2f7-4036-bff9-47206b0ba878.jpg" data-placeholder-src="../../../%E5%9B%BE%E7%89%87/1570c6b2-f2f7-4036-bff9-47206b0ba878.jpg" width="1400" height="933" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAANABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwB0UsZBRGB4/u0hj3ZM7X3Yx2HOaAK7MoYgFj7lP/r0gIgjR4w/UZOBQMdK7paxy787uMYoAiw5AJkPPoKYH//Z);background-size:cover" alt="" /></p>
+<p>天葬台附近弥漫着一种脂肪腐败后的气味，在我脑海中挥之不散，让我很长一段时间之后都不想吃肉食。最后我没有成为素食者，只是一直觉得，如果我生前吃下其他动物变成我的一部分，那死后融入其他动物回归自然，是再自然不过的了。</p>
+<nav class="series-nav">
+  <div class="series-nav-links">
+    <span class="series-nav-link series-nav-prev empty"></span>
+    <a href="/文字/游记/科隆群岛-烈火中诞生的伊甸园/index.html" class="series-nav-link series-nav-next"><span class="series-nav-title">科隆群岛：烈火中诞生的伊甸园</span> <span class="series-nav-arrow">&gt;</span></a>
+  </div>
+  <div class="series-nav-collection-row">
+    <a href="/文字/游记/index.html" class="series-nav-collection">游记</a>
+  </div>
+</nav>
+            
+        </article>
+        <section class="moss-comments" id="moss-comments" data-built-at="2026-03-13T19:23:27.805Z">
+  <details>
+    <summary class="comments-toggle"><svg class="comments-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></svg><span>24条评论</span><svg class="comments-chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></summary>
+    <div class="comment-form-slot" id="default-form-slot"><form class="comment-form" id="moss-comment-form">
+  <textarea id="moss-comment-text" name="content" required rows="2" placeholder="留下你的想法"></textarea>
+  <div class="comment-form-meta">
+    <input type="text" name="name" class="comment-field" placeholder="名字" required>
+    <input type="email" name="email" class="comment-field" placeholder="邮箱（选填）">
+    <input type="text" name="link" class="comment-field" placeholder="网站（选填）">
+    <button type="submit" class="comment-form-submit">回复</button>
+  </div>
+  <div class="comment-form-status" id="moss-comment-status"></div>
+</form></div>
+    <ol class="comment-list"><li class="comment-item" id="comment-Q29tbWVudDoxNTkzMzYx">
+  <div class="comment-header">
+    <a href="https://matters.town/@ouekisan" class="comment-author" rel="nofollow noopener" target="_blank">Old Shenzhen</a>
+    <time class="comment-date" datetime="2025-10-06T18:29:12.874Z">2025年10月6日</time>
+    
+  </div>
+  <div class="comment-body"><p>旅游，是为了发现世界之大，从而人的心胸将更宽广</p></div>
+</li><li class="comment-item" id="comment-Q29tbWVudDoxNTQ1NDg0">
+  <div class="comment-header">
+    <a href="https://matters.town/@owenzhang" class="comment-author" rel="nofollow noopener" target="_blank">Owen</a>
+    <time class="comment-date" datetime="2025-04-09T09:04:40.543Z">2025年4月9日</time>
+    
+  </div>
+  <div class="comment-body"><p>最后这段天葬描写 很震撼我</p></div>
+</li><li class="comment-item" id="comment-Q29tbWVudDo4NDY4NDU">
+  <div class="comment-header">
+    <a href="https://matters.town/@seenzhao" class="comment-author" rel="nofollow noopener" target="_blank">SinChaos</a>
+    <time class="comment-date" datetime="2021-10-11T02:45:05.030Z">2021年10月10日</time>
+    
+  </div>
+  <div class="comment-body"><p>Hi，好久没见刘果写东西了，忙什么呢</p></div>
+  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDo4NDk3NzM">
+  <div class="comment-header">
+    <a href="https://matters.town/@guo" class="comment-author" rel="nofollow noopener" target="_blank">刘果</a>
+    <time class="comment-date" datetime="2021-10-12T17:09:38.830Z">2021年10月12日</time>
+    
+  </div>
+  <div class="comment-body"><p>最近在筹备 Matters 的 NFT 计划，很快就会看到第一个阶段的形态了 😊</p><p>你的创业项目（记得还有想写的书对吗）进展如何了呢</p></div>
+  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDo4NTc1MzY">
+  <div class="comment-header">
+    <a href="https://matters.town/@seenzhao" class="comment-author" rel="nofollow noopener" target="_blank">SinChaos</a>
+    <time class="comment-date" datetime="2021-10-17T11:21:36.062Z">2021年10月17日</time>
+    
+  </div>
+  <div class="comment-body"><p>回头约时间telegram聊啊，咱俩有电报</p></div>
+</li><li class="comment-item" id="comment-Q29tbWVudDo4NTc1MzA">
+  <div class="comment-header">
+    <a href="https://matters.town/@seenzhao" class="comment-author" rel="nofollow noopener" target="_blank">SinChaos</a>
+    <time class="comment-date" datetime="2021-10-17T11:20:31.085Z">2021年10月17日</time>
+    
+  </div>
+  <div class="comment-body"><p>书稿还剩下一块难啃的骨头，用一句话来描述是：</p><p>Crypto token如何防范金融危机？</p></div>
+</li>
+  </ol>
+</li>
+  </ol>
+</li><li class="comment-item" id="comment-Q29tbWVudDo1NTY2MjA">
+  <div class="comment-header">
+    <a href="https://matters.town/@luxun" class="comment-author" rel="nofollow noopener" target="_blank">Valkyrie (女武神)</a>
+    <time class="comment-date" datetime="2021-04-19T03:14:01.378Z">2021年4月18日</time>
+    
+  </div>
+  <div class="comment-body"><p>美景、美图、美文，多谢分享。</p><p>------------------------------------------------</p><p>打扰您一下——之前您曾经封禁过我，对吗？我发现现在又可以留言了，请问之前是如何得罪您了？</p><p>请不要误会，我无意引战。只是想了解一下自己错在哪里。希望您坦承相告，谢谢。</p><p>有则改之，这个态度我还是有的。您尽可知无不言。</p></div>
+  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDo1NTY2NzE">
+  <div class="comment-header">
+    <a href="https://matters.town/@guo" class="comment-author" rel="nofollow noopener" target="_blank">刘果</a>
+    <time class="comment-date" datetime="2021-04-19T03:50:38.329Z">2021年4月18日</time>
+    
+  </div>
+  <div class="comment-body"><p>没有封禁过您，不太清楚您如何获得这个印象；除非是不断 spam 评论的用户，我不封禁任何人。</p></div>
+  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDo1NTY2NzI">
+  <div class="comment-header">
+    <a href="https://matters.town/@luxun" class="comment-author" rel="nofollow noopener" target="_blank">Valkyrie (女武神)</a>
+    <time class="comment-date" datetime="2021-04-19T03:52:27.889Z">2021年4月18日</time>
+    
+  </div>
+  <div class="comment-body"><p>那一定是我弄错了，或者是那天我已经被管理员封禁了，哈哈！</p><p>不过说实话，我有时讲话挺无礼的。哪天头脑发热起来，您就把我封禁吧，免得破坏了您的宝地。</p><p>谢谢您的回应。</p></div>
+</li>
+  </ol>
+</li>
+  </ol>
+</li><li class="comment-item" id="comment-Q29tbWVudDo1NTE0OTg">
+  <div class="comment-header">
+    <a href="https://matters.town/@seenzhao" class="comment-author" rel="nofollow noopener" target="_blank">SinChaos</a>
+    <time class="comment-date" datetime="2021-04-16T02:49:05.139Z">2021年4月15日</time>
+    
+  </div>
+  <div class="comment-body"><p>特别棒，给果点赞</p></div>
+  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDo1NTE1MDU">
+  <div class="comment-header">
+    <a href="https://matters.town/@seenzhao" class="comment-author" rel="nofollow noopener" target="_blank">SinChaos</a>
+    <time class="comment-date" datetime="2021-04-16T02:51:03.738Z">2021年4月15日</time>
+    
+  </div>
+  <div class="comment-body"><p>我在玉树有四五个藏民朋友，夏天有时候去牧场上住一周，一起挤牛奶，拣牛粪，晚上一起唱歌，一起讨论如何创业……欢迎<a href="/@guo">﻿@刘果﻿</a> 一起来啊</p></div>
+  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDo1NTM3ODI">
+  <div class="comment-header">
+    <a href="https://matters.town/@guo" class="comment-author" rel="nofollow noopener" target="_blank">刘果</a>
+    <time class="comment-date" datetime="2021-04-17T04:28:07.352Z">2021年4月17日</time>
+    
+  </div>
+  <div class="comment-body"><p>听起来很棒！谢谢邀请，下次回国有机会去找你们玩 😊</p></div>
+  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDo1NTc0Mjg">
+  <div class="comment-header">
+    <a href="https://matters.town/@seenzhao" class="comment-author" rel="nofollow noopener" target="_blank">SinChaos</a>
+    <time class="comment-date" datetime="2021-04-19T11:47:38.348Z">2021年4月19日</time>
+    
+  </div>
+  <div class="comment-body"><p>好啊！我也是捡过牛粪之后才知道，原来霍霍屎要捡热的……然后藏民是用河里的泥巴洗碗的……都是热腾腾的知识点！</p></div>
+  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDo1NTgwOTA">
+  <div class="comment-header">
+    <a href="https://matters.town/@guo" class="comment-author" rel="nofollow noopener" target="_blank">刘果</a>
+    <time class="comment-date" datetime="2021-04-19T22:32:45.547Z">2021年4月19日</time>
+    
+  </div>
+  <div class="comment-body"><p>哈哈 非常实用的知识！</p></div>
+</li>
+  </ol>
+</li>
+  </ol>
+</li>
+  </ol>
+</li>
+  </ol>
+</li><li class="comment-item" id="comment-Q29tbWVudDo1NTAxMDU">
+  <div class="comment-header">
+    <a href="https://matters.town/@redcheng89" class="comment-author" rel="nofollow noopener" target="_blank">RedCheng</a>
+    <time class="comment-date" datetime="2021-04-15T09:14:04.849Z">2021年4月15日</time>
+    
+  </div>
+  <div class="comment-body"><p>我去过，实在是太美的地方。以后有机会肯定会一而再再而三地去。</p><p>当时有幸有当地藏民带着我们从山上看天葬，还路过了秃鹰的聚集地。</p></div>
+</li><li class="comment-item" id="comment-Q29tbWVudDo1NDg1ODQ">
+  <div class="comment-header">
+    <a href="https://matters.town/@flyhigh2011" class="comment-author" rel="nofollow noopener" target="_blank">廖珮岑</a>
+    <time class="comment-date" datetime="2021-04-14T14:11:51.773Z">2021年4月14日</time>
+    
+  </div>
+  <div class="comment-body"><p>我之前在川北旅行時，也有打算去趟色達，可惜後來因為各種因素沒有前往。</p><p>感謝你的文字，很美。</p></div>
+  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDo1NDg3NDI">
+  <div class="comment-header">
+    <a href="https://matters.town/@guo" class="comment-author" rel="nofollow noopener" target="_blank">刘果</a>
+    <time class="comment-date" datetime="2021-04-14T15:11:11.477Z">2021年4月14日</time>
+    
+  </div>
+  <div class="comment-body"><p>謝謝！希望你下次還有機會去</p></div>
+</li>
+  </ol>
+</li><li class="comment-item" id="comment-Q29tbWVudDo1NDQ2NDY">
+  <div class="comment-header">
+    <a href="https://matters.town/@smog_again" class="comment-author" rel="nofollow noopener" target="_blank">鬼撞墙</a>
+    <time class="comment-date" datetime="2021-04-12T09:36:55.654Z">2021年4月12日</time>
+    
+  </div>
+  <div class="comment-body"><p>现在没有法子居高临下地拍秃鹫了，围栏将秃鹫和人类隔开，那边挤满了准备一饱口福的秃鹫，这边挤满了准备一饱眼福的人类。</p></div>
+</li><li class="comment-item" id="comment-Q29tbWVudDo1NDExODk">
+  <div class="comment-header">
+    <a href="https://matters.town/@nameless12547" class="comment-author" rel="nofollow noopener" target="_blank">無名星人12547</a>
+    <time class="comment-date" datetime="2021-04-10T03:02:49.579Z">2021年4月9日</time>
+    
+  </div>
+  <div class="comment-body"><p>「我满怀感激地吃下了这辈子吃过最酸的酸奶。」</p></div>
+</li><li class="comment-item" id="comment-Q29tbWVudDo1NDA5OTE">
+  <div class="comment-header">
+    <a href="https://matters.town/@Rollopinion" class="comment-author" rel="nofollow noopener" target="_blank">YZ｜捲</a>
+    <time class="comment-date" datetime="2021-04-10T01:14:46.273Z">2021年4月9日</time>
+    
+  </div>
+  <div class="comment-body"><p>謝謝你的影像和文字，有一年我本來要去色達，都買好機票，卻沒去，然後就再也沒能去了，還好有這一篇。</p></div>
+  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDo1NDIzMTc">
+  <div class="comment-header">
+    <a href="https://matters.town/@guo" class="comment-author" rel="nofollow noopener" target="_blank">刘果</a>
+    <time class="comment-date" datetime="2021-04-11T00:41:04.719Z">2021年4月10日</time>
+    
+  </div>
+  <div class="comment-body"><p>謝謝你的閱讀。很值得小住的地方，希望變化不大。</p></div>
+</li>
+  </ol>
+</li><li class="comment-item" id="comment-Q29tbWVudDo1NDA4NDk">
+  <div class="comment-header">
+    <a href="https://matters.town/@fide" class="comment-author" rel="nofollow noopener" target="_blank">fide</a>
+    <time class="comment-date" datetime="2021-04-09T22:08:50.281Z">2021年4月9日</time>
+    
+  </div>
+  <div class="comment-body"><p>these photos are priceless!</p></div>
+  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDo1NDIzMTU">
+  <div class="comment-header">
+    <a href="https://matters.town/@guo" class="comment-author" rel="nofollow noopener" target="_blank">刘果</a>
+    <time class="comment-date" datetime="2021-04-11T00:40:19.249Z">2021年4月10日</time>
+    
+  </div>
+  <div class="comment-body"><p>也是很無價的回憶 😄</p></div>
+</li>
+  </ol>
+</li></ol>
+    <script>(function() {
+  var form = document.getElementById('moss-comment-form');
+  if (!form) return;
+
+  var textarea = document.getElementById('moss-comment-text');
+  var statusEl = document.getElementById('moss-comment-status');
+  var commentList = document.querySelector('.moss-comments .comment-list');
+  var currentReplyId = null;
+  var currentReplyWrapper = null;
+  var defaultFormSlot = document.getElementById('default-form-slot');
+
+  function updateCommentCount() {
+    var s = document.getElementById('moss-comments');
+    if (!s) return;
+    var total = s.querySelectorAll('.comment-item').length;
+    var d = s.querySelector('details');
+    if (!d) return;
+    var sp = d.querySelector('summary span');
+    if (sp) {
+      sp.textContent = total === 1 ? '1条评论' : '{n}条评论'.replace('{n}', total);
+    }
+  }
+
+  // Auto-grow textarea
+  if (textarea) {
+    function autoGrow() {
+      textarea.style.height = 'auto';
+      textarea.style.height = textarea.scrollHeight + 'px';
+    }
+    textarea.addEventListener('input', autoGrow);
+  }
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    var btn = form.querySelector('.comment-form-submit');
+    btn.disabled = true;
+    btn.textContent = '提交中...';
+    if (statusEl) { statusEl.textContent = ''; statusEl.className = 'comment-form-status'; }
+
+    var rawLink = (form.elements['link'].value || '').trim();
+    if (rawLink && !/^https?:\/\//.test(rawLink)) { rawLink = 'https://' + rawLink; }
+
+    var body = {
+      content: form.elements['content'].value,
+      name: form.elements['name'].value,
+      email: form.elements['email'].value,
+      link: rawLink,
+      rid: currentReplyId ? parseInt(currentReplyId, 10) : 0,
+      page_key: 'd4924e28',
+      site_name: 'liu-guo.com',
+      ua: navigator.userAgent
+    };
+
+    fetch('https://api.moss.host/comments/api/v2/comments', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body)
+    })
+    .then(function(res) {
+      if (!res.ok) {
+        return res.json().catch(function() {
+          throw new Error('Server error (' + res.status + ')');
+        }).then(function(data) {
+          throw new Error(data.msg || 'Server error (' + res.status + ')');
+        });
+      }
+      return res.json();
+    })
+    .then(function(data) {
+      btn.disabled = false;
+      btn.textContent = '回复';
+
+      if (statusEl) {
+        statusEl.textContent = '评论已提交！';
+        statusEl.className = 'comment-form-status comment-form-status--success';
+      }
+
+      var li = document.createElement('li');
+      li.className = 'comment-item';
+      li.id = 'comment-' + data.id;
+      var now = new Date().toLocaleDateString('zh-CN', {year:'numeric',month:'short',day:'numeric'});
+      var authorName = body.name || 'Anonymous';
+      var safeAuthor = authorName.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+      li.innerHTML = '<div class="comment-header">'
+        + '<span class="comment-author">' + safeAuthor + '</span>'
+        + '<time class="comment-date">' + now + '</time>'
+        + '<button type="button" class="comment-reply-btn" data-reply-id="' + data.id + '" data-reply-name="' + safeAuthor + '">\u21a9 回复</button>'
+        + '</div>'
+        + '<div class="comment-body"><p>' + body.content.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;') + '</p></div>';
+
+      if (currentReplyId) {
+        // Insert as nested reply under the parent comment
+        var parentLi = document.getElementById('comment-' + currentReplyId);
+        if (parentLi) {
+          var repliesOl = parentLi.querySelector('.comment-replies');
+          if (!repliesOl) {
+            repliesOl = document.createElement('ol');
+            repliesOl.className = 'comment-replies';
+            parentLi.appendChild(repliesOl);
+          }
+          repliesOl.insertBefore(li, null);
+        }
+        cancelReply(false);
+      } else {
+        if (!commentList) {
+          commentList = document.createElement('ol');
+          commentList.className = 'comment-list';
+          var defaultSlot = document.getElementById('default-form-slot');
+          if (defaultSlot) defaultSlot.after(commentList);
+          else form.after(commentList);
+        }
+        // Newest first: prepend so the just-submitted comment appears at the top
+        commentList.insertBefore(li, commentList.firstChild);
+      }
+
+      updateCommentCount();
+      form.elements['content'].value = '';
+      if (textarea) { textarea.style.height = 'auto'; }
+    })
+    .catch(function(err) {
+      btn.disabled = false;
+      btn.textContent = '回复';
+      if (statusEl) {
+        statusEl.textContent = err.message || '网络错误，请重试。';
+        statusEl.className = 'comment-form-status comment-form-status--error';
+      }
+    });
+  });
+
+  /* --- Reply logic: relocating form pattern --- */
+  function cancelReply(skipScroll) {
+    if (!currentReplyWrapper) return;
+    if (defaultFormSlot) {
+      defaultFormSlot.appendChild(form);
+      defaultFormSlot.classList.remove('comment-form-slot--collapsed');
+    }
+    currentReplyWrapper.remove();
+    currentReplyWrapper = null;
+    currentReplyId = null;
+    if (!skipScroll && defaultFormSlot) {
+      defaultFormSlot.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  }
+
+  var section = document.getElementById('moss-comments');
+  if (section) {
+    section.addEventListener('click', function(e) {
+      var btn = e.target.closest('.comment-reply-btn');
+      if (!btn) return;
+
+      var replyId = btn.getAttribute('data-reply-id');
+      var replyName = btn.getAttribute('data-reply-name');
+      var commentItem = document.getElementById('comment-' + replyId);
+      if (!commentItem) return;
+
+      // If already replying to this comment, just focus
+      if (currentReplyId === replyId) { textarea.focus(); return; }
+
+      // Cancel any existing reply
+      cancelReply(true);
+
+      // Collapse default form slot
+      if (defaultFormSlot) defaultFormSlot.classList.add('comment-form-slot--collapsed');
+
+      // Create reply wrapper with thread indent
+      var wrapper = document.createElement('div');
+      wrapper.className = 'comment-reply-form-wrapper';
+
+      // Reply indicator
+      var indicator = document.createElement('div');
+      indicator.className = 'comment-reply-indicator';
+      indicator.innerHTML = '<span>\u21a9 回复 <strong>' + replyName.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') + '</strong> \u00b7</span>';
+      var cancelBtn = document.createElement('button');
+      cancelBtn.type = 'button';
+      cancelBtn.className = 'comment-reply-cancel';
+      cancelBtn.textContent = '取消';
+      cancelBtn.addEventListener('click', function() { cancelReply(false); });
+      indicator.appendChild(cancelBtn);
+      wrapper.appendChild(indicator);
+
+      // Move form into wrapper
+      wrapper.appendChild(form);
+      commentItem.appendChild(wrapper);
+
+      currentReplyWrapper = wrapper;
+      currentReplyId = replyId;
+
+      textarea.focus();
+      wrapper.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+  }
+
+  /*
+   * Eager hydration — fetch new comments on page load, not on toggle.
+   *
+   * Design decision:
+   *   Static HTML contains all comments known at build time (stale-while-
+   *   revalidate). Previously, hydration was deferred to the <details> toggle
+   *   event, so the summary count stayed stale until the user expanded the
+   *   section. Now we fetch eagerly on page load so the count is correct as
+   *   soon as possible, while not blocking page render (the fetch is async).
+   *
+   * How others handle this:
+   *   - Disqus, Commento, Utterances: fully client-rendered. No static HTML
+   *     at all — the entire comment thread loads via JS. Fast count, but no
+   *     content until JS runs.
+   *   - Staticman: commits to git repo, rebuilt into static HTML. No client
+   *     hydration — count is always stale until next build.
+   *   - Artalk's own JS client: fully client-rendered, same as Disqus.
+   *   - moss is unique: SSR + client hydration, like Next.js/Remix's approach
+   *     to static content. We get the best of both — immediate content without
+   *     JS, plus live updates via hydration.
+   *
+   * Trade-off:
+   *   One background fetch per page load (~1 KB JSON response) vs accurate
+   *   comment count. Worth it because the fetch is small, non-blocking, and
+   *   the count being wrong is a worse UX than a tiny network request.
+   *
+   * Deduplication (two layers):
+   *   1. Date boundary  — stop iterating when we hit a comment older than the
+   *      build timestamp (comments are sorted newest-first from the API).
+   *   2. ID guard       — skip any comment whose DOM node already exists
+   *      (handles edge cases where build-time and fetch overlap).
+   *
+   * Trust model: Artalk performs server-side HTML sanitization, so we use
+   * innerHTML for comment content (same as the static render path).
+   */
+  var builtAtStr = section && section.getAttribute('data-built-at');
+  var builtAtMs = builtAtStr ? new Date(builtAtStr).getTime() : 0;
+
+  if (builtAtMs) {
+    fetch('https://api.moss.host/comments/api/v2/comments?page_key=d4924e28&site_name=liu-guo.com&flat_mode=true&sort_by=date_desc&limit=100')
+      .then(function(res) { return res.ok ? res.json() : null; })
+      .then(function(json) {
+        if (!json) return;
+        var list = json.comments || (json.data && json.data.comments) || [];
+        var added = 0;
+        // Anchor = first build-time comment. Hydrated comments go before it
+        // to maintain newest-first order (API returns date_desc).
+        var anchor = commentList ? commentList.firstChild : null;
+        for (var i = 0; i < list.length; i++) {
+          var c = list[i];
+          if (new Date(c.date).getTime() <= builtAtMs) break;
+          if (document.getElementById('comment-' + c.id)) continue;
+
+          var li = document.createElement('li');
+          li.className = 'comment-item';
+          li.id = 'comment-' + c.id;
+          var authorName = (c.nick || 'Anonymous').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+          var dateStr = new Date(c.date).toLocaleDateString('zh-CN', {year:'numeric',month:'short',day:'numeric'});
+          li.innerHTML = '<div class="comment-header">'
+            + '<span class="comment-author">' + authorName + '</span>'
+            + '<time class="comment-date">' + dateStr + '</time>'
+            + '<button type="button" class="comment-reply-btn" data-reply-id="' + c.id + '" data-reply-name="' + authorName + '">\u21a9 回复</button>'
+            + '</div>'
+            + '<div class="comment-body">' + c.content + '</div>';
+
+          if (c.rid > 0) {
+            var parentLi = document.getElementById('comment-' + c.rid);
+            if (parentLi) {
+              var repliesOl = parentLi.querySelector('.comment-replies');
+              if (!repliesOl) {
+                repliesOl = document.createElement('ol');
+                repliesOl.className = 'comment-replies';
+                parentLi.appendChild(repliesOl);
+              }
+              repliesOl.insertBefore(li, null);
+              added++;
+              continue;
+            }
+          }
+
+          if (!commentList) {
+            commentList = document.createElement('ol');
+            commentList.className = 'comment-list';
+            var formEl = document.getElementById('moss-comment-form');
+            if (formEl) formEl.after(commentList);
+            anchor = null;
+          }
+          commentList.insertBefore(li, anchor);
+          added++;
+        }
+
+        if (added > 0) {
+          updateCommentCount();
+        }
+      })
+      .catch(function() { /* silent — static comments still visible */ });
+  }
+})();</script>
+  </details>
+</section>
+    </main>
+
+    <footer class="container">
+    <div class="footer-content">
+        <div class="footer-left">
+            <a href="/友链/" class="footer-link">友链</a>
+            <a href="/feed.xml" class="footer-link" data-external>RSS</a>
+        </div>
+        <div class="footer-right">
+            <form action="https://buttondown.com/api/emails/embed-subscribe/liuguo" method="post" class="footer-subscribe-form">
+            <input type="email" name="email" class="moss-input" placeholder="邮箱" required />
+            <input type="hidden" value="1" name="embed" />
+            <button type="submit" class="moss-btn">订阅</button>
+        </form>
+        </div>
+    </div>
+</footer>
+
+    <script src="/js/theme.js"></script>
+    
+</body>
+</html>

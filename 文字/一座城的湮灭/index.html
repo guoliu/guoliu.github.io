@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="zh-hans">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>一座城的湮灭 - 刘果</title>
+    <meta name="description" content="昨日大雪，许久未见的J前来拜访。J专业是建筑，业余时接些翻译、校对的活，闲时改编剧本、做做小剧场。在花了三个小时表达对阿尔罕布拉宫立柱的赞叹和对王澍的不屑之后，他又聊了聊自己如何把Tempest改得只有半小时长。其中惨烈，自然难以想象。末了，他说起一个朋友写的故事。彼时天色渐暗，窗外风雪交加，屋里没有炉火。似乎不是个讲...">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="一座城的湮灭">
+    <meta property="og:url" content="/文字/一座城的湮灭/">
+    <meta property="og:site_name" content="刘果">
+    <meta property="og:description" content="昨日大雪，许久未见的J前来拜访。J专业是建筑，业余时接些翻译、校对的活，闲时改编剧本、做做小剧场。在花了三个小时表达对阿尔罕布拉宫立柱的赞叹和对王澍的不屑之后，他又聊了聊自己如何把Tempest改得只有半小时长。其中惨烈，自然难以想象。末了，他说起一个朋友写的故事。彼时天色渐暗，窗外风雪交加，屋里没有炉火。似乎不是个讲...">
+    <meta property="article:published_time" content="2013-02-07T20:44:51.000Z">
+    <meta property="og:image" content="/图片/GiorgioDeChirico.jpg">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "一座城的湮灭",
+  "url": "/文字/一座城的湮灭/",
+  "description": "昨日大雪，许久未见的J前来拜访。J专业是建筑，业余时接些翻译、校对的活，闲时改编剧本、做做小剧场。在花了三个小时表达对阿尔罕布拉宫立柱的赞叹和对王澍的不屑之后，他又聊了聊自己如何把Tempest改得只有半小时长。其中惨烈，自然难以想象。末了，他说起一个朋友写的故事。彼时天色渐暗，窗外风雪交加，屋里没有炉火。似乎不是个讲...",
+  "datePublished": "2013-02-07T20:44:51.000Z",
+  "image": "/图片/GiorgioDeChirico.jpg",
+  "publisher": {
+    "@type": "Organization",
+    "name": "刘果"
+  }
+}
+</script>
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml">
+    <script data-goatcounter="https://guo.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+    
+    <link rel="stylesheet" href="/style.css?v=d3d3d52ec931f2b0">
+    <style class="moss-comments-style">/* ==========================================================================
+   moss Comments Plugin - Styles
+
+   Collapsible comment section with solid thread borders,
+   underline-style form inputs, and responsive grid layout.
+   Uses CSS custom properties from moss default.css.
+   ========================================================================== */
+
+/* ==========================================================================
+   Design Decision Record: Flattened Comment Form
+   --------------------------------------------------------------------------
+
+   Research found that the best comment sections treat comments as editorial
+   content on the same surface as the article, not as a separate widget.
+
+   Six principles guide the comment form styling:
+
+   P1. One surface
+       Remove the tinted card background from .comment-form. Form and
+       comments share the page background. Modeled after NYT/Guardian
+       "Letters to the Editor" — comments as editorial content, same surface.
+
+   P2. Border language consistency
+       Comments use border-bottom: 1px solid. The form uses the same 1px
+       border as its boundary, not a background fill + border-radius.
+
+   P3. Typographic continuity
+       Placeholder text, field labels, comment body, author names — same
+       type family, proportional sizes. Follows iA design philosophy
+       (ia.net): "web design is 95% typography", content-first.
+
+   P4. The form is the first comment
+       Visually, the compose area reads like an empty comment slot. Same
+       padding rhythm, same width, same vertical spacing as comment items.
+       Inspired by CSS-Tricks threading (css-tricks.com) — forms inline in
+       thread, not separate cards.
+
+   P5. Distinguish through state, not surface
+       The textarea is interactive because of cursor/focus behavior, not
+       because it sits on a different background. Focus states (accent
+       underline) provide sufficient affordance.
+
+   P6. Density matching
+       Spacing between form elements echoes spacing between comment items.
+
+   References:
+   - NYT/Guardian "Letters to the Editor" model
+   - Ahmad Shadeed's comment component (ishadeed.com)
+   - CSS-Tricks threading (css-tricks.com)
+   - iA design philosophy (ia.net)
+   - ResultFirst 2026 trends — "stripping away non-essential frills"
+   ========================================================================== */
+
+/* Comment Section — width controlled by site theme (main > .moss-comments) */
+.moss-comments {
+  margin-top: 6rem;
+}
+
+/* Divider above comment section */
+.moss-comments > details {
+  padding-top: var(--moss-space-lg, 2rem);
+  border-top: 1px solid var(--moss-border-light, #e6e2db);
+}
+
+/* ==========================================================================
+   Collapsible Details/Summary
+   ========================================================================== */
+
+.comments-toggle {
+  display: flex;
+  align-items: center;
+  gap: var(--moss-space-xs, 0.5rem);
+  cursor: pointer;
+  list-style: none;
+  font-size: var(--moss-font-sm, 1rem);
+  color: var(--moss-color-muted, #8a8580);
+  user-select: none;
+  padding: 0;
+}
+
+/* Hide WebKit default disclosure triangle */
+.comments-toggle::-webkit-details-marker {
+  display: none;
+}
+
+.comments-toggle .comments-icon {
+  flex-shrink: 0;
+}
+
+.comments-toggle:hover {
+  color: var(--moss-color-text, #2c2825);
+}
+
+/* Chevron indicator — points right when collapsed, down when expanded */
+.comments-toggle .comments-chevron {
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+details[open] > .comments-toggle .comments-chevron {
+  transform: rotate(90deg);
+}
+
+/* Space between summary and content when open */
+details[open] > .comments-toggle {
+  margin-bottom: var(--moss-space-md, 1.5rem);
+}
+
+/* ==========================================================================
+   Comment List
+   ========================================================================== */
+
+.comment-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.comment-item {
+  padding: var(--moss-space-md, 1.5rem) 0;
+  border-bottom: 1px solid var(--moss-border-light, #e6e2db);
+}
+
+.comment-item:first-child {
+  padding-top: 0;
+}
+
+.comment-item:last-child {
+  border-bottom: none;
+}
+
+/* Comment Header: author name + date */
+.comment-header {
+  display: flex;
+  align-items: baseline;
+  gap: var(--moss-space-xs, 0.5rem);
+  margin-bottom: var(--moss-space-xs, 0.5rem);
+}
+
+.comment-author {
+  font-weight: 480;
+  font-size: var(--moss-font-sm, 1rem);
+  color: var(--moss-color-text, #2c2825);
+  text-decoration: none;
+}
+
+a.comment-author:hover {
+  color: var(--moss-color-accent, #2d5a2d);
+}
+
+.comment-date {
+  font-size: 0.875rem;
+  color: var(--moss-color-muted, #8a8580);
+}
+
+/* Comment Body */
+.comment-body {
+  font-size: var(--moss-font-size, 1.125rem);
+  line-height: 1.7;
+  color: var(--moss-color-text, #2c2825);
+}
+
+.comment-body p {
+  margin: 0 0 var(--moss-space-sm, 1rem) 0;
+}
+
+.comment-body p:last-child {
+  margin-bottom: 0;
+}
+
+.comment-body blockquote {
+  font-size: inherit;
+  font-style: normal;
+  border-left: 3px solid var(--moss-color-muted, #8a8580);
+  margin: var(--moss-space-xs, 0.5rem) 0 var(--moss-space-xs, 0.5rem) 1rem;
+  padding-left: var(--moss-space-sm, 1rem);
+  color: var(--moss-text-secondary, #5d5853);
+}
+
+.comment-body a {
+  color: var(--moss-color-text, #2c2825);
+  text-decoration: underline;
+}
+
+.comment-body a:hover {
+  color: var(--moss-color-accent, #2d5a2d);
+}
+
+/* ==========================================================================
+   Nested Replies — Solid Left Border Threading
+   ========================================================================== */
+
+.comment-replies {
+  list-style: none;
+  padding: 0 0 0 var(--moss-space-sm, 1rem);
+  margin: 0 0 0 var(--moss-space-xs, 0.5rem);
+  border-left: 2px solid var(--moss-border-medium, #d1cdc4);
+}
+
+.comment-replies .comment-item {
+  padding: var(--moss-space-sm, 1rem) 0;
+}
+
+/* ==========================================================================
+   Comment Form
+   ========================================================================== */
+
+.comment-form {
+  padding: var(--moss-space-md, 1.5rem) 0;
+  margin: 0 0 var(--moss-space-md, 1.5rem) 0;
+}
+
+/* Textarea — underline style */
+.comment-form textarea {
+  display: block;
+  width: 100%;
+  min-height: 3rem;
+  padding: 0.25rem 0;
+  border: none;
+  border-bottom: 1px solid var(--moss-border-medium, #d1cdc4);
+  font-family: inherit;
+  font-size: var(--moss-font-size, 1.125rem);
+  line-height: 1.7;
+  color: var(--moss-color-text, #2c2825);
+  background: transparent;
+  resize: none;
+  overflow: hidden;
+  box-sizing: border-box;
+  transition: border-color 0.15s ease;
+}
+
+.comment-form textarea:focus {
+  outline: none;
+  border-bottom: 2px solid var(--moss-color-accent, #2d5a2d);
+}
+
+.comment-form textarea::placeholder {
+  color: var(--moss-color-muted, #8a8580);
+}
+
+/* ==========================================================================
+   Form Meta Row — Name + Email + Website + Submit (single row on desktop)
+   ========================================================================== */
+
+.comment-form-meta {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr 1.1fr auto;
+  gap: 0.75rem;
+  align-items: end;
+  margin-top: var(--moss-space-sm, 1rem);
+}
+
+/* Underline-style input fields */
+.comment-field {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--moss-border-medium, #d1cdc4);
+  padding: 0.5rem 0;
+  font-family: inherit;
+  font-size: var(--moss-font-sm, 1rem);
+  color: var(--moss-color-text, #2c2825);
+  box-sizing: border-box;
+  transition: border-color 0.15s ease;
+  min-width: 0;
+}
+
+.comment-field:focus {
+  outline: none;
+  border-bottom: 2px solid var(--moss-color-accent, #2d5a2d);
+}
+
+.comment-field::placeholder {
+  color: var(--moss-color-muted, #8a8580);
+}
+
+/* ==========================================================================
+   Submit Button — Filled Tonal Style
+   ========================================================================== */
+
+.comment-form-submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1.25rem;
+  background: color-mix(in srgb, var(--moss-color-accent, #2d5a2d) 8%, transparent);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  color: var(--moss-color-accent, #2d5a2d);
+  font-family: inherit;
+  font-size: var(--moss-font-sm, 1rem);
+  font-weight: 480;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.comment-form-submit:hover {
+  background: color-mix(in srgb, var(--moss-color-accent, #2d5a2d) 15%, transparent);
+}
+
+.comment-form-submit:focus {
+  outline: 2px solid var(--moss-color-accent, #2d5a2d);
+  outline-offset: 2px;
+}
+
+.comment-form-submit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ==========================================================================
+   Accessible Visually Hidden
+   ========================================================================== */
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ==========================================================================
+   Status Messages
+   ========================================================================== */
+
+.comment-form-status {
+  margin-top: var(--moss-space-sm, 1rem);
+  font-size: 0.875rem;
+}
+
+.comment-form-status:empty {
+  display: none;
+}
+
+.comment-form-status--error {
+  color: #a83232;
+}
+
+.comment-form-status--success {
+  color: var(--moss-color-accent, #2d5a2d);
+}
+
+/* Default form slot — collapses when form relocates */
+.comment-form-slot {
+  overflow: hidden;
+  transition: max-height 0.3s ease, opacity 0.2s ease;
+}
+.comment-form-slot--collapsed {
+  max-height: 0;
+  opacity: 0;
+}
+
+/* Reply form wrapper — indented like a reply thread */
+.comment-reply-form-wrapper {
+  margin-top: var(--moss-space-sm, 1rem);
+  padding: var(--moss-space-sm, 1rem) 0 0 var(--moss-space-sm, 1rem);
+  margin-left: var(--moss-space-xs, 0.5rem);
+  border-left: 2px solid var(--moss-border-medium, #d1cdc4);
+  overflow: hidden;
+  animation: slideDown 0.25s ease-out;
+}
+
+@keyframes slideDown {
+  from { max-height: 0; opacity: 0; }
+  to { max-height: 500px; opacity: 1; }
+}
+
+/* Smaller typography in reply form */
+.comment-reply-form-wrapper .comment-form textarea {
+  font-size: var(--moss-font-sm, 1rem);
+  min-height: 2.5rem;
+}
+.comment-reply-form-wrapper .comment-field {
+  font-size: 0.875rem;
+  padding: 0.375rem 0;
+}
+.comment-reply-form-wrapper .comment-form-submit {
+  font-size: 0.875rem;
+  padding: 0.375rem 1rem;
+}
+.comment-reply-form-wrapper .comment-form {
+  padding-top: 0;
+}
+
+/* Reply button in comment header */
+.comment-reply-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.8125rem;
+  color: var(--moss-color-muted, #8a8580);
+  padding: 0;
+  margin-left: auto;
+  transition: color 0.15s ease;
+}
+.comment-reply-btn:hover {
+  color: var(--moss-color-accent, #2d5a2d);
+}
+
+/* Reply indicator */
+.comment-reply-indicator {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--moss-color-muted, #8a8580);
+  margin-bottom: var(--moss-space-xs, 0.5rem);
+}
+.comment-reply-indicator strong {
+  color: var(--moss-color-text, #2c2825);
+  font-weight: 480;
+}
+.comment-reply-cancel {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--moss-color-muted, #8a8580);
+  font-size: 0.875rem;
+  padding: 0;
+  margin-left: 0.25rem;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.comment-reply-cancel:hover {
+  color: var(--moss-color-text, #2c2825);
+}
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+
+/* 2+2 layout: name+email on row 1, website+button on row 2 */
+@media (max-width: 37.5rem) {
+  .comment-form-meta {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .comment-replies {
+    padding-left: var(--moss-space-xs, 0.5rem);
+    margin-left: 0.25rem;
+  }
+
+  .comment-reply-form-wrapper .comment-form-meta {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Full stack on very narrow screens */
+@media (max-width: 25rem) {
+  .comment-form-meta {
+    grid-template-columns: 1fr;
+  }
+
+  .comment-form-submit {
+    justify-self: end;
+  }
+
+  .comment-reply-form-wrapper .comment-form-meta {
+    grid-template-columns: 1fr;
+  }
+  .comment-reply-form-wrapper {
+    padding-left: var(--moss-space-xs, 0.5rem);
+    margin-left: 0.25rem;
+  }
+}
+</style>
+<style class="moss-email-style">/* Email subscribe form — injected by email plugin enhance hook */
+.footer-subscribe-form {
+  display: flex;
+  gap: var(--moss-space-sm);
+  align-items: baseline;
+  max-width: 18rem;
+}
+
+.footer-subscribe-form .moss-input {
+  flex: 1;
+}
+
+.footer-subscribe-form .moss-btn {
+  font-size: inherit;
+}
+
+@media (max-width: 48rem) {
+  .footer-subscribe-form .moss-input {
+    width: 10ch;
+    flex: none;
+  }
+}
+</style>
+<style class="moss-review-style">/* Review plugin — header and colophon styles
+ * Uses moss design tokens. Works in light and dark mode.
+ */
+
+.review-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin: 1rem 0 2rem;
+}
+
+.review-cover {
+  width: 80px;
+  height: auto;
+  object-fit: cover;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.review-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0;
+  font-size: 0.95em;
+  color: var(--moss-color-muted, #666);
+  padding-top: 4px;
+}
+
+.review-creator {
+  font-weight: 500;
+}
+
+.review-sep {
+  color: var(--moss-color-muted, #666);
+  margin: 0 0.15em;
+}
+
+/* Colophon */
+.review-colophon {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--moss-color-border, #e0e0e0);
+  font-size: 0.9em;
+  color: var(--moss-color-muted, #666);
+}
+
+.review-rating {
+  font-size: 1.2em;
+  color: var(--moss-color-accent, #c9a84c);
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.05em;
+}
+
+.review-community-rating {
+  font-size: 0.85em;
+  margin-bottom: 0.5rem;
+}
+
+.review-biblio {
+  margin-bottom: 0.75rem;
+  line-height: 1.6;
+}
+
+.review-links a {
+  color: var(--moss-color-accent, #c9a84c);
+  text-decoration: none;
+}
+
+.review-links a:hover {
+  text-decoration: underline;
+}
+
+/* Mobile: stack cover above meta */
+@media (max-width: 32rem) {
+  .review-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+</style>
+</head>
+<body class="">
+    <header>
+        <nav class="main-nav container">
+            <div class="nav-content">
+                <div class="nav-left"><a href="/" class="site-name">刘果</a><span class="breadcrumb-separator">/</span><a href="/文字/" class="breadcrumb-segment">文字</a></div><div class="nav-right"><div class="nav-icons"><button class="theme-toggle" onclick="toggleTheme()" aria-label="切换深色模式" type="button" title="切换深色模式"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="1em" height="1em" fill="currentColor" stroke-linecap="round" class="theme-toggle__classic" viewBox="0 0 32 32"><clipPath id="theme-toggle__classic__cutout"><path d="M0-5h30a1 1 0 0 0 9 13v24H0Z"/></clipPath><g clip-path="url(#theme-toggle__classic__cutout)"><circle cx="16" cy="16" r="9.34"/><g stroke="currentColor" stroke-width="1.5"><path d="M16 5.5v-4"/><path d="M16 30.5v-4"/><path d="M1.5 16h4"/><path d="M26.5 16h4"/><path d="m23.4 8.6 2.8-2.8"/><path d="m5.7 26.3 2.9-2.9"/><path d="m5.8 5.8 2.8 2.8"/><path d="m23.4 23.4 2.9 2.9"/></g></g></svg></button></div></div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <article class="container">
+            <h1 class="article-title">一座城的湮灭</h1>
+            <p><span class="date">2013 · 2 · 7</span></p>
+            
+            <p>昨日大雪，许久未见的J前来拜访。J专业是建筑，业余时接些翻译、校对的活，闲时改编剧本、做做小剧场。在花了三个小时表达对阿尔罕布拉宫立柱的赞叹和对王澍的不屑之后，他又聊了聊自己如何把Tempest改得只有半小时长。其中惨烈，自然难以想象。末了，他说起一个朋友写的故事。彼时天色渐暗，窗外风雪交加，屋里没有炉火。似乎不是个讲故事的好时候。不过这故事有几分暖意，这里便转述如下。</p>
+<p>在一片同样风雪交加的荒原里，人们有时能看到一座城。周围是密布的欧石楠灌丛，或者丛生的芨芨草，没有人知道个确切。这座城时隐时现，当你想要走近她时，她便同你一起隐没在暴风里。等到尘埃落地，你又回到了原点。</p>
+<p>一天黄昏，一个老头儿拄着拐杖从地平线走来，穿过荒原，摸索着走向这座城。那些欧石楠灌丛或是芨芨草，瑟瑟地抖着，让开了一条小径，一如当年摩西穿过的红海。没有风暴，没有尘埃，荒野像接纳夜色一般接纳了他。</p>
+<p>老人进到了城里，空气中满是芬馥的异域气息。他看见亚述人的络腮胡，看见波斯的鎏金瓶，看见灰黄的龙脑香。他走过一座爬满地锦的大学，走过一座涂脂抹粉的妓院，走过一座坍塌的桥。</p>
+<p>老人看着，嗅着。这些景色似曾相识，只是记不起曾在哪儿见过。空气中的花粉，已变成紫色的天空，都让自己想起一些什么，说不清道不明。不过脚下的路越来越熟悉，拐杖也越来越轻盈，老人觉得靠着气味就知道该去哪里。</p>
+<p>老人来到了一座低矮的房子前，一条尘土飞扬的小街。断断续续的手风琴从窗户里传出来。这是他童年呆过的地方，土面上的坑洼或许还是踢球的时候留下的。路灯下有把长椅上，他缓缓坐下，把拐杖靠在膝旁。</p>
+<p>城随着夜色醒来。她问，你从哪里来。</p>
+<p>老人说，世界的许多角落，许多不属于我的地方。他说起柏柏尔人骆驼奶的醇厚，回味雅诺马米人毒蘑菇的奇幻，怀念月亮山下的俾格米人和非洲象的生肉。蒙古草原上的咸湖浅如碟，夕阳下的芦苇和狼毒金黄透绿。你在湖的中央，平静的湖面刚齐脚踝。水天如镜，水下亿万只卤虫席卷，你化作天地间一粒尘埃。霍尔木兹海峡的阳光能煮熟一切活物，你差点渴死在了沙漠与波斯湾的苦水之间。濒死的幻觉把累累尸骨变成了一株株利瓦绿洲的葡萄，你和那些躺着的贝都因人一样安详。</p>
+<p>城静静地听着。"噗"的一声，城里波斯人的商铺、参天的龙脑香树、城门上的石敢当和街道旁的木幡杆消失了。欧石楠和芨芨草蔓延。</p>
+<p>她问，你从哪里来。</p>
+<p>老人说，女人的怀里，春天的裙摆间。他说起那些柔软的乳头和纤细的锁骨，光洁的小臂和温热的下体。那时你的虚荣心和阴茎一样膨胀，才华和自负一同四溢。衣着考究，灵魂在躯壳里挣扎。你游走在你的缪斯们之间，她们是你的力量，你的灵感，是你精疲力竭倒下的沙场，最接近神的地方。你曾幻想在死的那天，走出屋子，走进阳光下，回到你怀念的那片玫瑰花丛中。</p>
+<p>"噗"的一声，半掩着窗帘的窗子、妓院和凝神屏息的姑娘们、城周的桦木林和广场上的书桌消失了。欧石楠和芨芨草蔓延。</p>
+<p>她问，你从哪里来。</p>
+<p>老人说，一个爬满绿叶的校园，一个想象的世界。他说起一排书架，一个池塘，一条连衣裙，几张桌子。在沉寂的图书馆里，揪着自己的头发，默念着独白，你是果壳中的王。光的使者从天空赤身坠落，开始熟悉尘土、污垢、虚妄的塑像和自己的五脏，直到最后和它们融为一体。从建筑与绿荫的子宫里出发，你一路奔向熟悉的虚妄，只是从未走出这枚背负的果壳。</p>
+<p>街角的书店、爬满地锦的大学、台阶旁风蚀的雕像和围墙后的舞台消失了。欧石楠和芨芨草蔓延。</p>
+<p>她问，你从哪里来。</p>
+<p>老人说，这儿，从泥泞间，从哭喊中，从这间小屋和永不到黑夜的黄昏。他说起这条小街的往昔，清晨的叫卖声，正午的蝉鸣。你的远方在街的尽头，送奶工人从那里带来远方的消息。黄昏下拉长的影子高过房子，你和晨昏昼夜、天体运行一样自然而规则。无知的智者，你要找的答案在土里，树上，草丛中，和树梢的猫头鹰那儿。炖牛肉的香味和母亲一起来到门旁，唤你回到沉沉的混沌和洁净里。</p>
+<p>城静静地听着。小街和房子消失了，只留下路灯和长椅，无尽夜色里的一丝光点。欧石楠和芨芨草蔓延。</p>
+<p>从此，再也没有人见过这座城。</p>
+<p>荒野上，欧石楠和芨芨草蔓延。</p>
+<p><img src="../../%E5%9B%BE%E7%89%87/GiorgioDeChirico.jpg" data-placeholder-src="../../%E5%9B%BE%E7%89%87/GiorgioDeChirico.jpg" width="600" height="736" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAAUABADAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwBq2cLQI/mBWKjIJqbhYz5V2yMOuDimncNi+XSKHLHBxj8cYrG7k7I0skig4JLEtnnrWyM2Md2dsscmhKwXuIaAP//Z);background-size:cover" alt="" /></p>
+
+            
+        </article>
+        <section class="moss-comments" id="moss-comments" data-built-at="2026-03-13T19:23:27.805Z">
+  <details>
+    <summary class="comments-toggle"><svg class="comments-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></svg><span>8条评论</span><svg class="comments-chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></summary>
+    <div class="comment-form-slot" id="default-form-slot"><form class="comment-form" id="moss-comment-form">
+  <textarea id="moss-comment-text" name="content" required rows="2" placeholder="留下你的想法"></textarea>
+  <div class="comment-form-meta">
+    <input type="text" name="name" class="comment-field" placeholder="名字" required>
+    <input type="email" name="email" class="comment-field" placeholder="邮箱（选填）">
+    <input type="text" name="link" class="comment-field" placeholder="网站（选填）">
+    <button type="submit" class="comment-form-submit">回复</button>
+  </div>
+  <div class="comment-form-status" id="moss-comment-status"></div>
+</form></div>
+    <ol class="comment-list"><li class="comment-item" id="comment-douban-261768072-8">
+  <div class="comment-header">
+    <a href="https://www.douban.com/people/57321654/" class="comment-author" rel="nofollow noopener" target="_blank">[已注销]</a>
+    <time class="comment-date" datetime="2013-12-08T00:00:00.000Z">2013年12月7日</time>
+    
+  </div>
+  <div class="comment-body"><p>「内容不可见」</p></div>
+</li><li class="comment-item" id="comment-douban-261768072-6">
+  <div class="comment-header">
+    <a href="https://www.douban.com/people/3047397/" class="comment-author" rel="nofollow noopener" target="_blank">早安早安</a>
+    <time class="comment-date" datetime="2013-02-08T16:00:00.000Z">2013年2月8日</time>
+    
+  </div>
+  <div class="comment-body"><p>写的很好，想象力丰富</p></div>
+  <ol class="comment-replies"><li class="comment-item" id="comment-douban-261768072-7">
+  <div class="comment-header">
+    <a href="https://www.douban.com/people/ax123456789/" class="comment-author" rel="nofollow noopener" target="_blank">叶甲</a>
+    <time class="comment-date" datetime="2013-02-08T18:00:00.000Z">2013年2月8日</time>
+    
+  </div>
+  <div class="comment-body"><p>嗯，谢谢</p></div>
+</li>
+  </ol>
+</li><li class="comment-item" id="comment-douban-261768072-2">
+  <div class="comment-header">
+    <a href="https://www.douban.com/people/66359080/" class="comment-author" rel="nofollow noopener" target="_blank">一叶</a>
+    <time class="comment-date" datetime="2013-02-08T04:00:00.000Z">2013年2月7日</time>
+    
+  </div>
+  <div class="comment-body"><p>有点卡尔维诺的感觉，原创吗？</p></div>
+  <ol class="comment-replies"><li class="comment-item" id="comment-douban-261768072-3">
+  <div class="comment-header">
+    <a href="https://www.douban.com/people/ax123456789/" class="comment-author" rel="nofollow noopener" target="_blank">叶甲</a>
+    <time class="comment-date" datetime="2013-02-08T08:00:00.000Z">2013年2月8日</time>
+    
+  </div>
+  <div class="comment-body"><p>嗯，听朋友的故事的启发。不过不敢和卡尔维诺比</p></div>
+  <ol class="comment-replies"><li class="comment-item" id="comment-douban-261768072-4">
+  <div class="comment-header">
+    <a href="https://www.douban.com/people/66359080/" class="comment-author" rel="nofollow noopener" target="_blank">一叶</a>
+    <time class="comment-date" datetime="2013-02-08T12:00:00.000Z">2013年2月8日</time>
+    
+  </div>
+  <div class="comment-body"><p>谦虚了，写的挺不错的</p></div>
+  <ol class="comment-replies"><li class="comment-item" id="comment-douban-261768072-5">
+  <div class="comment-header">
+    <a href="https://www.douban.com/people/ax123456789/" class="comment-author" rel="nofollow noopener" target="_blank">叶甲</a>
+    <time class="comment-date" datetime="2013-02-08T14:00:00.000Z">2013年2月8日</time>
+    
+  </div>
+  <div class="comment-body"><p>谢谢</p></div>
+</li>
+  </ol>
+</li>
+  </ol>
+</li>
+  </ol>
+</li><li class="comment-item" id="comment-douban-261768072-1">
+  <div class="comment-header">
+    <a href="https://www.douban.com/people/2806815/" class="comment-author" rel="nofollow noopener" target="_blank">陌生猫咪一年</a>
+    <time class="comment-date" datetime="2013-02-08T00:00:00.000Z">2013年2月7日</time>
+    
+  </div>
+  <div class="comment-body"><p>那座城就是那个人。他回到他的躯壳里。一同泯灭。去往天国，或地狱。</p></div>
+</li></ol>
+    <script>(function() {
+  var form = document.getElementById('moss-comment-form');
+  if (!form) return;
+
+  var textarea = document.getElementById('moss-comment-text');
+  var statusEl = document.getElementById('moss-comment-status');
+  var commentList = document.querySelector('.moss-comments .comment-list');
+  var currentReplyId = null;
+  var currentReplyWrapper = null;
+  var defaultFormSlot = document.getElementById('default-form-slot');
+
+  function updateCommentCount() {
+    var s = document.getElementById('moss-comments');
+    if (!s) return;
+    var total = s.querySelectorAll('.comment-item').length;
+    var d = s.querySelector('details');
+    if (!d) return;
+    var sp = d.querySelector('summary span');
+    if (sp) {
+      sp.textContent = total === 1 ? '1条评论' : '{n}条评论'.replace('{n}', total);
+    }
+  }
+
+  // Auto-grow textarea
+  if (textarea) {
+    function autoGrow() {
+      textarea.style.height = 'auto';
+      textarea.style.height = textarea.scrollHeight + 'px';
+    }
+    textarea.addEventListener('input', autoGrow);
+  }
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    var btn = form.querySelector('.comment-form-submit');
+    btn.disabled = true;
+    btn.textContent = '提交中...';
+    if (statusEl) { statusEl.textContent = ''; statusEl.className = 'comment-form-status'; }
+
+    var rawLink = (form.elements['link'].value || '').trim();
+    if (rawLink && !/^https?:\/\//.test(rawLink)) { rawLink = 'https://' + rawLink; }
+
+    var body = {
+      content: form.elements['content'].value,
+      name: form.elements['name'].value,
+      email: form.elements['email'].value,
+      link: rawLink,
+      rid: currentReplyId ? parseInt(currentReplyId, 10) : 0,
+      page_key: '3d05333d',
+      site_name: 'liu-guo.com',
+      ua: navigator.userAgent
+    };
+
+    fetch('https://api.moss.host/comments/api/v2/comments', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body)
+    })
+    .then(function(res) {
+      if (!res.ok) {
+        return res.json().catch(function() {
+          throw new Error('Server error (' + res.status + ')');
+        }).then(function(data) {
+          throw new Error(data.msg || 'Server error (' + res.status + ')');
+        });
+      }
+      return res.json();
+    })
+    .then(function(data) {
+      btn.disabled = false;
+      btn.textContent = '回复';
+
+      if (statusEl) {
+        statusEl.textContent = '评论已提交！';
+        statusEl.className = 'comment-form-status comment-form-status--success';
+      }
+
+      var li = document.createElement('li');
+      li.className = 'comment-item';
+      li.id = 'comment-' + data.id;
+      var now = new Date().toLocaleDateString('zh-CN', {year:'numeric',month:'short',day:'numeric'});
+      var authorName = body.name || 'Anonymous';
+      var safeAuthor = authorName.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+      li.innerHTML = '<div class="comment-header">'
+        + '<span class="comment-author">' + safeAuthor + '</span>'
+        + '<time class="comment-date">' + now + '</time>'
+        + '<button type="button" class="comment-reply-btn" data-reply-id="' + data.id + '" data-reply-name="' + safeAuthor + '">\u21a9 回复</button>'
+        + '</div>'
+        + '<div class="comment-body"><p>' + body.content.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;') + '</p></div>';
+
+      if (currentReplyId) {
+        // Insert as nested reply under the parent comment
+        var parentLi = document.getElementById('comment-' + currentReplyId);
+        if (parentLi) {
+          var repliesOl = parentLi.querySelector('.comment-replies');
+          if (!repliesOl) {
+            repliesOl = document.createElement('ol');
+            repliesOl.className = 'comment-replies';
+            parentLi.appendChild(repliesOl);
+          }
+          repliesOl.insertBefore(li, null);
+        }
+        cancelReply(false);
+      } else {
+        if (!commentList) {
+          commentList = document.createElement('ol');
+          commentList.className = 'comment-list';
+          var defaultSlot = document.getElementById('default-form-slot');
+          if (defaultSlot) defaultSlot.after(commentList);
+          else form.after(commentList);
+        }
+        // Newest first: prepend so the just-submitted comment appears at the top
+        commentList.insertBefore(li, commentList.firstChild);
+      }
+
+      updateCommentCount();
+      form.elements['content'].value = '';
+      if (textarea) { textarea.style.height = 'auto'; }
+    })
+    .catch(function(err) {
+      btn.disabled = false;
+      btn.textContent = '回复';
+      if (statusEl) {
+        statusEl.textContent = err.message || '网络错误，请重试。';
+        statusEl.className = 'comment-form-status comment-form-status--error';
+      }
+    });
+  });
+
+  /* --- Reply logic: relocating form pattern --- */
+  function cancelReply(skipScroll) {
+    if (!currentReplyWrapper) return;
+    if (defaultFormSlot) {
+      defaultFormSlot.appendChild(form);
+      defaultFormSlot.classList.remove('comment-form-slot--collapsed');
+    }
+    currentReplyWrapper.remove();
+    currentReplyWrapper = null;
+    currentReplyId = null;
+    if (!skipScroll && defaultFormSlot) {
+      defaultFormSlot.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  }
+
+  var section = document.getElementById('moss-comments');
+  if (section) {
+    section.addEventListener('click', function(e) {
+      var btn = e.target.closest('.comment-reply-btn');
+      if (!btn) return;
+
+      var replyId = btn.getAttribute('data-reply-id');
+      var replyName = btn.getAttribute('data-reply-name');
+      var commentItem = document.getElementById('comment-' + replyId);
+      if (!commentItem) return;
+
+      // If already replying to this comment, just focus
+      if (currentReplyId === replyId) { textarea.focus(); return; }
+
+      // Cancel any existing reply
+      cancelReply(true);
+
+      // Collapse default form slot
+      if (defaultFormSlot) defaultFormSlot.classList.add('comment-form-slot--collapsed');
+
+      // Create reply wrapper with thread indent
+      var wrapper = document.createElement('div');
+      wrapper.className = 'comment-reply-form-wrapper';
+
+      // Reply indicator
+      var indicator = document.createElement('div');
+      indicator.className = 'comment-reply-indicator';
+      indicator.innerHTML = '<span>\u21a9 回复 <strong>' + replyName.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') + '</strong> \u00b7</span>';
+      var cancelBtn = document.createElement('button');
+      cancelBtn.type = 'button';
+      cancelBtn.className = 'comment-reply-cancel';
+      cancelBtn.textContent = '取消';
+      cancelBtn.addEventListener('click', function() { cancelReply(false); });
+      indicator.appendChild(cancelBtn);
+      wrapper.appendChild(indicator);
+
+      // Move form into wrapper
+      wrapper.appendChild(form);
+      commentItem.appendChild(wrapper);
+
+      currentReplyWrapper = wrapper;
+      currentReplyId = replyId;
+
+      textarea.focus();
+      wrapper.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+  }
+
+  /*
+   * Eager hydration — fetch new comments on page load, not on toggle.
+   *
+   * Design decision:
+   *   Static HTML contains all comments known at build time (stale-while-
+   *   revalidate). Previously, hydration was deferred to the <details> toggle
+   *   event, so the summary count stayed stale until the user expanded the
+   *   section. Now we fetch eagerly on page load so the count is correct as
+   *   soon as possible, while not blocking page render (the fetch is async).
+   *
+   * How others handle this:
+   *   - Disqus, Commento, Utterances: fully client-rendered. No static HTML
+   *     at all — the entire comment thread loads via JS. Fast count, but no
+   *     content until JS runs.
+   *   - Staticman: commits to git repo, rebuilt into static HTML. No client
+   *     hydration — count is always stale until next build.
+   *   - Artalk's own JS client: fully client-rendered, same as Disqus.
+   *   - moss is unique: SSR + client hydration, like Next.js/Remix's approach
+   *     to static content. We get the best of both — immediate content without
+   *     JS, plus live updates via hydration.
+   *
+   * Trade-off:
+   *   One background fetch per page load (~1 KB JSON response) vs accurate
+   *   comment count. Worth it because the fetch is small, non-blocking, and
+   *   the count being wrong is a worse UX than a tiny network request.
+   *
+   * Deduplication (two layers):
+   *   1. Date boundary  — stop iterating when we hit a comment older than the
+   *      build timestamp (comments are sorted newest-first from the API).
+   *   2. ID guard       — skip any comment whose DOM node already exists
+   *      (handles edge cases where build-time and fetch overlap).
+   *
+   * Trust model: Artalk performs server-side HTML sanitization, so we use
+   * innerHTML for comment content (same as the static render path).
+   */
+  var builtAtStr = section && section.getAttribute('data-built-at');
+  var builtAtMs = builtAtStr ? new Date(builtAtStr).getTime() : 0;
+
+  if (builtAtMs) {
+    fetch('https://api.moss.host/comments/api/v2/comments?page_key=3d05333d&site_name=liu-guo.com&flat_mode=true&sort_by=date_desc&limit=100')
+      .then(function(res) { return res.ok ? res.json() : null; })
+      .then(function(json) {
+        if (!json) return;
+        var list = json.comments || (json.data && json.data.comments) || [];
+        var added = 0;
+        // Anchor = first build-time comment. Hydrated comments go before it
+        // to maintain newest-first order (API returns date_desc).
+        var anchor = commentList ? commentList.firstChild : null;
+        for (var i = 0; i < list.length; i++) {
+          var c = list[i];
+          if (new Date(c.date).getTime() <= builtAtMs) break;
+          if (document.getElementById('comment-' + c.id)) continue;
+
+          var li = document.createElement('li');
+          li.className = 'comment-item';
+          li.id = 'comment-' + c.id;
+          var authorName = (c.nick || 'Anonymous').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+          var dateStr = new Date(c.date).toLocaleDateString('zh-CN', {year:'numeric',month:'short',day:'numeric'});
+          li.innerHTML = '<div class="comment-header">'
+            + '<span class="comment-author">' + authorName + '</span>'
+            + '<time class="comment-date">' + dateStr + '</time>'
+            + '<button type="button" class="comment-reply-btn" data-reply-id="' + c.id + '" data-reply-name="' + authorName + '">\u21a9 回复</button>'
+            + '</div>'
+            + '<div class="comment-body">' + c.content + '</div>';
+
+          if (c.rid > 0) {
+            var parentLi = document.getElementById('comment-' + c.rid);
+            if (parentLi) {
+              var repliesOl = parentLi.querySelector('.comment-replies');
+              if (!repliesOl) {
+                repliesOl = document.createElement('ol');
+                repliesOl.className = 'comment-replies';
+                parentLi.appendChild(repliesOl);
+              }
+              repliesOl.insertBefore(li, null);
+              added++;
+              continue;
+            }
+          }
+
+          if (!commentList) {
+            commentList = document.createElement('ol');
+            commentList.className = 'comment-list';
+            var formEl = document.getElementById('moss-comment-form');
+            if (formEl) formEl.after(commentList);
+            anchor = null;
+          }
+          commentList.insertBefore(li, anchor);
+          added++;
+        }
+
+        if (added > 0) {
+          updateCommentCount();
+        }
+      })
+      .catch(function() { /* silent — static comments still visible */ });
+  }
+})();</script>
+  </details>
+</section>
+    </main>
+
+    <footer class="container">
+    <div class="footer-content">
+        <div class="footer-left">
+            <a href="/友链/" class="footer-link">友链</a>
+            <a href="/feed.xml" class="footer-link" data-external>RSS</a>
+        </div>
+        <div class="footer-right">
+            <form action="https://buttondown.com/api/emails/embed-subscribe/liuguo" method="post" class="footer-subscribe-form">
+            <input type="email" name="email" class="moss-input" placeholder="邮箱" required />
+            <input type="hidden" value="1" name="embed" />
+            <button type="submit" class="moss-btn">订阅</button>
+        </form>
+        </div>
+    </div>
+</footer>
+
+    <script src="/js/theme.js"></script>
+    
+</body>
+</html>

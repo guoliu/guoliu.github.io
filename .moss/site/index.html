@@ -4,11 +4,482 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>刘果</title>
-    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
     <link rel="alternate" type="application/rss+xml" title="RSS" href="feed.xml">
     
     
-    <link rel="stylesheet" href="style.css?v=2d0441b1384f5323">
+    <link rel="stylesheet" href="/style.css?v=5d8e61fbbdab3ac4">
+    <style class="moss-comments-style">/* ==========================================================================
+   moss Comments Plugin - Styles
+
+   Collapsible comment section with solid thread borders,
+   underline-style form inputs, and responsive grid layout.
+   Uses CSS custom properties from moss default.css.
+   ========================================================================== */
+
+/* ==========================================================================
+   Design Decision Record: Flattened Comment Form
+   --------------------------------------------------------------------------
+
+   Research found that the best comment sections treat comments as editorial
+   content on the same surface as the article, not as a separate widget.
+
+   Six principles guide the comment form styling:
+
+   P1. One surface
+       Remove the tinted card background from .comment-form. Form and
+       comments share the page background. Modeled after NYT/Guardian
+       "Letters to the Editor" — comments as editorial content, same surface.
+
+   P2. Border language consistency
+       Comments use border-bottom: 1px solid. The form uses the same 1px
+       border as its boundary, not a background fill + border-radius.
+
+   P3. Typographic continuity
+       Placeholder text, field labels, comment body, author names — same
+       type family, proportional sizes. Follows iA design philosophy
+       (ia.net): "web design is 95% typography", content-first.
+
+   P4. The form is the first comment
+       Visually, the compose area reads like an empty comment slot. Same
+       padding rhythm, same width, same vertical spacing as comment items.
+       Inspired by CSS-Tricks threading (css-tricks.com) — forms inline in
+       thread, not separate cards.
+
+   P5. Distinguish through state, not surface
+       The textarea is interactive because of cursor/focus behavior, not
+       because it sits on a different background. Focus states (accent
+       underline) provide sufficient affordance.
+
+   P6. Density matching
+       Spacing between form elements echoes spacing between comment items.
+
+   References:
+   - NYT/Guardian "Letters to the Editor" model
+   - Ahmad Shadeed's comment component (ishadeed.com)
+   - CSS-Tricks threading (css-tricks.com)
+   - iA design philosophy (ia.net)
+   - ResultFirst 2026 trends — "stripping away non-essential frills"
+   ========================================================================== */
+
+/* Comment Section — width controlled by site theme (main > .moss-comments) */
+.moss-comments {
+  margin-top: 6rem;
+}
+
+/* Divider above comment section */
+.moss-comments > details {
+  padding-top: var(--moss-space-lg, 2rem);
+  border-top: 1px solid var(--moss-border-light, #e6e2db);
+}
+
+/* ==========================================================================
+   Collapsible Details/Summary
+   ========================================================================== */
+
+.comments-toggle {
+  display: flex;
+  align-items: center;
+  gap: var(--moss-space-xs, 0.5rem);
+  cursor: pointer;
+  list-style: none;
+  font-size: var(--moss-font-sm, 1rem);
+  color: var(--moss-color-muted, #8a8580);
+  user-select: none;
+  padding: 0;
+}
+
+/* Hide WebKit default disclosure triangle */
+.comments-toggle::-webkit-details-marker {
+  display: none;
+}
+
+.comments-toggle .comments-icon {
+  flex-shrink: 0;
+}
+
+.comments-toggle:hover {
+  color: var(--moss-color-text, #2c2825);
+}
+
+/* Chevron indicator — points right when collapsed, down when expanded */
+.comments-toggle .comments-chevron {
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+details[open] > .comments-toggle .comments-chevron {
+  transform: rotate(90deg);
+}
+
+/* Space between summary and content when open */
+details[open] > .comments-toggle {
+  margin-bottom: var(--moss-space-md, 1.5rem);
+}
+
+/* ==========================================================================
+   Comment List
+   ========================================================================== */
+
+.comment-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.comment-item {
+  padding: var(--moss-space-md, 1.5rem) 0;
+  border-bottom: 1px solid var(--moss-border-light, #e6e2db);
+}
+
+.comment-item:first-child {
+  padding-top: 0;
+}
+
+.comment-item:last-child {
+  border-bottom: none;
+}
+
+/* Comment Header: author name + date */
+.comment-header {
+  display: flex;
+  align-items: baseline;
+  gap: var(--moss-space-xs, 0.5rem);
+  margin-bottom: var(--moss-space-xs, 0.5rem);
+}
+
+.comment-author {
+  font-weight: 480;
+  font-size: var(--moss-font-sm, 1rem);
+  color: var(--moss-color-text, #2c2825);
+  text-decoration: none;
+}
+
+a.comment-author:hover {
+  color: var(--moss-color-accent, #2d5a2d);
+}
+
+.comment-date {
+  font-size: 0.875rem;
+  color: var(--moss-color-muted, #8a8580);
+}
+
+/* Comment Body */
+.comment-body {
+  font-size: var(--moss-font-size, 1.125rem);
+  line-height: 1.7;
+  color: var(--moss-color-text, #2c2825);
+}
+
+.comment-body p {
+  margin: 0 0 var(--moss-space-sm, 1rem) 0;
+}
+
+.comment-body p:last-child {
+  margin-bottom: 0;
+}
+
+.comment-body blockquote {
+  font-size: inherit;
+  font-style: normal;
+  border-left: 3px solid var(--moss-color-muted, #8a8580);
+  margin: var(--moss-space-xs, 0.5rem) 0 var(--moss-space-xs, 0.5rem) 1rem;
+  padding-left: var(--moss-space-sm, 1rem);
+  color: var(--moss-text-secondary, #5d5853);
+}
+
+.comment-body a {
+  color: var(--moss-color-text, #2c2825);
+  text-decoration: underline;
+}
+
+.comment-body a:hover {
+  color: var(--moss-color-accent, #2d5a2d);
+}
+
+/* ==========================================================================
+   Nested Replies — Solid Left Border Threading
+   ========================================================================== */
+
+.comment-replies {
+  list-style: none;
+  padding: 0 0 0 var(--moss-space-sm, 1rem);
+  margin: 0 0 0 var(--moss-space-xs, 0.5rem);
+  border-left: 2px solid var(--moss-border-medium, #d1cdc4);
+}
+
+.comment-replies .comment-item {
+  padding: var(--moss-space-sm, 1rem) 0;
+}
+
+/* ==========================================================================
+   Comment Form
+   ========================================================================== */
+
+.comment-form {
+  padding: var(--moss-space-md, 1.5rem) 0;
+  margin: 0 0 var(--moss-space-md, 1.5rem) 0;
+}
+
+/* Textarea — underline style */
+.comment-form textarea {
+  display: block;
+  width: 100%;
+  min-height: 3rem;
+  padding: 0.25rem 0;
+  border: none;
+  border-bottom: 1px solid var(--moss-border-medium, #d1cdc4);
+  font-family: inherit;
+  font-size: var(--moss-font-size, 1.125rem);
+  line-height: 1.7;
+  color: var(--moss-color-text, #2c2825);
+  background: transparent;
+  resize: none;
+  overflow: hidden;
+  box-sizing: border-box;
+  transition: border-color 0.15s ease;
+}
+
+.comment-form textarea:focus {
+  outline: none;
+  border-bottom: 2px solid var(--moss-color-accent, #2d5a2d);
+}
+
+.comment-form textarea::placeholder {
+  color: var(--moss-color-muted, #8a8580);
+}
+
+/* ==========================================================================
+   Form Meta Row — Name + Email + Website + Submit (single row on desktop)
+   ========================================================================== */
+
+.comment-form-meta {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr 1.1fr auto;
+  gap: 0.75rem;
+  align-items: end;
+  margin-top: var(--moss-space-sm, 1rem);
+}
+
+/* Underline-style input fields */
+.comment-field {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--moss-border-medium, #d1cdc4);
+  padding: 0.5rem 0;
+  font-family: inherit;
+  font-size: var(--moss-font-sm, 1rem);
+  color: var(--moss-color-text, #2c2825);
+  box-sizing: border-box;
+  transition: border-color 0.15s ease;
+  min-width: 0;
+}
+
+.comment-field:focus {
+  outline: none;
+  border-bottom: 2px solid var(--moss-color-accent, #2d5a2d);
+}
+
+.comment-field::placeholder {
+  color: var(--moss-color-muted, #8a8580);
+}
+
+/* ==========================================================================
+   Submit Button — Filled Tonal Style
+   ========================================================================== */
+
+.comment-form-submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1.25rem;
+  background: color-mix(in srgb, var(--moss-color-accent, #2d5a2d) 8%, transparent);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  color: var(--moss-color-accent, #2d5a2d);
+  font-family: inherit;
+  font-size: var(--moss-font-sm, 1rem);
+  font-weight: 480;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.comment-form-submit:hover {
+  background: color-mix(in srgb, var(--moss-color-accent, #2d5a2d) 15%, transparent);
+}
+
+.comment-form-submit:focus {
+  outline: 2px solid var(--moss-color-accent, #2d5a2d);
+  outline-offset: 2px;
+}
+
+.comment-form-submit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ==========================================================================
+   Accessible Visually Hidden
+   ========================================================================== */
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ==========================================================================
+   Status Messages
+   ========================================================================== */
+
+.comment-form-status {
+  margin-top: var(--moss-space-sm, 1rem);
+  font-size: 0.875rem;
+}
+
+.comment-form-status:empty {
+  display: none;
+}
+
+.comment-form-status--error {
+  color: #a83232;
+}
+
+.comment-form-status--success {
+  color: var(--moss-color-accent, #2d5a2d);
+}
+
+/* Default form slot — collapses when form relocates */
+.comment-form-slot {
+  overflow: hidden;
+  transition: max-height 0.3s ease, opacity 0.2s ease;
+}
+.comment-form-slot--collapsed {
+  max-height: 0;
+  opacity: 0;
+}
+
+/* Reply form wrapper — indented like a reply thread */
+.comment-reply-form-wrapper {
+  margin-top: var(--moss-space-sm, 1rem);
+  padding: var(--moss-space-sm, 1rem) 0 0 var(--moss-space-sm, 1rem);
+  margin-left: var(--moss-space-xs, 0.5rem);
+  border-left: 2px solid var(--moss-border-medium, #d1cdc4);
+  overflow: hidden;
+  animation: slideDown 0.25s ease-out;
+}
+
+@keyframes slideDown {
+  from { max-height: 0; opacity: 0; }
+  to { max-height: 500px; opacity: 1; }
+}
+
+/* Smaller typography in reply form */
+.comment-reply-form-wrapper .comment-form textarea {
+  font-size: var(--moss-font-sm, 1rem);
+  min-height: 2.5rem;
+}
+.comment-reply-form-wrapper .comment-field {
+  font-size: 0.875rem;
+  padding: 0.375rem 0;
+}
+.comment-reply-form-wrapper .comment-form-submit {
+  font-size: 0.875rem;
+  padding: 0.375rem 1rem;
+}
+.comment-reply-form-wrapper .comment-form {
+  padding-top: 0;
+}
+
+/* Reply button in comment header */
+.comment-reply-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.8125rem;
+  color: var(--moss-color-muted, #8a8580);
+  padding: 0;
+  margin-left: auto;
+  transition: color 0.15s ease;
+}
+.comment-reply-btn:hover {
+  color: var(--moss-color-accent, #2d5a2d);
+}
+
+/* Reply indicator */
+.comment-reply-indicator {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--moss-color-muted, #8a8580);
+  margin-bottom: var(--moss-space-xs, 0.5rem);
+}
+.comment-reply-indicator strong {
+  color: var(--moss-color-text, #2c2825);
+  font-weight: 480;
+}
+.comment-reply-cancel {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--moss-color-muted, #8a8580);
+  font-size: 0.875rem;
+  padding: 0;
+  margin-left: 0.25rem;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.comment-reply-cancel:hover {
+  color: var(--moss-color-text, #2c2825);
+}
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+
+/* 2+2 layout: name+email on row 1, website+button on row 2 */
+@media (max-width: 37.5rem) {
+  .comment-form-meta {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .comment-replies {
+    padding-left: var(--moss-space-xs, 0.5rem);
+    margin-left: 0.25rem;
+  }
+
+  .comment-reply-form-wrapper .comment-form-meta {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Full stack on very narrow screens */
+@media (max-width: 25rem) {
+  .comment-form-meta {
+    grid-template-columns: 1fr;
+  }
+
+  .comment-form-submit {
+    justify-self: end;
+  }
+
+  .comment-reply-form-wrapper .comment-form-meta {
+    grid-template-columns: 1fr;
+  }
+  .comment-reply-form-wrapper {
+    padding-left: var(--moss-space-xs, 0.5rem);
+    margin-left: 0.25rem;
+  }
+}
+</style>
 <style class="moss-email-style">/* Email subscribe form — injected by email plugin enhance hook */
 .footer-subscribe-form {
   display: flex;
@@ -32,12 +503,93 @@
   }
 }
 </style>
+<style class="moss-review-style">/* Review plugin — header and colophon styles
+ * Uses moss design tokens. Works in light and dark mode.
+ */
+
+.review-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin: 1rem 0 2rem;
+}
+
+.review-cover {
+  width: 80px;
+  height: auto;
+  object-fit: cover;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.review-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0;
+  font-size: 0.95em;
+  color: var(--moss-color-muted, #666);
+  padding-top: 4px;
+}
+
+.review-creator {
+  font-weight: 500;
+}
+
+.review-sep {
+  color: var(--moss-color-muted, #666);
+  margin: 0 0.15em;
+}
+
+/* Colophon */
+.review-colophon {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--moss-color-border, #e0e0e0);
+  font-size: 0.9em;
+  color: var(--moss-color-muted, #666);
+}
+
+.review-rating {
+  font-size: 1.2em;
+  color: var(--moss-color-accent, #c9a84c);
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.05em;
+}
+
+.review-community-rating {
+  font-size: 0.85em;
+  margin-bottom: 0.5rem;
+}
+
+.review-biblio {
+  margin-bottom: 0.75rem;
+  line-height: 1.6;
+}
+
+.review-links a {
+  color: var(--moss-color-accent, #c9a84c);
+  text-decoration: none;
+}
+
+.review-links a:hover {
+  text-decoration: underline;
+}
+
+/* Mobile: stack cover above meta */
+@media (max-width: 32rem) {
+  .review-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+</style>
 </head>
 <body>
     <header>
         <nav class="main-nav container">
             <div class="nav-content">
-                <div class="nav-left"><a href="./" class="site-name">刘果</a></div><div class="nav-right"><div class="nav-icons"><button class="theme-toggle" onclick="toggleTheme()" aria-label="切换深色模式" type="button" title="切换深色模式"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="1em" height="1em" fill="currentColor" stroke-linecap="round" class="theme-toggle__classic" viewBox="0 0 32 32"><clipPath id="theme-toggle__classic__cutout"><path d="M0-5h30a1 1 0 0 0 9 13v24H0Z"/></clipPath><g clip-path="url(#theme-toggle__classic__cutout)"><circle cx="16" cy="16" r="9.34"/><g stroke="currentColor" stroke-width="1.5"><path d="M16 5.5v-4"/><path d="M16 30.5v-4"/><path d="M1.5 16h4"/><path d="M26.5 16h4"/><path d="m23.4 8.6 2.8-2.8"/><path d="m5.7 26.3 2.9-2.9"/><path d="m5.8 5.8 2.8 2.8"/><path d="m23.4 23.4 2.9 2.9"/></g></g></svg></button></div></div>
+                <div class="nav-left"><a href="/" class="site-name">刘果</a></div><div class="nav-right"><div class="nav-icons"><button class="theme-toggle" onclick="toggleTheme()" aria-label="切换深色模式" type="button" title="切换深色模式"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="1em" height="1em" fill="currentColor" stroke-linecap="round" class="theme-toggle__classic" viewBox="0 0 32 32"><clipPath id="theme-toggle__classic__cutout"><path d="M0-5h30a1 1 0 0 0 9 13v24H0Z"/></clipPath><g clip-path="url(#theme-toggle__classic__cutout)"><circle cx="16" cy="16" r="9.34"/><g stroke="currentColor" stroke-width="1.5"><path d="M16 5.5v-4"/><path d="M16 30.5v-4"/><path d="M1.5 16h4"/><path d="M26.5 16h4"/><path d="m23.4 8.6 2.8-2.8"/><path d="m5.7 26.3 2.9-2.9"/><path d="m5.8 5.8 2.8 2.8"/><path d="m23.4 23.4 2.9 2.9"/></g></g></svg></button></div></div>
             </div>
         </nav>
     </header>
@@ -47,112 +599,86 @@
     <main>
         <article class="container">
             <p>看星星，食烟火。</p>
-<div class="collection-grid"><a href="articles/无用之旅/" class="collection-card">
-  <div class="collection-card-cover"><img src="assets/a6833b1a-eeba-419a-9c4b-a60d92b1d828.jpg" data-placeholder-src="assets/a6833b1a-eeba-419a-9c4b-a60d92b1d828.jpg" width="800" height="600" loading="lazy" alt="无用之旅 cover"></div>
+<div class="collection-grid"><a href="/文字/无用之旅/" class="collection-card">
+  <div class="collection-card-cover"><img src="/assets/a6833b1a-eeba-419a-9c4b-a60d92b1d828.jpg" data-placeholder-src="/assets/a6833b1a-eeba-419a-9c4b-a60d92b1d828.jpg" width="1366" height="910" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAANABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCjCQGTn1/kakRJcsHcMOg4FDEU5f8AWtxjnNNbFE8arnJGcVVibizsMAhQPzokgRVY7mzSKP/Z);background-size:cover" alt="无用之旅 cover" /></div>
   <div class="collection-card-content"><span class="collection-card-title">无用之旅</span><span class="collection-card-count">5 篇</span></div>
 </a>
-<a href="articles/纽约诸法门/" class="collection-card">
-  <div class="collection-card-cover"><img src="assets/e08a87de-dc9e-415c-a14c-76996f970c6f.png" data-placeholder-src="assets/e08a87de-dc9e-415c-a14c-76996f970c6f.png" width="800" height="600" loading="lazy" alt="纽约诸法门 cover"></div>
+<a href="/文字/纽约诸法门/" class="collection-card">
+  <div class="collection-card-cover"><img src="/assets/e08a87de-dc9e-415c-a14c-76996f970c6f.png" data-placeholder-src="/assets/e08a87de-dc9e-415c-a14c-76996f970c6f.png" width="915" height="1355" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAAUAA4DAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwAmiZGyWPPOAKxsbp9WCQGbJEhGP7wzTQm7Esz5XH8XPNBPSxEs2w/KOCO5psa8xHYlyT1GcUgsMBJ69B2oGkj/2Q==);background-size:cover" alt="纽约诸法门 cover" /></div>
   <div class="collection-card-content"><span class="collection-card-title">纽约诸法门</span><span class="collection-card-count">4 篇</span></div>
 </a>
-<a href="articles/游记/" class="collection-card">
-  <div class="collection-card-cover"><img src="assets/3cc41a56-a9a5-44cf-8b12-d1f2ad71a3f9.jpg" data-placeholder-src="assets/3cc41a56-a9a5-44cf-8b12-d1f2ad71a3f9.jpg" width="800" height="600" loading="lazy" alt="游记 cover"></div>
+<a href="/文字/游记/" class="collection-card">
+  <div class="collection-card-cover"><img src="/assets/3cc41a56-a9a5-44cf-8b12-d1f2ad71a3f9.jpg" data-placeholder-src="/assets/3cc41a56-a9a5-44cf-8b12-d1f2ad71a3f9.jpg" width="1366" height="910" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAANABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCNoGHY1oQQvGR1FMCEpzSA0klbbioKEkO4c4ppiK+wHmncLH//2Q==);background-size:cover" alt="游记 cover" /></div>
   <div class="collection-card-content"><span class="collection-card-title">游记</span><span class="collection-card-count">2 篇</span></div>
 </a>
-<a href="articles/分布式信息网络/" class="collection-card">
-  <div class="collection-card-cover"><img src="assets/99cdfdfc-b9fe-4dc0-9a4f-af1dbc711ffd.jpg" data-placeholder-src="assets/99cdfdfc-b9fe-4dc0-9a4f-af1dbc711ffd.jpg" width="800" height="600" loading="lazy" alt="分布式信息网络 cover"></div>
-  <div class="collection-card-content"><span class="collection-card-title">分布式信息网络</span><span class="collection-card-count">6 篇</span></div>
-</a></div><div class="article-listing"><section class="year-group minimal">
-<h2>2026</h2>
-<p class="article-item"><a href="articles/蓝海螺-一个童话/" class="prefix-link"><span class="prefix-link-prefix date">01</span><span class="prefix-link-title title">蓝海螺：一个童话</span></a></p>
-<p class="article-item"><a href="articles/2025年的珍珠/" class="prefix-link"><span class="prefix-link-prefix date">01</span><span class="prefix-link-title title">2025 年的珍珠</span></a></p>
-</section>
-<section class="year-group minimal">
-<h2>2025</h2>
-<p class="article-item"><a href="articles/无用之旅/真正的旅程/" class="prefix-link"><span class="prefix-link-prefix date">12</span><span class="prefix-link-title title">真正的旅程</span></a></p>
-<p class="article-item"><a href="articles/无用之旅/如果人们在一个地方呆得足够久-那里的生灵也会开始向他们说话/" class="prefix-link"><span class="prefix-link-prefix date">11</span><span class="prefix-link-title title">如果人们在一个地方呆得足够久，那里的生灵也会开始向他们说话</span></a></p>
-<p class="article-item"><a href="articles/无用之旅/一条大河-两种对自由的选择/" class="prefix-link"><span class="prefix-link-prefix date">11</span><span class="prefix-link-title title">一条大河，两种对自由的选择</span></a></p>
-<p class="article-item"><a href="articles/无用之旅/文明的代价/" class="prefix-link"><span class="prefix-link-prefix date">11</span><span class="prefix-link-title title">文明的代价</span></a></p>
-<p class="article-item"><a href="articles/无用之旅/从优胜美地出发/" class="prefix-link"><span class="prefix-link-prefix date">11</span><span class="prefix-link-title title">从优胜美地出发</span></a></p>
-<p class="article-item"><a href="articles/ai-带来写作的黄金时代/" class="prefix-link"><span class="prefix-link-prefix date">09</span><span class="prefix-link-title title">AI 带来写作的黄金时代</span></a></p>
-<p class="article-item"><a href="articles/中国历史中的佛教-笔记/" class="prefix-link"><span class="prefix-link-prefix date">05</span><span class="prefix-link-title title">《中国历史中的佛教》笔记</span></a></p>
-<p class="article-item"><a href="articles/机器停转/" class="prefix-link"><span class="prefix-link-prefix date">05</span><span class="prefix-link-title title">机器停转</span></a></p>
-</section>
-<section class="year-group minimal">
-<h2>2024</h2>
-<p class="article-item"><a href="articles/tornado-cash-以太坊的压力测试/" class="prefix-link"><span class="prefix-link-prefix date">12</span><span class="prefix-link-title title">Tornado Cash：以太坊的压力测试</span></a></p>
-<p class="article-item"><a href="videos/冬日之歌/" class="prefix-link"><span class="prefix-link-prefix date">12</span><span class="prefix-link-title title">冬日之歌</span></a></p>
-<p class="article-item"><a href="articles/纽约诸法门/藏传佛教寺庙里的瑜伽/" class="prefix-link"><span class="prefix-link-prefix date">11</span><span class="prefix-link-title title">藏传佛教寺庙里的瑜伽</span></a></p>
-<p class="article-item"><a href="articles/纽约诸法门/东村夜晚的摩诃真言/" class="prefix-link"><span class="prefix-link-prefix date">10</span><span class="prefix-link-title title">东村夜晚的摩诃真言</span></a></p>
-<p class="article-item"><a href="articles/纽约诸法门/从伍德斯托克-到整体瑜伽中心/" class="prefix-link"><span class="prefix-link-prefix date">10</span><span class="prefix-link-title title">从伍德斯托克，到整体瑜伽中心</span></a></p>
-<p class="article-item"><a href="articles/纽约诸法门/纽约诸法门/" class="prefix-link"><span class="prefix-link-prefix date">09</span><span class="prefix-link-title title">纽约诸法门</span></a></p>
-<p class="article-item"><a href="videos/晨雾/" class="prefix-link"><span class="prefix-link-prefix date">07</span><span class="prefix-link-title title">晨雾</span></a></p>
-</section>
-<section class="year-group minimal">
-<h2>2023</h2>
-<p class="article-item"><a href="videos/某个夏日的午后童谣/" class="prefix-link"><span class="prefix-link-prefix date">03</span><span class="prefix-link-title title">某个夏日的午后童谣</span></a></p>
-<p class="article-item"><a href="videos/家从厨房开始/" class="prefix-link"><span class="prefix-link-prefix date">02</span><span class="prefix-link-title title">家从厨房开始</span></a></p>
-<p class="article-item"><a href="articles/分布式信息网络/联邦制社交协议-nostr-secure-scuttlebutt-farcaster-activitypub/" class="prefix-link"><span class="prefix-link-prefix date">02</span><span class="prefix-link-title title">联邦制社交协议：Nostr，Secure Scuttlebutt，Farcaster，ActivityPub</span></a></p>
-<p class="article-item"><a href="videos/圣母颂/" class="prefix-link"><span class="prefix-link-prefix date">02</span><span class="prefix-link-title title">圣母颂</span></a></p>
-</section>
-<section class="year-group minimal">
-<h2>2022</h2>
-<p class="article-item"><a href="articles/分布式信息网络/去中心化社交媒体的博弈机制/" class="prefix-link"><span class="prefix-link-prefix date">12</span><span class="prefix-link-title title">去中心化社交媒体的博弈机制</span></a></p>
-<p class="article-item"><a href="articles/分布式信息网络/关于-ddos-与去中心化的碎碎念/" class="prefix-link"><span class="prefix-link-prefix date">07</span><span class="prefix-link-title title">关于 DDoS 与去中心化的碎碎念</span></a></p>
-</section>
-<section class="year-group minimal">
-<h2>2021</h2>
-<p class="article-item"><a href="articles/游记/科隆群岛-烈火中诞生的伊甸园/" class="prefix-link"><span class="prefix-link-prefix date">04</span><span class="prefix-link-title title">科隆群岛：烈火中诞生的伊甸园</span></a></p>
-<p class="article-item"><a href="articles/游记/色达-宁静的日常和生死的边界/" class="prefix-link"><span class="prefix-link-prefix date">04</span><span class="prefix-link-title title">色达：宁静的日常和生死的边界</span></a></p>
-<p class="article-item"><a href="articles/通过哈伯格税治理-matters-标签/" class="prefix-link"><span class="prefix-link-prefix date">03</span><span class="prefix-link-title title">通过哈伯格税治理 Matters 标签</span></a></p>
-</section>
-<section class="year-group minimal">
-<h2>2020</h2>
-<p class="article-item"><a href="articles/matters-的架構與技術棧/" class="prefix-link"><span class="prefix-link-prefix date">08</span><span class="prefix-link-title title">Matters 的架構與技術棧</span></a></p>
-<p class="article-item"><a href="articles/病毒算法-全民基本收入-与可编程的世界观/" class="prefix-link"><span class="prefix-link-prefix date">03</span><span class="prefix-link-title title">病毒算法，全民基本收入，与可编程的世界观</span></a></p>
-</section>
-<section class="year-group minimal">
-<h2>2019</h2>
-<p class="article-item"><a href="articles/分布式信息网络/信息自由的乌托邦与现实/" class="prefix-link"><span class="prefix-link-prefix date">11</span><span class="prefix-link-title title">信息自由的乌托邦与现实</span></a></p>
-<p class="article-item"><a href="articles/分布式信息网络/假新闻与市场/" class="prefix-link"><span class="prefix-link-prefix date">10</span><span class="prefix-link-title title">假新闻与市场</span></a></p>
-<p class="article-item"><a href="interactives/活的空间/" class="prefix-link"><span class="prefix-link-prefix date">07</span><span class="prefix-link-title title">活的空间</span></a></p>
-<p class="article-item"><a href="articles/ipfs-開發者大會記錄/" class="prefix-link"><span class="prefix-link-prefix date">07</span><span class="prefix-link-title title">IPFS 開發者大會記錄</span></a></p>
-<p class="article-item"><a href="articles/如何建立分布式的版權生態/" class="prefix-link"><span class="prefix-link-prefix date">03</span><span class="prefix-link-title title">如何建立分布式的版權生態</span></a></p>
-</section>
-<section class="year-group minimal">
-<h2>2018</h2>
-<p class="article-item"><a href="articles/分布式信息网络/下一代开放互联网/" class="prefix-link"><span class="prefix-link-prefix date">07</span><span class="prefix-link-title title">下一代开放互联网</span></a></p>
-<p class="article-item"><a href="articles/机械生成时代的艺术/" class="prefix-link"><span class="prefix-link-prefix date">03</span><span class="prefix-link-title title">机械生成时代的艺术</span></a></p>
-</section>
-<section class="year-group minimal">
-<h2>2017</h2>
-<p class="article-item"><a href="videos/夜郎谷的芦笙/" class="prefix-link"><span class="prefix-link-prefix date">05</span><span class="prefix-link-title title">夜郎谷的芦笙</span></a></p>
-</section>
-<section class="year-group minimal">
-<h2>2016</h2>
-<p class="article-item"><a href="interactives/林中星空/" class="prefix-link"><span class="prefix-link-prefix date">07</span><span class="prefix-link-title title">林中星空</span></a></p>
-<p class="article-item"><a href="articles/等等/" class="prefix-link"><span class="prefix-link-prefix date">05</span><span class="prefix-link-title title">等等</span></a></p>
-</section>
-<section class="year-group minimal">
-<h2>2013</h2>
-<p class="article-item"><a href="articles/另一半/" class="prefix-link"><span class="prefix-link-prefix date">12</span><span class="prefix-link-title title">另一半</span></a></p>
-<p class="article-item"><a href="articles/一个实验/" class="prefix-link"><span class="prefix-link-prefix date">11</span><span class="prefix-link-title title">一个实验</span></a></p>
-<p class="article-item"><a href="articles/一座城的湮灭/" class="prefix-link"><span class="prefix-link-prefix date">02</span><span class="prefix-link-title title">一座城的湮灭</span></a></p>
-</section></div>
+<a href="/交互实验/" class="collection-card">
+  <div class="collection-card-cover" style="position:relative"><iframe src="/交互实验/night-in-the-woods.html" loading="lazy" sandbox="allow-scripts"></iframe><div style="position:absolute;inset:0"></div></div>
+  <div class="collection-card-content"><span class="collection-card-title">交互实验</span><span class="collection-card-count">2 篇</span></div>
+</a>
+<a href="/音乐/" class="collection-card">
+  <div class="collection-card-cover"><video src="/音乐/aimeili.mp4" muted loop playsinline preload="metadata"></video><img src="/音乐/aimeili.thumb.jpg" data-placeholder-src="/音乐/aimeili.thumb.jpg" width="800" height="600" loading="lazy" alt="音乐、视频 cover" class="cover-thumb" /></div>
+  <div class="collection-card-content"><span class="collection-card-title">音乐、视频</span><span class="collection-card-count">6 篇</span></div>
+</a></div><div class="article-listing summary-layout"><a href="/文字/蓝海螺-一个童话/" class="child-summary"><div class="child-summary-row"><div class="child-summary-body"><div class="child-summary-meta">2026 · 01</div><h3 class="child-summary-title">蓝海螺：一个童话</h3><p class="child-summary-description">晚上读完书关上灯，多多不肯睡，说还想读。我说，要不，我们来编故事吧。多多说，好呀！于是我们编了几个故事，其中一个叫《蓝海螺》。等多多睡着，我赶紧爬起来记下来。 从前有一只小熊，和外公一起住在一个小岛上。 有一年过年，外公问，小熊，你的新年愿望是什么呀？ 小熊说，小岛上就我自己，也没有其他孩子和我一起玩。要是有什么办法，不这么孤单就好…</p></div></div></a>
+<a href="/文字/2025年的珍珠/" class="child-summary"><div class="child-summary-row"><div class="child-summary-body"><div class="child-summary-meta">2026 · 01</div><h3 class="child-summary-title">2025 年的珍珠</h3><p class="child-summary-description">百川汇入大海，昼夜不息。</p></div><div class="child-summary-cover"><img src="/图片/72255711-4e4a-4a9f-b74b-a231287ee33c.jpg" alt="2025 年的珍珠" /></div></div></a>
+<a href="/文字/无用之旅/真正的旅程/" class="child-summary"><div class="child-summary-row"><div class="child-summary-body"><div class="child-summary-meta">2025 · 12</div><h3 class="child-summary-title">真正的旅程</h3><p class="child-summary-description">离开红杉林继续向北，俄勒冈的海岸线在眼前展开。人烟更稀少了；海岸线上无尽的开阔与荒芜，时不时一座孤独的灯塔。</p></div><div class="child-summary-cover"><img src="/图片/3cdf3c4e-b48c-4b4c-993a-362683b016bc.jpg" alt="真正的旅程" /></div></div></a>
+<a href="/文字/无用之旅/如果人们在一个地方呆得足够久-那里的生灵也会开始向他们说话/" class="child-summary"><div class="child-summary-row"><div class="child-summary-body"><div class="child-summary-meta">2025 · 11</div><h3 class="child-summary-title">“如果人们在一个地方呆得足够久，那里的生灵也会开始向他们说话”</h3><p class="child-summary-description">在文明的废墟里，生命会再次涌出，交织着指向天空，如同一条河流汇入另一条河流。</p></div><div class="child-summary-cover"><img src="/图片/22c0e9b7-8093-48fa-97af-14881cce91d9.jpg" alt="“如果人们在一个地方呆得足够久，那里的生灵也会开始向他们说话”" /></div></div></a>
+<a href="/文字/无用之旅/一条大河-两种对自由的选择/" class="child-summary"><div class="child-summary-row"><div class="child-summary-body"><div class="child-summary-meta">2025 · 11</div><h3 class="child-summary-title">一条大河，两种对自由的选择</h3><p class="child-summary-description">越过加州平原，穿过海岸山脉，我们抵达旧金山，再沿着海岸线一路向北。太平洋一望无际，深蓝如墨汁。黑色的礁石犬牙交错，散落在嶙峋的悬崖下。礁石四周湛蓝透亮，如呼吸般起伏。白色的浪花不停舔舐大地，海鸥盘旋，山海辽阔。</p></div></div></a>
+<a href="/文字/无用之旅/文明的代价/" class="child-summary"><div class="child-summary-row"><div class="child-summary-body"><div class="child-summary-meta">2025 · 11</div><h3 class="child-summary-title">文明的代价</h3><p class="child-summary-description">从优胜美地向西，公路在内华达山脉间蜿蜒，然后降落到加州中部平原。地平线的那头是太平洋，而太平洋之前是海岸山脉。两条山脉之间有万亩良田，是加州如此富饶的原因之一。</p></div></div></a>
+<a href="/文字/无用之旅/从优胜美地出发/" class="child-summary"><div class="child-summary-row"><div class="child-summary-body"><div class="child-summary-meta">2025 · 11</div><h3 class="child-summary-title">从优胜美地出发</h3><p class="child-summary-description">房车爬上离开优胜美地的山路，我小心翼翼地握着方向盘。还在习惯笨重的车身，还在练习如何在曲折的山路上平稳行驶。山口上，我们一前一后两辆房车，靠边停好。回望身后的山谷，晨光已从暖黄变白。阳光刺破云层，晒着我的小臂，也打在花岗岩岩壁上，顺着清瘦修长的瀑布，倾泻到郁郁葱葱的山谷，消失在还未散尽的晨雾中。</p></div><div class="child-summary-cover"><img src="/图片/cba34621-b690-465c-8a1d-7e36a19cbd60.jpg" alt="从优胜美地出发" /></div></div></a>
+<a href="/文字/ai-带来写作的黄金时代/" class="child-summary"><div class="child-summary-row"><div class="child-summary-body"><div class="child-summary-meta">2025 · 09</div><h3 class="child-summary-title">AI 带来写作的黄金时代</h3><p class="child-summary-description">记得三年前 ChatGPT 刚发布的时候，一位写小说的朋友既兴奋又绝望，说，AI 真的太强大了，人类作者很快就没有存在的意义了。我没能体会他的感受，因为我觉得写作是通向自我和他人的途径，无论如何人才是意义的终点。AI 如何能取代人创作的意义，我想不出来。 三年之后，与这位朋友的担忧刚好相反，我是觉得 AI 带来了写作的黄金时代。 一 Malcolm Gladwell 08…</p></div></div></a>
+<a href="/文字/中国历史中的佛教-笔记/" class="child-summary"><div class="child-summary-row"><div class="child-summary-body"><div class="child-summary-meta">2025 · 05</div><h3 class="child-summary-title">《中国历史中的佛教》笔记</h3><p class="child-summary-description">从中国佛教的流变，看中国文化的变迁与规律</p></div><div class="child-summary-cover"><img src="/图片/2de0c228-36c8-47ec-9f22-000af45b1943.jpg" alt="《中国历史中的佛教》笔记" /></div></div></a>
+<a href="/文字/机器停转/" class="child-summary"><div class="child-summary-row"><div class="child-summary-body"><div class="child-summary-meta">2025 · 05</div><h3 class="child-summary-title">机器停转</h3><p class="child-summary-description">“绝不，”库诺说道，“绝不。人类已经汲取了教训。”</p></div><div class="child-summary-cover"><img src="/图片/57566d1a-9394-4f5a-a429-8314a7b664ef.jpg" alt="机器停转" /></div></div></a>
+<a href="/文字/tornado-cash-以太坊的压力测试/" class="child-summary"><div class="child-summary-row"><div class="child-summary-body"><div class="child-summary-meta">2024 · 12</div><h3 class="child-summary-title">Tornado Cash：以太坊的压力测试</h3><p class="child-summary-description">一场剧烈变革的开始，既是两种权力的争夺，也是两个系统的融合。但争夺和融合的底层逻辑，已经彻底改变了。</p></div></div></a>
+<a href="/音乐/冬日之歌/" class="child-summary"><div class="child-summary-row"><div class="child-summary-body"><div class="child-summary-meta">2024 · 12</div><h3 class="child-summary-title">冬日之歌</h3><p class="child-summary-description">一首纽约冬天的曲子。大提琴+钢舌鼓。</p></div><div class="child-summary-cover"><video src="/音乐/Winter-Song.mp4" muted loop playsinline preload="metadata"></video><img src="/音乐/Winter-Song.thumb.jpg" alt="冬日之歌" class="cover-thumb" /></div></div></a>
+<a href="/文字/纽约诸法门/藏传佛教寺庙里的瑜伽/" class="child-summary"><div class="child-summary-row"><div class="child-summary-body"><div class="child-summary-meta">2024 · 11</div><h3 class="child-summary-title">藏传佛教寺庙里的瑜伽</h3><p class="child-summary-description">西藏之家位于繁华的纽约第五大道边，一排排高楼间。红墙绿门，挤在一个正在施工的大楼旁，毫不起眼。</p></div><div class="child-summary-cover"><img src="/图片/4ed2502b-8956-4de7-82fd-abdfc16ef809.png" alt="藏传佛教寺庙里的瑜伽" /></div></div></a>
+<a href="/文字/纽约诸法门/东村夜晚的摩诃真言/" class="child-summary"><div class="child-summary-row"><div class="child-summary-body"><div class="child-summary-meta">2024 · 10</div><h3 class="child-summary-title">东村夜晚的摩诃真言</h3><p class="child-summary-description">东村在曼哈顿的东南角。在寸土寸金的南曼哈顿，这里是相对便宜的，容纳了不少独立店铺和年轻人。东村的夜晚是年轻人的盛会，餐厅的座椅沿街铺开，一排排灯红酒绿。每个街区都有那么一家酒吧，要用自己的音乐覆满街道。走在街道上，每几步就换一次背景音乐，回荡着不同的语言，仿佛穿过一个个夜色中涌出的小世界。</p></div><div class="child-summary-cover"><img src="/图片/aeba66d0-5681-48a9-ad7d-d66448f9ceb5.png" alt="东村夜晚的摩诃真言" /></div></div></a>
+<a href="/文字/纽约诸法门/从伍德斯托克-到整体瑜伽中心/" class="child-summary"><div class="child-summary-row"><div class="child-summary-body"><div class="child-summary-meta">2024 · 10</div><h3 class="child-summary-title">从伍德斯托克，到整体瑜伽中心</h3><p class="child-summary-description">格林威治村，曼哈顿岛的东南部，我在找一个叫整体瑜伽中心（Integral Yoga Institute）的地方。</p></div><div class="child-summary-cover"><img src="/图片/c928d984-5762-4592-9e78-a22bd02dc91e.jpg" alt="从伍德斯托克，到整体瑜伽中心" /></div></div></a>
+<a href="/文字/纽约诸法门/纽约诸法门-引子/" class="child-summary"><div class="child-summary-row"><div class="child-summary-body"><div class="child-summary-meta">2024 · 09</div><h3 class="child-summary-title">纽约诸法门</h3><p class="child-summary-description">在纽约这个喧嚣的城市里，我想找地方静下心来。</p></div></div></a>
+<a href="/音乐/晨雾/" class="child-summary"><div class="child-summary-row"><div class="child-summary-body"><div class="child-summary-meta">2024 · 07</div><h3 class="child-summary-title">晨雾</h3><p class="child-summary-description">一首 Delaware water gap 山间清晨的曲子。钢舌鼓。</p></div><div class="child-summary-cover"><video src="/音乐/Morning-Mist.mp4" muted loop playsinline preload="metadata"></video><img src="/音乐/Morning-Mist.thumb.jpg" alt="晨雾" class="cover-thumb" /></div></div></a>
+<a href="/音乐/某个夏日的午后童谣/" class="child-summary"><div class="child-summary-row"><div class="child-summary-body"><div class="child-summary-meta">2023 · 03</div><h3 class="child-summary-title">某个夏日的午后童谣</h3><p class="child-summary-description">Comptine d&#39;un Autre été: L&#39;Après-Midi（某个夏日的午后童谣）。Yann Tiersen 为电影《天使爱美丽》所作主题曲。</p></div><div class="child-summary-cover"><video src="/音乐/aimeili.mp4" muted loop playsinline preload="metadata"></video><img src="/音乐/aimeili.thumb.jpg" alt="某个夏日的午后童谣" class="cover-thumb" /></div></div></a>
+<a href="/音乐/家从厨房开始/" class="child-summary"><div class="child-summary-row"><div class="child-summary-body"><div class="child-summary-meta">2023 · 02</div><h3 class="child-summary-title">家从厨房开始</h3><p class="child-summary-description">有了儿子之后，我们开始想要一个属于自己的家。于是买下了一栋老房子，从厨房开始，让一个家生长出来。</p></div><div class="child-summary-cover"><video src="/音乐/Home-starts-from-the-kitchen-sd-cn.mp4" muted loop playsinline preload="metadata"></video><img src="/音乐/Home-starts-from-the-kitchen-sd-cn.thumb.jpg" alt="家从厨房开始" class="cover-thumb" /></div></div></a>
+<a href="/文字/分布式信息网络/联邦制社交协议-nostr-secure-scuttlebutt-farcaster-activitypub/" class="child-summary"><div class="child-summary-row"><div class="child-summary-body"><div class="child-summary-meta">2023 · 02</div><h3 class="child-summary-title">联邦制社交协议：Nostr，Secure Scuttlebutt，Farcaster，ActivityPub</h3><p class="child-summary-description">Nostr 最近引起很多关注。获得了 Twitter 前 CEO Jack Dorsey 的支持，客户端 Damus 一度进入 Apple store 下载前十，注册用户据说已经超过一百万。前几天在 Web3 101 播客聊了聊它和 Farcaster、Secure Scuttlebutt、ActivityPub...</p></div><div class="child-summary-cover"><img src="/图片/020c1a3f-91c8-4e1e-acd0-b2c6578f2692.png" alt="联邦制社交协议：Nostr，Secure Scuttlebutt，Farcaster，ActivityPub" /></div></div></a>
+<a href="/音乐/圣母颂/" class="child-summary"><div class="child-summary-row"><div class="child-summary-body"><div class="child-summary-meta">2023 · 02</div><h3 class="child-summary-title">圣母颂</h3><p class="child-summary-description">圣母颂，钢琴由巴赫作，旋律由古诺作。</p></div><div class="child-summary-cover"><video src="/音乐/Ave-Maria.mp4" muted loop playsinline preload="metadata"></video><img src="/音乐/Ave-Maria.thumb.jpg" alt="圣母颂" class="cover-thumb" /></div></div></a>
+<a href="/文字/分布式信息网络/去中心化社交媒体的博弈机制/" class="child-summary"><div class="child-summary-row"><div class="child-summary-body"><div class="child-summary-meta">2022 · 12</div><h3 class="child-summary-title">去中心化社交媒体的博弈机制</h3><p class="child-summary-description">去中心化的应用或组织既然不依赖权力机构，便需要用博弈机制来替代权力机构。通过博弈，个体和组织以类似市场的方式来参与自治。能够实现如此高效和大规模的博弈，在历史上是第一次。该怎么设计这样的机制，我们还知之甚少。</p></div><div class="child-summary-cover"><img src="/图片/0241ec32-59e6-4403-88d4-23b8d7fcc13a.png" alt="去中心化社交媒体的博弈机制" /></div></div></a>
+<a href="/文字/分布式信息网络/关于-ddos-与去中心化的碎碎念/" class="child-summary"><div class="child-summary-row"><div class="child-summary-body"><div class="child-summary-meta">2022 · 07</div><h3 class="child-summary-title">关于 DDoS 与去中心化的碎碎念</h3><p class="child-summary-description">昨晚 Matters.News 遭遇了一次大规模的 DDoS 攻击。虽然 Matters.News 历史上遭遇过几次 DDoS，但这一次时间最长、流量最大，前后持续9小时，峰值达到每五分钟五千万次请求。</p></div></div></a>
+<a href="/文字/游记/科隆群岛-烈火中诞生的伊甸园/" class="child-summary"><div class="child-summary-row"><div class="child-summary-body"><div class="child-summary-meta">2021 · 04</div><h3 class="child-summary-title">科隆群岛：烈火中诞生的伊甸园</h3><p class="child-summary-description">科隆群岛，又名加拉帕戈斯群岛。坐落在太平洋东部，靠近赤道，离南美洲一千多公里。对于人类，这实在是个偏僻之处。大航海时代开启后的16世纪，才第一次有人登上这座岛屿。</p></div><div class="child-summary-cover"><img src="/图片/cba4433e-edbd-4573-82c4-feba8368f24a.jpg" alt="科隆群岛：烈火中诞生的伊甸园" /></div></div></a>
+<a href="/文字/游记/色达-宁静的日常和生死的边界/" class="child-summary"><div class="child-summary-row"><div class="child-summary-body"><div class="child-summary-meta">2021 · 04</div><h3 class="child-summary-title">色达：宁静的日常和生死的边界</h3><p class="child-summary-description">八年前，我在四川漫游了一个多月。没有既定的路线和目的，只是漫游，看缘分会带我到何处。</p></div><div class="child-summary-cover"><img src="/图片/9cbeab27-1907-4ca7-a686-9346d70d6448.jpg" alt="色达：宁静的日常和生死的边界" /></div></div></a>
+<a href="/文字/通过哈伯格税治理-matters-标签/" class="child-summary"><div class="child-summary-row"><div class="child-summary-body"><div class="child-summary-meta">2021 · 03</div><h3 class="child-summary-title">通过哈伯格税治理 Matters 标签</h3><p class="child-summary-description">哈伯格税是一种经济策略，意在达成私产与公产之间的平衡，利用市场机制来优化公共资源配置。究其核心，是两条简单的规则：人们对自己拥有的资产进行任意定价，同时上缴对应的资产税任何人在任何时候，只要出价高于一件资产，就可以从拥有者处购得资产在市场有效的前提下，这两条规则能够让资产得到充分估价，同时优化对资产使用的配置。</p></div><div class="child-summary-cover"><img src="/图片/dcf1562d-afba-4cb7-b60b-e198cd3cd7ce.jpg" alt="通过哈伯格税治理 Matters 标签" /></div></div></a>
+<a href="/文字/matters-的架構與技術棧/" class="child-summary"><div class="child-summary-row"><div class="child-summary-body"><div class="child-summary-meta">2020 · 08</div><h3 class="child-summary-title">Matters 的架構與技術棧</h3><p class="child-summary-description">photo credit: Ray Wenderlich隨著開源計劃的啓動，馬特市市民們可以直接看到馬特市的所有機制和邏輯。全面開放代碼倉庫後，任何人都可以提出建議和想法、提交功能和優化，也可以自行建立像馬特市一樣的平臺，參與到馬特市生態的演進中。</p></div><div class="child-summary-cover"><img src="/图片/d7de54bf-4272-42ed-ac8e-2d7cd91988ad.png" alt="Matters 的架構與技術棧" /></div></div></a>
+<a href="/文字/病毒算法-全民基本收入-与可编程的世界观/" class="child-summary"><div class="child-summary-row"><div class="child-summary-body"><div class="child-summary-meta">2020 · 03</div><h3 class="child-summary-title">病毒算法，全民基本收入，与可编程的世界观</h3><p class="child-summary-description">离线的社交网络与流行病的传播Dominic Tarr住在新西兰的一条帆船上。他习惯写JavaScript，在npm上贡献了四百多个包，包括常用的browserify。帆船上的生活有个缺点，就是网络信号差，社交网络也不好用。所以14年的时候，他开始设计一个协议，让自己和朋友们在没有互联网的情况下也能保持联络。</p></div><div class="child-summary-cover"><img src="/图片/8ef4fb5d-ae3f-4e10-826b-169b0762d555.png" alt="病毒算法，全民基本收入，与可编程的世界观" /></div></div></a>
+<a href="/文字/分布式信息网络/信息自由的乌托邦与现实/" class="child-summary"><div class="child-summary-row"><div class="child-summary-body"><div class="child-summary-meta">2019 · 11</div><h3 class="child-summary-title">信息自由的乌托邦与现实</h3><p class="child-summary-description">纽约文化沙龙分享内容，引文整理自现场讨论。</p></div><div class="child-summary-cover"><img src="/图片/9bc4a39b-9eee-486b-8242-196d2c91ec3c.png" alt="信息自由的乌托邦与现实" /></div></div></a>
+<a href="/文字/分布式信息网络/假新闻与市场/" class="child-summary"><div class="child-summary-row"><div class="child-summary-body"><div class="child-summary-meta">2019 · 10</div><h3 class="child-summary-title">假新闻与市场</h3><p class="child-summary-description">假新闻多，换个说法，也就是差新闻多。</p></div></div></a>
+<a href="/交互实验/活的空间/" class="child-summary"><div class="child-summary-row"><div class="child-summary-body"><div class="child-summary-meta">2019 · 07</div><h3 class="child-summary-title">活的空间</h3><p class="child-summary-description">活着的东西是有动机的；生命是有好恶的；趋利避害。给质点好恶，它的行为也会活过来。</p></div><div class="child-summary-cover" style="position:relative"><iframe src="/交互实验/particle-universe.html" loading="lazy" sandbox="allow-scripts"></iframe><div style="position:absolute;inset:0"></div></div></div></a>
+<a href="/文字/ipfs-開發者大會記錄/" class="child-summary"><div class="child-summary-row"><div class="child-summary-body"><div class="child-summary-meta">2019 · 07</div><h3 class="child-summary-title">IPFS 開發者大會記錄</h3><p class="child-summary-description">上週有幸與 ﻿@zeckli﻿ 一起去巴塞羅那參加了IPFS開發者大會。Matters正在建立一個分佈式的作品發佈网络，與其他分佈式应用一樣，核心問題是數據的存儲與傳輸。IPFS生態中提供了一系列通用的工具和協議，用於建立各種不同類型的分佈式應用，使得IPFS成為了許多分佈式項目關注的重點。</p></div><div class="child-summary-cover"><img src="/图片/66296200-de80-43f1-a1a2-ce2b1403a3e2.jpg" alt="IPFS 開發者大會記錄" /></div></div></a>
+<a href="/文字/如何建立分布式的版權生態/" class="child-summary"><div class="child-summary-row"><div class="child-summary-body"><div class="child-summary-meta">2019 · 03</div><h3 class="child-summary-title">如何建立分布式的版權生態</h3><p class="child-summary-description">Matters目前使用的部分技術棧。編輯器通過Quill搭建，其他前端邏輯與渲染通過React開發，SSR與路由則由Next.js負責；GraphQL負責前後端耦合；Knex為SQL語句提供查詢構造，接入PostgreSQL數據庫；ElasticSearch提供搜索與推薦服務，調用由Spark訓練的推薦模型；IPFS節點提供文章的分布式存儲功能。平台更新在過去一年的內測中，Matters通過...</p></div><div class="child-summary-cover"><img src="/图片/ead5ef5a-d140-4292-93cc-431d13a1a179.png" alt="如何建立分布式的版權生態" /></div></div></a>
+<a href="/文字/分布式信息网络/下一代开放互联网/" class="child-summary"><div class="child-summary-row"><div class="child-summary-body"><div class="child-summary-meta">2018 · 07</div><h3 class="child-summary-title">下一代开放互联网</h3><p class="child-summary-description">在互联网诞生之初，权力分布在每个参与者手中。人们以为每个参与者都有了自己的声音，言论自由迎来了新的时代。激进者如约翰·巴洛，甚至撰写了《赛博空间独立宣言》，宣告这场社会实验已拉开了大幕。</p></div><div class="child-summary-cover"><img src="/图片/996a2021-b5c9-4a3b-b7c2-11ae232ea57b.jpg" alt="下一代开放互联网" /></div></div></a>
+<a href="/文字/机械生成时代的艺术/" class="child-summary"><div class="child-summary-row"><div class="child-summary-body"><div class="child-summary-meta">2018 · 03</div><h3 class="child-summary-title">机械生成时代的艺术</h3><p class="child-summary-description">1瑞士人工智能專家 Jurgen Schmidhuber 一次演講中說，我們不該把自己和飛速發展的人工智能看做“我們”和“他們”，而該把自己和人性當做宇宙通往更高復雜度路上的墊腳石。在這充滿超人哲學意味的言論背後，Schmidhuber 有自己的一套理論。</p></div><div class="child-summary-cover"><img src="/图片/5b8621dd-6acb-4054-a0af-2ab53145aac7.webp" alt="机械生成时代的艺术" /></div></div></a>
+<a href="/音乐/夜郎谷的芦笙/" class="child-summary"><div class="child-summary-row"><div class="child-summary-body"><div class="child-summary-meta">2017 · 05</div><h3 class="child-summary-title">夜郎谷的芦笙</h3><p class="child-summary-description">在夜郎谷时，有幸录到嗨哥、杨胜文、叠贵、小杨等人的排练，深受震撼。</p></div><div class="child-summary-cover"><video src="/音乐/Yelanggu-Lusheng.mp4" muted loop playsinline preload="metadata"></video><img src="/音乐/Yelanggu-Lusheng.thumb.jpg" alt="夜郎谷的芦笙" class="cover-thumb" /></div></div></a>
+<a href="/交互实验/林中星空/" class="child-summary"><div class="child-summary-row"><div class="child-summary-body"><div class="child-summary-meta">2016 · 07</div><h3 class="child-summary-title">林中星空</h3><p class="child-summary-description">夜晚的树林与星空，繁复而简洁。如同自然界的许多形状，从简单出发，不断反复、交织、生长。</p></div><div class="child-summary-cover" style="position:relative"><iframe src="/交互实验/night-in-the-woods.html" loading="lazy" sandbox="allow-scripts"></iframe><div style="position:absolute;inset:0"></div></div></div></a>
+<a href="/文字/等等/" class="child-summary"><div class="child-summary-row"><div class="child-summary-body"><div class="child-summary-meta">2016 · 05</div><h3 class="child-summary-title">等等</h3><p class="child-summary-description">&gt; 译自 Galway Kinnell 1980年诗集 Mortal Acts, Mortal Words。这首诗写给一位因失恋而考虑自杀的朋友。自杀也许是永恒的哲学命题，而诗歌也许是它永恒的答案。</p></div></div></a>
+<a href="/文字/另一半/" class="child-summary"><div class="child-summary-row"><div class="child-summary-body"><div class="child-summary-meta">2013 · 12</div><h3 class="child-summary-title">另一半</h3><p class="child-summary-description">罗马广场，我们俩在一堆宏伟的废墟之间讨论应该用何种方式旅行，是去了解每件物什的来龙去脉前世今生，还是尽力放空感知当下。当然，我们的结论最后出现在半小时之外的图拉真广场，表示旅行应当在知识性的获得和感悟性的获得两点之间寻找平衡，毕竟两者是相互促进的。不过意义重大的不是这个结论，而是讨论过程中种种细节所表述的平衡方式。只是...</p></div></div></a>
+<a href="/文字/一个实验/" class="child-summary"><div class="child-summary-row"><div class="child-summary-body"><div class="child-summary-meta">2013 · 11</div><h3 class="child-summary-title">一个实验</h3><p class="child-summary-description">碰巧在网上看见一个连接：一个&quot;计算机科学论文自动生成器&quot;。试了一下，符合格式规范，非专业人士应该很难分辨真假。</p></div></div></a>
+<a href="/文字/一座城的湮灭/" class="child-summary"><div class="child-summary-row"><div class="child-summary-body"><div class="child-summary-meta">2013 · 02</div><h3 class="child-summary-title">一座城的湮灭</h3><p class="child-summary-description">昨日大雪，许久未见的J前来拜访。J专业是建筑，业余时接些翻译、校对的活，闲时改编剧本、做做小剧场。在花了三个小时表达对阿尔罕布拉宫立柱的赞叹和对王澍的不屑之后，他又聊了聊自己如何把Tempest改得只有半小时长。其中惨烈，自然难以想象。末了，他说起一个朋友写的故事。彼时天色渐暗，窗外风雪交加，屋里没有炉火。似乎不是个讲...</p></div><div class="child-summary-cover"><img src="/图片/GiorgioDeChirico.jpg" alt="一座城的湮灭" /></div></div></a></div>
         </article>
     </main>
 
     <footer class="container">
     <div class="footer-content">
-    <a href="feed.xml" class="footer-link" data-external>RSS</a>
-    <form action="https://buttondown.com/api/emails/embed-subscribe/liuguo" method="post" class="footer-subscribe-form">
-        <input type="email" name="email" class="moss-input" placeholder="邮箱" required />
-        <input type="hidden" value="1" name="embed" />
-        <button type="submit" class="moss-btn">订阅</button>
-    </form>
-</div>
+        <div class="footer-left">
+            <a href="/友链/" class="footer-link">友链</a>
+            <a href="/feed.xml" class="footer-link" data-external>RSS</a>
+        </div>
+        <div class="footer-right">
+            <form action="https://buttondown.com/api/emails/embed-subscribe/liuguo" method="post" class="footer-subscribe-form">
+            <input type="email" name="email" class="moss-input" placeholder="邮箱" required />
+            <input type="hidden" value="1" name="embed" />
+            <button type="submit" class="moss-btn">订阅</button>
+        </form>
+        </div>
+    </div>
 </footer>
 
-    <script src="js/theme.js"></script>
+    <script src="/js/theme.js"></script>
+    
 </body>
 </html>

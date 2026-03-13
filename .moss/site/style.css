@@ -515,6 +515,7 @@ footer.container {
   padding-bottom: var(--moss-space-2xl);
   display: flex;
   flex-wrap: wrap;
+  align-items: baseline;
 }
 
 .footer-left {
@@ -1831,7 +1832,7 @@ article a:focus {
 /* Collection cover — book-open layout on folder index pages */
 .collection-cover-row {
   display: flex;
-  gap: var(--moss-space-xl);
+  gap: 4rem;
   align-items: flex-start;
   margin: var(--moss-space-lg) 0;
 }

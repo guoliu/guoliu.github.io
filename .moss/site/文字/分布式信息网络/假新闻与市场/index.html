@@ -29,8 +29,582 @@
     <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml">
     <script data-goatcounter="https://guo.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
     
-    <link rel="stylesheet" href="/style.css?v=b5d1aa1bf1514f86">
-    <!-- slot:head-end -->
+    <link rel="stylesheet" href="/style.css?v=196ade57dc841045">
+    <style class="moss-comments-style">/* ==========================================================================
+   moss Comments Plugin - Styles
+
+   Collapsible comment section with solid thread borders,
+   underline-style form inputs, and responsive grid layout.
+   Uses CSS custom properties from moss default.css.
+   ========================================================================== */
+
+/* ==========================================================================
+   Design Decision Record: Flattened Comment Form
+   --------------------------------------------------------------------------
+
+   Research found that the best comment sections treat comments as editorial
+   content on the same surface as the article, not as a separate widget.
+
+   Six principles guide the comment form styling:
+
+   P1. One surface
+       Remove the tinted card background from .comment-form. Form and
+       comments share the page background. Modeled after NYT/Guardian
+       "Letters to the Editor" — comments as editorial content, same surface.
+
+   P2. Border language consistency
+       Comments use border-bottom: 1px solid. The form uses the same 1px
+       border as its boundary, not a background fill + border-radius.
+
+   P3. Typographic continuity
+       Placeholder text, field labels, comment body, author names — same
+       type family, proportional sizes. Follows iA design philosophy
+       (ia.net): "web design is 95% typography", content-first.
+
+   P4. The form is the first comment
+       Visually, the compose area reads like an empty comment slot. Same
+       padding rhythm, same width, same vertical spacing as comment items.
+       Inspired by CSS-Tricks threading (css-tricks.com) — forms inline in
+       thread, not separate cards.
+
+   P5. Distinguish through state, not surface
+       The textarea is interactive because of cursor/focus behavior, not
+       because it sits on a different background. Focus states (accent
+       underline) provide sufficient affordance.
+
+   P6. Density matching
+       Spacing between form elements echoes spacing between comment items.
+
+   References:
+   - NYT/Guardian "Letters to the Editor" model
+   - Ahmad Shadeed's comment component (ishadeed.com)
+   - CSS-Tricks threading (css-tricks.com)
+   - iA design philosophy (ia.net)
+   - ResultFirst 2026 trends — "stripping away non-essential frills"
+   ========================================================================== */
+
+/* Comment Section — width controlled by site theme (main > .moss-comments) */
+.moss-comments {
+  margin-top: 6rem;
+}
+
+/* Divider above comment section */
+.moss-comments > details {
+  padding-top: var(--moss-space-lg, 2rem);
+  border-top: 1px solid var(--moss-border-light, #e6e2db);
+}
+
+/* ==========================================================================
+   Collapsible Details/Summary
+   ========================================================================== */
+
+.comments-toggle {
+  display: flex;
+  align-items: center;
+  gap: var(--moss-space-xs, 0.5rem);
+  cursor: pointer;
+  list-style: none;
+  font-size: var(--moss-font-sm, 1rem);
+  color: var(--moss-color-muted, #8a8580);
+  user-select: none;
+  padding: 0;
+}
+
+/* Hide WebKit default disclosure triangle */
+.comments-toggle::-webkit-details-marker {
+  display: none;
+}
+
+.comments-toggle .comments-icon {
+  flex-shrink: 0;
+}
+
+.comments-toggle:hover {
+  color: var(--moss-color-text, #2c2825);
+}
+
+/* Chevron indicator — points right when collapsed, down when expanded */
+.comments-toggle .comments-chevron {
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+details[open] > .comments-toggle .comments-chevron {
+  transform: rotate(90deg);
+}
+
+/* Space between summary and content when open */
+details[open] > .comments-toggle {
+  margin-bottom: var(--moss-space-md, 1.5rem);
+}
+
+/* ==========================================================================
+   Comment List
+   ========================================================================== */
+
+.comment-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.comment-item {
+  padding: var(--moss-space-md, 1.5rem) 0;
+  border-bottom: 1px solid var(--moss-border-light, #e6e2db);
+}
+
+.comment-item:first-child {
+  padding-top: 0;
+}
+
+.comment-item:last-child {
+  border-bottom: none;
+}
+
+/* Comment Header: author name + date */
+.comment-header {
+  display: flex;
+  align-items: baseline;
+  gap: var(--moss-space-xs, 0.5rem);
+  margin-bottom: var(--moss-space-xs, 0.5rem);
+}
+
+.comment-author {
+  font-weight: 480;
+  font-size: var(--moss-font-sm, 1rem);
+  color: var(--moss-color-text, #2c2825);
+  text-decoration: none;
+}
+
+a.comment-author:hover {
+  color: var(--moss-color-accent, #2d5a2d);
+}
+
+.comment-date {
+  font-size: 0.875rem;
+  color: var(--moss-color-muted, #8a8580);
+}
+
+/* Comment Body */
+.comment-body {
+  font-size: var(--moss-font-size, 1.125rem);
+  line-height: 1.7;
+  color: var(--moss-color-text, #2c2825);
+}
+
+.comment-body p {
+  margin: 0 0 var(--moss-space-sm, 1rem) 0;
+}
+
+.comment-body p:last-child {
+  margin-bottom: 0;
+}
+
+.comment-body blockquote {
+  font-size: inherit;
+  font-style: normal;
+  border-left: 3px solid var(--moss-color-muted, #8a8580);
+  margin: var(--moss-space-xs, 0.5rem) 0 var(--moss-space-xs, 0.5rem) 1rem;
+  padding-left: var(--moss-space-sm, 1rem);
+  color: var(--moss-text-secondary, #5d5853);
+}
+
+.comment-body a {
+  color: var(--moss-color-text, #2c2825);
+  text-decoration: underline;
+}
+
+.comment-body a:hover {
+  color: var(--moss-color-accent, #2d5a2d);
+}
+
+/* ==========================================================================
+   Nested Replies — Solid Left Border Threading
+   ========================================================================== */
+
+.comment-replies {
+  list-style: none;
+  padding: 0 0 0 var(--moss-space-sm, 1rem);
+  margin: 0 0 0 var(--moss-space-xs, 0.5rem);
+  border-left: 2px solid var(--moss-border-medium, #d1cdc4);
+}
+
+.comment-replies .comment-item {
+  padding: var(--moss-space-sm, 1rem) 0;
+}
+
+/* ==========================================================================
+   Comment Form
+   ========================================================================== */
+
+.comment-form {
+  padding: var(--moss-space-md, 1.5rem) 0;
+  margin: 0 0 var(--moss-space-md, 1.5rem) 0;
+}
+
+/* Textarea — underline style */
+.comment-form textarea {
+  display: block;
+  width: 100%;
+  min-height: 3rem;
+  padding: 0.25rem 0;
+  border: none;
+  border-bottom: 1px solid var(--moss-border-medium, #d1cdc4);
+  font-family: inherit;
+  font-size: var(--moss-font-size, 1.125rem);
+  line-height: 1.7;
+  color: var(--moss-color-text, #2c2825);
+  background: transparent;
+  resize: none;
+  overflow: hidden;
+  box-sizing: border-box;
+  transition: border-color 0.15s ease;
+}
+
+.comment-form textarea:focus {
+  outline: none;
+  border-bottom: 2px solid var(--moss-color-accent, #2d5a2d);
+}
+
+.comment-form textarea::placeholder {
+  color: var(--moss-color-muted, #8a8580);
+}
+
+/* ==========================================================================
+   Form Meta Row — Name + Email + Website + Submit (single row on desktop)
+   ========================================================================== */
+
+.comment-form-meta {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr 1.1fr auto;
+  gap: 0.75rem;
+  align-items: end;
+  margin-top: var(--moss-space-sm, 1rem);
+}
+
+/* Underline-style input fields */
+.comment-field {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--moss-border-medium, #d1cdc4);
+  padding: 0.5rem 0;
+  font-family: inherit;
+  font-size: var(--moss-font-sm, 1rem);
+  color: var(--moss-color-text, #2c2825);
+  box-sizing: border-box;
+  transition: border-color 0.15s ease;
+  min-width: 0;
+}
+
+.comment-field:focus {
+  outline: none;
+  border-bottom: 2px solid var(--moss-color-accent, #2d5a2d);
+}
+
+.comment-field::placeholder {
+  color: var(--moss-color-muted, #8a8580);
+}
+
+/* ==========================================================================
+   Submit Button — Filled Tonal Style
+   ========================================================================== */
+
+.comment-form-submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1.25rem;
+  background: color-mix(in srgb, var(--moss-color-accent, #2d5a2d) 8%, transparent);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  color: var(--moss-color-accent, #2d5a2d);
+  font-family: inherit;
+  font-size: var(--moss-font-sm, 1rem);
+  font-weight: 480;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.comment-form-submit:hover {
+  background: color-mix(in srgb, var(--moss-color-accent, #2d5a2d) 15%, transparent);
+}
+
+.comment-form-submit:focus {
+  outline: 2px solid var(--moss-color-accent, #2d5a2d);
+  outline-offset: 2px;
+}
+
+.comment-form-submit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ==========================================================================
+   Accessible Visually Hidden
+   ========================================================================== */
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ==========================================================================
+   Status Messages
+   ========================================================================== */
+
+.comment-form-status {
+  margin-top: var(--moss-space-sm, 1rem);
+  font-size: 0.875rem;
+}
+
+.comment-form-status:empty {
+  display: none;
+}
+
+.comment-form-status--error {
+  color: #a83232;
+}
+
+.comment-form-status--success {
+  color: var(--moss-color-accent, #2d5a2d);
+}
+
+/* Default form slot — collapses when form relocates */
+.comment-form-slot {
+  overflow: hidden;
+  transition: max-height 0.3s ease, opacity 0.2s ease;
+}
+.comment-form-slot--collapsed {
+  max-height: 0;
+  opacity: 0;
+}
+
+/* Reply form wrapper — indented like a reply thread */
+.comment-reply-form-wrapper {
+  margin-top: var(--moss-space-sm, 1rem);
+  padding: var(--moss-space-sm, 1rem) 0 0 var(--moss-space-sm, 1rem);
+  margin-left: var(--moss-space-xs, 0.5rem);
+  border-left: 2px solid var(--moss-border-medium, #d1cdc4);
+  overflow: hidden;
+  animation: slideDown 0.25s ease-out;
+}
+
+@keyframes slideDown {
+  from { max-height: 0; opacity: 0; }
+  to { max-height: 500px; opacity: 1; }
+}
+
+/* Smaller typography in reply form */
+.comment-reply-form-wrapper .comment-form textarea {
+  font-size: var(--moss-font-sm, 1rem);
+  min-height: 2.5rem;
+}
+.comment-reply-form-wrapper .comment-field {
+  font-size: 0.875rem;
+  padding: 0.375rem 0;
+}
+.comment-reply-form-wrapper .comment-form-submit {
+  font-size: 0.875rem;
+  padding: 0.375rem 1rem;
+}
+.comment-reply-form-wrapper .comment-form {
+  padding-top: 0;
+}
+
+/* Reply button in comment header */
+.comment-reply-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.8125rem;
+  color: var(--moss-color-muted, #8a8580);
+  padding: 0;
+  margin-left: auto;
+  transition: color 0.15s ease;
+}
+.comment-reply-btn:hover {
+  color: var(--moss-color-accent, #2d5a2d);
+}
+
+/* Reply indicator */
+.comment-reply-indicator {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--moss-color-muted, #8a8580);
+  margin-bottom: var(--moss-space-xs, 0.5rem);
+}
+.comment-reply-indicator strong {
+  color: var(--moss-color-text, #2c2825);
+  font-weight: 480;
+}
+.comment-reply-cancel {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--moss-color-muted, #8a8580);
+  font-size: 0.875rem;
+  padding: 0;
+  margin-left: 0.25rem;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.comment-reply-cancel:hover {
+  color: var(--moss-color-text, #2c2825);
+}
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+
+/* 2+2 layout: name+email on row 1, website+button on row 2 */
+@media (max-width: 37.5rem) {
+  .comment-form-meta {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .comment-replies {
+    padding-left: var(--moss-space-xs, 0.5rem);
+    margin-left: 0.25rem;
+  }
+
+  .comment-reply-form-wrapper .comment-form-meta {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Full stack on very narrow screens */
+@media (max-width: 25rem) {
+  .comment-form-meta {
+    grid-template-columns: 1fr;
+  }
+
+  .comment-form-submit {
+    justify-self: end;
+  }
+
+  .comment-reply-form-wrapper .comment-form-meta {
+    grid-template-columns: 1fr;
+  }
+  .comment-reply-form-wrapper {
+    padding-left: var(--moss-space-xs, 0.5rem);
+    margin-left: 0.25rem;
+  }
+}
+</style>
+<style class="moss-email-style">/* Email subscribe form — injected by email plugin enhance hook */
+.footer-subscribe-form {
+  display: flex;
+  gap: var(--moss-space-sm);
+  align-items: baseline;
+  max-width: 18rem;
+}
+
+.footer-subscribe-form .moss-input {
+  flex: 1;
+}
+
+.footer-subscribe-form .moss-btn {
+  font-size: inherit;
+}
+
+@media (max-width: 48rem) {
+  .footer-subscribe-form .moss-input {
+    width: 10ch;
+    flex: none;
+  }
+}
+</style>
+<style class="moss-review-style">/* Review plugin — header and colophon styles
+ * Uses moss design tokens. Works in light and dark mode.
+ */
+
+.review-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin: 1rem 0 2rem;
+}
+
+.review-cover {
+  width: 80px;
+  height: auto;
+  object-fit: cover;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.review-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0;
+  font-size: 0.95em;
+  color: var(--moss-color-muted, #666);
+  padding-top: 4px;
+}
+
+.review-creator {
+  font-weight: 500;
+}
+
+.review-sep {
+  color: var(--moss-color-muted, #666);
+  margin: 0 0.15em;
+}
+
+/* Colophon */
+.review-colophon {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--moss-color-border, #e0e0e0);
+  font-size: 0.9em;
+  color: var(--moss-color-muted, #666);
+}
+
+.review-rating {
+  font-size: 1.2em;
+  color: var(--moss-color-accent, #c9a84c);
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.05em;
+}
+
+.review-community-rating {
+  font-size: 0.85em;
+  margin-bottom: 0.5rem;
+}
+
+.review-biblio {
+  margin-bottom: 0.75rem;
+  line-height: 1.6;
+}
+
+.review-links a {
+  color: var(--moss-color-accent, #c9a84c);
+  text-decoration: none;
+}
+
+.review-links a:hover {
+  text-decoration: underline;
+}
+
+/* Mobile: stack cover above meta */
+@media (max-width: 32rem) {
+  .review-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+</style>
 </head>
 <body class="">
     <header>
@@ -45,7 +619,7 @@
         <article class="container">
             <h1 class="article-title">假新闻与市场</h1>
             <p><span class="date">2019 · 10 · 16</span></p>
-            <!-- slot:after-title -->
+            
             <p>假新闻多，换个说法，也就是差新闻多。</p>
 <p>让一件差的东西变好，常常起作用的是市场机制这双“看不见的手”。供求关系决定价格，性价比越高的商家越容易生存。随时间，这一手降低了价格，一手提高了质量。</p>
 <p>但，目前大部分新闻并不作为商品而存在。新闻被视为免费的，于是无法从读者处收回成本，只能作为宣传机构存在：不管是卖广告，还是当权力喉舌。</p>
@@ -62,9 +636,470 @@
     <a href="/文字/分布式信息网络/index.html" class="series-nav-collection">分布式信息网络</a>
   </div>
 </nav>
-            <!-- slot:before-article-end -->
+            
         </article>
-        <!-- slot:after-article -->
+        <section class="moss-comments" id="moss-comments" data-built-at="2026-03-13T14:53:48.518Z">
+  <details>
+    <summary class="comments-toggle"><svg class="comments-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></svg><span>19条评论</span><svg class="comments-chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></summary>
+    <div class="comment-form-slot" id="default-form-slot"><form class="comment-form" id="moss-comment-form">
+  <textarea id="moss-comment-text" name="content" required rows="2" placeholder="留下你的想法"></textarea>
+  <div class="comment-form-meta">
+    <input type="text" name="name" class="comment-field" placeholder="名字" required>
+    <input type="email" name="email" class="comment-field" placeholder="邮箱（选填）">
+    <input type="text" name="link" class="comment-field" placeholder="网站（选填）">
+    <button type="submit" class="comment-form-submit">回复</button>
+  </div>
+  <div class="comment-form-status" id="moss-comment-status"></div>
+</form></div>
+    <ol class="comment-list"><li class="comment-item" id="comment-Q29tbWVudDo3ODE5Mjk">
+  <div class="comment-header">
+    <a href="https://matters.town/@smog_again" class="comment-author" rel="nofollow noopener" target="_blank">鬼撞墙</a>
+    <time class="comment-date" datetime="2021-08-26T11:34:54.748Z">2021年8月26日</time>
+    
+  </div>
+  <div class="comment-body"><p>市场并不是假新闻泛滥的唯一原因，例如<a href="https://matters.news/tags/VGFnOjEwMjgy">反节育派</a>的假新闻之所以能够传遍全球，<a href="https://matters.news/tags/VGFnOjExNjE5">造假大师易富贤</a>编造的谎言无论怎样荒诞不经都有媒体愿意传播，背后就肯定有政治、宗教和资本势力的影响。</p></div>
+</li><li class="comment-item" id="comment-Q29tbWVudDo2NzYyOA">
+  <div class="comment-header">
+    <a href="https://matters.town/@bwuzhang" class="comment-author" rel="nofollow noopener" target="_blank">bz</a>
+    <time class="comment-date" datetime="2019-10-19T23:53:17.324Z">2019年10月19日</time>
+    
+  </div>
+  <div class="comment-body"><p>金融行业对信息的真实性和实时性有要求，所以彭博社可以通过贩卖信息赚钱。在民主社会新闻有inform electorate的作用，能对人们的行为产生直接影响。但在大陆，人们会有什么incentive来为新闻付钱呢？</p></div>
+  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDo2OTA1NA">
+  <div class="comment-header">
+    <a href="https://matters.town/@guo" class="comment-author" rel="nofollow noopener" target="_blank">刘果</a>
+    <time class="comment-date" datetime="2019-10-23T06:46:00.682Z">2019年10月23日</time>
+    
+  </div>
+  <div class="comment-body"><p>我觉得我对新闻的真实性也有要求，实时性有时也有。我想你应该也有。所以我觉得已经有incentive，只是难说多大。但是数字信息复制无成本，小额大量也足以支撑市场。</p><p>有一些增加incentive的方法，比如结合<a href="https://zh.wikipedia.org/wiki/%E9%A2%84%E6%B5%8B%E5%B8%82%E5%9C%BA">prediction market</a>这些，我还不太懂，「Radical Market」里也有提到。</p></div>
+</li>
+  </ol>
+</li><li class="comment-item" id="comment-Q29tbWVudDo2NzE0NA">
+  <div class="comment-header">
+    <a href="https://matters.town/@cancel" class="comment-author" rel="nofollow noopener" target="_blank">不通</a>
+    <time class="comment-date" datetime="2019-10-18T06:44:13.989Z">2019年10月18日</time>
+    
+  </div>
+  <div class="comment-body"><p>信息类的商品，一切回到人性上来。大多数人，是逃离不了天性的控制。</p><p>人天性的恐惧，让人爱好危言耸听，“今年有人活着”和“今年有人死了”，后者更能用于学习生存经验，更有市场。</p><p>人天性的思维惰性，让大多数人不愿分辨事实。真相需要花费大量的调查和分析，大量的时间和金钱，对无论媒体和观众来说都得不偿失。</p><p>是有收费的订阅的报纸，但受众远不如小报。毕竟大家原来都是围着火堆听祖辈讲故事的人。</p></div>
+  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDo2NzI4Ng">
+  <div class="comment-header">
+    <a href="https://matters.town/@guo" class="comment-author" rel="nofollow noopener" target="_blank">刘果</a>
+    <time class="comment-date" datetime="2019-10-18T17:17:56.974Z">2019年10月18日</time>
+    
+  </div>
+  <div class="comment-body"><p>是的，市场基于人性，必然也无法解决人性的很多问题。</p><p>当前的新闻媒体嵌入了注意力经济、需要通过推广观点/广告来从第三方拿钱，相比之下，直接付费的新闻能够增加了一个市场机制，能够<a href="https://matters.news/@guo/%E5%81%87%E6%96%B0%E9%97%BB%E4%B8%8E%E5%B8%82%E5%9C%BA-zdpuB3Nsfkj1eRkateVrAsEd2P9TCMtAmpyfSZhhPVea65HLp#Q29tbWVudDo2NzA2NA-Q29tbWVudDo2NzEyOQ">让新闻更接近“事实”一点点</a>，或者说让一部份报道事实人活下来。</p><p>我爱听火堆边的故事，但我白天也想看现在有什么在发生。我觉得荷马史诗会在，故事会会在，花边新闻会在，但是调查报告或数据分析也会有人愿意为之买单。</p></div>
+</li>
+  </ol>
+</li><li class="comment-item" id="comment-Q29tbWVudDo2NzE0MQ">
+  <div class="comment-header">
+    <a href="https://matters.town/@sanzo" class="comment-author" rel="nofollow noopener" target="_blank">三藏川</a>
+    <time class="comment-date" datetime="2019-10-18T06:27:30.923Z">2019年10月18日</time>
+    
+  </div>
+  <div class="comment-body"><p>不知道现在是否存在第三方的独立评估机构，专门对各种发布新闻的平台（无论是传统媒体还是网媒）进行定期评估，不断更新其评分，以便用户在浏览这些新闻平台发布信息时有一个衡量标准？</p></div>
+  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDo2NzI4NA">
+  <div class="comment-header">
+    <a href="https://matters.town/@guo" class="comment-author" rel="nofollow noopener" target="_blank">刘果</a>
+    <time class="comment-date" datetime="2019-10-18T17:11:29.426Z">2019年10月18日</time>
+    
+  </div>
+  <div class="comment-body"><p>应该有不少这样的独立评估机构，但是不知道有没有影响力特别大、名声特别好的。也有一些评估方式是通过民调来看credibility，如<a href="https://morningconsult.com/2019/04/09/media-credibility-perceptions-are-down-thanks-to-republicans/">这个</a>。</p><p>不过感觉通过第三方的独立评估机构有点循环论证：这样的机构本身需要和媒体一样，通过市场建立口碑。也许这类机构本身也该被视作媒体、和其他媒体一样积累和维护口碑，只是如下面<a href="/@deep_breather">﻿@深呼吸者﻿</a> <a href="https://matters.news/@guo/%E5%81%87%E6%96%B0%E9%97%BB%E4%B8%8E%E5%B8%82%E5%9C%BA-zdpuB3Nsfkj1eRkateVrAsEd2P9TCMtAmpyfSZhhPVea65HLp#Q29tbWVudDo2NzEyMw">提到的</a>一样，将之作为另一种门类的“新闻”。</p></div>
+  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDo2NzI5Mw">
+  <div class="comment-header">
+    <a href="https://matters.town/@sanzo" class="comment-author" rel="nofollow noopener" target="_blank">三藏川</a>
+    <time class="comment-date" datetime="2019-10-18T17:43:25.477Z">2019年10月18日</time>
+    
+  </div>
+  <div class="comment-body"><p>不知道有没有针对中文媒体的第三方评估机构？</p></div>
+  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDo2NzI5Nw">
+  <div class="comment-header">
+    <a href="https://matters.town/@guo" class="comment-author" rel="nofollow noopener" target="_blank">刘果</a>
+    <time class="comment-date" datetime="2019-10-18T17:59:06.453Z">2019年10月18日</time>
+    
+  </div>
+  <div class="comment-body"><p>不太清楚专门针对中文的。不过英文的话Nieman Lab有时会做<a href="https://www.niemanlab.org/2018/10/heres-how-much-americans-trust-38-major-news-organizations-hint-not-all-that-much/">一些评估</a>，Google也发起了一个新闻分支孵化<a href="https://thetrustproject.org/">相关项目</a>。</p></div>
+  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDo2NzI5OA">
+  <div class="comment-header">
+    <a href="https://matters.town/@sanzo" class="comment-author" rel="nofollow noopener" target="_blank">三藏川</a>
+    <time class="comment-date" datetime="2019-10-18T18:05:43.566Z">2019年10月18日</time>
+    
+  </div>
+  <div class="comment-body"><p>谢谢！另外想问一下，目前有没有机构将自己的评估结果做成一种程序，该程序具有两个功能：1、当用户浏览在评估名单中的媒体信息时，该程序会自动跳出提醒，告诉用户该家媒体的可信程度；2、当用户在浏览任何新闻信息时，只要选择关键词，该程序就会自动寻找在评估中得分最高的3家媒体，并找出这些媒体所发布新闻中符合同样关键词的新闻来，以便用户查证。</p><p>还有，这样一种程序的开发成本高吗？</p></div>
+  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDo2NzMxNQ">
+  <div class="comment-header">
+    <a href="https://matters.town/@guo" class="comment-author" rel="nofollow noopener" target="_blank">刘果</a>
+    <time class="comment-date" datetime="2019-10-18T21:16:23.848Z">2019年10月18日</time>
+    
+  </div>
+  <div class="comment-body"><p>感觉比较像是Google能做/在做的事。第一点像是<a href="https://www.blog.google/products/search/fact-check-now-available-google-search-and-news-around-world/">fact check功能</a>，也可以<a href="https://developers.google.com/search/docs/data-types/factcheck">通过API调用</a>。后者其实也是Google搜索算法page rank的目的；page rank的预设是指向一篇文章的链接越多、这篇文章的关联度与可信度就越高（不管是新闻还是其他内容）。</p><p>这两点实现的成本都挺高的，而且算法内涵了对“可信程度”、“事实”等概念的定义，本身具有主观性。应该都需要如page rank一样整合大量用户数据并据此定义一个“可信程度”的替代指标。</p></div>
+</li>
+  </ol>
+</li>
+  </ol>
+</li>
+  </ol>
+</li>
+  </ol>
+</li>
+  </ol>
+</li><li class="comment-item" id="comment-Q29tbWVudDo2NzEyMw">
+  <div class="comment-header">
+    <a href="https://matters.town/@deep_breather" class="comment-author" rel="nofollow noopener" target="_blank">深呼吸者</a>
+    <time class="comment-date" datetime="2019-10-18T05:06:46.752Z">2019年10月18日</time>
+    
+  </div>
+  <div class="comment-body"><p>新闻的生产和消费群体是人，如果按照自由市场规律进行调节，必须满足大多数人的需求，而大多数人其实是混杂的，势必会出现各种各样的基于即时事件的新闻类型，假新闻也会出现。解决的方法也许是对“新闻”的边界进行重新划分，重新定义，扩展出种类繁多的子类。例如“事件”“小道消息”或者“个人评论”等等。这样，当你我都有对于新闻及其子类的共识情况下，谈的是“事件”就是“事件”，“组织意见”就是“组织意见”。假新闻只是想篡位而已。</p></div>
+  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDo2NzEzNQ">
+  <div class="comment-header">
+    <a href="https://matters.town/@guo" class="comment-author" rel="nofollow noopener" target="_blank">刘果</a>
+    <time class="comment-date" datetime="2019-10-18T05:52:31.347Z">2019年10月18日</time>
+    
+  </div>
+  <div class="comment-body"><p>的确是的。不同的类别有不同的价值：新闻可能是多事实少观点，其他内容又有其他评判标准。</p><p>从系统设计的角度出发，我觉得这个边界甚至可以扩展成为“信息”，任何有价信息，不管是新闻、百科还是电影。它们部分也已经这么运作了。</p><p>对这些信息的分类也会是用户涌现出来的认知，乃至信息发布者的自我定位。</p></div>
+</li>
+  </ol>
+</li><li class="comment-item" id="comment-Q29tbWVudDo2NzA2NA">
+  <div class="comment-header">
+    <a href="https://matters.town/@xiemeng" class="comment-author" rel="nofollow noopener" target="_blank">谢孟</a>
+    <time class="comment-date" datetime="2019-10-18T02:53:11.761Z">2019年10月17日</time>
+    
+  </div>
+  <div class="comment-body"><p>“新闻当中被珍贵与标价的，应当是事实，而非观点。如果新闻重新成为商品，价格能在消费者的选择中引入理性，市场机制就能据此建立。”很有趣的想法，不过不知要具体如何实践。如果从知识的商品化转为事实的商品化，是否会构成对公众知情权的侵犯；而且如何维系对事实（生产）的垄断呢，如果不能维系，那这个价格也会因恶性竞争而过低。</p></div>
+  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDo2NzExMw">
+  <div class="comment-header">
+    <a href="https://matters.town/@guo" class="comment-author" rel="nofollow noopener" target="_blank">刘果</a>
+    <time class="comment-date" datetime="2019-10-18T04:52:13.417Z">2019年10月18日</time>
+    
+  </div>
+  <div class="comment-body"><p>我觉得事实的商品化并不会恶化公众知情权。因为一个支持有价新闻的系统，一定支持免费新闻；后者是前者的子集和特例，价格为0。在这个系统中，原本维护公众知情权的机构（如政府和NGO）仍然可以提供免费内容，通过其它方式收回成本。市场是对这些机构的补充，同时还会有新的补充的方式，如由众筹发起、但结果免费发布的调查报告。<br /></p><p>互联网之前的新闻原本也是有价的，所以更多只是回到了原来的模型，并通过数字化带来新的演进。钳制垄断的方式可能是降低进入门槛，让个人也可以方便地售卖新闻/事实并积累市场口碑。<br /></p></div>
+  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDo2NzEyNw">
+  <div class="comment-header">
+    <a href="https://matters.town/@xiemeng" class="comment-author" rel="nofollow noopener" target="_blank">谢孟</a>
+    <time class="comment-date" datetime="2019-10-18T05:12:43.800Z">2019年10月18日</time>
+    
+  </div>
+  <div class="comment-body"><p>我觉得你讲的挺有道理，但是我感觉还是有点模糊。</p><p>比如说啊，事实与观点的界限有点难界定，特别是你提到的调查报告这类的。我们现在的智库是事实，还是观点呢？你是否想用“事实”这个词表述“更正规、更独立的观点…？”</p><p>关于垄断其实我本来想说的是，应该要被垄断的，因为不垄断的话事实不值钱撑不起商业模式，但是垄断事实看起来又很难操作，所以想问你如何垄断。你建议是进一步降低垄断，个人参与进来，那还是一样的，个人所售卖的是事实还是观点，有没有什么标准。（当然很多人都会认为自己的观点是事实，但也同时认为别人的观点不是事实）</p></div>
+  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDo2NzEyOQ">
+  <div class="comment-header">
+    <a href="https://matters.town/@guo" class="comment-author" rel="nofollow noopener" target="_blank">刘果</a>
+    <time class="comment-date" datetime="2019-10-18T05:23:08.508Z">2019年10月18日</time>
+    
+  </div>
+  <div class="comment-body"><p>或许我不应该用“事实”这个标签，但因为找不到更好的表达方式，只能这么写了。</p><p>我的想法是：每个人对新闻都有价值高低的主观判断，且称这个指标为Q；市场机制应当会提高的，是所有购买者购买到的新闻中Q的均值；我用“事实”来指代这里Q的均值，是否正确可能是个很大的哲学问题。也许reality、consensus reality、“价值”都是更好的表达方法。</p><p>所以我觉得降低门槛、突破垄断是好的，这给了consensus reality更大的基因库以供演变。</p></div>
+  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDo2NzEzMQ">
+  <div class="comment-header">
+    <a href="https://matters.town/@xiemeng" class="comment-author" rel="nofollow noopener" target="_blank">谢孟</a>
+    <time class="comment-date" datetime="2019-10-18T05:37:04.753Z">2019年10月18日</time>
+    
+  </div>
+  <div class="comment-body"><p>明白你的意思了，挺有趣的，感觉会涉及很多复杂的面向。甚至有可能，假新闻泛滥的当下，同时却也已经到了Q均值的顶峰了。</p></div>
+  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDo2NzEzMw">
+  <div class="comment-header">
+    <a href="https://matters.town/@guo" class="comment-author" rel="nofollow noopener" target="_blank">刘果</a>
+    <time class="comment-date" datetime="2019-10-18T05:45:23.833Z">2019年10月18日</time>
+    
+  </div>
+  <div class="comment-body"><p>如果“假新闻泛滥”是共识的话，本身就应该说明Q均值很低了。</p></div>
+</li>
+  </ol>
+</li>
+  </ol>
+</li>
+  </ol>
+</li>
+  </ol>
+</li>
+  </ol>
+</li></ol>
+    <script>(function() {
+  var form = document.getElementById('moss-comment-form');
+  if (!form) return;
+
+  var textarea = document.getElementById('moss-comment-text');
+  var statusEl = document.getElementById('moss-comment-status');
+  var commentList = document.querySelector('.moss-comments .comment-list');
+  var currentReplyId = null;
+  var currentReplyWrapper = null;
+  var defaultFormSlot = document.getElementById('default-form-slot');
+
+  function updateCommentCount() {
+    var s = document.getElementById('moss-comments');
+    if (!s) return;
+    var total = s.querySelectorAll('.comment-item').length;
+    var d = s.querySelector('details');
+    if (!d) return;
+    var sp = d.querySelector('summary span');
+    if (sp) {
+      sp.textContent = total === 1 ? '1条评论' : '{n}条评论'.replace('{n}', total);
+    }
+  }
+
+  // Auto-grow textarea
+  if (textarea) {
+    function autoGrow() {
+      textarea.style.height = 'auto';
+      textarea.style.height = textarea.scrollHeight + 'px';
+    }
+    textarea.addEventListener('input', autoGrow);
+  }
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    var btn = form.querySelector('.comment-form-submit');
+    btn.disabled = true;
+    btn.textContent = '提交中...';
+    if (statusEl) { statusEl.textContent = ''; statusEl.className = 'comment-form-status'; }
+
+    var rawLink = (form.elements['link'].value || '').trim();
+    if (rawLink && !/^https?:\/\//.test(rawLink)) { rawLink = 'https://' + rawLink; }
+
+    var body = {
+      content: form.elements['content'].value,
+      name: form.elements['name'].value,
+      email: form.elements['email'].value,
+      link: rawLink,
+      rid: currentReplyId ? parseInt(currentReplyId, 10) : 0,
+      page_key: '415ef3c5',
+      site_name: 'liu-guo.com',
+      ua: navigator.userAgent
+    };
+
+    fetch('https://api.moss.host/comments/api/v2/comments', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body)
+    })
+    .then(function(res) {
+      if (!res.ok) {
+        return res.json().catch(function() {
+          throw new Error('Server error (' + res.status + ')');
+        }).then(function(data) {
+          throw new Error(data.msg || 'Server error (' + res.status + ')');
+        });
+      }
+      return res.json();
+    })
+    .then(function(data) {
+      btn.disabled = false;
+      btn.textContent = '回复';
+
+      if (statusEl) {
+        statusEl.textContent = '评论已提交！';
+        statusEl.className = 'comment-form-status comment-form-status--success';
+      }
+
+      var li = document.createElement('li');
+      li.className = 'comment-item';
+      li.id = 'comment-' + data.id;
+      var now = new Date().toLocaleDateString('zh-CN', {year:'numeric',month:'short',day:'numeric'});
+      var authorName = body.name || 'Anonymous';
+      var safeAuthor = authorName.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+      li.innerHTML = '<div class="comment-header">'
+        + '<span class="comment-author">' + safeAuthor + '</span>'
+        + '<time class="comment-date">' + now + '</time>'
+        + '<button type="button" class="comment-reply-btn" data-reply-id="' + data.id + '" data-reply-name="' + safeAuthor + '">\u21a9 回复</button>'
+        + '</div>'
+        + '<div class="comment-body"><p>' + body.content.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;') + '</p></div>';
+
+      if (currentReplyId) {
+        // Insert as nested reply under the parent comment
+        var parentLi = document.getElementById('comment-' + currentReplyId);
+        if (parentLi) {
+          var repliesOl = parentLi.querySelector('.comment-replies');
+          if (!repliesOl) {
+            repliesOl = document.createElement('ol');
+            repliesOl.className = 'comment-replies';
+            parentLi.appendChild(repliesOl);
+          }
+          repliesOl.insertBefore(li, null);
+        }
+        cancelReply(false);
+      } else {
+        if (!commentList) {
+          commentList = document.createElement('ol');
+          commentList.className = 'comment-list';
+          var defaultSlot = document.getElementById('default-form-slot');
+          if (defaultSlot) defaultSlot.after(commentList);
+          else form.after(commentList);
+        }
+        // Newest first: prepend so the just-submitted comment appears at the top
+        commentList.insertBefore(li, commentList.firstChild);
+      }
+
+      updateCommentCount();
+      form.elements['content'].value = '';
+      if (textarea) { textarea.style.height = 'auto'; }
+    })
+    .catch(function(err) {
+      btn.disabled = false;
+      btn.textContent = '回复';
+      if (statusEl) {
+        statusEl.textContent = err.message || '网络错误，请重试。';
+        statusEl.className = 'comment-form-status comment-form-status--error';
+      }
+    });
+  });
+
+  /* --- Reply logic: relocating form pattern --- */
+  function cancelReply(skipScroll) {
+    if (!currentReplyWrapper) return;
+    if (defaultFormSlot) {
+      defaultFormSlot.appendChild(form);
+      defaultFormSlot.classList.remove('comment-form-slot--collapsed');
+    }
+    currentReplyWrapper.remove();
+    currentReplyWrapper = null;
+    currentReplyId = null;
+    if (!skipScroll && defaultFormSlot) {
+      defaultFormSlot.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  }
+
+  var section = document.getElementById('moss-comments');
+  if (section) {
+    section.addEventListener('click', function(e) {
+      var btn = e.target.closest('.comment-reply-btn');
+      if (!btn) return;
+
+      var replyId = btn.getAttribute('data-reply-id');
+      var replyName = btn.getAttribute('data-reply-name');
+      var commentItem = document.getElementById('comment-' + replyId);
+      if (!commentItem) return;
+
+      // If already replying to this comment, just focus
+      if (currentReplyId === replyId) { textarea.focus(); return; }
+
+      // Cancel any existing reply
+      cancelReply(true);
+
+      // Collapse default form slot
+      if (defaultFormSlot) defaultFormSlot.classList.add('comment-form-slot--collapsed');
+
+      // Create reply wrapper with thread indent
+      var wrapper = document.createElement('div');
+      wrapper.className = 'comment-reply-form-wrapper';
+
+      // Reply indicator
+      var indicator = document.createElement('div');
+      indicator.className = 'comment-reply-indicator';
+      indicator.innerHTML = '<span>\u21a9 回复 <strong>' + replyName.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') + '</strong> \u00b7</span>';
+      var cancelBtn = document.createElement('button');
+      cancelBtn.type = 'button';
+      cancelBtn.className = 'comment-reply-cancel';
+      cancelBtn.textContent = '取消';
+      cancelBtn.addEventListener('click', function() { cancelReply(false); });
+      indicator.appendChild(cancelBtn);
+      wrapper.appendChild(indicator);
+
+      // Move form into wrapper
+      wrapper.appendChild(form);
+      commentItem.appendChild(wrapper);
+
+      currentReplyWrapper = wrapper;
+      currentReplyId = replyId;
+
+      textarea.focus();
+      wrapper.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+  }
+
+  /*
+   * Stale-while-revalidate / progressive enhancement for comments.
+   *
+   * Static HTML already contains all comments known at build time, so the page
+   * is immediately readable without JS. When the user opens the comment section
+   * (<details> toggle), we fetch comments from the Artalk server that may have
+   * been posted after the last build.
+   *
+   * Why date-based filtering instead of offset/count:
+   *   Comments can be deleted or moderated between builds. A purely offset-based
+   *   approach would miss or duplicate entries. By comparing each comment's
+   *   created_at against the build timestamp (data-built-at), we robustly find
+   *   only the comments that are genuinely new.
+   *
+   * Three-layer deduplication:
+   *   1. Date boundary  — stop iterating when we hit a comment older than the
+   *      build timestamp (comments are sorted newest-first).
+   *   2. ID guard       — skip any comment whose DOM node already exists
+   *      (handles edge cases where build-time and fetch overlap).
+   *   3. Fire-once listener — the toggle handler removes itself after the first
+   *      invocation so we never fetch twice.
+   *
+   * Trust model: Artalk performs server-side HTML sanitization, so we use
+   * innerHTML for comment content (same as the static render path).
+   */
+  var builtAtStr = section && section.getAttribute('data-built-at');
+  var builtAtMs = builtAtStr ? new Date(builtAtStr).getTime() : 0;
+  var details = section && section.querySelector('details');
+
+  if (details && builtAtMs) {
+    function onToggle() {
+      if (!details.open) return;
+      details.removeEventListener('toggle', onToggle);
+
+      fetch('https://api.moss.host/comments/api/v2/comments?page_key=415ef3c5&site_name=liu-guo.com&flat_mode=true&sort_by=date_desc&limit=100')
+        .then(function(res) { return res.ok ? res.json() : null; })
+        .then(function(json) {
+          if (!json) return;
+          var list = json.comments || (json.data && json.data.comments) || [];
+          var added = 0;
+          // Anchor = first build-time comment. Hydrated comments go before it
+          // to maintain newest-first order (API returns date_desc).
+          var anchor = commentList ? commentList.firstChild : null;
+          for (var i = 0; i < list.length; i++) {
+            var c = list[i];
+            if (new Date(c.date).getTime() <= builtAtMs) break;
+            if (document.getElementById('comment-' + c.id)) continue;
+
+            var li = document.createElement('li');
+            li.className = 'comment-item';
+            li.id = 'comment-' + c.id;
+            var authorName = (c.nick || 'Anonymous').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+            var dateStr = new Date(c.date).toLocaleDateString('zh-CN', {year:'numeric',month:'short',day:'numeric'});
+            li.innerHTML = '<div class="comment-header">'
+              + '<span class="comment-author">' + authorName + '</span>'
+              + '<time class="comment-date">' + dateStr + '</time>'
+              + '<button type="button" class="comment-reply-btn" data-reply-id="' + c.id + '" data-reply-name="' + authorName + '">\u21a9 回复</button>'
+              + '</div>'
+              + '<div class="comment-body">' + c.content + '</div>';
+
+            if (c.rid > 0) {
+              var parentLi = document.getElementById('comment-' + c.rid);
+              if (parentLi) {
+                var repliesOl = parentLi.querySelector('.comment-replies');
+                if (!repliesOl) {
+                  repliesOl = document.createElement('ol');
+                  repliesOl.className = 'comment-replies';
+                  parentLi.appendChild(repliesOl);
+                }
+                repliesOl.insertBefore(li, null);
+                added++;
+                continue;
+              }
+            }
+
+            if (!commentList) {
+              commentList = document.createElement('ol');
+              commentList.className = 'comment-list';
+              var formEl = document.getElementById('moss-comment-form');
+              if (formEl) formEl.after(commentList);
+              anchor = null;
+            }
+            commentList.insertBefore(li, anchor);
+            added++;
+          }
+
+          if (added > 0) {
+            updateCommentCount();
+          }
+        })
+        .catch(function() { /* silent — static comments still visible */ });
+    }
+    details.addEventListener('toggle', onToggle);
+  }
+})();</script>
+  </details>
+</section>
     </main>
 
     <footer class="container">
@@ -74,12 +1109,16 @@
             <a href="/feed.xml" class="footer-link" data-external>RSS</a>
         </div>
         <div class="footer-right">
-            <!-- slot:footer-right -->
+            <form action="https://buttondown.com/api/emails/embed-subscribe/liuguo" method="post" class="footer-subscribe-form">
+            <input type="email" name="email" class="moss-input" placeholder="邮箱" required />
+            <input type="hidden" value="1" name="embed" />
+            <button type="submit" class="moss-btn">订阅</button>
+        </form>
         </div>
     </div>
 </footer>
 
     <script src="/js/theme.js"></script>
-    <!-- slot:body-end -->
+    
 </body>
 </html>

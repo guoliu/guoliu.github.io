@@ -31,8 +31,582 @@
     <link rel="alternate" type="application/rss+xml" title="RSS" href="../../feed.xml">
     
     
-    <link rel="stylesheet" href="/style.css?v=5d8e61fbbdab3ac4">
-    <!-- slot:head-end -->
+    <link rel="stylesheet" href="/style.css?v=76ff8e3146487607">
+    <style class="moss-comments-style">/* ==========================================================================
+   moss Comments Plugin - Styles
+
+   Collapsible comment section with solid thread borders,
+   underline-style form inputs, and responsive grid layout.
+   Uses CSS custom properties from moss default.css.
+   ========================================================================== */
+
+/* ==========================================================================
+   Design Decision Record: Flattened Comment Form
+   --------------------------------------------------------------------------
+
+   Research found that the best comment sections treat comments as editorial
+   content on the same surface as the article, not as a separate widget.
+
+   Six principles guide the comment form styling:
+
+   P1. One surface
+       Remove the tinted card background from .comment-form. Form and
+       comments share the page background. Modeled after NYT/Guardian
+       "Letters to the Editor" — comments as editorial content, same surface.
+
+   P2. Border language consistency
+       Comments use border-bottom: 1px solid. The form uses the same 1px
+       border as its boundary, not a background fill + border-radius.
+
+   P3. Typographic continuity
+       Placeholder text, field labels, comment body, author names — same
+       type family, proportional sizes. Follows iA design philosophy
+       (ia.net): "web design is 95% typography", content-first.
+
+   P4. The form is the first comment
+       Visually, the compose area reads like an empty comment slot. Same
+       padding rhythm, same width, same vertical spacing as comment items.
+       Inspired by CSS-Tricks threading (css-tricks.com) — forms inline in
+       thread, not separate cards.
+
+   P5. Distinguish through state, not surface
+       The textarea is interactive because of cursor/focus behavior, not
+       because it sits on a different background. Focus states (accent
+       underline) provide sufficient affordance.
+
+   P6. Density matching
+       Spacing between form elements echoes spacing between comment items.
+
+   References:
+   - NYT/Guardian "Letters to the Editor" model
+   - Ahmad Shadeed's comment component (ishadeed.com)
+   - CSS-Tricks threading (css-tricks.com)
+   - iA design philosophy (ia.net)
+   - ResultFirst 2026 trends — "stripping away non-essential frills"
+   ========================================================================== */
+
+/* Comment Section — width controlled by site theme (main > .moss-comments) */
+.moss-comments {
+  margin-top: 6rem;
+}
+
+/* Divider above comment section */
+.moss-comments > details {
+  padding-top: var(--moss-space-lg, 2rem);
+  border-top: 1px solid var(--moss-border-light, #e6e2db);
+}
+
+/* ==========================================================================
+   Collapsible Details/Summary
+   ========================================================================== */
+
+.comments-toggle {
+  display: flex;
+  align-items: center;
+  gap: var(--moss-space-xs, 0.5rem);
+  cursor: pointer;
+  list-style: none;
+  font-size: var(--moss-font-sm, 1rem);
+  color: var(--moss-color-muted, #8a8580);
+  user-select: none;
+  padding: 0;
+}
+
+/* Hide WebKit default disclosure triangle */
+.comments-toggle::-webkit-details-marker {
+  display: none;
+}
+
+.comments-toggle .comments-icon {
+  flex-shrink: 0;
+}
+
+.comments-toggle:hover {
+  color: var(--moss-color-text, #2c2825);
+}
+
+/* Chevron indicator — points right when collapsed, down when expanded */
+.comments-toggle .comments-chevron {
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+details[open] > .comments-toggle .comments-chevron {
+  transform: rotate(90deg);
+}
+
+/* Space between summary and content when open */
+details[open] > .comments-toggle {
+  margin-bottom: var(--moss-space-md, 1.5rem);
+}
+
+/* ==========================================================================
+   Comment List
+   ========================================================================== */
+
+.comment-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.comment-item {
+  padding: var(--moss-space-md, 1.5rem) 0;
+  border-bottom: 1px solid var(--moss-border-light, #e6e2db);
+}
+
+.comment-item:first-child {
+  padding-top: 0;
+}
+
+.comment-item:last-child {
+  border-bottom: none;
+}
+
+/* Comment Header: author name + date */
+.comment-header {
+  display: flex;
+  align-items: baseline;
+  gap: var(--moss-space-xs, 0.5rem);
+  margin-bottom: var(--moss-space-xs, 0.5rem);
+}
+
+.comment-author {
+  font-weight: 480;
+  font-size: var(--moss-font-sm, 1rem);
+  color: var(--moss-color-text, #2c2825);
+  text-decoration: none;
+}
+
+a.comment-author:hover {
+  color: var(--moss-color-accent, #2d5a2d);
+}
+
+.comment-date {
+  font-size: 0.875rem;
+  color: var(--moss-color-muted, #8a8580);
+}
+
+/* Comment Body */
+.comment-body {
+  font-size: var(--moss-font-size, 1.125rem);
+  line-height: 1.7;
+  color: var(--moss-color-text, #2c2825);
+}
+
+.comment-body p {
+  margin: 0 0 var(--moss-space-sm, 1rem) 0;
+}
+
+.comment-body p:last-child {
+  margin-bottom: 0;
+}
+
+.comment-body blockquote {
+  font-size: inherit;
+  font-style: normal;
+  border-left: 3px solid var(--moss-color-muted, #8a8580);
+  margin: var(--moss-space-xs, 0.5rem) 0 var(--moss-space-xs, 0.5rem) 1rem;
+  padding-left: var(--moss-space-sm, 1rem);
+  color: var(--moss-text-secondary, #5d5853);
+}
+
+.comment-body a {
+  color: var(--moss-color-text, #2c2825);
+  text-decoration: underline;
+}
+
+.comment-body a:hover {
+  color: var(--moss-color-accent, #2d5a2d);
+}
+
+/* ==========================================================================
+   Nested Replies — Solid Left Border Threading
+   ========================================================================== */
+
+.comment-replies {
+  list-style: none;
+  padding: 0 0 0 var(--moss-space-sm, 1rem);
+  margin: 0 0 0 var(--moss-space-xs, 0.5rem);
+  border-left: 2px solid var(--moss-border-medium, #d1cdc4);
+}
+
+.comment-replies .comment-item {
+  padding: var(--moss-space-sm, 1rem) 0;
+}
+
+/* ==========================================================================
+   Comment Form
+   ========================================================================== */
+
+.comment-form {
+  padding: var(--moss-space-md, 1.5rem) 0;
+  margin: 0 0 var(--moss-space-md, 1.5rem) 0;
+}
+
+/* Textarea — underline style */
+.comment-form textarea {
+  display: block;
+  width: 100%;
+  min-height: 3rem;
+  padding: 0.25rem 0;
+  border: none;
+  border-bottom: 1px solid var(--moss-border-medium, #d1cdc4);
+  font-family: inherit;
+  font-size: var(--moss-font-size, 1.125rem);
+  line-height: 1.7;
+  color: var(--moss-color-text, #2c2825);
+  background: transparent;
+  resize: none;
+  overflow: hidden;
+  box-sizing: border-box;
+  transition: border-color 0.15s ease;
+}
+
+.comment-form textarea:focus {
+  outline: none;
+  border-bottom: 2px solid var(--moss-color-accent, #2d5a2d);
+}
+
+.comment-form textarea::placeholder {
+  color: var(--moss-color-muted, #8a8580);
+}
+
+/* ==========================================================================
+   Form Meta Row — Name + Email + Website + Submit (single row on desktop)
+   ========================================================================== */
+
+.comment-form-meta {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr 1.1fr auto;
+  gap: 0.75rem;
+  align-items: end;
+  margin-top: var(--moss-space-sm, 1rem);
+}
+
+/* Underline-style input fields */
+.comment-field {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--moss-border-medium, #d1cdc4);
+  padding: 0.5rem 0;
+  font-family: inherit;
+  font-size: var(--moss-font-sm, 1rem);
+  color: var(--moss-color-text, #2c2825);
+  box-sizing: border-box;
+  transition: border-color 0.15s ease;
+  min-width: 0;
+}
+
+.comment-field:focus {
+  outline: none;
+  border-bottom: 2px solid var(--moss-color-accent, #2d5a2d);
+}
+
+.comment-field::placeholder {
+  color: var(--moss-color-muted, #8a8580);
+}
+
+/* ==========================================================================
+   Submit Button — Filled Tonal Style
+   ========================================================================== */
+
+.comment-form-submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1.25rem;
+  background: color-mix(in srgb, var(--moss-color-accent, #2d5a2d) 8%, transparent);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  color: var(--moss-color-accent, #2d5a2d);
+  font-family: inherit;
+  font-size: var(--moss-font-sm, 1rem);
+  font-weight: 480;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.comment-form-submit:hover {
+  background: color-mix(in srgb, var(--moss-color-accent, #2d5a2d) 15%, transparent);
+}
+
+.comment-form-submit:focus {
+  outline: 2px solid var(--moss-color-accent, #2d5a2d);
+  outline-offset: 2px;
+}
+
+.comment-form-submit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ==========================================================================
+   Accessible Visually Hidden
+   ========================================================================== */
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ==========================================================================
+   Status Messages
+   ========================================================================== */
+
+.comment-form-status {
+  margin-top: var(--moss-space-sm, 1rem);
+  font-size: 0.875rem;
+}
+
+.comment-form-status:empty {
+  display: none;
+}
+
+.comment-form-status--error {
+  color: #a83232;
+}
+
+.comment-form-status--success {
+  color: var(--moss-color-accent, #2d5a2d);
+}
+
+/* Default form slot — collapses when form relocates */
+.comment-form-slot {
+  overflow: hidden;
+  transition: max-height 0.3s ease, opacity 0.2s ease;
+}
+.comment-form-slot--collapsed {
+  max-height: 0;
+  opacity: 0;
+}
+
+/* Reply form wrapper — indented like a reply thread */
+.comment-reply-form-wrapper {
+  margin-top: var(--moss-space-sm, 1rem);
+  padding: var(--moss-space-sm, 1rem) 0 0 var(--moss-space-sm, 1rem);
+  margin-left: var(--moss-space-xs, 0.5rem);
+  border-left: 2px solid var(--moss-border-medium, #d1cdc4);
+  overflow: hidden;
+  animation: slideDown 0.25s ease-out;
+}
+
+@keyframes slideDown {
+  from { max-height: 0; opacity: 0; }
+  to { max-height: 500px; opacity: 1; }
+}
+
+/* Smaller typography in reply form */
+.comment-reply-form-wrapper .comment-form textarea {
+  font-size: var(--moss-font-sm, 1rem);
+  min-height: 2.5rem;
+}
+.comment-reply-form-wrapper .comment-field {
+  font-size: 0.875rem;
+  padding: 0.375rem 0;
+}
+.comment-reply-form-wrapper .comment-form-submit {
+  font-size: 0.875rem;
+  padding: 0.375rem 1rem;
+}
+.comment-reply-form-wrapper .comment-form {
+  padding-top: 0;
+}
+
+/* Reply button in comment header */
+.comment-reply-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.8125rem;
+  color: var(--moss-color-muted, #8a8580);
+  padding: 0;
+  margin-left: auto;
+  transition: color 0.15s ease;
+}
+.comment-reply-btn:hover {
+  color: var(--moss-color-accent, #2d5a2d);
+}
+
+/* Reply indicator */
+.comment-reply-indicator {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--moss-color-muted, #8a8580);
+  margin-bottom: var(--moss-space-xs, 0.5rem);
+}
+.comment-reply-indicator strong {
+  color: var(--moss-color-text, #2c2825);
+  font-weight: 480;
+}
+.comment-reply-cancel {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--moss-color-muted, #8a8580);
+  font-size: 0.875rem;
+  padding: 0;
+  margin-left: 0.25rem;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.comment-reply-cancel:hover {
+  color: var(--moss-color-text, #2c2825);
+}
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+
+/* 2+2 layout: name+email on row 1, website+button on row 2 */
+@media (max-width: 37.5rem) {
+  .comment-form-meta {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .comment-replies {
+    padding-left: var(--moss-space-xs, 0.5rem);
+    margin-left: 0.25rem;
+  }
+
+  .comment-reply-form-wrapper .comment-form-meta {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Full stack on very narrow screens */
+@media (max-width: 25rem) {
+  .comment-form-meta {
+    grid-template-columns: 1fr;
+  }
+
+  .comment-form-submit {
+    justify-self: end;
+  }
+
+  .comment-reply-form-wrapper .comment-form-meta {
+    grid-template-columns: 1fr;
+  }
+  .comment-reply-form-wrapper {
+    padding-left: var(--moss-space-xs, 0.5rem);
+    margin-left: 0.25rem;
+  }
+}
+</style>
+<style class="moss-email-style">/* Email subscribe form — injected by email plugin enhance hook */
+.footer-subscribe-form {
+  display: flex;
+  gap: var(--moss-space-sm);
+  align-items: baseline;
+  max-width: 18rem;
+}
+
+.footer-subscribe-form .moss-input {
+  flex: 1;
+}
+
+.footer-subscribe-form .moss-btn {
+  font-size: inherit;
+}
+
+@media (max-width: 48rem) {
+  .footer-subscribe-form .moss-input {
+    width: 10ch;
+    flex: none;
+  }
+}
+</style>
+<style class="moss-review-style">/* Review plugin — header and colophon styles
+ * Uses moss design tokens. Works in light and dark mode.
+ */
+
+.review-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin: 1rem 0 2rem;
+}
+
+.review-cover {
+  width: 80px;
+  height: auto;
+  object-fit: cover;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.review-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0;
+  font-size: 0.95em;
+  color: var(--moss-color-muted, #666);
+  padding-top: 4px;
+}
+
+.review-creator {
+  font-weight: 500;
+}
+
+.review-sep {
+  color: var(--moss-color-muted, #666);
+  margin: 0 0.15em;
+}
+
+/* Colophon */
+.review-colophon {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--moss-color-border, #e0e0e0);
+  font-size: 0.9em;
+  color: var(--moss-color-muted, #666);
+}
+
+.review-rating {
+  font-size: 1.2em;
+  color: var(--moss-color-accent, #c9a84c);
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.05em;
+}
+
+.review-community-rating {
+  font-size: 0.85em;
+  margin-bottom: 0.5rem;
+}
+
+.review-biblio {
+  margin-bottom: 0.75rem;
+  line-height: 1.6;
+}
+
+.review-links a {
+  color: var(--moss-color-accent, #c9a84c);
+  text-decoration: none;
+}
+
+.review-links a:hover {
+  text-decoration: underline;
+}
+
+/* Mobile: stack cover above meta */
+@media (max-width: 32rem) {
+  .review-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+</style>
 </head>
 <body class="">
     <header>
@@ -47,7 +621,7 @@
         <article class="container">
             <h1 class="article-title">病毒算法，全民基本收入，与可编程的世界观</h1>
             <p><span class="date">2020 · 3 · 29</span></p>
-            <!-- slot:after-title -->
+            
             <h2 id="离线的社交网络与流行病的传播">离线的社交网络与流行病的传播</h2>
 <p>Dominic Tarr 住在新西兰的一条帆船上。他习惯写 JavaScript，在 npm 上贡献了四百多个包，包括常用的 browserify。</p>
 <p>帆船上的生活有个缺点，就是网络信号差，社交网络也不好用。所以14年的时候，他开始设计一个协议，让自己和朋友们在没有互联网的情况下也能保持联络。</p>
@@ -148,9 +722,396 @@
 <p>已故的小说家大卫.福斯特.华莱士，曾经讲过一个故事：一条老鱼遇到几条小鱼，向小鱼们问好，问起今天水温如何；小鱼们一脸困惑，问，什么是水？</p>
 <p>身处信息网络中的我们，不仅需要知道水温如何，还需要知道水温的机制。因为我们的选择，将会继续影响未来的水温。</p>
 
-            <!-- slot:before-article-end -->
+            
         </article>
-        <!-- slot:after-article -->
+        <section class="moss-comments" id="moss-comments" data-built-at="2026-03-13T05:00:50.418Z">
+  <details>
+    <summary class="comments-toggle"><svg class="comments-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></svg><span>13条评论</span><svg class="comments-chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></summary>
+    <div class="comment-form-slot" id="default-form-slot"><form class="comment-form" id="moss-comment-form">
+  <textarea id="moss-comment-text" name="content" required rows="2" placeholder="留下你的想法"></textarea>
+  <div class="comment-form-meta">
+    <input type="text" name="name" class="comment-field" placeholder="名字" required>
+    <input type="email" name="email" class="comment-field" placeholder="邮箱（选填）">
+    <input type="text" name="link" class="comment-field" placeholder="网站（选填）">
+    <button type="submit" class="comment-form-submit">回复</button>
+  </div>
+  <div class="comment-form-status" id="moss-comment-status"></div>
+</form></div>
+    <ol class="comment-list"><li class="comment-item" id="comment-Q29tbWVudDoxODQyMDY">
+  <div class="comment-header">
+    <a href="https://matters.town/@jugu" class="comment-author" rel="nofollow noopener" target="_blank">糾古</a>
+    <time class="comment-date" datetime="2020-03-29T09:17:01.337Z">2020年3月29日</time>
+    <button type="button" class="comment-reply-btn" data-reply-id="Q29tbWVudDoxODQyMDY" data-reply-name="糾古">↩ 回复</button>
+  </div>
+  <div class="comment-body"><p>如果把這些機制分成兩相對立的「債」性格的要素（社會主義/公平/在地/認人）與「權益」性格的要素（資本主義/自由/全球化/認錢），再拿既有體系的成果來參照，我們可以看到很多「債也能分割成權益」、「持有的權益也會影響信用」之類、交纏在一起分不出誰是誰的情況；也就是說，形／質不見得一致，混在一起甚至有調和效果。極端一點，我們甚至也可以說所有的外在機制都是「形」，只有我們腦中的那點信仰才是「質」。</p></div>
+  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDoxODU0Mjg">
+  <div class="comment-header">
+    <a href="https://matters.town/@guo" class="comment-author" rel="nofollow noopener" target="_blank">刘果</a>
+    <time class="comment-date" datetime="2020-03-30T20:18:15.018Z">2020年3月30日</time>
+    <button type="button" class="comment-reply-btn" data-reply-id="Q29tbWVudDoxODU0Mjg" data-reply-name="刘果">↩ 回复</button>
+  </div>
+  <div class="comment-body"><blockquote>極端一點，我們甚至也可以說所有的外在機制都是「形」，只有我們腦中的那點信仰才是「質」</blockquote><p>同意，跨越個體和時代延續不變的，是人們的共通想法和動機，不管稱做“信仰”、“理念”、“審美”、“道德觀”、“意志”、“精神”、“神”等。這些想法會在不同的時候具身於不同的人，湧現出不同的機制。在演化的視角下，後者是被淘汰和被甄選的個體，前者才是延續下來的基因；也許正是你說的『質』和『形』之分。</p><p>意識形態傾向上，我覺得可以劃分出『國際 vs. 民族』『親資本 vs. 反資本』『集權 vs. 分權』三個相對獨立的維度。但沒有思考過『債』與『權益』兩者如何能夠構成一個維度，願意聽你展開講講。</p></div>
+  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDoxODU3MTg">
+  <div class="comment-header">
+    <a href="https://matters.town/@jugu" class="comment-author" rel="nofollow noopener" target="_blank">糾古</a>
+    <time class="comment-date" datetime="2020-03-31T05:14:41.044Z">2020年3月31日</time>
+    <button type="button" class="comment-reply-btn" data-reply-id="Q29tbWVudDoxODU3MTg" data-reply-name="糾古">↩ 回复</button>
+  </div>
+  <div class="comment-body"><p>才疏學淺，無能「展開」XD<br />不過就我（透過您回應）認知的敘述不足補述一下。</p><p>就我的認知，債／權益跟後面括號那些同樣歸於共通的兩元（債與社會主義等為一組，後者為另一組），同一組概念相連互通，只是在不同的領域形成不同的樣貌，而債／權益可以做為機制設計上的原型參考。還原到人類情感上，大概就是「惰性(信任)vs恐懼(積極)」了。（我們用一般人的理解其實就能推論出來，例如債來自於「付不出錢」，因此有救濟性格；接著債的執行需要「控制」，就動用到了超乎個體的公權力，有人不還則衍生出「信用」……）</p><p>在機制設計上，我們一定都會有一個solution，而不會是以「反xx」這樣的形態存在，所以我們頂多會是拿甲方的solution來取代或patch乙方的設計 ←大概是這樣的想法。</p><p>當然也並不是所有「陰陽混雜」的設計都能運作良好，像我們現在遇到的oracle問題其實就是在「去中心」系統上解決「信任」問題，當需要被信任的標的是「權益」還好說(PoW)，其他更「認人」屬性的標的就撞牆了，很難不用到「公權力」。（當然也可以把「公權力」「去中心化」……再扯下去扯不完）<br /></p></div>
+  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDoxODczMDM">
+  <div class="comment-header">
+    <a href="https://matters.town/@guo" class="comment-author" rel="nofollow noopener" target="_blank">刘果</a>
+    <time class="comment-date" datetime="2020-04-01T23:44:41.030Z">2020年4月1日</time>
+    <button type="button" class="comment-reply-btn" data-reply-id="Q29tbWVudDoxODczMDM" data-reply-name="刘果">↩ 回复</button>
+  </div>
+  <div class="comment-body"><p>「債（社會主義/公平/在地/認人）vs. 權益（資本主義/自由/全球化/認錢）」這個對應關係的確很有趣，似乎前者是對應於具體的、不應數據化人，後者像是對應抽象的、可累加的資本或權益。不過FairCoop有意思的地方在於，借助「認錢」的動機和「全球化」的尺度來推動「公平」和「在地」的組織，我很好奇這樣的實驗會出什麼結果。</p><p>我覺得對於公權力的去中心化正是分佈式自治組織（DAO）的意義與精神；組織中的權力也是公權力，即使不基於政權。而公權力一定會涉及對於人的信任，所以我覺得這會是匿名系統的一個核心困難。</p></div>
+  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDoxODg3NTQ">
+  <div class="comment-header">
+    <a href="https://matters.town/@jugu" class="comment-author" rel="nofollow noopener" target="_blank">糾古</a>
+    <time class="comment-date" datetime="2020-04-03T09:36:36.126Z">2020年4月3日</time>
+    <button type="button" class="comment-reply-btn" data-reply-id="Q29tbWVudDoxODg3NTQ" data-reply-name="糾古">↩ 回复</button>
+  </div>
+  <div class="comment-body"><p>不清楚FairCoop現在的運作狀況，但在地公益組織要「系統全球化」會面對的核心問題應該會是「價值認定」的落差：照顧孤老跟推動貧童教育各值多少token？在香港推動貧童教育跟在西藏推，難度也不能同一而論；若非一地一議題的夥伴，價值認定上難免會有歧異。而傳統上的雙層架構（有錢人出錢／執行者出力）其實已經解決了這問題，人在社交上的彈性與市場選擇（合則來，不合則去）是解決這個衝突的關鍵，然而這在「去中心的程式系統」上難以做到。</p><p>實際上，即使是個體的價值觀，這兩種觀念也勢必得有優先順序之分，一旦想要兼得，很可能就失了「合理」。例如現在大部分自稱「左派」者，強調個人權利、同時又寄望公權力有更多作為；公私權力同時擴張，在邏輯上有絕對的矛盾——其結果就是「我的公平比你更公平，我的權利比你更有權利」，藉由剝削他者（有錢人或未出生的世代）所建構的的「福利主義」。（個人認為這本質上還是「權益」那一邊，因為自己權益＞公權力＞他者）</p></div>
+</li>
+  </ol>
+</li>
+  </ol>
+</li>
+  </ol>
+</li>
+  </ol>
+</li><li class="comment-item" id="comment-Q29tbWVudDoxODM4NTI">
+  <div class="comment-header">
+    <a href="https://matters.town/@inertiaism" class="comment-author" rel="nofollow noopener" target="_blank">inertia</a>
+    <time class="comment-date" datetime="2020-03-29T03:01:10.737Z">2020年3月28日</time>
+    <button type="button" class="comment-reply-btn" data-reply-id="Q29tbWVudDoxODM4NTI" data-reply-name="inertia">↩ 回复</button>
+  </div>
+  <div class="comment-body"><p>非常好奇歐洲合作社聯盟的faircoin, 我們合作社正在想如何做time token作為台灣合作社連結基礎，之後接續亞洲合作平台主義計畫。你能多談談你的看法與想像嘛？非常期待。</p></div>
+  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDoxODU0MjY">
+  <div class="comment-header">
+    <a href="https://matters.town/@guo" class="comment-author" rel="nofollow noopener" target="_blank">刘果</a>
+    <time class="comment-date" datetime="2020-03-30T20:06:25.417Z">2020年3月30日</time>
+    <button type="button" class="comment-reply-btn" data-reply-id="Q29tbWVudDoxODU0MjY" data-reply-name="刘果">↩ 回复</button>
+  </div>
+  <div class="comment-body"><p>我覺得<a href="https://wiki.p2pfoundation.net/LETS">LETS</a>很多年來的經驗值得參考，因爲它是最基本的社區貨幣形態，不管是time token還是其他。比如一個是，<a href="http://www.feasta.org/documents/moneyecology/chaptertwo.htm">不能衍生出信用系統</a>，即每個人的賬面值不能小於0，否則會出現大量欠債退出。另一個是，需要在社區之外進行交易，否則生態系統不會穩健，貨幣難以維繫市值、刺激生產。</p><p>另外貨幣也有尺度效應，使用者越多的貨幣越容易被接受和信賴，所以如果FairCoin目前治理結構是合理的話，也許考慮加入也是個不錯的選擇。我理解的社區貨幣最終是將大家利益綁定的“榮譽系統”，所以如何維持“榮譽”可能是關鍵，而聯合更多跨地域的組織可以是維持榮譽的一種方式。</p><p>也好奇你們的合作社計劃和進展如何，期待詳細介紹！</p></div>
+</li>
+  </ol>
+</li><li class="comment-item" id="comment-Q29tbWVudDoxODM4MDc">
+  <div class="comment-header">
+    <a href="https://matters.town/@mthree" class="comment-author" rel="nofollow noopener" target="_blank">用爱心说诚实话</a>
+    <time class="comment-date" datetime="2020-03-29T01:56:15.027Z">2020年3月28日</time>
+    <button type="button" class="comment-reply-btn" data-reply-id="Q29tbWVudDoxODM4MDc" data-reply-name="用爱心说诚实话">↩ 回复</button>
+  </div>
+  <div class="comment-body"><p>想太多了，这个世界不是1984，是娱乐至死的世界的看看大陆人的堕落，无药可救，网路自由对大陆人毫无意义，翻墙出来了，还是一个一个战狼</p><p>难怪李文亮死翘翘</p></div>
+  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDoxODM4MzU">
+  <div class="comment-header">
+    <a href="https://matters.town/@adamchan" class="comment-author" rel="nofollow noopener" target="_blank">AC</a>
+    <time class="comment-date" datetime="2020-03-29T02:26:35.883Z">2020年3月28日</time>
+    <button type="button" class="comment-reply-btn" data-reply-id="Q29tbWVudDoxODM4MzU" data-reply-name="AC">↩ 回复</button>
+  </div>
+  <div class="comment-body"><p>好奇一問，在大陸上matters要翻牆嗎？</p></div>
+  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDoxODM4NDQ">
+  <div class="comment-header">
+    <a href="https://matters.town/@mthree" class="comment-author" rel="nofollow noopener" target="_blank">用爱心说诚实话</a>
+    <time class="comment-date" datetime="2020-03-29T02:38:35.562Z">2020年3月28日</time>
+    <button type="button" class="comment-reply-btn" data-reply-id="Q29tbWVudDoxODM4NDQ" data-reply-name="用爱心说诚实话">↩ 回复</button>
+  </div>
+  <div class="comment-body"><p>听说早就墙了</p></div>
+  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDoxODU0MjU">
+  <div class="comment-header">
+    <a href="https://matters.town/@guo" class="comment-author" rel="nofollow noopener" target="_blank">刘果</a>
+    <time class="comment-date" datetime="2020-03-30T19:54:01.183Z">2020年3月30日</time>
+    <button type="button" class="comment-reply-btn" data-reply-id="Q29tbWVudDoxODU0MjU" data-reply-name="刘果">↩ 回复</button>
+  </div>
+  <div class="comment-body"><p>你觉得墙更像是1984里的，还是娱乐至死的美丽新世界里的？</p></div>
+  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDoxODU0NzM">
+  <div class="comment-header">
+    <a href="https://matters.town/@mthree" class="comment-author" rel="nofollow noopener" target="_blank">用爱心说诚实话</a>
+    <time class="comment-date" datetime="2020-03-31T00:44:54.198Z">2020年3月30日</time>
+    <button type="button" class="comment-reply-btn" data-reply-id="Q29tbWVudDoxODU0NzM" data-reply-name="用爱心说诚实话">↩ 回复</button>
+  </div>
+  <div class="comment-body"><p>娱乐至死，大陆人没那么苦大仇深</p></div>
+  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDoxMjc2MjE2">
+  <div class="comment-header">
+    <a href="https://matters.town/@kangarooo" class="comment-author" rel="nofollow noopener" target="_blank">Kangarooo Network</a>
+    <time class="comment-date" datetime="2022-12-14T00:06:34.276Z">2022年12月13日</time>
+    <button type="button" class="comment-reply-btn" data-reply-id="Q29tbWVudDoxMjc2MjE2" data-reply-name="Kangarooo Network">↩ 回复</button>
+  </div>
+  <div class="comment-body"><p>不要妨碍大陆人吃屎，小心他们喷你一脸屎。</p><p>很抱歉我说的话有点极端和恶心，但事实就是如此。</p></div>
+</li>
+  </ol>
+</li>
+  </ol>
+</li>
+  </ol>
+</li>
+  </ol>
+</li>
+  </ol>
+</li></ol>
+    <script>(function() {
+  var form = document.getElementById('moss-comment-form');
+  if (!form) return;
+
+  var textarea = document.getElementById('moss-comment-text');
+  var statusEl = document.getElementById('moss-comment-status');
+  var commentList = document.querySelector('.moss-comments .comment-list');
+  var currentReplyId = null;
+  var currentReplyWrapper = null;
+  var defaultFormSlot = document.getElementById('default-form-slot');
+
+  // Auto-grow textarea
+  if (textarea) {
+    function autoGrow() {
+      textarea.style.height = 'auto';
+      textarea.style.height = textarea.scrollHeight + 'px';
+    }
+    textarea.addEventListener('input', autoGrow);
+  }
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    var btn = form.querySelector('.comment-form-submit');
+    btn.disabled = true;
+    btn.textContent = '提交中...';
+    if (statusEl) { statusEl.textContent = ''; statusEl.className = 'comment-form-status'; }
+
+    var rawLink = (form.elements['link'].value || '').trim();
+    if (rawLink && !/^https?:\/\//.test(rawLink)) { rawLink = 'https://' + rawLink; }
+
+    var body = {
+      content: form.elements['content'].value,
+      name: form.elements['name'].value,
+      email: form.elements['email'].value,
+      link: rawLink,
+      rid: currentReplyId ? parseInt(currentReplyId, 10) : 0,
+      page_key: '8b36e44e',
+      site_name: 'liu-guo.com',
+      ua: navigator.userAgent
+    };
+
+    fetch('https://api.moss.host/comments/api/v2/comments', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body)
+    })
+    .then(function(res) {
+      if (!res.ok) {
+        return res.json().catch(function() {
+          throw new Error('Server error (' + res.status + ')');
+        }).then(function(data) {
+          throw new Error(data.msg || 'Server error (' + res.status + ')');
+        });
+      }
+      return res.json();
+    })
+    .then(function(data) {
+      btn.disabled = false;
+      btn.textContent = '回复';
+
+      if (statusEl) {
+        statusEl.textContent = '评论已提交！';
+        statusEl.className = 'comment-form-status comment-form-status--success';
+      }
+
+      var li = document.createElement('li');
+      li.className = 'comment-item';
+      li.id = 'comment-' + data.id;
+      var now = new Date().toLocaleDateString('zh-CN', {year:'numeric',month:'short',day:'numeric'});
+      var authorName = body.name || 'Anonymous';
+      li.innerHTML = '<div class="comment-header">'
+        + '<span class="comment-author">' + authorName.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;') + '</span>'
+        + '<time class="comment-date">' + now + '</time>'
+        + '</div>'
+        + '<div class="comment-body"><p>' + body.content.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;') + '</p></div>';
+
+      if (currentReplyId) {
+        // Insert as nested reply under the parent comment
+        var parentLi = document.getElementById('comment-' + currentReplyId);
+        if (parentLi) {
+          var repliesOl = parentLi.querySelector('.comment-replies');
+          if (!repliesOl) {
+            repliesOl = document.createElement('ol');
+            repliesOl.className = 'comment-replies';
+            parentLi.appendChild(repliesOl);
+          }
+          repliesOl.insertBefore(li, null);
+        }
+        cancelReply(false);
+      } else {
+        if (!commentList) {
+          commentList = document.createElement('ol');
+          commentList.className = 'comment-list';
+          var defaultSlot = document.getElementById('default-form-slot');
+          if (defaultSlot) defaultSlot.after(commentList);
+          else form.after(commentList);
+        }
+        // Newest first: prepend so the just-submitted comment appears at the top
+        commentList.insertBefore(li, commentList.firstChild);
+      }
+
+      form.elements['content'].value = '';
+      if (textarea) { textarea.style.height = 'auto'; }
+    })
+    .catch(function(err) {
+      btn.disabled = false;
+      btn.textContent = '回复';
+      if (statusEl) {
+        statusEl.textContent = err.message || '网络错误，请重试。';
+        statusEl.className = 'comment-form-status comment-form-status--error';
+      }
+    });
+  });
+
+  /* --- Reply logic: relocating form pattern --- */
+  function cancelReply(skipScroll) {
+    if (!currentReplyWrapper) return;
+    if (defaultFormSlot) {
+      defaultFormSlot.appendChild(form);
+      defaultFormSlot.classList.remove('comment-form-slot--collapsed');
+    }
+    currentReplyWrapper.remove();
+    currentReplyWrapper = null;
+    currentReplyId = null;
+    if (!skipScroll && defaultFormSlot) {
+      defaultFormSlot.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  }
+
+  var section = document.getElementById('moss-comments');
+  if (section) {
+    section.addEventListener('click', function(e) {
+      var btn = e.target.closest('.comment-reply-btn');
+      if (!btn) return;
+
+      var replyId = btn.getAttribute('data-reply-id');
+      var replyName = btn.getAttribute('data-reply-name');
+      var commentItem = document.getElementById('comment-' + replyId);
+      if (!commentItem) return;
+
+      // If already replying to this comment, just focus
+      if (currentReplyId === replyId) { textarea.focus(); return; }
+
+      // Cancel any existing reply
+      cancelReply(true);
+
+      // Collapse default form slot
+      if (defaultFormSlot) defaultFormSlot.classList.add('comment-form-slot--collapsed');
+
+      // Create reply wrapper with thread indent
+      var wrapper = document.createElement('div');
+      wrapper.className = 'comment-reply-form-wrapper';
+
+      // Reply indicator
+      var indicator = document.createElement('div');
+      indicator.className = 'comment-reply-indicator';
+      indicator.innerHTML = '<span>\u21a9 回复 <strong>' + replyName.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') + '</strong> \u00b7</span>';
+      var cancelBtn = document.createElement('button');
+      cancelBtn.type = 'button';
+      cancelBtn.className = 'comment-reply-cancel';
+      cancelBtn.textContent = '取消';
+      cancelBtn.addEventListener('click', function() { cancelReply(false); });
+      indicator.appendChild(cancelBtn);
+      wrapper.appendChild(indicator);
+
+      // Move form into wrapper
+      wrapper.appendChild(form);
+      commentItem.appendChild(wrapper);
+
+      currentReplyWrapper = wrapper;
+      currentReplyId = replyId;
+
+      textarea.focus();
+      wrapper.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+  }
+
+  /*
+   * Stale-while-revalidate / progressive enhancement for comments.
+   *
+   * Static HTML already contains all comments known at build time, so the page
+   * is immediately readable without JS. When the user opens the comment section
+   * (<details> toggle), we fetch comments from the Artalk server that may have
+   * been posted after the last build.
+   *
+   * Why date-based filtering instead of offset/count:
+   *   Comments can be deleted or moderated between builds. A purely offset-based
+   *   approach would miss or duplicate entries. By comparing each comment's
+   *   created_at against the build timestamp (data-built-at), we robustly find
+   *   only the comments that are genuinely new.
+   *
+   * Three-layer deduplication:
+   *   1. Date boundary  — stop iterating when we hit a comment older than the
+   *      build timestamp (comments are sorted newest-first).
+   *   2. ID guard       — skip any comment whose DOM node already exists
+   *      (handles edge cases where build-time and fetch overlap).
+   *   3. Fire-once listener — the toggle handler removes itself after the first
+   *      invocation so we never fetch twice.
+   *
+   * Trust model: Artalk performs server-side HTML sanitization, so we use
+   * innerHTML for comment content (same as the static render path).
+   */
+  var builtAtStr = section && section.getAttribute('data-built-at');
+  var builtAtMs = builtAtStr ? new Date(builtAtStr).getTime() : 0;
+  var details = section && section.querySelector('details');
+
+  if (details && builtAtMs) {
+    function onToggle() {
+      if (!details.open) return;
+      details.removeEventListener('toggle', onToggle);
+
+      fetch('https://api.moss.host/comments/api/v2/comments?page_key=8b36e44e&site_name=liu-guo.com&flat_mode=true&sort_by=date_desc&limit=100')
+        .then(function(res) { return res.ok ? res.json() : null; })
+        .then(function(json) {
+          if (!json) return;
+          var list = json.comments || (json.data && json.data.comments) || [];
+          var added = 0;
+          // Anchor = first build-time comment. Hydrated comments go before it
+          // to maintain newest-first order (API returns date_desc).
+          var anchor = commentList ? commentList.firstChild : null;
+          for (var i = 0; i < list.length; i++) {
+            var c = list[i];
+            if (new Date(c.date).getTime() <= builtAtMs) break;
+            if (document.getElementById('comment-' + c.id)) continue;
+
+            var li = document.createElement('li');
+            li.className = 'comment-item';
+            li.id = 'comment-' + c.id;
+            var authorName = (c.nick || 'Anonymous').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+            var dateStr = new Date(c.date).toLocaleDateString('zh-CN', {year:'numeric',month:'short',day:'numeric'});
+            li.innerHTML = '<div class="comment-header">'
+              + '<span class="comment-author">' + authorName + '</span>'
+              + '<time class="comment-date">' + dateStr + '</time>'
+              + '</div>'
+              + '<div class="comment-body">' + c.content + '</div>';
+
+            if (!commentList) {
+              commentList = document.createElement('ol');
+              commentList.className = 'comment-list';
+              var formEl = document.getElementById('moss-comment-form');
+              if (formEl) formEl.after(commentList);
+              anchor = null;
+            }
+            // Newest first: insert before the anchor (first build-time comment)
+            commentList.insertBefore(li, anchor);
+            added++;
+          }
+
+          if (added > 0) {
+            var total = (commentList ? commentList.children.length : 0);
+            var summarySpan = details.querySelector('summary span');
+            if (summarySpan) {
+              summarySpan.textContent = total === 1 ? '1条评论' : '{n}条评论'.replace('{n}', total);
+            }
+          }
+        })
+        .catch(function() { /* silent — static comments still visible */ });
+    }
+    details.addEventListener('toggle', onToggle);
+  }
+})();</script>
+  </details>
+</section>
     </main>
 
     <footer class="container">
@@ -160,12 +1121,16 @@
             <a href="/feed.xml" class="footer-link" data-external>RSS</a>
         </div>
         <div class="footer-right">
-            <!-- slot:footer-right -->
+            <form action="https://buttondown.com/api/emails/embed-subscribe/liuguo" method="post" class="footer-subscribe-form">
+            <input type="email" name="email" class="moss-input" placeholder="邮箱" required />
+            <input type="hidden" value="1" name="embed" />
+            <button type="submit" class="moss-btn">订阅</button>
+        </form>
         </div>
     </div>
 </footer>
 
     <script src="/js/theme.js"></script>
-    <!-- slot:body-end -->
+    
 </body>
 </html>

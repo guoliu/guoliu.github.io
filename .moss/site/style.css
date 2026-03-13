@@ -2128,10 +2128,6 @@ article a:focus {
 .series-nav-collection {
   color: var(--moss-text-secondary);  /* Darker than muted for differentiation */
   font-size: var(--moss-font-sm);
-  text-decoration: none;  /* Override article a default */
-}
-
-.series-nav-collection:hover {
   text-decoration: underline;
 }
 

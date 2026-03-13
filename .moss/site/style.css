@@ -515,7 +515,6 @@ footer.container {
   padding-bottom: var(--moss-space-2xl);
   display: flex;
   flex-wrap: wrap;
-  align-items: baseline;
 }
 
 .footer-left {
@@ -1890,31 +1889,50 @@ article a:focus {
 /* ==========================================================================
    Hero Section (:::hero directive)
 
-   Usage: :::hero <image-url>
+   Usage: :::hero
+          ![[image.jpg|contain]]
           overlay text here
           :::
 
-   Full-width hero image with optional text overlay.
+   Full-width hero image (<img> tag) with optional text overlay.
+   Gradient overlay via ::before pseudo-element.
 
    Full-bleed is achieved by placing the hero at body level (outside <main>)
    in the HTML template. The base styles here define appearance, not layout.
    ========================================================================== */
 
 .moss-hero {
-  width: 100%;  /* Explicit width for flex child */
-  height: 50vh;
-  background-image:
-    linear-gradient(135deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.2) 50%, transparent 100%),
-    var(--hero-image);
-  background-size: cover;
-  background-position: center;
-  display: flex;
-  align-items: flex-end;
   position: relative;
+  width: 100%;
+  overflow: hidden;
   margin-bottom: var(--moss-space-lg);
 }
 
+.moss-hero img {
+  width: 100%;
+  max-height: 50vh;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  margin: 0;
+  z-index: 0;
+}
+
+/* Gradient overlay via pseudo-element */
+.moss-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.2) 50%, transparent 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+
 .moss-hero-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
   padding: var(--moss-space-xl);
   max-width: 600px;
 }
@@ -1927,11 +1945,10 @@ article a:focus {
   text-shadow: 0 1px 3px rgba(0,0,0,0.3);
 }
 
-/* Mobile: auto height based on image aspect ratio */
+/* Responsive */
 @media (max-width: 64rem) {
-  .moss-hero {
-    height: auto;
-    min-height: 40vh;
+  .moss-hero img {
+    max-height: none;
     aspect-ratio: 16/9;
   }
 

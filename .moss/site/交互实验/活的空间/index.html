@@ -29,9 +29,9 @@
 </script>
     <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
     <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml">
+    <script data-goatcounter="https://guo.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
     
-    
-    <link rel="stylesheet" href="/style.css?v=42bdedeae7568f03">
+    <link rel="stylesheet" href="/style.css?v=b5d1aa1bf1514f86">
     <style class="moss-comments-style">/* ==========================================================================
    moss Comments Plugin - Styles
 
@@ -629,7 +629,7 @@ a.comment-author:hover {
 <iframe src="../particle-universe.html" width="100%" height="600" frameborder="0"></iframe>
             
         </article>
-        <section class="moss-comments" id="moss-comments" data-built-at="2026-03-13T05:21:11.005Z">
+        <section class="moss-comments" id="moss-comments" data-built-at="2026-03-13T13:05:05.053Z">
   <details>
     <summary class="comments-toggle"><svg class="comments-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></svg><span>评论</span><svg class="comments-chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></summary>
     <div class="comment-form-slot" id="default-form-slot"><form class="comment-form" id="moss-comment-form">
@@ -653,6 +653,18 @@ a.comment-author:hover {
   var currentReplyId = null;
   var currentReplyWrapper = null;
   var defaultFormSlot = document.getElementById('default-form-slot');
+
+  function updateCommentCount() {
+    var s = document.getElementById('moss-comments');
+    if (!s) return;
+    var total = s.querySelectorAll('.comment-item').length;
+    var d = s.querySelector('details');
+    if (!d) return;
+    var sp = d.querySelector('summary span');
+    if (sp) {
+      sp.textContent = total === 1 ? '1条评论' : '{n}条评论'.replace('{n}', total);
+    }
+  }
 
   // Auto-grow textarea
   if (textarea) {
@@ -713,9 +725,11 @@ a.comment-author:hover {
       li.id = 'comment-' + data.id;
       var now = new Date().toLocaleDateString('zh-CN', {year:'numeric',month:'short',day:'numeric'});
       var authorName = body.name || 'Anonymous';
+      var safeAuthor = authorName.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
       li.innerHTML = '<div class="comment-header">'
-        + '<span class="comment-author">' + authorName.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;') + '</span>'
+        + '<span class="comment-author">' + safeAuthor + '</span>'
         + '<time class="comment-date">' + now + '</time>'
+        + '<button type="button" class="comment-reply-btn" data-reply-id="' + data.id + '" data-reply-name="' + safeAuthor + '">\u21a9 回复</button>'
         + '</div>'
         + '<div class="comment-body"><p>' + body.content.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;') + '</p></div>';
 
@@ -744,6 +758,7 @@ a.comment-author:hover {
         commentList.insertBefore(li, commentList.firstChild);
       }
 
+      updateCommentCount();
       form.elements['content'].value = '';
       if (textarea) { textarea.style.height = 'auto'; }
     })
@@ -876,8 +891,24 @@ a.comment-author:hover {
             li.innerHTML = '<div class="comment-header">'
               + '<span class="comment-author">' + authorName + '</span>'
               + '<time class="comment-date">' + dateStr + '</time>'
+              + '<button type="button" class="comment-reply-btn" data-reply-id="' + c.id + '" data-reply-name="' + authorName + '">\u21a9 回复</button>'
               + '</div>'
               + '<div class="comment-body">' + c.content + '</div>';
+
+            if (c.rid > 0) {
+              var parentLi = document.getElementById('comment-' + c.rid);
+              if (parentLi) {
+                var repliesOl = parentLi.querySelector('.comment-replies');
+                if (!repliesOl) {
+                  repliesOl = document.createElement('ol');
+                  repliesOl.className = 'comment-replies';
+                  parentLi.appendChild(repliesOl);
+                }
+                repliesOl.insertBefore(li, null);
+                added++;
+                continue;
+              }
+            }
 
             if (!commentList) {
               commentList = document.createElement('ol');
@@ -886,17 +917,12 @@ a.comment-author:hover {
               if (formEl) formEl.after(commentList);
               anchor = null;
             }
-            // Newest first: insert before the anchor (first build-time comment)
             commentList.insertBefore(li, anchor);
             added++;
           }
 
           if (added > 0) {
-            var total = (commentList ? commentList.children.length : 0);
-            var summarySpan = details.querySelector('summary span');
-            if (summarySpan) {
-              summarySpan.textContent = total === 1 ? '1条评论' : '{n}条评论'.replace('{n}', total);
-            }
+            updateCommentCount();
           }
         })
         .catch(function() { /* silent — static comments still visible */ });

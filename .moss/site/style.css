@@ -1831,7 +1831,7 @@ article a:focus {
 /* Collection cover — book-open layout on folder index pages */
 .collection-cover-row {
   display: flex;
-  gap: var(--moss-space-lg);
+  gap: var(--moss-space-xl);
   align-items: flex-start;
   margin: var(--moss-space-lg) 0;
 }
@@ -1868,11 +1868,22 @@ article a:focus {
 .collection-cover-body {
   flex: 1;
   min-width: 0;
+  padding-top: 2.5rem;
 }
 
 .collection-description {
   color: var(--moss-text-secondary);
   margin: var(--moss-space-xs) 0 var(--moss-space-md) 0;
+}
+
+/* Mobile: reset desktop spacing for compact layout */
+@media (max-width: 48rem) {
+  .collection-cover-row {
+    gap: var(--moss-space-lg);
+  }
+  .collection-cover-body {
+    padding-top: 0;
+  }
 }
 
 /* ==========================================================================

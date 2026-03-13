@@ -1701,8 +1701,7 @@ article a:focus {
 
 .child-section-divider {
   border: none;
-  border-top: 1px solid var(--moss-border-light);
-  margin: var(--moss-space-md) 0;
+  margin: var(--moss-space-lg) 0;
   height: 0;
 }
 

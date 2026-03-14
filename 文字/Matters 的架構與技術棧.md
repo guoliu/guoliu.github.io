@@ -3,6 +3,7 @@ title: Matters 的架構與技術棧
 description: "photo credit: Ray Wenderlich隨著開源計劃的啓動，馬特市市民們可以直接看到馬特市的所有機制和邏輯。全面開放代碼倉庫後，任何人都可以提出建議和想法、提交功能和優化，也可以自行建立像馬特市一樣的平臺，參與到馬特市生態的演進中。"
 uid: 78ad2d1f
 date: 2020-08-09T06:59:34.145Z
+url: matters-architecture
 tags:
   - 開源 Matters
   - JAMstack

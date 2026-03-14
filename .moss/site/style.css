@@ -1909,9 +1909,7 @@ article a:focus {
 
 .moss-hero img {
   width: 100%;
-  max-height: 50vh;
-  object-fit: cover;
-  object-position: center;
+  height: auto;
   display: block;
   margin: 0;
   z-index: 0;
@@ -1946,11 +1944,6 @@ article a:focus {
 
 /* Responsive */
 @media (max-width: 64rem) {
-  .moss-hero img {
-    max-height: none;
-    aspect-ratio: 16/9;
-  }
-
   .moss-hero-content {
     padding: var(--moss-space-md);
   }

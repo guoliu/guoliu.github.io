@@ -2,6 +2,7 @@
 uid: 9edc9034
 description: "上週有幸與 ﻿@zeckli﻿ 一起去巴塞羅那參加了IPFS開發者大會。Matters正在建立一個分佈式的作品發佈网络，與其他分佈式应用一樣，核心問題是數據的存儲與傳輸。IPFS生態中提供了一系列通用的工具和協議，用於建立各種不同類型的分佈式應用，使得IPFS成為了許多分佈式項目關注的重點。"
 date: 2019-07-05T01:41:12.130Z
+url: ipfs-developer-conference
 cover: "[[66296200-de80-43f1-a1a2-ce2b1403a3e2.jpg]]"
 syndicated:
   - https://matters.town/@guo/ipfs開發者大會記錄-ln8fb7hqd36u

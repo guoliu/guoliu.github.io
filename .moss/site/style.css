@@ -964,9 +964,6 @@ article {
   margin-bottom: var(--moss-space-2xl);
 }
 
-article p {
-  white-space: pre-wrap;
-}
 
 /* Article Metadata */
 .article-meta {

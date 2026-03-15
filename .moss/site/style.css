@@ -2755,19 +2755,6 @@ body:not(.immersive-fs-active) main > article.container > *:not(.immersive-ifram
   }
 }
 
-/* ==========================================================================
-   16.9 Mobile Adjustments
-   ========================================================================== */
-
-@media (max-width: 48rem) {
-  .immersive-ready main > article.container {
-    padding-bottom: 150vh;
-  }
-
-  .immersive-ready main > article.container > iframe {
-    min-height: 50vh;
-  }
-}
 
 /* ==========================================================================
    17. Callouts (Obsidian-compatible callout syntax)

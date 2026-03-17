@@ -732,7 +732,7 @@ a.comment-author:hover {
 </nav>
             
         </article>
-        <section class="moss-comments" id="moss-comments" data-built-at="2026-03-17T18:22:11.316Z">
+        <section class="moss-comments" id="moss-comments" data-built-at="2026-03-17T18:41:44.261Z">
   <details>
     <summary class="comments-toggle"><svg class="comments-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></svg><span>2条评论</span><svg class="comments-chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></summary>
     <div class="comment-form-slot" id="default-form-slot"><form class="comment-form" id="moss-comment-form">
@@ -751,14 +751,14 @@ a.comment-author:hover {
     <time class="comment-date" datetime="2025-01-15T15:41:25.006Z">2025年1月15日</time>
     
   </div>
-  <div class="comment-body"><p>2025年好，謝謝老師堅持創作，授权转载</p><p>在SeeDAO 公眾號平臺轉載老師創作，依SeeDAO 目前創作者經濟，轉載激勵為 20U/篇 15號中午12時左右匯入錢包</p><p>哈希：0x6544fec9547359a9123b07a832b40d715e54c467c26e159d6cc8f9d4e5bf811f</p><p>文章：看世界｜纽约诸法门：从伍德斯托克，到整体瑜伽中心</p><p>增加阅读：194位；轉發 11位，link</p><p><a href="https://mp.weixin.qq.com/s/ekNThkJXJZQHSnf3GRVscw">mp.weixin.qq.com/s/e...</a></p></div>
+  <div class="comment-body"><p>2025年好，謝謝老師堅持創作，授权转载</p><p>在SeeDAO 公眾號平臺轉載老師創作，依SeeDAO 目前創作者經濟，轉載激勵為 20U/篇 15號中午12時左右匯入錢包</p><p>哈希：0x6544fec9547359a9123b07a832b40d715e54c467c26e159d6cc8f9d4e5bf811f</p><p>文章：看世界｜纽约诸法门：从伍德斯托克，到整体瑜伽中心</p><p>增加阅读：194位；轉發 11位，link</p><p><a target="_blank" rel="noopener noreferrer nofollow" href="https://mp.weixin.qq.com/s/ekNThkJXJZQHSnf3GRVscw">mp.weixin.qq.com/s/e...</a></p></div>
   <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDoxNTI4OTEx">
   <div class="comment-header">
     <a href="https://matters.town/@guo" class="comment-author" rel="nofollow noopener" target="_blank">刘果</a>
     <time class="comment-date" datetime="2025-01-17T19:06:44.691Z">2025年1月17日</time>
     
   </div>
-  <div class="comment-body"><p><a href="/@wenqian">@文倩</a> 谢谢你！</p></div>
+  <div class="comment-body"><p><a class="mention" href="/@wenqian" data-id="VXNlcjoxMDYyNzI" data-user-name="wenqian" data-display-name="文倩" rel="noopener noreferrer nofollow"><span>@文倩</span></a>&nbsp;谢谢你！</p></div>
 </li>
   </ol>
 </li></ol>
@@ -1002,10 +1002,25 @@ a.comment-author:hover {
         // Anchor = first build-time comment. Hydrated comments go before it
         // to maintain newest-first order (API returns date_desc).
         var anchor = commentList ? commentList.firstChild : null;
+
+        // Pass 1: collect new comments (API returns newest-first)
+        var newComments = [];
         for (var i = 0; i < list.length; i++) {
           var c = list[i];
           if (new Date(c.date).getTime() <= builtAtMs) break;
           if (document.getElementById('comment-' + c.id)) continue;
+          newComments.push(c);
+        }
+
+        // Reverse to oldest-first so parents are inserted before children.
+        // This fixes reply threading: a parent is always older than its
+        // replies, so reversing guarantees getElementById finds the parent
+        // when we process a reply.
+        newComments.reverse();
+
+        // Pass 2: insert into DOM (oldest-first = parents before children)
+        for (var i = 0; i < newComments.length; i++) {
+          var c = newComments[i];
 
           var li = document.createElement('li');
           li.className = 'comment-item';

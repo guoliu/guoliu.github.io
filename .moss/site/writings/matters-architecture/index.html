@@ -704,7 +704,7 @@ a.comment-author:hover {
 
             
         </article>
-        <section class="moss-comments" id="moss-comments" data-built-at="2026-03-17T18:22:11.316Z">
+        <section class="moss-comments" id="moss-comments" data-built-at="2026-03-17T18:41:44.261Z">
   <details>
     <summary class="comments-toggle"><svg class="comments-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></svg><span>10条评论</span><svg class="comments-chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></summary>
     <div class="comment-form-slot" id="default-form-slot"><form class="comment-form" id="moss-comment-form">
@@ -723,7 +723,7 @@ a.comment-author:hover {
     <time class="comment-date" datetime="2021-11-06T06:10:27.265Z">2021年11月6日</time>
     
   </div>
-  <div class="comment-body"><p>感謝分享！</p><p>&gt; <em>Apollo Server </em><a href="https://github.com/thematters/matters-server/blob/develop/src/routes/graphql.ts#L95"><em>將所有 data source 注入</em></a><em>到 context 中</em></p><p>這邊使用的連結 <a href="https://github.com/thematters/matters-server/blob/develop/src/routes/graphql.ts#L95">https://github.com/thematters/matters-server/blob/develop/src/routes/graphql.ts#L95</a> 因為會對應最新的 develop branch，目前已經不是指向 `dataSource` 了</p><p>可考慮使用固定指向 v3.7.0 的連結，例如 <a href="https://github.com/thematters/matters-server/blob/v3.7.0/src/routes/graphql.ts#L95-L105">https://github.com/thematters/matters-server/blob/v3.7.0/src/routes/graphql.ts#L95-L105</a></p></div>
+  <div class="comment-body"><p>感謝分享！</p><p>&gt; <em>Apollo Server </em><a href="https://github.com/thematters/matters-server/blob/develop/src/routes/graphql.ts#L95" rel="noopener noreferrer" target="_blank"><em>將所有 data source 注入</em></a><em>到 context 中</em></p><p>這邊使用的連結 <a href="https://github.com/thematters/matters-server/blob/develop/src/routes/graphql.ts#L95" rel="noopener noreferrer" target="_blank">https://github.com/thematters/matters-server/blob/develop/src/routes/graphql.ts#L95</a> 因為會對應最新的 develop branch，目前已經不是指向 `dataSource` 了</p><p>可考慮使用固定指向 v3.7.0 的連結，例如 <a href="https://github.com/thematters/matters-server/blob/v3.7.0/src/routes/graphql.ts#L95-L105" rel="noopener noreferrer" target="_blank">https://github.com/thematters/matters-server/blob/v3.7.0/src/routes/graphql.ts#L95-L105</a></p></div>
   <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDo4OTcxNTg">
   <div class="comment-header">
     <a href="https://matters.town/@guo" class="comment-author" rel="nofollow noopener" target="_blank">刘果</a>
@@ -789,7 +789,7 @@ a.comment-author:hover {
     <time class="comment-date" datetime="2020-08-09T12:29:39.636Z">2020年8月9日</time>
     
   </div>
-  <div class="comment-body"><p>發現這前後端於我額外運作的專案相似，我是運用HASURA 的系統架構（<a href="https://hasura.io/">https://hasura.io/</a> ：以progersql配合graphQL，並於Heroku執行)，前端也是運用ReactJS，正在學習中，原來這樣的架構很熱門呀！</p></div>
+  <div class="comment-body"><p>發現這前後端於我額外運作的專案相似，我是運用HASURA 的系統架構（<a href="https://hasura.io/" target="_blank">https://hasura.io/</a> ：以progersql配合graphQL，並於Heroku執行)，前端也是運用ReactJS，正在學習中，原來這樣的架構很熱門呀！</p></div>
   <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDoyOTA5OTU">
   <div class="comment-header">
     <a href="https://matters.town/@guo" class="comment-author" rel="nofollow noopener" target="_blank">刘果</a>
@@ -1040,10 +1040,25 @@ a.comment-author:hover {
         // Anchor = first build-time comment. Hydrated comments go before it
         // to maintain newest-first order (API returns date_desc).
         var anchor = commentList ? commentList.firstChild : null;
+
+        // Pass 1: collect new comments (API returns newest-first)
+        var newComments = [];
         for (var i = 0; i < list.length; i++) {
           var c = list[i];
           if (new Date(c.date).getTime() <= builtAtMs) break;
           if (document.getElementById('comment-' + c.id)) continue;
+          newComments.push(c);
+        }
+
+        // Reverse to oldest-first so parents are inserted before children.
+        // This fixes reply threading: a parent is always older than its
+        // replies, so reversing guarantees getElementById finds the parent
+        // when we process a reply.
+        newComments.reverse();
+
+        // Pass 2: insert into DOM (oldest-first = parents before children)
+        for (var i = 0; i < newComments.length; i++) {
+          var c = newComments[i];
 
           var li = document.createElement('li');
           li.className = 'comment-item';

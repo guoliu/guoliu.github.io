@@ -11,7 +11,7 @@
     <meta property="og:site_name" content="刘果">
     <meta property="og:description" content="纽约文化沙龙分享内容，引文整理自现场讨论。">
     <meta property="article:published_time" content="2019-11-21T06:20:47.041Z">
-    <meta property="og:image" content="/图片/9bc4a39b-9eee-486b-8242-196d2c91ec3c.png">
+    <meta property="og:image" content="/image/assets/9bc4a39b-9eee-486b-8242-196d2c91ec3c.png">
     <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -20,7 +20,7 @@
   "url": "/writings/distributed-web/information-freedom-utopia/",
   "description": "纽约文化沙龙分享内容，引文整理自现场讨论。",
   "datePublished": "2019-11-21T06:20:47.041Z",
-  "image": "/图片/9bc4a39b-9eee-486b-8242-196d2c91ec3c.png",
+  "image": "/image/assets/9bc4a39b-9eee-486b-8242-196d2c91ec3c.png",
   "publisher": {
     "@type": "Organization",
     "name": "刘果"
@@ -28,9 +28,8 @@
 }
 </script>
     <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
-    <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml">
-    <script data-goatcounter="https://guo.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
     
+    <script data-goatcounter="https://guo.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
     <link rel="stylesheet" href="/style.css?v=16bac62be9f5c45e">
     <style class="moss-comments-style">/* ==========================================================================
    moss Comments Plugin - Styles
@@ -528,35 +527,49 @@ a.comment-author:hover {
 </style>
 <style class="moss-review-style">/* Review plugin — header and colophon styles
  * Uses moss design tokens. Works in light and dark mode.
+ * Side-by-side layout on all screen sizes (matches collection-cover pattern).
  */
 
+/* Header — cover + title/subtitle/creator */
 .review-header {
   display: flex;
+  gap: var(--moss-space-lg, 2rem);
   align-items: flex-start;
-  gap: 12px;
   margin: 1rem 0 2rem;
 }
 
 .review-cover {
-  width: 80px;
+  width: 150px;
+  max-width: 30%;
   height: auto;
   object-fit: cover;
-  border-radius: 2px;
+  border-radius: 4px;
   flex-shrink: 0;
+  margin: 0; /* Override global img margin for flex alignment */
 }
 
 .review-meta {
+  flex: 1;
+  min-width: 0;
   display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 0;
-  font-size: 0.95em;
-  color: var(--moss-color-muted, #666);
-  padding-top: 4px;
+  flex-direction: column;
+  gap: 0.25rem;
 }
 
-.review-creator {
-  font-weight: 500;
+.review-meta-title {
+  font-weight: 600;
+  font-size: 1.05em;
+  color: var(--moss-color-text, #333);
+}
+
+.review-meta-subtitle {
+  font-size: 0.9em;
+  color: var(--moss-color-muted, #666);
+}
+
+.review-meta-creator {
+  font-size: 0.9em;
+  color: var(--moss-color-muted, #666);
 }
 
 .review-sep {
@@ -564,30 +577,64 @@ a.comment-author:hover {
   margin: 0 0.15em;
 }
 
-/* Colophon */
+/* Colophon — card with cover + details */
 .review-colophon {
+  display: flex;
+  gap: var(--moss-space-lg, 2rem);
+  align-items: flex-start;
   margin-top: 3rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid var(--moss-color-border, #e0e0e0);
+  padding: 1.25rem;
+  background: var(--moss-color-surface, #f8f8f8);
+  border-radius: 8px;
   font-size: 0.9em;
   color: var(--moss-color-muted, #666);
+}
+
+.review-colophon-cover {
+  width: 150px;
+  max-width: 30%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 4px;
+  flex-shrink: 0;
+  margin: 0; /* Override global img margin for flex alignment */
+}
+
+.review-colophon-details {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.review-colophon-title {
+  font-weight: 600;
+  color: var(--moss-color-text, #333);
+  font-size: 1.05em;
+}
+
+.review-colophon-subtitle {
+  font-size: 0.9em;
+  color: var(--moss-color-muted, #666);
+}
+
+.review-colophon-identity {
+  font-size: 0.95em;
 }
 
 .review-rating {
   font-size: 1.2em;
   color: var(--moss-color-accent, #c9a84c);
-  margin-bottom: 0.5rem;
   letter-spacing: 0.05em;
 }
 
 .review-community-rating {
   font-size: 0.85em;
-  margin-bottom: 0.5rem;
 }
 
 .review-biblio {
-  margin-bottom: 0.75rem;
-  line-height: 1.6;
+  line-height: 1.5;
 }
 
 .review-links a {
@@ -597,14 +644,6 @@ a.comment-author:hover {
 
 .review-links a:hover {
   text-decoration: underline;
-}
-
-/* Mobile: stack cover above meta */
-@media (max-width: 32rem) {
-  .review-header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
 }
 </style>
 </head>
@@ -628,18 +667,18 @@ a.comment-author:hover {
 <p>许多计算机科学家和hacker研究如何通过加密来进行信息交互和身份认证，防止政府控制和监听人民，最终自动化人与人之间的信任甚至部分政府职能。</p>
 <p>85年David Chaum一篇影响深远的论文算是典型，里面提出了一个保证匿名性、同时提供身份认证的系统。论文标题就说，是为了让big brother过时。</p>
 <p>引言中也预言了三十多年后中心化系统的问题：数据挖掘能够提取民众隐私信息，无所不在的监控造成“寒蝉效应”、把“墙”直接筑入人民心中，中心化平台本身易受攻击、造成数据泄漏。</p>
-<p><img src="../../../%E5%9B%BE%E7%89%87/5d8aaa4a-6a23-4644-9531-e2b538e3e57d.png" data-placeholder-src="../../../%E5%9B%BE%E7%89%87/5d8aaa4a-6a23-4644-9531-e2b538e3e57d.png" width="572" height="768" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAAUAA8DAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDVbzNx2kY9KAHIGH3jn8KAGP8A6ygAT74oAftBbNAAFAbNAH//2Q==);background-size:cover" alt="" /></p>
+<p><img src="../../../image/assets/5d8aaa4a-6a23-4644-9531-e2b538e3e57d.png" data-placeholder-src="../../../image/assets/5d8aaa4a-6a23-4644-9531-e2b538e3e57d.png" width="572" height="768" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAAUAA8DAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDVbzNx2kY9KAHIGH3jn8KAGP8A6ygAT74oAftBbNAAFAbNAH//2Q==);background-size:cover" alt="" /></p>
 <p>同时代的其他人设计出了不同类型的加密模式、电子货币系统、可验证结果的投票系统等，都在试图不借助中心达成匿名用户间的信任。</p>
 <p>88年Timothy May离开英特尔后，仿照《共产党宣言》开头，写了个Crypto Anarchist Manifesto，里面总结了时人对理想数字空间的想象：一个自由交换和交易信息的市场，不受第三方的监听和审查。</p>
-<p><img src="../../../%E5%9B%BE%E7%89%87/63605a50-ec2d-482e-b4fc-b64a6c9da502.png" data-placeholder-src="../../../%E5%9B%BE%E7%89%87/63605a50-ec2d-482e-b4fc-b64a6c9da502.png" width="600" height="768" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAAUABADAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwC7jIzzyT/EfWpbKGsMLnnII/iPrQAobC49z/M0MEIzbgR7j+YoQMYcqSAxxk9hQFhBkkAscZ9BQFj/2Q==);background-size:cover" alt="" /></p>
+<p><img src="../../../image/assets/63605a50-ec2d-482e-b4fc-b64a6c9da502.png" data-placeholder-src="../../../image/assets/63605a50-ec2d-482e-b4fc-b64a6c9da502.png" width="600" height="768" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAAUABADAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwC7jIzzyT/EfWpbKGsMLnnII/iPrQAobC49z/M0MEIzbgR7j+YoQMYcqSAxxk9hQFhBkkAscZ9BQFj/2Q==);background-size:cover" alt="" /></p>
 <p>92年May和另外几个人发起了一个叫Cypherpunk Maillist的邮件列表，参与者是一帮实干派，催生了很多影响深远的项目，包括wikileaks和比特币。不过比wikileaks和比特币使用更广泛的，是PGP协议，它的故事也非常有意思。</p>
 <p>PGP的用途在于加密信息和验证身份，能防止监听和假冒。发明者Zimmermann自己经常参与反核运动，也喜欢把PGP的代码免费分享给其他草根政治运动的群体。PGP开始在世界范围内被广泛使用，但它用的算法被联邦政府算作军火一类，禁止出口，联邦政府也开始调查Zimmermann。</p>
 <p>结果Zimmermann用了个非常巧妙的办法：他把PGP的全部代码印在书上出版了，用户可以扫描下来识别回代码。因为书籍是出版物，属于言论自由范畴，受到美国宪法保护。</p>
-<p><img src="../../../%E5%9B%BE%E7%89%87/319b595a-359e-4b54-8ce2-e9714ab78eee.png" data-placeholder-src="../../../%E5%9B%BE%E7%89%87/319b595a-359e-4b54-8ce2-e9714ab78eee.png" width="470" height="500" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAAUABMDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCQGQAYTIwO9UkgJ1ZiBlR+BqWtQuSAUhkcUEpjH73AwO1LXuVddhy28gYMz7h6dKpXJdhFikUYL5/CgBySkIBgYwKAJFbjpii4h2c80hn/2Q==);background-size:cover" alt="" /></p>
+<p><img src="../../../image/assets/319b595a-359e-4b54-8ce2-e9714ab78eee.png" data-placeholder-src="../../../image/assets/319b595a-359e-4b54-8ce2-e9714ab78eee.png" width="470" height="500" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAAUABMDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCQGQAYTIwO9UkgJ1ZiBlR+BqWtQuSAUhkcUEpjH73AwO1LXuVddhy28gYMz7h6dKpXJdhFikUYL5/CgBySkIBgYwKAJFbjpii4h2c80hn/2Q==);background-size:cover" alt="" /></p>
 <p>站在读代码者的角度，代码的确是种言论，毕竟写下来的一套思维和算法；但站在使用者的角度，软件技术像硬件技术一样，可以被专利或者海关封锁。这算是两种世界观的第一次碰撞。</p>
 <p>在此之后又许多人和组织多次起诉联邦政府，最终使得代码可以像言论一样受到保护。到现在，PGP仍然是世界上使用最广泛的加密方式之一。</p>
 <p>这些事件也使得数据隐私的问题第一次进入大众视野，93年Wired的封面现在看起来仍然没有过时。</p>
-<p><img src="../../../%E5%9B%BE%E7%89%87/9bc4a39b-9eee-486b-8242-196d2c91ec3c.png" data-placeholder-src="../../../%E5%9B%BE%E7%89%87/9bc4a39b-9eee-486b-8242-196d2c91ec3c.png" width="638" height="768" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAAUABEDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCmTzGcglhwF6jmlYtzbdxrOQA/HXGKLB7R3uN85vSiw/aMRgyspA2kYIxTMxwHByc9zx0oAj3ew/KgC26hogxA+8VwOnTOaAIZflCr1BGaAIsUDP/Z);background-size:cover" alt="" /></p>
+<p><img src="../../../image/assets/9bc4a39b-9eee-486b-8242-196d2c91ec3c.png" data-placeholder-src="../../../image/assets/9bc4a39b-9eee-486b-8242-196d2c91ec3c.png" width="638" height="768" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAAUABEDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCmTzGcglhwF6jmlYtzbdxrOQA/HXGKLB7R3uN85vSiw/aMRgyspA2kYIxTMxwHByc9zx0oAj3ew/KgC26hogxA+8VwOnTOaAIZflCr1BGaAIsUDP/Z);background-size:cover" alt="" /></p>
 <blockquote>
 <p>🐱：对于不是技术背景的朋友，可能需要解释一下源代码与执行文件的区别。源代码可以被编译成为可执行文件，可执行文件点开之后是二进制的数据，电脑可以直接安装和运行。闭源软件只提供可执行文件，但开源软件提供了源代码，用户可以看到工程师写下来的逻辑，也可以自己编译甚至修改。</p>
 </blockquote>
@@ -649,26 +688,26 @@ a.comment-author:hover {
 <p>随后的十几年万维网迅速普及，流行开来的是服务器-客户端（server-client）架构，数据和计算都放在服务器上，用户则用很轻很小的客户端去调用和呈现数据。这个结构是中心化的，好处是效率高、迭代快，因为服务器可以用很大的机器，也能够不断更新软件系统。</p>
 <p>但问题是，我的数据都在服务器中，那服务提供商就能够控制我看到什么，也能够拥有我的隐私数据。因为服务是免费的，服务提供商还需要通过用户数据来赚钱，不管是通过广告还是其他手段。</p>
 <p>同时这样的系统也不太稳健，因为很容易通过一个中心节点来控制或屏蔽整个系统。</p>
-<p><img src="../../../%E5%9B%BE%E7%89%87/6a35828c-9138-4aaf-af2a-89de087434a3.png" data-placeholder-src="../../../%E5%9B%BE%E7%89%87/6a35828c-9138-4aaf-af2a-89de087434a3.png" width="802" height="534" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAANABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDWRdmfmyc5NAAT5iEA47ZoAeOAAKAGqgVmbkk0AOwB2oAjVM5JduvagD//2Q==);background-size:cover" alt="" /></p>
+<p><img src="../../../image/assets/6a35828c-9138-4aaf-af2a-89de087434a3.png" data-placeholder-src="../../../image/assets/6a35828c-9138-4aaf-af2a-89de087434a3.png" width="802" height="534" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAANABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDWRdmfmyc5NAAT5iEA47ZoAeOAAKAGqgVmbkk0AOwB2oAjVM5JduvagD//2Q==);background-size:cover" alt="" /></p>
 <p>与网络中心化相关的一个问题，是版权的中心化，也和前面说到的信息该是自由传播的言论，还是该被专利和版权控制的实体有关。</p>
 <p>版权问题在互联网中非常模糊。早期BBS、Youtube甚至互联网本身繁荣的内容是由“盗版”支撑起来的，所以不同形式的“版权流氓”也可以通过版权对内容进行打压。</p>
 <p>14年有个很棒的纪录片叫“The Internet’s Own Boy”，讲Aaron Swartz一生推动互联网开放版权的故事。</p>
-<p><img src="../../../%E5%9B%BE%E7%89%87/3f5c3ada-ab96-4ea3-a23f-30b92059b4b8.png" data-placeholder-src="../../../%E5%9B%BE%E7%89%87/3f5c3ada-ab96-4ea3-a23f-30b92059b4b8.png" width="520" height="768" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAAUAA4DAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDJZHjO1lwfcUAGDgcc/SgC/ebI41Vhl85BJycUkBSkYFVGOnvTAY8jyH52J+tACdaAP//Z);background-size:cover" alt="" /></p>
+<p><img src="../../../image/assets/3f5c3ada-ab96-4ea3-a23f-30b92059b4b8.png" data-placeholder-src="../../../image/assets/3f5c3ada-ab96-4ea3-a23f-30b92059b4b8.png" width="520" height="768" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAAUAA4DAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDJZHjO1lwfcUAGDgcc/SgC/ebI41Vhl85BJycUkBSkYFVGOnvTAY8jyH52J+tACdaAP//Z);background-size:cover" alt="" /></p>
 <p>Swartz是个天才，14岁时参与RSS标准制定，15岁时参与设计Creative Common标准，后来又参与了Markdown的设计，并成为了Reddit的联合创始人。同时又极其敏感、内敛和理想主义，用他朋友的话说是有 “pathological capacity for compassion”。</p>
 <p>他相信信息就是力量，而这个力量应该交还给人民。所以他做的技术贡献很多都围绕信息自由，但长大后慢慢意识到信息自由远不止是技术问题，更是社会和政治问题。</p>
 <p>Swartz 22岁的时候也写了个Guerilla Open Access Manifesto，号召学生、老师、图书馆管理员等能接入图书馆系统的人们，像游击队一样，用所有机会绕开版权限制去传播知识，抵制科学和文化的私有化。</p>
 <p>Swartz还参加了一个当时很大的政治运动，抗议“禁止网络盗版法案（SOPA）”。SOPA名字上是维护版权方利益，但同时也会给了政府和公司更大的监听和垄断的权力，以此为借口封锁很多网站和内容。</p>
 <p>法案听证的当天，各大网站黑屏抗议，号召大家抵制这个法案通过。</p>
-<p><img src="../../../%E5%9B%BE%E7%89%87/0b00c9f1-4423-40f8-99c6-adff0d8e8665.png" data-placeholder-src="../../../%E5%9B%BE%E7%89%87/0b00c9f1-4423-40f8-99c6-adff0d8e8665.png" width="966" height="724" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAAPABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDNAU7Vxg9zmgCYKDlE+YkZznG3HegBUs7iVd0al19QwoAYYgB/9agdi3Z7bYCWRQSFyCBg88YoEPGsH0P5ClZjP//Z);background-size:cover" alt="" /></p>
+<p><img src="../../../image/assets/0b00c9f1-4423-40f8-99c6-adff0d8e8665.png" data-placeholder-src="../../../image/assets/0b00c9f1-4423-40f8-99c6-adff0d8e8665.png" width="966" height="724" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAAPABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDNAU7Vxg9zmgCYKDlE+YkZznG3HegBUs7iVd0al19QwoAYYgB/9agdi3Z7bYCWRQSFyCBg88YoEPGsH0P5ClZjP//Z);background-size:cover" alt="" /></p>
 <p>知道SOPA法案后，Swartz马上做了一个用来号召政治运动的网站，叫Demand Progress，影响范围很大，号召了很多人来抵制Demand Progress。最后SOPA没通过，这件事也发挥了不少作用。</p>
 <p>但是阻击SOPA影响了大版权商的权益，也惹恼了很多人。坊间还传闻好莱坞各大制片厂在SOPA被否决之后，专门找奥巴马吃了个饭，要求严查此事。</p>
-<p><img src="../../../%E5%9B%BE%E7%89%87/dab12562-f5b9-458b-a59c-e87f0af636bb.png" data-placeholder-src="../../../%E5%9B%BE%E7%89%87/dab12562-f5b9-458b-a59c-e87f0af636bb.png" width="908" height="269" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAAGABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCl5oiRU2htrbvmHWk1cC4kzqo2u4GM/e/SnFrqDi+gfaJM/ec/9tDSuVys/9k=);background-size:cover" alt="" /></p>
+<p><img src="../../../image/dab12562-f5b9-458b-a59c-e87f0af636bb.png" data-placeholder-src="../../../image/dab12562-f5b9-458b-a59c-e87f0af636bb.png" width="908" height="269" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAAGABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCl5oiRU2htrbvmHWk1cC4kzqo2u4GM/e/SnFrqDi+gfaJM/ec/9tDSuVys/9k=);background-size:cover" alt="" /></p>
 <p>10年的时候Swartz做了另一件事，接入MIT校园网，批量下载大量论文，拿来全部公开在网上。他觉得科学知识是属于全人类的，不能只有有权有钱的研究机构才能接触。</p>
 <p>那时的大背景是，互联网在极大地推动民主/民粹化，中东在阿拉伯之春的前夕，美国在占领华尔街的前夕。民众和建制权力之间的撕裂一触即发，大版权商JSTOR上诉之后，联邦政府打算杀鸡给猴看，就开始调查Swartz的侵权。</p>
 <p>很多老论文虽然没人读，但是版权费却非常昂贵，潜在的罪行也非常重。FBI出动了惯用的施压手段，本该作为hacker摇篮的MIT也配合了调查，最后Swartz在压力之下自杀，年仅26岁。</p>
 <p>Swartz死后，黑客组织Anonymous攻击了MIT和联邦政府的网站，挂上了Guerilla Open Access Manifesto。许多科学家和研究员用“<a href="https://twitter.com/hashtag/PDFtribute">#PDFTribute</a>”标签来公开自己的论文，向Swartz致敬。学术界内部开始出现了许多致力于开放研究和开放数据的组织，欧盟的Science Europe也发起了Coalition S计划，打算2021年前让所有欧洲公立研究成果向公众公开。</p>
 <p>不过与Guerilla Open Access Manifesto最一脉相承的可能算是SciHub，目前最大的公开论文数据库，也是科研人员和普通人查资料的利器。但创始人Alexandra Elbakyan被Elsevier起诉，至今仍需躲藏。</p>
-<p><img src="../../../%E5%9B%BE%E7%89%87/ab17ba7b-58cb-4cf4-8169-825fdfe900fa.png" data-placeholder-src="../../../%E5%9B%BE%E7%89%87/ab17ba7b-58cb-4cf4-8169-825fdfe900fa.png" width="956" height="681" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAAOABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDQnYGJhu4+vvWdT4WVD4jJuyVKbW/h/qaKS90KusisZX9f0rSyM7Gpp++RnYtwBjGKCiLUY8zryPu+nvSvYTZTMH+1+lPmFc//2Q==);background-size:cover" alt="" /></p>
+<p><img src="../../../image/assets/ab17ba7b-58cb-4cf4-8169-825fdfe900fa.png" data-placeholder-src="../../../image/assets/ab17ba7b-58cb-4cf4-8169-825fdfe900fa.png" width="956" height="681" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAAOABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDQnYGJhu4+vvWdT4WVD4jJuyVKbW/h/qaKS90KusisZX9f0rSyM7Gpp++RnYtwBjGKCiLUY8zryPu+nvSvYTZTMH+1+lPmFc//2Q==);background-size:cover" alt="" /></p>
 <blockquote>
 <p>🦉：对于大部分科学研究，因为从研究的推进到结果的分发都是政府资助的，投入的是公共资源，对应的结果也就应该公开。</p>
 </blockquote>
@@ -683,7 +722,7 @@ a.comment-author:hover {
 </blockquote>
 <p>在Web2.0应用刚兴起的时候，互联网还有很强的去中心化趋势的，比如99年的Napster，00年的eDonkey，01年的BitTorrent，02年的eMule，网络流量曾经大部分都是p2p的。</p>
 <p>但是这样的系统和现实世界中心化的权力结构不兼容，包括版权等各个侧面，暗里被互联网服务商降低流量，明里因版权问题被法律制裁，最终没能竞争过中心化的服务提供商。</p>
-<p><img src="../../../%E5%9B%BE%E7%89%87/38e5f9cb-6dce-4e4d-9481-92f4ded85e2c.png" data-placeholder-src="../../../%E5%9B%BE%E7%89%87/38e5f9cb-6dce-4e4d-9481-92f4ded85e2c.png" width="926" height="696" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAAPABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCEEc55qSAIOccUABBBwetACjaCpOSM8igCxNJAVxHHhuMGmN2K7ks5JwT7UhH/2Q==);background-size:cover" alt="" /></p>
+<p><img src="../../../image/assets/38e5f9cb-6dce-4e4d-9481-92f4ded85e2c.png" data-placeholder-src="../../../image/assets/38e5f9cb-6dce-4e4d-9481-92f4ded85e2c.png" width="926" height="696" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAAPABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCEEc55qSAIOccUABBBwetACjaCpOSM8igCxNJAVxHHhuMGmN2K7ks5JwT7UhH/2Q==);background-size:cover" alt="" /></p>
 <blockquote>
 <p>🐯：http本来也是去中心化的，每个人的电脑都可以向其他人的电脑发送网页。只是后来Facebook、Google这些服务出来了，说你们可以把数据都存我这里，才变成了中心化节点。中心化节点一方面是迭代快、效率高，另一方面也是容易信任，用户可以去信任这些节点传来的数据。</p>
 </blockquote>
@@ -710,7 +749,7 @@ a.comment-author:hover {
 <p>Azer拒绝之后，这个公司去找了npm官方，结果npm官方决定把这个域名转让给这个公司。Azer一气之下删除了自己所有在npm上的开源包。</p>
 <p>其中有一个叫left-pad，很简单的几行，给任意字符串左边加上重复字符。这个包删除之后，影响在全世界范围内波及开了。澳大利亚、德国、捷克、美国等各地的程序员开始发现自己的项目出现了奇怪的错误，包括这个故事里的大公司自己的网站。</p>
 <p>大部分人从未听说过left-pad，但是它已经通过层层引用包含在了海量项目之中，它的消失造成了所有这些项目的瘫痪。</p>
-<p><img src="../../../%E5%9B%BE%E7%89%87/8f945d26-1a5e-4ede-b20e-09235ad48e63.png" data-placeholder-src="../../../%E5%9B%BE%E7%89%87/8f945d26-1a5e-4ede-b20e-09235ad48e63.png" width="870" height="688" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAAQABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwBJJWZpd0gIIwBilcTKJVj2oC4nlt/doC5ux2kDwxF4wSVB5NMZJ9htf+eK/rQBQvoo4ZgsahV25wKTJZ//2Q==);background-size:cover" alt="" /></p>
+<p><img src="../../../image/assets/8f945d26-1a5e-4ede-b20e-09235ad48e63.png" data-placeholder-src="../../../image/assets/8f945d26-1a5e-4ede-b20e-09235ad48e63.png" width="870" height="688" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAAQABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwBJJWZpd0gIIwBilcTKJVj2oC4nlt/doC5ux2kDwxF4wSVB5NMZJ9htf+eK/rQBQvoo4ZgsahV25wKTJZ//2Q==);background-size:cover" alt="" /></p>
 <blockquote>
 <p>🐯：OpenSSL的例子也非常典型。OpenSSL是大量加密组件都使用的底层开源库，前几年爆出几个大后门之后，各大公司都panic了。最后大家追踪到OpenSSL维护者只有三个人了，而且还没有钱。</p>
 </blockquote>
@@ -718,11 +757,11 @@ a.comment-author:hover {
 <p>随着代码普及率越来越高，这一点在比特币、以太坊等这样的项目中更加明显：代码的开源、数据的分布式存储已经成为信任本身的基础。</p>
 <p>SOPA和同时期的PIPA虽然没有通过，此后的几年美国和世界范围内的影音盗版还是得到了有效抑制，版权垄断也开始明显起来。SOPA之后比较受关注的“网络中立”问题，则更加复杂、更加难分是非。</p>
 <p>互联网服务供应商，比如移动、联通或者AT&amp;T、T-Mobile，能够依据经济和政治链条选择给哪些网站更多带宽，又给哪些更少带宽、甚至直接封锁掉，所以人们才会有“网络中立”的要求。但是要规范互联网服务供应商的行为，就需要更大的政府和更强的管制，加大权力的集中。</p>
-<p><img src="../../../%E5%9B%BE%E7%89%87/5ac6015a-9bf7-4538-ad44-5a272a516060.png" data-placeholder-src="../../../%E5%9B%BE%E7%89%87/5ac6015a-9bf7-4538-ad44-5a272a516060.png" width="616" height="731" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAAUABEDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCcXFyT83I9NtU0KpdRuhWnuFPHH/Aakqkr35hftNz/AJWmbcsSpO84YhJJSGHGM/pWcZXWply31JoJQkCiad9/P8RqySH7RJ6y/wDfRpAEMrI8ZBzgADP0pM0jqQTD944yT3/OnPSwU1e5HuNIqyP/2Q==);background-size:cover" alt="" /></p>
+<p><img src="../../../image/assets/5ac6015a-9bf7-4538-ad44-5a272a516060.png" data-placeholder-src="../../../image/assets/5ac6015a-9bf7-4538-ad44-5a272a516060.png" width="616" height="731" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAAUABEDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCcXFyT83I9NtU0KpdRuhWnuFPHH/Aakqkr35hftNz/AJWmbcsSpO84YhJJSGHGM/pWcZXWply31JoJQkCiad9/P8RqySH7RJ6y/wDfRpAEMrI8ZBzgADP0pM0jqQTD944yT3/OnPSwU1e5HuNIqyP/2Q==);background-size:cover" alt="" /></p>
 <p>“网络中立”触到了数字乌托邦的关键问题。数字世界毕竟要基于现实世界的硬件设施，但和现实世界的资本和权力一样，对于硬件设施的权力也会富集。但如果把这些设施作为公共基建交给政府的话，一方面失去了市场创新的能力，另一方面也把塑造言论和思想的能力交给了政府。</p>
 <p>这是个比软件层的去中心化更难解决的问题。但在社区层面，有不少有意思的项目，打开了一些新的可能。通过mesh network等技术，硬件层可以架设廉价的点对点通讯模式，让社区以内和社区之间进行信号共享。这实际上成为了一个自治的社区互联网服务供应商。</p>
 <p>比如德国的Freifunk项目，有四百多个社区，遍布德国各地。纽约也有NYU-mesh项目，为布鲁克林和曼哈顿地区提供互联网信号。</p>
-<p><img src="../../../%E5%9B%BE%E7%89%87/21d10d29-2b36-44e2-ad96-13d6a34f4dc7.png" data-placeholder-src="../../../%E5%9B%BE%E7%89%87/21d10d29-2b36-44e2-ad96-13d6a34f4dc7.png" width="998" height="498" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAAKABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCYRqvGKYie3AUNgYFICf8AGmBUpASQ9G/CmtwZIetMk//Z);background-size:cover" alt="" /></p>
+<p><img src="../../../image/assets/21d10d29-2b36-44e2-ad96-13d6a34f4dc7.png" data-placeholder-src="../../../image/assets/21d10d29-2b36-44e2-ad96-13d6a34f4dc7.png" width="998" height="498" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAAKABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCYRqvGKYie3AUNgYFICf8AGmBUpASQ9G/CmtwZIetMk//Z);background-size:cover" alt="" /></p>
 <blockquote>
 <p>🐺：去中心化的历程，从内容开始，然后人们想要更多，开始去中心化数据，再下一步是去中心化物理载体。也许这个过程会无限进行下去，但是人不可能没有分工合作，我们最终也无法生产自己的手机。</p>
 </blockquote>
@@ -758,21 +797,13 @@ a.comment-author:hover {
 </blockquote>
 <p>近几年更为显著的进展还是在软件层，并且有望通过软件层去将社会组织层面去中心化。区块链和智能合约提供了分布式网络中的共识，能够兼容版权、账户等原本中心化的概念。</p>
 <p>随之也涌现出了“分布式自治组织”这个概念，意在通过自动、可靠的协议执行，减少权力层级，让组织更加扁平。分布式自治组织需要的就远不只是网络技术层面的进展，更涉及大量博弈理论；作为社会实验，又会去不断重新定义数字空间里的民主。</p>
-<p><img src="../../../%E5%9B%BE%E7%89%87/cb499502-8100-4b80-843b-c89b319e41ee.png" data-placeholder-src="../../../%E5%9B%BE%E7%89%87/cb499502-8100-4b80-843b-c89b319e41ee.png" width="980" height="554" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAALABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDSmkCzINoI/iNZyqKLsXGN1clfBAGM1oQNxgnCjH0oAyWJZmJJJye9PlXYzuzQtmJtIyTk88/nRaxS2J0AYZIBNIo//9k=);background-size:cover" alt="" /></p>
+<p><img src="../../../image/cb499502-8100-4b80-843b-c89b319e41ee.png" data-placeholder-src="../../../image/cb499502-8100-4b80-843b-c89b319e41ee.png" width="980" height="554" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAALABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDSmkCzINoI/iNZyqKLsXGN1clfBAGM1oQNxgnCjH0oAyWJZmJJJye9PlXYzuzQtmJtIyTk88/nRaxS2J0AYZIBNIo//9k=);background-size:cover" alt="" /></p>
 <p>最后分享一个叫Electric Sheep的图像生成算法。这个算法有意思的地方在于，它的训练过程也是一种去中心化：每个安装这个软件的人依据是否喜欢生成的图像投票，最后将算法训练得符合人类的审美。</p>
 <p>通过这种去中心化的人机交互，算法生成出意想不到的结果，常常很混乱，但是也常常令人着迷。也许去中心化的组织也会带来类似的惊喜。</p>
-<nav class="series-nav">
-  <div class="series-nav-links">
-    <a href="/writings/distributed-web/fake-news-and-markets/index.html" class="series-nav-link series-nav-prev"><span class="series-nav-arrow">&lt;</span> <span class="series-nav-title">假新闻与市场</span></a>
-    <a href="/writings/distributed-web/ddos-and-decentralization/index.html" class="series-nav-link series-nav-next"><span class="series-nav-title">关于 DDoS 与去中心化的碎碎念</span> <span class="series-nav-arrow">&gt;</span></a>
-  </div>
-  <div class="series-nav-collection-row">
-    <a href="/writings/distributed-web/index.html" class="series-nav-collection">分布式信息网络</a>
-  </div>
-</nav>
+
             
         </article>
-        <section class="moss-comments" id="moss-comments" data-built-at="2026-03-15T16:52:01.732Z">
+        <section class="moss-comments" id="moss-comments" data-built-at="2026-03-17T16:27:21.214Z">
   <details>
     <summary class="comments-toggle"><svg class="comments-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></svg><span>13条评论</span><svg class="comments-chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></summary>
     <div class="comment-form-slot" id="default-form-slot"><form class="comment-form" id="moss-comment-form">

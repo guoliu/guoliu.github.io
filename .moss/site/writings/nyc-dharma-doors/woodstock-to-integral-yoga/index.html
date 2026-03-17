@@ -11,7 +11,7 @@
     <meta property="og:site_name" content="刘果">
     <meta property="og:description" content="格林威治村，曼哈顿岛的东南部，我在找一个叫整体瑜伽中心（Integral Yoga Institute）的地方。">
     <meta property="article:published_time" content="2024-10-06T19:59:47.738Z">
-    <meta property="og:image" content="/图片/c928d984-5762-4592-9e78-a22bd02dc91e.jpg">
+    <meta property="og:image" content="/image/assets/c928d984-5762-4592-9e78-a22bd02dc91e.jpg">
     <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -20,7 +20,7 @@
   "url": "/writings/nyc-dharma-doors/woodstock-to-integral-yoga/",
   "description": "格林威治村，曼哈顿岛的东南部，我在找一个叫整体瑜伽中心（Integral Yoga Institute）的地方。",
   "datePublished": "2024-10-06T19:59:47.738Z",
-  "image": "/图片/c928d984-5762-4592-9e78-a22bd02dc91e.jpg",
+  "image": "/image/assets/c928d984-5762-4592-9e78-a22bd02dc91e.jpg",
   "publisher": {
     "@type": "Organization",
     "name": "刘果"
@@ -28,9 +28,8 @@
 }
 </script>
     <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
-    <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml">
-    <script data-goatcounter="https://guo.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
     
+    <script data-goatcounter="https://guo.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
     <link rel="stylesheet" href="/style.css?v=16bac62be9f5c45e">
     <style class="moss-comments-style">/* ==========================================================================
    moss Comments Plugin - Styles
@@ -528,35 +527,49 @@ a.comment-author:hover {
 </style>
 <style class="moss-review-style">/* Review plugin — header and colophon styles
  * Uses moss design tokens. Works in light and dark mode.
+ * Side-by-side layout on all screen sizes (matches collection-cover pattern).
  */
 
+/* Header — cover + title/subtitle/creator */
 .review-header {
   display: flex;
+  gap: var(--moss-space-lg, 2rem);
   align-items: flex-start;
-  gap: 12px;
   margin: 1rem 0 2rem;
 }
 
 .review-cover {
-  width: 80px;
+  width: 150px;
+  max-width: 30%;
   height: auto;
   object-fit: cover;
-  border-radius: 2px;
+  border-radius: 4px;
   flex-shrink: 0;
+  margin: 0; /* Override global img margin for flex alignment */
 }
 
 .review-meta {
+  flex: 1;
+  min-width: 0;
   display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 0;
-  font-size: 0.95em;
-  color: var(--moss-color-muted, #666);
-  padding-top: 4px;
+  flex-direction: column;
+  gap: 0.25rem;
 }
 
-.review-creator {
-  font-weight: 500;
+.review-meta-title {
+  font-weight: 600;
+  font-size: 1.05em;
+  color: var(--moss-color-text, #333);
+}
+
+.review-meta-subtitle {
+  font-size: 0.9em;
+  color: var(--moss-color-muted, #666);
+}
+
+.review-meta-creator {
+  font-size: 0.9em;
+  color: var(--moss-color-muted, #666);
 }
 
 .review-sep {
@@ -564,30 +577,64 @@ a.comment-author:hover {
   margin: 0 0.15em;
 }
 
-/* Colophon */
+/* Colophon — card with cover + details */
 .review-colophon {
+  display: flex;
+  gap: var(--moss-space-lg, 2rem);
+  align-items: flex-start;
   margin-top: 3rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid var(--moss-color-border, #e0e0e0);
+  padding: 1.25rem;
+  background: var(--moss-color-surface, #f8f8f8);
+  border-radius: 8px;
   font-size: 0.9em;
   color: var(--moss-color-muted, #666);
+}
+
+.review-colophon-cover {
+  width: 150px;
+  max-width: 30%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 4px;
+  flex-shrink: 0;
+  margin: 0; /* Override global img margin for flex alignment */
+}
+
+.review-colophon-details {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.review-colophon-title {
+  font-weight: 600;
+  color: var(--moss-color-text, #333);
+  font-size: 1.05em;
+}
+
+.review-colophon-subtitle {
+  font-size: 0.9em;
+  color: var(--moss-color-muted, #666);
+}
+
+.review-colophon-identity {
+  font-size: 0.95em;
 }
 
 .review-rating {
   font-size: 1.2em;
   color: var(--moss-color-accent, #c9a84c);
-  margin-bottom: 0.5rem;
   letter-spacing: 0.05em;
 }
 
 .review-community-rating {
   font-size: 0.85em;
-  margin-bottom: 0.5rem;
 }
 
 .review-biblio {
-  margin-bottom: 0.75rem;
-  line-height: 1.6;
+  line-height: 1.5;
 }
 
 .review-links a {
@@ -597,14 +644,6 @@ a.comment-author:hover {
 
 .review-links a:hover {
   text-decoration: underline;
-}
-
-/* Mobile: stack cover above meta */
-@media (max-width: 32rem) {
-  .review-header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
 }
 </style>
 </head>
@@ -626,7 +665,7 @@ a.comment-author:hover {
 <p>格林威治村，曼哈顿岛的东南部，我在找一个叫整体瑜伽中心（Integral Yoga Institute）的地方。</p>
 <p>这里曾是垮掉一代和嬉皮士运动的中心，现在已经贵得让普通人望而却步。不过，当年进步、多元、自由等理念还是留下了深深的烙印。旁边的基督教堂，不介绍教宗、教义，主打激进与包容；对面的 LGBT 社区中心，在艾滋病刚传入美国、反同情绪高涨的八十年代建立，帮助受到威胁的性少数群体。</p>
 <p>熙熙攘攘的人流中，整体瑜伽中心坐落在一座红色的门后。门边的墙上画着一朵莲花，每朵花瓣上有基督教、伊斯兰教、道教、神道教等宗教的符号，上下有文字：“TRUTH IS ONE, PATHS ARE MANY（真理一种，道路许多）”。 一进门是个小商店，红黄色调。四周书架摆满书，玻璃柜里陈列着精巧繁复的饰品，色彩斑斓。</p>
-<p><img src="../../../%E5%9B%BE%E7%89%87/3fcefcd6-8a8c-4bfb-9935-d99a568bb019.jpg" data-placeholder-src="../../../%E5%9B%BE%E7%89%87/3fcefcd6-8a8c-4bfb-9935-d99a568bb019.jpg" width="1366" height="910" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAANABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCSB4kjcpx8vr1qStCHz43PJ468UNArDJJFD48s/kKdiQgsgXGXz+FFwLK2/lvlGAP+7QA5mmz99P8Avii4H//Z);background-size:cover" alt="" /></p>
+<p><img src="../../../image/assets/3fcefcd6-8a8c-4bfb-9935-d99a568bb019.jpg" data-placeholder-src="../../../image/assets/3fcefcd6-8a8c-4bfb-9935-d99a568bb019.jpg" width="1366" height="910" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAANABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCSB4kjcpx8vr1qStCHz43PJ468UNArDJJFD48s/kKdiQgsgXGXz+FFwLK2/lvlGAP+7QA5mmz99P8Avii4H//Z);background-size:cover" alt="" /></p>
 <p>玻璃柜后的工作人员，是一位看起来六十出头的瘦削女性。我与她问好，向她说明我来参加冥想练习。她指引我去四楼的“家庭房间”，午间冥想会在那进行。</p>
 <p>我沿着楼梯一步步往上走，墙上有创始人萨其达南达的画像，也有中国山水画等其他灵动的画作。推开四楼的门，一边是一个公共厨房，而另一边是个小小的客厅。客厅里，一整面墙都是玻璃窗，阳光透过玻璃洒满一地。看起来，午间冥想会是在这里了。</p>
 <p>房间里有三个人在闲聊，相互之间看起来颇为熟络。三人分别是欧裔、亚裔与非裔，年长的约莫七十多岁，年轻的也有五十多，精神矍铄。</p>
@@ -642,7 +681,7 @@ a.comment-author:hover {
 <p>萨其达南来到纽约，一脚踏入了反文化运动的中心。见证了越战的血腥、经历了致幻药物启迪的美国年轻人，思考存在的意义，向往灵性的世界。致幻药物能够让人经历短暂的自我消解，而印度教正是关于自我的消解，及消解后的觉悟。萨其达南带来的哲学体系与瑜伽练习，久旱逢甘霖般受到年轻人的欢迎，迅速传播开来。</p>
 <p>三年后，纽约北边的小镇伍德斯托克，一群人开始筹备音乐节。主办方算是有些经验，组织过两三万人的活动。但陆续到达的人们越来越多，最终接近五十万人，成为了历史上最大的音乐节。主办方慌了手脚，不知道怎么稳住洪水一般增多的人群。他们找来了彼得·马斯克，彼得说，那请萨其达南达上师来吧。</p>
 <p>于是，在伍德斯托克音乐节的开幕式，萨其达南达乘坐直升机空降舞台。他在舞台上盘腿安坐，告诉人们，美国已经在物质领域帮助了世界，现在是时候在灵性领域帮助世界了。“人们喊道‘为和平而战’，但我不明白，他们要如何在战斗之后找到和平。所以，让我们别去为和平而战，先在内心找到和平吧。“最后，他带领几十万美国年轻人唱诵梵文祷词，歌颂守护之神毗湿奴。</p>
-<p><img src="../../../%E5%9B%BE%E7%89%87/c928d984-5762-4592-9e78-a22bd02dc91e.jpg" data-placeholder-src="../../../%E5%9B%BE%E7%89%87/c928d984-5762-4592-9e78-a22bd02dc91e.jpg" width="1366" height="525" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAAIABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwB8bXQH3T+VLmKsSl7kDjn8KOYLIhZ7sno35VPMFj//2Q==);background-size:cover" alt="" /></p>
+<p><img src="../../../image/assets/c928d984-5762-4592-9e78-a22bd02dc91e.jpg" data-placeholder-src="../../../image/assets/c928d984-5762-4592-9e78-a22bd02dc91e.jpg" width="1366" height="525" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAAIABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwB8bXQH3T+VLmKsSl7kDjn8KOYLIhZ7sno35VPMFj//2Q==);background-size:cover" alt="" /></p>
 <p>伍德斯托克音乐节之后，萨其达南达创办的流派“整体瑜伽”在美国遍地开花，倡导一种灵性的生活方式。其中就包括纽约整体瑜伽中心。最开始，整体瑜伽中心在隔壁开了一间有机素食商店。二零零八年，商店决定关门，门上写着“任务完成”。因为如今有机食品与素食已经随处可见，并不需要专门开一家商店了。</p>
 <p>而今，瑜伽课程也已经随处可见。我不禁好奇，整体瑜伽中心是否也完成了自己的任务。</p>
 <h2 id="三">三</h2>
@@ -693,7 +732,7 @@ a.comment-author:hover {
 </nav>
             
         </article>
-        <section class="moss-comments" id="moss-comments" data-built-at="2026-03-15T16:52:01.732Z">
+        <section class="moss-comments" id="moss-comments" data-built-at="2026-03-17T16:27:21.214Z">
   <details>
     <summary class="comments-toggle"><svg class="comments-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></svg><span>2条评论</span><svg class="comments-chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></summary>
     <div class="comment-form-slot" id="default-form-slot"><form class="comment-form" id="moss-comment-form">

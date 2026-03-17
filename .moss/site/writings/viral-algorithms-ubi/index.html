@@ -11,7 +11,7 @@
     <meta property="og:site_name" content="刘果">
     <meta property="og:description" content="离线的社交网络与流行病的传播Dominic Tarr住在新西兰的一条帆船上。他习惯写JavaScript，在npm上贡献了四百多个包，包括常用的browserify。帆船上的生活有个缺点，就是网络信号差，社交网络也不好用。所以14年的时候，他开始设计一个协议，让自己和朋友们在没有互联网的情况下也能保持联络。">
     <meta property="article:published_time" content="2020-03-29T01:41:09.423Z">
-    <meta property="og:image" content="/图片/8ef4fb5d-ae3f-4e10-826b-169b0762d555.png">
+    <meta property="og:image" content="/image/assets/8ef4fb5d-ae3f-4e10-826b-169b0762d555.png">
     <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -20,7 +20,7 @@
   "url": "/writings/viral-algorithms-ubi/",
   "description": "离线的社交网络与流行病的传播Dominic Tarr住在新西兰的一条帆船上。他习惯写JavaScript，在npm上贡献了四百多个包，包括常用的browserify。帆船上的生活有个缺点，就是网络信号差，社交网络也不好用。所以14年的时候，他开始设计一个协议，让自己和朋友们在没有互联网的情况下也能保持联络。",
   "datePublished": "2020-03-29T01:41:09.423Z",
-  "image": "/图片/8ef4fb5d-ae3f-4e10-826b-169b0762d555.png",
+  "image": "/image/assets/8ef4fb5d-ae3f-4e10-826b-169b0762d555.png",
   "publisher": {
     "@type": "Organization",
     "name": "刘果"
@@ -28,9 +28,8 @@
 }
 </script>
     <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
-    <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml">
-    <script data-goatcounter="https://guo.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
     
+    <script data-goatcounter="https://guo.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
     <link rel="stylesheet" href="/style.css?v=16bac62be9f5c45e">
     <style class="moss-comments-style">/* ==========================================================================
    moss Comments Plugin - Styles
@@ -528,35 +527,49 @@ a.comment-author:hover {
 </style>
 <style class="moss-review-style">/* Review plugin — header and colophon styles
  * Uses moss design tokens. Works in light and dark mode.
+ * Side-by-side layout on all screen sizes (matches collection-cover pattern).
  */
 
+/* Header — cover + title/subtitle/creator */
 .review-header {
   display: flex;
+  gap: var(--moss-space-lg, 2rem);
   align-items: flex-start;
-  gap: 12px;
   margin: 1rem 0 2rem;
 }
 
 .review-cover {
-  width: 80px;
+  width: 150px;
+  max-width: 30%;
   height: auto;
   object-fit: cover;
-  border-radius: 2px;
+  border-radius: 4px;
   flex-shrink: 0;
+  margin: 0; /* Override global img margin for flex alignment */
 }
 
 .review-meta {
+  flex: 1;
+  min-width: 0;
   display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 0;
-  font-size: 0.95em;
-  color: var(--moss-color-muted, #666);
-  padding-top: 4px;
+  flex-direction: column;
+  gap: 0.25rem;
 }
 
-.review-creator {
-  font-weight: 500;
+.review-meta-title {
+  font-weight: 600;
+  font-size: 1.05em;
+  color: var(--moss-color-text, #333);
+}
+
+.review-meta-subtitle {
+  font-size: 0.9em;
+  color: var(--moss-color-muted, #666);
+}
+
+.review-meta-creator {
+  font-size: 0.9em;
+  color: var(--moss-color-muted, #666);
 }
 
 .review-sep {
@@ -564,30 +577,64 @@ a.comment-author:hover {
   margin: 0 0.15em;
 }
 
-/* Colophon */
+/* Colophon — card with cover + details */
 .review-colophon {
+  display: flex;
+  gap: var(--moss-space-lg, 2rem);
+  align-items: flex-start;
   margin-top: 3rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid var(--moss-color-border, #e0e0e0);
+  padding: 1.25rem;
+  background: var(--moss-color-surface, #f8f8f8);
+  border-radius: 8px;
   font-size: 0.9em;
   color: var(--moss-color-muted, #666);
+}
+
+.review-colophon-cover {
+  width: 150px;
+  max-width: 30%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 4px;
+  flex-shrink: 0;
+  margin: 0; /* Override global img margin for flex alignment */
+}
+
+.review-colophon-details {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.review-colophon-title {
+  font-weight: 600;
+  color: var(--moss-color-text, #333);
+  font-size: 1.05em;
+}
+
+.review-colophon-subtitle {
+  font-size: 0.9em;
+  color: var(--moss-color-muted, #666);
+}
+
+.review-colophon-identity {
+  font-size: 0.95em;
 }
 
 .review-rating {
   font-size: 1.2em;
   color: var(--moss-color-accent, #c9a84c);
-  margin-bottom: 0.5rem;
   letter-spacing: 0.05em;
 }
 
 .review-community-rating {
   font-size: 0.85em;
-  margin-bottom: 0.5rem;
 }
 
 .review-biblio {
-  margin-bottom: 0.75rem;
-  line-height: 1.6;
+  line-height: 1.5;
 }
 
 .review-links a {
@@ -597,14 +644,6 @@ a.comment-author:hover {
 
 .review-links a:hover {
   text-decoration: underline;
-}
-
-/* Mobile: stack cover above meta */
-@media (max-width: 32rem) {
-  .review-header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
 }
 </style>
 </head>
@@ -629,7 +668,7 @@ a.comment-author:hover {
 <p>流言算法还有个名字，叫流行病算法，因为这种信息扩散方式与病毒的传播一样。</p>
 <p>就像眼下正在失控的新冠疫情，“人传人”的机制虽然简单有限，但是乘以人数之后会有巨大的威力，变得极为高效。同时，因为社会关系的小世界网络特征（比如著名的<a href="https://zh.wikipedia.org/wiki/%E5%85%AD%E5%BA%A6%E5%88%86%E9%9A%94%E7%90%86%E8%AE%BA">六度分隔理论</a>），人们只要能够看到彼此的朋友，顺藤摸瓜几次，就能串起网络中大部分的人。</p>
 <figure>
-<img src="../../%E5%9B%BE%E7%89%87/06b14cfc-5e3c-4e35-b297-65d58722aabd.gif" data-placeholder-src="../../%E5%9B%BE%E7%89%87/06b14cfc-5e3c-4e35-b297-65d58722aabd.gif" width="720" height="482" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAANABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDXPfr+dAB3P0oAcOlADSOvSgAI5PTpQA4dKAP/2Q==);background-size:cover" alt="" />
+<img src="../../image/assets/06b14cfc-5e3c-4e35-b297-65d58722aabd.gif" data-placeholder-src="../../image/assets/06b14cfc-5e3c-4e35-b297-65d58722aabd.gif" width="720" height="482" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAANABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDXPfr+dAB3P0oAcOlADSOvSgAI5PTpQA4dKAP/2Q==);background-size:cover" alt="" />
 <figcaption>流行病算法的机制虽然简单，但是在网络中却非常高效。病毒可以用它让人类社会措手不及，但人类也可以用它设计稳健的通讯网络。https://zhuanlan.zhihu.com/p/41228196</figcaption>
 </figure>
 <p>SSB 中的“相遇”可以有很多不同的方式，包括本地网络、蓝牙直连，甚至是 U 盘、CD 等物理介质，不受互联网基建的限制。与所有其他基于友邻的分布式网络一样，新加入的用户很难开始探索，所以SSB中还设计一了种名为<a href="https://github.com/ssbc/ssb-server/wiki/pub-servers">Pub</a>的节点，既是一个互关的超级用户，也是一个公共空间。像真实世界的酒吧一样，人们可以在Pub中相互结识，在离开后相互关注。</p>
@@ -641,14 +680,14 @@ a.comment-author:hover {
 <p>再乐观的人也会同意，SSB这样的草根项目，很难和Facebook、SpaceX、软银等巨头抢占互联网处女地。不过类似的项目和思想并不限于SSB，同时技术变革的历史也提醒我们，不该忽视分散而反脆弱的自发力量。太阳能发电、3D打印等技术，因为更低的启动成本、更高的自给自足和更少的中心依赖，已经在非洲等地快速普及开。</p>
 <p>通讯网络也是如此，不管是物理层的<a href="https://en.wikipedia.org/wiki/Wireless_ad_hoc_network">无线网状网络</a>，还是软件层的通讯协议。这些不同的技术和思想拥有类似的优势、指向类似的社会组织结构，也许能够在权力富集之前，为剩下一半人类锁定一个更好的起点。</p>
 <figure>
-<img src="../../%E5%9B%BE%E7%89%87/21dc76f6-f406-41e5-bc00-d3987dd1803c.png" data-placeholder-src="../../%E5%9B%BE%E7%89%87/21dc76f6-f406-41e5-bc00-d3987dd1803c.png" width="1000" height="347" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAAHABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDYHU9aBAO/WgYo6UAf/9k=);background-size:cover" alt="" />
+<img src="../../image/assets/21dc76f6-f406-41e5-bc00-d3987dd1803c.png" data-placeholder-src="../../image/assets/21dc76f6-f406-41e5-bc00-d3987dd1803c.png" width="1000" height="347" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAAHABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDYHU9aBAO/WgYo6UAf/9k=);background-size:cover" alt="" />
 <figcaption>www为代表的互联网是“地址”中心的：入口是地址，是一个地方，可以存放东西、也可以被拥有；IPFS和Dat为代表的协议是内容中心的：入口是内容，指向数据的哈希值或者发布者的公钥；而SSB则是人类中心：每一个入口都是你认识的人（除了Pub）。前者造就了繁荣的互联网，而后两者有可能会让它更加去中心化。 https://staltz.com/a-plan-to-rescue-the-web-from-the-internet.html</figcaption>
 </figure><h2 id="人类中心与网络主权">人类中心与网络主权</h2>
 <p>SSB的创新之一，是数据存储的权责界定。在一个分布式网络中，用户需要保存自己的数据，以便他人调用；同时也需要保存他人的数据，以便数据主人不在线的时候能够读取。</p>
 <p>保存他人的数据牵扯一系列问题，比如电脑病毒或者违法内容。所以，保存数据是一种信任：信任我的朋友和朋友的朋友，相信他们的创作值得保存。</p>
 <p>这种信任关系，其实是一种通用的验证机制：以人际关系为中心，通过关系网络来量化信任。而这种验证机制，正是PGP加密算法在三十多年前实现的“<a href="https://en.wikipedia.org/wiki/Web_of_trust">信任网络</a>”。</p>
 <figure>
-<img src="../../%E5%9B%BE%E7%89%87/8ef4fb5d-ae3f-4e10-826b-169b0762d555.png" data-placeholder-src="../../%E5%9B%BE%E7%89%87/8ef4fb5d-ae3f-4e10-826b-169b0762d555.png" width="1400" height="914" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAANABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwB1lEssp38hRnHrUolIt3EETQsQgUqMggYptFNGZSIHRSNE4ZDg0ATTXkkqbMKoPXHei42yvQI//9k=);background-size:cover" alt="" />
+<img src="../../image/assets/8ef4fb5d-ae3f-4e10-826b-169b0762d555.png" data-placeholder-src="../../image/assets/8ef4fb5d-ae3f-4e10-826b-169b0762d555.png" width="1400" height="914" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAANABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwB1lEssp38hRnHrUolIt3EETQsQgUqMggYptFNGZSIHRSNE4ZDg0ATTXkkqbMKoPXHei42yvQI//9k=);background-size:cover" alt="" />
 <figcaption>SSB中每个用户可以计算自己与其他用户在网络中相隔几层，类似于PGP中不同的信任度。每个客户端可以据此决定如何对待其他用户的数据，比如是显示、保存、还是忽略。</figcaption>
 </figure>
 <p>PGP中信任网络的思路，或者说世界观，离不开它产生的时代背景。八十年代冷战期间，全人类处于核战的威胁下。越来越多民众意识到，更值得信任的是跨越国界的手足，而不是坐拥权力的中心。</p>
@@ -660,7 +699,7 @@ a.comment-author:hover {
 <p>这是因为，在各国剑拔弩张的时候，不信任中心的不仅有民众，还有其他政府。所以许多国家才需要建立自己的域名根服务器，保证自己的“网络主权”，让互联网在与美国断开之后还能正常运作。<a href="https://books.google.com/books?id=W0QzDwAAQBAJ&amp;pg=PA122&amp;lpg=PA122&amp;dq=The+Virtual+Weapon+and+International+Order+anarchist&amp;source=bl&amp;ots=KDk5BkTlh-&amp;sig=ACfU3U37rxV5ABVFT6XIH1z-nJAJc2m7bQ&amp;hl=en&amp;sa=X&amp;ved=2ahUKEwjM75bl773oAhULeKwKHWgxC2sQ6AEwA3oECAsQAQ#v=snippet&amp;q=anarchy&amp;f=false">国际关系是实实在在的无政府结构</a>，也必定会像无政府主义思潮一样，反对全球中心化的认证体系。</p>
 <p>在“网络主权”这个议题进入更多人视野的时候，许多兼容信任网络与物理世界主权结构的构想也开始逐渐成型。在信任网络中，单个节点不再重要，也不用担心被任何机构控制；同时，任何一个节点也可以成为中心，受到其他节点的主动信赖。</p>
 <figure>
-<img src="../../%E5%9B%BE%E7%89%87/69863c74-93e9-4383-95e8-beb3ab7fd630.png" data-placeholder-src="../../%E5%9B%BE%E7%89%87/69863c74-93e9-4383-95e8-beb3ab7fd630.png" width="1400" height="637" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAAJABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDX/iOfwxQAdSRmgBUAVQBnA45oADQAg6mmIdSGf//Z);background-size:cover" alt="" />
+<img src="../../image/assets/69863c74-93e9-4383-95e8-beb3ab7fd630.png" data-placeholder-src="../../image/assets/69863c74-93e9-4383-95e8-beb3ab7fd630.png" width="1400" height="637" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAAJABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDX/iOfwxQAdSRmgBUAVQBnA45oADQAg6mmIdSGf//Z);background-size:cover" alt="" />
 <figcaption>信任网络的结构可以和现实世界的主权兼容：公立机构可以认证值得信赖的公立或者私立机构，而用户可以将信任代理给公立机构，也可以自行选择。 https://bblfish.net/blog/2018/05/16/webOfNations.html</figcaption>
 </figure>
 <p>比如在一个称为<a href="https://bblfish.net/blog/2018/05/16/webOfNations.html">Institutional Web</a>的构想中，公立机构可以相互认证、并认证可靠的私立机构，而用户可以自由选择是否将信任委托给这些机构。这一方面提供了符合物理世界主权结构的“默认选项”，同时也给个人的信任选择留出了自由空间。</p>
@@ -685,7 +724,7 @@ a.comment-author:hover {
 <p>这种人与人之间的去中心化信任，正是类PGP信任网络已经解决了的问题。发源于法国的<a href="http://www.openudc.org/">OpenUDC</a>与<a href="https://duniter.org/en/">Duniter</a>项目，便基于类PGP的信任网络设计了电子货币，构建了边界明确的生产共同体，并且实现了一种形式的基本收入。</p>
 <p>当一个新的用户加入这个网络时，需要先获得其他老用户的认证。要求的认证数量可以由系统调整：网络较小、对信任需求很高时，可以要求加入者获得所有用户的认证；而网络较大、信任分散时，可以只获得一部分用户的认证。</p>
 <figure>
-<img src="../../%E5%9B%BE%E7%89%87/bd9fe5ad-59d0-4d73-9c66-db0faa2dfff2.png" data-placeholder-src="../../%E5%9B%BE%E7%89%87/bd9fe5ad-59d0-4d73-9c66-db0faa2dfff2.png" width="1400" height="904" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAANABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwC2ZFVypX0qrk2JSFAzgUxGa88fmP8Au84PXFFii0oUEkjJPvSsK5IZcfw/rTEZczgTyErnLZ61JaP/2Q==);background-size:cover" alt="" />
+<img src="../../image/assets/bd9fe5ad-59d0-4d73-9c66-db0faa2dfff2.png" data-placeholder-src="../../image/assets/bd9fe5ad-59d0-4d73-9c66-db0faa2dfff2.png" width="1400" height="904" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAANABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwC2ZFVypX0qrk2JSFAzgUxGa88fmP8Au84PXFFii0oUEkjJPvSsK5IZcfw/rTEZczgTyErnLZ61JaP/2Q==);background-size:cover" alt="" />
 <figcaption>Duniter的主创在解释信任网络的规则，目前参与者已经遍布法国。</figcaption>
 </figure>
 <p>相比比特币，Duniter的用户之间已经建立了信任关系，矿工之间也不再需要竞争算力来维护账本。完整节点可以通过Raspberry Pi等小机器运行，大大节省了电力、降低了门槛。</p>
@@ -702,7 +741,7 @@ a.comment-author:hover {
 <p>CIC在内部采用一个叫做eco的货币，基于称为<a href="https://en.wikipedia.org/wiki/Local_exchange_trading_system">LETS</a>的一种类<a href="https://en.wikipedia.org/wiki/Time-based_currency">时间银行</a>货币系统。LETS设计于八十年代，与很多社区货币一样，为交换劳动力而设计，但难以像法币或者公链电子货币一样成为资本，也难以成为跨地域通行的货币。</p>
 <p>而从14年起，CIC创始团队的一部分人发起了FairCoop项目，开始尝试将CIC的经验全球化。FairCoop意图连接全球合作社，并像这几年的许多项目一样，发行了基于区块链的电子货币，起名FairCoin，为了“<a href="https://wiki.p2pfoundation.net/FairCoop">向外汇市场注入合作社的基因</a>”。</p>
 <figure>
-<img src="../../%E5%9B%BE%E7%89%87/cbe4ed3b-7102-4eee-af28-6b0465e06243.jpg" data-placeholder-src="../../%E5%9B%BE%E7%89%87/cbe4ed3b-7102-4eee-af28-6b0465e06243.jpg" width="800" height="566" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAAOABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDVY8lMnn8P1oAUY6gn8aAHKcjtQAbec0AIExnoAfSgBVXaoBOfegD/2Q==);background-size:cover" alt="" />
+<img src="../../image/cbe4ed3b-7102-4eee-af28-6b0465e06243.jpg" data-placeholder-src="../../image/cbe4ed3b-7102-4eee-af28-6b0465e06243.jpg" width="800" height="566" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAAOABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDVY8lMnn8P1oAUY6gn8aAHKcjtQAbec0AIExnoAfSgBVXaoBOfegD/2Q==);background-size:cover" alt="" />
 <figcaption>FairCoop与FairCoin在全球范围内串联起来的软件与合作社生态。</figcaption>
 </figure>
 <p>某种意义上，FairCoin算是一种许可链，只不过这种“许可”不是中心化的，而是基于合作社之间的信任网络。与OpenUDC或者Duniter不同，FairCoin通过信任网络来验证管理员，一种类似矿工的角色，但并不验证普通使用者。</p>
@@ -724,7 +763,7 @@ a.comment-author:hover {
 
             
         </article>
-        <section class="moss-comments" id="moss-comments" data-built-at="2026-03-15T16:52:01.732Z">
+        <section class="moss-comments" id="moss-comments" data-built-at="2026-03-17T16:27:21.214Z">
   <details>
     <summary class="comments-toggle"><svg class="comments-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></svg><span>13条评论</span><svg class="comments-chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></summary>
     <div class="comment-form-slot" id="default-form-slot"><form class="comment-form" id="moss-comment-form">

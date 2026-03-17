@@ -11,7 +11,7 @@
     <meta property="og:site_name" content="刘果">
     <meta property="og:description" content="离开红杉林继续向北，俄勒冈的海岸线在眼前展开。人烟更稀少了；海岸线上无尽的开阔与荒芜，时不时一座孤独的灯塔。">
     <meta property="article:published_time" content="2025-12-03T01:27:43.957Z">
-    <meta property="og:image" content="/图片/3cdf3c4e-b48c-4b4c-993a-362683b016bc.jpg">
+    <meta property="og:image" content="/image/photography/3cdf3c4e-b48c-4b4c-993a-362683b016bc.jpg">
     <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -20,7 +20,7 @@
   "url": "/writings/useless-journey/the-real-journey/",
   "description": "离开红杉林继续向北，俄勒冈的海岸线在眼前展开。人烟更稀少了；海岸线上无尽的开阔与荒芜，时不时一座孤独的灯塔。",
   "datePublished": "2025-12-03T01:27:43.957Z",
-  "image": "/图片/3cdf3c4e-b48c-4b4c-993a-362683b016bc.jpg",
+  "image": "/image/photography/3cdf3c4e-b48c-4b4c-993a-362683b016bc.jpg",
   "publisher": {
     "@type": "Organization",
     "name": "刘果"
@@ -28,9 +28,8 @@
 }
 </script>
     <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
-    <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml">
-    <script data-goatcounter="https://guo.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
     
+    <script data-goatcounter="https://guo.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
     <link rel="stylesheet" href="/style.css?v=16bac62be9f5c45e">
     <style class="moss-comments-style">/* ==========================================================================
    moss Comments Plugin - Styles
@@ -528,35 +527,49 @@ a.comment-author:hover {
 </style>
 <style class="moss-review-style">/* Review plugin — header and colophon styles
  * Uses moss design tokens. Works in light and dark mode.
+ * Side-by-side layout on all screen sizes (matches collection-cover pattern).
  */
 
+/* Header — cover + title/subtitle/creator */
 .review-header {
   display: flex;
+  gap: var(--moss-space-lg, 2rem);
   align-items: flex-start;
-  gap: 12px;
   margin: 1rem 0 2rem;
 }
 
 .review-cover {
-  width: 80px;
+  width: 150px;
+  max-width: 30%;
   height: auto;
   object-fit: cover;
-  border-radius: 2px;
+  border-radius: 4px;
   flex-shrink: 0;
+  margin: 0; /* Override global img margin for flex alignment */
 }
 
 .review-meta {
+  flex: 1;
+  min-width: 0;
   display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 0;
-  font-size: 0.95em;
-  color: var(--moss-color-muted, #666);
-  padding-top: 4px;
+  flex-direction: column;
+  gap: 0.25rem;
 }
 
-.review-creator {
-  font-weight: 500;
+.review-meta-title {
+  font-weight: 600;
+  font-size: 1.05em;
+  color: var(--moss-color-text, #333);
+}
+
+.review-meta-subtitle {
+  font-size: 0.9em;
+  color: var(--moss-color-muted, #666);
+}
+
+.review-meta-creator {
+  font-size: 0.9em;
+  color: var(--moss-color-muted, #666);
 }
 
 .review-sep {
@@ -564,30 +577,64 @@ a.comment-author:hover {
   margin: 0 0.15em;
 }
 
-/* Colophon */
+/* Colophon — card with cover + details */
 .review-colophon {
+  display: flex;
+  gap: var(--moss-space-lg, 2rem);
+  align-items: flex-start;
   margin-top: 3rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid var(--moss-color-border, #e0e0e0);
+  padding: 1.25rem;
+  background: var(--moss-color-surface, #f8f8f8);
+  border-radius: 8px;
   font-size: 0.9em;
   color: var(--moss-color-muted, #666);
+}
+
+.review-colophon-cover {
+  width: 150px;
+  max-width: 30%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 4px;
+  flex-shrink: 0;
+  margin: 0; /* Override global img margin for flex alignment */
+}
+
+.review-colophon-details {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.review-colophon-title {
+  font-weight: 600;
+  color: var(--moss-color-text, #333);
+  font-size: 1.05em;
+}
+
+.review-colophon-subtitle {
+  font-size: 0.9em;
+  color: var(--moss-color-muted, #666);
+}
+
+.review-colophon-identity {
+  font-size: 0.95em;
 }
 
 .review-rating {
   font-size: 1.2em;
   color: var(--moss-color-accent, #c9a84c);
-  margin-bottom: 0.5rem;
   letter-spacing: 0.05em;
 }
 
 .review-community-rating {
   font-size: 0.85em;
-  margin-bottom: 0.5rem;
 }
 
 .review-biblio {
-  margin-bottom: 0.75rem;
-  line-height: 1.6;
+  line-height: 1.5;
 }
 
 .review-links a {
@@ -597,14 +644,6 @@ a.comment-author:hover {
 
 .review-links a:hover {
   text-decoration: underline;
-}
-
-/* Mobile: stack cover above meta */
-@media (max-width: 32rem) {
-  .review-header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
 }
 </style>
 </head>
@@ -622,7 +661,7 @@ a.comment-author:hover {
             <h1 class="article-title">真正的旅程</h1>
             <p><span class="date">2025 · 12 · 3</span></p>
             
-            <p><img src="../../../%E5%9B%BE%E7%89%87/d9512f2d-fdcf-4a22-b1d5-340f74ddedae.jpg" data-placeholder-src="../../../%E5%9B%BE%E7%89%87/d9512f2d-fdcf-4a22-b1d5-340f74ddedae.jpg" width="1366" height="910" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAANABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwC48pVCQpY+gpgUJ9RkjOBDg+5ouIqHUbkn+H8qLhY0hKcUhld2EjfMM4piGyKGcnA5oA//2Q==);background-size:cover" alt="" /></p>
+            <p><img src="../../../image/d9512f2d-fdcf-4a22-b1d5-340f74ddedae.jpg" data-placeholder-src="../../../image/d9512f2d-fdcf-4a22-b1d5-340f74ddedae.jpg" width="1366" height="910" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAANABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwC48pVCQpY+gpgUJ9RkjOBDg+5ouIqHUbkn+H8qLhY0hKcUhld2EjfMM4piGyKGcnA5oA//2Q==);background-size:cover" alt="" /></p>
 <p>离开红杉林继续向北，俄勒冈的海岸线在眼前展开。人烟更稀少了；海岸线上无尽的开阔与荒芜，时不时一座孤独的灯塔。</p>
 <p>越过俄勒冈，我们进入华盛顿。太平洋西北地区，乌云多了起来、阴天多了起来，河流和滩涂也多了起来。路过大桥、路过卵石滩，也路过一片片湿地，一眼望不到边。湿地里蓝绿色的草甸连片，大地仿佛是只毛茸茸的巨兽，匍匐在水中，蜿蜒到天际。</p>
 <p>这里和加州北部一样，地处西风带，吹拂着太平洋来的风。山脉将风中的水汽抬起，化作云雨。地球昼夜不息地向东，赤道的信风不停地向西。信风的两侧是西风带，反过向东，从大海吹向大陆的西海岸。在西风带的高纬度，还有高速气流，从热带流向两极，在平流层形成一条条高空中的河流。一条叫“菠萝特快车”的大气河流，把水分从盛产菠萝的夏威仪，一路送到华盛顿州，变成了冬天的阴雨绵绵。</p>
@@ -662,7 +701,7 @@ a.comment-author:hover {
 受阻的溪流才会歌唱</p>
 </blockquote>
 <p>不知该往何处去时，脚下的大地，就成为了此刻该在的地方。真正的旅程里，劳作会有、美景会有，陪伴也会有。</p>
-<p><img src="../../../%E5%9B%BE%E7%89%87/3cdf3c4e-b48c-4b4c-993a-362683b016bc.jpg" data-placeholder-src="../../../%E5%9B%BE%E7%89%87/3cdf3c4e-b48c-4b4c-993a-362683b016bc.jpg" width="1366" height="910" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAANABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwC5HfoRyGH4UCJFu4+cnA7cUANfULZGwXOfoaLgZPnuBnA/KpGKLhsE4FIBv2lj/CPyosM//9k=);background-size:cover" alt="" /></p>
+<p><img src="../../../image/photography/3cdf3c4e-b48c-4b4c-993a-362683b016bc.jpg" data-placeholder-src="../../../image/photography/3cdf3c4e-b48c-4b4c-993a-362683b016bc.jpg" width="1366" height="910" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAANABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwC5HfoRyGH4UCJFu4+cnA7cUANfULZGwXOfoaLgZPnuBnA/KpGKLhsE4FIBv2lj/CPyosM//9k=);background-size:cover" alt="" /></p>
 <nav class="series-nav">
   <div class="series-nav-links">
     <a href="/writings/useless-journey/beings-speak/index.html" class="series-nav-link series-nav-prev"><span class="series-nav-arrow">&lt;</span> <span class="series-nav-title">“如果人们在一个地方呆得足够久，那里的生灵也会开始向他们说话”</span></a>
@@ -674,7 +713,7 @@ a.comment-author:hover {
 </nav>
             
         </article>
-        <section class="moss-comments" id="moss-comments" data-built-at="2026-03-15T16:52:01.732Z">
+        <section class="moss-comments" id="moss-comments" data-built-at="2026-03-17T16:27:21.214Z">
   <details>
     <summary class="comments-toggle"><svg class="comments-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></svg><span>4条评论</span><svg class="comments-chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></summary>
     <div class="comment-form-slot" id="default-form-slot"><form class="comment-form" id="moss-comment-form">

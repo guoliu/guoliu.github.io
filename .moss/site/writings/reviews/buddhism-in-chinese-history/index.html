@@ -3,24 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>《中国历史中的佛教》笔记 - 刘果</title>
-    <meta name="description" content="从中国佛教的流变，看中国文化的变迁与规律">
+    <title>从融合到消散：两千年间的中国佛教 - 刘果</title>
+    <meta name="description" content="《中国历史中的佛教》笔记">
     <meta property="og:type" content="article">
-    <meta property="og:title" content="《中国历史中的佛教》笔记">
-    <meta property="og:url" content="/writings/buddhism-in-chinese-history/">
+    <meta property="og:title" content="从融合到消散：两千年间的中国佛教">
+    <meta property="og:url" content="/writings/reviews/buddhism-in-chinese-history/">
     <meta property="og:site_name" content="刘果">
-    <meta property="og:description" content="从中国佛教的流变，看中国文化的变迁与规律">
+    <meta property="og:description" content="《中国历史中的佛教》笔记">
     <meta property="article:published_time" content="2025-05-08T21:10:51.834Z">
-    <meta property="og:image" content="/图片/2de0c228-36c8-47ec-9f22-000af45b1943.jpg">
+    <meta property="og:image" content="/image/assets/2de0c228-36c8-47ec-9f22-000af45b1943.jpg">
     <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "《中国历史中的佛教》笔记",
-  "url": "/writings/buddhism-in-chinese-history/",
-  "description": "从中国佛教的流变，看中国文化的变迁与规律",
+  "headline": "从融合到消散：两千年间的中国佛教",
+  "url": "/writings/reviews/buddhism-in-chinese-history/",
+  "description": "《中国历史中的佛教》笔记",
   "datePublished": "2025-05-08T21:10:51.834Z",
-  "image": "/图片/2de0c228-36c8-47ec-9f22-000af45b1943.jpg",
+  "image": "/image/assets/2de0c228-36c8-47ec-9f22-000af45b1943.jpg",
   "publisher": {
     "@type": "Organization",
     "name": "刘果"
@@ -28,9 +28,8 @@
 }
 </script>
     <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
-    <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml">
-    <script data-goatcounter="https://guo.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
     
+    <script data-goatcounter="https://guo.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
     <link rel="stylesheet" href="/style.css?v=16bac62be9f5c45e">
     <style class="moss-comments-style">/* ==========================================================================
    moss Comments Plugin - Styles
@@ -528,35 +527,49 @@ a.comment-author:hover {
 </style>
 <style class="moss-review-style">/* Review plugin — header and colophon styles
  * Uses moss design tokens. Works in light and dark mode.
+ * Side-by-side layout on all screen sizes (matches collection-cover pattern).
  */
 
+/* Header — cover + title/subtitle/creator */
 .review-header {
   display: flex;
+  gap: var(--moss-space-lg, 2rem);
   align-items: flex-start;
-  gap: 12px;
   margin: 1rem 0 2rem;
 }
 
 .review-cover {
-  width: 80px;
+  width: 150px;
+  max-width: 30%;
   height: auto;
   object-fit: cover;
-  border-radius: 2px;
+  border-radius: 4px;
   flex-shrink: 0;
+  margin: 0; /* Override global img margin for flex alignment */
 }
 
 .review-meta {
+  flex: 1;
+  min-width: 0;
   display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 0;
-  font-size: 0.95em;
-  color: var(--moss-color-muted, #666);
-  padding-top: 4px;
+  flex-direction: column;
+  gap: 0.25rem;
 }
 
-.review-creator {
-  font-weight: 500;
+.review-meta-title {
+  font-weight: 600;
+  font-size: 1.05em;
+  color: var(--moss-color-text, #333);
+}
+
+.review-meta-subtitle {
+  font-size: 0.9em;
+  color: var(--moss-color-muted, #666);
+}
+
+.review-meta-creator {
+  font-size: 0.9em;
+  color: var(--moss-color-muted, #666);
 }
 
 .review-sep {
@@ -564,30 +577,64 @@ a.comment-author:hover {
   margin: 0 0.15em;
 }
 
-/* Colophon */
+/* Colophon — card with cover + details */
 .review-colophon {
+  display: flex;
+  gap: var(--moss-space-lg, 2rem);
+  align-items: flex-start;
   margin-top: 3rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid var(--moss-color-border, #e0e0e0);
+  padding: 1.25rem;
+  background: var(--moss-color-surface, #f8f8f8);
+  border-radius: 8px;
   font-size: 0.9em;
   color: var(--moss-color-muted, #666);
+}
+
+.review-colophon-cover {
+  width: 150px;
+  max-width: 30%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 4px;
+  flex-shrink: 0;
+  margin: 0; /* Override global img margin for flex alignment */
+}
+
+.review-colophon-details {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.review-colophon-title {
+  font-weight: 600;
+  color: var(--moss-color-text, #333);
+  font-size: 1.05em;
+}
+
+.review-colophon-subtitle {
+  font-size: 0.9em;
+  color: var(--moss-color-muted, #666);
+}
+
+.review-colophon-identity {
+  font-size: 0.95em;
 }
 
 .review-rating {
   font-size: 1.2em;
   color: var(--moss-color-accent, #c9a84c);
-  margin-bottom: 0.5rem;
   letter-spacing: 0.05em;
 }
 
 .review-community-rating {
   font-size: 0.85em;
-  margin-bottom: 0.5rem;
 }
 
 .review-biblio {
-  margin-bottom: 0.75rem;
-  line-height: 1.6;
+  line-height: 1.5;
 }
 
 .review-links a {
@@ -598,31 +645,31 @@ a.comment-author:hover {
 .review-links a:hover {
   text-decoration: underline;
 }
-
-/* Mobile: stack cover above meta */
-@media (max-width: 32rem) {
-  .review-header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-}
 </style>
 </head>
 <body class="">
     <header>
         <nav class="main-nav container">
             <div class="nav-content">
-                <div class="nav-left"><a href="/" class="site-name">刘果</a><span class="breadcrumb-separator">/</span><a href="/writings/" class="breadcrumb-segment">文字</a></div><div class="nav-right"><div class="nav-icons"><button class="theme-toggle" onclick="toggleTheme()" aria-label="切换深色模式" type="button" title="切换深色模式"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="1em" height="1em" fill="currentColor" stroke-linecap="round" class="theme-toggle__classic" viewBox="0 0 32 32"><clipPath id="theme-toggle__classic__cutout"><path d="M0-5h30a1 1 0 0 0 9 13v24H0Z"/></clipPath><g clip-path="url(#theme-toggle__classic__cutout)"><circle cx="16" cy="16" r="9.34"/><g stroke="currentColor" stroke-width="1.5"><path d="M16 5.5v-4"/><path d="M16 30.5v-4"/><path d="M1.5 16h4"/><path d="M26.5 16h4"/><path d="m23.4 8.6 2.8-2.8"/><path d="m5.7 26.3 2.9-2.9"/><path d="m5.8 5.8 2.8 2.8"/><path d="m23.4 23.4 2.9 2.9"/></g></g></svg></button></div></div>
+                <div class="nav-left"><a href="/" class="site-name">刘果</a><span class="breadcrumb-separator">/</span><a href="/writings/" class="breadcrumb-segment">文字</a><span class="breadcrumb-separator">/</span><a href="/writings/reviews/" class="breadcrumb-segment">书评</a></div><div class="nav-right"><div class="nav-icons"><button class="theme-toggle" onclick="toggleTheme()" aria-label="切换深色模式" type="button" title="切换深色模式"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="1em" height="1em" fill="currentColor" stroke-linecap="round" class="theme-toggle__classic" viewBox="0 0 32 32"><clipPath id="theme-toggle__classic__cutout"><path d="M0-5h30a1 1 0 0 0 9 13v24H0Z"/></clipPath><g clip-path="url(#theme-toggle__classic__cutout)"><circle cx="16" cy="16" r="9.34"/><g stroke="currentColor" stroke-width="1.5"><path d="M16 5.5v-4"/><path d="M16 30.5v-4"/><path d="M1.5 16h4"/><path d="M26.5 16h4"/><path d="m23.4 8.6 2.8-2.8"/><path d="m5.7 26.3 2.9-2.9"/><path d="m5.8 5.8 2.8 2.8"/><path d="m23.4 23.4 2.9 2.9"/></g></g></svg></button></div></div>
             </div>
         </nav>
     </header>
 
     <main>
         <article class="container">
-            <h1 class="article-title">《中国历史中的佛教》笔记</h1>
+            <h1 class="article-title">从融合到消散：两千年间的中国佛教</h1>
             <p><span class="date">2025 · 5 · 8</span></p>
-            
-            <p>最近在<a href="https://matters.town/a/1grnhtv0o343">西藏之家</a>的图书馆里，找到了一本小书，Arthur Wright（芮沃寿）的 <strong>Buddhism in Chinese History</strong>（《中国历史中的佛教》）。芮沃寿是耶鲁著名的历史学家，与哈佛的费正清同为美国学术界中国研究的奠基人。</p>
+            <footer class="review-colophon">
+  <img class="review-colophon-cover" src="/image/assets/2de0c228-36c8-47ec-9f22-000af45b1943.jpg" alt="Buddhism in Chinese History" loading="lazy">
+  <div class="review-colophon-details">
+    <div class="review-colophon-title">Buddhism in Chinese History</div>
+    <div class="review-colophon-identity">Arthur Wright · 1959</div>
+    <div class="review-biblio">Stanford University Press · 184 pages · ISBN 9780804705486</div>
+    <nav class="review-links"><a href="https://book.douban.com/subject/2442952/" target="_blank" rel="noopener">Douban</a><span class="review-sep"> · </span><a href="https://neodb.social/book/2duy7o4Z5ldiEaVN0jZBiA" target="_blank" rel="noopener">NeoDB</a></nav>
+  </div>
+</footer>
+            <p>最近在<a href="../../nyc-dharma-doors/yoga-in-tibetan-temple/">西藏之家</a>的图书馆里，找到了一本小书，Arthur Wright（芮沃寿）的 <strong>Buddhism in Chinese History</strong>（《中国历史中的佛教》）。芮沃寿是耶鲁著名的历史学家，与哈佛的费正清同为美国学术界中国研究的奠基人。</p>
 <p>这本小书出版于1957年，以佛教为线索串起了中国历史上的文化变迁，有许多有意思的观点和视角。这本书回应了我一段时间以来的两个疑问。</p>
 <p>在美国，我遇到许多研究佛教的人，也看见佛教逐渐融入城市居民的心智，成为身心灵文化的一部分。追溯其短短历史，我发美国的佛教影响多来自于日本、韩国、流亡藏人、越南和缅甸。历史上这些地区的佛教要么直接源于中国，要么极大受到了中国佛教、特别是禅宗的影响。但在美国文化中，我却很少看见中国佛教的踪迹。</p>
 <p>我虽然知道在近现代的中国，佛教和许多其他宗教、传统文化一样，遭受了毁灭性打击。但是，我依然能从当下中国的文字、故事、审美与世界观中，看到佛教的巨大影响。所以我不禁好奇，从五十年代到八十年代这三十年间，佛学不断从亚洲传往西方之时，中国的流派作为鼻祖，为何缺席。</p>
@@ -631,7 +678,7 @@ a.comment-author:hover {
 <p>这个悖论，也正是芮沃寿梳理中国佛教历史后得出的结论。芮沃寿认为，中国作为一个文化整体只是在遇到系统性的危机时，才会展现出对新思想的开放性，不管是春秋、战国，还是佛教扎根的东汉、三国。中国作为一个有着极强自我认同的文化，一直持续将自己重塑为一个完整、自洽的整体。只有当这个自洽被打破时，困局产生的裂缝才会成为新思想的空间；而在困局之后，对这个自洽整体的重塑又再次开始。以佛教作为例子，芮沃寿展现了这种重塑过程的肌理。</p>
 <p>也许其他有强烈自我认同感的文化，甚至个人，都是类似的：危机与困顿，往往是创新和成长的契机。文化的边界永远是模糊和流动的，危机与平顺，则成为了边界流动的节律。近代中国面临的危机，也正是这样的成长契机，使得自然科学、社会科学、民主观念、以及共产主义能够传入并扎根。而当下中国重回世界强国之列，也许意味着这不再是新思想扎根和发展的时代，而是重塑自洽整体的时代。不过，正如芮沃寿所言，历史不会以一种可预测的方式重复。</p>
 <p>北京大学出版社曾在2017年出版了中译本《中国历史中的佛教》，但因为我手边并没有该译本，以下摘抄中未能参考，但通过其他资料查证了相应史料。</p>
-<p><img src="../../%E5%9B%BE%E7%89%87/2de0c228-36c8-47ec-9f22-000af45b1943.jpg" data-placeholder-src="../../%E5%9B%BE%E7%89%87/2de0c228-36c8-47ec-9f22-000af45b1943.jpg" width="1366" height="2056" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAAUAA0DAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCGXyobeQht8p+8enfoKQFQ7SAQv6UAX5IgvnpdMoL8x8ZI/H+lAGdudBsI6diOlAFi/dmkDEnIwQaACdFAjcjczoGYn1oA/9k=);background-size:cover" alt="" /></p>
+<p><img src="../../../image/assets/2de0c228-36c8-47ec-9f22-000af45b1943.jpg" data-placeholder-src="../../../image/assets/2de0c228-36c8-47ec-9f22-000af45b1943.jpg" width="1366" height="2056" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAAUAA0DAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCGXyobeQht8p+8enfoKQFQ7SAQv6UAX5IgvnpdMoL8x8ZI/H+lAGdudBsI6diOlAFi/dmkDEnIwQaACdFAjcjczoGYn1oA/9k=);background-size:cover" alt="" /></p>
 <h2 id="一世纪：扎根与发展">一世纪：扎根与发展</h2>
 <p>芮沃寿在分析中国历史时借用了罗伯特·雷德菲尔德的理论，将精英阶层与农民阶层分开看待。佛教传入的过程，可以看成是这两层文化之间的动态。</p>
 <blockquote>
@@ -766,7 +813,7 @@ a.comment-author:hover {
 
             
         </article>
-        <section class="moss-comments" id="moss-comments" data-built-at="2026-03-15T16:52:01.732Z">
+        <section class="moss-comments" id="moss-comments" data-built-at="2026-03-17T16:27:21.214Z">
   <details>
     <summary class="comments-toggle"><svg class="comments-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></svg><span>1条评论</span><svg class="comments-chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></summary>
     <div class="comment-form-slot" id="default-form-slot"><form class="comment-form" id="moss-comment-form">

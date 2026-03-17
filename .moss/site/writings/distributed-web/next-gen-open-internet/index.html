@@ -11,7 +11,7 @@
     <meta property="og:site_name" content="刘果">
     <meta property="og:description" content="在互联网诞生之初，权力分布在每个参与者手中。人们以为每个参与者都有了自己的声音，言论自由迎来了新的时代。激进者如约翰·巴洛，甚至撰写了《赛博空间独立宣言》，宣告这场社会实验已拉开了大幕。">
     <meta property="article:published_time" content="2018-07-12T18:09:45.000Z">
-    <meta property="og:image" content="/图片/996a2021-b5c9-4a3b-b7c2-11ae232ea57b.jpg">
+    <meta property="og:image" content="/image/assets/996a2021-b5c9-4a3b-b7c2-11ae232ea57b.jpg">
     <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -20,7 +20,7 @@
   "url": "/writings/distributed-web/next-gen-open-internet/",
   "description": "在互联网诞生之初，权力分布在每个参与者手中。人们以为每个参与者都有了自己的声音，言论自由迎来了新的时代。激进者如约翰·巴洛，甚至撰写了《赛博空间独立宣言》，宣告这场社会实验已拉开了大幕。",
   "datePublished": "2018-07-12T18:09:45.000Z",
-  "image": "/图片/996a2021-b5c9-4a3b-b7c2-11ae232ea57b.jpg",
+  "image": "/image/assets/996a2021-b5c9-4a3b-b7c2-11ae232ea57b.jpg",
   "publisher": {
     "@type": "Organization",
     "name": "刘果"
@@ -28,9 +28,8 @@
 }
 </script>
     <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
-    <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml">
-    <script data-goatcounter="https://guo.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
     
+    <script data-goatcounter="https://guo.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
     <link rel="stylesheet" href="/style.css?v=16bac62be9f5c45e">
     <style class="moss-comments-style">/* ==========================================================================
    moss Comments Plugin - Styles
@@ -528,35 +527,49 @@ a.comment-author:hover {
 </style>
 <style class="moss-review-style">/* Review plugin — header and colophon styles
  * Uses moss design tokens. Works in light and dark mode.
+ * Side-by-side layout on all screen sizes (matches collection-cover pattern).
  */
 
+/* Header — cover + title/subtitle/creator */
 .review-header {
   display: flex;
+  gap: var(--moss-space-lg, 2rem);
   align-items: flex-start;
-  gap: 12px;
   margin: 1rem 0 2rem;
 }
 
 .review-cover {
-  width: 80px;
+  width: 150px;
+  max-width: 30%;
   height: auto;
   object-fit: cover;
-  border-radius: 2px;
+  border-radius: 4px;
   flex-shrink: 0;
+  margin: 0; /* Override global img margin for flex alignment */
 }
 
 .review-meta {
+  flex: 1;
+  min-width: 0;
   display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 0;
-  font-size: 0.95em;
-  color: var(--moss-color-muted, #666);
-  padding-top: 4px;
+  flex-direction: column;
+  gap: 0.25rem;
 }
 
-.review-creator {
-  font-weight: 500;
+.review-meta-title {
+  font-weight: 600;
+  font-size: 1.05em;
+  color: var(--moss-color-text, #333);
+}
+
+.review-meta-subtitle {
+  font-size: 0.9em;
+  color: var(--moss-color-muted, #666);
+}
+
+.review-meta-creator {
+  font-size: 0.9em;
+  color: var(--moss-color-muted, #666);
 }
 
 .review-sep {
@@ -564,30 +577,64 @@ a.comment-author:hover {
   margin: 0 0.15em;
 }
 
-/* Colophon */
+/* Colophon — card with cover + details */
 .review-colophon {
+  display: flex;
+  gap: var(--moss-space-lg, 2rem);
+  align-items: flex-start;
   margin-top: 3rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid var(--moss-color-border, #e0e0e0);
+  padding: 1.25rem;
+  background: var(--moss-color-surface, #f8f8f8);
+  border-radius: 8px;
   font-size: 0.9em;
   color: var(--moss-color-muted, #666);
+}
+
+.review-colophon-cover {
+  width: 150px;
+  max-width: 30%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 4px;
+  flex-shrink: 0;
+  margin: 0; /* Override global img margin for flex alignment */
+}
+
+.review-colophon-details {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.review-colophon-title {
+  font-weight: 600;
+  color: var(--moss-color-text, #333);
+  font-size: 1.05em;
+}
+
+.review-colophon-subtitle {
+  font-size: 0.9em;
+  color: var(--moss-color-muted, #666);
+}
+
+.review-colophon-identity {
+  font-size: 0.95em;
 }
 
 .review-rating {
   font-size: 1.2em;
   color: var(--moss-color-accent, #c9a84c);
-  margin-bottom: 0.5rem;
   letter-spacing: 0.05em;
 }
 
 .review-community-rating {
   font-size: 0.85em;
-  margin-bottom: 0.5rem;
 }
 
 .review-biblio {
-  margin-bottom: 0.75rem;
-  line-height: 1.6;
+  line-height: 1.5;
 }
 
 .review-links a {
@@ -597,14 +644,6 @@ a.comment-author:hover {
 
 .review-links a:hover {
   text-decoration: underline;
-}
-
-/* Mobile: stack cover above meta */
-@media (max-width: 32rem) {
-  .review-header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
 }
 </style>
 </head>
@@ -633,21 +672,21 @@ a.comment-author:hover {
 <p>剑桥分析所做的，是将用户信息收集、数据分析、精准广告投放三者结合了起来。首先，一个小程序邀请Facebook用户进行心理学测试，请求授权读取个人信息。小程序同时记录了用户好友们的信息，并借助关系网络延伸，<strong>最终通过27万名参与者搜集到了超过5千万用户数据</strong>。</p>
 <p>剑桥分析根据这些用户的性格分类建立模型，并根据模型将广告投放给目标用户。预先制作好的网页广告引导了用户对现实的认知，进而影响他们的选举偏好。</p>
 <figure>
-<img src="../../../%E5%9B%BE%E7%89%87/996a2021-b5c9-4a3b-b7c2-11ae232ea57b.jpg" data-placeholder-src="../../../%E5%9B%BE%E7%89%87/996a2021-b5c9-4a3b-b7c2-11ae232ea57b.jpg" width="1000" height="563" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAALABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCnCxRNrRZ5z97FIdhkqmYkrnKqMgnrTArsDn0/GgRswjbKcf3f6ihjJHYmHknkUgMU9aYj/9k=);background-size:cover" alt="" />
+<img src="../../../image/assets/996a2021-b5c9-4a3b-b7c2-11ae232ea57b.jpg" data-placeholder-src="../../../image/assets/996a2021-b5c9-4a3b-b7c2-11ae232ea57b.jpg" width="1000" height="563" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAALABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCnCxRNrRZ5z97FIdhkqmYkrnKqMgnrTArsDn0/GgRswjbKcf3f6ihjJHYmHknkUgMU9aYj/9k=);background-size:cover" alt="" />
 <figcaption>因为剑桥分析事件，Facebook CEO扎克伯格参与美国听证会，接受国会提问与质疑。图片来源Anderew Harnik。</figcaption>
 </figure>
 <p>媒体巨头操控政治生活的案例并不鲜见。十九世纪末，西联公司曾通过电报网络协助美国第十九届总统当选。2014年也有研究发现，Google对搜索结果的排序可以影响20%的中间选民，足以左右大选结果。</p>
 <p>但是，控制信息的平台结合大数据的分析能力，第一次让舆论控制变得如此容易。据英国Channel 4电视台报道，仅剑桥分析及其母公司SCL Group一家，就曾参与过捷克、乌克兰、巴西、肯尼亚、印度等国超过200次的竞选。<strong>其他具有社会资源的团体和个人，如今也可像剑桥分析一样，建立强大的宣传机器，影响人们的想法</strong>。</p>
 <p>这远不是警钟第一次敲响。不管是剑桥分析事件，2011年埃及政府切断互联网事件，屡禁不止的金融信息盗窃，还是俄国、中国、伊朗、土耳其等政府对民众进行的信息控制，究其原因，都在于现有网络依赖一个或多个中心服务器。第三方可通过域名污染、DDoS（拒绝服务攻击）等方式阻断用户与服务器的链接，服务器也可对信息进行控制、筛选甚至跟踪。</p>
 <figure>
-<img src="../../../%E5%9B%BE%E7%89%87/ef00feaa-34fe-49c2-ac17-f532f390ae7b.png" data-placeholder-src="../../../%E5%9B%BE%E7%89%87/ef00feaa-34fe-49c2-ac17-f532f390ae7b.png" width="1400" height="752" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAALABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDJj6HIoGh4IBPFICFvvH60xDl6UAOBO1qBkbfeP1oEf//Z);background-size:cover" alt="" />
+<img src="../../../image/ef00feaa-34fe-49c2-ac17-f532f390ae7b.png" data-placeholder-src="../../../image/ef00feaa-34fe-49c2-ac17-f532f390ae7b.png" width="1400" height="752" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAALABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDJj6HIoGh4IBPFICFvvH60xDl6UAOBO1qBkbfeP1oEf//Z);background-size:cover" alt="" />
 <figcaption>插画：十方，https://www.douban.com/people/a33862560/</figcaption>
 </figure><h2 id="龙与屠龙者"><strong>龙与屠龙者</strong></h2>
 <p>互联网并非一直如此。我们所熟知的互联网发源于万维网（World Wide Web），由蒂姆·伯纳斯-李（Timothy Berners-Lee）在欧洲核子研究组织（CERN）工作时设计，最早用于科学家之间传输数据，第一台服务器于1991年上线。</p>
 <p>万维网使用Http协议（HyperText Transfer Protocol，超文本传输协议）进行数据传输。这项协议预设了服务器与客户端的分离：服务器负责准备数据（例如网页），客户端浏览器负责接收和处理数据（例如渲染网页代码）。</p>
 <p>这样的分离在早期不是问题。早期参与者都有资深的技术背景，足以建立个人服务器，加入分布式内容网络，形成了互联网早期独特而繁荣的亚文化。这种繁荣使得互联网扩散进入大众的生活，同时运营网站与服务器成为少数公司的职能，数据与权力在不知不觉中聚合了起来。</p>
 <figure>
-<img src="../../../%E5%9B%BE%E7%89%87/f219159f-6218-4940-b05b-234cb5c9957e.png" data-placeholder-src="../../../%E5%9B%BE%E7%89%87/f219159f-6218-4940-b05b-234cb5c9957e.png" width="1400" height="798" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAALABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCnpdtHczusqkgLkYOO9AGjPpdqkEjKjZVSR8x9KAMCgByuyHKMVPscUAOM8pGDK5B/2jQBHQB//9k=);background-size:cover" alt="" />
+<img src="../../../image/f219159f-6218-4940-b05b-234cb5c9957e.png" data-placeholder-src="../../../image/f219159f-6218-4940-b05b-234cb5c9957e.png" width="1400" height="798" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAALABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCnpdtHczusqkgLkYOO9AGjPpdqkEjKjZVSR8x9KAMCgByuyHKMVPscUAOM8pGDK5B/2jQBHQB//9k=);background-size:cover" alt="" />
 <figcaption>不同结构的网络形态，从左到右为中心化、去中心化与分布式。目前Facebook、Google、微信、淘宝等平台提供的服务都是中心化的，平台作为中心节点，连接用户。而分布式网络规避了中心化，这样的优势在于，即便任何节点出现问题，剩下的节点也可以绕开该节点重新组建，网络畅通无阻。图片引自Paul Baran (1964)。</figcaption>
 </figure>
 <p>这种权力的聚合在互联网早期曾被人们预料到，也曾被互联网的先行者们极力抵制。但在2000年之后，Amazon、Google、Oracle及阿里巴巴等公司云服务兴起，权力的集中与聚合开始加速。</p>
@@ -663,7 +702,7 @@ a.comment-author:hover {
 <h2 id="分布式存储的复兴"><strong>分布式存储的复兴</strong></h2>
 <p>分布式互联网所需的储存技术，实际上与P2P（点对点）文件传输系统相同。无论是被称作“暗网”的Freenet、I2P和ZeroNet，还是用于文件下载的BitTorrent、ed2k（电驴）、kad网络和快播，都是通过用户间的直接数据交换来传递，极少依赖服务器。P2P网络曾在2009年占到互联网流量的43%-70%，抵达巅峰。然而近十年，随着视频网站的兴起和版权意识的提高，这一比例不断走低。</p>
 <figure>
-<img src="../../../%E5%9B%BE%E7%89%87/0575e14f-38cd-4d00-92ff-2c6bf41e7085.gif" data-placeholder-src="../../../%E5%9B%BE%E7%89%87/0575e14f-38cd-4d00-92ff-2c6bf41e7085.gif" width="800" height="600" loading="lazy" alt="" />
+<img src="../../../image/assets/0575e14f-38cd-4d00-92ff-2c6bf41e7085.gif" data-placeholder-src="../../../image/assets/0575e14f-38cd-4d00-92ff-2c6bf41e7085.gif" width="800" height="600" loading="lazy" alt="" />
 <figcaption>(matters目前不支持gif，动图可移步http://perspiceremagazine.org/images/next-open-internet/6.gif)    大部份P2P系统采用DHT数据结构，让节点不依赖中心服务器就能找寻其他节点。当一个节点试图寻找一份文件时，会向临近的节点广播文件指纹（hash），请求协助和找寻更多节点。找到拥有文件的节点后，两个节点可以建立连接、开始下载。图片来源：http://www.bittorrent.com/</figcaption>
 </figure>
 <p>通过<strong>分布式哈希表</strong>（DHT，distributed hash table）技术，分布式系统里的任何节点仅需知道少数邻近节点的地址，就可通过这些节点不断向外搜索其他相应节点，最终获取相关信息。这样的网络具有更强的可塑性，任何节点出问题都无法影响整体网络运作，同时再多节点加入也不会影响网络的传输及寻址效率。</p>
@@ -673,7 +712,7 @@ a.comment-author:hover {
 <p>2017年10月，西班牙加泰罗尼亚地区决定针对独立举行全民公投，西班牙政府封锁了所有加泰罗尼亚域名的网站，阻止公投进行。但加泰罗尼亚政府与民众将投票网站建立在了分布式网络之中，最后仍有超过40%的公民成功参与了投票。</p>
 <p>这两次反封锁行动采用的都是IPFS（InterPlanetary File Syste9m，星际文件系统）网络。这个漫画般的名字一方面是对计算机科学家Joseph Licklider的致敬：Joseph Licklider在Licklider担任美国国防高级研究计划局主任时，曾提出“星系间计算网络”（InterGalactic Computer Network），最终成为了世界上第一个运营的封包交换网络，全球互联网始祖ARPANET（由美国国防部开发，1969年11年正式投入运行）。另一方面，这个名称也昭示了IPFS的野心：为人们提供可靠且高效的数据传输方式，即便人类移民火星，仍能在星际间传输数据。</p>
 <figure>
-<img src="../../../%E5%9B%BE%E7%89%87/8dbe8743-38e6-44ad-9652-432b073be71a.png" data-placeholder-src="../../../%E5%9B%BE%E7%89%87/8dbe8743-38e6-44ad-9652-432b073be71a.png" width="1400" height="752" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAALABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCramNLUl1LbuRx0IpiARSTBmSMcc8jGaAKc5YzMXUK3cDpSGIjsvRiMUAXbWeQRAB6AKc5LTMT1zQB/9k=);background-size:cover" alt="" />
+<img src="../../../image/assets/8dbe8743-38e6-44ad-9652-432b073be71a.png" data-placeholder-src="../../../image/assets/8dbe8743-38e6-44ad-9652-432b073be71a.png" width="1400" height="752" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAALABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCramNLUl1LbuRx0IpiARSTBmSMcc8jGaAKc5YzMXUK3cDpSGIjsvRiMUAXbWeQRAB6AKc5LTMT1zQB/9k=);background-size:cover" alt="" />
 <figcaption>加泰罗尼亚地区的技术高手们汇聚巴塞罗那，通过IPFS寻找绕开封锁的办法。图片引自 https://github.com/ipfs/community/issues/270</figcaption>
 </figure>
 <p>IPFS的野心远不止于突破封锁，它的最终理想是将分布式存储变为计算机文件系统中的一部分。这个项目想要解决的是目前互联网数据传输的根本问题：数据过分依赖单一节点，传输效率低下；数据未能有效加密，用户隐私无法得到保障；网页与链接常常在数天后失效，内容再也无法提取，人类历史也随之消亡。</p>
@@ -681,7 +720,7 @@ a.comment-author:hover {
 <p>这种文件指纹又被称为hash，是哈希函数的计算结果。哈希函数的作用类似于数字摘要，将任意长度的数据转换为固定长度的字符串。同时，只要原数据发生任何改变，计算出的hash都会不同。以hash作为网址意味着，同样的网址一定会得到同一个文件，网页链接永远可靠，所以IPFS也被称作“永久网络”（Permanent Web）。</p>
 <p>一个文件的hash可以和另一个文件加和之后，进行哈希函数计算，形成第二个hash。如此一来，不同的文件可以通过hash相互连接成文件树，大文件也可以分块后再串在一起。这种结构被称作哈希树（或者默克尔树，Merkle Tree），这是一种在分布式系统中逐渐开始流行的数据结构。不管是常用的代码管理工具git，遍布世界的Bittorent，还是各色各样的区块链，都是某种形式的哈希树，能够直接储存于IPFS网络中，高效地识别和调用。</p>
 <figure>
-<img src="../../../%E5%9B%BE%E7%89%87/f1a05cc2-cd41-47ca-9b8c-e3ef68d98847.png" data-placeholder-src="../../../%E5%9B%BE%E7%89%87/f1a05cc2-cd41-47ca-9b8c-e3ef68d98847.png" width="1400" height="798" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAALABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDHHQ8ZoAUbc/d4+tADaACgABI6GgBKAP/Z);background-size:cover" alt="" />
+<img src="../../../image/f1a05cc2-cd41-47ca-9b8c-e3ef68d98847.png" data-placeholder-src="../../../image/f1a05cc2-cd41-47ca-9b8c-e3ef68d98847.png" width="1400" height="798" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAALABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDHHQ8ZoAUbc/d4+tADaACgABI6GgBKAP/Z);background-size:cover" alt="" />
 <figcaption>IPFS（左上）、Bittorrent（中上）、git（右上）、比特币（左下）、以太坊（右下）都是某种形式的哈希树，天然适合以同样的方式进行存储和传输。图片来源：IPFS主创Juan Benet演讲PPT。</figcaption>
 </figure>
 <p>既然是分布式储存，数据就也需要一定的“冗余度”，保证网络中有多个拷贝。同时，需要有一些节点长期在线，保持数据可读。为了解决这个问题，IPFS创造了电子货币Filecoin，让用户可以通过Filecoin来交易各自的存储空间，提供缓存节点。这同时创造了一个基于区块链的云存储市场，有望和亚马逊、Google及阿里巴巴等云服务商竞争。</p>
@@ -691,7 +730,7 @@ a.comment-author:hover {
 <p>Dat Protocal的贡献者和用户大都是科研工作者，致力于科研数据和文献的自由传播。Dat Project建立的机构Code for Science and Society（CSS），致力于通过软件促进科研与社会公益。CSS只接受如Knight Foundation和Alfred Sloan Foundation这些公益基金的捐赠，核心成员通过自己其他的全职工作支持项目开发。就连推崇的前端框架，也避开了React、Angular和Vue这些有大公司背景的项目，而选择了Choo.js这样一个小众但是轻量、高效的框架。</p>
 <p>IPFS采用内容寻址的麻烦之处在于，更新内容也需要更新hash，动态网页需要额外的指针来跟踪不断变化的地址。Dat Protocal的寻址方式则把重心放在发布者上：文件的地址本身是发布者的公钥，而文件内容由发布者的私钥加密与签署，拥有地址的用户可以解密并验证文件来源。</p>
 <figure>
-<img src="../../../%E5%9B%BE%E7%89%87/e010b991-cd10-451b-8c87-b56a76c00715.png" data-placeholder-src="../../../%E5%9B%BE%E7%89%87/e010b991-cd10-451b-8c87-b56a76c00715.png" width="1400" height="752" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAALABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCjpcaS3irIAVweozQJ7Gle2sCWcrCJEYA4wBnrSBMwaYx8UrxPvjOG9cUCaT3JXvbmRCjykqeowKBlegD/2Q==);background-size:cover" alt="" />
+<img src="../../../image/e010b991-cd10-451b-8c87-b56a76c00715.png" data-placeholder-src="../../../image/e010b991-cd10-451b-8c87-b56a76c00715.png" width="1400" height="752" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAALABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCjpcaS3irIAVweozQJ7Gle2sCWcrCJEYA4wBnrSBMwaYx8UrxPvjOG9cUCaT3JXvbmRCjykqeowKBlegD/2Q==);background-size:cover" alt="" />
 <figcaption>通过非对称加密，用户可以生成一对字符串：私钥和公钥。私钥和公钥的特性在于：私钥可以用来加密一段数据，而公钥则可以解密这段数据。例如上图中，Alice有一段只有自己知道的私钥，和一段她的联系人都知道的公钥。当Alice想要向Bob发送一段重要信息时，她可以把这段信息加密后传给Bob，Bob收到后可以用公钥解密。这样，既避免了信息被拦截和阅读，也验证了发送者的身份。</figcaption>
 </figure>
 <p>尽管只投入了很少的精力与人力，Dat Protocal生态系统依然贡献了许多高质量的组件，如分布式网盘Hyperdrive，同时Dat网络之中也有了一些高质量的应用，例如Sciencefair（一个使得科研工作者能够绕开版权限制，直接点对点共享文献的桌面应用）。相比IPFS，Dat Project的这种构架更适合实时交互和流媒体传播。比如，通过Dat Project实现的Hyebercast项目，足以让用户之间不依赖服务器即可直接进行视频通话。</p>
@@ -738,18 +777,10 @@ a.comment-author:hover {
 <p>不过，一小部分希望在天空翱翔的人们，带来了飞机；一小部分希望自由交换信息的人们，带来了互联网；另一小部分希望进行自由交易的人们，带来了比特币浪潮。也许在警钟无数次敲响后，我们会在某天看到一个真正分布式的互联网。
 <img src="../../images/next-open-internet/12.webp" data-placeholder-src="../../images/next-open-internet/12.webp" width="800" height="600" loading="lazy" alt="" />
 插画：十方，https://www.douban.com/people/a33862560/</p>
-<nav class="series-nav">
-  <div class="series-nav-links">
-    <span class="series-nav-link series-nav-prev empty"></span>
-    <a href="/writings/distributed-web/fake-news-and-markets/index.html" class="series-nav-link series-nav-next"><span class="series-nav-title">假新闻与市场</span> <span class="series-nav-arrow">&gt;</span></a>
-  </div>
-  <div class="series-nav-collection-row">
-    <a href="/writings/distributed-web/index.html" class="series-nav-collection">分布式信息网络</a>
-  </div>
-</nav>
+
             
         </article>
-        <section class="moss-comments" id="moss-comments" data-built-at="2026-03-15T16:52:01.732Z">
+        <section class="moss-comments" id="moss-comments" data-built-at="2026-03-17T16:27:21.214Z">
   <details>
     <summary class="comments-toggle"><svg class="comments-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></svg><span>10条评论</span><svg class="comments-chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></summary>
     <div class="comment-form-slot" id="default-form-slot"><form class="comment-form" id="moss-comment-form">

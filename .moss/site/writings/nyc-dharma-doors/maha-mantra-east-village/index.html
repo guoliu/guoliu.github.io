@@ -11,7 +11,7 @@
     <meta property="og:site_name" content="刘果">
     <meta property="og:description" content="东村在曼哈顿的东南角。在寸土寸金的南曼哈顿，这里是相对便宜的，容纳了不少独立店铺和年轻人。东村的夜晚是年轻人的盛会，餐厅的座椅沿街铺开，一排排灯红酒绿。每个街区都有那么一家酒吧，要用自己的音乐覆满街道。走在街道上，每几步就换一次背景音乐，回荡着不同的语言，仿佛穿过一个个夜色中涌出的小世界。">
     <meta property="article:published_time" content="2024-10-17T20:32:56.057Z">
-    <meta property="og:image" content="/图片/aeba66d0-5681-48a9-ad7d-d66448f9ceb5.png">
+    <meta property="og:image" content="/image/assets/aeba66d0-5681-48a9-ad7d-d66448f9ceb5.png">
     <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -20,7 +20,7 @@
   "url": "/writings/nyc-dharma-doors/maha-mantra-east-village/",
   "description": "东村在曼哈顿的东南角。在寸土寸金的南曼哈顿，这里是相对便宜的，容纳了不少独立店铺和年轻人。东村的夜晚是年轻人的盛会，餐厅的座椅沿街铺开，一排排灯红酒绿。每个街区都有那么一家酒吧，要用自己的音乐覆满街道。走在街道上，每几步就换一次背景音乐，回荡着不同的语言，仿佛穿过一个个夜色中涌出的小世界。",
   "datePublished": "2024-10-17T20:32:56.057Z",
-  "image": "/图片/aeba66d0-5681-48a9-ad7d-d66448f9ceb5.png",
+  "image": "/image/assets/aeba66d0-5681-48a9-ad7d-d66448f9ceb5.png",
   "publisher": {
     "@type": "Organization",
     "name": "刘果"
@@ -28,9 +28,8 @@
 }
 </script>
     <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
-    <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml">
-    <script data-goatcounter="https://guo.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
     
+    <script data-goatcounter="https://guo.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
     <link rel="stylesheet" href="/style.css?v=16bac62be9f5c45e">
     <style class="moss-comments-style">/* ==========================================================================
    moss Comments Plugin - Styles
@@ -528,35 +527,49 @@ a.comment-author:hover {
 </style>
 <style class="moss-review-style">/* Review plugin — header and colophon styles
  * Uses moss design tokens. Works in light and dark mode.
+ * Side-by-side layout on all screen sizes (matches collection-cover pattern).
  */
 
+/* Header — cover + title/subtitle/creator */
 .review-header {
   display: flex;
+  gap: var(--moss-space-lg, 2rem);
   align-items: flex-start;
-  gap: 12px;
   margin: 1rem 0 2rem;
 }
 
 .review-cover {
-  width: 80px;
+  width: 150px;
+  max-width: 30%;
   height: auto;
   object-fit: cover;
-  border-radius: 2px;
+  border-radius: 4px;
   flex-shrink: 0;
+  margin: 0; /* Override global img margin for flex alignment */
 }
 
 .review-meta {
+  flex: 1;
+  min-width: 0;
   display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 0;
-  font-size: 0.95em;
-  color: var(--moss-color-muted, #666);
-  padding-top: 4px;
+  flex-direction: column;
+  gap: 0.25rem;
 }
 
-.review-creator {
-  font-weight: 500;
+.review-meta-title {
+  font-weight: 600;
+  font-size: 1.05em;
+  color: var(--moss-color-text, #333);
+}
+
+.review-meta-subtitle {
+  font-size: 0.9em;
+  color: var(--moss-color-muted, #666);
+}
+
+.review-meta-creator {
+  font-size: 0.9em;
+  color: var(--moss-color-muted, #666);
 }
 
 .review-sep {
@@ -564,30 +577,64 @@ a.comment-author:hover {
   margin: 0 0.15em;
 }
 
-/* Colophon */
+/* Colophon — card with cover + details */
 .review-colophon {
+  display: flex;
+  gap: var(--moss-space-lg, 2rem);
+  align-items: flex-start;
   margin-top: 3rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid var(--moss-color-border, #e0e0e0);
+  padding: 1.25rem;
+  background: var(--moss-color-surface, #f8f8f8);
+  border-radius: 8px;
   font-size: 0.9em;
   color: var(--moss-color-muted, #666);
+}
+
+.review-colophon-cover {
+  width: 150px;
+  max-width: 30%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 4px;
+  flex-shrink: 0;
+  margin: 0; /* Override global img margin for flex alignment */
+}
+
+.review-colophon-details {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.review-colophon-title {
+  font-weight: 600;
+  color: var(--moss-color-text, #333);
+  font-size: 1.05em;
+}
+
+.review-colophon-subtitle {
+  font-size: 0.9em;
+  color: var(--moss-color-muted, #666);
+}
+
+.review-colophon-identity {
+  font-size: 0.95em;
 }
 
 .review-rating {
   font-size: 1.2em;
   color: var(--moss-color-accent, #c9a84c);
-  margin-bottom: 0.5rem;
   letter-spacing: 0.05em;
 }
 
 .review-community-rating {
   font-size: 0.85em;
-  margin-bottom: 0.5rem;
 }
 
 .review-biblio {
-  margin-bottom: 0.75rem;
-  line-height: 1.6;
+  line-height: 1.5;
 }
 
 .review-links a {
@@ -597,14 +644,6 @@ a.comment-author:hover {
 
 .review-links a:hover {
   text-decoration: underline;
-}
-
-/* Mobile: stack cover above meta */
-@media (max-width: 32rem) {
-  .review-header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
 }
 </style>
 </head>
@@ -627,7 +666,7 @@ a.comment-author:hover {
 <p>今晚我在找巴克提中心（Bhakti Center），听说这里晚上有科尔坦（Kirtan），一种诵咒祈祷的活动。科尔坦虽然不算通常意义上的冥想，但同样会使人进入一种不同于日常的心理状态。</p>
 <p>梵文“巴克提”常译作“奉爱”，指对神的虔诚与依恋。六世纪时，印度南部的诗人们掀起了奉爱运动，到十一、二世纪传播到整个印度，以诗和歌的方式，将吠陀经典不分种姓、不分信仰地传播给各地民众。奉爱运动的一个重要方法便是科尔坦，通过不断地吟唱咒语而进入狂喜，让参与者能够直接接近神。</p>
 <p>人来人往的街道上，巴克提中心挤在一排门面中间，木头的招牌，白色的字，看上去是一个精致的瑜伽馆。右手边一家素食餐厅，一样白色、素雅的风格。左手边则是一家古色古香的三明治店，一看就在这里扎根了许多年。</p>
-<p><img src="../../../%E5%9B%BE%E7%89%87/a2f8dc63-ec4b-488a-81aa-34772550ff98.jpg" data-placeholder-src="../../../%E5%9B%BE%E7%89%87/a2f8dc63-ec4b-488a-81aa-34772550ff98.jpg" width="1366" height="1039" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAAPABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCGBEC43EMfX1pXHYS42lQBsGOpA/8ArUgZV8vPRhTsItTt+/TZ02gn86dh3GOjMmDyfX8/8aBEeGXjI/GkB//Z);background-size:cover" alt="" /></p>
+<p><img src="../../../image/assets/a2f8dc63-ec4b-488a-81aa-34772550ff98.jpg" data-placeholder-src="../../../image/assets/a2f8dc63-ec4b-488a-81aa-34772550ff98.jpg" width="1366" height="1039" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAAPABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCGBEC43EMfX1pXHYS42lQBsGOpA/8ArUgZV8vPRhTsItTt+/TZ02gn86dh3GOjMmDyfX8/8aBEeGXjI/GkB//Z);background-size:cover" alt="" /></p>
 <p>有许多其他年轻人已经在排队，背着背包，大约是刚下班。看起来，这是个香火兴旺的大庙。一进门，黄褐相间的色调，小小的前台，前台背后狭窄的楼梯。上了楼梯，右手边一个小商店和一个瑜伽教室。左手边一个更大的屋子，是今晚科尔坦的地方，人已经逐渐多了起来。进屋之前，是一面宽敞的鞋架，看上去常常容纳很多人。</p>
 <p>屋子里，最远处有一排乐手，面向观众席地而坐。然后是六、七排红色的坐垫，已经满是席地而坐的人，再后面则是一排排椅子。环顾四周，一屋子坐满了四、五十人，大都是二、三十岁的年轻人。人们坐在座位上，合着乐声轻轻摇摆。</p>
 <p>我脱鞋进屋，在后排椅子坐下。</p>
@@ -638,13 +677,13 @@ a.comment-author:hover {
 <p>年近古稀的帕布帕德来到纽约，在公园唱起科尔坦。举目无亲的他几经波折，逐渐吸引了纽约人的注意，积累起来许多追随者。他在纽约建立了寺庙，名声也扩大到了美国西海岸的嬉皮士圈子中。高迪亚毗湿奴派的教导中戒律颇多，拒绝鱼肉蛋、婚外性行为、赌博和任何形式的娱乐药物，甚至包括咖啡和茶。这与嬉皮们的生活方式形成巨大反差，但他仍然成为了当时反文化运动关注的焦点。</p>
 <p>两年后，他来到三藩市，一下飞机迎接他的是著名诗人金斯伯格，以及近一百名唱诵着摩诃真言的年轻嬉皮。金斯伯格与作家艾伦·瓦茨、刚被哈佛开除的心理学教授蒂莫西·利里、乐队感恩至死等，组织了一场名为“真言摇滚舞会”的活动，将帕布帕德与他的修行法门介绍给三藩市的嬉皮们。</p>
 <figure>
-<img src="../../../%E5%9B%BE%E7%89%87/d0505029-6be1-4875-aa7d-666bc2e6e372.jpg" data-placeholder-src="../../../%E5%9B%BE%E7%89%87/d0505029-6be1-4875-aa7d-666bc2e6e372.jpg" width="1159" height="1920" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAAUAAwDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCeVyDgHGKaWhp1JkOVBNQ9xoryEFyD2p3KSJYzuXNITQ94kY5I5pAmPAAGAOKYj//Z);background-size:cover" alt="" />
+<img src="../../../image/d0505029-6be1-4875-aa7d-666bc2e6e372.jpg" data-placeholder-src="../../../image/d0505029-6be1-4875-aa7d-666bc2e6e372.jpg" width="1159" height="1920" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAAUAAwDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCeVyDgHGKaWhp1JkOVBNQ9xoryEFyD2p3KSJYzuXNITQ94kY5I5pAmPAAGAOKYj//Z);background-size:cover" alt="" />
 <figcaption>真言摇滚舞会海报。Harvey W. Cohen</figcaption>
 </figure>
 <p>超过三千名观众，穿着五颜六色的衣服、带着各式各样的乐器、抽着大麻，将活动场地挤得水泄不通。早在印度旅行时，金斯伯格就已经学会了摩诃真言，并一直大力推崇。而这次的科尔坦，是来自一位真正的印度修行者。他对台下的人们说，如果你刚从 LSD 的旅程中回到现实，科尔坦能帮你重新稳定下来。</p>
 <p>帕布帕德从人群中登场，如摩西分开红海般穿过人群。几千名嬉皮在这位印度僧侣的领唱下学会了梵文的摩诃真言，一同歌唱和演奏，沉浸在群体仪式的喜悦中。对于许多参与者，这是反文化运动中的高光时刻。金斯伯格说，三藩市终于有了一场所有人都能够参与的音乐会。直到四十年之后，人们仍在伯克利举行真言摇滚舞会的纪念活动。</p>
 <figure>
-<img src="../../../%E5%9B%BE%E7%89%87/aeba66d0-5681-48a9-ad7d-d66448f9ceb5.png" data-placeholder-src="../../../%E5%9B%BE%E7%89%87/aeba66d0-5681-48a9-ad7d-d66448f9ceb5.png" width="1350" height="912" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAAOABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCK1cZAH8OAe1ADpC0cPB9iO+D1oAinZWfKqo47jrQBLLmNcLgY+bgUAQmV5HO044yfyoAqbm9TQB//2Q==);background-size:cover" alt="" />
+<img src="../../../image/assets/aeba66d0-5681-48a9-ad7d-d66448f9ceb5.png" data-placeholder-src="../../../image/assets/aeba66d0-5681-48a9-ad7d-d66448f9ceb5.png" width="1350" height="912" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAAOABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCK1cZAH8OAe1ADpC0cPB9iO+D1oAinZWfKqo47jrQBLLmNcLgY+bgUAQmV5HO044yfyoAqbm9TQB//2Q==);background-size:cover" alt="" />
 <figcaption>帕布帕德在三藩金门公园。Mukunda Goswami</figcaption>
 </figure>
 <p>与此同时，帕布帕德录制的摩诃真言，漂洋过海传到英国，到了披头士乐队的乔治·哈里森与约翰·列侬手里。本就在学习印度音乐的乔治·哈里森，与帕布帕德在伦敦的信徒们合作，录制了单曲《摩诃真言》。披头士的唱片公司发行了单曲，大获成功。从此，摩诃真言出现在许许多多的流行音乐中。</p>
@@ -700,7 +739,7 @@ Rama Rama Hare Hare</p>
 </nav>
             
         </article>
-        <section class="moss-comments" id="moss-comments" data-built-at="2026-03-15T16:52:01.732Z">
+        <section class="moss-comments" id="moss-comments" data-built-at="2026-03-17T16:27:21.214Z">
   <details>
     <summary class="comments-toggle"><svg class="comments-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></svg><span>1条评论</span><svg class="comments-chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></summary>
     <div class="comment-form-slot" id="default-form-slot"><form class="comment-form" id="moss-comment-form">

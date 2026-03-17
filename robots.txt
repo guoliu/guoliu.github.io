@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://liu-guo.com/sitemap.xml

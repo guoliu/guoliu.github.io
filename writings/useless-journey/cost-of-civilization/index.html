@@ -683,7 +683,7 @@ a.comment-author:hover {
 </nav>
             
         </article>
-        <section class="moss-comments" id="moss-comments" data-built-at="2026-03-17T18:22:11.316Z">
+        <section class="moss-comments" id="moss-comments" data-built-at="2026-03-17T18:41:44.261Z">
   <details>
     <summary class="comments-toggle"><svg class="comments-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></svg><span>10条评论</span><svg class="comments-chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></summary>
     <div class="comment-form-slot" id="default-form-slot"><form class="comment-form" id="moss-comment-form">
@@ -709,7 +709,7 @@ a.comment-author:hover {
     <time class="comment-date" datetime="2026-01-10T18:40:18.311Z">2026年1月10日</time>
     
   </div>
-  <div class="comment-body"><p><a href="/@xiaomo">@萧墨</a> 谢谢你的评论。</p><blockquote><p>而救赎之道不是否认人类的文明也不是否认肉体的原始，而是找出和解之道。</p></blockquote><p>是的。所以这也会是每一代人重新面对的问题。</p></div>
+  <div class="comment-body"><p><a class="mention" href="/@xiaomo" data-id="VXNlcjoyNTA4OTc" data-user-name="xiaomo" data-display-name="萧墨" rel="noopener noreferrer nofollow"><span>@萧墨</span></a>&nbsp;谢谢你的评论。</p><blockquote><p>而救赎之道不是否认人类的文明也不是否认肉体的原始，而是找出和解之道。</p></blockquote><p>是的。所以这也会是每一代人重新面对的问题。</p></div>
 </li>
   </ol>
 </li><li class="comment-item" id="comment-Q29tbWVudDoxNjIwMzEx">
@@ -732,7 +732,7 @@ a.comment-author:hover {
     <time class="comment-date" datetime="2026-01-04T18:41:23.227Z">2026年1月4日</time>
     
   </div>
-  <div class="comment-body"><p><a href="/@adazz">@adazz</a> 银剑石听起来很有意思！谢谢推荐。最近读了本《被入侵的天堂》，讲拉丁美洲环境史，也很有意思。</p></div>
+  <div class="comment-body"><p><a class="mention" href="/@adazz" data-id="VXNlcjoyODY1OA" data-user-name="adazz" data-display-name="adazz" rel="noopener noreferrer nofollow"><span>@adazz</span></a>&nbsp;银剑石听起来很有意思！谢谢推荐。最近读了本《被入侵的天堂》，讲拉丁美洲环境史，也很有意思。</p></div>
 </li>
   </ol>
 </li><li class="comment-item" id="comment-Q29tbWVudDoxNjA3NDcz">
@@ -755,7 +755,7 @@ a.comment-author:hover {
     <time class="comment-date" datetime="2025-11-11T15:15:51.567Z">2025年11月11日</time>
     
   </div>
-  <div class="comment-body"><p><a href="/@wenqian">@文倩</a> 謝謝你！</p></div>
+  <div class="comment-body"><p><a class="mention" href="/@wenqian" data-id="VXNlcjoxMDYyNzI" data-user-name="wenqian" data-display-name="文倩" rel="noopener noreferrer nofollow"><span>@文倩</span></a>&nbsp;謝謝你！</p></div>
 </li>
   </ol>
 </li><li class="comment-item" id="comment-Q29tbWVudDoxNjA0NTU3">
@@ -771,7 +771,7 @@ a.comment-author:hover {
     <time class="comment-date" datetime="2025-11-11T15:15:38.575Z">2025年11月11日</time>
     
   </div>
-  <div class="comment-body"><p><a href="/@444455dd">@寫，日子</a> 是的呢，長大後也才珍惜和父母聊天的機會。人自己，就是很複雜的吧。</p></div>
+  <div class="comment-body"><p><a class="mention" href="/@444455dd" data-id="VXNlcjo3MzA2Mg" data-user-name="444455dd" data-display-name="寫，日子" rel="noopener noreferrer nofollow"><span>@寫，日子</span></a>&nbsp;是的呢，長大後也才珍惜和父母聊天的機會。人自己，就是很複雜的吧。</p></div>
 </li>
   </ol>
 </li></ol>
@@ -1015,10 +1015,25 @@ a.comment-author:hover {
         // Anchor = first build-time comment. Hydrated comments go before it
         // to maintain newest-first order (API returns date_desc).
         var anchor = commentList ? commentList.firstChild : null;
+
+        // Pass 1: collect new comments (API returns newest-first)
+        var newComments = [];
         for (var i = 0; i < list.length; i++) {
           var c = list[i];
           if (new Date(c.date).getTime() <= builtAtMs) break;
           if (document.getElementById('comment-' + c.id)) continue;
+          newComments.push(c);
+        }
+
+        // Reverse to oldest-first so parents are inserted before children.
+        // This fixes reply threading: a parent is always older than its
+        // replies, so reversing guarantees getElementById finds the parent
+        // when we process a reply.
+        newComments.reverse();
+
+        // Pass 2: insert into DOM (oldest-first = parents before children)
+        for (var i = 0; i < newComments.length; i++) {
+          var c = newComments[i];
 
           var li = document.createElement('li');
           li.className = 'comment-item';

@@ -758,7 +758,7 @@ a.comment-author:hover {
 
             
         </article>
-        <section class="moss-comments" id="moss-comments" data-built-at="2026-03-17T18:22:11.316Z">
+        <section class="moss-comments" id="moss-comments" data-built-at="2026-03-17T18:41:44.261Z">
   <details>
     <summary class="comments-toggle"><svg class="comments-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></svg><span>15条评论</span><svg class="comments-chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></summary>
     <div class="comment-form-slot" id="default-form-slot"><form class="comment-form" id="moss-comment-form">
@@ -850,14 +850,14 @@ a.comment-author:hover {
     <time class="comment-date" datetime="2022-12-05T04:27:47.289Z">2022年12月4日</time>
     
   </div>
-  <div class="comment-body"><p>是，如果目標是防分身的話，質押的成本就很夠了。<br />而對於非分身的用戶來說，帳號本身比質押更有價值，所以停權的時候應該是兩層（帳號．質押地址）都要處理。</p><p>整體來說，這應該會比「在用戶不情願的狀態下拿走他的錢」來得便宜，各種意義上。</p></div>
+  <div class="comment-body"><p>是，如果目標是防分身的話，質押的成本就很夠了。<br class="smart">而對於非分身的用戶來說，帳號本身比質押更有價值，所以停權的時候應該是兩層（帳號．質押地址）都要處理。</p><p>整體來說，這應該會比「在用戶不情願的狀態下拿走他的錢」來得便宜，各種意義上。</p></div>
   <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDoxMjc0NTAz">
   <div class="comment-header">
     <a href="https://matters.town/@guo" class="comment-author" rel="nofollow noopener" target="_blank">刘果</a>
     <time class="comment-date" datetime="2022-12-08T04:59:31.061Z">2022年12月7日</time>
     
   </div>
-  <div class="comment-body"><blockquote>畢竟能擋下女巫的機制就會擋下「沉默的多數」</blockquote><p>這是個很有趣的判斷。我在想，也許一個好的機制就應該是能擋下女巫攻擊但不會擋住沉默的多數的。Vitalik 提的 <a href="https://ethresear.ch/t/pairwise-coordination-subsidies-a-new-quadratic-funding-design/5553">pairwise coordination subsidies</a>，以及某種意義上 Google 的 PageRank，都是意圖實現類似的效果。</p></div>
+  <div class="comment-body"><blockquote>畢竟能擋下女巫的機制就會擋下「沉默的多數」</blockquote><p>這是個很有趣的判斷。我在想，也許一個好的機制就應該是能擋下女巫攻擊但不會擋住沉默的多數的。Vitalik 提的 <a href="https://ethresear.ch/t/pairwise-coordination-subsidies-a-new-quadratic-funding-design/5553" rel="noopener noreferrer" target="_blank">pairwise coordination subsidies</a>，以及某種意義上 Google 的 PageRank，都是意圖實現類似的效果。</p></div>
   <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDoxMjc0NTg1">
   <div class="comment-header">
     <a href="https://matters.town/@jugu" class="comment-author" rel="nofollow noopener" target="_blank">糾古</a>
@@ -1139,10 +1139,25 @@ a.comment-author:hover {
         // Anchor = first build-time comment. Hydrated comments go before it
         // to maintain newest-first order (API returns date_desc).
         var anchor = commentList ? commentList.firstChild : null;
+
+        // Pass 1: collect new comments (API returns newest-first)
+        var newComments = [];
         for (var i = 0; i < list.length; i++) {
           var c = list[i];
           if (new Date(c.date).getTime() <= builtAtMs) break;
           if (document.getElementById('comment-' + c.id)) continue;
+          newComments.push(c);
+        }
+
+        // Reverse to oldest-first so parents are inserted before children.
+        // This fixes reply threading: a parent is always older than its
+        // replies, so reversing guarantees getElementById finds the parent
+        // when we process a reply.
+        newComments.reverse();
+
+        // Pass 2: insert into DOM (oldest-first = parents before children)
+        for (var i = 0; i < newComments.length; i++) {
+          var c = newComments[i];
 
           var li = document.createElement('li');
           li.className = 'comment-item';

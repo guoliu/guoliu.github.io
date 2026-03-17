@@ -1,5 +1,5 @@
 ---
-cover: "[[286b63fcd4-0246-483c-b796-d6506cd2ad29.jpg]]"
+cover: "[[286b63fcd4-0246-483c-b796-d6506cd2ad29 1.jpg]]"
 description: Tools for Thoughts 读书笔记
 date: 2026-03-15T15:51:22.000Z
 uid: 41109bd2

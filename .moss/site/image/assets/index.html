@@ -26,7 +26,7 @@
     <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
     <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml">
     <script data-goatcounter="https://guo.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-    <link rel="stylesheet" href="/style.css?v=931a5cda2acc21b3">
+    <link rel="stylesheet" href="/style.css?v=2b4be70f23bd2cf8">
     <style class="moss-comments-style">/* ==========================================================================
    moss Comments Plugin - Styles
 
@@ -496,6 +496,69 @@ a.comment-author:hover {
     padding-left: var(--moss-space-xs, 0.5rem);
     margin-left: 0.25rem;
   }
+}
+
+/* ==========================================================================
+   Float shell — quote-aware comment flow
+   ========================================================================== */
+
+.comment-float-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.08);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s;
+  z-index: 1999;
+}
+.comment-float-backdrop.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.comment-float-shell {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--moss-color-bg, #faf8f5);
+  border-top: 1px solid var(--moss-border-light, #e6e2db);
+  z-index: 2000;
+  transform: translateY(100%);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.comment-float-shell.open {
+  transform: translateY(0);
+}
+.comment-float-inner {
+  max-width: 38em;
+  margin: 0 auto;
+  padding: 1.5rem 1.5rem 3rem;
+}
+
+.comment-float-quote {
+  padding-left: 0.75rem;
+  border-left: 2px solid var(--moss-color-accent, #2d5a2d);
+  margin-bottom: 1.25rem;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--moss-text-secondary, #5d5853);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Float shell form: remove its own border-top since the shell provides it */
+.comment-float-shell .comment-form {
+  border-top: none;
+  padding-top: 0;
+  margin: 0;
+}
+
+/* Dark mode */
+[data-theme="dark"] .comment-float-backdrop {
+  background: rgba(0, 0, 0, 0.35);
 }
 </style>
 <style class="moss-email-style">/* Email subscribe form — injected by email plugin enhance hook */

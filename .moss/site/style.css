@@ -437,6 +437,9 @@ main > article.container {
   max-width: var(--moss-content-width);
   margin: 0 auto;
   padding: 0 var(--moss-container-padding);
+  line-break: strict;
+  word-break: normal;
+  text-autospace: ideograph-alpha ideograph-numeric;
 }
 
 /* Comment section — injected after </article> by comment plugin.
@@ -2899,55 +2902,60 @@ body:not(.immersive-fs-active) main > article.container > *:not(.immersive-ifram
 .mobile-bar {
   display: none;
   position: fixed;
-  bottom: 0;
+  bottom: calc(12px + env(safe-area-inset-bottom, 0));
   left: 50%;
   transform: translateX(-50%);
   z-index: 1000;
-  padding-bottom: env(safe-area-inset-bottom, 0);
 }
 .mobile-bar.visible { display: block; }
 .mobile-bar-inner {
   display: flex;
-  gap: 2px;
   background: var(--moss-color-text);
   color: var(--moss-color-bg);
-  border-radius: 8px 8px 0 0;
-  padding: 8px 16px;
+  border-radius: 10px;
+  padding: 0;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
 }
 .mobile-bar button {
   background: none;
   border: none;
   color: inherit;
-  padding: 8px 16px;
+  padding: 10px 20px;
   font-size: 0.9rem;
   cursor: pointer;
+  position: relative;
+}
+.mobile-bar button + button::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 6px;
+  bottom: 6px;
+  width: 1px;
+  background: rgba(255, 255, 255, 0.2);
 }
 
 /* ==========================================================================
-   Share Card Lightbox
+   Share Card Toast
    ========================================================================== */
 
-.share-lightbox {
+.share-toast {
   position: fixed;
-  inset: 0;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(8px);
+  background: var(--moss-color-text);
+  color: var(--moss-color-bg);
+  padding: 0.5rem 1.25rem;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  opacity: 0;
+  transition: opacity 0.25s, transform 0.25s;
   z-index: 2000;
-  background: rgba(0, 0, 0, 0.7);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
+  pointer-events: none;
 }
-.share-lightbox-inner {
-  text-align: center;
-}
-.share-lightbox img {
-  max-width: 90vw;
-  max-height: 80vh;
-  border-radius: 8px;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
-}
-.share-lightbox-hint {
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 0.85rem;
-  margin-top: 12px;
+.share-toast.visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
 }

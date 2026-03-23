@@ -440,7 +440,7 @@ main > article.container {
   padding: 0 var(--moss-container-padding);
   line-break: strict;
   word-break: normal;
-  text-autospace: ideograph-alpha ideograph-numeric;
+  text-autospace: normal;
 }
 
 /* Comment section — injected after </article> by comment plugin.
@@ -450,6 +450,7 @@ main > .moss-comments {
   max-width: var(--moss-content-width);
   padding: 0 var(--moss-container-padding);
   margin: 0 auto;
+  text-autospace: normal;
 }
 
 /* Content width:

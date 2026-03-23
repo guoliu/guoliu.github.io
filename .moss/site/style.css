@@ -23,7 +23,8 @@
     'Songti SC', 'Songti TC', 'STSongti',
     'Noto Serif CJK SC', 'Source Han Serif SC',
     'NSimSun', 'SimSun', serif;
-  --moss-font-size: 1.125rem;
+  --moss-font-size-base: 1.125rem;
+  --moss-font-size: var(--moss-font-size-base);
   --moss-font-weight: 320;
   --moss-content-width: 70ch;
   --moss-content-width-sidebar: 65ch;
@@ -663,6 +664,22 @@ header:has(+ .moss-hero) .main-nav {
   gap: var(--moss-space-md);
 }
 
+.nav-theme-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--moss-text-secondary);
+  font-size: 1rem;
+  padding: 0.25rem;
+  border-radius: 4px;
+  transition: color 0.2s;
+  line-height: 1;
+}
+.nav-theme-btn:hover { color: var(--moss-color-accent); }
+.nav-theme-icon::after { content: '\25D0'; }
+[data-theme="light"] .nav-theme-icon::after { content: '\2600'; }
+[data-theme="dark"] .nav-theme-icon::after { content: '\263E'; }
+
 .nav-divider {
   width: 1px;
   height: 24px;
@@ -758,15 +775,10 @@ header:has(+ .moss-hero) .main-nav {
 .font-pill button[data-scale="large"]::after { font-size: 1.12em; }
 .font-pill button[data-scale="xlarge"]::after { font-size: 1.25em; }
 
-/* Theme icons */
-.theme-pill button[data-theme="auto"]::after { content: '\25D0'; }
-.theme-pill button[data-theme="light"]::after { content: '\2600'; }
-.theme-pill button[data-theme="dark"]::after { content: '\263E'; }
-
-/* Font scale classes — default is 1.125rem, 1 step down, 2 steps up */
-html.scale-small  { --moss-font-size: calc(1.125rem * 0.89); }
-html.scale-large  { --moss-font-size: calc(1.125rem * 1.12); }
-html.scale-xlarge { --moss-font-size: calc(1.125rem * 1.25); }
+/* Font scale classes — multiply the viewport-specific base, not a hardcoded value */
+html.scale-small  { --moss-font-size: calc(var(--moss-font-size-base) * 0.89); }
+html.scale-large  { --moss-font-size: calc(var(--moss-font-size-base) * 1.12); }
+html.scale-xlarge { --moss-font-size: calc(var(--moss-font-size-base) * 1.25); }
 
 /* GitHub Link */
 .github-link {
@@ -1408,7 +1420,8 @@ article a:focus {
 
 @media (max-width: 48rem) {
   :root {
-    --moss-font-size: 1rem;
+    --moss-font-size-base: 1rem;
+    --moss-font-size: var(--moss-font-size-base);
     --moss-font-2xl: 1.5rem;
     --moss-font-3xl: 1.75rem;
     /* Slightly larger container padding on mobile for better margins */
@@ -2896,6 +2909,38 @@ body:not(.immersive-fs-active) main > article.container > *:not(.immersive-ifram
 .sel-sep { width: 1px; background: rgba(255, 255, 255, 0.2); margin: 4px 0; }
 
 /* ==========================================================================
+   Shared Pill Bar — mobile selection bar + share lightbox
+   ========================================================================== */
+
+.pill-bar {
+  display: flex;
+  background: var(--moss-color-text);
+  color: var(--moss-color-bg);
+  border-radius: 10px;
+  padding: 0;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+.pill-bar-btn {
+  background: none;
+  border: none;
+  color: inherit;
+  padding: 10px 20px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  position: relative;
+}
+.pill-bar-btn + .pill-bar-btn::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 6px;
+  bottom: 6px;
+  width: 1px;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* ==========================================================================
    Selection Actions - Mobile Bar
    ========================================================================== */
 
@@ -2908,33 +2953,6 @@ body:not(.immersive-fs-active) main > article.container > *:not(.immersive-ifram
   z-index: 1000;
 }
 .mobile-bar.visible { display: block; }
-.mobile-bar-inner {
-  display: flex;
-  background: var(--moss-color-text);
-  color: var(--moss-color-bg);
-  border-radius: 10px;
-  padding: 0;
-  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.2);
-  overflow: hidden;
-}
-.mobile-bar button {
-  background: none;
-  border: none;
-  color: inherit;
-  padding: 10px 20px;
-  font-size: 0.9rem;
-  cursor: pointer;
-  position: relative;
-}
-.mobile-bar button + button::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 6px;
-  bottom: 6px;
-  width: 1px;
-  background: rgba(255, 255, 255, 0.2);
-}
 
 /* ==========================================================================
    Share Card Toast
@@ -2961,7 +2979,7 @@ body:not(.immersive-fs-active) main > article.container > *:not(.immersive-ifram
 }
 
 /* ==========================================================================
-   Share Card Overlay (sandboxed fallback)
+   Share Lightbox
    ========================================================================== */
 
 .share-card-overlay {
@@ -2972,11 +2990,16 @@ body:not(.immersive-fs-active) main > article.container > *:not(.immersive-ifram
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
+}
+.share-lightbox-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
 }
 .share-card-overlay img {
   max-width: 90vw;
-  max-height: 80vh;
+  max-height: 70vh;
   border-radius: 8px;
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
 }

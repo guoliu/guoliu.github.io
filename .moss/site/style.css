@@ -686,7 +686,7 @@ header:has(+ .moss-hero) .main-nav {
 }
 .theme-toggle-icon * {
   transform-origin: center;
-  transition: transform 300ms ease, d 300ms ease;
+  transition: transform 300ms ease;
 }
 .theme-toggle-icon > g > circle {
   transition-duration: 300ms;
@@ -710,7 +710,7 @@ header:has(+ .moss-hero) .main-nav {
   transition-duration: 200ms;
 }
 [data-theme="dark"] .theme-toggle-icon > *:first-child { transform: rotate(-90deg); }
-[data-theme="dark"] .theme-toggle-icon > *:first-child path { d: path("M-12-14h42v30a1 1 0 00-16 13H0Z"); }
+[data-theme="dark"] .theme-toggle-icon > *:first-child path { transform: translate3d(-12px, -14px, 0); }
 
 /* System dark preference — same visual as explicit dark (before user clicks) */
 @media (prefers-color-scheme: dark) {
@@ -721,7 +721,7 @@ header:has(+ .moss-hero) .main-nav {
     transition-duration: 200ms;
   }
   :root:not([data-theme="light"]) .theme-toggle-icon > *:first-child { transform: rotate(-90deg); }
-  :root:not([data-theme="light"]) .theme-toggle-icon > *:first-child path { d: path("M-12-14h42v30a1 1 0 00-16 13H0Z"); }
+  :root:not([data-theme="light"]) .theme-toggle-icon > *:first-child path { transform: translate3d(-12px, -14px, 0); }
 }
 
 @media (prefers-reduced-motion: reduce) {

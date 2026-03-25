@@ -677,9 +677,56 @@ header:has(+ .moss-hero) .main-nav {
   line-height: 1;
 }
 .nav-theme-btn:hover { color: var(--moss-color-accent); }
-.nav-theme-icon::after { content: '\25D0'; }
-[data-theme="light"] .nav-theme-icon::after { content: '\2600'; }
-[data-theme="dark"] .nav-theme-icon::after { content: '\263E'; }
+
+/* Theme toggle — "around" animated SVG (https://toggles.dev/around) */
+.theme-toggle-icon {
+  display: block;
+  width: 1.25em;
+  height: 1.25em;
+}
+.theme-toggle-icon * {
+  transform-origin: center;
+  transition: transform 300ms ease, d 300ms ease;
+}
+.theme-toggle-icon > g > circle {
+  transition-duration: 300ms;
+}
+.theme-toggle-icon > g g circle {
+  transition-duration: 100ms;
+}
+/* Staggered delays for ray circles */
+.theme-toggle-icon > g g :nth-child(1) { transition-delay: 127ms; }
+.theme-toggle-icon > g g :nth-child(2) { transition-delay: 174ms; }
+.theme-toggle-icon > g g :nth-child(3) { transition-delay: 222ms; }
+.theme-toggle-icon > g g :nth-child(4) { transition-delay: 269ms; }
+.theme-toggle-icon > g g :nth-child(5) { transition-delay: 317ms; }
+.theme-toggle-icon > g g :nth-child(6) { transition-delay: 364ms; }
+
+/* Dark state: scale up center, hide rays, rotate clip-path to reveal moon crescent */
+[data-theme="dark"] .theme-toggle-icon > g > circle { transform: scale(1.4); }
+[data-theme="dark"] .theme-toggle-icon > g g circle {
+  transform: scale(0);
+  transition-delay: 0s;
+  transition-duration: 200ms;
+}
+[data-theme="dark"] .theme-toggle-icon > *:first-child { transform: rotate(-90deg); }
+[data-theme="dark"] .theme-toggle-icon > *:first-child path { d: path("M-12-14h42v30a1 1 0 00-16 13H0Z"); }
+
+/* System dark preference — same visual as explicit dark (before user clicks) */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .theme-toggle-icon > g > circle { transform: scale(1.4); }
+  :root:not([data-theme="light"]) .theme-toggle-icon > g g circle {
+    transform: scale(0);
+    transition-delay: 0s;
+    transition-duration: 200ms;
+  }
+  :root:not([data-theme="light"]) .theme-toggle-icon > *:first-child { transform: rotate(-90deg); }
+  :root:not([data-theme="light"]) .theme-toggle-icon > *:first-child path { d: path("M-12-14h42v30a1 1 0 00-16 13H0Z"); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .theme-toggle-icon * { transition: none !important; }
+}
 
 .nav-divider {
   width: 1px;
@@ -705,6 +752,12 @@ header:has(+ .moss-hero) .main-nav {
 }
 
 /* Reading Preferences - Aa Panel */
+.date-line {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
 .aa-trigger {
   background: none;
   border: none;
@@ -716,20 +769,24 @@ header:has(+ .moss-hero) .main-nav {
   border-radius: 4px;
   margin-left: 0.5em;
   transition: color 0.2s ease, background 0.2s ease;
-  vertical-align: baseline;
 }
-.aa-trigger:hover {
+.aa-trigger:hover,
+.aa-trigger.active {
   color: var(--moss-color-text);
-  background: var(--moss-color-surface);
 }
 
 .prefs-panel {
-  display: none;
-  position: relative;
-  margin-top: 0.75rem;
-  margin-bottom: 1rem;
+  display: inline-flex;
+  align-items: center;
+  margin-left: 0.5em;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.15s ease, visibility 0.15s ease;
 }
-.prefs-panel.open { display: block; }
+.prefs-panel.open {
+  visibility: visible;
+  opacity: 1;
+}
 
 .prefs-inner {
   display: flex;

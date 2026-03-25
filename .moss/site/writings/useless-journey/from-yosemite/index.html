@@ -30,7 +30,7 @@
     <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
     <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml">
     <script data-goatcounter="https://guo.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-    <link rel="stylesheet" href="/style.css?v=3b023178da25513a">
+    <link rel="stylesheet" href="/style.css?v=dc06b4aa191a69a3">
     <style class="moss-comments-style">/* ==========================================================================
    moss Comments Plugin - Styles
 
@@ -715,7 +715,7 @@ a.comment-author:hover {
     <header>
         <nav class="main-nav container">
             <div class="nav-content">
-                <div class="nav-left"><a href="/" class="site-name">刘果</a><span class="breadcrumb-separator">/</span><a href="/writings/" class="breadcrumb-segment">文字</a><span class="breadcrumb-separator">/</span><a href="/writings/useless-journey/" class="breadcrumb-segment">无用之旅</a></div><div class="nav-right"><div class="nav-icons"><button class="nav-theme-btn" type="button" aria-label="Toggle theme" onclick="cycleTheme()"><span class="nav-theme-icon"></span></button></div></div>
+                <div class="nav-left"><a href="/" class="site-name">刘果</a><span class="breadcrumb-separator">/</span><a href="/writings/" class="breadcrumb-segment">文字</a><span class="breadcrumb-separator">/</span><a href="/writings/useless-journey/" class="breadcrumb-segment">无用之旅</a></div><div class="nav-right"><div class="nav-icons"><button class="nav-theme-btn" type="button" aria-label="Toggle theme" onclick="toggleTheme()"><svg class="theme-toggle-icon" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="1em" height="1em" fill="currentColor" viewBox="0 0 32 32"><clipPath id="theme-toggle__cutout"><path d="M0 0h42v30a1 1 0 00-16 13H0Z"/></clipPath><g clip-path="url(#theme-toggle__cutout)"><circle cx="16" cy="16" r="8.4"/><g><circle cx="16" cy="3.3" r="2.3"/><circle cx="27" cy="9.7" r="2.3"/><circle cx="27" cy="22.3" r="2.3"/><circle cx="16" cy="28.7" r="2.3"/><circle cx="5" cy="22.3" r="2.3"/><circle cx="5" cy="9.7" r="2.3"/></g></g></svg></button></div></div>
             </div>
         </nav>
     </header>
@@ -723,29 +723,9 @@ a.comment-author:hover {
     <main>
         <article class="container">
             <h1 class="article-title">从优胜美地出发</h1>
-            <p><span class="date">2025 · 11 · 4</span> <button class="aa-trigger" aria-label="Reading preferences" type="button">Aa</button></p>
-            <div class="prefs-panel" id="prefsPanel" aria-hidden="true">
-              <div class="prefs-inner">
-                <div class="pill font-pill" id="fontPill">
-                  <button data-scale="small" aria-label="Small text"></button>
-                  <button data-scale="" class="active" aria-label="Standard text"></button>
-                  <button data-scale="large" aria-label="Large text"></button>
-                  <button data-scale="xlarge" aria-label="Extra large text"></button>
-                </div>
-              </div>
-            </div>
+            <div class="date-line"><span class="date">2025 · 11 · 4</span> <button class="aa-trigger" aria-label="Reading preferences" type="button">Aa</button><div class="prefs-panel" id="prefsPanel" aria-hidden="true"><div class="prefs-inner"><div class="pill font-pill" id="fontPill"><button data-scale="small" aria-label="Small text"></button><button data-scale="" class="active" aria-label="Standard text"></button><button data-scale="large" aria-label="Large text"></button><button data-scale="xlarge" aria-label="Extra large text"></button></div></div></div></div>
             
-            <p><img src="../../../image/photography/cba34621-b690-465c-8a1d-7e36a19cbd60.jpg" data-placeholder-src="../../../image/photography/cba34621-b690-465c-8a1d-7e36a19cbd60.jpg" width="1366" height="1024" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAAPABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCGMjftIx70nKwWL8F4FLbgOemKYFtJwygnrSuBht5Z/iY+vFRqPQTcgxjdx709RDxcOBgE4oC5/9k=);background-size:cover" alt="" /></p>
-<p>房车爬上离开优胜美地的山路，我小心翼翼地握着方向盘。还在习惯笨重的车身，还在练习如何在曲折的山路上平稳行驶。山口上，我们一前一后两辆房车，靠边停好。回望身后的山谷，晨光已从暖黄变白。阳光刺破云层，晒着我的小臂，也打在花岗岩岩壁上，顺着清瘦修长的瀑布，倾泻到郁郁葱葱的山谷，消失在还未散尽的晨雾中。</p>
-<p>我已经不记得来过优胜美地多少次了。最开始，这里只是一个著名景点，一个符号。我读过约翰·穆尔在这里写下的文字，沉郁而灵秀。他在这里的山间看见了自己所寻找的美国精神，并在三天的露营旅程中，说服了罗斯福总统建立保护区。从此优胜美地，成为了美国的一种象征。</p>
-<p>然而这些历史离我很远。当我第一次走入这个山谷时，她已是个运作成熟的国家公园。观光车在谷底的单行线上转圈，来自全世界的游客穿梭其间。房车与帐篷挤在营地，客栈与商店散落在路边。山水依旧秀美，只是自然仿佛失去了力量，成为了被供奉起来的符号。</p>
-<p>直到有一次，我和朋友们决定去岩壁之上的山间徒步。四月已经开春，野花洒满阳坡，冬眠醒来的黑熊在树干上磨爪，新鲜的爪印还带着松香。不料山里天气多变，夜里突然下起了大雪。帐篷里熟睡的我们毫不知情，直到积雪压垮了帐篷顶，直挺挺地扑在我们脸上。我们从睡梦与雪堆中爬出，呆呆地望着这白茫茫的世界。金色的晨光从东方洒下，温暖这一片洁白，不再有花草、不再有溪流、不再有路，也不再有方向。我们只是呆呆地站着，看着，这一夜间变了样的，亘古无言的天地。</p>
-<p>接下来的几天，我们在雪地中慢慢寻路，在风暴中艰难地支起帐篷、升起篝火，烤干湿透的袜子、温暖冻僵的脚趾。在所有的疲惫与不适之间，这片山林依旧如此的温润。雪是柔软的，松树是挺拔的，大片大片的花岗岩坚定而细腻。这片天地如此包容着我们：她不会在意我们的生死，但无论生死，她也都会如此包容着。</p>
-<p>几天后，我们终于走到了谷底。大片的草甸忽然从花岗岩岩壁间展开，在阳光下泛着金黄。溪流在草甸间蜿蜒，四周的岩壁与大树守护着静谧。阳光洒的我的脸上，有那么一刻让我觉得眼前这片土地，是我曾经遗忘的家园。那是第一次，我在美国这片土地上，有了回家的感觉。</p>
-<p>这次，十多年之后，是我和妻子带着儿女，还有从国内来探望我们的岳父岳母、妈妈、大姨和姨父，浩浩荡荡两辆房车。眼前的山谷依旧静谧，而拖家带口的我们，难免匆忙。</p>
-<p>一路上，我向家人们讲起我所知的关于这片土地的知识。但当我再次看着这亘古无言的天地，我明白太多话，无从说起。</p>
-<p><img src="../../../image/photography/79ac64e6-b6c4-487d-babf-d01c2173cb92.jpg" data-placeholder-src="../../../image/photography/79ac64e6-b6c4-487d-babf-d01c2173cb92.jpg" width="1366" height="2049" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAAUAA0DAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwC0ZotoO4YNMBA0b8hlx7nFFxFBIsqASck0hlmJiAQO3tQBBuOQe4BpiGgkEkHGadgP/9k=);background-size:cover" alt="" /></p>
-<nav class="series-nav">
+            <p data-source-line="1"><img src="../../../image/photography/cba34621-b690-465c-8a1d-7e36a19cbd60.jpg" data-placeholder-src="../../../image/photography/cba34621-b690-465c-8a1d-7e36a19cbd60.jpg" width="1366" height="1024" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAAPABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCGMjftIx70nKwWL8F4FLbgOemKYFtJwygnrSuBht5Z/iY+vFRqPQTcgxjdx709RDxcOBgE4oC5/9k=);background-size:cover" alt="" /></p><p data-source-line="3">房车爬上离开优胜美地的山路，我小心翼翼地握着方向盘。还在习惯笨重的车身，还在练习如何在曲折的山路上平稳行驶。山口上，我们一前一后两辆房车，靠边停好。回望身后的山谷，晨光已从暖黄变白。阳光刺破云层，晒着我的小臂，也打在花岗岩岩壁上，顺着清瘦修长的瀑布，倾泻到郁郁葱葱的山谷，消失在还未散尽的晨雾中。</p><p data-source-line="5">我已经不记得来过优胜美地多少次了。最开始，这里只是一个著名景点，一个符号。我读过约翰·穆尔在这里写下的文字，沉郁而灵秀。他在这里的山间看见了自己所寻找的美国精神，并在三天的露营旅程中，说服了罗斯福总统建立保护区。从此优胜美地，成为了美国的一种象征。</p><p data-source-line="7">然而这些历史离我很远。当我第一次走入这个山谷时，她已是个运作成熟的国家公园。观光车在谷底的单行线上转圈，来自全世界的游客穿梭其间。房车与帐篷挤在营地，客栈与商店散落在路边。山水依旧秀美，只是自然仿佛失去了力量，成为了被供奉起来的符号。</p><p data-source-line="9">直到有一次，我和朋友们决定去岩壁之上的山间徒步。四月已经开春，野花洒满阳坡，冬眠醒来的黑熊在树干上磨爪，新鲜的爪印还带着松香。不料山里天气多变，夜里突然下起了大雪。帐篷里熟睡的我们毫不知情，直到积雪压垮了帐篷顶，直挺挺地扑在我们脸上。我们从睡梦与雪堆中爬出，呆呆地望着这白茫茫的世界。金色的晨光从东方洒下，温暖这一片洁白，不再有花草、不再有溪流、不再有路，也不再有方向。我们只是呆呆地站着，看着，这一夜间变了样的，亘古无言的天地。</p><p data-source-line="11">接下来的几天，我们在雪地中慢慢寻路，在风暴中艰难地支起帐篷、升起篝火，烤干湿透的袜子、温暖冻僵的脚趾。在所有的疲惫与不适之间，这片山林依旧如此的温润。雪是柔软的，松树是挺拔的，大片大片的花岗岩坚定而细腻。这片天地如此包容着我们：她不会在意我们的生死，但无论生死，她也都会如此包容着。</p><p data-source-line="13">几天后，我们终于走到了谷底。大片的草甸忽然从花岗岩岩壁间展开，在阳光下泛着金黄。溪流在草甸间蜿蜒，四周的岩壁与大树守护着静谧。阳光洒的我的脸上，有那么一刻让我觉得眼前这片土地，是我曾经遗忘的家园。那是第一次，我在美国这片土地上，有了回家的感觉。</p><p data-source-line="15">这次，十多年之后，是我和妻子带着儿女，还有从国内来探望我们的岳父岳母、妈妈、大姨和姨父，浩浩荡荡两辆房车。眼前的山谷依旧静谧，而拖家带口的我们，难免匆忙。</p><p data-source-line="17">一路上，我向家人们讲起我所知的关于这片土地的知识。但当我再次看着这亘古无言的天地，我明白太多话，无从说起。</p><p data-source-line="19"><img src="../../../image/photography/79ac64e6-b6c4-487d-babf-d01c2173cb92.jpg" data-placeholder-src="../../../image/photography/79ac64e6-b6c4-487d-babf-d01c2173cb92.jpg" width="1366" height="2049" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAAUAA0DAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwC0ZotoO4YNMBA0b8hlx7nFFxFBIsqASck0hlmJiAQO3tQBBuOQe4BpiGgkEkHGadgP/9k=);background-size:cover" alt="" /></p><nav class="series-nav">
   <div class="series-nav-links">
     <span class="series-nav-link series-nav-prev empty"></span>
     <a href="/writings/useless-journey/cost-of-civilization/index.html" class="series-nav-link series-nav-next"><span class="series-nav-title">文明的代价</span> <span class="series-nav-arrow">&gt;</span></a>
@@ -756,7 +736,7 @@ a.comment-author:hover {
 </nav>
             
         </article>
-        <section class="moss-comments" id="moss-comments" data-built-at="2026-03-23T21:34:29.911Z">
+        <section class="moss-comments" id="moss-comments" data-built-at="2026-03-25T01:12:55.961Z">
   <details>
     <summary class="comments-toggle"><svg class="comments-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></svg><span>1条评论</span><svg class="comments-chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></summary>
     <div class="comment-form-slot" id="default-form-slot"><form class="comment-form" id="moss-comment-form">
@@ -826,6 +806,7 @@ a.comment-author:hover {
       link: rawLink,
       rid: currentReplyId ? parseInt(currentReplyId, 10) : 0,
       page_key: '8fba67a5',
+      page_title: '从优胜美地出发',
       site_name: 'liu-guo.com',
       ua: navigator.userAgent
     };
@@ -1193,7 +1174,7 @@ a.comment-author:hover {
     </div>
 </footer>
 
-    <script src="/js/theme.js?v=d29a6c1d6c524e76"></script>
+    <script src="/js/theme.js?v=b8d2814e7da71f9e"></script>
     
 </body>
 </html>

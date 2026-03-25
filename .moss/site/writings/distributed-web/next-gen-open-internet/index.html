@@ -30,7 +30,7 @@
     <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
     <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml">
     <script data-goatcounter="https://guo.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-    <link rel="stylesheet" href="/style.css?v=10a8e687788347b1">
+    <link rel="stylesheet" href="/style.css?v=327fcc69cd3776d2">
     <style class="moss-comments-style">/* ==========================================================================
    moss Comments Plugin - Styles
 
@@ -723,7 +723,7 @@ a.comment-author:hover {
     <main>
         <article class="container">
             <h1 class="article-title">下一代开放互联网</h1>
-            <div class="date-line"><span class="date">2018 · 7 · 12</span> <button class="aa-trigger" aria-label="Reading preferences" type="button">Aa</button><div class="prefs-panel" id="prefsPanel" aria-hidden="true"><div class="prefs-inner"><div class="pill font-pill" id="fontPill"><button data-scale="small" aria-label="Small text"></button><button data-scale="" class="active" aria-label="Standard text"></button><button data-scale="large" aria-label="Large text"></button><button data-scale="xlarge" aria-label="Extra large text"></button></div></div></div></div>
+            <div class="date-line"><span class="date">2018 · 7 · 12</span><div class="font-anchor"><button class="font-trigger size-std" aria-label="Reading preferences" aria-expanded="false" type="button"></button><div class="font-pill" id="fontPill"><button data-scale="small" aria-label="Small text"></button><button data-scale="" class="active" aria-label="Standard text"></button><button data-scale="large" aria-label="Large text"></button><button data-scale="xlarge" aria-label="Extra large text"></button></div></div></div>
             
             <h2 id="前言" data-source-line="1"><strong>前言</strong></h2><p data-source-line="3">在互联网诞生之初，权力分布在每个参与者手中。人们以为每个参与者都有了自己的声音，言论自由迎来了新的时代。激进者如约翰·巴洛，甚至撰写了《赛博空间独立宣言》，宣告这场社会实验已拉开了大幕。</p><p data-source-line="5">然而互联网诞生近30年后，我们看到了封锁、审查、隐私泄露、舆论控制，看到了资本支撑的网络效应和市场垄断，也看到了商业广告维持的信息经济。随着互联网渗入我们的日常生活，真实世界的权力反过来也渗入了互联网。</p><p data-source-line="7">理想中的新一代互联网，服务器不再至关重要，无法控制信息的传递。用户与用户直接相连，数据的存储与计算都掌握在用户手中。用户得以保护自身隐私，第三者无法监听或屏蔽用户之间的交互。</p><p data-source-line="9">比特币等电子货币暴涨后，区块链这一分布式技术也变得家喻户晓。电子货币的泡沫也推动了其他分布式技术，让互联网最初的理想再次成为可能。</p><p data-source-line="11">这个庞大的拼图，碎片众多，本文选取其中一些已经实现的项目有进行讨论。没有人知道这个拼图会如何实现，不过这个拼图的样貌，终将取决于我们自己。</p><h2 id="敲响的警钟" data-source-line="13">敲响的警钟</h2><p data-source-line="15">2018年3月，Facebook公司遭到联邦贸易委员会调查，面临巨额罚款。公司市值蒸发600亿美元，多名高层出售股票，不少人呼吁卸载Facebook。这一切的导火索，是因为一家名为“剑桥分析”（Cambridge Analytica）的公司，利用脸书数据操控舆论，协助特朗普当选总统。</p><p data-source-line="17">剑桥分析所做的，是将用户信息收集、数据分析、精准广告投放三者结合了起来。首先，一个小程序邀请Facebook用户进行心理学测试，请求授权读取个人信息。小程序同时记录了用户好友们的信息，并借助关系网络延伸，<strong>最终通过27万名参与者搜集到了超过5千万用户数据</strong>。</p><p data-source-line="19">剑桥分析根据这些用户的性格分类建立模型，并根据模型将广告投放给目标用户。预先制作好的网页广告引导了用户对现实的认知，进而影响他们的选举偏好。</p><figure>
 <img src="../../../image/assets/996a2021-b5c9-4a3b-b7c2-11ae232ea57b.jpg" data-placeholder-src="../../../image/assets/996a2021-b5c9-4a3b-b7c2-11ae232ea57b.jpg" width="1000" height="563" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAALABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCnCxRNrRZ5z97FIdhkqmYkrnKqMgnrTArsDn0/GgRswjbKcf3f6ihjJHYmHknkUgMU9aYj/9k=);background-size:cover" alt="" />
@@ -763,7 +763,7 @@ a.comment-author:hover {
 插画：十方，https://www.douban.com/people/a33862560/</p>
             
         </article>
-        <section class="moss-comments" id="moss-comments" data-built-at="2026-03-25T12:38:08.152Z">
+        <section class="moss-comments" id="moss-comments" data-built-at="2026-03-25T13:48:59.988Z">
   <details>
     <summary class="comments-toggle"><svg class="comments-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></svg><span>10条评论</span><svg class="comments-chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></summary>
     <div class="comment-form-slot" id="default-form-slot"><form class="comment-form" id="moss-comment-form">
@@ -1270,7 +1270,7 @@ a.comment-author:hover {
     </div>
 </footer>
 
-    <script src="/js/theme.js?v=b8d2814e7da71f9e"></script>
+    <script src="/js/theme.js?v=8a0462e9022cd25d"></script>
     
 </body>
 </html>

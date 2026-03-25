@@ -751,87 +751,115 @@ header:has(+ .moss-hero) .main-nav {
   flex-shrink: 0;
 }
 
-/* Reading Preferences - Aa Panel */
+/*
+ * Morphing font control
+ *
+ * A single glyph next to the date morphs into a 4-button pill on click.
+ * The trigger (lone glyph) and the pill are never both visible — they swap
+ * at the moment of overlap so the user perceives one continuous element.
+ *
+ * Open:  trigger slides to its slot in the pill → pill fades in
+ * Close: pill fades out → trigger appears at active slot → slides home
+ *
+ * Structure:
+ *   .date-line
+ *     .date
+ *     .font-anchor            position: relative wrapper
+ *       .font-trigger         position: absolute, overlays first pill button
+ *       .font-pill#fontPill   always in layout (visibility:hidden when closed)
+ */
 .date-line {
   display: flex;
   align-items: center;
   margin-bottom: 1rem;
 }
 
-.aa-trigger {
+.font-anchor {
+  position: relative;
+  margin-left: 0.75em;
+  display: flex;
+  align-items: center;
+}
+
+.font-trigger {
   background: none;
   border: none;
   color: var(--moss-color-muted);
   cursor: pointer;
-  font-size: 0.9em;
-  font-family: var(--moss-font-body);
-  padding: 2px 6px;
-  border-radius: 4px;
-  margin-left: 0.5em;
-  transition: color 0.2s ease, background 0.2s ease;
+  font-family: inherit;
+  padding: 4px 10px;
+  border-radius: 16px;
+  position: absolute;
+  left: 3px; /* = font-pill padding, aligns with first button */
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+  white-space: nowrap;
 }
-.aa-trigger:hover,
-.aa-trigger.active {
-  color: var(--moss-color-text);
+.font-trigger:hover { color: var(--moss-color-text); }
+.font-trigger.hidden { opacity: 0; pointer-events: none; }
+.font-trigger.sliding {
+  transition: left 280ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.prefs-panel {
+/* Trigger size variants — match pill button sizes */
+.font-trigger.size-small  { font-size: 0.85em; }
+.font-trigger.size-std    { font-size: 1em; }
+.font-trigger.size-large  { font-size: 1.12em; }
+.font-trigger.size-xlarge { font-size: 1.25em; }
+
+.font-pill {
   display: inline-flex;
   align-items: center;
-  margin-left: 0.5em;
-  visibility: hidden;
-  opacity: 0;
-  transition: opacity 0.15s ease, visibility 0.15s ease;
-}
-.prefs-panel.open {
-  visibility: visible;
-  opacity: 1;
-}
-
-.prefs-inner {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-
-.pill {
-  display: inline-flex;
   background: var(--moss-color-surface);
   border-radius: 20px;
   padding: 3px;
   gap: 2px;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 150ms ease, visibility 150ms ease;
+}
+.font-pill.visible {
+  visibility: visible;
+  opacity: 1;
 }
 
-.pill button {
+.font-pill button {
   background: none;
   border: none;
   color: var(--moss-color-muted);
   cursor: pointer;
   padding: 4px 10px;
   border-radius: 16px;
-  font-size: 0.85rem;
-  transition: all 0.15s ease;
+  font-family: inherit;
+  transition: color 0.15s ease, background 0.15s ease;
 }
-.pill button:hover { color: var(--moss-color-text); }
-.pill button.active {
+.font-pill button:hover { color: var(--moss-color-text); }
+.font-pill button.active {
   background: var(--moss-color-bg);
   color: var(--moss-color-text);
   box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 
-/* Font scale glyph via :lang() */
-.font-pill button::after { content: 'A'; }
+/* Glyph content via :lang() — applies to both trigger and pill buttons */
+.font-trigger::after,
+.font-pill button::after { content: 'Aa'; }
+:lang(zh) .font-trigger::after,
 :lang(zh) .font-pill button::after,
+:lang(zh-Hans) .font-trigger::after,
 :lang(zh-Hans) .font-pill button::after,
+:lang(zh-Hant) .font-trigger::after,
 :lang(zh-Hant) .font-pill button::after { content: '\5B57'; }
+:lang(ja) .font-trigger::after,
 :lang(ja) .font-pill button::after { content: '\5B57'; }
+:lang(ko) .font-trigger::after,
 :lang(ko) .font-pill button::after { content: '\AE00'; }
 
-/* Progressive sizing for font scale buttons */
-.font-pill button[data-scale="small"]::after { font-size: 0.8em; }
-.font-pill button[data-scale=""]::after { font-size: 1em; }
-.font-pill button[data-scale="large"]::after { font-size: 1.12em; }
-.font-pill button[data-scale="xlarge"]::after { font-size: 1.25em; }
+/* Progressive sizing — same scale for both trigger and pill buttons */
+.font-pill button[data-scale="small"] { font-size: 0.85em; }
+.font-pill button[data-scale=""]      { font-size: 1em; }
+.font-pill button[data-scale="large"] { font-size: 1.12em; }
+.font-pill button[data-scale="xlarge"]{ font-size: 1.25em; }
 
 /* Font scale classes — multiply the viewport-specific base, not a hardcoded value */
 html.scale-small  { --moss-font-size: calc(var(--moss-font-size-base) * 0.89); }

@@ -31,7 +31,130 @@
     <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml">
     <script data-goatcounter="https://guo.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
     <link rel="stylesheet" href="/style.css?v=f707c0be9c488a06">
-    <style class="moss-comments-style">/* ==========================================================================
+    <script data-goatcounter="https://guo.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<style class="moss-review-style">/* Review plugin — header and colophon styles
+ * Uses moss design tokens. Works in light and dark mode.
+ * Side-by-side layout on all screen sizes (matches collection-cover pattern).
+ */
+
+/* Header — cover + title/subtitle/creator */
+.review-header {
+  display: flex;
+  gap: var(--moss-space-lg, 2rem);
+  align-items: flex-start;
+  margin: 1rem 0 2rem;
+}
+
+.review-cover {
+  width: 150px;
+  max-width: 30%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 4px;
+  flex-shrink: 0;
+  margin: 0; /* Override global img margin for flex alignment */
+}
+
+.review-meta {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.review-meta-title {
+  font-weight: 600;
+  font-size: 1.05em;
+  color: var(--moss-color-text, #333);
+}
+
+.review-meta-subtitle {
+  font-size: 0.9em;
+  color: var(--moss-color-muted, #666);
+}
+
+.review-meta-creator {
+  font-size: 0.9em;
+  color: var(--moss-color-muted, #666);
+}
+
+.review-sep {
+  color: var(--moss-color-muted, #666);
+  margin: 0 0.15em;
+}
+
+/* Colophon — card with cover + details */
+.review-colophon {
+  display: flex;
+  gap: var(--moss-space-lg, 2rem);
+  align-items: flex-start;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  padding: 1.25rem;
+  background: var(--moss-color-surface, #f8f8f8);
+  border-radius: 8px;
+  font-size: 0.9em;
+  color: var(--moss-color-muted, #666);
+}
+
+.review-colophon-cover {
+  width: 150px;
+  max-width: 30%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 4px;
+  flex-shrink: 0;
+  margin: 0; /* Override global img margin for flex alignment */
+}
+
+.review-colophon-details {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.review-colophon-title {
+  font-weight: 600;
+  color: var(--moss-color-text, #333);
+  font-size: 1.05em;
+}
+
+.review-colophon-subtitle {
+  font-size: 0.9em;
+  color: var(--moss-color-muted, #666);
+}
+
+.review-colophon-identity {
+  font-size: 0.95em;
+}
+
+.review-rating {
+  font-size: 1.2em;
+  color: var(--moss-color-accent, #c9a84c);
+  letter-spacing: 0.05em;
+}
+
+.review-community-rating {
+  font-size: 0.85em;
+}
+
+.review-biblio {
+  line-height: 1.5;
+}
+
+.review-links a {
+  color: var(--moss-color-accent, #c9a84c);
+  text-decoration: none;
+}
+
+.review-links a:hover {
+  text-decoration: underline;
+}
+</style>
+<style class="moss-comments-style">/* ==========================================================================
    moss Comments Plugin - Styles
 
    Collapsible comment section with solid thread borders,
@@ -588,128 +711,6 @@ a.comment-author:hover {
   }
 }
 </style>
-<style class="moss-review-style">/* Review plugin — header and colophon styles
- * Uses moss design tokens. Works in light and dark mode.
- * Side-by-side layout on all screen sizes (matches collection-cover pattern).
- */
-
-/* Header — cover + title/subtitle/creator */
-.review-header {
-  display: flex;
-  gap: var(--moss-space-lg, 2rem);
-  align-items: flex-start;
-  margin: 1rem 0 2rem;
-}
-
-.review-cover {
-  width: 150px;
-  max-width: 30%;
-  height: auto;
-  object-fit: cover;
-  border-radius: 4px;
-  flex-shrink: 0;
-  margin: 0; /* Override global img margin for flex alignment */
-}
-
-.review-meta {
-  flex: 1;
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-}
-
-.review-meta-title {
-  font-weight: 600;
-  font-size: 1.05em;
-  color: var(--moss-color-text, #333);
-}
-
-.review-meta-subtitle {
-  font-size: 0.9em;
-  color: var(--moss-color-muted, #666);
-}
-
-.review-meta-creator {
-  font-size: 0.9em;
-  color: var(--moss-color-muted, #666);
-}
-
-.review-sep {
-  color: var(--moss-color-muted, #666);
-  margin: 0 0.15em;
-}
-
-/* Colophon — card with cover + details */
-.review-colophon {
-  display: flex;
-  gap: var(--moss-space-lg, 2rem);
-  align-items: flex-start;
-  margin-top: 3rem;
-  margin-bottom: 3rem;
-  padding: 1.25rem;
-  background: var(--moss-color-surface, #f8f8f8);
-  border-radius: 8px;
-  font-size: 0.9em;
-  color: var(--moss-color-muted, #666);
-}
-
-.review-colophon-cover {
-  width: 150px;
-  max-width: 30%;
-  height: auto;
-  object-fit: cover;
-  border-radius: 4px;
-  flex-shrink: 0;
-  margin: 0; /* Override global img margin for flex alignment */
-}
-
-.review-colophon-details {
-  flex: 1;
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-}
-
-.review-colophon-title {
-  font-weight: 600;
-  color: var(--moss-color-text, #333);
-  font-size: 1.05em;
-}
-
-.review-colophon-subtitle {
-  font-size: 0.9em;
-  color: var(--moss-color-muted, #666);
-}
-
-.review-colophon-identity {
-  font-size: 0.95em;
-}
-
-.review-rating {
-  font-size: 1.2em;
-  color: var(--moss-color-accent, #c9a84c);
-  letter-spacing: 0.05em;
-}
-
-.review-community-rating {
-  font-size: 0.85em;
-}
-
-.review-biblio {
-  line-height: 1.5;
-}
-
-.review-links a {
-  color: var(--moss-color-accent, #c9a84c);
-  text-decoration: none;
-}
-
-.review-links a:hover {
-  text-decoration: underline;
-}
-</style>
 </head>
 <body class="">
     <header>
@@ -728,10 +729,10 @@ a.comment-author:hover {
             <p data-source-line="1">昨日大雪，许久未见的J前来拜访。J专业是建筑，业余时接些翻译、校对的活，闲时改编剧本、做做小剧场。在花了三个小时表达对阿尔罕布拉宫立柱的赞叹和对王澍的不屑之后，他又聊了聊自己如何把Tempest改得只有半小时长。其中惨烈，自然难以想象。末了，他说起一个朋友写的故事。彼时天色渐暗，窗外风雪交加，屋里没有炉火。似乎不是个讲故事的好时候。不过这故事有几分暖意，这里便转述如下。</p><p data-source-line="3">在一片同样风雪交加的荒原里，人们有时能看到一座城。周围是密布的欧石楠灌丛，或者丛生的芨芨草，没有人知道个确切。这座城时隐时现，当你想要走近她时，她便同你一起隐没在暴风里。等到尘埃落地，你又回到了原点。</p><p data-source-line="5">一天黄昏，一个老头儿拄着拐杖从地平线走来，穿过荒原，摸索着走向这座城。那些欧石楠灌丛或是芨芨草，瑟瑟地抖着，让开了一条小径，一如当年摩西穿过的红海。没有风暴，没有尘埃，荒野像接纳夜色一般接纳了他。</p><p data-source-line="7">老人进到了城里，空气中满是芬馥的异域气息。他看见亚述人的络腮胡，看见波斯的鎏金瓶，看见灰黄的龙脑香。他走过一座爬满地锦的大学，走过一座涂脂抹粉的妓院，走过一座坍塌的桥。</p><p data-source-line="9">老人看着，嗅着。这些景色似曾相识，只是记不起曾在哪儿见过。空气中的花粉，已变成紫色的天空，都让自己想起一些什么，说不清道不明。不过脚下的路越来越熟悉，拐杖也越来越轻盈，老人觉得靠着气味就知道该去哪里。</p><p data-source-line="11">老人来到了一座低矮的房子前，一条尘土飞扬的小街。断断续续的手风琴从窗户里传出来。这是他童年呆过的地方，土面上的坑洼或许还是踢球的时候留下的。路灯下有把长椅上，他缓缓坐下，把拐杖靠在膝旁。</p><p data-source-line="13">城随着夜色醒来。她问，你从哪里来。</p><p data-source-line="15">老人说，世界的许多角落，许多不属于我的地方。他说起柏柏尔人骆驼奶的醇厚，回味雅诺马米人毒蘑菇的奇幻，怀念月亮山下的俾格米人和非洲象的生肉。蒙古草原上的咸湖浅如碟，夕阳下的芦苇和狼毒金黄透绿。你在湖的中央，平静的湖面刚齐脚踝。水天如镜，水下亿万只卤虫席卷，你化作天地间一粒尘埃。霍尔木兹海峡的阳光能煮熟一切活物，你差点渴死在了沙漠与波斯湾的苦水之间。濒死的幻觉把累累尸骨变成了一株株利瓦绿洲的葡萄，你和那些躺着的贝都因人一样安详。</p><p data-source-line="17">城静静地听着。"噗"的一声，城里波斯人的商铺、参天的龙脑香树、城门上的石敢当和街道旁的木幡杆消失了。欧石楠和芨芨草蔓延。</p><p data-source-line="19">她问，你从哪里来。</p><p data-source-line="21">老人说，女人的怀里，春天的裙摆间。他说起那些柔软的乳头和纤细的锁骨，光洁的小臂和温热的下体。那时你的虚荣心和阴茎一样膨胀，才华和自负一同四溢。衣着考究，灵魂在躯壳里挣扎。你游走在你的缪斯们之间，她们是你的力量，你的灵感，是你精疲力竭倒下的沙场，最接近神的地方。你曾幻想在死的那天，走出屋子，走进阳光下，回到你怀念的那片玫瑰花丛中。</p><p data-source-line="23">"噗"的一声，半掩着窗帘的窗子、妓院和凝神屏息的姑娘们、城周的桦木林和广场上的书桌消失了。欧石楠和芨芨草蔓延。</p><p data-source-line="25">她问，你从哪里来。</p><p data-source-line="27">老人说，一个爬满绿叶的校园，一个想象的世界。他说起一排书架，一个池塘，一条连衣裙，几张桌子。在沉寂的图书馆里，揪着自己的头发，默念着独白，你是果壳中的王。光的使者从天空赤身坠落，开始熟悉尘土、污垢、虚妄的塑像和自己的五脏，直到最后和它们融为一体。从建筑与绿荫的子宫里出发，你一路奔向熟悉的虚妄，只是从未走出这枚背负的果壳。</p><p data-source-line="29">街角的书店、爬满地锦的大学、台阶旁风蚀的雕像和围墙后的舞台消失了。欧石楠和芨芨草蔓延。</p><p data-source-line="31">她问，你从哪里来。</p><p data-source-line="33">老人说，这儿，从泥泞间，从哭喊中，从这间小屋和永不到黑夜的黄昏。他说起这条小街的往昔，清晨的叫卖声，正午的蝉鸣。你的远方在街的尽头，送奶工人从那里带来远方的消息。黄昏下拉长的影子高过房子，你和晨昏昼夜、天体运行一样自然而规则。无知的智者，你要找的答案在土里，树上，草丛中，和树梢的猫头鹰那儿。炖牛肉的香味和母亲一起来到门旁，唤你回到沉沉的混沌和洁净里。</p><p data-source-line="35">城静静地听着。小街和房子消失了，只留下路灯和长椅，无尽夜色里的一丝光点。欧石楠和芨芨草蔓延。</p><p data-source-line="37">从此，再也没有人见过这座城。</p><p data-source-line="39">荒野上，欧石楠和芨芨草蔓延。</p><p data-source-line="41"><img src="../../image/assets/GiorgioDeChirico.jpg" data-placeholder-src="../../image/assets/GiorgioDeChirico.jpg" width="600" height="736" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAAUABADAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwBq2cLQI/mBWKjIJqbhYz5V2yMOuDimncNi+XSKHLHBxj8cYrG7k7I0skig4JLEtnnrWyM2Md2dsscmhKwXuIaAP//Z);background-size:cover" alt="" /></p>
             
         </article>
-        <section class="moss-comments" id="moss-comments" data-built-at="2026-03-25T16:29:22.153Z">
+        <section class="moss-comments" id="moss-comments" data-built-at="2026-03-28T03:47:21.519168+00:00">
   <details>
     <summary class="comments-toggle"><svg class="comments-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></svg><span>8条评论</span><svg class="comments-chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></summary>
-    <div class="comment-form-slot" id="default-form-slot"><form class="comment-form" id="moss-comment-form">
+    <div class="comment-form-slot" id="default-form-slot"><form class="comment-form" id="moss-comment-form" data-server-url="https://api.moss.host/comments" data-site-name="liu-guo.com" data-page-key="writings/a-city-annihilated/" data-page-title="一座城的湮灭">
   <textarea id="moss-comment-text" name="content" required rows="2" placeholder="留下你的想法"></textarea>
   <div class="comment-form-meta">
     <input type="text" name="name" class="comment-field" placeholder="名字" autocomplete="name" required>
@@ -740,469 +741,193 @@ a.comment-author:hover {
     <button type="submit" class="comment-form-submit">回复</button>
   </div>
   <div class="comment-form-status" id="moss-comment-status"></div>
-</form></div>
-    <ol class="comment-list"><li class="comment-item" id="comment-douban-261768072-8">
-  <div class="comment-header">
-    <a href="https://www.douban.com/people/57321654/" class="comment-author" rel="nofollow noopener" target="_blank">[已注销]</a>
-    <time class="comment-date" datetime="2013-12-08T00:00:00.000Z">2013年12月7日</time>
-    
-  </div>
-  <div class="comment-body"><p>「内容不可见」</p></div>
-</li><li class="comment-item" id="comment-douban-261768072-6">
-  <div class="comment-header">
-    <a href="https://www.douban.com/people/3047397/" class="comment-author" rel="nofollow noopener" target="_blank">早安早安</a>
-    <time class="comment-date" datetime="2013-02-08T16:00:00.000Z">2013年2月8日</time>
-    
-  </div>
-  <div class="comment-body"><p>写的很好，想象力丰富</p></div>
-  <ol class="comment-replies"><li class="comment-item" id="comment-douban-261768072-7">
-  <div class="comment-header">
-    <a href="https://www.douban.com/people/ax123456789/" class="comment-author" rel="nofollow noopener" target="_blank">叶甲</a>
-    <time class="comment-date" datetime="2013-02-08T18:00:00.000Z">2013年2月8日</time>
-    
-  </div>
-  <div class="comment-body"><p>嗯，谢谢</p></div>
-</li>
-  </ol>
-</li><li class="comment-item" id="comment-douban-261768072-2">
-  <div class="comment-header">
-    <a href="https://www.douban.com/people/66359080/" class="comment-author" rel="nofollow noopener" target="_blank">一叶</a>
-    <time class="comment-date" datetime="2013-02-08T04:00:00.000Z">2013年2月7日</time>
-    
-  </div>
-  <div class="comment-body"><p>有点卡尔维诺的感觉，原创吗？</p></div>
-  <ol class="comment-replies"><li class="comment-item" id="comment-douban-261768072-3">
-  <div class="comment-header">
-    <a href="https://www.douban.com/people/ax123456789/" class="comment-author" rel="nofollow noopener" target="_blank">叶甲</a>
-    <time class="comment-date" datetime="2013-02-08T08:00:00.000Z">2013年2月8日</time>
-    
-  </div>
-  <div class="comment-body"><p>嗯，听朋友的故事的启发。不过不敢和卡尔维诺比</p></div>
-  <ol class="comment-replies"><li class="comment-item" id="comment-douban-261768072-4">
-  <div class="comment-header">
-    <a href="https://www.douban.com/people/66359080/" class="comment-author" rel="nofollow noopener" target="_blank">一叶</a>
-    <time class="comment-date" datetime="2013-02-08T12:00:00.000Z">2013年2月8日</time>
-    
-  </div>
-  <div class="comment-body"><p>谦虚了，写的挺不错的</p></div>
-  <ol class="comment-replies"><li class="comment-item" id="comment-douban-261768072-5">
-  <div class="comment-header">
-    <a href="https://www.douban.com/people/ax123456789/" class="comment-author" rel="nofollow noopener" target="_blank">叶甲</a>
-    <time class="comment-date" datetime="2013-02-08T14:00:00.000Z">2013年2月8日</time>
-    
-  </div>
-  <div class="comment-body"><p>谢谢</p></div>
-</li>
-  </ol>
-</li>
-  </ol>
-</li>
-  </ol>
-</li><li class="comment-item" id="comment-douban-261768072-1">
-  <div class="comment-header">
-    <a href="https://www.douban.com/people/2806815/" class="comment-author" rel="nofollow noopener" target="_blank">陌生猫咪一年</a>
-    <time class="comment-date" datetime="2013-02-08T00:00:00.000Z">2013年2月7日</time>
-    
-  </div>
-  <div class="comment-body"><p>那座城就是那个人。他回到他的躯壳里。一同泯灭。去往天国，或地狱。</p></div>
-</li></ol>
+</form>
+</div>
+    <ol class="comment-list">
+      <li class="comment-item" id="comment-douban-261768072-8">
+        <div class="comment-header">
+          <a href="https://www.douban.com/people/57321654/" class="comment-author" rel="nofollow noopener" target="_blank">[已注销]</a>
+          <time class="comment-date" datetime="2013-12-08T00:00:00.000Z">2013年12月8日</time>
+          <button type="button" class="comment-reply-btn" data-reply-id="douban-261768072-8" data-reply-name="[已注销]">↩ 回复</button>
+        </div>
+        <div class="comment-body"><p>「内容不可见」</p></div>
+      </li>
+      <li class="comment-item" id="comment-douban-261768072-6">
+        <div class="comment-header">
+          <a href="https://www.douban.com/people/3047397/" class="comment-author" rel="nofollow noopener" target="_blank">早安早安</a>
+          <time class="comment-date" datetime="2013-02-08T16:00:00.000Z">2013年2月8日</time>
+          <button type="button" class="comment-reply-btn" data-reply-id="douban-261768072-6" data-reply-name="早安早安">↩ 回复</button>
+        </div>
+        <div class="comment-body"><p>写的很好，想象力丰富</p></div>
+        <ol class="comment-replies">
+          <li class="comment-item" id="comment-douban-261768072-7">
+            <div class="comment-header">
+              <a href="https://www.douban.com/people/ax123456789/" class="comment-author" rel="nofollow noopener" target="_blank">叶甲</a>
+              <time class="comment-date" datetime="2013-02-08T18:00:00.000Z">2013年2月8日</time>
+              <button type="button" class="comment-reply-btn" data-reply-id="douban-261768072-7" data-reply-name="叶甲">↩ 回复</button>
+            </div>
+            <div class="comment-body"><p>嗯，谢谢</p></div>
+          </li>
+        </ol>
+      </li>
+      <li class="comment-item" id="comment-douban-261768072-2">
+        <div class="comment-header">
+          <a href="https://www.douban.com/people/66359080/" class="comment-author" rel="nofollow noopener" target="_blank">一叶</a>
+          <time class="comment-date" datetime="2013-02-08T04:00:00.000Z">2013年2月8日</time>
+          <button type="button" class="comment-reply-btn" data-reply-id="douban-261768072-2" data-reply-name="一叶">↩ 回复</button>
+        </div>
+        <div class="comment-body"><p>有点卡尔维诺的感觉，原创吗？</p></div>
+        <ol class="comment-replies">
+          <li class="comment-item" id="comment-douban-261768072-3">
+            <div class="comment-header">
+              <a href="https://www.douban.com/people/ax123456789/" class="comment-author" rel="nofollow noopener" target="_blank">叶甲</a>
+              <time class="comment-date" datetime="2013-02-08T08:00:00.000Z">2013年2月8日</time>
+              <button type="button" class="comment-reply-btn" data-reply-id="douban-261768072-3" data-reply-name="叶甲">↩ 回复</button>
+            </div>
+            <div class="comment-body"><p>嗯，听朋友的故事的启发。不过不敢和卡尔维诺比</p></div>
+            <ol class="comment-replies">
+              <li class="comment-item" id="comment-douban-261768072-4">
+                <div class="comment-header">
+                  <a href="https://www.douban.com/people/66359080/" class="comment-author" rel="nofollow noopener" target="_blank">一叶</a>
+                  <time class="comment-date" datetime="2013-02-08T12:00:00.000Z">2013年2月8日</time>
+                  <button type="button" class="comment-reply-btn" data-reply-id="douban-261768072-4" data-reply-name="一叶">↩ 回复</button>
+                </div>
+                <div class="comment-body"><p>谦虚了，写的挺不错的</p></div>
+                <ol class="comment-replies">
+                  <li class="comment-item" id="comment-douban-261768072-5">
+                    <div class="comment-header">
+                      <a href="https://www.douban.com/people/ax123456789/" class="comment-author" rel="nofollow noopener" target="_blank">叶甲</a>
+                      <time class="comment-date" datetime="2013-02-08T14:00:00.000Z">2013年2月8日</time>
+                      <button type="button" class="comment-reply-btn" data-reply-id="douban-261768072-5" data-reply-name="叶甲">↩ 回复</button>
+                    </div>
+                    <div class="comment-body"><p>谢谢</p></div>
+                  </li>
+                </ol>
+              </li>
+            </ol>
+          </li>
+        </ol>
+      </li>
+      <li class="comment-item" id="comment-douban-261768072-1">
+        <div class="comment-header">
+          <a href="https://www.douban.com/people/2806815/" class="comment-author" rel="nofollow noopener" target="_blank">陌生猫咪一年</a>
+          <time class="comment-date" datetime="2013-02-08T00:00:00.000Z">2013年2月8日</time>
+          <button type="button" class="comment-reply-btn" data-reply-id="douban-261768072-1" data-reply-name="陌生猫咪一年">↩ 回复</button>
+        </div>
+        <div class="comment-body"><p>那座城就是那个人。他回到他的躯壳里。一同泯灭。去往天国，或地狱。</p></div>
+      </li>
+    </ol>
     <script>(function() {
+  'use strict';
   var form = document.getElementById('moss-comment-form');
   if (!form) return;
 
+  var serverUrl = form.dataset.serverUrl;
+  var siteName = form.dataset.siteName;
+  var pageKey = form.dataset.pageKey;
+  var pageTitle = form.dataset.pageTitle;
+  var status = document.getElementById('moss-comment-status');
   var textarea = document.getElementById('moss-comment-text');
-  var statusEl = document.getElementById('moss-comment-status');
-  var commentList = document.querySelector('.moss-comments .comment-list');
-  var currentReplyId = null;
-  var currentReplyWrapper = null;
-  var defaultFormSlot = document.getElementById('default-form-slot');
+  var STORAGE_KEY = 'moss-commenter';
+  var replyToId = null;
 
-  function updateCommentCount() {
-    var s = document.getElementById('moss-comments');
-    if (!s) return;
-    var total = s.querySelectorAll('.comment-item').length;
-    var d = s.querySelector('details');
-    if (!d) return;
-    var sp = d.querySelector('summary span');
-    if (sp) {
-      sp.textContent = total === 1 ? '1条评论' : '{n}条评论'.replace('{n}', total);
-    }
-  }
+  // Restore saved identity
+  try {
+    var saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+    if (saved.name) form.querySelector('[name="name"]').value = saved.name;
+    if (saved.email) form.querySelector('[name="email"]').value = saved.email;
+    if (saved.link) form.querySelector('[name="link"]').value = saved.link;
+  } catch(e) {}
 
   // Auto-grow textarea
   if (textarea) {
-    function autoGrow() {
-      textarea.style.height = 'auto';
-      textarea.style.height = textarea.scrollHeight + 'px';
-    }
-    textarea.addEventListener('input', autoGrow);
+    textarea.addEventListener('input', function() {
+      this.style.height = 'auto';
+      this.style.height = this.scrollHeight + 'px';
+    });
   }
+
+  // Reply threading
+  document.querySelectorAll('.comment-reply-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var id = this.dataset.replyId;
+      var name = this.dataset.replyName;
+      replyToId = id;
+      var item = document.getElementById('comment-' + id);
+      if (item) {
+        var slot = item.querySelector('.comment-replies') || item;
+        slot.appendChild(form.parentNode);
+      }
+      if (textarea) {
+        textarea.placeholder = '@' + name + ' ';
+        textarea.focus();
+      }
+    });
+  });
 
   form.addEventListener('submit', function(e) {
     e.preventDefault();
-    var btn = form.querySelector('.comment-form-submit');
-    btn.disabled = true;
-    btn.textContent = '提交中...';
-    if (statusEl) { statusEl.textContent = ''; statusEl.className = 'comment-form-status'; }
+    var content = textarea.value.trim();
+    if (!content) return;
 
-    var rawLink = (form.elements['link'].value || '').trim();
-    if (rawLink && !/^https?:\/\//.test(rawLink)) { rawLink = 'https://' + rawLink; }
+    var nameVal = form.querySelector('[name="name"]').value.trim();
+    var emailVal = form.querySelector('[name="email"]').value.trim();
+    var linkVal = form.querySelector('[name="link"]').value.trim();
+
+    if (!nameVal) { status.textContent = 'Name is required'; return; }
+
+    // Save identity
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({name: nameVal, email: emailVal, link: linkVal}));
+    } catch(e) {}
+
+    status.textContent = 'Submitting...';
+    form.querySelector('[type="submit"]').disabled = true;
 
     var body = {
-      content: form.elements['content'].value,
-      name: form.elements['name'].value,
-      email: form.elements['email'].value,
-      link: rawLink,
-      rid: currentReplyId ? parseInt(currentReplyId, 10) : 0,
-      page_key: '3d05333d',
-      page_title: '一座城的湮灭',
-      site_name: 'liu-guo.com',
-      ua: navigator.userAgent
+      content: content,
+      nick: nameVal,
+      email: emailVal,
+      link: linkVal,
+      page_key: pageKey,
+      page_title: pageTitle,
+      site_name: siteName
     };
+    if (replyToId) body.rid = parseInt(replyToId, 10);
 
-    // Prepend quoted passage as blockquote if submitting from float shell
-    var quoteText = form.dataset.quoteText || '';
-    if (quoteText) {
-      body.content = '> ' + quoteText + '\n\n' + body.content;
-    }
-
-    fetch('https://api.moss.host/comments/api/v2/comments', {
+    fetch(serverUrl.replace(/\/+$/, '') + '/api/v2/comments', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(body)
-    })
-    .then(function(res) {
-      if (!res.ok) {
-        return res.json().catch(function() {
-          throw new Error('Server error (' + res.status + ')');
-        }).then(function(data) {
-          throw new Error(data.msg || 'Server error (' + res.status + ')');
-        });
+    }).then(function(r) {
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      return r.json();
+    }).then(function(data) {
+      status.textContent = 'Comment posted!';
+      textarea.value = '';
+      replyToId = null;
+      // Move form back to default slot
+      var defaultSlot = document.getElementById('default-form-slot');
+      if (defaultSlot) defaultSlot.appendChild(form.parentNode.contains(form) ? form : form);
+      // Insert new comment into DOM
+      var list = document.querySelector('.comment-list');
+      if (list && data) {
+        var li = document.createElement('li');
+        li.className = 'comment-item';
+        li.innerHTML = '<div class="comment-header"><span class="comment-author">' +
+          (nameVal || 'Anonymous') + '</span><time class="comment-date">just now</time></div>' +
+          '<div class="comment-body">' + (data.content || content) + '</div>';
+        list.appendChild(li);
       }
-      return res.json();
-    })
-    .then(function(data) {
-      btn.disabled = false;
-      btn.textContent = '回复';
-
-      if (statusEl) {
-        statusEl.textContent = '评论已提交！';
-        statusEl.className = 'comment-form-status comment-form-status--success';
-      }
-
-      var li = document.createElement('li');
-      li.className = 'comment-item';
-      li.id = 'comment-' + data.id;
-      var now = new Date().toLocaleDateString('zh-CN', {year:'numeric',month:'short',day:'numeric'});
-      var authorName = body.name || 'Anonymous';
-      var safeAuthor = authorName.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-      li.innerHTML = '<div class="comment-header">'
-        + '<span class="comment-author">' + safeAuthor + '</span>'
-        + '<time class="comment-date">' + now + '</time>'
-        + '<button type="button" class="comment-reply-btn" data-reply-id="' + data.id + '" data-reply-name="' + safeAuthor + '">\u21a9 回复</button>'
-        + '</div>'
-        + '<div class="comment-body"><p>' + body.content.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;') + '</p></div>';
-
-      if (currentReplyId) {
-        // Insert as nested reply under the parent comment
-        var parentLi = document.getElementById('comment-' + currentReplyId);
-        if (parentLi) {
-          var repliesOl = parentLi.querySelector('.comment-replies');
-          if (!repliesOl) {
-            repliesOl = document.createElement('ol');
-            repliesOl.className = 'comment-replies';
-            parentLi.appendChild(repliesOl);
-          }
-          repliesOl.insertBefore(li, null);
-        }
-        cancelReply(false);
-      } else {
-        if (!commentList) {
-          commentList = document.createElement('ol');
-          commentList.className = 'comment-list';
-          var defaultSlot = document.getElementById('default-form-slot');
-          if (defaultSlot) defaultSlot.after(commentList);
-          else form.after(commentList);
-        }
-        // Newest first: prepend so the just-submitted comment appears at the top
-        commentList.insertBefore(li, commentList.firstChild);
-      }
-
-      updateCommentCount();
-      saveIdentity();
-      cancelFloat();
-      form.elements['content'].value = '';
-      if (textarea) { textarea.style.height = 'auto'; }
-    })
-    .catch(function(err) {
-      btn.disabled = false;
-      btn.textContent = '回复';
-      if (statusEl) {
-        statusEl.textContent = err.message || '网络错误，请重试。';
-        statusEl.className = 'comment-form-status comment-form-status--error';
-      }
+      setTimeout(function() { status.textContent = ''; }, 3000);
+    }).catch(function(err) {
+      status.textContent = 'Error: ' + err.message;
+    }).finally(function() {
+      form.querySelector('[type="submit"]').disabled = false;
     });
   });
-
-  /* --- Reply logic: relocating form pattern --- */
-  function cancelReply(skipScroll) {
-    if (!currentReplyWrapper) return;
-    if (defaultFormSlot) {
-      defaultFormSlot.appendChild(form);
-      defaultFormSlot.classList.remove('comment-form-slot--collapsed');
-    }
-    currentReplyWrapper.remove();
-    currentReplyWrapper = null;
-    currentReplyId = null;
-    if (!skipScroll && defaultFormSlot) {
-      defaultFormSlot.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    }
-  }
-
-  var section = document.getElementById('moss-comments');
-  if (section) {
-    section.addEventListener('click', function(e) {
-      var btn = e.target.closest('.comment-reply-btn');
-      if (!btn) return;
-
-      var replyId = btn.getAttribute('data-reply-id');
-      var replyName = btn.getAttribute('data-reply-name');
-      var commentItem = document.getElementById('comment-' + replyId);
-      if (!commentItem) return;
-
-      // If already replying to this comment, just focus
-      if (currentReplyId === replyId) { textarea.focus(); return; }
-
-      // Cancel any existing reply
-      cancelReply(true);
-
-      // Collapse default form slot
-      if (defaultFormSlot) defaultFormSlot.classList.add('comment-form-slot--collapsed');
-
-      // Create reply wrapper with thread indent
-      var wrapper = document.createElement('div');
-      wrapper.className = 'comment-reply-form-wrapper';
-
-      // Reply indicator
-      var indicator = document.createElement('div');
-      indicator.className = 'comment-reply-indicator';
-      indicator.innerHTML = '<span>\u21a9 回复 <strong>' + replyName.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') + '</strong> \u00b7</span>';
-      var cancelBtn = document.createElement('button');
-      cancelBtn.type = 'button';
-      cancelBtn.className = 'comment-reply-cancel';
-      cancelBtn.textContent = '取消';
-      cancelBtn.addEventListener('click', function() { cancelReply(false); });
-      indicator.appendChild(cancelBtn);
-      wrapper.appendChild(indicator);
-
-      // Move form into wrapper
-      wrapper.appendChild(form);
-      commentItem.appendChild(wrapper);
-
-      currentReplyWrapper = wrapper;
-      currentReplyId = replyId;
-
-      textarea.focus();
-      wrapper.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    });
-  }
-
-  /* --- Float-with-quote: selection → 评论 flow --- */
-  var floatShell = null;
-  var floatBackdrop = null;
-
-  function createFloatShell() {
-    floatBackdrop = document.createElement('div');
-    floatBackdrop.className = 'comment-float-backdrop';
-    document.body.appendChild(floatBackdrop);
-
-    floatShell = document.createElement('div');
-    floatShell.className = 'comment-float-shell';
-    floatShell.innerHTML = '<div class="comment-float-inner"></div>';
-    document.body.appendChild(floatShell);
-
-    floatBackdrop.addEventListener('click', cancelFloat);
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape' && floatShell.classList.contains('open')) cancelFloat();
-    });
-  }
-
-  function floatWithQuote(quoteText) {
-    cancelReply(true);
-    if (!floatShell) createFloatShell();
-    var inner = floatShell.querySelector('.comment-float-inner');
-    var quoteEl = document.createElement('div');
-    quoteEl.className = 'comment-float-quote';
-    quoteEl.textContent = quoteText;
-    inner.innerHTML = '';
-    inner.appendChild(quoteEl);
-    if (defaultFormSlot) defaultFormSlot.classList.add('comment-form-slot--collapsed');
-    inner.appendChild(form);
-    form.dataset.quoteText = quoteText;
-    floatBackdrop.classList.add('visible');
-    floatShell.classList.add('open');
-    textarea.focus();
-  }
-
-  function cancelFloat() {
-    if (!floatShell) return;
-    floatShell.classList.remove('open');
-    floatBackdrop.classList.remove('visible');
-    if (defaultFormSlot) {
-      defaultFormSlot.appendChild(form);
-      defaultFormSlot.classList.remove('comment-form-slot--collapsed');
-    }
-    delete form.dataset.quoteText;
-  }
-
-  document.addEventListener('moss:quote-comment', function(e) {
-    var text = e.detail && e.detail.text;
-    if (text) floatWithQuote(text);
-  });
-
-  /* --- Identity persistence --- */
-  var COMMENTER_KEY = 'moss-commenter';
-
-  function loadIdentity() {
-    try {
-      var saved = JSON.parse(localStorage.getItem(COMMENTER_KEY));
-      if (!saved) return;
-      var nameField = form.querySelector('[name="name"]');
-      var emailField = form.querySelector('[name="email"]');
-      var linkField = form.querySelector('[name="link"]');
-      if (nameField && saved.name) nameField.value = saved.name;
-      if (emailField && saved.email) emailField.value = saved.email;
-      if (linkField && saved.url) linkField.value = saved.url;
-    } catch(e) {}
-  }
-
-  function saveIdentity() {
-    var nameField = form.querySelector('[name="name"]');
-    var emailField = form.querySelector('[name="email"]');
-    var linkField = form.querySelector('[name="link"]');
-    var data = {
-      name: nameField ? nameField.value.trim() : '',
-      email: emailField ? emailField.value.trim() : '',
-      url: linkField ? linkField.value.trim() : ''
-    };
-    if (data.name) localStorage.setItem(COMMENTER_KEY, JSON.stringify(data));
-  }
-
-  loadIdentity();
-
-  /*
-   * Eager hydration — fetch new comments on page load, not on toggle.
-   *
-   * Design decision:
-   *   Static HTML contains all comments known at build time (stale-while-
-   *   revalidate). Previously, hydration was deferred to the <details> toggle
-   *   event, so the summary count stayed stale until the user expanded the
-   *   section. Now we fetch eagerly on page load so the count is correct as
-   *   soon as possible, while not blocking page render (the fetch is async).
-   *
-   * How others handle this:
-   *   - Disqus, Commento, Utterances: fully client-rendered. No static HTML
-   *     at all — the entire comment thread loads via JS. Fast count, but no
-   *     content until JS runs.
-   *   - Staticman: commits to git repo, rebuilt into static HTML. No client
-   *     hydration — count is always stale until next build.
-   *   - Artalk's own JS client: fully client-rendered, same as Disqus.
-   *   - moss is unique: SSR + client hydration, like Next.js/Remix's approach
-   *     to static content. We get the best of both — immediate content without
-   *     JS, plus live updates via hydration.
-   *
-   * Trade-off:
-   *   One background fetch per page load (~1 KB JSON response) vs accurate
-   *   comment count. Worth it because the fetch is small, non-blocking, and
-   *   the count being wrong is a worse UX than a tiny network request.
-   *
-   * Deduplication (two layers):
-   *   1. Date boundary  — stop iterating when we hit a comment older than the
-   *      build timestamp (comments are sorted newest-first from the API).
-   *   2. ID guard       — skip any comment whose DOM node already exists
-   *      (handles edge cases where build-time and fetch overlap).
-   *
-   * Trust model: Artalk performs server-side HTML sanitization, so we use
-   * innerHTML for comment content (same as the static render path).
-   */
-  var builtAtStr = section && section.getAttribute('data-built-at');
-  var builtAtMs = builtAtStr ? new Date(builtAtStr).getTime() : 0;
-
-  if (builtAtMs) {
-    fetch('https://api.moss.host/comments/api/v2/comments?page_key=3d05333d&site_name=liu-guo.com&flat_mode=true&sort_by=date_desc&limit=100')
-      .then(function(res) { return res.ok ? res.json() : null; })
-      .then(function(json) {
-        if (!json) return;
-        var list = json.comments || (json.data && json.data.comments) || [];
-        var added = 0;
-        // Anchor = first build-time comment. Hydrated comments go before it
-        // to maintain newest-first order (API returns date_desc).
-        var anchor = commentList ? commentList.firstChild : null;
-
-        // Pass 1: collect new comments (API returns newest-first)
-        var newComments = [];
-        for (var i = 0; i < list.length; i++) {
-          var c = list[i];
-          if (new Date(c.date).getTime() <= builtAtMs) break;
-          if (document.getElementById('comment-' + c.id)) continue;
-          newComments.push(c);
-        }
-
-        // Reverse to oldest-first so parents are inserted before children.
-        // This fixes reply threading: a parent is always older than its
-        // replies, so reversing guarantees getElementById finds the parent
-        // when we process a reply.
-        newComments.reverse();
-
-        // Pass 2: insert into DOM (oldest-first = parents before children)
-        for (var i = 0; i < newComments.length; i++) {
-          var c = newComments[i];
-
-          var li = document.createElement('li');
-          li.className = 'comment-item';
-          li.id = 'comment-' + c.id;
-          var authorName = (c.nick || 'Anonymous').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-          var dateStr = new Date(c.date).toLocaleDateString('zh-CN', {year:'numeric',month:'short',day:'numeric'});
-          li.innerHTML = '<div class="comment-header">'
-            + '<span class="comment-author">' + authorName + '</span>'
-            + '<time class="comment-date">' + dateStr + '</time>'
-            + '<button type="button" class="comment-reply-btn" data-reply-id="' + c.id + '" data-reply-name="' + authorName + '">\u21a9 回复</button>'
-            + '</div>'
-            + '<div class="comment-body">' + c.content + '</div>';
-
-          if (c.rid > 0) {
-            var parentLi = document.getElementById('comment-' + c.rid);
-            if (parentLi) {
-              var repliesOl = parentLi.querySelector('.comment-replies');
-              if (!repliesOl) {
-                repliesOl = document.createElement('ol');
-                repliesOl.className = 'comment-replies';
-                parentLi.appendChild(repliesOl);
-              }
-              repliesOl.insertBefore(li, null);
-              added++;
-              continue;
-            }
-          }
-
-          if (!commentList) {
-            commentList = document.createElement('ol');
-            commentList.className = 'comment-list';
-            var formEl = document.getElementById('moss-comment-form');
-            if (formEl) formEl.after(commentList);
-            anchor = null;
-          }
-          commentList.insertBefore(li, anchor);
-          added++;
-        }
-
-        if (added > 0) {
-          updateCommentCount();
-        }
-      })
-      .catch(function() { /* silent — static comments still visible */ });
-  }
-})();</script>
+})();
+</script>
   </details>
 </section>
     </main>
@@ -1214,11 +939,7 @@ a.comment-author:hover {
             <a href="/feed.xml" class="footer-link" data-external>RSS</a>
         </div>
         <div class="footer-right">
-            <form action="https://buttondown.com/api/emails/embed-subscribe/liuguo" method="post" class="footer-subscribe-form">
-            <input type="email" name="email" class="moss-input" placeholder="邮箱" required />
-            <input type="hidden" value="1" name="embed" />
-            <button type="submit" class="moss-btn">订阅</button>
-        </form>
+            <form action="https://buttondown.com/api/emails/embed-subscribe/liuguo" method="post" class="footer-subscribe-form"><input type="email" name="email" class="moss-input" placeholder="邮箱" required /><input type="hidden" value="1" name="embed" /><button type="submit" class="moss-btn">订阅</button></form>
         </div>
     </div>
 </footer>

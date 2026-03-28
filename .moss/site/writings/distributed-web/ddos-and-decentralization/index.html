@@ -29,7 +29,130 @@
     <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml">
     <script data-goatcounter="https://guo.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
     <link rel="stylesheet" href="/style.css?v=f707c0be9c488a06">
-    <style class="moss-comments-style">/* ==========================================================================
+    <script data-goatcounter="https://guo.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<style class="moss-review-style">/* Review plugin — header and colophon styles
+ * Uses moss design tokens. Works in light and dark mode.
+ * Side-by-side layout on all screen sizes (matches collection-cover pattern).
+ */
+
+/* Header — cover + title/subtitle/creator */
+.review-header {
+  display: flex;
+  gap: var(--moss-space-lg, 2rem);
+  align-items: flex-start;
+  margin: 1rem 0 2rem;
+}
+
+.review-cover {
+  width: 150px;
+  max-width: 30%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 4px;
+  flex-shrink: 0;
+  margin: 0; /* Override global img margin for flex alignment */
+}
+
+.review-meta {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.review-meta-title {
+  font-weight: 600;
+  font-size: 1.05em;
+  color: var(--moss-color-text, #333);
+}
+
+.review-meta-subtitle {
+  font-size: 0.9em;
+  color: var(--moss-color-muted, #666);
+}
+
+.review-meta-creator {
+  font-size: 0.9em;
+  color: var(--moss-color-muted, #666);
+}
+
+.review-sep {
+  color: var(--moss-color-muted, #666);
+  margin: 0 0.15em;
+}
+
+/* Colophon — card with cover + details */
+.review-colophon {
+  display: flex;
+  gap: var(--moss-space-lg, 2rem);
+  align-items: flex-start;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  padding: 1.25rem;
+  background: var(--moss-color-surface, #f8f8f8);
+  border-radius: 8px;
+  font-size: 0.9em;
+  color: var(--moss-color-muted, #666);
+}
+
+.review-colophon-cover {
+  width: 150px;
+  max-width: 30%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 4px;
+  flex-shrink: 0;
+  margin: 0; /* Override global img margin for flex alignment */
+}
+
+.review-colophon-details {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.review-colophon-title {
+  font-weight: 600;
+  color: var(--moss-color-text, #333);
+  font-size: 1.05em;
+}
+
+.review-colophon-subtitle {
+  font-size: 0.9em;
+  color: var(--moss-color-muted, #666);
+}
+
+.review-colophon-identity {
+  font-size: 0.95em;
+}
+
+.review-rating {
+  font-size: 1.2em;
+  color: var(--moss-color-accent, #c9a84c);
+  letter-spacing: 0.05em;
+}
+
+.review-community-rating {
+  font-size: 0.85em;
+}
+
+.review-biblio {
+  line-height: 1.5;
+}
+
+.review-links a {
+  color: var(--moss-color-accent, #c9a84c);
+  text-decoration: none;
+}
+
+.review-links a:hover {
+  text-decoration: underline;
+}
+</style>
+<style class="moss-comments-style">/* ==========================================================================
    moss Comments Plugin - Styles
 
    Collapsible comment section with solid thread borders,
@@ -586,128 +709,6 @@ a.comment-author:hover {
   }
 }
 </style>
-<style class="moss-review-style">/* Review plugin — header and colophon styles
- * Uses moss design tokens. Works in light and dark mode.
- * Side-by-side layout on all screen sizes (matches collection-cover pattern).
- */
-
-/* Header — cover + title/subtitle/creator */
-.review-header {
-  display: flex;
-  gap: var(--moss-space-lg, 2rem);
-  align-items: flex-start;
-  margin: 1rem 0 2rem;
-}
-
-.review-cover {
-  width: 150px;
-  max-width: 30%;
-  height: auto;
-  object-fit: cover;
-  border-radius: 4px;
-  flex-shrink: 0;
-  margin: 0; /* Override global img margin for flex alignment */
-}
-
-.review-meta {
-  flex: 1;
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-}
-
-.review-meta-title {
-  font-weight: 600;
-  font-size: 1.05em;
-  color: var(--moss-color-text, #333);
-}
-
-.review-meta-subtitle {
-  font-size: 0.9em;
-  color: var(--moss-color-muted, #666);
-}
-
-.review-meta-creator {
-  font-size: 0.9em;
-  color: var(--moss-color-muted, #666);
-}
-
-.review-sep {
-  color: var(--moss-color-muted, #666);
-  margin: 0 0.15em;
-}
-
-/* Colophon — card with cover + details */
-.review-colophon {
-  display: flex;
-  gap: var(--moss-space-lg, 2rem);
-  align-items: flex-start;
-  margin-top: 3rem;
-  margin-bottom: 3rem;
-  padding: 1.25rem;
-  background: var(--moss-color-surface, #f8f8f8);
-  border-radius: 8px;
-  font-size: 0.9em;
-  color: var(--moss-color-muted, #666);
-}
-
-.review-colophon-cover {
-  width: 150px;
-  max-width: 30%;
-  height: auto;
-  object-fit: cover;
-  border-radius: 4px;
-  flex-shrink: 0;
-  margin: 0; /* Override global img margin for flex alignment */
-}
-
-.review-colophon-details {
-  flex: 1;
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-}
-
-.review-colophon-title {
-  font-weight: 600;
-  color: var(--moss-color-text, #333);
-  font-size: 1.05em;
-}
-
-.review-colophon-subtitle {
-  font-size: 0.9em;
-  color: var(--moss-color-muted, #666);
-}
-
-.review-colophon-identity {
-  font-size: 0.95em;
-}
-
-.review-rating {
-  font-size: 1.2em;
-  color: var(--moss-color-accent, #c9a84c);
-  letter-spacing: 0.05em;
-}
-
-.review-community-rating {
-  font-size: 0.85em;
-}
-
-.review-biblio {
-  line-height: 1.5;
-}
-
-.review-links a {
-  color: var(--moss-color-accent, #c9a84c);
-  text-decoration: none;
-}
-
-.review-links a:hover {
-  text-decoration: underline;
-}
-</style>
 </head>
 <body class="">
     <header>
@@ -728,10 +729,10 @@ a.comment-author:hover {
 <p data-source-line="12">DDoS 的攻击是能够显示出去中心化有用之处的。即使 Matters.News 网页无法访问，也不影响区块链上的资产和 IPFS 中的内容。但这种“有用”非常罕见，相反我们早就学到了，大部分情况下去中心化并不是需求，大部分使用者也并不在意。</p><p data-source-line="14">许多理解技术的人都会直觉地支持去中心化，甚至成为一种审美或者理念。这种直觉背后也有分析的支撑，因为去中心化的网络更加联通、稳健和可扩展。信息系统同样遵循进化原则，那些能更好地为人们传递和承载信息的系统会更容易活下来，而那些更容易被干扰和阻塞的系统则会逐步淡出。</p><p data-source-line="16">活下来的去中心化网络、去信任化网络、Web3，最终会带来新的组织形态和经济结构，这已经是老生常谈了。这些预判是没错，但对于每个项目和团队，它们又无济于事。就好像森林里每只动物的存活与繁殖组成了进化的方向，但知道进化的方向却无助于每只动物的存活与繁殖。</p><p data-source-line="18">我想起八十年代个人计算机时代刚刚开启的时候，创业者们需要向用户和投资人证明这是世界的未来。他们唯一拿得出手的是各种表格软件，一个个黑白的、不堪用的早期 Excel。各个团队挤破头抢占电子表格市场，还需要证明自己不是花高价造出了一个笨重的计算器。</p><p data-source-line="20">现在个人电脑无处不在了，谁都能看见个人电脑开启的新世界里远远不止 Excel。但处在技术变革之中，总是满腔鸡血、满地泡沫，拿着大炮打蚊子，却总也打不准。那些趋势和理想，宏大而飘渺，与每个当下的创造关系甚少。如果你身处八十年代，能做的事情，仍然只有把 Excel 做好。</p>
             
         </article>
-        <section class="moss-comments" id="moss-comments" data-built-at="2026-03-25T16:29:22.153Z">
+        <section class="moss-comments" id="moss-comments" data-built-at="2026-03-28T03:47:21.518362+00:00">
   <details>
     <summary class="comments-toggle"><svg class="comments-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></svg><span>11条评论</span><svg class="comments-chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></summary>
-    <div class="comment-form-slot" id="default-form-slot"><form class="comment-form" id="moss-comment-form">
+    <div class="comment-form-slot" id="default-form-slot"><form class="comment-form" id="moss-comment-form" data-server-url="https://api.moss.host/comments" data-site-name="liu-guo.com" data-page-key="writings/distributed-web/ddos-and-decentralization/" data-page-title="关于 DDoS 与去中心化的碎碎念">
   <textarea id="moss-comment-text" name="content" required rows="2" placeholder="留下你的想法"></textarea>
   <div class="comment-form-meta">
     <input type="text" name="name" class="comment-field" placeholder="名字" autocomplete="name" required>
@@ -740,494 +741,221 @@ a.comment-author:hover {
     <button type="submit" class="comment-form-submit">回复</button>
   </div>
   <div class="comment-form-status" id="moss-comment-status"></div>
-</form></div>
-    <ol class="comment-list"><li class="comment-item" id="comment-Q29tbWVudDoxMjI0MjA0">
-  <div class="comment-header">
-    <a href="https://matters.town/@theiconman" class="comment-author" rel="nofollow noopener" target="_blank">吾乃在數位石碑上刻下足跡之人！</a>
-    <time class="comment-date" datetime="2022-08-02T15:52:39.070Z">2022年8月2日</time>
-    
-  </div>
-  <div class="comment-body"><p>無聊想要開個 ipfs node 備份 matters.new 上所有文章有辦法嗎?</p></div>
-  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDoxMjI1NDk0">
-  <div class="comment-header">
-    <a href="https://matters.town/@guo" class="comment-author" rel="nofollow noopener" target="_blank">刘果</a>
-    <time class="comment-date" datetime="2022-08-05T22:07:50.154Z">2022年8月5日</time>
-    
-  </div>
-  <div class="comment-body"><p>需要一篇篇文章來 pin，因為每篇文章是獨立的前端。可以通過 api 獲取 文章 cid 列表，然後就可以 pin 了。</p><p>之後我們會把每個作者的文章 feed 發佈到 ipns 中，同時捐贈會上到 polygon。這樣既可每個作者來 pin，也可以從 polygon 抓取被支持的 cid 了。</p></div>
-  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDoxMjI3NTAx">
-  <div class="comment-header">
-    <a href="https://matters.town/@javaing" class="comment-author" rel="nofollow noopener" target="_blank">javaing</a>
-    <time class="comment-date" datetime="2022-08-10T06:36:07.241Z">2022年8月10日</time>
-    
-  </div>
-  <div class="comment-body"><p>想請問，因還不懂IPFS的資料如何儲存，理解是p2p的，但目前沒有一個特定的鏈來存放資料是嗎，可以在polygon也可以在tezos，還是都在 Filecon的鏈上?<br class="smart"></p></div>
-  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDoxMjI3ODc0">
-  <div class="comment-header">
-    <a href="https://matters.town/@guo" class="comment-author" rel="nofollow noopener" target="_blank">刘果</a>
-    <time class="comment-date" datetime="2022-08-11T03:26:48.701Z">2022年8月10日</time>
-    
-  </div>
-  <div class="comment-body"><p>嗯是，區塊鏈本身沒法用來存儲內容數據，因為成本太高，設計上是用於存儲金流數據的。所以要麼用戶自己存（最去中心化和抗風險的方式，如 BitTorrent、Planet 等），要麼通過虛擬貨幣激勵其他節點來存，要麼項目自己部署多個節點來存（最容易和最廉價）。</p><p>目前 Matters 是自己部署的節點，以及少量用戶會進行備份。之後會通過整合客戶端讓更多的用戶容易自己存，也會接入 Crust Network（類似 Filecoin，但 Filecoin 目前還不可用）通過虛擬貨幣激勵其他節點存儲。</p><p>但通過虛擬貨幣激勵其他節點，如果一直需要由團隊墊付，同樣是中心化、而不可持續的。<br class="smart"></p></div>
-</li>
-  </ol>
-</li>
-  </ol>
-</li>
-  </ol>
-</li><li class="comment-item" id="comment-Q29tbWVudDoxMjIyOTE5">
-  <div class="comment-header">
-    <a href="https://matters.town/@hellolinux" class="comment-author" rel="nofollow noopener" target="_blank">hellolinux2021</a>
-    <time class="comment-date" datetime="2022-07-29T12:00:51.207Z">2022年7月29日</time>
-    
-  </div>
-  <div class="comment-body"><p>我当时在想matters是本身除了前端在自己的服务器，后面的文章数据也在自己的服务器上吗，还是说文章的数据在matters的数据库有备份，有异常的时候才会去IPFS的存储上去拿。</p><p>对于前端其实应该可以一定程度分散DDOS攻击，另外是否可以依靠第三方客户端或者前端，来简单使用，上传文章，阅读一些简要信息等</p></div>
-  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDoxMjIzMDQy">
-  <div class="comment-header">
-    <a href="https://matters.town/@hellolinux" class="comment-author" rel="nofollow noopener" target="_blank">hellolinux2021</a>
-    <time class="comment-date" datetime="2022-07-30T00:30:41.619Z">2022年7月29日</time>
-    
-  </div>
-  <div class="comment-body"><p>另外问一个偏楼的问题，文章一多，文章的ipsf id就难整理，需要一种相对友好的方式获取某位作者的作品指纹，虽然开发者能做，要是在前端自己有这个功能就最好了</p></div>
-</li><li class="comment-item" id="comment-Q29tbWVudDoxMjIyOTc3">
-  <div class="comment-header">
-    <a href="https://matters.town/@guo" class="comment-author" rel="nofollow noopener" target="_blank">刘果</a>
-    <time class="comment-date" datetime="2022-07-29T16:22:03.900Z">2022年7月29日</time>
-    
-  </div>
-  <div class="comment-body"><p>是的，内容同时存在 IPFS 和数据库中。IPFS 中的内容还有待加强的地方是需要通过 Crust Network 等方式来 pin，保证是分散的。不过这会增加成本，或者需要用户习惯为自己的数据付费。</p><p>的确需要不同的前端都能够读写，而且需要直接对接 IPFS / IPNS，而不是服务器。提到的 <a href="https://planetable.xyz/" rel="noopener noreferrer" target="_blank">Planet</a> 就是一个例子，我们也在设计如何与 Planet 联通。</p></div>
-  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDoxMjIzMDQw">
-  <div class="comment-header">
-    <a href="https://matters.town/@hellolinux" class="comment-author" rel="nofollow noopener" target="_blank">hellolinux2021</a>
-    <time class="comment-date" datetime="2022-07-30T00:28:05.671Z">2022年7月29日</time>
-    
-  </div>
-  <div class="comment-body"><p>多前端是必要的，而且最好有一两个开源部署使用的，能被普通开发者部署到公开的服务器上</p></div>
-</li><li class="comment-item" id="comment-Q29tbWVudDoxMjIzMDM5">
-  <div class="comment-header">
-    <a href="https://matters.town/@hellolinux" class="comment-author" rel="nofollow noopener" target="_blank">hellolinux2021</a>
-    <time class="comment-date" datetime="2022-07-30T00:25:40.601Z">2022年7月29日</time>
-    
-  </div>
-  <div class="comment-body"><p>IPFS目前拉取也要付费了吗，我记得市存取年限、时间才需要</p></div>
-  <ol class="comment-replies"><li class="comment-item" id="comment-Q29tbWVudDoxMjIzMDc5">
-  <div class="comment-header">
-    <a href="https://matters.town/@guo" class="comment-author" rel="nofollow noopener" target="_blank">刘果</a>
-    <time class="comment-date" datetime="2022-07-30T03:20:41.917Z">2022年7月29日</time>
-    
-  </div>
-  <div class="comment-body"><blockquote>IPFS目前拉取也要付费了吗，我记得市存取年限、时间才需要 <br class="smart"></blockquote><p>拉取不收费，但是存储 / pin 有成本，现在是 Matters 用自己的节点在 pin，更可靠的是付费给 Crust Network 的矿工 pin，会有大量备份。<br class="smart"></p><blockquote>多前端是必要的，而且最好有一两个开源部署使用的，能被普通开发者部署到公开的服务器上<br class="smart"><br class="smart">另外问一个偏楼的问题，文章一多，文章的ipsf id就难整理，需要一种相对友好的方式获取某位作者的作品指纹，虽然开发者能做，要是在前端自己有这个功能就最好了</blockquote><p>是的，目前的计划是把内容 feed（个人内容 feed、标签内容 feed 等）以 RSS 或 JSON feed 形式动态更新到 IPNS，然后用户可以直接通过 Planet 访问，就变成了纯分布式的前端了。</p></div>
-</li>
-  </ol>
-</li>
-  </ol>
-</li>
-  </ol>
-</li><li class="comment-item" id="comment-Q29tbWVudDoxMjIyODc5">
-  <div class="comment-header">
-    <a href="https://matters.town/@wancat" class="comment-author" rel="nofollow noopener" target="_blank">林宏信</a>
-    <time class="comment-date" datetime="2022-07-29T09:44:28.730Z">2022年7月29日</time>
-    
-  </div>
-  <div class="comment-body"><blockquote>就好像森林里每只动物的存活与繁殖组成了进化的方向，但知道进化的方向却无助于每只动物的存活与繁殖。</blockquote></div>
-</li></ol>
+</form>
+</div>
+    <ol class="comment-list">
+      <li class="comment-item" id="comment-Q29tbWVudDoxMjI0MjA0">
+        <div class="comment-header">
+          <a href="https://matters.town/@theiconman" class="comment-author" rel="nofollow noopener" target="_blank">吾乃在數位石碑上刻下足跡之人！</a>
+          <time class="comment-date" datetime="2022-08-02T15:52:39.070Z">2022年8月2日</time>
+          <button type="button" class="comment-reply-btn" data-reply-id="Q29tbWVudDoxMjI0MjA0" data-reply-name="吾乃在數位石碑上刻下足跡之人！">↩ 回复</button>
+        </div>
+        <div class="comment-body"><p>無聊想要開個 ipfs node 備份 matters.new 上所有文章有辦法嗎?</p></div>
+        <ol class="comment-replies">
+          <li class="comment-item" id="comment-Q29tbWVudDoxMjI1NDk0">
+            <div class="comment-header">
+              <a href="https://matters.town/@guo" class="comment-author" rel="nofollow noopener" target="_blank">刘果</a>
+              <time class="comment-date" datetime="2022-08-05T22:07:50.154Z">2022年8月5日</time>
+              <button type="button" class="comment-reply-btn" data-reply-id="Q29tbWVudDoxMjI1NDk0" data-reply-name="刘果">↩ 回复</button>
+            </div>
+            <div class="comment-body"><p>需要一篇篇文章來 pin，因為每篇文章是獨立的前端。可以通過 api 獲取 文章 cid 列表，然後就可以 pin 了。</p><p>之後我們會把每個作者的文章 feed 發佈到 ipns 中，同時捐贈會上到 polygon。這樣既可每個作者來 pin，也可以從 polygon 抓取被支持的 cid 了。</p></div>
+            <ol class="comment-replies">
+              <li class="comment-item" id="comment-Q29tbWVudDoxMjI3NTAx">
+                <div class="comment-header">
+                  <a href="https://matters.town/@javaing" class="comment-author" rel="nofollow noopener" target="_blank">javaing</a>
+                  <time class="comment-date" datetime="2022-08-10T06:36:07.241Z">2022年8月10日</time>
+                  <button type="button" class="comment-reply-btn" data-reply-id="Q29tbWVudDoxMjI3NTAx" data-reply-name="javaing">↩ 回复</button>
+                </div>
+                <div class="comment-body"><p>想請問，因還不懂IPFS的資料如何儲存，理解是p2p的，但目前沒有一個特定的鏈來存放資料是嗎，可以在polygon也可以在tezos，還是都在 Filecon的鏈上?<br class="smart"></p></div>
+                <ol class="comment-replies">
+                  <li class="comment-item" id="comment-Q29tbWVudDoxMjI3ODc0">
+                    <div class="comment-header">
+                      <a href="https://matters.town/@guo" class="comment-author" rel="nofollow noopener" target="_blank">刘果</a>
+                      <time class="comment-date" datetime="2022-08-11T03:26:48.701Z">2022年8月11日</time>
+                      <button type="button" class="comment-reply-btn" data-reply-id="Q29tbWVudDoxMjI3ODc0" data-reply-name="刘果">↩ 回复</button>
+                    </div>
+                    <div class="comment-body"><p>嗯是，區塊鏈本身沒法用來存儲內容數據，因為成本太高，設計上是用於存儲金流數據的。所以要麼用戶自己存（最去中心化和抗風險的方式，如 BitTorrent、Planet 等），要麼通過虛擬貨幣激勵其他節點來存，要麼項目自己部署多個節點來存（最容易和最廉價）。</p><p>目前 Matters 是自己部署的節點，以及少量用戶會進行備份。之後會通過整合客戶端讓更多的用戶容易自己存，也會接入 Crust Network（類似 Filecoin，但 Filecoin 目前還不可用）通過虛擬貨幣激勵其他節點存儲。</p><p>但通過虛擬貨幣激勵其他節點，如果一直需要由團隊墊付，同樣是中心化、而不可持續的。<br class="smart"></p></div>
+                  </li>
+                </ol>
+              </li>
+            </ol>
+          </li>
+        </ol>
+      </li>
+      <li class="comment-item" id="comment-Q29tbWVudDoxMjIyOTE5">
+        <div class="comment-header">
+          <a href="https://matters.town/@hellolinux" class="comment-author" rel="nofollow noopener" target="_blank">hellolinux2021</a>
+          <time class="comment-date" datetime="2022-07-29T12:00:51.207Z">2022年7月29日</time>
+          <button type="button" class="comment-reply-btn" data-reply-id="Q29tbWVudDoxMjIyOTE5" data-reply-name="hellolinux2021">↩ 回复</button>
+        </div>
+        <div class="comment-body"><p>我当时在想matters是本身除了前端在自己的服务器，后面的文章数据也在自己的服务器上吗，还是说文章的数据在matters的数据库有备份，有异常的时候才会去IPFS的存储上去拿。</p><p>对于前端其实应该可以一定程度分散DDOS攻击，另外是否可以依靠第三方客户端或者前端，来简单使用，上传文章，阅读一些简要信息等</p></div>
+        <ol class="comment-replies">
+          <li class="comment-item" id="comment-Q29tbWVudDoxMjIzMDQy">
+            <div class="comment-header">
+              <a href="https://matters.town/@hellolinux" class="comment-author" rel="nofollow noopener" target="_blank">hellolinux2021</a>
+              <time class="comment-date" datetime="2022-07-30T00:30:41.619Z">2022年7月30日</time>
+              <button type="button" class="comment-reply-btn" data-reply-id="Q29tbWVudDoxMjIzMDQy" data-reply-name="hellolinux2021">↩ 回复</button>
+            </div>
+            <div class="comment-body"><p>另外问一个偏楼的问题，文章一多，文章的ipsf id就难整理，需要一种相对友好的方式获取某位作者的作品指纹，虽然开发者能做，要是在前端自己有这个功能就最好了</p></div>
+          </li>
+          <li class="comment-item" id="comment-Q29tbWVudDoxMjIyOTc3">
+            <div class="comment-header">
+              <a href="https://matters.town/@guo" class="comment-author" rel="nofollow noopener" target="_blank">刘果</a>
+              <time class="comment-date" datetime="2022-07-29T16:22:03.900Z">2022年7月29日</time>
+              <button type="button" class="comment-reply-btn" data-reply-id="Q29tbWVudDoxMjIyOTc3" data-reply-name="刘果">↩ 回复</button>
+            </div>
+            <div class="comment-body"><p>是的，内容同时存在 IPFS 和数据库中。IPFS 中的内容还有待加强的地方是需要通过 Crust Network 等方式来 pin，保证是分散的。不过这会增加成本，或者需要用户习惯为自己的数据付费。</p><p>的确需要不同的前端都能够读写，而且需要直接对接 IPFS / IPNS，而不是服务器。提到的 <a href="https://planetable.xyz/" rel="noopener noreferrer" target="_blank">Planet</a> 就是一个例子，我们也在设计如何与 Planet 联通。</p></div>
+            <ol class="comment-replies">
+              <li class="comment-item" id="comment-Q29tbWVudDoxMjIzMDQw">
+                <div class="comment-header">
+                  <a href="https://matters.town/@hellolinux" class="comment-author" rel="nofollow noopener" target="_blank">hellolinux2021</a>
+                  <time class="comment-date" datetime="2022-07-30T00:28:05.671Z">2022年7月30日</time>
+                  <button type="button" class="comment-reply-btn" data-reply-id="Q29tbWVudDoxMjIzMDQw" data-reply-name="hellolinux2021">↩ 回复</button>
+                </div>
+                <div class="comment-body"><p>多前端是必要的，而且最好有一两个开源部署使用的，能被普通开发者部署到公开的服务器上</p></div>
+              </li>
+              <li class="comment-item" id="comment-Q29tbWVudDoxMjIzMDM5">
+                <div class="comment-header">
+                  <a href="https://matters.town/@hellolinux" class="comment-author" rel="nofollow noopener" target="_blank">hellolinux2021</a>
+                  <time class="comment-date" datetime="2022-07-30T00:25:40.601Z">2022年7月30日</time>
+                  <button type="button" class="comment-reply-btn" data-reply-id="Q29tbWVudDoxMjIzMDM5" data-reply-name="hellolinux2021">↩ 回复</button>
+                </div>
+                <div class="comment-body"><p>IPFS目前拉取也要付费了吗，我记得市存取年限、时间才需要</p></div>
+                <ol class="comment-replies">
+                  <li class="comment-item" id="comment-Q29tbWVudDoxMjIzMDc5">
+                    <div class="comment-header">
+                      <a href="https://matters.town/@guo" class="comment-author" rel="nofollow noopener" target="_blank">刘果</a>
+                      <time class="comment-date" datetime="2022-07-30T03:20:41.917Z">2022年7月30日</time>
+                      <button type="button" class="comment-reply-btn" data-reply-id="Q29tbWVudDoxMjIzMDc5" data-reply-name="刘果">↩ 回复</button>
+                    </div>
+                    <div class="comment-body"><blockquote>IPFS目前拉取也要付费了吗，我记得市存取年限、时间才需要 <br class="smart"></blockquote><p>拉取不收费，但是存储 / pin 有成本，现在是 Matters 用自己的节点在 pin，更可靠的是付费给 Crust Network 的矿工 pin，会有大量备份。<br class="smart"></p><blockquote>多前端是必要的，而且最好有一两个开源部署使用的，能被普通开发者部署到公开的服务器上<br class="smart"><br class="smart">另外问一个偏楼的问题，文章一多，文章的ipsf id就难整理，需要一种相对友好的方式获取某位作者的作品指纹，虽然开发者能做，要是在前端自己有这个功能就最好了</blockquote><p>是的，目前的计划是把内容 feed（个人内容 feed、标签内容 feed 等）以 RSS 或 JSON feed 形式动态更新到 IPNS，然后用户可以直接通过 Planet 访问，就变成了纯分布式的前端了。</p></div>
+                  </li>
+                </ol>
+              </li>
+            </ol>
+          </li>
+        </ol>
+      </li>
+      <li class="comment-item" id="comment-Q29tbWVudDoxMjIyODc5">
+        <div class="comment-header">
+          <a href="https://matters.town/@wancat" class="comment-author" rel="nofollow noopener" target="_blank">林宏信</a>
+          <time class="comment-date" datetime="2022-07-29T09:44:28.730Z">2022年7月29日</time>
+          <button type="button" class="comment-reply-btn" data-reply-id="Q29tbWVudDoxMjIyODc5" data-reply-name="林宏信">↩ 回复</button>
+        </div>
+        <div class="comment-body"><blockquote>就好像森林里每只动物的存活与繁殖组成了进化的方向，但知道进化的方向却无助于每只动物的存活与繁殖。</blockquote></div>
+      </li>
+    </ol>
     <script>(function() {
+  'use strict';
   var form = document.getElementById('moss-comment-form');
   if (!form) return;
 
+  var serverUrl = form.dataset.serverUrl;
+  var siteName = form.dataset.siteName;
+  var pageKey = form.dataset.pageKey;
+  var pageTitle = form.dataset.pageTitle;
+  var status = document.getElementById('moss-comment-status');
   var textarea = document.getElementById('moss-comment-text');
-  var statusEl = document.getElementById('moss-comment-status');
-  var commentList = document.querySelector('.moss-comments .comment-list');
-  var currentReplyId = null;
-  var currentReplyWrapper = null;
-  var defaultFormSlot = document.getElementById('default-form-slot');
+  var STORAGE_KEY = 'moss-commenter';
+  var replyToId = null;
 
-  function updateCommentCount() {
-    var s = document.getElementById('moss-comments');
-    if (!s) return;
-    var total = s.querySelectorAll('.comment-item').length;
-    var d = s.querySelector('details');
-    if (!d) return;
-    var sp = d.querySelector('summary span');
-    if (sp) {
-      sp.textContent = total === 1 ? '1条评论' : '{n}条评论'.replace('{n}', total);
-    }
-  }
+  // Restore saved identity
+  try {
+    var saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+    if (saved.name) form.querySelector('[name="name"]').value = saved.name;
+    if (saved.email) form.querySelector('[name="email"]').value = saved.email;
+    if (saved.link) form.querySelector('[name="link"]').value = saved.link;
+  } catch(e) {}
 
   // Auto-grow textarea
   if (textarea) {
-    function autoGrow() {
-      textarea.style.height = 'auto';
-      textarea.style.height = textarea.scrollHeight + 'px';
-    }
-    textarea.addEventListener('input', autoGrow);
+    textarea.addEventListener('input', function() {
+      this.style.height = 'auto';
+      this.style.height = this.scrollHeight + 'px';
+    });
   }
+
+  // Reply threading
+  document.querySelectorAll('.comment-reply-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var id = this.dataset.replyId;
+      var name = this.dataset.replyName;
+      replyToId = id;
+      var item = document.getElementById('comment-' + id);
+      if (item) {
+        var slot = item.querySelector('.comment-replies') || item;
+        slot.appendChild(form.parentNode);
+      }
+      if (textarea) {
+        textarea.placeholder = '@' + name + ' ';
+        textarea.focus();
+      }
+    });
+  });
 
   form.addEventListener('submit', function(e) {
     e.preventDefault();
-    var btn = form.querySelector('.comment-form-submit');
-    btn.disabled = true;
-    btn.textContent = '提交中...';
-    if (statusEl) { statusEl.textContent = ''; statusEl.className = 'comment-form-status'; }
+    var content = textarea.value.trim();
+    if (!content) return;
 
-    var rawLink = (form.elements['link'].value || '').trim();
-    if (rawLink && !/^https?:\/\//.test(rawLink)) { rawLink = 'https://' + rawLink; }
+    var nameVal = form.querySelector('[name="name"]').value.trim();
+    var emailVal = form.querySelector('[name="email"]').value.trim();
+    var linkVal = form.querySelector('[name="link"]').value.trim();
+
+    if (!nameVal) { status.textContent = 'Name is required'; return; }
+
+    // Save identity
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({name: nameVal, email: emailVal, link: linkVal}));
+    } catch(e) {}
+
+    status.textContent = 'Submitting...';
+    form.querySelector('[type="submit"]').disabled = true;
 
     var body = {
-      content: form.elements['content'].value,
-      name: form.elements['name'].value,
-      email: form.elements['email'].value,
-      link: rawLink,
-      rid: currentReplyId ? parseInt(currentReplyId, 10) : 0,
-      page_key: '107260d8',
-      page_title: '关于 DDoS 与去中心化的碎碎念',
-      site_name: 'liu-guo.com',
-      ua: navigator.userAgent
+      content: content,
+      nick: nameVal,
+      email: emailVal,
+      link: linkVal,
+      page_key: pageKey,
+      page_title: pageTitle,
+      site_name: siteName
     };
+    if (replyToId) body.rid = parseInt(replyToId, 10);
 
-    // Prepend quoted passage as blockquote if submitting from float shell
-    var quoteText = form.dataset.quoteText || '';
-    if (quoteText) {
-      body.content = '> ' + quoteText + '\n\n' + body.content;
-    }
-
-    fetch('https://api.moss.host/comments/api/v2/comments', {
+    fetch(serverUrl.replace(/\/+$/, '') + '/api/v2/comments', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(body)
-    })
-    .then(function(res) {
-      if (!res.ok) {
-        return res.json().catch(function() {
-          throw new Error('Server error (' + res.status + ')');
-        }).then(function(data) {
-          throw new Error(data.msg || 'Server error (' + res.status + ')');
-        });
+    }).then(function(r) {
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      return r.json();
+    }).then(function(data) {
+      status.textContent = 'Comment posted!';
+      textarea.value = '';
+      replyToId = null;
+      // Move form back to default slot
+      var defaultSlot = document.getElementById('default-form-slot');
+      if (defaultSlot) defaultSlot.appendChild(form.parentNode.contains(form) ? form : form);
+      // Insert new comment into DOM
+      var list = document.querySelector('.comment-list');
+      if (list && data) {
+        var li = document.createElement('li');
+        li.className = 'comment-item';
+        li.innerHTML = '<div class="comment-header"><span class="comment-author">' +
+          (nameVal || 'Anonymous') + '</span><time class="comment-date">just now</time></div>' +
+          '<div class="comment-body">' + (data.content || content) + '</div>';
+        list.appendChild(li);
       }
-      return res.json();
-    })
-    .then(function(data) {
-      btn.disabled = false;
-      btn.textContent = '回复';
-
-      if (statusEl) {
-        statusEl.textContent = '评论已提交！';
-        statusEl.className = 'comment-form-status comment-form-status--success';
-      }
-
-      var li = document.createElement('li');
-      li.className = 'comment-item';
-      li.id = 'comment-' + data.id;
-      var now = new Date().toLocaleDateString('zh-CN', {year:'numeric',month:'short',day:'numeric'});
-      var authorName = body.name || 'Anonymous';
-      var safeAuthor = authorName.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-      li.innerHTML = '<div class="comment-header">'
-        + '<span class="comment-author">' + safeAuthor + '</span>'
-        + '<time class="comment-date">' + now + '</time>'
-        + '<button type="button" class="comment-reply-btn" data-reply-id="' + data.id + '" data-reply-name="' + safeAuthor + '">\u21a9 回复</button>'
-        + '</div>'
-        + '<div class="comment-body"><p>' + body.content.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;') + '</p></div>';
-
-      if (currentReplyId) {
-        // Insert as nested reply under the parent comment
-        var parentLi = document.getElementById('comment-' + currentReplyId);
-        if (parentLi) {
-          var repliesOl = parentLi.querySelector('.comment-replies');
-          if (!repliesOl) {
-            repliesOl = document.createElement('ol');
-            repliesOl.className = 'comment-replies';
-            parentLi.appendChild(repliesOl);
-          }
-          repliesOl.insertBefore(li, null);
-        }
-        cancelReply(false);
-      } else {
-        if (!commentList) {
-          commentList = document.createElement('ol');
-          commentList.className = 'comment-list';
-          var defaultSlot = document.getElementById('default-form-slot');
-          if (defaultSlot) defaultSlot.after(commentList);
-          else form.after(commentList);
-        }
-        // Newest first: prepend so the just-submitted comment appears at the top
-        commentList.insertBefore(li, commentList.firstChild);
-      }
-
-      updateCommentCount();
-      saveIdentity();
-      cancelFloat();
-      form.elements['content'].value = '';
-      if (textarea) { textarea.style.height = 'auto'; }
-    })
-    .catch(function(err) {
-      btn.disabled = false;
-      btn.textContent = '回复';
-      if (statusEl) {
-        statusEl.textContent = err.message || '网络错误，请重试。';
-        statusEl.className = 'comment-form-status comment-form-status--error';
-      }
+      setTimeout(function() { status.textContent = ''; }, 3000);
+    }).catch(function(err) {
+      status.textContent = 'Error: ' + err.message;
+    }).finally(function() {
+      form.querySelector('[type="submit"]').disabled = false;
     });
   });
-
-  /* --- Reply logic: relocating form pattern --- */
-  function cancelReply(skipScroll) {
-    if (!currentReplyWrapper) return;
-    if (defaultFormSlot) {
-      defaultFormSlot.appendChild(form);
-      defaultFormSlot.classList.remove('comment-form-slot--collapsed');
-    }
-    currentReplyWrapper.remove();
-    currentReplyWrapper = null;
-    currentReplyId = null;
-    if (!skipScroll && defaultFormSlot) {
-      defaultFormSlot.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    }
-  }
-
-  var section = document.getElementById('moss-comments');
-  if (section) {
-    section.addEventListener('click', function(e) {
-      var btn = e.target.closest('.comment-reply-btn');
-      if (!btn) return;
-
-      var replyId = btn.getAttribute('data-reply-id');
-      var replyName = btn.getAttribute('data-reply-name');
-      var commentItem = document.getElementById('comment-' + replyId);
-      if (!commentItem) return;
-
-      // If already replying to this comment, just focus
-      if (currentReplyId === replyId) { textarea.focus(); return; }
-
-      // Cancel any existing reply
-      cancelReply(true);
-
-      // Collapse default form slot
-      if (defaultFormSlot) defaultFormSlot.classList.add('comment-form-slot--collapsed');
-
-      // Create reply wrapper with thread indent
-      var wrapper = document.createElement('div');
-      wrapper.className = 'comment-reply-form-wrapper';
-
-      // Reply indicator
-      var indicator = document.createElement('div');
-      indicator.className = 'comment-reply-indicator';
-      indicator.innerHTML = '<span>\u21a9 回复 <strong>' + replyName.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') + '</strong> \u00b7</span>';
-      var cancelBtn = document.createElement('button');
-      cancelBtn.type = 'button';
-      cancelBtn.className = 'comment-reply-cancel';
-      cancelBtn.textContent = '取消';
-      cancelBtn.addEventListener('click', function() { cancelReply(false); });
-      indicator.appendChild(cancelBtn);
-      wrapper.appendChild(indicator);
-
-      // Move form into wrapper
-      wrapper.appendChild(form);
-      commentItem.appendChild(wrapper);
-
-      currentReplyWrapper = wrapper;
-      currentReplyId = replyId;
-
-      textarea.focus();
-      wrapper.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    });
-  }
-
-  /* --- Float-with-quote: selection → 评论 flow --- */
-  var floatShell = null;
-  var floatBackdrop = null;
-
-  function createFloatShell() {
-    floatBackdrop = document.createElement('div');
-    floatBackdrop.className = 'comment-float-backdrop';
-    document.body.appendChild(floatBackdrop);
-
-    floatShell = document.createElement('div');
-    floatShell.className = 'comment-float-shell';
-    floatShell.innerHTML = '<div class="comment-float-inner"></div>';
-    document.body.appendChild(floatShell);
-
-    floatBackdrop.addEventListener('click', cancelFloat);
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape' && floatShell.classList.contains('open')) cancelFloat();
-    });
-  }
-
-  function floatWithQuote(quoteText) {
-    cancelReply(true);
-    if (!floatShell) createFloatShell();
-    var inner = floatShell.querySelector('.comment-float-inner');
-    var quoteEl = document.createElement('div');
-    quoteEl.className = 'comment-float-quote';
-    quoteEl.textContent = quoteText;
-    inner.innerHTML = '';
-    inner.appendChild(quoteEl);
-    if (defaultFormSlot) defaultFormSlot.classList.add('comment-form-slot--collapsed');
-    inner.appendChild(form);
-    form.dataset.quoteText = quoteText;
-    floatBackdrop.classList.add('visible');
-    floatShell.classList.add('open');
-    textarea.focus();
-  }
-
-  function cancelFloat() {
-    if (!floatShell) return;
-    floatShell.classList.remove('open');
-    floatBackdrop.classList.remove('visible');
-    if (defaultFormSlot) {
-      defaultFormSlot.appendChild(form);
-      defaultFormSlot.classList.remove('comment-form-slot--collapsed');
-    }
-    delete form.dataset.quoteText;
-  }
-
-  document.addEventListener('moss:quote-comment', function(e) {
-    var text = e.detail && e.detail.text;
-    if (text) floatWithQuote(text);
-  });
-
-  /* --- Identity persistence --- */
-  var COMMENTER_KEY = 'moss-commenter';
-
-  function loadIdentity() {
-    try {
-      var saved = JSON.parse(localStorage.getItem(COMMENTER_KEY));
-      if (!saved) return;
-      var nameField = form.querySelector('[name="name"]');
-      var emailField = form.querySelector('[name="email"]');
-      var linkField = form.querySelector('[name="link"]');
-      if (nameField && saved.name) nameField.value = saved.name;
-      if (emailField && saved.email) emailField.value = saved.email;
-      if (linkField && saved.url) linkField.value = saved.url;
-    } catch(e) {}
-  }
-
-  function saveIdentity() {
-    var nameField = form.querySelector('[name="name"]');
-    var emailField = form.querySelector('[name="email"]');
-    var linkField = form.querySelector('[name="link"]');
-    var data = {
-      name: nameField ? nameField.value.trim() : '',
-      email: emailField ? emailField.value.trim() : '',
-      url: linkField ? linkField.value.trim() : ''
-    };
-    if (data.name) localStorage.setItem(COMMENTER_KEY, JSON.stringify(data));
-  }
-
-  loadIdentity();
-
-  /*
-   * Eager hydration — fetch new comments on page load, not on toggle.
-   *
-   * Design decision:
-   *   Static HTML contains all comments known at build time (stale-while-
-   *   revalidate). Previously, hydration was deferred to the <details> toggle
-   *   event, so the summary count stayed stale until the user expanded the
-   *   section. Now we fetch eagerly on page load so the count is correct as
-   *   soon as possible, while not blocking page render (the fetch is async).
-   *
-   * How others handle this:
-   *   - Disqus, Commento, Utterances: fully client-rendered. No static HTML
-   *     at all — the entire comment thread loads via JS. Fast count, but no
-   *     content until JS runs.
-   *   - Staticman: commits to git repo, rebuilt into static HTML. No client
-   *     hydration — count is always stale until next build.
-   *   - Artalk's own JS client: fully client-rendered, same as Disqus.
-   *   - moss is unique: SSR + client hydration, like Next.js/Remix's approach
-   *     to static content. We get the best of both — immediate content without
-   *     JS, plus live updates via hydration.
-   *
-   * Trade-off:
-   *   One background fetch per page load (~1 KB JSON response) vs accurate
-   *   comment count. Worth it because the fetch is small, non-blocking, and
-   *   the count being wrong is a worse UX than a tiny network request.
-   *
-   * Deduplication (two layers):
-   *   1. Date boundary  — stop iterating when we hit a comment older than the
-   *      build timestamp (comments are sorted newest-first from the API).
-   *   2. ID guard       — skip any comment whose DOM node already exists
-   *      (handles edge cases where build-time and fetch overlap).
-   *
-   * Trust model: Artalk performs server-side HTML sanitization, so we use
-   * innerHTML for comment content (same as the static render path).
-   */
-  var builtAtStr = section && section.getAttribute('data-built-at');
-  var builtAtMs = builtAtStr ? new Date(builtAtStr).getTime() : 0;
-
-  if (builtAtMs) {
-    fetch('https://api.moss.host/comments/api/v2/comments?page_key=107260d8&site_name=liu-guo.com&flat_mode=true&sort_by=date_desc&limit=100')
-      .then(function(res) { return res.ok ? res.json() : null; })
-      .then(function(json) {
-        if (!json) return;
-        var list = json.comments || (json.data && json.data.comments) || [];
-        var added = 0;
-        // Anchor = first build-time comment. Hydrated comments go before it
-        // to maintain newest-first order (API returns date_desc).
-        var anchor = commentList ? commentList.firstChild : null;
-
-        // Pass 1: collect new comments (API returns newest-first)
-        var newComments = [];
-        for (var i = 0; i < list.length; i++) {
-          var c = list[i];
-          if (new Date(c.date).getTime() <= builtAtMs) break;
-          if (document.getElementById('comment-' + c.id)) continue;
-          newComments.push(c);
-        }
-
-        // Reverse to oldest-first so parents are inserted before children.
-        // This fixes reply threading: a parent is always older than its
-        // replies, so reversing guarantees getElementById finds the parent
-        // when we process a reply.
-        newComments.reverse();
-
-        // Pass 2: insert into DOM (oldest-first = parents before children)
-        for (var i = 0; i < newComments.length; i++) {
-          var c = newComments[i];
-
-          var li = document.createElement('li');
-          li.className = 'comment-item';
-          li.id = 'comment-' + c.id;
-          var authorName = (c.nick || 'Anonymous').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-          var dateStr = new Date(c.date).toLocaleDateString('zh-CN', {year:'numeric',month:'short',day:'numeric'});
-          li.innerHTML = '<div class="comment-header">'
-            + '<span class="comment-author">' + authorName + '</span>'
-            + '<time class="comment-date">' + dateStr + '</time>'
-            + '<button type="button" class="comment-reply-btn" data-reply-id="' + c.id + '" data-reply-name="' + authorName + '">\u21a9 回复</button>'
-            + '</div>'
-            + '<div class="comment-body">' + c.content + '</div>';
-
-          if (c.rid > 0) {
-            var parentLi = document.getElementById('comment-' + c.rid);
-            if (parentLi) {
-              var repliesOl = parentLi.querySelector('.comment-replies');
-              if (!repliesOl) {
-                repliesOl = document.createElement('ol');
-                repliesOl.className = 'comment-replies';
-                parentLi.appendChild(repliesOl);
-              }
-              repliesOl.insertBefore(li, null);
-              added++;
-              continue;
-            }
-          }
-
-          if (!commentList) {
-            commentList = document.createElement('ol');
-            commentList.className = 'comment-list';
-            var formEl = document.getElementById('moss-comment-form');
-            if (formEl) formEl.after(commentList);
-            anchor = null;
-          }
-          commentList.insertBefore(li, anchor);
-          added++;
-        }
-
-        if (added > 0) {
-          updateCommentCount();
-        }
-      })
-      .catch(function() { /* silent — static comments still visible */ });
-  }
-})();</script>
+})();
+</script>
   </details>
 </section>
     </main>
@@ -1239,11 +967,7 @@ a.comment-author:hover {
             <a href="/feed.xml" class="footer-link" data-external>RSS</a>
         </div>
         <div class="footer-right">
-            <form action="https://buttondown.com/api/emails/embed-subscribe/liuguo" method="post" class="footer-subscribe-form">
-            <input type="email" name="email" class="moss-input" placeholder="邮箱" required />
-            <input type="hidden" value="1" name="embed" />
-            <button type="submit" class="moss-btn">订阅</button>
-        </form>
+            <form action="https://buttondown.com/api/emails/embed-subscribe/liuguo" method="post" class="footer-subscribe-form"><input type="email" name="email" class="moss-input" placeholder="邮箱" required /><input type="hidden" value="1" name="embed" /><button type="submit" class="moss-btn">订阅</button></form>
         </div>
     </div>
 </footer>

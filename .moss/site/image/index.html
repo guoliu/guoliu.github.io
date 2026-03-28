@@ -10,7 +10,130 @@
     <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml">
     <script data-goatcounter="https://guo.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
     <link rel="stylesheet" href="/style.css?v=f707c0be9c488a06">
-    <style class="moss-comments-style">/* ==========================================================================
+    <script data-goatcounter="https://guo.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<style class="moss-review-style">/* Review plugin — header and colophon styles
+ * Uses moss design tokens. Works in light and dark mode.
+ * Side-by-side layout on all screen sizes (matches collection-cover pattern).
+ */
+
+/* Header — cover + title/subtitle/creator */
+.review-header {
+  display: flex;
+  gap: var(--moss-space-lg, 2rem);
+  align-items: flex-start;
+  margin: 1rem 0 2rem;
+}
+
+.review-cover {
+  width: 150px;
+  max-width: 30%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 4px;
+  flex-shrink: 0;
+  margin: 0; /* Override global img margin for flex alignment */
+}
+
+.review-meta {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.review-meta-title {
+  font-weight: 600;
+  font-size: 1.05em;
+  color: var(--moss-color-text, #333);
+}
+
+.review-meta-subtitle {
+  font-size: 0.9em;
+  color: var(--moss-color-muted, #666);
+}
+
+.review-meta-creator {
+  font-size: 0.9em;
+  color: var(--moss-color-muted, #666);
+}
+
+.review-sep {
+  color: var(--moss-color-muted, #666);
+  margin: 0 0.15em;
+}
+
+/* Colophon — card with cover + details */
+.review-colophon {
+  display: flex;
+  gap: var(--moss-space-lg, 2rem);
+  align-items: flex-start;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  padding: 1.25rem;
+  background: var(--moss-color-surface, #f8f8f8);
+  border-radius: 8px;
+  font-size: 0.9em;
+  color: var(--moss-color-muted, #666);
+}
+
+.review-colophon-cover {
+  width: 150px;
+  max-width: 30%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 4px;
+  flex-shrink: 0;
+  margin: 0; /* Override global img margin for flex alignment */
+}
+
+.review-colophon-details {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.review-colophon-title {
+  font-weight: 600;
+  color: var(--moss-color-text, #333);
+  font-size: 1.05em;
+}
+
+.review-colophon-subtitle {
+  font-size: 0.9em;
+  color: var(--moss-color-muted, #666);
+}
+
+.review-colophon-identity {
+  font-size: 0.95em;
+}
+
+.review-rating {
+  font-size: 1.2em;
+  color: var(--moss-color-accent, #c9a84c);
+  letter-spacing: 0.05em;
+}
+
+.review-community-rating {
+  font-size: 0.85em;
+}
+
+.review-biblio {
+  line-height: 1.5;
+}
+
+.review-links a {
+  color: var(--moss-color-accent, #c9a84c);
+  text-decoration: none;
+}
+
+.review-links a:hover {
+  text-decoration: underline;
+}
+</style>
+<style class="moss-comments-style">/* ==========================================================================
    moss Comments Plugin - Styles
 
    Collapsible comment section with solid thread borders,
@@ -567,128 +690,6 @@ a.comment-author:hover {
   }
 }
 </style>
-<style class="moss-review-style">/* Review plugin — header and colophon styles
- * Uses moss design tokens. Works in light and dark mode.
- * Side-by-side layout on all screen sizes (matches collection-cover pattern).
- */
-
-/* Header — cover + title/subtitle/creator */
-.review-header {
-  display: flex;
-  gap: var(--moss-space-lg, 2rem);
-  align-items: flex-start;
-  margin: 1rem 0 2rem;
-}
-
-.review-cover {
-  width: 150px;
-  max-width: 30%;
-  height: auto;
-  object-fit: cover;
-  border-radius: 4px;
-  flex-shrink: 0;
-  margin: 0; /* Override global img margin for flex alignment */
-}
-
-.review-meta {
-  flex: 1;
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-}
-
-.review-meta-title {
-  font-weight: 600;
-  font-size: 1.05em;
-  color: var(--moss-color-text, #333);
-}
-
-.review-meta-subtitle {
-  font-size: 0.9em;
-  color: var(--moss-color-muted, #666);
-}
-
-.review-meta-creator {
-  font-size: 0.9em;
-  color: var(--moss-color-muted, #666);
-}
-
-.review-sep {
-  color: var(--moss-color-muted, #666);
-  margin: 0 0.15em;
-}
-
-/* Colophon — card with cover + details */
-.review-colophon {
-  display: flex;
-  gap: var(--moss-space-lg, 2rem);
-  align-items: flex-start;
-  margin-top: 3rem;
-  margin-bottom: 3rem;
-  padding: 1.25rem;
-  background: var(--moss-color-surface, #f8f8f8);
-  border-radius: 8px;
-  font-size: 0.9em;
-  color: var(--moss-color-muted, #666);
-}
-
-.review-colophon-cover {
-  width: 150px;
-  max-width: 30%;
-  height: auto;
-  object-fit: cover;
-  border-radius: 4px;
-  flex-shrink: 0;
-  margin: 0; /* Override global img margin for flex alignment */
-}
-
-.review-colophon-details {
-  flex: 1;
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-}
-
-.review-colophon-title {
-  font-weight: 600;
-  color: var(--moss-color-text, #333);
-  font-size: 1.05em;
-}
-
-.review-colophon-subtitle {
-  font-size: 0.9em;
-  color: var(--moss-color-muted, #666);
-}
-
-.review-colophon-identity {
-  font-size: 0.95em;
-}
-
-.review-rating {
-  font-size: 1.2em;
-  color: var(--moss-color-accent, #c9a84c);
-  letter-spacing: 0.05em;
-}
-
-.review-community-rating {
-  font-size: 0.85em;
-}
-
-.review-biblio {
-  line-height: 1.5;
-}
-
-.review-links a {
-  color: var(--moss-color-accent, #c9a84c);
-  text-decoration: none;
-}
-
-.review-links a:hover {
-  text-decoration: underline;
-}
-</style>
 </head>
 <body>
     <header>
@@ -715,11 +716,7 @@ a.comment-author:hover {
             <a href="/feed.xml" class="footer-link" data-external>RSS</a>
         </div>
         <div class="footer-right">
-            <form action="https://buttondown.com/api/emails/embed-subscribe/liuguo" method="post" class="footer-subscribe-form">
-            <input type="email" name="email" class="moss-input" placeholder="邮箱" required />
-            <input type="hidden" value="1" name="embed" />
-            <button type="submit" class="moss-btn">订阅</button>
-        </form>
+            <form action="https://buttondown.com/api/emails/embed-subscribe/liuguo" method="post" class="footer-subscribe-form"><input type="email" name="email" class="moss-input" placeholder="邮箱" required /><input type="hidden" value="1" name="embed" /><button type="submit" class="moss-btn">订阅</button></form>
         </div>
     </div>
 </footer>

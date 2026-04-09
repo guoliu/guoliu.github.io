@@ -7,6 +7,7 @@ review_of: https://neodb.social/book/7dnJWlkxN5dT6DyO0MGLpO
 url: tools-for-thoughts
 syndicated:
   - https://matters.town/@guo/别去自动化你爱的事情-从个人计算机到生成式-ai-nu6sccwypvp9
+  - https://book.douban.com/review/17546488/
 ---
 # 1.
 

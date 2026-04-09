@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
+<loc>https://liu-guo.com/</loc>
+</url>
+<url>
 <loc>https://liu-guo.com/image/assets/</loc>
 </url>
 <url>
@@ -15,6 +18,12 @@
 <url>
 <loc>https://liu-guo.com/interactive/living-space/</loc>
 <lastmod>2019-07-26</lastmod>
+</url>
+<url>
+<loc>https://liu-guo.com/interactive/night-in-the-woods</loc>
+</url>
+<url>
+<loc>https://liu-guo.com/interactive/particle-universe</loc>
 </url>
 <url>
 <loc>https://liu-guo.com/interactive/starry-forest/</loc>
@@ -196,5 +205,9 @@
 <url>
 <loc>https://liu-guo.com/writings/wait/</loc>
 <lastmod>2016-05-17T15:49:17.000Z</lastmod>
+</url>
+<url>
+<loc>https://liu-guo.com/writings/民歌-锤子与卡在工业革命中的我们/</loc>
+<lastmod>2026-04-08</lastmod>
 </url>
 </urlset>

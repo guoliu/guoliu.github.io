@@ -1,7 +1,9 @@
 node_modules/
 .DS_Store
 .moss/*
-!.moss/site/
+!.moss/build/
+.moss/build/*
+!.moss/build/site/
 
 视频/aimeili.MOV
 视频/Winter-Song.mov

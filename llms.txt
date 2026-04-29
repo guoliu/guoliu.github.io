@@ -10,10 +10,9 @@
 
 ---
 
-## 一部纪实戏剧，和一个理解音阶的网页应用
+## 一部纪实戏剧 和一个理解音阶的网页应用
 
 tldr: 这周末的[纪实戏剧演出](https://www.eventbrite.com/e/farewell-and-erase-an-ethnodrama-tickets-1985752576411)，和一个用来理解音阶的[网页应用](moss-resolved:assets/scale-compare.html)。
-
 
 ---
 

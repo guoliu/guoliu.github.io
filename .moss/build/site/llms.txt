@@ -12,9 +12,10 @@
 
 ## 一部纪实戏剧，和一个理解音阶的网页应用
 
-tldr：这周末的[纪实戏剧演出](https://www.eventbrite.com/e/farewell-and-erase-an-ethnodrama-tickets-1985752576411)，和一个用来理解音阶的[网页应用](moss-resolved:assets/scale-compare.html)。
+tldr: 这周末的[纪实戏剧演出](https://www.eventbrite.com/e/farewell-and-erase-an-ethnodrama-tickets-1985752576411)，和一个用来理解音阶的[网页应用](moss-resolved:scale-compare.html)。
 
 ---
+
 最近因为给表妹的[毕业作品](https://www.eventbrite.com/e/farewell-and-erase-an-ethnodrama-tickets-1985752576411)帮忙，时隔十四年后，又要做戏剧了。不过这次不导也不演，而是配乐。
 
 这是部纪实戏剧，全部台词都来自于真实的对话、活生生的人物。因为对白是真实的，就和真实世界一样无法简单干净地归类，最后的剧本也就如一张巨大的拼图，穿越时间空间、民族国家。访谈的话题从项羽和虞姬的故事出发，历史、京剧、陈凯歌 93 年的电影《霸王别姬》、陈佩斯 25 年的戏剧和电影《戏台》层层相叠，蔓延到政治、文化、这个世界正在经历的战争与 AI 变革，又回到受访者们各自不同的文化、国家和成长背景。
@@ -29,7 +30,7 @@ tldr：这周末的[纪实戏剧演出](https://www.eventbrite.com/e/farewell-an
 
 剧中还涉及美国、日本，所以我还想加入布鲁斯和日本音阶。这许多种音阶，每个根音在哪里，光靠脑子想不过来了。于是我用 Claude Code 做了个网页应用，让我能够把许许多多我喜欢的调式和音阶放在一起对比，还能调整每个音阶的根音，让我明白它们之间的关系、又能如何搭配。
 
-[![scale-compare-recording](../assets/scale-compare-recording.gif)](moss-resolved:assets/scale-compare.html?a=major_pent%2Cmajor_blues%2Chijaz%2Cin%2Charm_minor%2Cnat_minor&r=major_pent%3AD%2Cmajor_blues%3AD%2Chijaz%3AD%2Charm_minor%3AG%2Cnat_minor%3AG)
+[![scale-compare-recording](../assets/scale-compare-recording.gif)](moss-resolved:scale-compare.html?a=major_pent%2Cmajor_blues%2Chijaz%2Cin%2Charm_minor%2Cnat_minor&r=major_pent%3AD%2Cmajor_blues%3AD%2Chijaz%3AD%2Charm_minor%3AG%2Cnat_minor%3AG)
 
 一旦排出来，这些音阶的关系就变得非常明朗了。
 
@@ -45,13 +46,11 @@ tldr：这周末的[纪实戏剧演出](https://www.eventbrite.com/e/farewell-an
 
 演出在[周五、六、日](https://www.eventbrite.com/e/farewell-and-erase-an-ethnodrama-tickets-1985752576411)，纽约东村。欢迎附近的朋友们来玩！
 
-<iframe class="moss-embed moss-embed-iframe" src="../assets/scale-compare.html?a=major_pent%2Cmajor_blues%2Chijaz%2Cin%2Charm_minor%2Cnat_minor&amp;r=major_pent%3AD%2Cmajor_blues%3AD%2Chijaz%3AD%2Charm_minor%3AG%2Cnat_minor%3AG" loading="lazy"></iframe>
+<iframe class="moss-embed moss-embed-iframe" src="../scale-compare.html?a=major_pent%2Cmajor_blues%2Chijaz%2Cin%2Charm_minor%2Cnat_minor&amp;r=major_pent%3AD%2Cmajor_blues%3AD%2Chijaz%3AD%2Charm_minor%3AG%2Cnat_minor%3AG" loading="lazy"></iframe>
 
 ---
 
 ## 民歌、锤子与卡在工业革命中的我们
-
-> 這是我的「[BlogBlog 同樂會 - 2026 年 4 月](https://blogblog.club/party/?ref=wen-lab.tw)」的投稿文章。本月主題是「[生產力](https://www.wen-lab.tw/blogblog-party-productivity)」
 
 # 1.
 

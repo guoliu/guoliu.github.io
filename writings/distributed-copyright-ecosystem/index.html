@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html lang="zh-hans">
+<html lang="zh-hant">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>如何建立分布式的版權生態 - 刘果</title>
     <meta name="description" content="Matters目前使用的部分技術棧。編輯器通過Quill搭建，其他前端邏輯與渲染通過React開發，SSR與路由則由Next.js負責；GraphQL負責前後端耦合；Knex為SQL語句提供查詢構造，接入PostgreSQL數據庫；ElasticSearch提供搜索與推薦服務，調用由Spark訓練的推薦模型；IPFS節點提供文章的分布式存儲功能。平台更新在過去一年的內測中，Matters通過...">
+    <meta name="theme-color" content="#faf8f5" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#1a1816" media="(prefers-color-scheme: dark)">
     <meta property="og:type" content="article">
     <meta property="og:title" content="如何建立分布式的版權生態">
     <meta property="og:url" content="https://liu-guo.com/writings/distributed-copyright-ecosystem/">
@@ -12,9 +14,17 @@
     <meta property="og:description" content="Matters目前使用的部分技術棧。編輯器通過Quill搭建，其他前端邏輯與渲染通過React開發，SSR與路由則由Next.js負責；GraphQL負責前後端耦合；Knex為SQL語句提供查詢構造，接入PostgreSQL數據庫；ElasticSearch提供搜索與推薦服務，調用由Spark訓練的推薦模型；IPFS節點提供文章的分布式存儲功能。平台更新在過去一年的內測中，Matters通過...">
     <meta property="article:published_time" content="2019-03-19T19:11:45.340Z">
     <meta property="og:image" content="/image/assets/ead5ef5a-d140-4292-93cc-431d13a1a179.png">
+    <meta property="og:image:alt" content="如何建立分布式的版權生態">
     <meta property="article:tag" content="開源 Matters">
     <meta property="article:tag" content="分佈式網絡">
     <meta property="article:tag" content="Matters工程日誌">
+    <link rel="canonical" href="https://liu-guo.com/writings/distributed-copyright-ecosystem/">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="如何建立分布式的版權生態">
+    <meta name="twitter:description" content="Matters目前使用的部分技術棧。編輯器通過Quill搭建，其他前端邏輯與渲染通過React開發，SSR與路由則由Next.js負責；GraphQL負責前後端耦合；Knex為SQL語句提供查詢構造，接入PostgreSQL數據庫；ElasticSearch提供搜索與推薦服務，調用由Spark訓練的推薦模型；IPFS節點提供文章的分布式存儲功能。平台更新在過去一年的內測中，Matters通過...">
+    <meta name="twitter:image" content="/image/assets/ead5ef5a-d140-4292-93cc-431d13a1a179.png">
+    <meta name="twitter:image:alt" content="如何建立分布式的版權生態">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon-180.png">
     <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -32,9 +42,11 @@
 }
 </script>
     <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16.png">
     <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml">
     <script data-goatcounter="https://guo.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-    <link rel="stylesheet" href="/style.css?v=32b22ce21e774e63">
+    <link rel="stylesheet" href="/style.css?v=3e299d2ebc571a23">
     <script data-goatcounter="https://guo.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 <style class="moss-review-style">/* Review plugin — header and colophon styles
  * Uses moss design tokens. Works in light and dark mode.
@@ -697,7 +709,7 @@ a.comment-author:hover {
   display: flex;
   gap: var(--moss-space-sm);
   align-items: baseline;
-  max-width: 18rem;
+  max-width: 24rem;
 }
 
 .footer-subscribe-form .moss-input {
@@ -709,9 +721,13 @@ a.comment-author:hover {
 }
 
 @media (max-width: 48rem) {
+  .footer-subscribe-form {
+    max-width: none;
+  }
+
   .footer-subscribe-form .moss-input {
-    width: 10ch;
-    flex: none;
+    flex: 1;
+    min-width: 0;
   }
 }
 </style>
@@ -725,13 +741,14 @@ a.comment-author:hover {
         </nav>
     </header>
 
+    
     <main>
         <article class="container">
-            <h1 class="article-title">如何建立分布式的版權生態</h1>
-            <div class="date-line"><span class="date">2019 · 3 · 19</span><div class="font-anchor"><button class="font-trigger size-std" aria-label="Reading preferences" aria-expanded="false" type="button"></button><div class="font-pill" id="fontPill"><button data-scale="small" aria-label="Small text"></button><button data-scale="" class="active" aria-label="Standard text"></button><button data-scale="large" aria-label="Large text"></button><button data-scale="xlarge" aria-label="Extra large text"></button></div></div></div>
             
-            <figure>
-<img src="../../image/assets/ead5ef5a-d140-4292-93cc-431d13a1a179.png" data-placeholder-src="../../image/assets/ead5ef5a-d140-4292-93cc-431d13a1a179.png" width="1400" height="801" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAALABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDXyQWPJ9qYLV2GMSz4w4yvY1NtbjbWw+MEIAc8ep5piHYoATau/fj5sYzQK3UWgZ//2Q==);background-size:cover" alt="" />
+            <h1 class="moss-article-title">如何建立分布式的版權生態</h1>
+<div class="date-line"><span class="date">2019 · 3 · 19</span><div class="font-anchor"><button class="font-trigger size-std" aria-label="Reading preferences" aria-expanded="false" type="button"></button><div class="font-pill" id="fontPill"><button data-scale="small" aria-label="Small text"></button><button data-scale="" class="active" aria-label="Standard text"></button><button data-scale="large" aria-label="Large text"></button><button data-scale="xlarge" aria-label="Extra large text"></button></div></div></div>
+<figure>
+<picture><source srcset="../../image/assets/ead5ef5a-d140-4292-93cc-431d13a1a179.webp" type="image/webp"><img src="../../image/assets/ead5ef5a-d140-4292-93cc-431d13a1a179.png" data-placeholder-src="../../image/assets/ead5ef5a-d140-4292-93cc-431d13a1a179.png" width="1400" height="801" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAALABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDXyQWPJ9qYLV2GMSz4w4yvY1NtbjbWw+MEIAc8ep5piHYoATau/fj5sYzQK3UWgZ//2Q==);background-size:cover" alt="" /></picture>
 <figcaption>Matters目前使用的部分技術棧。編輯器通過Quill搭建，其他前端邏輯與渲染通過React開發，SSR與路由則由Next.js負責；GraphQL負責前後端耦合；Knex為SQL語句提供查詢構造，接入PostgreSQL數據庫；ElasticSearch提供搜索與推薦服務，調用由Spark訓練的推薦模型；IPFS節點提供文章的分布式存儲功能。</figcaption>
 </figure><hr />
 <h2 id="平台更新">平台更新</h2><p>在過去一年的內測中，Matters通過原型產品開始了內容發現與金流體系的探索。同時，我們也觸到了原型的瓶頸，所以在過去的四個月內，Matters一邊重組技術團隊，一邊對網站進行了重寫，准備處理更大規模的用戶與流量，與更快速的迭代與探索。</p><p>在UI/UX方面，我們重新思考了產品邏輯，給網站賦予了全新的面貌，成為你現在看到的界面。但新的界面意味著新的棱角和問題，需要我們一起重新打磨與試錯。</p><p>在系統性能方面，服務器數據庫一直是Matters原型的瓶頸。在這一層，我們從適合原型開發的MongoDB數據庫遷移到了高性能的PostgreSQL數據庫，存儲模型也從半結構化數據（semi-structured）遷移到了關系模型數據（relational model），為日後的擴展打下基礎。</p><p>在內容發現方面，除了主頁中兼顧用戶動態與運營篩選的瀑布流外，我們也通過協同過濾（collaborative filtering）模型搭建了一個簡易的文章推薦引擎，在每篇文章之後為讀者推薦類似的文章。和推薦功能一起，搜索功能也遷移到了ElasticSearch引擎，提供更快更精確的搜索結果。</p><p>在推薦引擎與內容搜索的背後，是Matters後台開始搭建的數據管道。數據管道每日調用Spark集群重新訓練推薦引擎，適應平台不斷更新的內容和讀者不斷變化的興趣。同時，數據管道為Matters的數據工程師打開了窗口，得以了解用戶習慣、優化產品、並探索發現內容的新方式。</p><p>但在內容發現中，技術是把雙刃劍：協同過濾這樣的發現機制既能為讀者找到感興趣的文章，也能造成同溫層的固化和假新聞的傳播。在利用技術協助內容發現的同時，Matters也會展開產品與社區層面的探索，引入策展人（curator）角色，為內容發現的過程加入人性，也為媒體口碑的建立和注意力經濟的分潤提供新的模式。</p><h2 id="全新的api">全新的API</h2><p>在發現機制與數據隱私方面，我們需要用戶與我們共同試驗與反思。這個試驗的重要部分，也許是數據和算法的使用規則。在說明文檔齊全之後，Matters將會開放我們全新的GraphQL API，方便感興趣的用戶調取公共內容，一同探索公開與隱私的權衡。</p><p>新版的代碼結構中另一個重要改變便是查詢語言GraphQL的引入。UI的快速迭代需要一個穩定的數據模式，從15年逐步流行開來的GraphQL正好提供了前後端之間的查詢語言和類型系統，為UI提供了可靠的數據模式定義。</p><p>更重要的是，相比傳統的RESTful的API風格，GraphQL不依據HTTP或某個特定傳輸協議設計，更適合傳輸方式多樣的分布式系統。同時，因為大量分布式項目都基於有向無環圖（Directed Acyclic Graph）數據結構，基於圖（graph）的GraphQL非常適合從分布式網絡調取數據。類似於<a href="https://thegraph.com/">The Graph</a>這樣的工具項目在快速成熟中，讓開發者直接向IPFS、以太坊等分布式資源發起GraphQL請求，進一步簡化了開發流程。</p><p>GraphQL也讓Matters得以逐步遷移為分布式應用。當Matters部分功能有了成熟的分布式實現後，前端可以通過模式拼接（schema stitching）的方式復寫HTTP部分的邏輯。存儲於IPFS或以太坊的Matters內容數據也可以由此成為公共資源開放使用，協助生態系統成長。</p><h2 id="從網站平台到分布式網絡">從網站平台到分布式網絡</h2><p>Matters平台雖然經歷了重新設計與開發，但是產品邏輯並未改變。平台仍是一個傳統的網頁，用戶仍需經由域名服務器查找到Matters服務器IP，再與服務器之間通過HTTP建立連接。盡管每一篇文章都已經發布至IPFS，囿於網頁形式，用戶仍然受制於中心化服務，用戶信息和金流體系也都還存儲在中心數據庫中。</p><p>但在重構的過程中，我們開始了分布式網絡的准備與鋪墊。Matters網站會持續作為內容發現的中心化窗口， 探索不同的內容發現與分潤的方式；與此同時，這個窗口會通向更大的網絡，任何人都可以加入，建立自己的窗口與社區、擁有自己的數據與回報。</p><p>接入一個分布式的網絡，意味著用戶需要下載一個客戶端，不管是以桌面程序還是手機App的形式。對於互聯網，這是網頁瀏覽器；BitTorrent或者eDonkey網絡，這是迅雷、電騾、快播等客戶端；對於比特幣或者以太坊，這是電子錢包。</p><p>對於Matters，這個客戶端需要讓用戶能夠不經中心節點交易、瀏覽多媒體網頁，讓創作者自主創作、打包、定價、分發與分潤。通過分布式賬本技術，我們能夠將創作者與讀者直接相連，既能像BitTorrent一樣高效地分發數據，又能像Amazon等中心化的服務一樣維持一個良性的版權生態。長遠來看，這個客戶端也需要和諸多快速興起的分布式內容庫聯通，讓用戶能夠隨時調取屬於全人類的共同知識庫，不管是<a href="https://blog.ipfs.io/24-uncensorable-wikipedia/">維基百科</a>、<a href="http://damahub.org/">科研數據</a>還是<a href="https://sciencefair-app.com/">研究論文</a>。</p><p>在Matters網站繼續進行迭代的同時，Matters工程團隊將會著手試驗這樣一個客戶端，從桌面版開始。盡管具體的產品邏輯和形態還在討論之中，技術層面已經有了不少線索。分布式存儲功能會由目前已經投入試驗的IPFS提供，而分布式賬本功能則會是目前相對成熟的區塊鏈形式（與合作伙伴<a href="https://medium.com/likecoin/likechain-technical-introduction-2728fbca649a">Likecoin</a>聯手）。同時，我們在原型階段會采用Electron.js平台，以便復用網站平台中成熟的UI與業務邏輯代碼。</p><p>新版上線之前，我們已經將Matters所有文章重新發布至IPFS，一方面調整了版式，另一方面對圖片也進行了分布式存儲。同時，我們也重新設計了文章鏈接：文章鏈接末尾長度為49的字符串，是文章元數據在IPFS中的哈希值，包含文章的作者、發布平台、文章指紋等信息。例如，用戶可以復制文章的元數據哈希值，替換到以下鏈接（或者任何IPFS節點）中並打開 ”<em>https://ipfs.io/api/v0/dag/get?arg=${哈希值}/author”</em>，就可以看到作者的相關信息。這意味著，我們設想的桌面版本可以不經服務器，直接打開Matters文章的鏈接，調取作者與內容數據。</p><figure>
@@ -741,7 +758,7 @@ a.comment-author:hover {
 <p>不過，這裡的構想僅僅是大致脈絡，產品邏輯也還在探討之中。一個能夠支持版權的分布式網絡是一種嶄新的交互形態，技術與設計層面都有許多未知需要摸索。我們希望與用戶一起來定義這種全新的交互，為中文網絡世界提供更可靠的傳播工具和更合理的游戲規則。</p><p>盡管分布式網絡有潛力帶來一個更加穩定、開放與公平的賽博空間，對於能夠選擇中心化服務的單個用戶，分布式應用並不一定帶來體驗的提升，這是分布式應用項目的難題。但在特定的應用場景中，分布式網絡是不可替代的工具，正如跨境轉賬之於比特幣、文件共享之於BitTorrent、<a href="https://hackernoon.com/how-mesh-networking-will-make-iot-real-b5b88baab63b">物聯網之於無線網狀網絡</a>。</p><p>Matters設想的內容與作者的分布式網絡，甚至在全球互聯網割裂為國家局域網時，仍能正常運作；但在網絡信息相對自由的今天，我們的產品不僅要解決技術問題，更要有新穎的商業模式和多樣的應用場景，才能與傳統互聯網產品競爭。</p><p>這些問題需要更大範圍的論證與不同領域的思路，問題的答案也該由社區共同決定。所以，Matters的產品與工程團隊會在開發之余，以這樣日志的方式向大家同步最新想法，希望以此激起討論和暢想，更希望獲得社區中各路高手的協助。既關乎技術路線，也關乎產品形態。</p><p>在你的想像中，這樣一個分布式網絡需要什麼樣的工具，又有什麼樣合適的應用場景？</p>
             
         </article>
-        <section class="moss-comments" id="moss-comments" data-built-at="2026-04-09T13:33:18.561245+00:00">
+        <section class="moss-comments" id="moss-comments" data-built-at="2026-04-29T17:49:39.267350+00:00">
   <details>
     <summary class="comments-toggle"><svg class="comments-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></svg><span>5条评论</span><svg class="comments-chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></summary>
     <div class="comment-form-slot" id="default-form-slot"><form class="comment-form" id="moss-comment-form" data-server-url="https://api.moss.host/comments" data-site-name="liu-guo.com" data-page-key="writings/distributed-copyright-ecosystem/" data-page-title="如何建立分布式的版權生態">
@@ -821,116 +838,7 @@ MAT金流體系還不太確定，我個人的想法是客戶端應該盡量通�
         </ol>
       </li>
     </ol>
-    <script>(function() {
-  'use strict';
-  var form = document.getElementById('moss-comment-form');
-  if (!form) return;
-
-  var serverUrl = form.dataset.serverUrl;
-  var siteName = form.dataset.siteName;
-  var pageKey = form.dataset.pageKey;
-  var pageTitle = form.dataset.pageTitle;
-  var status = document.getElementById('moss-comment-status');
-  var textarea = document.getElementById('moss-comment-text');
-  var STORAGE_KEY = 'moss-commenter';
-  var replyToId = null;
-
-  // Restore saved identity
-  try {
-    var saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
-    if (saved.name) form.querySelector('[name="name"]').value = saved.name;
-    if (saved.email) form.querySelector('[name="email"]').value = saved.email;
-    if (saved.link) form.querySelector('[name="link"]').value = saved.link;
-  } catch(e) {}
-
-  // Auto-grow textarea
-  if (textarea) {
-    textarea.addEventListener('input', function() {
-      this.style.height = 'auto';
-      this.style.height = this.scrollHeight + 'px';
-    });
-  }
-
-  // Reply threading
-  document.querySelectorAll('.comment-reply-btn').forEach(function(btn) {
-    btn.addEventListener('click', function() {
-      var id = this.dataset.replyId;
-      var name = this.dataset.replyName;
-      replyToId = id;
-      var item = document.getElementById('comment-' + id);
-      if (item) {
-        var slot = item.querySelector('.comment-replies') || item;
-        slot.appendChild(form.parentNode);
-      }
-      if (textarea) {
-        textarea.placeholder = '@' + name + ' ';
-        textarea.focus();
-      }
-    });
-  });
-
-  form.addEventListener('submit', function(e) {
-    e.preventDefault();
-    var content = textarea.value.trim();
-    if (!content) return;
-
-    var nameVal = form.querySelector('[name="name"]').value.trim();
-    var emailVal = form.querySelector('[name="email"]').value.trim();
-    var linkVal = form.querySelector('[name="link"]').value.trim();
-
-    if (!nameVal) { status.textContent = 'Name is required'; return; }
-
-    // Save identity
-    try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify({name: nameVal, email: emailVal, link: linkVal}));
-    } catch(e) {}
-
-    status.textContent = 'Submitting...';
-    form.querySelector('[type="submit"]').disabled = true;
-
-    var body = {
-      content: content,
-      nick: nameVal,
-      email: emailVal,
-      link: linkVal,
-      page_key: pageKey,
-      page_title: pageTitle,
-      site_name: siteName
-    };
-    if (replyToId) body.rid = parseInt(replyToId, 10);
-
-    fetch(serverUrl.replace(/\/+$/, '') + '/api/v2/comments', {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify(body)
-    }).then(function(r) {
-      if (!r.ok) throw new Error('HTTP ' + r.status);
-      return r.json();
-    }).then(function(data) {
-      status.textContent = 'Comment posted!';
-      textarea.value = '';
-      replyToId = null;
-      // Move form back to default slot
-      var defaultSlot = document.getElementById('default-form-slot');
-      if (defaultSlot) defaultSlot.appendChild(form.parentNode.contains(form) ? form : form);
-      // Insert new comment into DOM
-      var list = document.querySelector('.comment-list');
-      if (list && data) {
-        var li = document.createElement('li');
-        li.className = 'comment-item';
-        li.innerHTML = '<div class="comment-header"><span class="comment-author">' +
-          (nameVal || 'Anonymous') + '</span><time class="comment-date">just now</time></div>' +
-          '<div class="comment-body">' + (data.content || content) + '</div>';
-        list.appendChild(li);
-      }
-      setTimeout(function() { status.textContent = ''; }, 3000);
-    }).catch(function(err) {
-      status.textContent = 'Error: ' + err.message;
-    }).finally(function() {
-      form.querySelector('[type="submit"]').disabled = false;
-    });
-  });
-})();
+    <script>"use strict";(()=>{(function(){"use strict";let e=document.getElementById("moss-comment-form");if(!e)return;let f=e.dataset.serverUrl,E=e.dataset.siteName,h=e.dataset.pageKey,g=e.dataset.pageTitle,m=document.getElementById("moss-comment-status"),n=document.getElementById("moss-comment-text"),u="moss-commenter",i=null;try{let t=JSON.parse(localStorage.getItem(u)||"{}");t.name&&(e.querySelector('[name="name"]').value=t.name),t.email&&(e.querySelector('[name="email"]').value=t.email),t.link&&(e.querySelector('[name="link"]').value=t.link)}catch{}n&&n.addEventListener("input",function(){this.style.height="auto",this.style.height=this.scrollHeight+"px"}),document.querySelectorAll(".comment-reply-btn").forEach(t=>{t.addEventListener("click",function(){let a=this.dataset.replyId,o=this.dataset.replyName;i=a;let l=document.getElementById("comment-"+a);l&&(l.querySelector(".comment-replies")??l).appendChild(e.parentNode),n&&(n.placeholder="@"+o+" ",n.focus())})}),e.addEventListener("submit",function(t){if(t.preventDefault(),!n)return;let a=n.value.trim();if(!a)return;let o=e.querySelector('[name="name"]').value.trim(),l=e.querySelector('[name="email"]').value.trim(),r=e.querySelector('[name="link"]').value.trim();if(!o){m.textContent="Name is required";return}try{localStorage.setItem(u,JSON.stringify({name:o,email:l,link:r}))}catch{}m.textContent="Submitting...",e.querySelector('[type="submit"]').disabled=!0;let d={content:a,nick:o,email:l,link:r,page_key:h,page_title:g,site_name:E};i&&(d.rid=parseInt(i,10)),fetch(f.replace(/\/+$/,"")+"/api/v2/comments",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(d)}).then(s=>{if(!s.ok)throw new Error("HTTP "+s.status);return s.json()}).then(s=>{m.textContent="Comment posted!",n.value="",i=null;let p=document.getElementById("default-form-slot");p&&p.appendChild(e);let y=document.querySelector(".comment-list");if(y){let c=document.createElement("li");c.className="comment-item",c.innerHTML='<div class="comment-header"><span class="comment-author">'+(o||"Anonymous")+'</span><time class="comment-date">just now</time></div><div class="comment-body">'+(s.content||a)+"</div>",y.appendChild(c)}setTimeout(()=>{m.textContent=""},3e3)}).catch(s=>{m.textContent="Error: "+s.message}).finally(()=>{e.querySelector('[type="submit"]').disabled=!1})})})();})();
 </script>
   </details>
 </section>
@@ -954,11 +862,11 @@ MAT金流體系還不太確定，我個人的想法是客戶端應該盡量通�
                 <path fill="currentColor" d="M353.48,284.25c-.03-15.35-13.3-28.68-13.02-44.45.35-19.97,18.62-25.1,30.84-8.86,12.27,16.3,27.25,65.59,47.13,69.87,15.6,3.35,20.22-16.43,21.94-28.17,5.43-37.03,2.88-91.03.11-128.87-2.46-33.57-12.68-77.8.53-109.49,17.73-42.53,73.6-44.58,77.52,8.44,4.69,63.45-37.31,106.54-49.55,165.53-5.67,27.31-8.23,57.64-2,85.02,19.85,87.26,94.44-18.36,112.68-50.34,13.98-24.51,21.56-49.75,33.65-74.35,19.23-39.11,66.57-62.1,108.53-45.18,44.94,18.11,81.36,85.88,50.86,129.58-37.72,54.04-106.18,41.29-161.99,58.01-41.56,12.45-108.6,50.47-77.04,102.57,96.58,122.22,255.01,39.13,292.28,120.71,29.53,71.29-56.2,113.61-111.95,65.96-38.52-32.93-55.04-71.51-106.17-94.83-29.67-13.53-103.71-33.13-108.34,17.37-4.16,45.33,25.72,119.74,60.51,149.46,33.53,28.64,97.03,38.28,85.03,98.08-13.73,68.47-105.62,67.48-126.06-3.06-12.57-43.4-9.75-82.04-29.64-126.36-55.05-116.5-115.66-82.39-139.54,26.18-7,41.15,6.09,99.52-10.83,134.17-31.94,65.42-164.26,43.33-146.82-44.82,12.11-61.23,75.42-87.7,113.85-130.15,23.54-26.01,55.01-74.29,53.48-110.49-1.78-42.18-56.04-34.72-83.51-24.54-50.66,18.76-80.01,59.74-121.57,89.43-93.63,63.58-119.86-32.28-16.9-64.89,65.1-21.66,293.15-94.81,110.19-138.23-66.85-11.86-140.47,18.99-201.56-8.43-79.79-35.81-49.11-122.17,38.84-115.84,67.02,4.82,91.74,51.13,145.15,76.85,22.9,11.03,76.48,27.18,100.58,19.86,31.23-9.49,4.33-41.63,9.89-60.12,1.92-6.38,6.93-8.21,12.88-5.6Z"/>
                 <path fill="#91c127" d="M323.18,241.93c-13.07,8.61-21.8-13.96-28.28-22.59-7.94-10.58-16.74-21.56-25.9-31.1-28.12-29.26-66.01-47.97-72.39-92.61C189.42,45.37,218.91-3.67,274.03.22c82.95,5.85,62.53,119.82,75.51,175.59-2.67,10.44-9.56-.19-15.56-.6-23.21,1.86,16.7,52.67-10.8,66.73Z"/>
             </svg>
-            Published with moss
+            青苔发布
         </a>
     </div>
 
-    <script src="/js/theme.js?v=7feda3b590c41eb7"></script>
+    <script src="/js/theme.js?v=55cfb8c997a6f4b4"></script>
     <script src="/js/preview.js"></script>
     
 </body>

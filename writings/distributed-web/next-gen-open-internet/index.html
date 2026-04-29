@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>下一代开放互联网 - 刘果</title>
     <meta name="description" content="在互联网诞生之初，权力分布在每个参与者手中。人们以为每个参与者都有了自己的声音，言论自由迎来了新的时代。激进者如约翰·巴洛，甚至撰写了《赛博空间独立宣言》，宣告这场社会实验已拉开了大幕。">
+    <meta name="theme-color" content="#faf8f5" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#1a1816" media="(prefers-color-scheme: dark)">
     <meta property="og:type" content="article">
     <meta property="og:title" content="下一代开放互联网">
     <meta property="og:url" content="https://liu-guo.com/writings/distributed-web/next-gen-open-internet/">
@@ -12,10 +14,18 @@
     <meta property="og:description" content="在互联网诞生之初，权力分布在每个参与者手中。人们以为每个参与者都有了自己的声音，言论自由迎来了新的时代。激进者如约翰·巴洛，甚至撰写了《赛博空间独立宣言》，宣告这场社会实验已拉开了大幕。">
     <meta property="article:published_time" content="2018-07-12T18:09:45.000Z">
     <meta property="og:image" content="/image/assets/996a2021-b5c9-4a3b-b7c2-11ae232ea57b.jpg">
+    <meta property="og:image:alt" content="下一代开放互联网">
     <meta property="article:tag" content="互联网">
     <meta property="article:tag" content="區塊鏈">
     <meta property="article:tag" content="科技與社會">
     <meta property="article:tag" content="分布式">
+    <link rel="canonical" href="https://liu-guo.com/writings/distributed-web/next-gen-open-internet/">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="下一代开放互联网">
+    <meta name="twitter:description" content="在互联网诞生之初，权力分布在每个参与者手中。人们以为每个参与者都有了自己的声音，言论自由迎来了新的时代。激进者如约翰·巴洛，甚至撰写了《赛博空间独立宣言》，宣告这场社会实验已拉开了大幕。">
+    <meta name="twitter:image" content="/image/assets/996a2021-b5c9-4a3b-b7c2-11ae232ea57b.jpg">
+    <meta name="twitter:image:alt" content="下一代开放互联网">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon-180.png">
     <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -33,9 +43,11 @@
 }
 </script>
     <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16.png">
     <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml">
     <script data-goatcounter="https://guo.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-    <link rel="stylesheet" href="/style.css?v=32b22ce21e774e63">
+    <link rel="stylesheet" href="/style.css?v=3e299d2ebc571a23">
     <script data-goatcounter="https://guo.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 <style class="moss-review-style">/* Review plugin — header and colophon styles
  * Uses moss design tokens. Works in light and dark mode.
@@ -698,7 +710,7 @@ a.comment-author:hover {
   display: flex;
   gap: var(--moss-space-sm);
   align-items: baseline;
-  max-width: 18rem;
+  max-width: 24rem;
 }
 
 .footer-subscribe-form .moss-input {
@@ -710,9 +722,13 @@ a.comment-author:hover {
 }
 
 @media (max-width: 48rem) {
+  .footer-subscribe-form {
+    max-width: none;
+  }
+
   .footer-subscribe-form .moss-input {
-    width: 10ch;
-    flex: none;
+    flex: 1;
+    min-width: 0;
   }
 }
 </style>
@@ -726,28 +742,29 @@ a.comment-author:hover {
         </nav>
     </header>
 
+    
     <main>
         <article class="container">
-            <h1 class="article-title">下一代开放互联网</h1>
-            <div class="date-line"><span class="date">2018 · 7 · 12</span><div class="font-anchor"><button class="font-trigger size-std" aria-label="Reading preferences" aria-expanded="false" type="button"></button><div class="font-pill" id="fontPill"><button data-scale="small" aria-label="Small text"></button><button data-scale="" class="active" aria-label="Standard text"></button><button data-scale="large" aria-label="Large text"></button><button data-scale="xlarge" aria-label="Extra large text"></button></div></div></div>
             
-            <h2 id="前言"><strong>前言</strong></h2><p>在互联网诞生之初，权力分布在每个参与者手中。人们以为每个参与者都有了自己的声音，言论自由迎来了新的时代。激进者如约翰·巴洛，甚至撰写了《赛博空间独立宣言》，宣告这场社会实验已拉开了大幕。</p><p>然而互联网诞生近30年后，我们看到了封锁、审查、隐私泄露、舆论控制，看到了资本支撑的网络效应和市场垄断，也看到了商业广告维持的信息经济。随着互联网渗入我们的日常生活，真实世界的权力反过来也渗入了互联网。</p><p>理想中的新一代互联网，服务器不再至关重要，无法控制信息的传递。用户与用户直接相连，数据的存储与计算都掌握在用户手中。用户得以保护自身隐私，第三者无法监听或屏蔽用户之间的交互。</p><p>比特币等电子货币暴涨后，区块链这一分布式技术也变得家喻户晓。电子货币的泡沫也推动了其他分布式技术，让互联网最初的理想再次成为可能。</p><p>这个庞大的拼图，碎片众多，本文选取其中一些已经实现的项目有进行讨论。没有人知道这个拼图会如何实现，不过这个拼图的样貌，终将取决于我们自己。</p><h2 id="敲响的警钟">敲响的警钟</h2><p>2018年3月，Facebook公司遭到联邦贸易委员会调查，面临巨额罚款。公司市值蒸发600亿美元，多名高层出售股票，不少人呼吁卸载Facebook。这一切的导火索，是因为一家名为“剑桥分析”（Cambridge Analytica）的公司，利用脸书数据操控舆论，协助特朗普当选总统。</p><p>剑桥分析所做的，是将用户信息收集、数据分析、精准广告投放三者结合了起来。首先，一个小程序邀请Facebook用户进行心理学测试，请求授权读取个人信息。小程序同时记录了用户好友们的信息，并借助关系网络延伸，<strong>最终通过27万名参与者搜集到了超过5千万用户数据</strong>。</p><p>剑桥分析根据这些用户的性格分类建立模型，并根据模型将广告投放给目标用户。预先制作好的网页广告引导了用户对现实的认知，进而影响他们的选举偏好。</p><figure>
+            <h1 class="moss-article-title">下一代开放互联网</h1>
+<div class="date-line"><span class="date">2018 · 7 · 12</span><div class="font-anchor"><button class="font-trigger size-std" aria-label="Reading preferences" aria-expanded="false" type="button"></button><div class="font-pill" id="fontPill"><button data-scale="small" aria-label="Small text"></button><button data-scale="" class="active" aria-label="Standard text"></button><button data-scale="large" aria-label="Large text"></button><button data-scale="xlarge" aria-label="Extra large text"></button></div></div></div>
+<h2 id="前言"><strong>前言</strong></h2><p>在互联网诞生之初，权力分布在每个参与者手中。人们以为每个参与者都有了自己的声音，言论自由迎来了新的时代。激进者如约翰·巴洛，甚至撰写了《赛博空间独立宣言》，宣告这场社会实验已拉开了大幕。</p><p>然而互联网诞生近30年后，我们看到了封锁、审查、隐私泄露、舆论控制，看到了资本支撑的网络效应和市场垄断，也看到了商业广告维持的信息经济。随着互联网渗入我们的日常生活，真实世界的权力反过来也渗入了互联网。</p><p>理想中的新一代互联网，服务器不再至关重要，无法控制信息的传递。用户与用户直接相连，数据的存储与计算都掌握在用户手中。用户得以保护自身隐私，第三者无法监听或屏蔽用户之间的交互。</p><p>比特币等电子货币暴涨后，区块链这一分布式技术也变得家喻户晓。电子货币的泡沫也推动了其他分布式技术，让互联网最初的理想再次成为可能。</p><p>这个庞大的拼图，碎片众多，本文选取其中一些已经实现的项目有进行讨论。没有人知道这个拼图会如何实现，不过这个拼图的样貌，终将取决于我们自己。</p><h2 id="敲响的警钟">敲响的警钟</h2><p>2018年3月，Facebook公司遭到联邦贸易委员会调查，面临巨额罚款。公司市值蒸发600亿美元，多名高层出售股票，不少人呼吁卸载Facebook。这一切的导火索，是因为一家名为“剑桥分析”（Cambridge Analytica）的公司，利用脸书数据操控舆论，协助特朗普当选总统。</p><p>剑桥分析所做的，是将用户信息收集、数据分析、精准广告投放三者结合了起来。首先，一个小程序邀请Facebook用户进行心理学测试，请求授权读取个人信息。小程序同时记录了用户好友们的信息，并借助关系网络延伸，<strong>最终通过27万名参与者搜集到了超过5千万用户数据</strong>。</p><p>剑桥分析根据这些用户的性格分类建立模型，并根据模型将广告投放给目标用户。预先制作好的网页广告引导了用户对现实的认知，进而影响他们的选举偏好。</p><figure>
 <img src="../../../image/assets/996a2021-b5c9-4a3b-b7c2-11ae232ea57b.jpg" data-placeholder-src="../../../image/assets/996a2021-b5c9-4a3b-b7c2-11ae232ea57b.jpg" width="1000" height="563" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAALABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCnCxRNrRZ5z97FIdhkqmYkrnKqMgnrTArsDn0/GgRswjbKcf3f6ihjJHYmHknkUgMU9aYj/9k=);background-size:cover" alt="" />
 <figcaption>因为剑桥分析事件，Facebook CEO扎克伯格参与美国听证会，接受国会提问与质疑。图片来源Anderew Harnik。</figcaption>
 </figure><p>媒体巨头操控政治生活的案例并不鲜见。十九世纪末，西联公司曾通过电报网络协助美国第十九届总统当选。2014年也有研究发现，Google对搜索结果的排序可以影响20%的中间选民，足以左右大选结果。</p><p>但是，控制信息的平台结合大数据的分析能力，第一次让舆论控制变得如此容易。据英国Channel 4电视台报道，仅剑桥分析及其母公司SCL Group一家，就曾参与过捷克、乌克兰、巴西、肯尼亚、印度等国超过200次的竞选。<strong>其他具有社会资源的团体和个人，如今也可像剑桥分析一样，建立强大的宣传机器，影响人们的想法</strong>。</p><p>这远不是警钟第一次敲响。不管是剑桥分析事件，2011年埃及政府切断互联网事件，屡禁不止的金融信息盗窃，还是俄国、中国、伊朗、土耳其等政府对民众进行的信息控制，究其原因，都在于现有网络依赖一个或多个中心服务器。第三方可通过域名污染、DDoS（拒绝服务攻击）等方式阻断用户与服务器的链接，服务器也可对信息进行控制、筛选甚至跟踪。</p><figure>
-<img src="../../../image/assets/ef00feaa-34fe-49c2-ac17-f532f390ae7b.png" data-placeholder-src="../../../image/assets/ef00feaa-34fe-49c2-ac17-f532f390ae7b.png" width="1400" height="752" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAALABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDJj6HIoGh4IBPFICFvvH60xDl6UAOBO1qBkbfeP1oEf//Z);background-size:cover" alt="" />
+<picture><source srcset="../../../image/assets/ef00feaa-34fe-49c2-ac17-f532f390ae7b.webp" type="image/webp"><img src="../../../image/assets/ef00feaa-34fe-49c2-ac17-f532f390ae7b.png" data-placeholder-src="../../../image/assets/ef00feaa-34fe-49c2-ac17-f532f390ae7b.png" width="1400" height="752" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAALABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDJj6HIoGh4IBPFICFvvH60xDl6UAOBO1qBkbfeP1oEf//Z);background-size:cover" alt="" /></picture>
 <figcaption>插画：十方，https://www.douban.com/people/a33862560/</figcaption>
 </figure><h2 id="龙与屠龙者"><strong>龙与屠龙者</strong></h2><p>互联网并非一直如此。我们所熟知的互联网发源于万维网（World Wide Web），由蒂姆·伯纳斯-李（Timothy Berners-Lee）在欧洲核子研究组织（CERN）工作时设计，最早用于科学家之间传输数据，第一台服务器于1991年上线。</p><p>万维网使用Http协议（HyperText Transfer Protocol，超文本传输协议）进行数据传输。这项协议预设了服务器与客户端的分离：服务器负责准备数据（例如网页），客户端浏览器负责接收和处理数据（例如渲染网页代码）。</p><p>这样的分离在早期不是问题。早期参与者都有资深的技术背景，足以建立个人服务器，加入分布式内容网络，形成了互联网早期独特而繁荣的亚文化。这种繁荣使得互联网扩散进入大众的生活，同时运营网站与服务器成为少数公司的职能，数据与权力在不知不觉中聚合了起来。</p><figure>
-<img src="../../../image/assets/f219159f-6218-4940-b05b-234cb5c9957e.png" data-placeholder-src="../../../image/assets/f219159f-6218-4940-b05b-234cb5c9957e.png" width="1400" height="798" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAALABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCnpdtHczusqkgLkYOO9AGjPpdqkEjKjZVSR8x9KAMCgByuyHKMVPscUAOM8pGDK5B/2jQBHQB//9k=);background-size:cover" alt="" />
+<picture><source srcset="../../../image/assets/f219159f-6218-4940-b05b-234cb5c9957e.webp" type="image/webp"><img src="../../../image/assets/f219159f-6218-4940-b05b-234cb5c9957e.png" data-placeholder-src="../../../image/assets/f219159f-6218-4940-b05b-234cb5c9957e.png" width="1400" height="798" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAALABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCnpdtHczusqkgLkYOO9AGjPpdqkEjKjZVSR8x9KAMCgByuyHKMVPscUAOM8pGDK5B/2jQBHQB//9k=);background-size:cover" alt="" /></picture>
 <figcaption>不同结构的网络形态，从左到右为中心化、去中心化与分布式。目前Facebook、Google、微信、淘宝等平台提供的服务都是中心化的，平台作为中心节点，连接用户。而分布式网络规避了中心化，这样的优势在于，即便任何节点出现问题，剩下的节点也可以绕开该节点重新组建，网络畅通无阻。图片引自Paul Baran (1964)。</figcaption>
 </figure><p>这种权力的聚合在互联网早期曾被人们预料到，也曾被互联网的先行者们极力抵制。但在2000年之后，Amazon、Google、Oracle及阿里巴巴等公司云服务兴起，权力的集中与聚合开始加速。</p><p>内容的发布方式也是如此。网站从个人网站转型为社交平台，网站内容从个人创作转型为用户生成，网页也从个人发布的静态网页演变为社群共享的动态网页。web1.0时代向web2.0时代迈进，似乎人人都拥有了更大的发声权力，成为一座座信息的灯塔。</p><p>但实际上，筛选和审查内容的权力集中于平台，具备价值的社交数据和内容也并不属于用户。用户习惯于内容的免费获取，互联网经济依赖着广告费与广告点击。当用户数据成为商业价值的核心，博取眼球成为平台赖以生存的能力，内容市场便开始劣币驱逐良币。</p><p>由于互联网的发展与初衷严重悖离，万维网创始人蒂姆·伯纳斯-李于2016年领导MIT去中心化信息工作组（Decentralized Information Group），协助互联网档案馆（Internet Archive）举办了第一届去中心化网络峰会，第二届也将于今年7月在旧金山召开。这只是诸多重塑互联网的努力之一，意在塑造一个更好的web3.0，将信息控制的权力交还给每位网民。</p><p>近几年来，web3.0发展的最大机遇无疑是区块链技术。其中，最引人瞩目的是以太坊项目（Ethereum），它的终极目标是成为新一代互联网基石——“<strong>世界计算机</strong>”（其JavaScript与python的库直接命名为web3.js与web3.py，足见它重塑互联网的野心）。</p><p>通过智能合约，区块链使得整个网络不需要相互信任，就能够达成并记录共识。一方面它提供了去中心化的电子货币，使得价值的传递不再依靠点击量与广告商。更重要的是，这为整个网络提供了可靠的分布式逻辑处理，让完全分布式的应用（Dapp, distributed application）成为可能。</p><p>但是，逻辑处理仅仅是网络应用需要的诸多资源之一。况且，由于需要达成大范围的共识，区块链技术在设计上就需要牺牲处理能力来换取可靠性。分布式应用仍然需要许多其他的分布式技术作为基础设施。</p><p>拿以太坊项目为例，实现“<strong>世界计算机</strong>”取决于区块链以外的两个子项目：一是用于分布式存储的Swarm，二是用于点对点即时通信的Whisper。但Swarm尚不稳定、开发滞后，Whisper更是尚在萌芽中。</p><p>所幸，分布式系统既是计算机科学的重要研究领域，也是互联网自由主义者们不曾停止探索的疆域。众多想法跟随区块链一起受到关注，不断复兴、演变，成为现实中的技术。这些技术所推动的研究与应用，将会从其他角度重塑互联网。</p><p>互联网的本质，也正在于人与人之间信息的自由交换。也许重塑互联网的第一步，便是实现这种数据存储与传递的新方式——分布式储存。</p><h2 id="分布式存储的复兴"><strong>分布式存储的复兴</strong></h2><p>分布式互联网所需的储存技术，实际上与P2P（点对点）文件传输系统相同。无论是被称作“暗网”的Freenet、I2P和ZeroNet，还是用于文件下载的BitTorrent、ed2k（电驴）、kad网络和快播，都是通过用户间的直接数据交换来传递，极少依赖服务器。P2P网络曾在2009年占到互联网流量的43%-70%，抵达巅峰。然而近十年，随着视频网站的兴起和版权意识的提高，这一比例不断走低。</p><figure>
-<img src="../../../image/assets/0575e14f-38cd-4d00-92ff-2c6bf41e7085.gif" data-placeholder-src="../../../image/assets/0575e14f-38cd-4d00-92ff-2c6bf41e7085.gif" width="800" height="600" loading="lazy" alt="" />
+<picture><source srcset="../../../image/assets/0575e14f-38cd-4d00-92ff-2c6bf41e7085.gif.webp" type="image/webp"><img src="../../../image/assets/0575e14f-38cd-4d00-92ff-2c6bf41e7085.gif" data-placeholder-src="../../../image/assets/0575e14f-38cd-4d00-92ff-2c6bf41e7085.gif" width="800" height="600" loading="lazy" alt="" /></picture>
 <figcaption>(matters目前不支持gif，动图可移步http://perspiceremagazine.org/images/next-open-internet/6.gif)    大部份P2P系统采用DHT数据结构，让节点不依赖中心服务器就能找寻其他节点。当一个节点试图寻找一份文件时，会向临近的节点广播文件指纹（hash），请求协助和找寻更多节点。找到拥有文件的节点后，两个节点可以建立连接、开始下载。图片来源：http://www.bittorrent.com/</figcaption>
 </figure><p>通过<strong>分布式哈希表</strong>（DHT，distributed hash table）技术，分布式系统里的任何节点仅需知道少数邻近节点的地址，就可通过这些节点不断向外搜索其他相应节点，最终获取相关信息。这样的网络具有更强的可塑性，任何节点出问题都无法影响整体网络运作，同时再多节点加入也不会影响网络的传输及寻址效率。</p><p>基于过往的一场又一场网络实验，许多项目将最优秀的想法整合在一起，形成一整套分布式算法与协议组成的生态系统，Sia、Storj、Maidsafe、IPFS和Dat Protocol都是其中的例子。</p><h2 id="ipfs"><strong>IPFS</strong></h2><p>2017年5月，由于维基百科拒绝删除词条中关于土耳其政府与叙利亚圣战主义者的段落，导致土耳其政府下令封锁维基百科。土耳其民众将土耳其语维基百科储存在了分布式网络之中，得以绕开封锁。</p><p>2017年10月，西班牙加泰罗尼亚地区决定针对独立举行全民公投，西班牙政府封锁了所有加泰罗尼亚域名的网站，阻止公投进行。但加泰罗尼亚政府与民众将投票网站建立在了分布式网络之中，最后仍有超过40%的公民成功参与了投票。</p><p>这两次反封锁行动采用的都是IPFS（InterPlanetary File Syste9m，星际文件系统）网络。这个漫画般的名字一方面是对计算机科学家Joseph Licklider的致敬：Joseph Licklider在Licklider担任美国国防高级研究计划局主任时，曾提出“星系间计算网络”（InterGalactic Computer Network），最终成为了世界上第一个运营的封包交换网络，全球互联网始祖ARPANET（由美国国防部开发，1969年11年正式投入运行）。另一方面，这个名称也昭示了IPFS的野心：为人们提供可靠且高效的数据传输方式，即便人类移民火星，仍能在星际间传输数据。</p><figure>
-<img src="../../../image/assets/8dbe8743-38e6-44ad-9652-432b073be71a.png" data-placeholder-src="../../../image/assets/8dbe8743-38e6-44ad-9652-432b073be71a.png" width="1400" height="752" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAALABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCramNLUl1LbuRx0IpiARSTBmSMcc8jGaAKc5YzMXUK3cDpSGIjsvRiMUAXbWeQRAB6AKc5LTMT1zQB/9k=);background-size:cover" alt="" />
+<picture><source srcset="../../../image/assets/8dbe8743-38e6-44ad-9652-432b073be71a.webp" type="image/webp"><img src="../../../image/assets/8dbe8743-38e6-44ad-9652-432b073be71a.png" data-placeholder-src="../../../image/assets/8dbe8743-38e6-44ad-9652-432b073be71a.png" width="1400" height="752" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAALABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCramNLUl1LbuRx0IpiARSTBmSMcc8jGaAKc5YzMXUK3cDpSGIjsvRiMUAXbWeQRAB6AKc5LTMT1zQB/9k=);background-size:cover" alt="" /></picture>
 <figcaption>加泰罗尼亚地区的技术高手们汇聚巴塞罗那，通过IPFS寻找绕开封锁的办法。图片引自 https://github.com/ipfs/community/issues/270</figcaption>
 </figure><p>IPFS的野心远不止于突破封锁，它的最终理想是将分布式存储变为计算机文件系统中的一部分。这个项目想要解决的是目前互联网数据传输的根本问题：数据过分依赖单一节点，传输效率低下；数据未能有效加密，用户隐私无法得到保障；网页与链接常常在数天后失效，内容再也无法提取，人类历史也随之消亡。</p><p>除了通过DHT等算法寻找节点外，分布式储存的另一关键技术是内容寻址。在目前HTTP/HTTPS组成的网络中，用户输入的域名（例如https://www.google.com或https://www.baidu.com）被层层解析、对应到服务器地址后，用户再与服务器建立连接。而IPFS采用的内容寻址模式，用户只要直接输入所需文件（比如网站主页html文件）的指纹，程序即可在网络中找寻到拥有该数据的节点建立链接，传输数据。</p><p>这种文件指纹又被称为hash，是哈希函数的计算结果。哈希函数的作用类似于数字摘要，将任意长度的数据转换为固定长度的字符串。同时，只要原数据发生任何改变，计算出的hash都会不同。以hash作为网址意味着，同样的网址一定会得到同一个文件，网页链接永远可靠，所以IPFS也被称作“永久网络”（Permanent Web）。</p><p>一个文件的hash可以和另一个文件加和之后，进行哈希函数计算，形成第二个hash。如此一来，不同的文件可以通过hash相互连接成文件树，大文件也可以分块后再串在一起。这种结构被称作哈希树（或者默克尔树，Merkle Tree），这是一种在分布式系统中逐渐开始流行的数据结构。不管是常用的代码管理工具git，遍布世界的Bittorent，还是各色各样的区块链，都是某种形式的哈希树，能够直接储存于IPFS网络中，高效地识别和调用。</p><figure>
-<img src="../../../image/assets/f1a05cc2-cd41-47ca-9b8c-e3ef68d98847.png" data-placeholder-src="../../../image/assets/f1a05cc2-cd41-47ca-9b8c-e3ef68d98847.png" width="1400" height="798" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAALABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDHHQ8ZoAUbc/d4+tADaACgABI6GgBKAP/Z);background-size:cover" alt="" />
+<picture><source srcset="../../../image/assets/f1a05cc2-cd41-47ca-9b8c-e3ef68d98847.webp" type="image/webp"><img src="../../../image/assets/f1a05cc2-cd41-47ca-9b8c-e3ef68d98847.png" data-placeholder-src="../../../image/assets/f1a05cc2-cd41-47ca-9b8c-e3ef68d98847.png" width="1400" height="798" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAALABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDHHQ8ZoAUbc/d4+tADaACgABI6GgBKAP/Z);background-size:cover" alt="" /></picture>
 <figcaption>IPFS（左上）、Bittorrent（中上）、git（右上）、比特币（左下）、以太坊（右下）都是某种形式的哈希树，天然适合以同样的方式进行存储和传输。图片来源：IPFS主创Juan Benet演讲PPT。</figcaption>
 </figure><p>既然是分布式储存，数据就也需要一定的“冗余度”，保证网络中有多个拷贝。同时，需要有一些节点长期在线，保持数据可读。为了解决这个问题，IPFS创造了电子货币Filecoin，让用户可以通过Filecoin来交易各自的存储空间，提供缓存节点。这同时创造了一个基于区块链的云存储市场，有望和亚马逊、Google及阿里巴巴等云服务商竞争。</p><h2 id="dat-protocal"><strong>Dat Protocal</strong></h2><p>IPFS团队在公众面前频繁亮相，从Y Combinator新闻、硅谷的Tedx到斯坦福大学的计算机系统研讨会，通过Filecoin进行ICO，又从Union Square Ventures等风投公司获得了近亿元的投资，成立公司ProtoLab。相比IPFS项目的来势凶猛，另一个项目Dat Protocal，则显得低调而神秘，但却另辟蹊径建立起了高质量的生态系统。</p><p>Dat Protocal团队的发展哲学与IPFS大相径庭，核心项目贡献者不过三四人，生态系统中其他项目也不过一两名开发者。互联网历史上有过太多昙花一现的分布式项目，Dat Protocal团队认为它们失败的原因，是项目在足够强大之前吸引了太多的用户和关注，超出了当下的技术和团队的处理能力。</p><p>Dat Protocal的贡献者和用户大都是科研工作者，致力于科研数据和文献的自由传播。Dat Project建立的机构Code for Science and Society（CSS），致力于通过软件促进科研与社会公益。CSS只接受如Knight Foundation和Alfred Sloan Foundation这些公益基金的捐赠，核心成员通过自己其他的全职工作支持项目开发。就连推崇的前端框架，也避开了React、Angular和Vue这些有大公司背景的项目，而选择了Choo.js这样一个小众但是轻量、高效的框架。</p><p>IPFS采用内容寻址的麻烦之处在于，更新内容也需要更新hash，动态网页需要额外的指针来跟踪不断变化的地址。Dat Protocal的寻址方式则把重心放在发布者上：文件的地址本身是发布者的公钥，而文件内容由发布者的私钥加密与签署，拥有地址的用户可以解密并验证文件来源。</p><figure>
 <img src="../../../image/assets/e010b991-cd10-451b-8c87-b56a76c00715.png" data-placeholder-src="../../../image/assets/e010b991-cd10-451b-8c87-b56a76c00715.png" width="1400" height="752" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAALABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCjpcaS3irIAVweozQJ7Gle2sCWcrCJEYA4wBnrSBMwaYx8UrxPvjOG9cUCaT3JXvbmRCjykqeowKBlegD/2Q==);background-size:cover" alt="" />
@@ -769,7 +786,7 @@ a.comment-author:hover {
 插画：十方，https://www.douban.com/people/a33862560/</p>
             
         </article>
-        <section class="moss-comments" id="moss-comments" data-built-at="2026-04-09T13:33:18.561288+00:00">
+        <section class="moss-comments" id="moss-comments" data-built-at="2026-04-29T17:49:39.267401+00:00">
   <details>
     <summary class="comments-toggle"><svg class="comments-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></svg><span>10条评论</span><svg class="comments-chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></summary>
     <div class="comment-form-slot" id="default-form-slot"><form class="comment-form" id="moss-comment-form" data-server-url="https://api.moss.host/comments" data-site-name="liu-guo.com" data-page-key="writings/distributed-web/next-gen-open-internet/" data-page-title="下一代开放互联网">
@@ -871,116 +888,7 @@ a.comment-author:hover {
         <div class="comment-body"><p>不懂这个，但确实希望作者描述的远景尽早到来，让控制和操纵舆论不可能 </p></div>
       </li>
     </ol>
-    <script>(function() {
-  'use strict';
-  var form = document.getElementById('moss-comment-form');
-  if (!form) return;
-
-  var serverUrl = form.dataset.serverUrl;
-  var siteName = form.dataset.siteName;
-  var pageKey = form.dataset.pageKey;
-  var pageTitle = form.dataset.pageTitle;
-  var status = document.getElementById('moss-comment-status');
-  var textarea = document.getElementById('moss-comment-text');
-  var STORAGE_KEY = 'moss-commenter';
-  var replyToId = null;
-
-  // Restore saved identity
-  try {
-    var saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
-    if (saved.name) form.querySelector('[name="name"]').value = saved.name;
-    if (saved.email) form.querySelector('[name="email"]').value = saved.email;
-    if (saved.link) form.querySelector('[name="link"]').value = saved.link;
-  } catch(e) {}
-
-  // Auto-grow textarea
-  if (textarea) {
-    textarea.addEventListener('input', function() {
-      this.style.height = 'auto';
-      this.style.height = this.scrollHeight + 'px';
-    });
-  }
-
-  // Reply threading
-  document.querySelectorAll('.comment-reply-btn').forEach(function(btn) {
-    btn.addEventListener('click', function() {
-      var id = this.dataset.replyId;
-      var name = this.dataset.replyName;
-      replyToId = id;
-      var item = document.getElementById('comment-' + id);
-      if (item) {
-        var slot = item.querySelector('.comment-replies') || item;
-        slot.appendChild(form.parentNode);
-      }
-      if (textarea) {
-        textarea.placeholder = '@' + name + ' ';
-        textarea.focus();
-      }
-    });
-  });
-
-  form.addEventListener('submit', function(e) {
-    e.preventDefault();
-    var content = textarea.value.trim();
-    if (!content) return;
-
-    var nameVal = form.querySelector('[name="name"]').value.trim();
-    var emailVal = form.querySelector('[name="email"]').value.trim();
-    var linkVal = form.querySelector('[name="link"]').value.trim();
-
-    if (!nameVal) { status.textContent = 'Name is required'; return; }
-
-    // Save identity
-    try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify({name: nameVal, email: emailVal, link: linkVal}));
-    } catch(e) {}
-
-    status.textContent = 'Submitting...';
-    form.querySelector('[type="submit"]').disabled = true;
-
-    var body = {
-      content: content,
-      nick: nameVal,
-      email: emailVal,
-      link: linkVal,
-      page_key: pageKey,
-      page_title: pageTitle,
-      site_name: siteName
-    };
-    if (replyToId) body.rid = parseInt(replyToId, 10);
-
-    fetch(serverUrl.replace(/\/+$/, '') + '/api/v2/comments', {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify(body)
-    }).then(function(r) {
-      if (!r.ok) throw new Error('HTTP ' + r.status);
-      return r.json();
-    }).then(function(data) {
-      status.textContent = 'Comment posted!';
-      textarea.value = '';
-      replyToId = null;
-      // Move form back to default slot
-      var defaultSlot = document.getElementById('default-form-slot');
-      if (defaultSlot) defaultSlot.appendChild(form.parentNode.contains(form) ? form : form);
-      // Insert new comment into DOM
-      var list = document.querySelector('.comment-list');
-      if (list && data) {
-        var li = document.createElement('li');
-        li.className = 'comment-item';
-        li.innerHTML = '<div class="comment-header"><span class="comment-author">' +
-          (nameVal || 'Anonymous') + '</span><time class="comment-date">just now</time></div>' +
-          '<div class="comment-body">' + (data.content || content) + '</div>';
-        list.appendChild(li);
-      }
-      setTimeout(function() { status.textContent = ''; }, 3000);
-    }).catch(function(err) {
-      status.textContent = 'Error: ' + err.message;
-    }).finally(function() {
-      form.querySelector('[type="submit"]').disabled = false;
-    });
-  });
-})();
+    <script>"use strict";(()=>{(function(){"use strict";let e=document.getElementById("moss-comment-form");if(!e)return;let f=e.dataset.serverUrl,E=e.dataset.siteName,h=e.dataset.pageKey,g=e.dataset.pageTitle,m=document.getElementById("moss-comment-status"),n=document.getElementById("moss-comment-text"),u="moss-commenter",i=null;try{let t=JSON.parse(localStorage.getItem(u)||"{}");t.name&&(e.querySelector('[name="name"]').value=t.name),t.email&&(e.querySelector('[name="email"]').value=t.email),t.link&&(e.querySelector('[name="link"]').value=t.link)}catch{}n&&n.addEventListener("input",function(){this.style.height="auto",this.style.height=this.scrollHeight+"px"}),document.querySelectorAll(".comment-reply-btn").forEach(t=>{t.addEventListener("click",function(){let a=this.dataset.replyId,o=this.dataset.replyName;i=a;let l=document.getElementById("comment-"+a);l&&(l.querySelector(".comment-replies")??l).appendChild(e.parentNode),n&&(n.placeholder="@"+o+" ",n.focus())})}),e.addEventListener("submit",function(t){if(t.preventDefault(),!n)return;let a=n.value.trim();if(!a)return;let o=e.querySelector('[name="name"]').value.trim(),l=e.querySelector('[name="email"]').value.trim(),r=e.querySelector('[name="link"]').value.trim();if(!o){m.textContent="Name is required";return}try{localStorage.setItem(u,JSON.stringify({name:o,email:l,link:r}))}catch{}m.textContent="Submitting...",e.querySelector('[type="submit"]').disabled=!0;let d={content:a,nick:o,email:l,link:r,page_key:h,page_title:g,site_name:E};i&&(d.rid=parseInt(i,10)),fetch(f.replace(/\/+$/,"")+"/api/v2/comments",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(d)}).then(s=>{if(!s.ok)throw new Error("HTTP "+s.status);return s.json()}).then(s=>{m.textContent="Comment posted!",n.value="",i=null;let p=document.getElementById("default-form-slot");p&&p.appendChild(e);let y=document.querySelector(".comment-list");if(y){let c=document.createElement("li");c.className="comment-item",c.innerHTML='<div class="comment-header"><span class="comment-author">'+(o||"Anonymous")+'</span><time class="comment-date">just now</time></div><div class="comment-body">'+(s.content||a)+"</div>",y.appendChild(c)}setTimeout(()=>{m.textContent=""},3e3)}).catch(s=>{m.textContent="Error: "+s.message}).finally(()=>{e.querySelector('[type="submit"]').disabled=!1})})})();})();
 </script>
   </details>
 </section>
@@ -1004,11 +912,11 @@ a.comment-author:hover {
                 <path fill="currentColor" d="M353.48,284.25c-.03-15.35-13.3-28.68-13.02-44.45.35-19.97,18.62-25.1,30.84-8.86,12.27,16.3,27.25,65.59,47.13,69.87,15.6,3.35,20.22-16.43,21.94-28.17,5.43-37.03,2.88-91.03.11-128.87-2.46-33.57-12.68-77.8.53-109.49,17.73-42.53,73.6-44.58,77.52,8.44,4.69,63.45-37.31,106.54-49.55,165.53-5.67,27.31-8.23,57.64-2,85.02,19.85,87.26,94.44-18.36,112.68-50.34,13.98-24.51,21.56-49.75,33.65-74.35,19.23-39.11,66.57-62.1,108.53-45.18,44.94,18.11,81.36,85.88,50.86,129.58-37.72,54.04-106.18,41.29-161.99,58.01-41.56,12.45-108.6,50.47-77.04,102.57,96.58,122.22,255.01,39.13,292.28,120.71,29.53,71.29-56.2,113.61-111.95,65.96-38.52-32.93-55.04-71.51-106.17-94.83-29.67-13.53-103.71-33.13-108.34,17.37-4.16,45.33,25.72,119.74,60.51,149.46,33.53,28.64,97.03,38.28,85.03,98.08-13.73,68.47-105.62,67.48-126.06-3.06-12.57-43.4-9.75-82.04-29.64-126.36-55.05-116.5-115.66-82.39-139.54,26.18-7,41.15,6.09,99.52-10.83,134.17-31.94,65.42-164.26,43.33-146.82-44.82,12.11-61.23,75.42-87.7,113.85-130.15,23.54-26.01,55.01-74.29,53.48-110.49-1.78-42.18-56.04-34.72-83.51-24.54-50.66,18.76-80.01,59.74-121.57,89.43-93.63,63.58-119.86-32.28-16.9-64.89,65.1-21.66,293.15-94.81,110.19-138.23-66.85-11.86-140.47,18.99-201.56-8.43-79.79-35.81-49.11-122.17,38.84-115.84,67.02,4.82,91.74,51.13,145.15,76.85,22.9,11.03,76.48,27.18,100.58,19.86,31.23-9.49,4.33-41.63,9.89-60.12,1.92-6.38,6.93-8.21,12.88-5.6Z"/>
                 <path fill="#91c127" d="M323.18,241.93c-13.07,8.61-21.8-13.96-28.28-22.59-7.94-10.58-16.74-21.56-25.9-31.1-28.12-29.26-66.01-47.97-72.39-92.61C189.42,45.37,218.91-3.67,274.03.22c82.95,5.85,62.53,119.82,75.51,175.59-2.67,10.44-9.56-.19-15.56-.6-23.21,1.86,16.7,52.67-10.8,66.73Z"/>
             </svg>
-            Published with moss
+            青苔发布
         </a>
     </div>
 
-    <script src="/js/theme.js?v=7feda3b590c41eb7"></script>
+    <script src="/js/theme.js?v=55cfb8c997a6f4b4"></script>
     <script src="/js/preview.js"></script>
     
 </body>

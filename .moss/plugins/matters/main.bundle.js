@@ -360,6 +360,7 @@ ${codeContent?.trim()}
   // src/main.ts
   var main_exports = {};
   __export(main_exports, {
+    absolutizeRelativeHrefs: () => absolutizeRelativeHrefs,
     addCanonicalLinkToContent: () => addCanonicalLinkToContent,
     getArticleContent: () => getArticleContent,
     getDraftId: () => getDraftId,
@@ -370,6 +371,7 @@ ${codeContent?.trim()}
     removeDraftId: () => removeDraftId,
     saveDraftId: () => saveDraftId,
     saveDraftMap: () => saveDraftMap,
+    stripArticleTitleH1: () => stripArticleTitleH1,
     syndicate: () => syndicate,
     syndicateArticle: () => syndicateArticle,
     uploadAndReplaceLocalImages: () => uploadAndReplaceLocalImages,
@@ -2741,10 +2743,14 @@ ${markdownContent}`;
     const { content: articleContent, isHtml } = getArticleContent(article);
     let content = articleContent;
     if (isHtml) {
+      content = stripArticleTitleH1(content, article.title);
       content = normalizeHtmlForMatters(content);
     }
     if (options.addCanonicalLink) {
       content = addCanonicalLinkToContent(content, canonicalUrl, isHtml, options.lang);
+    }
+    if (isHtml) {
+      content = absolutizeRelativeHrefs(content, canonicalUrl);
     }
     if (isHtml) {
       content = await uploadAndReplaceLocalImages(content, canonicalUrl);
@@ -2885,6 +2891,29 @@ ${markdownContent}`;
       return { content: article.html_content, isHtml: true };
     }
     return { content: article.content, isHtml: false };
+  }
+  function stripArticleTitleH1(html, articleTitle) {
+    const re = /<h1\b[^>]*class="[^"]*\bmoss-article-title\b[^"]*"[^>]*>([\s\S]*?)<\/h1>/gi;
+    return html.replace(re, (full, inner) => {
+      const innerText = inner.replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim();
+      const titleText = articleTitle.replace(/\s+/g, " ").trim();
+      return innerText === titleText ? "" : full;
+    });
+  }
+  function absolutizeRelativeHrefs(html, baseUrl) {
+    return html.replace(/<a\b([^>]*?)\shref="([^"]+)"([^>]*)>/gi, (full, before, href, after) => {
+      if (/^([a-z][a-z0-9+.-]*:|\/\/|#)/i.test(href)) {
+        return full;
+      }
+      let absolute;
+      try {
+        absolute = new URL(href, baseUrl).href;
+      } catch (error) {
+        console.warn(`    \u26A0\uFE0F Could not resolve href ${href} against ${baseUrl}: ${error}`);
+        return full;
+      }
+      return `<a${before} href="${absolute}"${after}>`;
+    });
   }
   function normalizeHtmlForMatters(html) {
     let result = html;

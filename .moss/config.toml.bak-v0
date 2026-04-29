@@ -1,0 +1,22 @@
+[analytics]
+script = "https://guo.goatcounter.com/count"
+
+[comments]
+server_url = "https://api.moss.host/comments"
+
+[email]
+api_key = "71a1403a-7c4f-4818-aa5a-1d75366684c2"
+
+[features]
+comments = true
+rss = true
+subscribe = true
+
+[hooks]
+syndicate = [
+    "email",
+    "matters",
+]
+
+[site]
+lang = "zh-hans"

@@ -1,0 +1,236 @@
+- generic [ref=e2]:
+  - generic [ref=e1120]:
+    - generic [ref=e1121]:
+      - heading "Scale Family Tree" [level=1] [ref=e1122]
+      - generic [ref=e1123]:
+        - button "+ scale" [ref=e1124] [cursor=pointer]
+        - button "legend" [ref=e1125] [cursor=pointer]
+    - generic [ref=e1126]:
+      - generic [ref=e1127]:
+        - generic [ref=e1128]: chromatic
+        - generic [ref=e1129]:
+          - generic [ref=e1131]: C
+          - generic [ref=e1133]: D♭
+          - generic [ref=e1135]: D
+          - generic [ref=e1137]: E♭
+          - generic [ref=e1139]: E
+          - generic [ref=e1141]: F
+          - generic [ref=e1143]: G♭
+          - generic [ref=e1145]: G
+          - generic [ref=e1147]: A♭
+          - generic [ref=e1149]: A
+          - generic [ref=e1151]: B♭
+          - generic [ref=e1153]: B
+      - generic [ref=e1154]:
+        - generic [ref=e1155]:
+          - generic [ref=e1156]:
+            - generic [ref=e1157]:
+              - button "Remove Major Pentatonic" [ref=e1158] [cursor=pointer]:
+                - generic [ref=e1159]: ×
+              - generic [ref=e1160]: Major Pentatonic
+              - button "About Major Pentatonic" [ref=e1161] [cursor=pointer]:
+                - generic [ref=e1162]: i
+            - generic [ref=e1163]: C · 1 2 3 5 6
+          - generic [ref=e1164]:
+            - generic [ref=e1166] [cursor=pointer]:
+              - generic [ref=e1167]: C
+              - generic [ref=e1168]: "1"
+            - generic [ref=e1172] [cursor=pointer]:
+              - generic [ref=e1173]: D
+              - generic [ref=e1174]: "2"
+            - generic [ref=e1177]:
+              - generic: aug 2
+              - generic [ref=e1178] [cursor=pointer]:
+                - generic [ref=e1179]: E
+                - generic [ref=e1180]: "3"
+            - generic [ref=e1186] [cursor=pointer]:
+              - generic [ref=e1187]: G
+              - generic [ref=e1188]: "5"
+            - generic [ref=e1191]:
+              - generic: aug 2
+              - generic [ref=e1192] [cursor=pointer]:
+                - generic [ref=e1193]: A
+                - generic [ref=e1194]: "6"
+        - generic [ref=e1199]:
+          - generic [ref=e1200]:
+            - generic [ref=e1201]:
+              - button "Remove Major" [ref=e1202] [cursor=pointer]:
+                - generic [ref=e1203]: ×
+              - generic [ref=e1204]: Major
+              - button "About Major" [ref=e1205] [cursor=pointer]:
+                - generic [ref=e1206]: i
+            - generic [ref=e1207]: C · 1 2 3 4 5 6 7
+          - generic [ref=e1208]:
+            - generic [ref=e1210] [cursor=pointer]:
+              - generic [ref=e1211]: C
+              - generic [ref=e1212]: "1"
+            - generic [ref=e1216] [cursor=pointer]:
+              - generic [ref=e1217]: D
+              - generic [ref=e1218]: "2"
+            - generic [ref=e1222] [cursor=pointer]:
+              - generic [ref=e1223]: E
+              - generic [ref=e1224]: "3"
+            - generic [ref=e1226] [cursor=pointer]:
+              - generic [ref=e1227]: F
+              - generic [ref=e1228]: "4"
+            - generic [ref=e1232] [cursor=pointer]:
+              - generic [ref=e1233]: G
+              - generic [ref=e1234]: "5"
+            - generic [ref=e1238] [cursor=pointer]:
+              - generic [ref=e1239]: A
+              - generic [ref=e1240]: "6"
+            - generic [ref=e1244] [cursor=pointer]:
+              - generic [ref=e1245]: B
+              - generic [ref=e1246]: "7"
+        - generic [ref=e1247]:
+          - generic [ref=e1248]:
+            - generic [ref=e1249]:
+              - button "Remove Hijaz" [ref=e1250] [cursor=pointer]:
+                - generic [ref=e1251]: ×
+              - generic [ref=e1252]: Hijaz
+              - button "About Hijaz" [ref=e1253] [cursor=pointer]:
+                - generic [ref=e1254]: i
+            - generic [ref=e1255]: E · 1 ♭2 3 4 5 ♭6 ♭7
+          - generic [ref=e1256]:
+            - generic [ref=e1258] [cursor=pointer]:
+              - generic [ref=e1259]: C
+              - generic [ref=e1260]: ♭6
+            - generic [ref=e1264] [cursor=pointer]:
+              - generic [ref=e1265]: D
+              - generic [ref=e1266]: ♭7
+            - generic [ref=e1270] [cursor=pointer]:
+              - generic [ref=e1271]: E
+              - generic [ref=e1272]: "1"
+            - generic [ref=e1273]:
+              - generic: aug 2
+              - generic [ref=e1274] [cursor=pointer]:
+                - generic [ref=e1275]: F
+                - generic [ref=e1276]: ♭2
+            - generic [ref=e1282] [cursor=pointer]:
+              - generic [ref=e1283]: A♭
+              - generic [ref=e1284]: "3"
+            - generic [ref=e1286] [cursor=pointer]:
+              - generic [ref=e1287]: A
+              - generic [ref=e1288]: "4"
+            - generic [ref=e1292] [cursor=pointer]:
+              - generic [ref=e1293]: B
+              - generic [ref=e1294]: "5"
+        - generic [ref=e1295]:
+          - generic [ref=e1296]:
+            - generic [ref=e1297]:
+              - button "Remove In 陰" [ref=e1298] [cursor=pointer]:
+                - generic [ref=e1299]: ×
+              - generic [ref=e1300]: In 陰
+              - button "About In 陰" [ref=e1301] [cursor=pointer]:
+                - generic [ref=e1302]: i
+            - generic [ref=e1303]: D · 1 ♭2 4 5 ♭6
+          - generic [ref=e1304]:
+            - generic [ref=e1310] [cursor=pointer]:
+              - generic [ref=e1311]: D
+              - generic [ref=e1312]: "1"
+            - generic [ref=e1314] [cursor=pointer]:
+              - generic [ref=e1315]: E♭
+              - generic [ref=e1316]: ♭2
+            - generic [ref=e1324] [cursor=pointer]:
+              - generic [ref=e1325]: G
+              - generic [ref=e1326]: "4"
+            - generic [ref=e1330] [cursor=pointer]:
+              - generic [ref=e1331]: A
+              - generic [ref=e1332]: "5"
+            - generic [ref=e1334] [cursor=pointer]:
+              - generic [ref=e1335]: B♭
+              - generic [ref=e1336]: ♭6
+        - generic [ref=e1339]:
+          - generic [ref=e1340]:
+            - generic [ref=e1341]:
+              - button "Remove Natural Minor" [ref=e1342] [cursor=pointer]:
+                - generic [ref=e1343]: ×
+              - generic [ref=e1344]: Natural Minor
+              - button "About Natural Minor" [ref=e1345] [cursor=pointer]:
+                - generic [ref=e1346]: i
+            - generic [ref=e1347]: G · 1 2 ♭3 4 5 ♭6 ♭7
+          - generic [ref=e1348]:
+            - generic [ref=e1350] [cursor=pointer]:
+              - generic [ref=e1351]: C
+              - generic [ref=e1352]: "4"
+            - generic [ref=e1356] [cursor=pointer]:
+              - generic [ref=e1357]: D
+              - generic [ref=e1358]: "5"
+            - generic [ref=e1360] [cursor=pointer]:
+              - generic [ref=e1361]: E♭
+              - generic [ref=e1362]: ♭6
+            - generic [ref=e1366] [cursor=pointer]:
+              - generic [ref=e1367]: F
+              - generic [ref=e1368]: ♭7
+            - generic [ref=e1372] [cursor=pointer]:
+              - generic [ref=e1373]: G
+              - generic [ref=e1374]: "1"
+            - generic [ref=e1378] [cursor=pointer]:
+              - generic [ref=e1379]: A
+              - generic [ref=e1380]: "2"
+            - generic [ref=e1382] [cursor=pointer]:
+              - generic [ref=e1383]: B♭
+              - generic [ref=e1384]: ♭3
+  - generic [ref=e1388]:
+    - generic [ref=e1389]: why each scale got its color
+    - generic [ref=e1390]: horizontal = brightness (flats vs. Lydian) · vertical = tension (aug-2nds, ♭2, tritones) · hue = the Flexoki color actually assigned
+    - img [ref=e1391]:
+      - generic [ref=e1392]: ♯4
+      - generic [ref=e1393]: major
+      - generic [ref=e1394]: minor
+      - generic [ref=e1395]: phrygian
+      - generic [ref=e1396]: restful
+      - generic [ref=e1397]: aug-2 / blue
+      - generic [ref=e1398]: double aug-2
+      - generic [ref=e1399]: brightness → darker
+      - generic [ref=e1400]: tension →
+      - generic "Major Pentatonic" [ref=e1401]
+      - generic [ref=e1402]: Maj Pent
+      - generic "Minor Pentatonic" [ref=e1403]
+      - generic [ref=e1404]: Min Pent
+      - generic "Yo 陽" [ref=e1405]
+      - generic [ref=e1408]: Yo 陽
+      - generic "In 陰" [ref=e1409]
+      - generic [ref=e1412]: In 陰
+      - generic "Hirajoshi" [ref=e1413]
+      - generic [ref=e1414]: Hirajoshi
+      - generic "Iwato" [ref=e1415]
+      - generic [ref=e1418]: Iwato
+      - generic "Major Blues" [ref=e1419]
+      - generic [ref=e1422]: Maj Blues
+      - generic "Minor Blues" [ref=e1423]
+      - generic [ref=e1424]: Min Blues
+      - generic "Lydian" [ref=e1425]
+      - generic [ref=e1426]: Lydian
+      - generic "Major" [ref=e1427]
+      - generic [ref=e1428]: Major
+      - generic "Mixolydian" [ref=e1429]
+      - generic [ref=e1430]: Mixolydian
+      - generic "Dorian" [ref=e1431]
+      - generic [ref=e1432]: Dorian
+      - generic "Natural Minor" [ref=e1433]
+      - generic [ref=e1434]: Nat Minor
+      - generic "Phrygian" [ref=e1435]
+      - generic [ref=e1436]: Phrygian
+      - generic "Melodic Minor" [ref=e1437]
+      - generic [ref=e1438]: Mel Minor
+      - generic "Harmonic Minor" [ref=e1439]
+      - generic [ref=e1440]: Harm Minor
+      - generic "Neapolitan Minor" [ref=e1441]
+      - generic [ref=e1442]: Neap Minor
+      - generic "Hijaz" [ref=e1443]
+      - generic [ref=e1444]: Hijaz
+      - generic "Double Harmonic" [ref=e1445]
+      - generic [ref=e1446]: Dbl Harmonic
+      - generic "Hungarian Minor" [ref=e1447]
+      - generic [ref=e1448]: Hung Minor
+    - generic [ref=e1449]:
+      - generic [ref=e1450]:
+        - img [ref=e1451]
+        - text: major 3rd
+      - generic [ref=e1453]:
+        - img [ref=e1454]
+        - text: minor 3rd
+      - generic [ref=e1456]:
+        - img [ref=e1457]
+        - text: both / ambiguous

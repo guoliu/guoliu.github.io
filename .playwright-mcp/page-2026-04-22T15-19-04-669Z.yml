@@ -1,0 +1,55 @@
+- generic [ref=e4]:
+  - generic [ref=e6] [cursor=pointer]:
+    - generic [ref=e7]:
+      - text: Major
+      - text: Pentatonic
+    - generic [ref=e8]: C
+  - generic [ref=e9] [cursor=pointer]:
+    - generic [ref=e10]: Major
+    - generic [ref=e11]: C
+  - generic [ref=e12] [cursor=pointer]:
+    - generic [ref=e13]: Hijaz
+    - generic [ref=e14]: E
+  - generic [ref=e15] [cursor=pointer]:
+    - generic [ref=e16]:
+      - text: In
+      - text: 陰
+    - generic [ref=e17]: D
+  - generic [ref=e18] [cursor=pointer]:
+    - generic [ref=e19]:
+      - text: Natural
+      - text: Minor
+    - generic [ref=e20]: G
+  - button "Add scale" [ref=e21] [cursor=pointer]: +
+  - button "About Major Pentatonic" [ref=e24] [cursor=pointer]:
+    - generic [ref=e25]: i
+  - button "About Major" [ref=e27] [cursor=pointer]:
+    - generic [ref=e28]: i
+  - button "About Hijaz" [ref=e30] [cursor=pointer]:
+    - generic [ref=e31]: i
+  - button "About In 陰" [ref=e33] [cursor=pointer]:
+    - generic [ref=e34]: i
+  - button "About Natural Minor" [ref=e36] [cursor=pointer]:
+    - generic [ref=e37]: i
+  - generic [ref=e38]: B
+  - generic [ref=e46]: B♭
+  - generic [ref=e54]: A
+  - generic [ref=e65]: A♭
+  - generic [ref=e72]: G
+  - generic [ref=e82]: G♭
+  - generic [ref=e88]: F
+  - generic [ref=e97]: E
+  - generic [ref=e106]: E♭
+  - generic [ref=e114]: D
+  - generic [ref=e125]: D♭
+  - generic [ref=e131]: C
+  - button "Remove Major Pentatonic" [ref=e143] [cursor=pointer]:
+    - generic [ref=e144]: ×
+  - button "Remove Major" [ref=e146] [cursor=pointer]:
+    - generic [ref=e147]: ×
+  - button "Remove Hijaz" [ref=e149] [cursor=pointer]:
+    - generic [ref=e150]: ×
+  - button "Remove In 陰" [ref=e152] [cursor=pointer]:
+    - generic [ref=e153]: ×
+  - button "Remove Natural Minor" [ref=e155] [cursor=pointer]:
+    - generic [ref=e156]: ×

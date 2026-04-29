@@ -1,0 +1,47 @@
+- generic [ref=e4]:
+  - button "Remove Major Pentatonic" [ref=e7] [cursor=pointer]:
+    - generic [ref=e8]: ×
+  - button "Remove Minor Pentatonic" [ref=e10] [cursor=pointer]:
+    - generic [ref=e11]: ×
+  - button "Remove Yo 陽" [ref=e13] [cursor=pointer]:
+    - generic [ref=e14]: ×
+  - button "Remove In 陰" [ref=e16] [cursor=pointer]:
+    - generic [ref=e17]: ×
+  - button "Remove Hirajoshi" [ref=e19] [cursor=pointer]:
+    - generic [ref=e20]: ×
+  - button "Add scale" [ref=e21] [cursor=pointer]: +
+  - generic [ref=e24] [cursor=pointer]:
+    - text: Major
+    - text: Pentatonic
+  - generic [ref=e26] [cursor=pointer]:
+    - text: Minor
+    - text: Pentatonic
+  - generic [ref=e28] [cursor=pointer]:
+    - text: Yo
+    - text: 陽
+  - generic [ref=e30] [cursor=pointer]:
+    - text: In
+    - text: 陰
+  - generic [ref=e32] [cursor=pointer]: Hirajoshi
+  - button "About Major Pentatonic" [ref=e35] [cursor=pointer]:
+    - generic [ref=e36]: i
+  - button "About Minor Pentatonic" [ref=e38] [cursor=pointer]:
+    - generic [ref=e39]: i
+  - button "About Yo 陽" [ref=e41] [cursor=pointer]:
+    - generic [ref=e42]: i
+  - button "About In 陰" [ref=e44] [cursor=pointer]:
+    - generic [ref=e45]: i
+  - button "About Hirajoshi" [ref=e47] [cursor=pointer]:
+    - generic [ref=e48]: i
+  - generic [ref=e49]: B
+  - generic [ref=e56]: B♭
+  - generic [ref=e64]: A
+  - generic [ref=e75]: A♭
+  - generic [ref=e81]: G
+  - generic [ref=e91]: G♭
+  - generic [ref=e97]: F
+  - generic [ref=e104]: E
+  - generic [ref=e114]: E♭
+  - generic [ref=e121]: D
+  - generic [ref=e132]: D♭
+  - generic [ref=e138]: C

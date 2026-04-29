@@ -1,0 +1,33 @@
+- generic [ref=e4]:
+  - button "Remove Major Pentatonic" [ref=e7] [cursor=pointer]:
+    - generic [ref=e8]: ×
+  - button "Remove Harmonic Minor" [ref=e10] [cursor=pointer]:
+    - generic [ref=e11]: ×
+  - button "Remove Lydian" [ref=e13] [cursor=pointer]:
+    - generic [ref=e14]: ×
+  - button "Add scale" [ref=e15] [cursor=pointer]: +
+  - generic [ref=e18] [cursor=pointer]:
+    - text: Major
+    - text: Pentatonic
+  - generic [ref=e20] [cursor=pointer]:
+    - text: Harmonic
+    - text: Minor
+  - generic [ref=e22] [cursor=pointer]: Lydian
+  - button "About Major Pentatonic" [ref=e25] [cursor=pointer]:
+    - generic [ref=e26]: i
+  - button "About Harmonic Minor" [ref=e28] [cursor=pointer]:
+    - generic [ref=e29]: i
+  - button "About Lydian" [ref=e31] [cursor=pointer]:
+    - generic [ref=e32]: i
+  - generic [ref=e33]: B
+  - generic [ref=e39]: B♭
+  - generic [ref=e43]: A
+  - generic [ref=e50]: A♭
+  - generic [ref=e55]: G
+  - generic [ref=e61]: G♭
+  - generic [ref=e65]: F
+  - generic [ref=e71]: E
+  - generic [ref=e78]: E♭
+  - generic [ref=e82]: D
+  - generic [ref=e89]: D♭
+  - generic [ref=e93]: C

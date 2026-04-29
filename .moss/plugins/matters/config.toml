@@ -1,0 +1,4 @@
+auto_publish = false
+add_canonical_link = true
+sync_on_build = false
+sync_drafts = false

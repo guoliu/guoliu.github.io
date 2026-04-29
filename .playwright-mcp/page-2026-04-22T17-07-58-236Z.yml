@@ -1,0 +1,111 @@
+- generic [ref=e4]:
+  - generic [ref=e5]:
+    - generic [ref=e6]: chromatic
+    - generic [ref=e7]:
+      - generic [ref=e9]: C
+      - generic [ref=e11]: D♭
+      - generic [ref=e13]: D
+      - generic [ref=e15]: E♭
+      - generic [ref=e17]: E
+      - generic [ref=e19]: F
+      - generic [ref=e21]: G♭
+      - generic [ref=e23]: G
+      - generic [ref=e25]: A♭
+      - generic [ref=e27]: A
+      - generic [ref=e29]: B♭
+      - generic [ref=e31]: B
+  - generic [ref=e32]:
+    - generic [ref=e33]:
+      - generic [ref=e34]:
+        - generic [ref=e35]:
+          - button "Remove Major Pentatonic" [ref=e36] [cursor=pointer]:
+            - generic [ref=e37]: ×
+          - generic [ref=e38]: Major Pentatonic
+          - button "About Major Pentatonic" [ref=e39] [cursor=pointer]:
+            - generic [ref=e40]: i
+        - generic [ref=e41]: 1 2 3 5 6
+      - generic [ref=e42]:
+        - generic [ref=e44] [cursor=pointer]:
+          - generic [ref=e45]: C
+          - generic [ref=e46]: "1"
+        - generic [ref=e50] [cursor=pointer]:
+          - generic [ref=e51]: D
+          - generic [ref=e52]: "2"
+        - generic [ref=e55]:
+          - generic: aug 2
+          - generic [ref=e56] [cursor=pointer]:
+            - generic [ref=e57]: E
+            - generic [ref=e58]: "3"
+        - generic [ref=e64] [cursor=pointer]:
+          - generic [ref=e65]: G
+          - generic [ref=e66]: "5"
+        - generic [ref=e69]:
+          - generic: aug 2
+          - generic [ref=e70] [cursor=pointer]:
+            - generic [ref=e71]: A
+            - generic [ref=e72]: "6"
+    - generic [ref=e77]:
+      - generic [ref=e78]:
+        - generic [ref=e79]:
+          - button "Remove Harmonic Minor" [ref=e80] [cursor=pointer]:
+            - generic [ref=e81]: ×
+          - generic [ref=e82]: Harmonic Minor
+          - button "About Harmonic Minor" [ref=e83] [cursor=pointer]:
+            - generic [ref=e84]: i
+        - generic [ref=e85]: 1 2 ♭3 4 5 ♭6 7
+      - generic [ref=e86]:
+        - generic [ref=e88] [cursor=pointer]:
+          - generic [ref=e89]: C
+          - generic [ref=e90]: ♭3
+        - generic [ref=e94] [cursor=pointer]:
+          - generic [ref=e95]: D
+          - generic [ref=e96]: "4"
+        - generic [ref=e100] [cursor=pointer]:
+          - generic [ref=e101]: E
+          - generic [ref=e102]: "5"
+        - generic [ref=e103]:
+          - generic: aug 2
+          - generic [ref=e104] [cursor=pointer]:
+            - generic [ref=e105]: F
+            - generic [ref=e106]: ♭6
+        - generic [ref=e112] [cursor=pointer]:
+          - generic [ref=e113]: A♭
+          - generic [ref=e114]: "7"
+        - generic [ref=e116] [cursor=pointer]:
+          - generic [ref=e117]: A
+          - generic [ref=e118]: "1"
+        - generic [ref=e122] [cursor=pointer]:
+          - generic [ref=e123]: B
+          - generic [ref=e124]: "2"
+    - generic [ref=e125]:
+      - generic [ref=e126]:
+        - generic [ref=e127]:
+          - button "Remove Lydian" [ref=e128] [cursor=pointer]:
+            - generic [ref=e129]: ×
+          - generic [ref=e130]: Lydian
+          - button "About Lydian" [ref=e131] [cursor=pointer]:
+            - generic [ref=e132]: i
+        - generic [ref=e133]: 1 2 3 ♯4 5 6 7
+      - generic [ref=e134]:
+        - generic [ref=e136] [cursor=pointer]:
+          - generic [ref=e137]: C
+          - generic [ref=e138]: "5"
+        - generic [ref=e142] [cursor=pointer]:
+          - generic [ref=e143]: D
+          - generic [ref=e144]: "6"
+        - generic [ref=e148] [cursor=pointer]:
+          - generic [ref=e149]: E
+          - generic [ref=e150]: "7"
+        - generic [ref=e152] [cursor=pointer]:
+          - generic [ref=e153]: F
+          - generic [ref=e154]: "1"
+        - generic [ref=e158] [cursor=pointer]:
+          - generic [ref=e159]: G
+          - generic [ref=e160]: "2"
+        - generic [ref=e164] [cursor=pointer]:
+          - generic [ref=e165]: A
+          - generic [ref=e166]: "3"
+        - generic [ref=e170] [cursor=pointer]:
+          - generic [ref=e171]: B
+          - generic [ref=e172]: ♭5
+    - button "Add scale" [ref=e174] [cursor=pointer]: +

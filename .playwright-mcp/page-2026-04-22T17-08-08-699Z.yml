@@ -1,0 +1,47 @@
+- generic [ref=e4]:
+  - generic [ref=e5]:
+    - generic [ref=e6]: chromatic
+    - generic [ref=e7]:
+      - generic [ref=e9]: C
+      - generic [ref=e11]: D♭
+      - generic [ref=e13]: D
+      - generic [ref=e15]: E♭
+      - generic [ref=e17]: E
+      - generic [ref=e19]: F
+      - generic [ref=e21]: G♭
+      - generic [ref=e23]: G
+      - generic [ref=e25]: A♭
+      - generic [ref=e27]: A
+      - generic [ref=e29]: B♭
+      - generic [ref=e31]: B
+  - generic [ref=e34]:
+    - generic [ref=e35]:
+      - generic [ref=e36]:
+        - button "Add Major Pentatonic" [ref=e37] [cursor=pointer]: Major Pentatonic
+        - button "Add Yo 陽" [ref=e38] [cursor=pointer]: Yo 陽
+        - button "Add Minor Pentatonic" [ref=e39] [cursor=pointer]: Minor Pentatonic
+        - button "Add In 陰" [ref=e40] [cursor=pointer]: In 陰
+        - button "Add Hirajoshi" [ref=e41] [cursor=pointer]: Hirajoshi
+        - button "Add Iwato" [ref=e42] [cursor=pointer]: Iwato
+      - generic [ref=e43]:
+        - button "Add Major Blues" [ref=e44] [cursor=pointer]: Major Blues
+        - button "Add Minor Blues" [ref=e45] [cursor=pointer]: Minor Blues
+      - generic [ref=e46]:
+        - button "Add Lydian" [ref=e47] [cursor=pointer]: Lydian
+        - button "Add Major" [ref=e48] [cursor=pointer]: Major
+        - button "Add Mixolydian" [ref=e49] [cursor=pointer]: Mixolydian
+        - button "Add Melodic Minor" [ref=e50] [cursor=pointer]: Melodic Minor
+        - button "Add Dorian" [ref=e51] [cursor=pointer]: Dorian
+        - button "Add Natural Minor" [ref=e52] [cursor=pointer]: Natural Minor
+        - button "Add Phrygian" [ref=e53] [cursor=pointer]: Phrygian
+      - generic [ref=e54]:
+        - button "Add Harmonic Minor" [ref=e55] [cursor=pointer]: Harmonic Minor
+        - button "Add Double Harmonic" [ref=e56] [cursor=pointer]: Double Harmonic
+        - button "Add Neapolitan Minor" [ref=e57] [cursor=pointer]: Neapolitan Minor
+        - button "Add Hijaz" [ref=e58] [cursor=pointer]: Hijaz
+        - button "Add Hungarian Minor" [ref=e59] [cursor=pointer]: Hungarian Minor
+    - generic [ref=e60]:
+      - generic [ref=e61]: pentatonic
+      - generic [ref=e62]: blues
+      - generic [ref=e63]: diatonic
+      - generic [ref=e64]: harmonic

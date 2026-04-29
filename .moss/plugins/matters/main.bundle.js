@@ -372,7 +372,8 @@ ${codeContent?.trim()}
     saveDraftMap: () => saveDraftMap,
     syndicate: () => syndicate,
     syndicateArticle: () => syndicateArticle,
-    uploadAndReplaceLocalImages: () => uploadAndReplaceLocalImages
+    uploadAndReplaceLocalImages: () => uploadAndReplaceLocalImages,
+    waitForUrl: () => waitForUrl
   });
 
   // ../../packages/moss-api/dist/index.mjs
@@ -2746,7 +2747,7 @@ ${markdownContent}`;
       content = addCanonicalLinkToContent(content, canonicalUrl, isHtml, options.lang);
     }
     if (isHtml) {
-      content = await uploadAndReplaceLocalImages(content, siteUrl);
+      content = await uploadAndReplaceLocalImages(content, canonicalUrl);
     }
     const existingDraftId = article.source_path ? await getDraftId(article.source_path) : void 0;
     if (existingDraftId) {
@@ -2777,6 +2778,7 @@ ${markdownContent}`;
     if (coverPath) {
       const coverUrl = new URL(coverPath.replace(/^\//, ""), siteUrl.replace(/\/$/, "") + "/").href;
       try {
+        await waitForUrl(coverUrl);
         const coverAssetId = await uploadCoverByUrl(coverUrl, draft.id);
         console.log(`    \u{1F5BC}\uFE0F Cover uploaded: ${coverAssetId}`);
         await createDraft({ id: draft.id, title: draft.title, cover: coverAssetId });
@@ -2917,7 +2919,7 @@ ${markdownContent}`;
 `;
     return content + canonicalNotice;
   }
-  async function uploadAndReplaceLocalImages(content, siteUrl) {
+  async function uploadAndReplaceLocalImages(content, baseUrl, options = {}) {
     const imgSrcRegex = /<img\s[^>]*src="([^"]+)"[^>]*>/gi;
     const localSrcs = /* @__PURE__ */ new Set();
     let match;
@@ -2933,13 +2935,20 @@ ${markdownContent}`;
     }
     const replacements = /* @__PURE__ */ new Map();
     for (const src of localSrcs) {
-      const absoluteUrl = new URL(src.replace(/^\//, ""), siteUrl.replace(/\/$/, "") + "/").href;
+      let absoluteUrl;
       try {
+        absoluteUrl = new URL(src, baseUrl).href;
+      } catch (error) {
+        console.warn(`    \u26A0\uFE0F Could not resolve image URL ${src} against ${baseUrl}: ${error}`);
+        continue;
+      }
+      try {
+        await waitForUrl(absoluteUrl, options.waitOptions);
         const cdnUrl = await uploadEmbedByUrl(absoluteUrl);
         replacements.set(src, cdnUrl);
         console.log(`    \u{1F5BC}\uFE0F Image uploaded: ${src} \u2192 ${cdnUrl}`);
       } catch (error) {
-        console.warn(`    \u26A0\uFE0F Image upload failed for ${src}, leaving unchanged: ${error}`);
+        console.warn(`    \u26A0\uFE0F Image upload failed for ${absoluteUrl}, leaving unchanged: ${error}`);
       }
     }
     let result = content;
@@ -2948,6 +2957,32 @@ ${markdownContent}`;
       result = result.replace(new RegExp(`src="${escaped}"`, "g"), `src="${cdnUrl}"`);
     }
     return result;
+  }
+  async function waitForUrl(url, options = {}) {
+    const totalMs = options.totalMs ?? 6e4;
+    const intervalMs = options.intervalMs ?? 3e3;
+    const deadline = Date.now() + totalMs;
+    let lastError = null;
+    let attempt = 0;
+    while (Date.now() < deadline) {
+      attempt++;
+      try {
+        const response = await fetch(url, { method: "HEAD" });
+        if (response.ok) {
+          if (attempt > 1) {
+            console.log(`    \u{1F310} URL reachable after ${attempt} attempt(s): ${url}`);
+          }
+          return;
+        }
+        lastError = new Error(`HTTP ${response.status}`);
+        console.log(`    \u23F3 URL not yet reachable (attempt ${attempt}, HTTP ${response.status}): ${url}`);
+      } catch (error) {
+        lastError = error;
+        console.log(`    \u23F3 URL not yet reachable (attempt ${attempt}, ${error}): ${url}`);
+      }
+      await new Promise((resolve) => setTimeout(resolve, intervalMs));
+    }
+    throw new Error(`URL did not become reachable within ${totalMs}ms: ${url} (${lastError})`);
   }
   return __toCommonJS(main_exports);
 })();

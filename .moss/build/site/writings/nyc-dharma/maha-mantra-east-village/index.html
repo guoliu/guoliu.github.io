@@ -47,7 +47,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16.png">
     <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml">
     <script data-goatcounter="https://guo.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-    <link rel="stylesheet" href="/style.css?v=7cd87d2b823fab43">
+    <link rel="stylesheet" href="/style.css?v=8b7f7ef8d52bb4e7">
     <script data-goatcounter="https://guo.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 <style class="moss-review-style">/* Review plugin — header and colophon styles
  * Uses moss design tokens. Works in light and dark mode.
@@ -236,20 +236,24 @@ main > .moss-comments {
   margin-top: 6rem;
 }
 
-/* When .moss-comments is present, retune the gap between main and the footer
-   divider so the toggle sits as part of the footer chrome:
+/* When .moss-comments is the last child of main (no series-nav between it
+   and the footer), retune the gap between main and the footer divider so
+   the toggle sits as part of the footer chrome:
      - `main { padding-bottom: 60px }` — drop entirely; .moss-comments owns
        its own top breathing room (margin-top above) and the toggle should
        sit directly above the footer's standoff.
-     - `footer.container { margin-top: 2xl }` — replace with `space-md` so
+     - `footer.container { margin-top: 5rem }` — replace with `space-md` so
        the toggle→divider gap mirrors the divider→items gap (also `space-md`,
        see `footer.container::before { margin-bottom: var(--moss-space-md) }`
        in site.css). Footer items are visually heavier (larger font), so an
-       optically symmetric gap settles to numerically equal here. */
-main:has(> .moss-comments) {
+       optically symmetric gap settles to numerically equal here.
+   When series-nav follows comments, neither override fires — the series-nav
+   owns the visual separation and the default footer margin (5rem) carries
+   the breathing room above the footer divider. */
+main:has(> .moss-comments:last-child) {
   padding-bottom: 0;
 }
-main:has(.moss-comments) + footer.container {
+main:has(> .moss-comments:last-child) + footer.container {
   margin-top: var(--moss-space-md);
 }
 
@@ -902,7 +906,7 @@ Rama Rama Hare Hare</p></blockquote>
 <p>这段梵语咒语有许多解释。根据帕布帕德，“哈瑞”（Hare）指至高无上的神的能量，而“奎师那”（Krishna）、“罗摩”（Rama）则是至高无上的神本身。</p><p>印度教中，奎师那与罗摩都是众生守护之神毗湿奴（Vishnu）的不同化身。罗摩常作为国王与武士的角色，是印度史诗《罗摩衍那》的主角，而至今泰国国王仍然被称作“Rama”。奎师那象征保护与爱，最著名的故事是《薄伽梵歌》，是另一部印度史诗《摩诃婆罗多》中的一章。</p><p>《罗摩衍那》篇幅很长，我只读过片段，除了恢弘的战争场面，我已经没有太多印象。而《薄伽梵歌》则简明扼要，我读过许多遍，在不同的年纪时读到不同的含义。</p><p>《薄伽梵歌》成书于公元前五到二世纪，全篇是奎师那与王子阿周那在战场上的对话。阿周那乘着战车去夺回本该属于自己的王位，而奎师那则化身阿周那的车夫。但对面的敌人是阿周那的表兄弟与过去的师长，阿周那在这两难困境中，决定扔下手中的弓，放弃战争。</p><p>对话从此开始。奎师那向阿周那解释，为何在超脱了欲望与执念之后，还是要去行动，又如何不执着于行动的结果。这一过程中，奎师那向阿周那教授了禅定与瑜伽的方法，解释了自性、神我和意识，并表示自己才是无所不在、至高无上的神，也是那欲望与幻象之下真正的自我。</p><p>作为奥义书之一，《薄伽梵歌》被许多文化和宗教奉为经典，其中就包括帕布帕德及 ISKCON 传承的高迪亚毗湿奴派。高迪亚毗湿奴派是一神教，将奎师那视作唯一信仰，与基督教的耶和华、伊斯兰教的安拉、佛教的大日如来是同一个神。尽管是一神教，却依然保留了万物有灵的色彩，也因此更加尊重其他生命，不将文明与自然对立。</p><p>除了能够将人们团结起来的科尔坦之外，也许这样融合不同宗教的态度，也是高迪亚毗湿奴派能在基督教地区广泛传播的原因之一。</p><h2 id="四">四</h2><p>领唱摩诃真言的女声悠长缭绕，风琴呜咽，众人以缭绕应合。随着一句句的重复，缭绕的苍凉逐渐丰满起来，转为激昂。手鼓、贝斯逐渐加入进来，然后是笛子。接过手鼓的黑人小伙进入了忘我的境界，变换着越来越复杂的节拍。人们在愈加丰满的乐声中渐渐放开了嗓子，形成色彩丰富的合声。</p><p>有人拍起手来，于是众人也跟着拍手。随着拍子的配合，人们的歌声愈加嘹亮。在众声激昂的顶点，乐手们突然停止了演奏。歌声持续着，失去了乐器的承托，变成了更加纯粹的能量，一浪一浪地推着人们向前。在这能量散掉之前，乐器的声音又回来了，举托住节奏与旋律，让情绪舒缓下来，慢慢回到地面。</p><p>许多人已经从座位上站了起来，手舞足蹈。每个人脸上都挂着微笑、透着爱意，水草一般随音乐摇摆。这狂喜的场域竟有些像夜店和摇滚音乐节，只是没有药物和酒精，没有喧闹的电音和炫目的灯光，而是依赖人们由内而外激发的喜悦与共振。我自认为不太容易受到群体情绪感染，但端详着身边的陌生人在音乐和舞蹈中忘却自己，也不禁感受到了喜悦与满足。</p><p>人群慢慢安定下来后，领唱致意人群中一位白衣老者，讲起他二十年前歌唱科尔坦，震动四方街区，并邀请他领唱。老者推诿多次后坐在了话筒前，弹起了风琴。他声音低沉洪亮，笃定中有种穿越时间的轻快。众人的情绪在他的带领下如涓涓细流汇成大河，有时如小马奔腾在草原，有时又如雄鹰翱翔在山峰。</p><p>就像这样，两个小时的科尔坦中，许多不同的人轮流领唱，各自带着独特的风格与味道，带领众人穿越山峰和河谷。喜悦如温热的波浪一次次在人群中传开，忘却了自己的人们在音乐中拍手起舞。</p><p>科尔坦结束后，我和其他参与者一起享用素食，并与一开始讲故事的金发姑娘攀谈。她来自澳大利亚，父母信奉奎师那，从小就接触了科尔坦。来到纽约后，她时不时组织活动、维系社群，并邀请我加入了一个科尔坦群组。我环顾四周，一屋子的年轻人来自各个族裔，大部分是欧裔。有几个欧裔年轻人，自在地穿着印度传统服装，看起来是这里熟识的常客。</p><p>我有时觉得，现在的年代与六、七十年代有些相似。经济快速增长的半个世纪后，在物质追求方面，年轻人少了许多机会，也淡了许多信仰，越来越多的人寻找灵性的道路。同时，社交媒体如同当年的致幻剂一样，将世界观与叙事快速裂变，却没能提供将原子化的人们团结在一起的形式。</p><p>眼前的景象，以及之后的许多次际遇，让我明白反文化运动在美国并没有远去，撒下的种子在继续生长。那些异域的传统，如今已经重生为当地的社群。这些信仰当初接住了游荡在精神世界里的嬉皮们，现在则成为了下一代的人的传统和身份。</p><p>我离开巴克提中心，走在东村的夜色里，依然震动于科尔坦的感染力。有时与朋友即兴音乐时，我会有类似的感受：与周遭的人们合而为一，喜乐的共振无拘无束地穿透彼此。但我一直不知道，如何有意创造这样的场域。科尔坦则以一种成熟的形态，将几十、上百的陌生人连接在一起，由音乐进入灵性的狂喜。不断重复的经文有种催眠效果，易于即兴发挥旋律；而没有具象含义的梵文咒语，可以让信仰者放入自己的爱与渴求。</p><p>夜色里，我穿过一片片不同的背景音乐，电子乐、摇滚乐，鲜明的节奏放大着酒精与大麻的迷醉，召唤着尚未枯竭的欲望。在这个去宗教、去神的时代，只有物质的增长与扩展，欲望和便捷的无止境满足，才是能被解释和理解的。</p><p>然而我们又都知道，自己不止这些。我们都在某些场合体会过穿透个体的情绪，也在某些瞬间瞥见过自我与世界边界的消融。超越性体验、与超越性体验产生的凝聚力，是人性的一部分，也会在每一代人身上重新展现。</p><p>许多进入超越性体验的传统，比如冥想和瑜伽，都已经脱离原来的宗教语境，成为人们调整身心的技巧，开始接受科学与实证的审视。但除了可被剥离出来的技巧，宗教也包含的许多集会方式，让人们相聚，给人们带来与世界的连接，所谓的“海洋感觉”。人们仍然需要相聚、需要这种感觉，于是在诸神死去后，继续寻找和建立着新的共同体，以拙劣的替代品，重新对立起彼此。</p><p>也许科尔坦也能够脱离宗教语境，成为一种不再有表演者与观众的区分、每个人都可以融入其中的灵性体验。相比一场演出，科尔坦多了虔诚和信仰，多了歌咏的对象，多了喜乐的原因。或许，我们会找到不依赖人格化的神、而是直接指向生命与自然的信仰；保有传统宗教的力量，也为无神论者提供心灵家园。</p><p>这些遐想，与身后逐渐远去的巴克提中心，消散在了脚步匆匆的夜色里。</p>
             
         </article>
-        <section class="moss-comments" id="moss-comments" data-built-at="2026-05-07T17:46:17.122152+00:00">
+        <section class="moss-comments" id="moss-comments" data-built-at="2026-05-07T18:04:34.363898+00:00">
   <details>
     <summary class="comments-toggle"><svg class="comments-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></svg><span>1条评论</span><svg class="comments-chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></summary>
     <div class="comment-form-slot" id="default-form-slot"><form class="comment-form" id="moss-comment-form" data-server-url="https://api.moss.host/comments" data-site-name="liu-guo.com" data-page-key="writings/nyc-dharma/maha-mantra-east-village/" data-page-title="东村夜晚的摩诃真言">

@@ -815,6 +815,44 @@ query UserProfile($userName: String!) {
   }
 }
 `;
+  var VIEWER_ARTICLE_COMMENT_COUNTS_QUERY = `
+query ViewerArticleCommentCounts($after: String) {
+  viewer {
+    id
+    articles(input: { first: 50, after: $after, filter: { state: active } }) {
+      pageInfo {
+        endCursor
+        hasNextPage
+      }
+      edges {
+        node {
+          shortHash
+          commentCount
+        }
+      }
+    }
+  }
+}
+`;
+  var USER_ARTICLE_COMMENT_COUNTS_QUERY = `
+query UserArticleCommentCounts($userName: String!, $after: String) {
+  user(input: { userName: $userName }) {
+    id
+    articles(input: { first: 50, after: $after, filter: { state: active } }) {
+      pageInfo {
+        endCursor
+        hasNextPage
+      }
+      edges {
+        node {
+          shortHash
+          commentCount
+        }
+      }
+    }
+  }
+}
+`;
   var ARTICLE_COMMENTS_QUERY = `
 query ArticleComments($shortHash: String!, $after: String) {
   article(input: { shortHash: $shortHash }) {
@@ -1219,6 +1257,39 @@ query GetDraft($id: ID!) {
     console.log(`   Profile: ${profile.displayName} (@${profile.userName})`);
     console.log(`   Language: ${profile.language || "not set"}`);
     return profile;
+  }
+  async function fetchAllArticleCommentCounts() {
+    const counts = /* @__PURE__ */ new Map();
+    let cursor;
+    if (apiConfig.queryMode === "user") {
+      const userName = apiConfig.testUserName;
+      do {
+        const data = await graphqlQueryPublic(
+          USER_ARTICLE_COMMENT_COUNTS_QUERY,
+          { userName, after: cursor }
+        );
+        const articles = data.user?.articles;
+        if (!articles) break;
+        for (const edge of articles.edges) {
+          counts.set(edge.node.shortHash, edge.node.commentCount);
+        }
+        cursor = articles.pageInfo.hasNextPage ? articles.pageInfo.endCursor : void 0;
+      } while (cursor);
+    } else {
+      do {
+        const data = await graphqlQuery(
+          VIEWER_ARTICLE_COMMENT_COUNTS_QUERY,
+          { after: cursor }
+        );
+        if (!data.viewer) break;
+        const { edges, pageInfo } = data.viewer.articles;
+        for (const edge of edges) {
+          counts.set(edge.node.shortHash, edge.node.commentCount);
+        }
+        cursor = pageInfo.hasNextPage ? pageInfo.endCursor : void 0;
+      } while (cursor);
+    }
+    return counts;
   }
   async function fetchArticleComments(shortHash, knownIds, sinceTimestamp) {
     const allComments = [];
@@ -2301,12 +2372,13 @@ ${markdownContent}`;
     }
     return Array.from(appreciationMap.values());
   }
-  function mergeSocialData(data, articleKey, comments, donations, appreciations) {
+  function mergeSocialData(data, articleKey, comments, donations, appreciations, commentCount) {
     const existing = data.articles[articleKey] || createEmptyArticleSocialData();
     data.articles[articleKey] = {
       comments: mergeComments(existing.comments, comments),
       donations: mergeDonations(existing.donations, donations),
-      appreciations: mergeAppreciations(existing.appreciations, appreciations)
+      appreciations: mergeAppreciations(existing.appreciations, appreciations),
+      lastKnownCommentCount: commentCount !== void 0 ? commentCount : existing.lastKnownCommentCount
     };
     return data;
   }
@@ -2567,11 +2639,20 @@ ${markdownContent}`;
       const linkSummary = linkResult.linksRewritten > 0 ? `, ${linkResult.linksRewritten} internal links rewritten` : "";
       let socialSummary = "";
       const articlesForSocialFetch = await scanLocalArticles();
-      console.log(`\u{1F4CA} Fetching social data for all ${articlesForSocialFetch.length} local articles`);
+      console.log(`\u{1F4CA} Checking social data for ${articlesForSocialFetch.length} local articles`);
       if (articlesForSocialFetch.length > 0) {
-        await reportProgress2("fetching_social", overallProgress("fetching_social", 0, articlesForSocialFetch.length), 100, "Fetching social data...");
+        await reportProgress2("fetching_social", overallProgress("fetching_social", 0, articlesForSocialFetch.length), 100, "Checking for new comments...");
+        let remoteCounts = null;
+        try {
+          remoteCounts = await fetchAllArticleCommentCounts();
+          console.log(`\u{1F4CA} Got commentCount for ${remoteCounts.size} remote articles`);
+        } catch (error) {
+          console.warn(`   commentCount discovery failed (${error}); falling back to per-article fetch`);
+        }
         const socialData = await loadSocialData();
         let totalComments = 0;
+        let fetched = 0;
+        let skipped = 0;
         for (let i = 0; i < articlesForSocialFetch.length; i++) {
           const article = articlesForSocialFetch[i];
           await reportProgress2(
@@ -2585,18 +2666,25 @@ ${markdownContent}`;
             if (!article.uid) {
               console.warn(`   Article "${article.title}" has no uid, falling back to path as social data key`);
             }
+            const remoteCount = remoteCounts?.get(article.shortHash);
+            const storedCount = socialData.articles[socialKey]?.lastKnownCommentCount;
+            if (remoteCount !== void 0 && storedCount !== void 0 && remoteCount === storedCount) {
+              skipped++;
+              continue;
+            }
             const existingComments = socialData.articles[socialKey]?.comments || [];
             const knownIds = new Set(existingComments.map((c) => c.id));
             const comments = await fetchArticleComments(article.shortHash, knownIds, lastSyncedAt);
-            mergeSocialData(socialData, socialKey, comments, [], []);
+            mergeSocialData(socialData, socialKey, comments, [], [], remoteCount);
             totalComments += comments.length;
+            fetched++;
             await saveSocialData(socialData);
           } catch (error) {
             console.warn(`   Failed to fetch social data for ${article.title}: ${error}`);
           }
         }
-        socialSummary = `, ${totalComments} comments`;
-        console.log(`\u2705 Social data saved: ${totalComments} comments`);
+        socialSummary = `, ${totalComments} new comments`;
+        console.log(`\u2705 Social data: ${fetched} fetched, ${skipped} skipped (no change), ${totalComments} new comments`);
       }
       const syncEndTime = (/* @__PURE__ */ new Date()).toISOString();
       try {

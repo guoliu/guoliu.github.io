@@ -1,788 +1,635 @@
 {
   "files": {
-    "video/index.html": "901c44eb75e4ada0",
-    "qr/ef00feaa-34fe-49c2-ac17-f532f390ae7b.svg": "2fdcc623e5b49d47",
-    "image/assets/giorgiodechirico/index.html": "e06c16b2f1897eac",
-    "qr/6f82af03-116b-4693-8f3c-45b127b4bba5.svg": "3f249d0283c87dd9",
-    "image/assets/d7de54bf-4272-42ed-ac8e-2d7cd91988ad/index.html": "f5b5811ebc181b3d",
-    "image/assets/996a2021-b5c9-4a3b-b7c2-11ae232ea57b/index.html": "fb208b141589a40d",
-    "writings/distributed-web/federated-social-protocols/index.html": "b30d9418ec5e459b",
-    "image/assets/8ef4fb5d-ae3f-4e10-826b-169b0762d555.png": "100644:9bcb91d9dfdc20fa431aeb2d68b4068a0e3bd474f9d11d28499e8d4f75877aff",
-    "assets/scale-compare-recording-480.gif": "100644:f05fc8bfddfdb9ae32638e3d058b8b8150a75f6ffff63328db90922a8a0cb988",
-    "qr/0575e14f-38cd-4d00-92ff-2c6bf41e7085.svg": "910bd626130edc69",
-    "qr/dscf3263.svg": "1c2c61db1c9dccdb",
-    "qr/91eff121-2e68-4251-8160-9c04cefcdf68.svg": "c4d555715096d9ea",
-    "qr/79ac64e6-b6c4-487d-babf-d01c2173cb92.svg": "b87340debf0dd6c7",
-    "image/photography/d152d42a-9b6f-4e1b-a3a9-633c8119d02d.jpg": "100644:ca7f8d2fc7a5da7f73a4ab185ed755ca9d6a76a38dbdaf7b0758ef5e0e3d8460",
-    "image/photography/6f82af03-116b-4693-8f3c-45b127b4bba5.jpg": "100644:963d2b9f3068d7cbb71c11aa80561588ca413c27ee7aa5fc32acb033bba339cb",
-    "qr/links.svg": "66353ebd74e6470e",
-    "writings/travel/index.html": "3b401033a78058fd",
-    "image/assets/cbe4ed3b-7102-4eee-af28-6b0465e06243.jpg": "100644:8378410b663fd864dddb1d2141e12debbd173ccfd8d667e440712cd0d990d36a",
-    "image/assets/5b8621dd-6acb-4054-a0af-2ab53145aac7/index.html": "ae23ab674ae4673e",
-    "image/assets/dcf1562d-afba-4cb7-b60b-e198cd3cd7ce/index.html": "92754136ab2b308e",
-    "image/photography/b0cd85d4-e061-4bed-bdf4-01d7c64b5a35/index.html": "61e0af18e4239682",
-    "writings/nyc-dharma-doors/index.html": "7e74329b664cc067",
-    "image/assets/e832647f-6535-4434-90dc-c790e8a4e03c.gif": "100644:466cad2639c1afcc666d48a97620ed35887b4b1f7acbf07230e7720fca0715cc",
-    "image/photography/6e6bc6ce-c973-4365-b9cd-1817e39a6b2e/index.html": "3f594568010dcc12",
-    "image/photography/22c0e9b7-8093-48fa-97af-14881cce91d9.jpg": "100644:c3f6283113ae1bc9d504655081fdcde2af14f8816e5aba6daa6cf4ca6b8adf66",
-    "qr/38e5f9cb-6dce-4e4d-9481-92f4ded85e2c.svg": "277e15694f2ea18b",
-    "image/assets/0cc26cd1-8c40-4848-b4aa-cdba18bdf0eb.gif": "100644:28a7eebcf676c27b42acccf79aaa1ff7163eec683b1241ff42a628e909e85ea9",
-    "image/photography/fb806567-8690-4503-a095-d70ac98eb5e1/index.html": "cd7c5784a3d028e9",
-    "image/assets/pasted-image-20251107111149/index.html": "088d51cb4b587a29",
-    "image/photography/a2cdc4d9-9714-41c0-b2a2-73372d287d15.jpg": "100644:d31d6ff1463a3947654a91630e44946d2226f1f5bee489d221778595abc1d83a",
-    "qr/tools-for-thoughts.svg": "88ae84578189aafd",
-    "writings/useless-journey/river-two-freedoms/index.html": "b419b514370a0aad",
-    "image/assets/e010b991-cd10-451b-8c87-b56a76c00715/index.html": "b8a6f54224fcd87f",
-    "qr/82a3a2a3-5e54-4310-ac04-7776bcea1026.svg": "e5fa93eee2483c3d",
-    "image/photography/ba38a528-f989-4074-a98e-8275f65ab972.jpg": "100644:c087c0914411452cc69961b8d56a76cd3b8f2e409bee624b0f8b68e1b64388cb",
-    "qr/ba38a528-f989-4074-a98e-8275f65ab972.svg": "d2c3d3978f03ed62",
-    "qr/40d65e7d-35d5-4f9b-8a86-5aecd1d54a5d.svg": "9ed62430372ef536",
-    "image/assets/dab12562-f5b9-458b-a59c-e87f0af636bb/index.html": "35d68f6520f310a0",
-    "qr/fake-news-and-markets.svg": "7a4636c68daea5af",
-    "image/photography/c929f3f9-f654-4ce5-a9a7-7358a6caebc3.jpg": "100644:a384fd7b84254c19db1bc59e8998fb3f62377076f823fc176cfade99258c3450",
-    "image/photography/DSCF3736.jpg": "100644:7f5d98c8616a3a9058b25ca8edf2d1b4bdb87a4c689db1ab432d63c69642d484",
-    "image/assets/7e77b94f-4c82-4a34-a4d6-4fa9d4d0dac2/index.html": "81f8340aef75925e",
-    "image/photography/79ac64e6-b6c4-487d-babf-d01c2173cb92.jpg": "100644:f971dd58bd53f90f7e0053d1ec53afbef9bbe27b560de31f691442840acea69c",
-    "image/assets/c3588359-7d4d-48ef-8664-2c9b6b635368.gif": "100644:fb7d71f70bdc774fd0d4f2c51d9b74091a29bb6f054b280e83cb534406f55dde",
-    "image/photography/19d19851-1a67-41dc-88e9-d7b6f3539ca2.jpg": "100644:56389c28aa88bec8742a5fa2291b467b574861917744b147118c5d4e0b5035e6",
-    "image/photography/dscf3736/index.html": "6ccd1ff30370a8c8",
-    "image/photography/04fe2a94-eeb0-48a6-b6c2-e684445dfedf/index.html": "606a0a24d2b6b059",
-    "writings/reviews/tools-for-thoughts/index.html": "e52cd4cc3589ec1b",
-    "image/photography/1570c6b2-f2f7-4036-bff9-47206b0ba878.jpg": "100644:0a3550713290002ff6c3ac5d0042416800bb8fdc1dd043d8cc5cd6b3166e6759",
-    "qr/9bc4a39b-9eee-486b-8242-196d2c91ec3c.svg": "afaa483caf7a029a",
-    "image/assets/0b00c9f1-4423-40f8-99c6-adff0d8e8665.png": "100644:b176a2264821f9a654fa0340a4d7baa35a3b2c57f4ff065d2c7670c220d6ce48",
-    "qr/df3f7032-9d6d-40b4-a975-80b97b94f3a4.svg": "76eafd2861f0dda7",
-    "qr/7a3565bf-fb79-4901-87de-cbccaac4b19e.svg": "1ae4ecbd4142b647",
-    "image/assets/01623ed6-fe07-4a1f-bc21-53eb30fbb315/index.html": "ff44a9824bfdf1b4",
-    "qr/starry-forest.svg": "d389721ff030339c",
-    "image/assets/9192d8c1-5417-4944-bbda-75d441b12a11.gif": "100644:4f3e07030acfc5b82156f339f723951002f5e8074b9778c802c2a76e1fee6a0c",
-    "qr/abfc71fe-7fec-45f9-926d-7e1009eb0320.svg": "7ceecc1b89cb63dc",
-    "writings/wait/index.html": "505c7e3bec5310a7",
-    "image/photography/456cacf5-0dc1-48aa-8079-5bc7095a8294/index.html": "3a6d84646d5f3252",
-    "qr/1570c6b2-f2f7-4036-bff9-47206b0ba878.svg": "0de87e472d2b9066",
-    "image/assets/319b595a-359e-4b54-8ce2-e9714ab78eee.png": "100644:0200459964a2e92ecc3afe7a2b5025bbc69fdb72d9023d10a7ab9305752d0af2",
-    "image/assets/d7de54bf-4272-42ed-ac8e-2d7cd91988ad.png": "100644:f532d44cbb3a0c7fb0881b6a9459730cc2192b3bcbbda4474e7d61bd45bf4a0e",
-    "assets/favicon-32.png": "ca3bb47c56e1fb74",
-    "image/photography/98f8f73a-0d71-44ce-b8fa-68e97786845a/index.html": "cffc5391333f2c1e",
-    "image/assets/21dc76f6-f406-41e5-bc00-d3987dd1803c.png": "100644:b0e1553021155bf1eab4930c46938bab512f99afa2664319db3aa5b0892d8684",
-    "qr/8dbe8743-38e6-44ad-9652-432b073be71a.svg": "ae78d4ba16f871a3",
-    "_previews.json": "7f699a608ce6b973",
-    "image/photography/f829eb81-633c-4bd1-b30a-fb607389fc66/index.html": "bf2fe6d2a910eb1e",
-    "image/assets/cb499502-8100-4b80-843b-c89b319e41ee.png": "100644:2790b5312adaace6dc3ac27a97b6bcd56c3ef27c53187838762ae8ec4a9a6178",
-    "qr/river-two-freedoms.svg": "2871bdf6f3e1aed0",
-    "image/assets/57566d1a-9394-4f5a-a429-8314a7b664ef/index.html": "7218a5d553dc6eb5",
-    "image/photography/40d65e7d-35d5-4f9b-8a86-5aecd1d54a5d.jpg": "100644:ca56ec930a61f020d2b01218850e068ff527cedf9b5d8f1284e40d1eaa1a55f5",
-    "qr/the-machine-stops.svg": "f9631aab9cd5adb7",
-    "scale-compare.html": "120000:abbe22f9a62652c52a961a184bbc0878c9583b1bf301844a11bc17b9d48a211b",
-    "video/lusheng-yelang/index.html": "b2e5a238f2880445",
-    "image/photography/4ad7df08-1169-4e65-a882-a7f370867d95.jpg": "100644:6f5f1308db1df555b7ebf96028e8eb953bce871ba085bc9f51d97859441d64c5",
-    "writings/useless-journey/cost-of-civilization/index.html": "f1a06ec88592216b",
-    "image/assets/e010b991-cd10-451b-8c87-b56a76c00715.png": "100644:613a942c258e01c15095ca096103161b783caf62963a6c11ed806e3733265eee",
-    "image/assets/3f5c3ada-ab96-4ea3-a23f-30b92059b4b8.png": "100644:553aaec358f00ed6963bd74a969315d8fb4975657b19844e786bf17889fb96d1",
-    "image/assets/bd9fe5ad-59d0-4d73-9c66-db0faa2dfff2/index.html": "8abec2bc8ae62c3b",
-    "video/summer-afternoon-nursery-rhyme/index.html": "68c2eefc30114f8e",
-    "image/photography/210a9339-30df-43ad-a37c-975b1aa5f01f.jpg": "100644:6a3abdabbc24e0faba7b29e0215479c10b14aa079d6806ca2a500f3e3d53cf48",
-    "image/photography/d152d42a-9b6f-4e1b-a3a9-633c8119d02d/index.html": "be46f0aefaf9aa4d",
-    "assets/aimeili.placeholder.svg": "placeholder",
-    "writings/harberger-tax-matters-tags/index.html": "64fe87e6ba0e43e5",
-    "image/assets/5d56497f-4ded-4fca-a35d-7df3515099f5/index.html": "efdebb80b41948c5",
-    "qr/286b63fcd4-0246-483c-b796-d6506cd2ad29.svg": "bd8bf65a7273164f",
-    "image/photography/img-3428/index.html": "9efc9d5b2709a5f9",
-    "qr/e832647f-6535-4434-90dc-c790e8a4e03c.svg": "a0be4c0c02a0167f",
-    "qr/a2f8dc63-ec4b-488a-81aa-34772550ff98.svg": "401c2604e551e955",
-    "style.css": "83b6d32641fd5485",
-    "image/assets/3fcefcd6-8a8c-4bfb-9935-d99a568bb019.jpg": "100644:1f6379754e76a5b96bceecc603492bc343f280edb8389b3b78194edac12b50c9",
-    "qr/information-freedom-utopia.svg": "da68796ce022d3e6",
-    "writings/useless-journey/from-yosemite/index.html": "9d958397def2857c",
-    "qr/cba4433e-edbd-4573-82c4-feba8368f24a.svg": "17a00c942bd284df",
-    "image/photography/ec7c469d-21eb-4a1d-9b6d-0baec3b61b10.jpg": "100644:e90794763739a7e86efb876a4a007a5f4473ea29604e77362dbb386354e7facc",
-    "writings/blue-conch/index.html": "fd243f47404ec81d",
-    "image/assets/77697bad-74c6-402c-a0af-78249480bea1.jpg": "100644:5b2129137e32adc7967d6238cad4305de6a339e9370ba5dfbb7bb036bbf35819",
-    "qr/ethnodrama-scale.svg": "6215e04d4785a516",
-    "qr/547a4a09-0612-491d-a83d-2f805079b2d8.svg": "fa608ccb1fb6b464",
-    "image/photography/1641eab1-17ff-4ced-99a7-367ae7cdc656/index.html": "492ad5e17621fcba",
-    "qr/2ef1d558-bca4-4792-bb63-41ee12fa95ac.svg": "961db8854c0c9115",
-    "assets/favicon-180.png": "94bec9491403af7d",
-    "image/assets/0cc26cd1-8c40-4848-b4aa-cdba18bdf0eb/index.html": "26e58378e067063f",
-    "image/assets/e08a87de-dc9e-415c-a14c-76996f970c6f.png": "100644:4f244d8065681daa81e05b6d3979dd56825aa06d3bffb68a4ffeb85e456b4be0",
-    "qr/98f8f73a-0d71-44ce-b8fa-68e97786845a.svg": "4ede4f63af9d1228",
-    "video/ave-maria/index.html": "66f2464eae049688",
-    "qr/distributed-copyright-ecosystem.svg": "299bc47e286a7e51",
-    "assets/favicon.svg": "71385febe72280ac",
-    "image/8c5f73fc-83f5-4894-933f-f8d9c4a75c6b": "100644:b93014d58e1fd9fab09e721ff23e3d475c40876b729cd2825f28e1d195776922",
-    "qr/21dc76f6-f406-41e5-bc00-d3987dd1803c.svg": "cc327afaa1953731",
-    "qr/galapagos.svg": "57276e60c41e07e7",
-    "qr/morning-mist.svg": "c451d07c4f915e20",
-    "image/photography/dscf3193/index.html": "65f8fc3df768682f",
-    "qr/1641eab1-17ff-4ced-99a7-367ae7cdc656.svg": "1fecd6674b5910c6",
-    "qr/f829eb81-633c-4bd1-b30a-fb607389fc66.svg": "c1974d299942e7c2",
-    "image/photography/9cbeab27-1907-4ca7-a686-9346d70d6448/index.html": "b872d495d76c3c12",
-    "qr/pasted-image-20251107111149.svg": "c37b6a5f673f666e",
-    "qr/the-real-journey.svg": "f2560ca37a4e107d",
-    "qr/5ac6015a-9bf7-4538-ad44-5a272a516060.svg": "77f0d990d626aff0",
-    "image/photography/1570c6b2-f2f7-4036-bff9-47206b0ba878/index.html": "de4d98a54c69b4f6",
-    "qr/8b194555-57fc-48d7-b448-05fbc4e46862.svg": "1749c0debff22c94",
-    "image/assets/319b595a-359e-4b54-8ce2-e9714ab78eee/index.html": "5c8fc29cb8795297",
-    "image/assets/21dc76f6-f406-41e5-bc00-d3987dd1803c/index.html": "64a90c332fe0a998",
-    "image/index.html": "4d34d25d0445e6fc",
-    "qr/winter-song.svg": "f15963c0843fc295",
-    "image/assets/bd9fe5ad-59d0-4d73-9c66-db0faa2dfff2.png": "100644:bdbe329268028bbcc1a31753fd17eb11616f58262559db63c4bc38f167affc8d",
-    "qr/e08a87de-dc9e-415c-a14c-76996f970c6f.svg": "2b8ba9fbe103baa9",
-    "qr/art-in-the-age-of-mechanical-generation.svg": "185c9f29bacade1a",
-    "qr/d9512f2d-fdcf-4a22-b1d5-340f74ddedae.svg": "4792393275ec2770",
-    "image/photography/91eff121-2e68-4251-8160-9c04cefcdf68.jpg": "100644:4b15a44b44fb131d278052065148712d1b8c4021831981c31f3fff23cbfcf97d",
-    "image/photography/01f4bfc7-03d2-472a-8111-8714177618c0/index.html": "943a1045c9ee9424",
-    "image/photography/4ea17506-109f-47f9-b487-7105e562fa22.jpg": "100644:baeab5b35521cca1209df0af4530757834c7effd97e971f5ce2bb4f00bef17e5",
-    "qr/ec7c469d-21eb-4a1d-9b6d-0baec3b61b10.svg": "4f93be1a72eeefa4",
-    "qr/dscf3910.svg": "f157c4b36093f53f",
-    "qr/6f695a93-d897-4c74-8d59-0126e6e65376.svg": "5e26f9103d2890ca",
-    "qr/5d56497f-4ded-4fca-a35d-7df3515099f5.svg": "9ef4768f66d0eb0c",
-    "qr/ave-maria.svg": "58d59578175531df",
-    "image/photography/DSCF3910.jpg": "100644:64f40ca913f5122dee9a830de6ea5cdbbbf0af6aa8cf096fedad30a616cd57aa",
-    "image/assets/5d8aaa4a-6a23-4644-9531-e2b538e3e57d.png": "100644:18d3fc59ec233bc413dc15ef654b34ccbbc602c4a8ee1274ac27589c91c30263",
-    "assets/Morning-Mist.placeholder.svg": "placeholder",
-    "image/assets/38e5f9cb-6dce-4e4d-9481-92f4ded85e2c.png": "100644:64057d26de6da58ffc3dbd4d462d310774b4bfae27bcd46ebe0ec61793e99a3d",
-    "image/photography/8b194555-57fc-48d7-b448-05fbc4e46862.jpg": "100644:1e18eaad2858f224c38f3c6847806e0271238c340df9c2586b3953f03cebc2a4",
-    "image/photography/547a4a09-0612-491d-a83d-2f805079b2d8/index.html": "dbc969b7dbbd6c02",
-    "qr/b0cd85d4-e061-4bed-bdf4-01d7c64b5a35.svg": "9b30506b30866d71",
-    "image/assets/dcf1562d-afba-4cb7-b60b-e198cd3cd7ce.jpg": "100644:6f1e91ec60a7753d4efe249ae2d03c79b8a7cb0bccaa944631a64f0a0e1f6e79",
-    "image/photography/cba4433e-edbd-4573-82c4-feba8368f24a.jpg": "100644:3bfed1ceef6fe7b9457d9c5c733ce788ffa4f6aea9e9cb9990da37ef8054c7f2",
-    "assets/Home-starts-from-the-kitchen-sd-cn.placeholder.svg": "placeholder",
-    "image/assets/e832647f-6535-4434-90dc-c790e8a4e03c/index.html": "c8122ed3ce48ab1f",
-    "writings/distributed-copyright-ecosystem/index.html": "3ca825dcf59b16f1",
-    "qr/0241ec32-59e6-4403-88d4-23b8d7fcc13a.svg": "23bc820e2dae2f26",
-    "image/assets/index.html": "67e688f5dd7e30e2",
-    "image/photography/4d1edfba-912f-4a5a-befd-7597be4f094e/index.html": "bd002f8908f103aa",
-    "js/theme.js": "55cfb8c997a6f4b4",
-    "image/assets/8f945d26-1a5e-4ede-b20e-09235ad48e63.png": "100644:8a4a1eb488c35185323802c0030e429a904dc236e57be3052dfd7732abe68783",
-    "writings/ipfs-developer-conference/index.html": "d0c8f184a40e796f",
-    "qr/tornado-cash.svg": "9b80aca89b581e40",
-    "image/assets/8c0e7411-7ccf-4d8e-8679-433432a4a73e/index.html": "17ff6dc464e4b111",
-    "image/assets/f219159f-6218-4940-b05b-234cb5c9957e.png": "100644:da5212f0bd5b27203a690d4aca6309358bd961f0ec8b3c2d4cf3f50c525c838d",
-    "image/photography/9cbeab27-1907-4ca7-a686-9346d70d6448.jpg": "100644:c298071337c5992556242999d6de5fa67b8549fb58d6eaa7acf698744bf8754c",
-    "qr/pasted-image-20251107112851.svg": "acc4cacdebd06e70",
-    "qr/5695cbe9-5d9b-4d7e-8d6c-6d9040f2999a.svg": "376dedc44d132aac",
-    "image/photography/img-3436/index.html": "eea04ea68978f97c",
-    "image/photography/d9512f2d-fdcf-4a22-b1d5-340f74ddedae.jpg": "100644:cde26afa9714c70cfbb657cc6edcf2332a115f6462545f8a08ac0f76afc7f1fb",
-    "interactive/ethnodrama-scale/index.html": "a390de4b82770c33",
-    "qr/6f13bd9d-cada-4522-a173-69b1a679d4fc.svg": "5df3f5e4c63c5aaf",
-    "image/photography/547a4a09-0612-491d-a83d-2f805079b2d8.jpg": "100644:cc004b1f2088f06790df1e67b3a304bb5585c29e1d13821910f3240e03f83fae",
-    "image/photography/abfc71fe-7fec-45f9-926d-7e1009eb0320.png": "100644:e70194cc993daf382ece8a5411da2330c88497ddfdcd43490827df9691774380",
-    "qr/maha-mantra-east-village.svg": "8c61a67244816720",
-    "video/winter-song/index.html": "6742b78c24bad715",
-    "image/photography/5695cbe9-5d9b-4d7e-8d6c-6d9040f2999a/index.html": "1ef5ca5f880abb0c",
-    "qr/01f4bfc7-03d2-472a-8111-8714177618c0.svg": "0a968f9a4ec104fc",
-    "qr/d0505029-6be1-4875-aa7d-666bc2e6e372.svg": "1912eecf6c9fff2f",
-    "qr/summer-afternoon-nursery-rhyme.svg": "97a0da92d67f7013",
-    "assets/Yelanggu-Lusheng.placeholder.svg": "placeholder",
-    "image/photography/b922129f-c2cd-42de-b86b-37ecc3a23c72.png": "100644:05e861ae6de4c0c0ec5a6b7b80865b6b75800d45e1b2fc2ccac12ba22b874e94",
-    "image/photography/01f4bfc7-03d2-472a-8111-8714177618c0.jpg": "100644:c1afd21d9fd394c1d93d80c0e387fb09419f76d2e6c47bf1570946545c3d6a09",
-    "qr/b922129f-c2cd-42de-b86b-37ecc3a23c72.svg": "d82af94b791ff6d8",
-    "qr/ipfs-developer-conference.svg": "1a251a02d8e54c0d",
-    "qr/19d19851-1a67-41dc-88e9-d7b6f3539ca2.svg": "c986d088057125d7",
-    "image/assets/79b0222c-e496-474d-80c1-f212b89571f8.jpg": "100644:b3b37bd605b77b1e2a471926d99becc0c046cf85b9cbfd04d1a14a439a6f9534",
-    "image/photography/IMG_3428.jpeg": "100644:52a55ad9a9521b10ac1907a769e27f521aed6381129ea4fc2e7e1af68ecc8079",
-    "qr/f42f7f50-d00c-4225-8fff-6bc3f684021c.svg": "3b009418d389ce8d",
-    "image/photography/b922129f-c2cd-42de-b86b-37ecc3a23c72/index.html": "c3cdbb0bb1bc5e67",
-    "image/assets/c928d984-5762-4592-9e78-a22bd02dc91e.jpg": "100644:4dcc23cb25888b85fb0b556330c963506f9cef86342a9f8fd25d7e08c90e5092",
-    "qr/the-other-half.svg": "0cec17ba0f1aeaa2",
-    "image/photography/fd5e607a-e94f-4f40-8412-dfcc745dcd5f.jpg": "100644:369cec738a75e2287ab204524dfda110cfaf39a551caf2ca8b933431b070ee57",
-    "image/assets/996a2021-b5c9-4a3b-b7c2-11ae232ea57b.jpg": "100644:9fda2357f0fc33530ad3d81418cf73124687f0bfbeaf378d9064fdd93422c0f4",
-    "qr/5d8aaa4a-6a23-4644-9531-e2b538e3e57d.svg": "bb20d09fe9405b67",
-    "writings/nyc-dharma-doors/woodstock-to-integral-yoga/index.html": "851d98eeec789b3d",
-    "qr/7f5c2791-3674-4ed4-befe-f2cce578b958.svg": "586dc97c11ce25be",
-    "assets/scale-compare.html": "100644:255c5378e16f2d50786a7c59499cd9024cbe439d53aa509859cde037e197a87f",
-    "image/photography/40d65e7d-35d5-4f9b-8a86-5aecd1d54a5d/index.html": "33481d1ef83a8331",
-    "qr/federated-social-protocols.svg": "88858b0a4d790a4e",
-    "image/assets/5ac6015a-9bf7-4538-ad44-5a272a516060.png": "100644:52f9778ec0a665053e95551faa759e1f569a5943eabdf6d4a74749083af78bd8",
-    "qr/cba34621-b690-465c-8a1d-7e36a19cbd60.svg": "7ebb0d651838fbbb",
-    "image/photography/c929f3f9-f654-4ce5-a9a7-7358a6caebc3/index.html": "bdb6a8ed623486f1",
-    "image/assets/0575e14f-38cd-4d00-92ff-2c6bf41e7085.gif": "100644:2a1e0c68ad6bf6a261579e7fab0ec1b7fbe172aee0b0df3c452e3e06f89d2ef7",
-    "image/assets/ef00feaa-34fe-49c2-ac17-f532f390ae7b/index.html": "05f40498448a759a",
-    "qr/2705fa19-c187-48a0-b809-034acdfd6e57.svg": "54f2a871930b3ff5",
-    "image/assets/99cdfdfc-b9fe-4dc0-9a4f-af1dbc711ffd/index.html": "b04c14a255d67cc7",
-    "qr/020c1a3f-91c8-4e1e-acd0-b2c6578f2692.svg": "2d2aabc1e9cd8301",
-    "image/photography/6f82af03-116b-4693-8f3c-45b127b4bba5/index.html": "9dd39fea801e20ab",
-    "image/photography/5be8bbef-c77c-431f-bc66-952ff9fd3976.jpg": "100644:7d77d8974d9c519b027c8637afb2c56ecb0aa177e6c33c2e0ec214dbc800307c",
-    "qr/buddhism-in-chinese-history.svg": "f3436663c015f27a",
-    "image/photography/9d13b990-5b91-4c42-a47a-bc9c24ea3fc9.jpg": "100644:1f7377c194e8dc689c60826a78bcb533413a395de9f23d16489b9cf546913ce4",
-    "writings/art-in-the-age-of-mechanical-generation/index.html": "d361179ad44e611b",
-    "qr/ab17ba7b-58cb-4cf4-8169-825fdfe900fa.svg": "06a0afea89894364",
-    "qr/next-gen-open-internet.svg": "97a66589a2dd514b",
-    "video/home-starts-in-kitchen/index.html": "339e336f0049dbb3",
-    "image/photography/3cdf3c4e-b48c-4b4c-993a-362683b016bc.jpg": "100644:0c1986451042fd6857a8197d2e92ac8a820d2cf82ed8318394721208d8101df3",
-    "qr/cbe4ed3b-7102-4eee-af28-6b0465e06243.svg": "66d8342f0c5d97c9",
-    "image/photography/DSCF3193.jpg": "100644:1216e2fdbd60f4e8123054cd180b0e170c0f0099add7817bf10855f1e0264f37",
-    "image/assets/77697bad-74c6-402c-a0af-78249480bea1/index.html": "2d92f109bf6244fe",
-    "image/assets/69863c74-93e9-4383-95e8-beb3ab7fd630/index.html": "d5e8cf167bde7f5b",
-    "image/assets/6a35828c-9138-4aaf-af2a-89de087434a3.png": "100644:f88141a4de62316ac8bbe0e18bc861207b7b8afad16f0e365492e7f6dc1670cb",
-    "image/assets/06b14cfc-5e3c-4e35-b297-65d58722aabd/index.html": "d1e319602664a26b",
-    "image/assets/5d98072b-87ef-42a3-a8af-38a0acb244df/index.html": "fbbfd750040a72d2",
-    "image/assets/020c1a3f-91c8-4e1e-acd0-b2c6578f2692/index.html": "7256fe39e1406c52",
-    "image/assets/c928d984-5762-4592-9e78-a22bd02dc91e/index.html": "f1e85d2ca0203e1c",
-    "qr/home-starts-in-kitchen.svg": "b2e9f8a450ab499e",
-    "qr/cost-of-civilization.svg": "03066741a6601254",
-    "writings/reviews/buddhism-in-chinese-history/index.html": "1b5c565f8a483adc",
-    "writings/ai-golden-age-of-writing/index.html": "f7987b2737c04b7b",
-    "qr/c2206746-6708-43ca-a682-26916f73d585.svg": "3410f04fa2dad432",
-    "image/assets/7a3565bf-fb79-4901-87de-cbccaac4b19e.jpg": "100644:a5bc4f6f17349a3a2b383e2d6166729b891ca7db5b8a35a3d3aafe4766adc316",
-    "qr/38f0bb25-a988-447b-880f-0dbf96992d95.svg": "4cb51b730d2fd326",
-    "qr/22c0e9b7-8093-48fa-97af-14881cce91d9.svg": "799364ab594f5057",
-    "image/assets/63605a50-ec2d-482e-b4fc-b64a6c9da502.png": "100644:87f482451e1e0a33472b87757820076a61f50825133f67486b340bc97b301e1a",
-    "image/photography/dscf3910/index.html": "3ed7e60691523829",
-    "qr/8ef4fb5d-ae3f-4e10-826b-169b0762d555.svg": "2715cee70e02edb9",
-    "qr/fd5e607a-e94f-4f40-8412-dfcc745dcd5f.svg": "86949cb71f14337c",
-    "image/photography/c2206746-6708-43ca-a682-26916f73d585/index.html": "1d3742afb9ed373c",
-    "image/photography/d9512f2d-fdcf-4a22-b1d5-340f74ddedae/index.html": "b23dd673362aa292",
-    "qr/c928d984-5762-4592-9e78-a22bd02dc91e.svg": "a192157474ecc1b5",
-    "sitemap.xml": "493a71d4edf57bbc",
-    "writings/nyc-dharma-doors/maha-mantra-east-village/index.html": "00d6cf2d4dd2c124",
-    "image/photography/cba34621-b690-465c-8a1d-7e36a19cbd60.jpg": "100644:9b16797cb540f52e73116803ac227533d755cca602edac12d6e8fefe97ca5536",
-    "qr/e7c80abe-cc39-42cf-9ea5-3b448bf84c11.svg": "a9a16862fdd62983",
-    "writings/distributed-web/next-gen-open-internet/index.html": "12bfd0ff6e2e398e",
-    "image/assets/e7c80abe-cc39-42cf-9ea5-3b448bf84c11.jpg": "100644:6e5396e9411e0df6ce32696b6eba881af477fa6cadb97c5060be1f10fd3d3af2",
-    "writings/a-city-annihilated/index.html": "892a91c240891c3d",
-    "image/assets/5b8621dd-6acb-4054-a0af-2ab53145aac7.webp": "100644:78e33ad49d4a587961901b0dafed9f7162175333df24694339859a2debcda3a6",
-    "qr/img-3428.svg": "c1a35e83b20a6bb3",
-    "image/photography/14435097-0a88-422e-abc7-cb59db6ed153.jpg": "100644:2d2803225f44cb9d0ab9f6670565e0aea37cb0dcf3b9f53be3cd6295ea6b5936",
-    "image/assets/57566d1a-9394-4f5a-a429-8314a7b664ef.jpg": "100644:6e5396e9411e0df6ce32696b6eba881af477fa6cadb97c5060be1f10fd3d3af2",
-    "qr/harberger-tax-matters-tags.svg": "73258f665989b2cd",
-    "assets/Winter-Song.placeholder.svg": "placeholder",
-    "image/assets/8dbe8743-38e6-44ad-9652-432b073be71a/index.html": "addae3c83ebffcf5",
-    "image/assets/5d98072b-87ef-42a3-a8af-38a0acb244df.gif": "100644:bcc8cd7dc2abd7ace2a092f1681ed8103f265e6955f743c0cd0db7535a1dbd6f",
-    "qr/viral-algorithms-ubi.svg": "731c1c7ad1fee7db",
-    "qr/456cacf5-0dc1-48aa-8079-5bc7095a8294.svg": "15c320774bb5b625",
-    "image/assets/ead5ef5a-d140-4292-93cc-431d13a1a179.png": "100644:d761bc4b7312232fa0e7191dd0a3f833a7aec1997af05f01e754da3a26f25237",
-    "interactive/living-space/index.html": "156d32c98c9e37ff",
-    "image/photography/4ea17506-109f-47f9-b487-7105e562fa22/index.html": "a9ade3f27b85be12",
-    "image/assets/d0505029-6be1-4875-aa7d-666bc2e6e372.jpg": "100644:6152d3526d0ca3d6ccdbfb2da7089c69aec43a2d179d98abedc2d6313c70e0a1",
-    "qr/f219159f-6218-4940-b05b-234cb5c9957e.svg": "84ec65e8649413b0",
-    "qr/4ed2502b-8956-4de7-82fd-abdfc16ef809.svg": "5a64e69931c5264a",
-    "image/assets/0241ec32-59e6-4403-88d4-23b8d7fcc13a.png": "100644:e367aeebbf890b4390d4564808f018f3e08b82a539f3d45dac3826d3cb3c899d",
-    "image/photography/2c8e94db-1a15-4754-8da2-9f36cc37e3a6.gif": "100644:a21a9751bd923e45f670bc41ab4a35c0db1d1206ef6d39464a8453e4e7055a1a",
-    "image/assets/6a35828c-9138-4aaf-af2a-89de087434a3/index.html": "82bbc95306531faf",
-    "image/assets/f219159f-6218-4940-b05b-234cb5c9957e/index.html": "61524b8bfc5debc9",
-    "image/assets/0241ec32-59e6-4403-88d4-23b8d7fcc13a/index.html": "4964449466ab1d32",
-    "image/assets/4ed2502b-8956-4de7-82fd-abdfc16ef809.png": "100644:4f244d8065681daa81e05b6d3979dd56825aa06d3bffb68a4ffeb85e456b4be0",
-    "image/assets/dab12562-f5b9-458b-a59c-e87f0af636bb.png": "100644:9525a4d2a47311bd26c465025bcf0f70ade76d95d13733d9bee914c96d128c13",
-    "qr/living-space.svg": "f4c9acde1c49ae63",
-    "image/photography/dscf3263/index.html": "ea6be33ee4ea0b8c",
-    "image/assets/8ef4fb5d-ae3f-4e10-826b-169b0762d555/index.html": "cfcd975adf890e04",
-    "writings/the-other-half/index.html": "47573aeed9c2d059",
-    "image/photography/6f695a93-d897-4c74-8d59-0126e6e65376/index.html": "f96b54349d0fb68d",
-    "assets/p5.js": "100644:2ee031e707ccbd2cc8551c985fd1ebf5f59fea0abe186a7b23606568a1a306a1",
-    "image/assets/df3f7032-9d6d-40b4-a975-80b97b94f3a4.jpg": "100644:e949f0ce1b5aae58612016dafbbc3db4c84b245bdb9e9dc866c05ad084b22225",
-    "image/photography/2ef1d558-bca4-4792-bb63-41ee12fa95ac.jpg": "100644:6917d516c83338a7e6e138063bd03fc50daaa28198bade215fa934e423bdd562",
-    "qr/0b00c9f1-4423-40f8-99c6-adff0d8e8665.svg": "58050e4d9acbd41c",
-    "image/assets/01623ed6-fe07-4a1f-bc21-53eb30fbb315.gif": "100644:a8cd679d07da2cc256d78c7739845ba59fcbec7941fccfb8df3f1699676c7242",
-    "image/assets/d0505029-6be1-4875-aa7d-666bc2e6e372/index.html": "28837c3387ee9072",
-    "writings/useless-journey/beings-speak/index.html": "2dc3cce1dd75b0aa",
-    "image/assets/cbe4ed3b-7102-4eee-af28-6b0465e06243/index.html": "b37b432ac6bea639",
-    "image/assets/7a3565bf-fb79-4901-87de-cbccaac4b19e/index.html": "e432239319a38872",
-    "image/assets/e08a87de-dc9e-415c-a14c-76996f970c6f/index.html": "3880e314a97f5b43",
-    "qr/from-yosemite.svg": "dc33924204f9f83b",
+    "image/assets/index.html": "100644:e4854624fdd2007b",
     "image/photography/56d8a89b-3368-4dc7-9209-744955530387.jpg": "100644:199a8a02af1be7658d7b75067047375654c7676563e5181895d02875cdafccf0",
-    "image/photography/1641eab1-17ff-4ced-99a7-367ae7cdc656.png": "100644:23f9ef88f8f1ee71261b2ef6c5b67a1bc7220ea75f8015ac2721d59d230398fb",
-    "image/photography/cba34621-b690-465c-8a1d-7e36a19cbd60/index.html": "f2b7bea828bf7f61",
-    "image/assets/0575e14f-38cd-4d00-92ff-2c6bf41e7085/index.html": "384d9a37a875115c",
-    "assets/sketch.js": "100644:88828f9121cdde19ed86c2f8bc6499a666ab52a8039c493d0a174d795843937c",
-    "image/photography/ba38a528-f989-4074-a98e-8275f65ab972/index.html": "3d7007d47b55a670",
-    "writings/distributed-web/fake-news-and-markets/index.html": "457ba97527723357",
-    "qr/dcf1562d-afba-4cb7-b60b-e198cd3cd7ce.svg": "534c00553cfc9b94",
-    "qr/c929f3f9-f654-4ce5-a9a7-7358a6caebc3.svg": "0a868f9762664d48",
-    "qr/ddos-and-decentralization.svg": "8f36f0de74bd992d",
-    "qr/7e77b94f-4c82-4a34-a4d6-4fa9d4d0dac2.svg": "08d2e6752fede169",
-    "qr/matters-architecture.svg": "dab605639cb466f7",
-    "writings/distributed-web/decentralized-social-game-theory/index.html": "8494e128bf38ab7b",
-    "image/photography/fd5e607a-e94f-4f40-8412-dfcc745dcd5f/index.html": "4ee0bcbc73a88a80",
-    "image/assets/5d8aaa4a-6a23-4644-9531-e2b538e3e57d/index.html": "dfdca3601a87d281",
-    "image/assets/858e7b46-ef79-4205-9084-95f9141fa0d7.webp": "100644:3f23a312a48482b9641db2e6fc0cf16031e3f8ad0dd0e8418c998c1eca0fda93",
-    "image/photography/79ac64e6-b6c4-487d-babf-d01c2173cb92/index.html": "29a9c87ad29bf007",
-    "image/assets/99cdfdfc-b9fe-4dc0-9a4f-af1dbc711ffd.jpg": "100644:8833f7aade356ad0955602a267b67357f3a53422fa17a9a376b9feeeea269e29",
-    "image/photography/6f13bd9d-cada-4522-a173-69b1a679d4fc.jpg": "100644:d5c00aa97a52d9fd19854e8782cdab2fecfc13eab87fbfe298159c5b9c641e11",
-    "image/assets/Pasted image 20251107112851.png": "100644:1127d9572930de9fb1f0e9b0da27965255302e82171b4b40126650f2b3a5b73b",
-    "image/assets/Pasted image 20251107111040.png": "100644:4b48f3c779ae4da6523e49b417574dee4660fcc88704e0195ccaeecf56437eed",
-    "image/assets/2de0c228-36c8-47ec-9f22-000af45b1943/index.html": "22938c050408f9bf",
-    "image/photography/2c8e94db-1a15-4754-8da2-9f36cc37e3a6/index.html": "8ea61b2bb81559b1",
-    "image/photography/56d8a89b-3368-4dc7-9209-744955530387/index.html": "c2fab8c93a80a795",
-    "qr/9192d8c1-5417-4944-bbda-75d441b12a11.svg": "db1752ad8240a179",
-    "image/photography/f42f7f50-d00c-4225-8fff-6bc3f684021c.jpg": "100644:30d15937e2fb7a2096949ef8588ebdfebfaac75e5bbb0c813ad6e76d15c80172",
-    "image/assets/8c0e7411-7ccf-4d8e-8679-433432a4a73e.png": "100644:1127d9572930de9fb1f0e9b0da27965255302e82171b4b40126650f2b3a5b73b",
-    "interactive/index.html": "908420ced85f2bf9",
-    "image/assets/a2f8dc63-ec4b-488a-81aa-34772550ff98.jpg": "100644:46072da2c44ab79890154a04e95748b11daf11e0d500bc4bd22f525aeaf1fe64",
-    "qr/3f5c3ada-ab96-4ea3-a23f-30b92059b4b8.svg": "06cafdca4f20a340",
-    "image/photography/f829eb81-633c-4bd1-b30a-fb607389fc66.jpg": "100644:8dfe8d3bbd23da284eab8d13121e16b170942c8d0dc719d1f45d965e5c6d318f",
-    "qr/21d10d29-2b36-44e2-ad96-13d6a34f4dc7.svg": "ecd532ebb93ac45e",
-    "image/assets/ab17ba7b-58cb-4cf4-8169-825fdfe900fa/index.html": "281ce6479b368b53",
-    "image/photography/6f13bd9d-cada-4522-a173-69b1a679d4fc/index.html": "e6638448a4dbaffc",
-    "qr/cb499502-8100-4b80-843b-c89b319e41ee.svg": "b023ae88d9a7d65e",
-    "writings/distributed-web/information-freedom-utopia/index.html": "8802f644d0a7fbf2",
-    "image/assets/de80-43f1-a1a2-ce2b1403a3e2/index.html": "14bdc3df3f479e5d",
-    "image/photography/0a88-422e-abc7-cb59db6ed153/index.html": "edee013f7be2d718",
-    "image/photography/38f0bb25-a988-447b-880f-0dbf96992d95/index.html": "6dce0c89c59e743e",
-    "index.html": "2799692727440054",
-    "qr/858e7b46-ef79-4205-9084-95f9141fa0d7.svg": "05701fee80d2b81a",
-    "image/assets/2de0c228-36c8-47ec-9f22-000af45b1943.jpg": "100644:f857fa76a0a7e1eef16ed29bc6b05ac28bf1ab5f2268d3b750e5e1e289be235f",
-    "image/assets/79b0222c-e496-474d-80c1-f212b89571f8/index.html": "3ede8b820a577a4c",
-    "writings/travel/galapagos/index.html": "738b5196207bce65",
-    "qr/996a2021-b5c9-4a3b-b7c2-11ae232ea57b.svg": "a82d4bda1de06d7a",
-    "qr/yoga-in-tibetan-temple.svg": "33b15b45810061e5",
-    "image/assets/7f5c2791-3674-4ed4-befe-f2cce578b958/index.html": "f10360949be76f3d",
-    "image/assets/286b63fcd4-0246-483c-b796-d6506cd2ad29.jpg": "100644:88db05498dd0cf8f96b07960a77ac02bf2480088a2633b5c125487524d3f5a9f",
-    "qr/5b8621dd-6acb-4054-a0af-2ab53145aac7.svg": "0efe3fa32c746bc0",
-    "qr/de80-43f1-a1a2-ce2b1403a3e2.svg": "1c81d291ea1fb4a2",
+    "assets/favicon.svg": "100644:71385febe72280ac",
+    "writings/nyc-dharma-doors/dharma-doors-intro/index.html": "100644:6a55296342e1156c",
     "assets/scale-compare-recording-600.gif": "100644:966e7ce1431423d87adc06c8acd8b6f9c05aa1eee201f296e978fc312876f957",
-    "image/photography/9d13b990-5b91-4c42-a47a-bc9c24ea3fc9/index.html": "c6666b507ba4d071",
-    "links/index.html": "4be75206d9bb071e",
-    "image/photography/IMG_3436.jpeg": "100644:865b1586844c3a22c08dd90386d688078479acca9fdee4d15363f95fe86c42cf",
-    "image/assets/63605a50-ec2d-482e-b4fc-b64a6c9da502/index.html": "85088f6adf56f9fe",
-    "qr/dab12562-f5b9-458b-a59c-e87f0af636bb.svg": "2afd6826357789cd",
-    "writings/tornado-cash/index.html": "91458e160765bcd2",
-    "image/assets/4ed2502b-8956-4de7-82fd-abdfc16ef809/index.html": "ad90c3ad974dee04",
-    "image/assets/f1a05cc2-cd41-47ca-9b8c-e3ef68d98847/index.html": "e70a75e300f1c301",
-    "image/assets/7e77b94f-4c82-4a34-a4d6-4fa9d4d0dac2.jpg": "100644:af88165a0ab99268eaab453b780b196ad1f774e70587b539a5974bdc24367348",
-    "image/photography/210a9339-30df-43ad-a37c-975b1aa5f01f/index.html": "4cdbb9cb16cff1f4",
-    "image/assets/3f5c3ada-ab96-4ea3-a23f-30b92059b4b8/index.html": "a83ca37e187a98f6",
-    "image/assets/pasted-image-20251107111040/index.html": "c23f577d8919e62c",
-    "qr/319b595a-359e-4b54-8ce2-e9714ab78eee.svg": "409f059839b1a84a",
-    "image/assets/21d10d29-2b36-44e2-ad96-13d6a34f4dc7.png": "100644:d3efc4ece88bf34f3617d2c1b48bd5407ac7900df7c735e8cbbe7382c9289a9a",
-    "image/assets/5d56497f-4ded-4fca-a35d-7df3515099f5.webp": "100644:470e5bc06a304d938087f246d0660440b49ee53067ea63e74a639bc6dde0cd97",
-    "qr/57566d1a-9394-4f5a-a429-8314a7b664ef.svg": "ee9c581ec0f80083",
-    "qr/04fe2a94-eeb0-48a6-b6c2-e684445dfedf.svg": "f1d177f1a47d11bf",
-    "image/photography/6f695a93-d897-4c74-8d59-0126e6e65376.jpg": "100644:bba8410b4435a1bd7a96c7724e8c6d440ab0dc67f513b8f9d47091164aacc69e",
-    "assets/favicon-16.png": "c77ffab455b5da11",
-    "image/assets/40df0379-487b-4821-9a56-d3ea6621bed0.webp": "100644:13aaaae77c8d3c037a92367e7854784d29518f8b26ded8519bb8e780625af728",
-    "qr/fb806567-8690-4503-a095-d70ac98eb5e1.svg": "9c6e2e82683f8679",
-    "image/photography/38f0bb25-a988-447b-880f-0dbf96992d95.jpg": "100644:7aecae7e2c5e0f706d3c7856daf888ad349b9280286ca79b88ce23799d026666",
-    "writings/bluegrass-hammer/index.html": "a1a0370317244c04",
-    "image/assets/e7c80abe-cc39-42cf-9ea5-3b448bf84c11/index.html": "c8041d65b1d95eec",
-    "qr/79b0222c-e496-474d-80c1-f212b89571f8.svg": "230607eca2cc9e78",
-    "image/photography/fb806567-8690-4503-a095-d70ac98eb5e1.jpg": "100644:aa02f52c680e99d9cf70d1ecc4e185858e5308e912b5b1ba7525fc68ad61bbe1",
-    "image/assets/Pasted image 20251107111149.png": "100644:86f8efa89155d18828124e17d4c4dff0cf35b434835da89e7cb9d61d4928f807",
-    "image/assets/aeba66d0-5681-48a9-ad7d-d66448f9ceb5/index.html": "039f6f19e65df74c",
-    "image/photography/index.html": "078348763f259057",
-    "qr/4d1edfba-912f-4a5a-befd-7597be4f094e.svg": "98cdebc8ebc282c3",
-    "image/photography/5695cbe9-5d9b-4d7e-8d6c-6d9040f2999a.jpg": "100644:03873325d52525af2039e4b37ccf46212cb8ee187d98dcb8016851b17f0c00f8",
-    "image/photography/91eff121-2e68-4251-8160-9c04cefcdf68/index.html": "ec8a762c174e0f15",
-    "qr/56d8a89b-3368-4dc7-9209-744955530387.svg": "19eba4c9ac66e24b",
-    "image/assets/0b00c9f1-4423-40f8-99c6-adff0d8e8665/index.html": "47a55995e8590375",
-    "qr/blue-conch.svg": "fb7ec644b2d91f9e",
-    "qr/a420cc12-8642-4286-b65f-9795cc5acd2f.svg": "0df629169611517c",
-    "image/assets/cb499502-8100-4b80-843b-c89b319e41ee/index.html": "028c64c3786474af",
-    "qr/beings-speak.svg": "87cd8127caf9453a",
-    "writings/viral-algorithms-ubi/index.html": "93365fae70ba2e1f",
-    "image/photography/04fe2a94-eeb0-48a6-b6c2-e684445dfedf.jpg": "100644:b820b8acadd49e9e4d0de3b230b8c41a28024bf95e1c2a148000fb472a48d076",
-    "qr/4ad7df08-1169-4e65-a882-a7f370867d95.svg": "0643b5da7bbd4317",
-    "image/photography/a2cdc4d9-9714-41c0-b2a2-73372d287d15/index.html": "693773077b71309b",
-    "writings/index.html": "94212bfb8a2ef9b0",
-    "qr/4ea17506-109f-47f9-b487-7105e562fa22.svg": "b0c809cdcbb22b3a",
-    "image/assets/ab17ba7b-58cb-4cf4-8169-825fdfe900fa.png": "100644:03e8e04ccac1262153c7fa7355dd30731974aa14e4a45cb3fed20a44ecaa2a88",
-    "qr/wait.svg": "7ca2ff9c6c7dc161",
-    "image/assets/5a123fe3-67eb-437e-a275-14a215178de1.jpg": "100644:b24310edcb821d9bbfec7871e8c7bed39cc66210fddcc180d92d0f24eb0160a7",
-    "image/photography/5be8bbef-c77c-431f-bc66-952ff9fd3976/index.html": "4f8cdec997c7e516",
-    "qr/d7de54bf-4272-42ed-ac8e-2d7cd91988ad.svg": "6b04e56bcb7a7204",
-    "qr/aeba66d0-5681-48a9-ad7d-d66448f9ceb5.svg": "c51405ca51f31131",
-    "qr/dscf3736.svg": "a8894dd2a7ec14d6",
-    "image/assets/020c1a3f-91c8-4e1e-acd0-b2c6578f2692.png": "100644:9327d2f2c6b8f185df0a99f522db23c01fc7c20911f44c93e2121866210b0e2d",
-    "qr/9d13b990-5b91-4c42-a47a-bc9c24ea3fc9.svg": "1ac04e396d9fa252",
-    "qr/63605a50-ec2d-482e-b4fc-b64a6c9da502.svg": "6013309721d3fa2b",
-    "image/assets/9192d8c1-5417-4944-bbda-75d441b12a11/index.html": "4701f9ce5bd41821",
-    "image/assets/b282ed55-f798-4a34-9a37-2a579bbbd954/index.html": "c20d4716bdb10650",
-    "image/assets/69863c74-93e9-4383-95e8-beb3ab7fd630.png": "100644:4f335d4816bd5b1448fd20f2321fe784e31fe6dae682cdc9daf7e5abd2e715b3",
-    "qr/sertar.svg": "08683475984e7f06",
-    "writings/an-experiment/index.html": "e3baa39c7c7037f5",
-    "image/photography/98f8f73a-0d71-44ce-b8fa-68e97786845a.jpg": "100644:3dbdef5b27c03a30df92fd51d7d405830961e9a1a084380a9040c6d05794b3b9",
-    "image/photography/8b194555-57fc-48d7-b448-05fbc4e46862/index.html": "c9dac56c38017b5e",
-    "image/photography/456cacf5-0dc1-48aa-8079-5bc7095a8294.jpg": "100644:f9e1804b65812fee9825cf0c09bf69865a6dc22be598a91289e8ae4f8f674d1f",
-    "writings/nyc-dharma-doors/dharma-doors-intro/index.html": "7519365939bbe95d",
-    "image/assets/7f5c2791-3674-4ed4-befe-f2cce578b958.jpg": "100644:f90ac25c8db32fc37cf5a65492f39886e82735c0fb46041f397c12b85e020ab0",
-    "qr/40df0379-487b-4821-9a56-d3ea6621bed0.svg": "7b3e877698c470f7",
-    "writings/matters-architecture/index.html": "78f083642b1f1ea4",
-    "image/assets/40df0379-487b-4821-9a56-d3ea6621bed0/index.html": "f69a39ca917b0606",
-    "image/assets/38e5f9cb-6dce-4e4d-9481-92f4ded85e2c/index.html": "b04c9fbda3d95b32",
-    "image/assets/ead5ef5a-d140-4292-93cc-431d13a1a179/index.html": "de32569120bb7003",
-    "image/photography/3cdf3c4e-b48c-4b4c-993a-362683b016bc/index.html": "027453208425297b",
-    "image/assets/286b63fcd4-0246-483c-b796-d6506cd2ad29/index.html": "85110ff6aba26f68",
-    "qr/2de0c228-36c8-47ec-9f22-000af45b1943.svg": "45852ebc69d3d7ac",
-    "qr/decentralized-social-game-theory.svg": "f7a31e4966fa4062",
-    "writings/distributed-web/index.html": "e5a24548412746ce",
-    "image/photography/19d19851-1a67-41dc-88e9-d7b6f3539ca2/index.html": "dcae0d5bfbb9a514",
-    "assets/night-in-the-woods.html": "100644:acff560026bd7da0cebf6c31bb626bc8b91214c016a78ca5cfc33c0dba96b781",
-    "image/photography/b0cd85d4-e061-4bed-bdf4-01d7c64b5a35.jpg": "100644:3b36e9051afbf9036518e83c674ee0ee71e92a176a37260cf511a2de2b5c20c7",
-    "image/assets/9bc4a39b-9eee-486b-8242-196d2c91ec3c.png": "100644:42dcd78f7382a18713ca7c9674daee8d4e303f2102683fe0ebf072d93c36d9b4",
-    "image/assets/8f945d26-1a5e-4ede-b20e-09235ad48e63/index.html": "dd406f5a4b89d84e",
-    "image/assets/06b14cfc-5e3c-4e35-b297-65d58722aabd.gif": "100644:d2bbe7cc2174d3b03879e810cc305014dfa40ad60760bc3d106e4057a3883e62",
-    "qr/210a9339-30df-43ad-a37c-975b1aa5f01f.svg": "cf08bf3e9e77e639",
-    "robots.txt": "9f3aa8a33074df5e",
-    "qr/dharma-doors-intro.svg": "8fd775b1b6855fa2",
-    "writings/the-machine-stops/index.html": "baab0b1e29cf26de",
-    "image/photography/2ef1d558-bca4-4792-bb63-41ee12fa95ac/index.html": "0f44e36424791b6a",
-    "image/photography/22c0e9b7-8093-48fa-97af-14881cce91d9/index.html": "a993b5fe31ba4102",
-    "video/morning-mist/index.html": "97d398a2b054f553",
-    "image/assets/pasted-image-20251107112851/index.html": "2965a485d7a56c33",
-    "qr/0cc26cd1-8c40-4848-b4aa-cdba18bdf0eb.svg": "2cc207d90629c648",
-    "image/assets/aeba66d0-5681-48a9-ad7d-d66448f9ceb5.png": "100644:e873a6da8c3c26387c0c55ebe93977567d6f2b802a520e7967bf7aeeb87e8ae8",
-    "llms.txt": "a502b244696c7f6f",
-    "feed.xml": "ac79561583182851",
-    "assets/particle-universe.html": "100644:f1cfd91e16f5e39718d546759ba7a68490c0112eedd6632d40683b51c85558ec",
-    "qr/ead5ef5a-d140-4292-93cc-431d13a1a179.svg": "84002332c4e7ccf3",
-    "qr/0a88-422e-abc7-cb59db6ed153.svg": "fde9fea339bffbef",
-    "qr/d152d42a-9b6f-4e1b-a3a9-633c8119d02d.svg": "7f093c924ff651a1",
-    "qr/e010b991-cd10-451b-8c87-b56a76c00715.svg": "702d30e40fdb13ae",
-    "qr/5d98072b-87ef-42a3-a8af-38a0acb244df.svg": "861dceddcbae0ecb",
-    "writings/reviews/index.html": "e793bac4b5c0bd11",
-    "interactive/starry-forest/index.html": "7977cdc69dbbac54",
-    "image/assets/8dbe8743-38e6-44ad-9652-432b073be71a.png": "100644:cc7e17cec868e0bd81f389f89b53e6da26e012dde398a2a786db148a9d834c4e",
-    "writings/useless-journey/index.html": "29ef8c6e520935d1",
-    "image/assets/df3f7032-9d6d-40b4-a975-80b97b94f3a4/index.html": "77f5c9c8f8807a5b",
-    "image/photography/f42f7f50-d00c-4225-8fff-6bc3f684021c/index.html": "0ed397c9d82a02c5",
-    "qr/6e6bc6ce-c973-4365-b9cd-1817e39a6b2e.svg": "58e151f39e9c618e",
-    "image/photography/c2206746-6708-43ca-a682-26916f73d585.png": "100644:f6abfa19a1932fabe4bc3559eb75ee91f1bdd8c008090dbf43f6747a1ecc1424",
+    "image/assets/0b00c9f1-4423-40f8-99c6-adff0d8e8665.png": "100644:b176a2264821f9a654fa0340a4d7baa35a3b2c57f4ff065d2c7670c220d6ce48",
+    "qr/e010b991-cd10-451b-8c87-b56a76c00715.svg": "100644:702d30e40fdb13ae",
+    "video/morning-mist/index.html": "100644:6e068319670fdbc9",
+    "qr/giorgiodechirico.svg": "100644:b8916e9c0d35b275",
+    "image/assets/9192d8c1-5417-4944-bbda-75d441b12a11/index.html": "100644:2e63b804762c1819",
+    "image/assets/c928d984-5762-4592-9e78-a22bd02dc91e/index.html": "100644:20a95787444ffd34",
     "image/photography/DSCF3263.jpg": "100644:4e63b949b7cdbfcdd211ff21bac0445e2e78758e53bea7ec64c6214ebeff37a0",
-    "qr/8c0e7411-7ccf-4d8e-8679-433432a4a73e.svg": "52be9a698b6274d9",
-    "image/assets/GiorgioDeChirico.jpg": "100644:952f329ec0a753a30f317ac79a7f4e49241d5f6d8bcaf85c2c13964fbde3d022",
-    "image/photography/4ad7df08-1169-4e65-a882-a7f370867d95/index.html": "41e112e3af94db96",
-    "qr/6a35828c-9138-4aaf-af2a-89de087434a3.svg": "388187089e2019e7",
-    "image/assets/b282ed55-f798-4a34-9a37-2a579bbbd954.gif": "100644:bdd1e710facfa2559ecc42cd0f62782fcd9c4d1d579ea2bf6f73d9f307ee5ef6",
-    "qr/77697bad-74c6-402c-a0af-78249480bea1.svg": "70ccdc643f5d3b03",
+    "writings/.DS_Store": "100644:5f1183c776d5e3084891db3a1566c9280de375a592558dd475f1748cbd5e57c1",
+    "qr/ai-golden-age-of-writing.svg": "100644:3de5d6b0eaa0d973",
+    "qr/858e7b46-ef79-4205-9084-95f9141fa0d7.svg": "100644:05701fee80d2b81a",
+    "image/photography/1641eab1-17ff-4ced-99a7-367ae7cdc656.png": "100644:23f9ef88f8f1ee71261b2ef6c5b67a1bc7220ea75f8015ac2721d59d230398fb",
+    "qr/viral-algorithms-ubi.svg": "100644:731c1c7ad1fee7db",
+    "qr/tools-for-thoughts.svg": "100644:88ae84578189aafd",
+    "image/photography/dscf3910/index.html": "100644:942572efcf85b8de",
+    "qr/547a4a09-0612-491d-a83d-2f805079b2d8.svg": "100644:fa608ccb1fb6b464",
+    "image/photography/98f8f73a-0d71-44ce-b8fa-68e97786845a.jpg": "100644:3dbdef5b27c03a30df92fd51d7d405830961e9a1a084380a9040c6d05794b3b9",
+    "qr/d152d42a-9b6f-4e1b-a3a9-633c8119d02d.svg": "100644:7f093c924ff651a1",
+    "qr/dscf3910.svg": "100644:f157c4b36093f53f",
+    "writings/a-city-annihilated/index.html": "100644:bfe8b5b51a95ca8d",
+    "image/photography/cba4433e-edbd-4573-82c4-feba8368f24a/index.html": "100644:50cb0f7789796b89",
+    "image/assets/3fcefcd6-8a8c-4bfb-9935-d99a568bb019/index.html": "100644:34a346c29608d1fa",
+    "image/photography/19d19851-1a67-41dc-88e9-d7b6f3539ca2.jpg": "100644:56389c28aa88bec8742a5fa2291b467b574861917744b147118c5d4e0b5035e6",
+    "qr/matters-architecture.svg": "100644:dab605639cb466f7",
+    "qr/information-freedom-utopia.svg": "100644:da68796ce022d3e6",
+    "qr/06b14cfc-5e3c-4e35-b297-65d58722aabd.svg": "100644:3a0f6675e130de63",
+    "image/photography/_43A2045.jpg": "100644:d65b4cec9d921c71ba123f697bbd66138f625e1b245d1ab58c06a7e7a433655b",
+    "qr/0cc26cd1-8c40-4848-b4aa-cdba18bdf0eb.svg": "100644:2cc207d90629c648",
+    "image/assets/69863c74-93e9-4383-95e8-beb3ab7fd630/index.html": "100644:4d9ad058824711d4",
+    "qr/2de0c228-36c8-47ec-9f22-000af45b1943.svg": "100644:45852ebc69d3d7ac",
+    "image/photography/22c0e9b7-8093-48fa-97af-14881cce91d9.jpg": "100644:c3f6283113ae1bc9d504655081fdcde2af14f8816e5aba6daa6cf4ca6b8adf66",
+    "scale-compare.html": "120000:abbe22f9a62652c52a961a184bbc0878c9583b1bf301844a11bc17b9d48a211b",
+    "qr/5d8aaa4a-6a23-4644-9531-e2b538e3e57d.svg": "100644:bb20d09fe9405b67",
+    "interactive/index.html": "100644:34813ccdac65a9c0",
+    "image/assets/3f5c3ada-ab96-4ea3-a23f-30b92059b4b8.png": "100644:553aaec358f00ed6963bd74a969315d8fb4975657b19844e786bf17889fb96d1",
+    "qr/22c0e9b7-8093-48fa-97af-14881cce91d9.svg": "100644:799364ab594f5057",
+    "image/photography/ba38a528-f989-4074-a98e-8275f65ab972.jpg": "100644:c087c0914411452cc69961b8d56a76cd3b8f2e409bee624b0f8b68e1b64388cb",
+    "image/assets/Pasted image 20251107111149.png": "100644:86f8efa89155d18828124e17d4c4dff0cf35b434835da89e7cb9d61d4928f807",
+    "writings/the-other-half/index.html": "100644:b787b279c0ac666c",
+    "qr/286b63fcd4-0246-483c-b796-d6506cd2ad29.svg": "100644:bd8bf65a7273164f",
+    "writings/travel/sertar/index.html": "100644:1c74c9c0f30c5d17",
+    "qr/04fe2a94-eeb0-48a6-b6c2-e684445dfedf.svg": "100644:f1d177f1a47d11bf",
+    "image/photography/a2cdc4d9-9714-41c0-b2a2-73372d287d15.jpg": "100644:d31d6ff1463a3947654a91630e44946d2226f1f5bee489d221778595abc1d83a",
+    "qr/5d98072b-87ef-42a3-a8af-38a0acb244df.svg": "100644:861dceddcbae0ecb",
+    "image/assets/0575e14f-38cd-4d00-92ff-2c6bf41e7085.gif": "100644:2a1e0c68ad6bf6a261579e7fab0ec1b7fbe172aee0b0df3c452e3e06f89d2ef7",
+    "qr/living-space.svg": "100644:f4c9acde1c49ae63",
+    "writings/nyc-dharma-doors/woodstock-to-integral-yoga/index.html": "100644:ca481604487f0a59",
+    "qr/dab12562-f5b9-458b-a59c-e87f0af636bb.svg": "100644:2afd6826357789cd",
+    "qr/beings-speak.svg": "100644:87cd8127caf9453a",
+    "qr/82a3a2a3-5e54-4310-ac04-7776bcea1026.svg": "100644:e5fa93eee2483c3d",
+    "qr/0b00c9f1-4423-40f8-99c6-adff0d8e8665.svg": "100644:58050e4d9acbd41c",
+    "qr/federated-social-protocols.svg": "100644:88858b0a4d790a4e",
+    "writings/distributed-web/federated-social-protocols/index.html": "100644:918e563237b037f4",
+    "image/photography/ec7c469d-21eb-4a1d-9b6d-0baec3b61b10.jpg": "100644:e90794763739a7e86efb876a4a007a5f4473ea29604e77362dbb386354e7facc",
+    "image/photography/f42f7f50-d00c-4225-8fff-6bc3f684021c/index.html": "100644:7455e72bc93934d9",
+    "image/assets/6a35828c-9138-4aaf-af2a-89de087434a3/index.html": "100644:505b8ec78f87bb59",
+    "assets/favicon-180.png": "100644:32d421a5ebadf01f",
+    "assets/favicon-16.png": "100644:d6fb1e950b282933",
+    "writings/ai-golden-age-of-writing/index.html": "100644:d91e49a0ba4af858",
+    "qr/4d1edfba-912f-4a5a-befd-7597be4f094e.svg": "100644:98cdebc8ebc282c3",
+    "video/winter-song/index.html": "100644:c9d05a35e6e7114e",
+    "image/photography/IMG_3436.jpeg": "100644:865b1586844c3a22c08dd90386d688078479acca9fdee4d15363f95fe86c42cf",
+    "writings/nyc-dharma-doors/纽约禅堂/index.html": "100644:028c85280bb818b7",
+    "image/assets/a2f8dc63-ec4b-488a-81aa-34772550ff98.jpg": "100644:46072da2c44ab79890154a04e95748b11daf11e0d500bc4bd22f525aeaf1fe64",
+    "writings/nyc-dharma-doors/index.html": "100644:1313ad1bf4f7a4e7",
     "image/assets/66296200-de80-43f1-a1a2-ce2b1403a3e2.jpg": "100644:f9e5f0f6426be90e935be8fe63a68ba1b92aa059c733ca030dc868613effb042",
-    "writings/distributed-web/ddos-and-decentralization/index.html": "385ce43a6c59cef4",
-    "writings/useless-journey/the-real-journey/index.html": "fcb44b74521bb1ba",
-    "qr/3fcefcd6-8a8c-4bfb-9935-d99a568bb019.svg": "48931a0ac78caaa4",
+    "image/assets/e832647f-6535-4434-90dc-c790e8a4e03c/index.html": "100644:317f15070efd3de0",
+    "image/photography/210a9339-30df-43ad-a37c-975b1aa5f01f/index.html": "100644:18eb0a20baa5a319",
+    "qr/cb499502-8100-4b80-843b-c89b319e41ee.svg": "100644:b023ae88d9a7d65e",
+    "qr/c929f3f9-f654-4ce5-a9a7-7358a6caebc3.svg": "100644:0a868f9762664d48",
+    "image/assets/Pasted image 20251107111040.png": "100644:4b48f3c779ae4da6523e49b417574dee4660fcc88704e0195ccaeecf56437eed",
+    "qr/cba34621-b690-465c-8a1d-7e36a19cbd60.svg": "100644:7ebb0d651838fbbb",
     "image/assets/ef00feaa-34fe-49c2-ac17-f532f390ae7b.png": "100644:c79e52f90cede4a09893da54ddb5f7a7034540140edf0e3d68c2b88b3527a146",
-    "qr/5a123fe3-67eb-437e-a275-14a215178de1.svg": "0588fef6d0a301b8",
-    "writings/nyc-dharma-doors/yoga-in-tibetan-temple/index.html": "a740993db65f0854",
-    "qr/a-city-annihilated.svg": "7192e25ce821cef4",
-    "qr/pasted-image-20251107111040.svg": "96175f9e2d1ac78b",
-    "qr/giorgiodechirico.svg": "b8916e9c0d35b275",
-    "qr/b282ed55-f798-4a34-9a37-2a579bbbd954.svg": "97deb54e3796460b",
-    "qr/8f945d26-1a5e-4ede-b20e-09235ad48e63.svg": "e35fc69fb5bf5d56",
-    "qr/an-experiment.svg": "aba4e891fe51367d",
-    "qr/dscf3193.svg": "94a10dddd194d5df",
-    "image/photography/2705fa19-c187-48a0-b809-034acdfd6e57/index.html": "b5366e2a6e33f300",
-    "image/assets/5ac6015a-9bf7-4538-ad44-5a272a516060/index.html": "6db1d8831e5f72b9",
-    "qr/06b14cfc-5e3c-4e35-b297-65d58722aabd.svg": "3a0f6675e130de63",
-    "image/photography/6e6bc6ce-c973-4365-b9cd-1817e39a6b2e.jpg": "100644:cf3a4d70744ca0852b8779bd948f638e1c722d5ee300b4d6618eea7dbfc2b865",
-    "image/photography/ec7c469d-21eb-4a1d-9b6d-0baec3b61b10/index.html": "8dd651265f19e0b6",
-    "assets/Ave-Maria.placeholder.svg": "placeholder",
-    "image/assets/21d10d29-2b36-44e2-ad96-13d6a34f4dc7/index.html": "de22cff054825550",
-    "js/preview.js": "20e2f7a9b285cc9d",
-    "qr/2c8e94db-1a15-4754-8da2-9f36cc37e3a6.svg": "6cc32a09e90aa7c1",
-    "image/assets/5a123fe3-67eb-437e-a275-14a215178de1/index.html": "536a767eb7c18242",
-    "qr/bd9fe5ad-59d0-4d73-9c66-db0faa2dfff2.svg": "b64bd2774bdca1d6",
-    "qr/img-3436.svg": "71bc025f841f1b17",
-    "image/photography/a420cc12-8642-4286-b65f-9795cc5acd2f.jpg": "100644:2a9054a2a1456731748ed9175063b606a45a61e6f2488eb2e12d236e6482c2c1",
-    "image/photography/82a3a2a3-5e54-4310-ac04-7776bcea1026/index.html": "9982f53e8dd157d9",
-    "image/assets/858e7b46-ef79-4205-9084-95f9141fa0d7/index.html": "62989fdff5e4cf24",
-    "image/photography/2705fa19-c187-48a0-b809-034acdfd6e57.jpg": "100644:e6c9e5250607b84114c2b4b1e59f4598da36e29e1ecfbf43d3198241f20fa9c1",
-    "qr/c3588359-7d4d-48ef-8664-2c9b6b635368.svg": "3d9ee11eaa85546d",
-    "writings/travel/sertar/index.html": "eccb48e048f9d97b",
+    "image/photography/6f82af03-116b-4693-8f3c-45b127b4bba5/index.html": "100644:947f9d8527bbb1b8",
+    "qr/dscf3263.svg": "100644:1c2c61db1c9dccdb",
+    "qr/57566d1a-9394-4f5a-a429-8314a7b664ef.svg": "100644:ee9c581ec0f80083",
+    "image/assets/cb499502-8100-4b80-843b-c89b319e41ee.png": "100644:2790b5312adaace6dc3ac27a97b6bcd56c3ef27c53187838762ae8ec4a9a6178",
+    "assets/p5.js": "100644:2ee031e707ccbd2cc8551c985fd1ebf5f59fea0abe186a7b23606568a1a306a1",
+    "image/assets/7a3565bf-fb79-4901-87de-cbccaac4b19e.jpg": "100644:a5bc4f6f17349a3a2b383e2d6166729b891ca7db5b8a35a3d3aafe4766adc316",
+    "qr/5695cbe9-5d9b-4d7e-8d6c-6d9040f2999a.svg": "100644:376dedc44d132aac",
+    "qr/dharma-doors-intro.svg": "100644:529e633446c0fedd",
+    "image/assets/d7de54bf-4272-42ed-ac8e-2d7cd91988ad.png": "100644:f532d44cbb3a0c7fb0881b6a9459730cc2192b3bcbbda4474e7d61bd45bf4a0e",
     "assets/scale-compare-recording-720-12fps.gif": "100644:f1ddd0fa45d938c0ce6fb1001c01d535410d4255a9148d5068caf5ce4f768c19",
-    "assets/b19a4f29-7fe9-4c53-aa90-d3203d9f355f.png": "100644:7b6dfd7d45971347c87b0453cb087b2cc2ee86eb0ed095e7aa0a677493d79fbc",
-    "qr/woodstock-to-integral-yoga.svg": "0ee4a2977ff19363",
-    "qr/3cdf3c4e-b48c-4b4c-993a-362683b016bc.svg": "95b07a17322e2058",
-    "qr/9cbeab27-1907-4ca7-a686-9346d70d6448.svg": "d8b3c206ea6447d1",
-    "image/photography/82a3a2a3-5e54-4310-ac04-7776bcea1026.jpg": "100644:832df12a8c448a1025518323df82d6d81922dd26affb273ecc09f64db3d3096c",
-    "qr/5be8bbef-c77c-431f-bc66-952ff9fd3976.svg": "a9aa6da70cf2c65d",
-    "image/photography/4d1edfba-912f-4a5a-befd-7597be4f094e.jpg": "100644:12e1092706b171ab2e3d21f3364926f48d58d03917ccde43079cb8fabffe35eb",
-    "qr/lusheng-yelang.svg": "cf525c10f0411093",
-    "image/photography/cba4433e-edbd-4573-82c4-feba8368f24a/index.html": "4d9cb19bb9acfb18",
-    "qr/bluegrass-hammer.svg": "d802a05e4c1b674d",
-    "qr/99cdfdfc-b9fe-4dc0-9a4f-af1dbc711ffd.svg": "5c393813fc154f46",
-    "qr/a2cdc4d9-9714-41c0-b2a2-73372d287d15.svg": "03064fbe8072a3f8",
-    "qr/ai-golden-age-of-writing.svg": "3de5d6b0eaa0d973",
-    "image/photography/abfc71fe-7fec-45f9-926d-7e1009eb0320/index.html": "5fd0c1e16bd47e69",
-    "qr/01623ed6-fe07-4a1f-bc21-53eb30fbb315.svg": "1812e949ef60c0dc",
-    "qr/69863c74-93e9-4383-95e8-beb3ab7fd630.svg": "627863a30235ab05",
-    "qr/f1a05cc2-cd41-47ca-9b8c-e3ef68d98847.svg": "e7c707250e30118e",
-    "image/assets/f1a05cc2-cd41-47ca-9b8c-e3ef68d98847.png": "100644:629b1db1395f0b8b28268d01e7b3b4c890b0ea5ac9c97bc54ce0a6b545826899",
-    "image/photography/a420cc12-8642-4286-b65f-9795cc5acd2f/index.html": "30533873d598f128",
-    "image/assets/a2f8dc63-ec4b-488a-81aa-34772550ff98/index.html": "46a3ccfef659c087",
-    "image/assets/9bc4a39b-9eee-486b-8242-196d2c91ec3c/index.html": "ad1f12f3b38730b7",
+    "image/assets/0cc26cd1-8c40-4848-b4aa-cdba18bdf0eb/index.html": "100644:8bfb2742c1b99fd9",
+    "style.css": "100644:3abb9ff9e247504f",
+    "image/index.html": "100644:418adca2c37c2b16",
+    "image/assets/ead5ef5a-d140-4292-93cc-431d13a1a179/index.html": "100644:4906a21f0baa6084",
+    "qr/9192d8c1-5417-4944-bbda-75d441b12a11.svg": "100644:db1752ad8240a179",
+    "image/photography/fd5e607a-e94f-4f40-8412-dfcc745dcd5f.jpg": "100644:369cec738a75e2287ab204524dfda110cfaf39a551caf2ca8b933431b070ee57",
+    "image/assets/21d10d29-2b36-44e2-ad96-13d6a34f4dc7.png": "100644:d3efc4ece88bf34f3617d2c1b48bd5407ac7900df7c735e8cbbe7382c9289a9a",
+    "video/summer-afternoon-nursery-rhyme/index.html": "100644:5a2f1d1a1b168ea2",
+    "qr/starry-forest.svg": "100644:d389721ff030339c",
+    "qr/ec7c469d-21eb-4a1d-9b6d-0baec3b61b10.svg": "100644:4f93be1a72eeefa4",
+    "image/photography/d9512f2d-fdcf-4a22-b1d5-340f74ddedae.jpg": "100644:cde26afa9714c70cfbb657cc6edcf2332a115f6462545f8a08ac0f76afc7f1fb",
+    "qr/art-in-the-age-of-mechanical-generation.svg": "100644:185c9f29bacade1a",
+    "interactive/living-space/index.html": "100644:3c93705c6d0ff5a5",
+    "js/thumb-swap.js": "100644:a9b52e7eec4017af",
+    "image/assets/pasted-image-20251107111149/index.html": "100644:8251f217a3872d47",
+    "image/assets/5d8aaa4a-6a23-4644-9531-e2b538e3e57d/index.html": "100644:f1c93b2465ba0520",
+    "image/photography/9cbeab27-1907-4ca7-a686-9346d70d6448/index.html": "100644:6bf500c5cfd04085",
+    "qr/an-experiment.svg": "100644:aba4e891fe51367d",
+    "writings/index.html": "100644:0c3544a9bd867720",
+    "assets/night-in-the-woods.html": "100644:acff560026bd7da0cebf6c31bb626bc8b91214c016a78ca5cfc33c0dba96b781",
+    "image/photography/DSCF3736.jpg": "100644:7f5d98c8616a3a9058b25ca8edf2d1b4bdb87a4c689db1ab432d63c69642d484",
+    "image/photography/b922129f-c2cd-42de-b86b-37ecc3a23c72.png": "100644:05e861ae6de4c0c0ec5a6b7b80865b6b75800d45e1b2fc2ccac12ba22b874e94",
+    "qr/f1a05cc2-cd41-47ca-9b8c-e3ef68d98847.svg": "100644:e7c707250e30118e",
+    "qr/319b595a-359e-4b54-8ce2-e9714ab78eee.svg": "100644:409f059839b1a84a",
+    "image/assets/69863c74-93e9-4383-95e8-beb3ab7fd630.png": "100644:4f335d4816bd5b1448fd20f2321fe784e31fe6dae682cdc9daf7e5abd2e715b3",
+    "writings/nyc-dharma-doors/yoga-in-tibetan-temple/index.html": "100644:b7692ca559604991",
+    "image/assets/7e77b94f-4c82-4a34-a4d6-4fa9d4d0dac2.jpg": "100644:af88165a0ab99268eaab453b780b196ad1f774e70587b539a5974bdc24367348",
+    "image/photography/c2206746-6708-43ca-a682-26916f73d585.png": "100644:f6abfa19a1932fabe4bc3559eb75ee91f1bdd8c008090dbf43f6747a1ecc1424",
+    "image/assets/8f945d26-1a5e-4ede-b20e-09235ad48e63/index.html": "100644:894fbf3cef1c3e3e",
+    "image/assets/f219159f-6218-4940-b05b-234cb5c9957e.png": "100644:da5212f0bd5b27203a690d4aca6309358bd961f0ec8b3c2d4cf3f50c525c838d",
+    "qr/19d19851-1a67-41dc-88e9-d7b6f3539ca2.svg": "100644:c986d088057125d7",
+    "qr/纽约禅堂.svg": "100644:aa7e6ee152f735fd",
+    "image/photography/2705fa19-c187-48a0-b809-034acdfd6e57.jpg": "100644:e6c9e5250607b84114c2b4b1e59f4598da36e29e1ecfbf43d3198241f20fa9c1",
+    "qr/maha-mantra-east-village.svg": "100644:2cd4ccd1e594bb90",
+    "image/assets/63605a50-ec2d-482e-b4fc-b64a6c9da502/index.html": "100644:5234703394798087",
+    "qr/e08a87de-dc9e-415c-a14c-76996f970c6f.svg": "100644:2b8ba9fbe103baa9",
+    "writings/matters-architecture/index.html": "100644:88c367e791fa59ae",
+    "image/assets/8ef4fb5d-ae3f-4e10-826b-169b0762d555/index.html": "100644:4e614f63bc7e6afe",
+    "image/assets/020c1a3f-91c8-4e1e-acd0-b2c6578f2692.png": "100644:9327d2f2c6b8f185df0a99f522db23c01fc7c20911f44c93e2121866210b0e2d",
+    "image/photography/2c8e94db-1a15-4754-8da2-9f36cc37e3a6.gif": "100644:a21a9751bd923e45f670bc41ab4a35c0db1d1206ef6d39464a8453e4e7055a1a",
+    "js/theme.js": "100644:2cdc2065ab56e04a",
+    "image/assets/c928d984-5762-4592-9e78-a22bd02dc91e.jpg": "100644:4dcc23cb25888b85fb0b556330c963506f9cef86342a9f8fd25d7e08c90e5092",
+    "image/photography/4ea17506-109f-47f9-b487-7105e562fa22/index.html": "100644:82d0b306914209d6",
+    "qr/f42f7f50-d00c-4225-8fff-6bc3f684021c.svg": "100644:3b009418d389ce8d",
+    "video/lusheng-yelang/index.html": "100644:7de6c7c4b0f04d40",
+    "image/photography/22c0e9b7-8093-48fa-97af-14881cce91d9/index.html": "100644:0138e7fe598362b8",
+    "writings/blue-conch/index.html": "100644:ce67bc7742091544",
+    "robots.txt": "100644:9f3aa8a33074df5e",
+    "image/assets/57566d1a-9394-4f5a-a429-8314a7b664ef.jpg": "100644:6e5396e9411e0df6ce32696b6eba881af477fa6cadb97c5060be1f10fd3d3af2",
+    "writings/travel/galapagos/index.html": "100644:0778eb321a9aedf5",
+    "qr/a2f8dc63-ec4b-488a-81aa-34772550ff98.svg": "100644:401c2604e551e955",
+    "image/photography/c2206746-6708-43ca-a682-26916f73d585/index.html": "100644:6b57c05c18f59335",
+    "image/photography/98f8f73a-0d71-44ce-b8fa-68e97786845a/index.html": "100644:855e8975ad4fd5b0",
+    "image/photography/5be8bbef-c77c-431f-bc66-952ff9fd3976/index.html": "100644:113873b883929cd2",
+    "image/assets/e7c80abe-cc39-42cf-9ea5-3b448bf84c11.jpg": "100644:6e5396e9411e0df6ce32696b6eba881af477fa6cadb97c5060be1f10fd3d3af2",
+    "qr/the-other-half.svg": "100644:0cec17ba0f1aeaa2",
+    "image/assets/cbe4ed3b-7102-4eee-af28-6b0465e06243.jpg": "100644:8378410b663fd864dddb1d2141e12debbd173ccfd8d667e440712cd0d990d36a",
+    "image/assets/5a123fe3-67eb-437e-a275-14a215178de1.jpg": "100644:b24310edcb821d9bbfec7871e8c7bed39cc66210fddcc180d92d0f24eb0160a7",
+    "image/photography/abfc71fe-7fec-45f9-926d-7e1009eb0320/index.html": "100644:861f29bdfca6797b",
+    "qr/99cdfdfc-b9fe-4dc0-9a4f-af1dbc711ffd.svg": "100644:5c393813fc154f46",
+    "image/photography/4d1edfba-912f-4a5a-befd-7597be4f094e/index.html": "100644:da8ee987ae2f8873",
+    "sitemap.xml": "100644:4c2a9373d3e4d5e4",
+    "image/photography/d9512f2d-fdcf-4a22-b1d5-340f74ddedae/index.html": "100644:1a872d0e8e51ed70",
+    "image/assets/858e7b46-ef79-4205-9084-95f9141fa0d7.webp": "100644:3f23a312a48482b9641db2e6fc0cf16031e3f8ad0dd0e8418c998c1eca0fda93",
+    "image/photography/38f0bb25-a988-447b-880f-0dbf96992d95.jpg": "100644:7aecae7e2c5e0f706d3c7856daf888ad349b9280286ca79b88ce23799d026666",
+    "image/photography/4ad7df08-1169-4e65-a882-a7f370867d95/index.html": "100644:9ee87999ec53c522",
+    "qr/pasted-image-20251107111149.svg": "100644:c37b6a5f673f666e",
+    "image/photography/456cacf5-0dc1-48aa-8079-5bc7095a8294/index.html": "100644:7024885aa9e5785a",
+    "image/photography/8b194555-57fc-48d7-b448-05fbc4e46862/index.html": "100644:56e6966e174a31a5",
+    "writings/distributed-copyright-ecosystem/index.html": "100644:f65b801cf8264211",
+    "image/photography/91eff121-2e68-4251-8160-9c04cefcdf68/index.html": "100644:7e75209b6ccdbba0",
+    "image/photography/4ad7df08-1169-4e65-a882-a7f370867d95.jpg": "100644:6f5f1308db1df555b7ebf96028e8eb953bce871ba085bc9f51d97859441d64c5",
+    "assets/Ave-Maria.placeholder.svg": "placeholder",
+    "image/assets/99cdfdfc-b9fe-4dc0-9a4f-af1dbc711ffd.jpg": "100644:8833f7aade356ad0955602a267b67357f3a53422fa17a9a376b9feeeea269e29",
+    "_previews.json": "100644:27f39329973c9ea8",
+    "image/photography/dscf3736/index.html": "100644:facd7a18ae74f7a6",
+    "image/photography/82a3a2a3-5e54-4310-ac04-7776bcea1026/index.html": "100644:a6e0df1dcd4cae56",
+    "qr/morning-mist.svg": "100644:c451d07c4f915e20",
+    "image/photography/b0cd85d4-e061-4bed-bdf4-01d7c64b5a35/index.html": "100644:bf30d2b35850d78e",
+    "image/photography/40d65e7d-35d5-4f9b-8a86-5aecd1d54a5d/index.html": "100644:c057fb7e60052df2",
+    "writings/distributed-web/ddos-and-decentralization/index.html": "100644:5463151d80d460a0",
+    "image/assets/57566d1a-9394-4f5a-a429-8314a7b664ef/index.html": "100644:a1448325d538381e",
+    "writings/distributed-web/information-freedom-utopia/index.html": "100644:4c4ea81c35bbc8ea",
+    "qr/e832647f-6535-4434-90dc-c790e8a4e03c.svg": "100644:a0be4c0c02a0167f",
+    "assets/.DS_Store": "100644:d65165279105ca6773180500688df4bdc69a2c7b771752f0a46ef120b7fd8ec3",
+    "assets/Winter-Song.placeholder.svg": "placeholder",
+    "image/assets/5d56497f-4ded-4fca-a35d-7df3515099f5/index.html": "100644:cc128ea7d15d8235",
+    "image/assets/01623ed6-fe07-4a1f-bc21-53eb30fbb315/index.html": "100644:295f7dca914c55f5",
+    "qr/3f5c3ada-ab96-4ea3-a23f-30b92059b4b8.svg": "100644:06cafdca4f20a340",
+    "qr/4ad7df08-1169-4e65-a882-a7f370867d95.svg": "100644:0643b5da7bbd4317",
+    "image/photography/2ef1d558-bca4-4792-bb63-41ee12fa95ac/index.html": "100644:d2236250b53d2765",
+    "qr/d9512f2d-fdcf-4a22-b1d5-340f74ddedae.svg": "100644:4792393275ec2770",
+    "image/assets/cb499502-8100-4b80-843b-c89b319e41ee/index.html": "100644:1c891ec4b2cd6242",
+    "qr/the-real-journey.svg": "100644:f2560ca37a4e107d",
+    "qr/63605a50-ec2d-482e-b4fc-b64a6c9da502.svg": "100644:6013309721d3fa2b",
+    "image/photography/547a4a09-0612-491d-a83d-2f805079b2d8.jpg": "100644:cc004b1f2088f06790df1e67b3a304bb5585c29e1d13821910f3240e03f83fae",
+    "image/photography/56d8a89b-3368-4dc7-9209-744955530387/index.html": "100644:77d92e01e6372803",
+    "qr/0241ec32-59e6-4403-88d4-23b8d7fcc13a.svg": "100644:23bc820e2dae2f26",
+    "image/photography/ba38a528-f989-4074-a98e-8275f65ab972/index.html": "100644:189798564fca6a15",
+    "qr/pasted-image-20251107112851.svg": "100644:acc4cacdebd06e70",
+    "image/assets/aeba66d0-5681-48a9-ad7d-d66448f9ceb5/index.html": "100644:16b306e7c56c215a",
+    "qr/38f0bb25-a988-447b-880f-0dbf96992d95.svg": "100644:4cb51b730d2fd326",
+    "image/assets/40df0379-487b-4821-9a56-d3ea6621bed0.webp": "100644:13aaaae77c8d3c037a92367e7854784d29518f8b26ded8519bb8e780625af728",
+    "js/preview.js": "100644:20e2f7a9b285cc9d",
+    "writings/art-in-the-age-of-mechanical-generation/index.html": "100644:87b61c925a4c14f3",
+    "qr/c3588359-7d4d-48ef-8664-2c9b6b635368.svg": "100644:3d9ee11eaa85546d",
+    "writings/nyc-dharma/woodstock-to-integral-yoga/index.html": "100644:caf3c8e760558f56",
+    "writings/useless-journey/cost-of-civilization/index.html": "100644:950dc05fa468a82c",
+    "qr/ipfs-developer-conference.svg": "100644:1a251a02d8e54c0d",
+    "image/assets/40df0379-487b-4821-9a56-d3ea6621bed0/index.html": "100644:2af551bddc5d3a7a",
+    "image/photography/6f82af03-116b-4693-8f3c-45b127b4bba5.jpg": "100644:963d2b9f3068d7cbb71c11aa80561588ca413c27ee7aa5fc32acb033bba339cb",
+    "image/assets/c3588359-7d4d-48ef-8664-2c9b6b635368/index.html": "100644:4a39476ee2392908",
+    "qr/a420cc12-8642-4286-b65f-9795cc5acd2f.svg": "100644:0df629169611517c",
+    "image/assets/8dbe8743-38e6-44ad-9652-432b073be71a.png": "100644:cc7e17cec868e0bd81f389f89b53e6da26e012dde398a2a786db148a9d834c4e",
+    "image/assets/5d98072b-87ef-42a3-a8af-38a0acb244df.gif": "100644:bcc8cd7dc2abd7ace2a092f1681ed8103f265e6955f743c0cd0db7535a1dbd6f",
+    "image/assets/9192d8c1-5417-4944-bbda-75d441b12a11.gif": "100644:4f3e07030acfc5b82156f339f723951002f5e8074b9778c802c2a76e1fee6a0c",
+    "qr/next-gen-open-internet.svg": "100644:97a66589a2dd514b",
+    "writings/nyc-dharma/maha-mantra-east-village/index.html": "100644:f670508c9ceb44e4",
+    "writings/reviews/index.html": "100644:ff6ae975ff8291c7",
+    "image/assets/99cdfdfc-b9fe-4dc0-9a4f-af1dbc711ffd/index.html": "100644:cca4f419217c25b7",
+    "qr/8dbe8743-38e6-44ad-9652-432b073be71a.svg": "100644:ae78d4ba16f871a3",
+    "image/photography/5695cbe9-5d9b-4d7e-8d6c-6d9040f2999a.jpg": "100644:03873325d52525af2039e4b37ccf46212cb8ee187d98dcb8016851b17f0c00f8",
+    "image/assets/ab17ba7b-58cb-4cf4-8169-825fdfe900fa.png": "100644:03e8e04ccac1262153c7fa7355dd30731974aa14e4a45cb3fed20a44ecaa2a88",
+    "image/photography/1570c6b2-f2f7-4036-bff9-47206b0ba878/index.html": "100644:c33b4a509dffa0a8",
+    "qr/40d65e7d-35d5-4f9b-8a86-5aecd1d54a5d.svg": "100644:9ed62430372ef536",
+    "qr/91eff121-2e68-4251-8160-9c04cefcdf68.svg": "100644:c4d555715096d9ea",
+    "image/photography/04fe2a94-eeb0-48a6-b6c2-e684445dfedf.jpg": "100644:b820b8acadd49e9e4d0de3b230b8c41a28024bf95e1c2a148000fb472a48d076",
+    "qr/wait.svg": "100644:7ca2ff9c6c7dc161",
+    "image/photography/a2cdc4d9-9714-41c0-b2a2-73372d287d15/index.html": "100644:a8b4a139034c96c3",
+    "writings/nyc-dharma/纽约禅堂/index.html": "100644:a7d0ac7ed9560e7c",
+    "qr/6a35828c-9138-4aaf-af2a-89de087434a3.svg": "100644:388187089e2019e7",
+    "image/photography/cba4433e-edbd-4573-82c4-feba8368f24a.jpg": "100644:3bfed1ceef6fe7b9457d9c5c733ce788ffa4f6aea9e9cb9990da37ef8054c7f2",
+    "qr/8b194555-57fc-48d7-b448-05fbc4e46862.svg": "100644:1749c0debff22c94",
+    "assets/favicon-32.png": "100644:2834f2248fd3a72d",
+    "qr/d0505029-6be1-4875-aa7d-666bc2e6e372.svg": "100644:1912eecf6c9fff2f",
+    "qr/from-yosemite.svg": "100644:dc33924204f9f83b",
+    "writings/useless-journey/index.html": "100644:fec534c676f37982",
+    "image/assets/0cc26cd1-8c40-4848-b4aa-cdba18bdf0eb.gif": "100644:28a7eebcf676c27b42acccf79aaa1ff7163eec683b1241ff42a628e909e85ea9",
+    "qr/winter-song.svg": "100644:f15963c0843fc295",
+    "image/photography/9d13b990-5b91-4c42-a47a-bc9c24ea3fc9/index.html": "100644:a036dc10e93bbc6a",
     "assets/scale-compare-recording.gif": "100644:e009277a0006420f9191a54e5a585cc125377c02b20bc40365c5c748bcea52e0",
-    "image/assets/c3588359-7d4d-48ef-8664-2c9b6b635368/index.html": "b849375f4e987f9a",
-    "image/assets/3fcefcd6-8a8c-4bfb-9935-d99a568bb019/index.html": "8d787291090eca29"
+    "image/assets/7f5c2791-3674-4ed4-befe-f2cce578b958.jpg": "100644:f90ac25c8db32fc37cf5a65492f39886e82735c0fb46041f397c12b85e020ab0",
+    "image/photography/6f13bd9d-cada-4522-a173-69b1a679d4fc/index.html": "100644:d127681aed79f70b",
+    "image/assets/cbe4ed3b-7102-4eee-af28-6b0465e06243/index.html": "100644:2705d2aee4e82078",
+    "writings/distributed-web/fake-news-and-markets/index.html": "100644:fde4e67c0e585e3c",
+    "qr/98f8f73a-0d71-44ce-b8fa-68e97786845a.svg": "100644:4ede4f63af9d1228",
+    "writings/useless-journey/river-two-freedoms/index.html": "100644:4cdff22dc4fc8ea6",
+    "qr/9bc4a39b-9eee-486b-8242-196d2c91ec3c.svg": "100644:afaa483caf7a029a",
+    "image/photography/43a7285/index.html": "100644:bf2befc60ecc9d74",
+    "qr/79ac64e6-b6c4-487d-babf-d01c2173cb92.svg": "100644:b87340debf0dd6c7",
+    "image/photography/38f0bb25-a988-447b-880f-0dbf96992d95/index.html": "100644:15562875fc293c93",
+    "writings/useless-journey/beings-speak/index.html": "100644:e157a714a2f18a6e",
+    "qr/1641eab1-17ff-4ced-99a7-367ae7cdc656.svg": "100644:1fecd6674b5910c6",
+    "image/assets/e832647f-6535-4434-90dc-c790e8a4e03c.gif": "100644:466cad2639c1afcc666d48a97620ed35887b4b1f7acbf07230e7720fca0715cc",
+    "qr/decentralized-social-game-theory.svg": "100644:f7a31e4966fa4062",
+    "assets/Morning-Mist.placeholder.svg": "placeholder",
+    "image/assets/2de0c228-36c8-47ec-9f22-000af45b1943/index.html": "100644:7ac5e477bea1fde5",
+    "image/assets/6a35828c-9138-4aaf-af2a-89de087434a3.png": "100644:f88141a4de62316ac8bbe0e18bc861207b7b8afad16f0e365492e7f6dc1670cb",
+    "qr/buddhism-in-chinese-history.svg": "100644:f3436663c015f27a",
+    "image/assets/38e5f9cb-6dce-4e4d-9481-92f4ded85e2c/index.html": "100644:81aeaae755bb18ab",
+    "image/photography/img-3428/index.html": "100644:e181c6007176f546",
+    "image/photography/3cdf3c4e-b48c-4b4c-993a-362683b016bc.jpg": "100644:0c1986451042fd6857a8197d2e92ac8a820d2cf82ed8318394721208d8101df3",
+    "image/photography/04fe2a94-eeb0-48a6-b6c2-e684445dfedf/index.html": "100644:82c0ecdbeeac2243",
+    "image/assets/bd9fe5ad-59d0-4d73-9c66-db0faa2dfff2.png": "100644:bdbe329268028bbcc1a31753fd17eb11616f58262559db63c4bc38f167affc8d",
+    "qr/3cdf3c4e-b48c-4b4c-993a-362683b016bc.svg": "100644:95b07a17322e2058",
+    "image/assets/f1a05cc2-cd41-47ca-9b8c-e3ef68d98847.png": "100644:629b1db1395f0b8b28268d01e7b3b4c890b0ea5ac9c97bc54ce0a6b545826899",
+    "image/photography/abfc71fe-7fec-45f9-926d-7e1009eb0320.png": "100644:e70194cc993daf382ece8a5411da2330c88497ddfdcd43490827df9691774380",
+    "interactive/starry-forest/index.html": "100644:87da28385cfa608c",
+    "writings/nyc-dharma/index.html": "100644:03ddde3107e0232f",
+    "image/assets/pasted-image-20251107111040/index.html": "100644:90224b0224a438d9",
+    "writings/viral-algorithms-ubi/index.html": "100644:24b7a48516539d47",
+    "qr/0575e14f-38cd-4d00-92ff-2c6bf41e7085.svg": "100644:910bd626130edc69",
+    "qr/9d13b990-5b91-4c42-a47a-bc9c24ea3fc9.svg": "100644:1ac04e396d9fa252",
+    "image/assets/5a123fe3-67eb-437e-a275-14a215178de1/index.html": "100644:b20a12f6ed89a8f1",
+    "image/.DS_Store": "100644:87a5536a2aa051a0ed14e72bbc16ac779ad6d2b228f3b64752dbb87bec89f5cd",
+    "writings/distributed-web/index.html": "100644:5e86b65bf368aa6d",
+    "image/photography/0a88-422e-abc7-cb59db6ed153/index.html": "100644:082e7216abc78d5a",
+    "qr/8f945d26-1a5e-4ede-b20e-09235ad48e63.svg": "100644:e35fc69fb5bf5d56",
+    "image/assets/Pasted image 20260505161028.png": "100644:f9f23bd746df62bb017a9107a4fb17dc2418206cadd91dba525a54dde23f30d0",
+    "image/assets/9bc4a39b-9eee-486b-8242-196d2c91ec3c.png": "100644:42dcd78f7382a18713ca7c9674daee8d4e303f2102683fe0ebf072d93c36d9b4",
+    "writings/nyc-dharma/yoga-in-tibetan-temple/index.html": "100644:213f62d01393f31b",
+    "qr/summer-afternoon-nursery-rhyme.svg": "100644:97a0da92d67f7013",
+    "qr/5ac6015a-9bf7-4538-ad44-5a272a516060.svg": "100644:77f0d990d626aff0",
+    "writings/tornado-cash/index.html": "100644:4c2f09ab948a05b7",
+    "qr/b922129f-c2cd-42de-b86b-37ecc3a23c72.svg": "100644:d82af94b791ff6d8",
+    "assets/sketch.js": "100644:88828f9121cdde19ed86c2f8bc6499a666ab52a8039c493d0a174d795843937c",
+    "image/assets/319b595a-359e-4b54-8ce2-e9714ab78eee.png": "100644:0200459964a2e92ecc3afe7a2b5025bbc69fdb72d9023d10a7ab9305752d0af2",
+    "image/assets/aeba66d0-5681-48a9-ad7d-d66448f9ceb5.png": "100644:e873a6da8c3c26387c0c55ebe93977567d6f2b802a520e7967bf7aeeb87e8ae8",
+    "writings/an-experiment/index.html": "100644:5ea9ba8893bb955b",
+    "qr/f219159f-6218-4940-b05b-234cb5c9957e.svg": "100644:84ec65e8649413b0",
+    "writings/reviews/tools-for-thoughts/index.html": "100644:fd43ae1d635ac0c0",
+    "qr/img-3436.svg": "100644:71bc025f841f1b17",
+    "image/photography/dscf3193/index.html": "100644:49df24467b50b41b",
+    "qr/69863c74-93e9-4383-95e8-beb3ab7fd630.svg": "100644:627863a30235ab05",
+    "image/assets/3f5c3ada-ab96-4ea3-a23f-30b92059b4b8/index.html": "100644:0bdaffe9273ba896",
+    "image/photography/456cacf5-0dc1-48aa-8079-5bc7095a8294.jpg": "100644:f9e1804b65812fee9825cf0c09bf69865a6dc22be598a91289e8ae4f8f674d1f",
+    "qr/dscf3736.svg": "100644:a8894dd2a7ec14d6",
+    "writings/nyc-dharma-doors/maha-mantra-east-village/index.html": "100644:4a2830572e5c2423",
+    "writings/reviews/buddhism-in-chinese-history/index.html": "100644:8646cf5151cbba60",
+    "image/photography/4d1edfba-912f-4a5a-befd-7597be4f094e.jpg": "100644:12e1092706b171ab2e3d21f3364926f48d58d03917ccde43079cb8fabffe35eb",
+    "image/assets/giorgiodechirico/index.html": "100644:80a6d7dac2f2efb1",
+    "qr/6f695a93-d897-4c74-8d59-0126e6e65376.svg": "100644:5e26f9103d2890ca",
+    "image/assets/dab12562-f5b9-458b-a59c-e87f0af636bb/index.html": "100644:abd99d038a8720c1",
+    "qr/2ef1d558-bca4-4792-bb63-41ee12fa95ac.svg": "100644:961db8854c0c9115",
+    "qr/1570c6b2-f2f7-4036-bff9-47206b0ba878.svg": "100644:0de87e472d2b9066",
+    "writings/useless-journey/from-yosemite/index.html": "100644:06e252fcf734072e",
+    "assets/aimeili.placeholder.svg": "placeholder",
+    "qr/6f82af03-116b-4693-8f3c-45b127b4bba5.svg": "100644:3f249d0283c87dd9",
+    "qr/ba38a528-f989-4074-a98e-8275f65ab972.svg": "100644:d2c3d3978f03ed62",
+    "qr/yoga-in-tibetan-temple.svg": "100644:2cc23edb9223a736",
+    "qr/river-two-freedoms.svg": "100644:2871bdf6f3e1aed0",
+    "image/assets/pasted-image-20251107112851/index.html": "100644:d3ec46dd9c30db93",
+    "image/photography/cba34621-b690-465c-8a1d-7e36a19cbd60.jpg": "100644:9b16797cb540f52e73116803ac227533d755cca602edac12d6e8fefe97ca5536",
+    "interactive/ethnodrama-scale/index.html": "100644:20c542a47b1fd1b5",
+    "image/assets/319b595a-359e-4b54-8ce2-e9714ab78eee/index.html": "100644:a2a80aeb01f45ef5",
+    "image/photography/cba34621-b690-465c-8a1d-7e36a19cbd60/index.html": "100644:8b0b2b035156c530",
+    "qr/77697bad-74c6-402c-a0af-78249480bea1.svg": "100644:70ccdc643f5d3b03",
+    "video/index.html": "100644:8924d0ba0861d555",
+    "qr/galapagos.svg": "100644:57276e60c41e07e7",
+    "image/8c5f73fc-83f5-4894-933f-f8d9c4a75c6b": "100644:b93014d58e1fd9fab09e721ff23e3d475c40876b729cd2825f28e1d195776922",
+    "qr/distributed-copyright-ecosystem.svg": "100644:299bc47e286a7e51",
+    "interactive/.DS_Store": "100644:39f008bee9d8bdb68e71236aa7aa9943a477b0602b71ead0ba3cc404f9470fc2",
+    "image/assets/e010b991-cd10-451b-8c87-b56a76c00715/index.html": "100644:20b176d201498610",
+    "qr/21d10d29-2b36-44e2-ad96-13d6a34f4dc7.svg": "100644:ecd532ebb93ac45e",
+    "index.html": "100644:d6159f8498a3eac7",
+    ".DS_Store": "100644:67e6d623aba2d39bafce6b319d3436c9f748e4be25c5acb1b79cad638e6387cc",
+    "image/assets/0241ec32-59e6-4403-88d4-23b8d7fcc13a/index.html": "100644:03bdbd714aae6227",
+    "image/photography/6e6bc6ce-c973-4365-b9cd-1817e39a6b2e/index.html": "100644:9a52ebe536534aab",
+    "image/assets/0241ec32-59e6-4403-88d4-23b8d7fcc13a.png": "100644:e367aeebbf890b4390d4564808f018f3e08b82a539f3d45dac3826d3cb3c899d",
+    "image/photography/4ea17506-109f-47f9-b487-7105e562fa22.jpg": "100644:baeab5b35521cca1209df0af4530757834c7effd97e971f5ce2bb4f00bef17e5",
+    "qr/5be8bbef-c77c-431f-bc66-952ff9fd3976.svg": "100644:a9aa6da70cf2c65d",
+    "writings/nyc-dharma/dharma-doors-intro/index.html": "100644:a2ccf3213af209a8",
+    "image/photography/.DS_Store": "100644:199ac96040bae270986645c86a19ba15853d4666f45c981edfad56bcdcf12ac6",
+    "qr/the-machine-stops.svg": "100644:f9631aab9cd5adb7",
+    "video/ave-maria/index.html": "100644:976314e99b57c0ec",
+    "qr/01623ed6-fe07-4a1f-bc21-53eb30fbb315.svg": "100644:1812e949ef60c0dc",
+    "image/assets/286b63fcd4-0246-483c-b796-d6506cd2ad29/index.html": "100644:8cd801bc003e2c10",
+    "qr/ddos-and-decentralization.svg": "100644:8f36f0de74bd992d",
+    "image/photography/d152d42a-9b6f-4e1b-a3a9-633c8119d02d.jpg": "100644:ca7f8d2fc7a5da7f73a4ab185ed755ca9d6a76a38dbdaf7b0758ef5e0e3d8460",
+    "qr/pasted-image-20260505161028.svg": "100644:bae30d7bf6312bae",
+    "image/photography/fb806567-8690-4503-a095-d70ac98eb5e1/index.html": "100644:3f847a811ad7b6ec",
+    "writings/bluegrass-hammer/index.html": "100644:7b3d4514101d1df4",
+    "qr/pasted-image-20251107111040.svg": "100644:96175f9e2d1ac78b",
+    "assets/Yelanggu-Lusheng.placeholder.svg": "placeholder",
+    "image/photography/210a9339-30df-43ad-a37c-975b1aa5f01f.jpg": "100644:6a3abdabbc24e0faba7b29e0215479c10b14aa079d6806ca2a500f3e3d53cf48",
+    "image/assets/f1a05cc2-cd41-47ca-9b8c-e3ef68d98847/index.html": "100644:62b35f6adae684b2",
+    "qr/fb806567-8690-4503-a095-d70ac98eb5e1.svg": "100644:9c6e2e82683f8679",
+    "image/photography/1641eab1-17ff-4ced-99a7-367ae7cdc656/index.html": "100644:9108c0e9e2c565ed",
+    "image/assets/8c0e7411-7ccf-4d8e-8679-433432a4a73e.png": "100644:1127d9572930de9fb1f0e9b0da27965255302e82171b4b40126650f2b3a5b73b",
+    "qr/ead5ef5a-d140-4292-93cc-431d13a1a179.svg": "100644:84002332c4e7ccf3",
+    "writings/ipfs-developer-conference/index.html": "100644:89c8f4b3123bcb28",
+    "image/assets/77697bad-74c6-402c-a0af-78249480bea1/index.html": "100644:3b03f8abdc2d98a5",
+    "image/assets/b282ed55-f798-4a34-9a37-2a579bbbd954.gif": "100644:bdd1e710facfa2559ecc42cd0f62782fcd9c4d1d579ea2bf6f73d9f307ee5ef6",
+    "image/assets/286b63fcd4-0246-483c-b796-d6506cd2ad29.jpg": "100644:88db05498dd0cf8f96b07960a77ac02bf2480088a2633b5c125487524d3f5a9f",
+    "image/photography/3cdf3c4e-b48c-4b4c-993a-362683b016bc/index.html": "100644:3657fa3291a96f29",
+    "image/photography/b0cd85d4-e061-4bed-bdf4-01d7c64b5a35.jpg": "100644:3b36e9051afbf9036518e83c674ee0ee71e92a176a37260cf511a2de2b5c20c7",
+    "assets/b19a4f29-7fe9-4c53-aa90-d3203d9f355f.png": "100644:7b6dfd7d45971347c87b0453cb087b2cc2ee86eb0ed095e7aa0a677493d79fbc",
+    "qr/纽约禅.svg": "100644:11d995645bd2f468",
+    "image/photography/ec7c469d-21eb-4a1d-9b6d-0baec3b61b10/index.html": "100644:f5c7868a4dc6c769",
+    "qr/5d56497f-4ded-4fca-a35d-7df3515099f5.svg": "100644:9ef4768f66d0eb0c",
+    "image/photography/14435097-0a88-422e-abc7-cb59db6ed153.jpg": "100644:2d2803225f44cb9d0ab9f6670565e0aea37cb0dcf3b9f53be3cd6295ea6b5936",
+    "image/assets/df3f7032-9d6d-40b4-a975-80b97b94f3a4/index.html": "100644:2c655a11e628b27c",
+    "image/photography/a420cc12-8642-4286-b65f-9795cc5acd2f.jpg": "100644:2a9054a2a1456731748ed9175063b606a45a61e6f2488eb2e12d236e6482c2c1",
+    "image/assets/e08a87de-dc9e-415c-a14c-76996f970c6f.png": "100644:4f244d8065681daa81e05b6d3979dd56825aa06d3bffb68a4ffeb85e456b4be0",
+    "qr/dscf3193.svg": "100644:94a10dddd194d5df",
+    "qr/a2cdc4d9-9714-41c0-b2a2-73372d287d15.svg": "100644:03064fbe8072a3f8",
+    "image/assets/4ed2502b-8956-4de7-82fd-abdfc16ef809/index.html": "100644:e78821e789d9637d",
+    "image/assets/dab12562-f5b9-458b-a59c-e87f0af636bb.png": "100644:9525a4d2a47311bd26c465025bcf0f70ade76d95d13733d9bee914c96d128c13",
+    "image/assets/5d98072b-87ef-42a3-a8af-38a0acb244df/index.html": "100644:e417386e0fd4f16e",
+    "image/assets/2de0c228-36c8-47ec-9f22-000af45b1943.jpg": "100644:f857fa76a0a7e1eef16ed29bc6b05ac28bf1ab5f2268d3b750e5e1e289be235f",
+    "image/assets/e08a87de-dc9e-415c-a14c-76996f970c6f/index.html": "100644:6eef216060494d55",
+    "image/photography/1570c6b2-f2f7-4036-bff9-47206b0ba878.jpg": "100644:0a3550713290002ff6c3ac5d0042416800bb8fdc1dd043d8cc5cd6b3166e6759",
+    "image/photography/6f695a93-d897-4c74-8d59-0126e6e65376.jpg": "100644:bba8410b4435a1bd7a96c7724e8c6d440ab0dc67f513b8f9d47091164aacc69e",
+    "video/home-starts-in-kitchen/index.html": "100644:3348af6219f6674b",
+    "image/photography/9d13b990-5b91-4c42-a47a-bc9c24ea3fc9.jpg": "100644:1f7377c194e8dc689c60826a78bcb533413a395de9f23d16489b9cf546913ce4",
+    "qr/9cbeab27-1907-4ca7-a686-9346d70d6448.svg": "100644:d8b3c206ea6447d1",
+    "image/assets/7a3565bf-fb79-4901-87de-cbccaac4b19e/index.html": "100644:aabb2927b979dd09",
+    "image/photography/img-3436/index.html": "100644:8d1ac2023cc86abb",
+    "image/assets/8ef4fb5d-ae3f-4e10-826b-169b0762d555.png": "100644:9bcb91d9dfdc20fa431aeb2d68b4068a0e3bd474f9d11d28499e8d4f75877aff",
+    "image/assets/7e77b94f-4c82-4a34-a4d6-4fa9d4d0dac2/index.html": "100644:d165030bfccdd685",
+    "image/assets/dcf1562d-afba-4cb7-b60b-e198cd3cd7ce/index.html": "100644:43002f17ccdeebaf",
+    "qr/8c0e7411-7ccf-4d8e-8679-433432a4a73e.svg": "100644:52be9a698b6274d9",
+    "qr/6e6bc6ce-c973-4365-b9cd-1817e39a6b2e.svg": "100644:58e151f39e9c618e",
+    "qr/e7c80abe-cc39-42cf-9ea5-3b448bf84c11.svg": "100644:a9a16862fdd62983",
+    "image/photography/40d65e7d-35d5-4f9b-8a86-5aecd1d54a5d.jpg": "100644:ca56ec930a61f020d2b01218850e068ff527cedf9b5d8f1284e40d1eaa1a55f5",
+    "writings/the-machine-stops/index.html": "100644:6618cd75688aac65",
+    "image/photography/DSCF3910.jpg": "100644:64f40ca913f5122dee9a830de6ea5cdbbbf0af6aa8cf096fedad30a616cd57aa",
+    "qr/43a2045.svg": "100644:0f91208d33ad0923",
+    "image/photography/b922129f-c2cd-42de-b86b-37ecc3a23c72/index.html": "100644:5640c96568e45bfe",
+    "image/photography/2705fa19-c187-48a0-b809-034acdfd6e57/index.html": "100644:51d7d79e78a5eb59",
+    "qr/aeba66d0-5681-48a9-ad7d-d66448f9ceb5.svg": "100644:c51405ca51f31131",
+    "qr/harberger-tax-matters-tags.svg": "100644:73258f665989b2cd",
+    "qr/21dc76f6-f406-41e5-bc00-d3987dd1803c.svg": "100644:cc327afaa1953731",
+    "qr/fd5e607a-e94f-4f40-8412-dfcc745dcd5f.svg": "100644:86949cb71f14337c",
+    "qr/6f13bd9d-cada-4522-a173-69b1a679d4fc.svg": "100644:5df3f5e4c63c5aaf",
+    "qr/996a2021-b5c9-4a3b-b7c2-11ae232ea57b.svg": "100644:a82d4bda1de06d7a",
+    "image/assets/0b00c9f1-4423-40f8-99c6-adff0d8e8665/index.html": "100644:3424a8c5b68c2f7d",
+    "qr/40df0379-487b-4821-9a56-d3ea6621bed0.svg": "100644:7b3e877698c470f7",
+    "writings/harberger-tax-matters-tags/index.html": "100644:e85c76e854a3de40",
+    "image/assets/ef00feaa-34fe-49c2-ac17-f532f390ae7b/index.html": "100644:8a223560b4750ac1",
+    "image/assets/e010b991-cd10-451b-8c87-b56a76c00715.png": "100644:613a942c258e01c15095ca096103161b783caf62963a6c11ed806e3733265eee",
+    "image/assets/5b8621dd-6acb-4054-a0af-2ab53145aac7.webp": "100644:78e33ad49d4a587961901b0dafed9f7162175333df24694339859a2debcda3a6",
+    "image/photography/5695cbe9-5d9b-4d7e-8d6c-6d9040f2999a/index.html": "100644:aee6479b6070f284",
+    "qr/43a7285.svg": "100644:c41b83cae29bf229",
+    "image/photography/2ef1d558-bca4-4792-bb63-41ee12fa95ac.jpg": "100644:6917d516c83338a7e6e138063bd03fc50daaa28198bade215fa934e423bdd562",
+    "image/photography/01f4bfc7-03d2-472a-8111-8714177618c0/index.html": "100644:7303fd40286ca47a",
+    "image/assets/21dc76f6-f406-41e5-bc00-d3987dd1803c.png": "100644:b0e1553021155bf1eab4930c46938bab512f99afa2664319db3aa5b0892d8684",
+    "image/assets/8f945d26-1a5e-4ede-b20e-09235ad48e63.png": "100644:8a4a1eb488c35185323802c0030e429a904dc236e57be3052dfd7732abe68783",
+    "image/assets/5ac6015a-9bf7-4538-ad44-5a272a516060.png": "100644:52f9778ec0a665053e95551faa759e1f569a5943eabdf6d4a74749083af78bd8",
+    "image/photography/index.html": "100644:ad1db725bcd4d45a",
+    "qr/d7de54bf-4272-42ed-ac8e-2d7cd91988ad.svg": "100644:6b04e56bcb7a7204",
+    "qr/tornado-cash.svg": "100644:9b80aca89b581e40",
+    "image/assets/79b0222c-e496-474d-80c1-f212b89571f8.jpg": "100644:b3b37bd605b77b1e2a471926d99becc0c046cf85b9cbfd04d1a14a439a6f9534",
+    "qr/sertar.svg": "100644:08683475984e7f06",
+    "image/assets/5ac6015a-9bf7-4538-ad44-5a272a516060/index.html": "100644:8f6d28725a640bc9",
+    "image/photography/43a2045/index.html": "100644:d5b8c625bb11a56a",
+    "qr/79b0222c-e496-474d-80c1-f212b89571f8.svg": "100644:230607eca2cc9e78",
+    "image/assets/996a2021-b5c9-4a3b-b7c2-11ae232ea57b.jpg": "100644:9fda2357f0fc33530ad3d81418cf73124687f0bfbeaf378d9064fdd93422c0f4",
+    "feed.xml": "100644:38cef025225be787",
+    "image/assets/21d10d29-2b36-44e2-ad96-13d6a34f4dc7/index.html": "100644:7ca7a235e281b6cc",
+    "image/photography/6e6bc6ce-c973-4365-b9cd-1817e39a6b2e.jpg": "100644:cf3a4d70744ca0852b8779bd948f638e1c722d5ee300b4d6618eea7dbfc2b865",
+    "writings/distributed-web/decentralized-social-game-theory/index.html": "100644:e162ff6a0e6d872b",
+    "image/assets/b282ed55-f798-4a34-9a37-2a579bbbd954/index.html": "100644:9388a61bc86ead86",
+    "image/photography/79ac64e6-b6c4-487d-babf-d01c2173cb92.jpg": "100644:f971dd58bd53f90f7e0053d1ec53afbef9bbe27b560de31f691442840acea69c",
+    "image/assets/63605a50-ec2d-482e-b4fc-b64a6c9da502.png": "100644:87f482451e1e0a33472b87757820076a61f50825133f67486b340bc97b301e1a",
+    "qr/210a9339-30df-43ad-a37c-975b1aa5f01f.svg": "100644:cf08bf3e9e77e639",
+    "writings/distributed-web/next-gen-open-internet/index.html": "100644:7eb25a3272449d3a",
+    "image/photography/547a4a09-0612-491d-a83d-2f805079b2d8/index.html": "100644:dbcd39d088240f9a",
+    "image/photography/19d19851-1a67-41dc-88e9-d7b6f3539ca2/index.html": "100644:ceaa465eeb6f999b",
+    "image/photography/f829eb81-633c-4bd1-b30a-fb607389fc66.jpg": "100644:8dfe8d3bbd23da284eab8d13121e16b170942c8d0dc719d1f45d965e5c6d318f",
+    "qr/3fcefcd6-8a8c-4bfb-9935-d99a568bb019.svg": "100644:48931a0ac78caaa4",
+    "image/assets/01623ed6-fe07-4a1f-bc21-53eb30fbb315.gif": "100644:a8cd679d07da2cc256d78c7739845ba59fcbec7941fccfb8df3f1699676c7242",
+    "qr/woodstock-to-integral-yoga.svg": "100644:975a2f1c47325654",
+    "image/assets/996a2021-b5c9-4a3b-b7c2-11ae232ea57b/index.html": "100644:8845998e4571fde5",
+    ".gitignore": "100644:c06de52e947205bdb0c01f3f36c6a39a5cc421c27561b8631cf34f6dcd83a783",
+    "image/assets/de80-43f1-a1a2-ce2b1403a3e2/index.html": "100644:7a66484613fd88bb",
+    "image/assets/858e7b46-ef79-4205-9084-95f9141fa0d7/index.html": "100644:e8351efe3b8cbe7a",
+    "llms.txt": "100644:7d04d2ea964e3912",
+    "writings/nyc-dharma/纽约禅/index.html": "100644:0c72e739b28699fe",
+    "image/assets/d7de54bf-4272-42ed-ac8e-2d7cd91988ad/index.html": "100644:362aff8cc27c9654",
+    "image/photography/01f4bfc7-03d2-472a-8111-8714177618c0.jpg": "100644:c1afd21d9fd394c1d93d80c0e387fb09419f76d2e6c47bf1570946545c3d6a09",
+    "assets/scale-compare-recording-480.gif": "100644:f05fc8bfddfdb9ae32638e3d058b8b8150a75f6ffff63328db90922a8a0cb988",
+    "image/photography/9cbeab27-1907-4ca7-a686-9346d70d6448.jpg": "100644:c298071337c5992556242999d6de5fa67b8549fb58d6eaa7acf698744bf8754c",
+    "image/photography/f42f7f50-d00c-4225-8fff-6bc3f684021c.jpg": "100644:30d15937e2fb7a2096949ef8588ebdfebfaac75e5bbb0c813ad6e76d15c80172",
+    "qr/abfc71fe-7fec-45f9-926d-7e1009eb0320.svg": "100644:7ceecc1b89cb63dc",
+    "qr/4ea17506-109f-47f9-b487-7105e562fa22.svg": "100644:b0c809cdcbb22b3a",
+    "qr/home-starts-in-kitchen.svg": "100644:b2e9f8a450ab499e",
+    "image/photography/2c8e94db-1a15-4754-8da2-9f36cc37e3a6/index.html": "100644:8fa6d4910c1639dd",
+    "writings/useless-journey/the-real-journey/index.html": "100644:88447e3d0f5e5a8d",
+    "image/assets/d0505029-6be1-4875-aa7d-666bc2e6e372/index.html": "100644:f4eeedd9b636dc99",
+    "qr/01f4bfc7-03d2-472a-8111-8714177618c0.svg": "100644:0a968f9a4ec104fc",
+    "image/assets/GiorgioDeChirico.jpg": "100644:952f329ec0a753a30f317ac79a7f4e49241d5f6d8bcaf85c2c13964fbde3d022",
+    "image/assets/5d56497f-4ded-4fca-a35d-7df3515099f5.webp": "100644:470e5bc06a304d938087f246d0660440b49ee53067ea63e74a639bc6dde0cd97",
+    "image/assets/77697bad-74c6-402c-a0af-78249480bea1.jpg": "100644:5b2129137e32adc7967d6238cad4305de6a339e9370ba5dfbb7bb036bbf35819",
+    "qr/ab17ba7b-58cb-4cf4-8169-825fdfe900fa.svg": "100644:06a0afea89894364",
+    "image/assets/06b14cfc-5e3c-4e35-b297-65d58722aabd.gif": "100644:d2bbe7cc2174d3b03879e810cc305014dfa40ad60760bc3d106e4057a3883e62",
+    "qr/img-3428.svg": "100644:c1a35e83b20a6bb3",
+    "image/photography/fb806567-8690-4503-a095-d70ac98eb5e1.jpg": "100644:aa02f52c680e99d9cf70d1ecc4e185858e5308e912b5b1ba7525fc68ad61bbe1",
+    "image/assets/9bc4a39b-9eee-486b-8242-196d2c91ec3c/index.html": "100644:e81ccbdf09874da9",
+    "qr/020c1a3f-91c8-4e1e-acd0-b2c6578f2692.svg": "100644:2d2aabc1e9cd8301",
+    "qr/7f5c2791-3674-4ed4-befe-f2cce578b958.svg": "100644:586dc97c11ce25be",
+    "qr/a-city-annihilated.svg": "100644:7192e25ce821cef4",
+    "image/photography/91eff121-2e68-4251-8160-9c04cefcdf68.jpg": "100644:4b15a44b44fb131d278052065148712d1b8c4021831981c31f3fff23cbfcf97d",
+    "image/assets/21dc76f6-f406-41e5-bc00-d3987dd1803c/index.html": "100644:870fb2d4d38757aa",
+    "qr/cba4433e-edbd-4573-82c4-feba8368f24a.svg": "100644:17a00c942bd284df",
+    "image/assets/0575e14f-38cd-4d00-92ff-2c6bf41e7085/index.html": "100644:ad09f2fbb9cdf0cc",
+    "qr/b0cd85d4-e061-4bed-bdf4-01d7c64b5a35.svg": "100644:9b30506b30866d71",
+    "image/assets/a2f8dc63-ec4b-488a-81aa-34772550ff98/index.html": "100644:235fe5f2da41e41e",
+    "image/photography/6f695a93-d897-4c74-8d59-0126e6e65376/index.html": "100644:51a4bc8b0ec4dea5",
+    "assets/Home-starts-from-the-kitchen-sd-cn.placeholder.svg": "placeholder",
+    "image/assets/3fcefcd6-8a8c-4bfb-9935-d99a568bb019.jpg": "100644:1f6379754e76a5b96bceecc603492bc343f280edb8389b3b78194edac12b50c9",
+    "writings/travel/index.html": "100644:49ce8e79ca6cf279",
+    "qr/de80-43f1-a1a2-ce2b1403a3e2.svg": "100644:1c81d291ea1fb4a2",
+    "qr/7a3565bf-fb79-4901-87de-cbccaac4b19e.svg": "100644:1ae4ecbd4142b647",
+    "qr/38e5f9cb-6dce-4e4d-9481-92f4ded85e2c.svg": "100644:277e15694f2ea18b",
+    "image/assets/8dbe8743-38e6-44ad-9652-432b073be71a/index.html": "100644:18b0d3484491f90e",
+    "image/assets/ead5ef5a-d140-4292-93cc-431d13a1a179.png": "100644:d761bc4b7312232fa0e7191dd0a3f833a7aec1997af05f01e754da3a26f25237",
+    "image/photography/8b194555-57fc-48d7-b448-05fbc4e46862.jpg": "100644:1e18eaad2858f224c38f3c6847806e0271238c340df9c2586b3953f03cebc2a4",
+    "image/photography/c929f3f9-f654-4ce5-a9a7-7358a6caebc3.jpg": "100644:a384fd7b84254c19db1bc59e8998fb3f62377076f823fc176cfade99258c3450",
+    "image/assets/79b0222c-e496-474d-80c1-f212b89571f8/index.html": "100644:3265b8e111a7aa3d",
+    "qr/df3f7032-9d6d-40b4-a975-80b97b94f3a4.svg": "100644:76eafd2861f0dda7",
+    "image/photography/dscf3263/index.html": "100644:c4f65599b7b68c40",
+    "image/photography/82a3a2a3-5e54-4310-ac04-7776bcea1026.jpg": "100644:832df12a8c448a1025518323df82d6d81922dd26affb273ecc09f64db3d3096c",
+    "qr/2705fa19-c187-48a0-b809-034acdfd6e57.svg": "100644:54f2a871930b3ff5",
+    "image/photography/DSCF3193.jpg": "100644:1216e2fdbd60f4e8123054cd180b0e170c0f0099add7817bf10855f1e0264f37",
+    "image/photography/6f13bd9d-cada-4522-a173-69b1a679d4fc.jpg": "100644:d5c00aa97a52d9fd19854e8782cdab2fecfc13eab87fbfe298159c5b9c641e11",
+    "qr/blue-conch.svg": "100644:fb7ec644b2d91f9e",
+    "qr/8ef4fb5d-ae3f-4e10-826b-169b0762d555.svg": "100644:2715cee70e02edb9",
+    "qr/cbe4ed3b-7102-4eee-af28-6b0465e06243.svg": "100644:66d8342f0c5d97c9",
+    "image/assets/Pasted image 20251107112851.png": "100644:1127d9572930de9fb1f0e9b0da27965255302e82171b4b40126650f2b3a5b73b",
+    "image/photography/IMG_3428.jpeg": "100644:52a55ad9a9521b10ac1907a769e27f521aed6381129ea4fc2e7e1af68ecc8079",
+    "image/assets/ab17ba7b-58cb-4cf4-8169-825fdfe900fa/index.html": "100644:c141d142f32d08ca",
+    "assets/particle-universe.html": "100644:f1cfd91e16f5e39718d546759ba7a68490c0112eedd6632d40683b51c85558ec",
+    "image/assets/4ed2502b-8956-4de7-82fd-abdfc16ef809.png": "100644:4f244d8065681daa81e05b6d3979dd56825aa06d3bffb68a4ffeb85e456b4be0",
+    "image/photography/c929f3f9-f654-4ce5-a9a7-7358a6caebc3/index.html": "100644:f94c8ea7faa3991f",
+    "image/assets/bd9fe5ad-59d0-4d73-9c66-db0faa2dfff2/index.html": "100644:e3f89ad55b04d593",
+    "image/photography/79ac64e6-b6c4-487d-babf-d01c2173cb92/index.html": "100644:61178bceedbc93aa",
+    "image/assets/020c1a3f-91c8-4e1e-acd0-b2c6578f2692/index.html": "100644:8db7f307ea3d0f0a",
+    "qr/4ed2502b-8956-4de7-82fd-abdfc16ef809.svg": "100644:5a64e69931c5264a",
+    "qr/fake-news-and-markets.svg": "100644:7a4636c68daea5af",
+    "image/photography/a420cc12-8642-4286-b65f-9795cc5acd2f/index.html": "100644:b342cc01bd5ccf6c",
+    "image/assets/5d8aaa4a-6a23-4644-9531-e2b538e3e57d.png": "100644:18d3fc59ec233bc413dc15ef654b34ccbbc602c4a8ee1274ac27589c91c30263",
+    "qr/cost-of-civilization.svg": "100644:03066741a6601254",
+    "qr/links.svg": "100644:66353ebd74e6470e",
+    "qr/c928d984-5762-4592-9e78-a22bd02dc91e.svg": "100644:a192157474ecc1b5",
+    "image/photography/_43A7285.jpg": "100644:3b58b8fed93cec812d3f541d6fdab353cec0b0ea5fbf4b44353335aa8aa17bc9",
+    "qr/f829eb81-633c-4bd1-b30a-fb607389fc66.svg": "100644:c1974d299942e7c2",
+    "qr/56d8a89b-3368-4dc7-9209-744955530387.svg": "100644:19eba4c9ac66e24b",
+    "qr/5a123fe3-67eb-437e-a275-14a215178de1.svg": "100644:0588fef6d0a301b8",
+    "image/assets/dcf1562d-afba-4cb7-b60b-e198cd3cd7ce.jpg": "100644:6f1e91ec60a7753d4efe249ae2d03c79b8a7cb0bccaa944631a64f0a0e1f6e79",
+    "image/assets/7f5c2791-3674-4ed4-befe-f2cce578b958/index.html": "100644:3b7162e52f54a2ac",
+    "image/assets/pasted-image-20260505161028/index.html": "100644:44cea683058f7a2c",
+    "qr/c2206746-6708-43ca-a682-26916f73d585.svg": "100644:3410f04fa2dad432",
+    "qr/5b8621dd-6acb-4054-a0af-2ab53145aac7.svg": "100644:0efe3fa32c746bc0",
+    "image/assets/c3588359-7d4d-48ef-8664-2c9b6b635368.gif": "100644:fb7d71f70bdc774fd0d4f2c51d9b74091a29bb6f054b280e83cb534406f55dde",
+    "qr/bluegrass-hammer.svg": "100644:d802a05e4c1b674d",
+    "image/assets/38e5f9cb-6dce-4e4d-9481-92f4ded85e2c.png": "100644:64057d26de6da58ffc3dbd4d462d310774b4bfae27bcd46ebe0ec61793e99a3d",
+    "qr/dcf1562d-afba-4cb7-b60b-e198cd3cd7ce.svg": "100644:534c00553cfc9b94",
+    "image/assets/06b14cfc-5e3c-4e35-b297-65d58722aabd/index.html": "100644:a631397cb0669a6f",
+    "qr/2c8e94db-1a15-4754-8da2-9f36cc37e3a6.svg": "100644:6cc32a09e90aa7c1",
+    "qr/7e77b94f-4c82-4a34-a4d6-4fa9d4d0dac2.svg": "100644:08d2e6752fede169",
+    "qr/lusheng-yelang.svg": "100644:cf525c10f0411093",
+    "qr/ethnodrama-scale.svg": "100644:6215e04d4785a516",
+    "image/photography/d152d42a-9b6f-4e1b-a3a9-633c8119d02d/index.html": "100644:6e60a4ca7fc0b592",
+    "image/assets/d0505029-6be1-4875-aa7d-666bc2e6e372.jpg": "100644:6152d3526d0ca3d6ccdbfb2da7089c69aec43a2d179d98abedc2d6313c70e0a1",
+    "writings/wait/index.html": "100644:d1ee4a2012d01da3",
+    "image/assets/df3f7032-9d6d-40b4-a975-80b97b94f3a4.jpg": "100644:e949f0ce1b5aae58612016dafbbc3db4c84b245bdb9e9dc866c05ad084b22225",
+    "image/photography/5be8bbef-c77c-431f-bc66-952ff9fd3976.jpg": "100644:7d77d8974d9c519b027c8637afb2c56ecb0aa177e6c33c2e0ec214dbc800307c",
+    "image/assets/e7c80abe-cc39-42cf-9ea5-3b448bf84c11/index.html": "100644:23ab4bbe1bf1ec0d",
+    "image/assets/8c0e7411-7ccf-4d8e-8679-433432a4a73e/index.html": "100644:41714dbddc770367",
+    "qr/0a88-422e-abc7-cb59db6ed153.svg": "100644:fde9fea339bffbef",
+    "image/assets/f219159f-6218-4940-b05b-234cb5c9957e/index.html": "100644:97338fe8ebfc63ed",
+    "qr/b282ed55-f798-4a34-9a37-2a579bbbd954.svg": "100644:97deb54e3796460b",
+    "qr/456cacf5-0dc1-48aa-8079-5bc7095a8294.svg": "100644:15c320774bb5b625",
+    "assets/scale-compare.html": "100644:255c5378e16f2d50786a7c59499cd9024cbe439d53aa509859cde037e197a87f",
+    "qr/ave-maria.svg": "100644:58d59578175531df",
+    "image/assets/5b8621dd-6acb-4054-a0af-2ab53145aac7/index.html": "100644:ac780f2d31a8579d",
+    "image/photography/fd5e607a-e94f-4f40-8412-dfcc745dcd5f/index.html": "100644:f6488a041cd76588",
+    "qr/ef00feaa-34fe-49c2-ac17-f532f390ae7b.svg": "100644:2fdcc623e5b49d47",
+    "image/photography/f829eb81-633c-4bd1-b30a-fb607389fc66/index.html": "100644:16271adcb6d2de7c",
+    "links/index.html": "100644:ebd9d6d190a02ce2",
+    "qr/bd9fe5ad-59d0-4d73-9c66-db0faa2dfff2.svg": "100644:b64bd2774bdca1d6"
   },
   "sources": {
-    "图片/配图/d0505029-6be1-4875-aa7d-666bc2e6e372.jpg": {
-      "hash": "6152d3526d0ca3d6ccdbfb2da7089c69aec43a2d179d98abedc2d6313c70e0a1",
-      "size": 852068,
-      "mtime": 1770738558
-    },
-    "图片/摄影/6f82af03-116b-4693-8f3c-45b127b4bba5.jpg": {
-      "hash": "963d2b9f3068d7cbb71c11aa80561588ca413c27ee7aa5fc32acb033bba339cb",
-      "size": 154184,
-      "mtime": 1770738557
-    },
-    "图片/摄影/79ac64e6-b6c4-487d-babf-d01c2173cb92.jpg": {
-      "hash": "f971dd58bd53f90f7e0053d1ec53afbef9bbe27b560de31f691442840acea69c",
-      "size": 729287,
-      "mtime": 1770738573
-    },
-    "图片/配图/8f945d26-1a5e-4ede-b20e-09235ad48e63.png": {
-      "hash": "8a4a1eb488c35185323802c0030e429a904dc236e57be3052dfd7732abe68783",
-      "size": 138479,
-      "mtime": 1770738556
-    },
-    "图片/配图/bd9fe5ad-59d0-4d73-9c66-db0faa2dfff2.png": {
-      "hash": "bdbe329268028bbcc1a31753fd17eb11616f58262559db63c4bc38f167affc8d",
-      "size": 753446,
-      "mtime": 1770738580
-    },
-    "图片/配图/286b63fcd4-0246-483c-b796-d6506cd2ad29.jpg": {
-      "hash": "88db05498dd0cf8f96b07960a77ac02bf2480088a2633b5c125487524d3f5a9f",
-      "size": 11756,
-      "mtime": 1773677652
-    },
-    "图片/配图/Pasted image 20251107112851.png": {
-      "hash": "1127d9572930de9fb1f0e9b0da27965255302e82171b4b40126650f2b3a5b73b",
-      "size": 3781801,
-      "mtime": 1762532931
-    },
-    "图片/配图/7f5c2791-3674-4ed4-befe-f2cce578b958.jpg": {
-      "hash": "f90ac25c8db32fc37cf5a65492f39886e82735c0fb46041f397c12b85e020ab0",
-      "size": 99311,
-      "mtime": 1770738582
-    },
-    "图片/配图/0cc26cd1-8c40-4848-b4aa-cdba18bdf0eb.gif": {
-      "hash": "28a7eebcf676c27b42acccf79aaa1ff7163eec683b1241ff42a628e909e85ea9",
-      "size": 8635630,
-      "mtime": 1770738575
-    },
-    "图片/8c5f73fc-83f5-4894-933f-f8d9c4a75c6b": {
-      "hash": "b93014d58e1fd9fab09e721ff23e3d475c40876b729cd2825f28e1d195776922",
-      "size": 43698,
-      "mtime": 1770738559
-    },
-    "图片/摄影/DSCF3263.jpg": {
-      "hash": "4e63b949b7cdbfcdd211ff21bac0445e2e78758e53bea7ec64c6214ebeff37a0",
-      "size": 8799779,
-      "mtime": 1762531947
-    },
-    "图片/摄影/2705fa19-c187-48a0-b809-034acdfd6e57.jpg": {
-      "hash": "e6c9e5250607b84114c2b4b1e59f4598da36e29e1ecfbf43d3198241f20fa9c1",
-      "size": 323734,
-      "mtime": 1770738549
-    },
-    "图片/配图/0575e14f-38cd-4d00-92ff-2c6bf41e7085.gif": {
-      "hash": "2a1e0c68ad6bf6a261579e7fab0ec1b7fbe172aee0b0df3c452e3e06f89d2ef7",
-      "size": 4711,
-      "mtime": 1770738578
-    },
-    "图片/摄影/4ad7df08-1169-4e65-a882-a7f370867d95.jpg": {
-      "hash": "6f5f1308db1df555b7ebf96028e8eb953bce871ba085bc9f51d97859441d64c5",
-      "size": 214343,
-      "mtime": 1770738572
-    },
-    "图片/配图/dab12562-f5b9-458b-a59c-e87f0af636bb.png": {
-      "hash": "9525a4d2a47311bd26c465025bcf0f70ade76d95d13733d9bee914c96d128c13",
-      "size": 156262,
-      "mtime": 1770738569
-    },
-    "assets/scale-compare-recording.gif": {
-      "hash": "e009277a0006420f9191a54e5a585cc125377c02b20bc40365c5c748bcea52e0",
-      "size": 3905803,
-      "mtime": 1777490432
-    },
-    "assets/scale-compare-recording-720-12fps.gif": {
-      "hash": "f1ddd0fa45d938c0ce6fb1001c01d535410d4255a9148d5068caf5ce4f768c19",
-      "size": 1681238,
-      "mtime": 1777492865
-    },
-    "图片/配图/8dbe8743-38e6-44ad-9652-432b073be71a.png": {
-      "hash": "cc7e17cec868e0bd81f389f89b53e6da26e012dde398a2a786db148a9d834c4e",
-      "size": 1642466,
-      "mtime": 1770738565
-    },
-    "图片/摄影/6f13bd9d-cada-4522-a173-69b1a679d4fc.jpg": {
-      "hash": "d5c00aa97a52d9fd19854e8782cdab2fecfc13eab87fbfe298159c5b9c641e11",
-      "size": 299105,
-      "mtime": 1770738550
-    },
-    "图片/摄影/6e6bc6ce-c973-4365-b9cd-1817e39a6b2e.jpg": {
-      "hash": "cf3a4d70744ca0852b8779bd948f638e1c722d5ee300b4d6618eea7dbfc2b865",
-      "size": 208460,
-      "mtime": 1770738552
-    },
-    "图片/摄影/d9512f2d-fdcf-4a22-b1d5-340f74ddedae.jpg": {
-      "hash": "cde26afa9714c70cfbb657cc6edcf2332a115f6462545f8a08ac0f76afc7f1fb",
-      "size": 194823,
-      "mtime": 1770738570
-    },
-    "图片/摄影/IMG_3428.jpeg": {
-      "hash": "52a55ad9a9521b10ac1907a769e27f521aed6381129ea4fc2e7e1af68ecc8079",
-      "size": 3926901,
-      "mtime": 1762265298
-    },
-    "图片/配图/21dc76f6-f406-41e5-bc00-d3987dd1803c.png": {
-      "hash": "b0e1553021155bf1eab4930c46938bab512f99afa2664319db3aa5b0892d8684",
-      "size": 39375,
-      "mtime": 1770738578
-    },
-    "图片/摄影/6f695a93-d897-4c74-8d59-0126e6e65376.jpg": {
-      "hash": "bba8410b4435a1bd7a96c7724e8c6d440ab0dc67f513b8f9d47091164aacc69e",
-      "size": 123132,
-      "mtime": 1770738561
-    },
     "图片/配图/5b8621dd-6acb-4054-a0af-2ab53145aac7.webp": {
       "hash": "78e33ad49d4a587961901b0dafed9f7162175333df24694339859a2debcda3a6",
       "size": 27876,
       "mtime": 1770738570
-    },
-    "图片/摄影/b0cd85d4-e061-4bed-bdf4-01d7c64b5a35.jpg": {
-      "hash": "3b36e9051afbf9036518e83c674ee0ee71e92a176a37260cf511a2de2b5c20c7",
-      "size": 648999,
-      "mtime": 1770738550
-    },
-    "图片/摄影/56d8a89b-3368-4dc7-9209-744955530387.jpg": {
-      "hash": "199a8a02af1be7658d7b75067047375654c7676563e5181895d02875cdafccf0",
-      "size": 40628,
-      "mtime": 1770738585
-    },
-    "图片/摄影/82a3a2a3-5e54-4310-ac04-7776bcea1026.jpg": {
-      "hash": "832df12a8c448a1025518323df82d6d81922dd26affb273ecc09f64db3d3096c",
-      "size": 240426,
-      "mtime": 1770738567
-    },
-    "图片/配图/38e5f9cb-6dce-4e4d-9481-92f4ded85e2c.png": {
-      "hash": "64057d26de6da58ffc3dbd4d462d310774b4bfae27bcd46ebe0ec61793e99a3d",
-      "size": 101845,
-      "mtime": 1770738562
-    },
-    "图片/摄影/a2cdc4d9-9714-41c0-b2a2-73372d287d15.jpg": {
-      "hash": "d31d6ff1463a3947654a91630e44946d2226f1f5bee489d221778595abc1d83a",
-      "size": 105936,
-      "mtime": 1770738584
-    },
-    "图片/摄影/d152d42a-9b6f-4e1b-a3a9-633c8119d02d.jpg": {
-      "hash": "ca7f8d2fc7a5da7f73a4ab185ed755ca9d6a76a38dbdaf7b0758ef5e0e3d8460",
-      "size": 154221,
-      "mtime": 1770738553
-    },
-    "图片/配图/cb499502-8100-4b80-843b-c89b319e41ee.png": {
-      "hash": "2790b5312adaace6dc3ac27a97b6bcd56c3ef27c53187838762ae8ec4a9a6178",
-      "size": 220569,
-      "mtime": 1770738559
-    },
-    "图片/摄影/c929f3f9-f654-4ce5-a9a7-7358a6caebc3.jpg": {
-      "hash": "a384fd7b84254c19db1bc59e8998fb3f62377076f823fc176cfade99258c3450",
-      "size": 439553,
-      "mtime": 1770738550
-    },
-    "assets/particle-universe.html": {
-      "hash": "f1cfd91e16f5e39718d546759ba7a68490c0112eedd6632d40683b51c85558ec",
-      "size": 4716,
-      "mtime": 1770763831
-    },
-    "图片/摄影/9d13b990-5b91-4c42-a47a-bc9c24ea3fc9.jpg": {
-      "hash": "1f7377c194e8dc689c60826a78bcb533413a395de9f23d16489b9cf546913ce4",
-      "size": 122506,
-      "mtime": 1770738546
-    },
-    "图片/配图/020c1a3f-91c8-4e1e-acd0-b2c6578f2692.png": {
-      "hash": "9327d2f2c6b8f185df0a99f522db23c01fc7c20911f44c93e2121866210b0e2d",
-      "size": 696984,
-      "mtime": 1770738573
-    },
-    "图片/摄影/b922129f-c2cd-42de-b86b-37ecc3a23c72.png": {
-      "hash": "05e861ae6de4c0c0ec5a6b7b80865b6b75800d45e1b2fc2ccac12ba22b874e94",
-      "size": 3457563,
-      "mtime": 1770738546
-    },
-    "图片/配图/06b14cfc-5e3c-4e35-b297-65d58722aabd.gif": {
-      "hash": "d2bbe7cc2174d3b03879e810cc305014dfa40ad60760bc3d106e4057a3883e62",
-      "size": 9485880,
-      "mtime": 1770738581
-    },
-    "图片/摄影/547a4a09-0612-491d-a83d-2f805079b2d8.jpg": {
-      "hash": "cc004b1f2088f06790df1e67b3a304bb5585c29e1d13821910f3240e03f83fae",
-      "size": 235426,
-      "mtime": 1770738568
-    },
-    "图片/摄影/fb806567-8690-4503-a095-d70ac98eb5e1.jpg": {
-      "hash": "aa02f52c680e99d9cf70d1ecc4e185858e5308e912b5b1ba7525fc68ad61bbe1",
-      "size": 230448,
-      "mtime": 1770738565
-    },
-    "图片/配图/6a35828c-9138-4aaf-af2a-89de087434a3.png": {
-      "hash": "f88141a4de62316ac8bbe0e18bc861207b7b8afad16f0e365492e7f6dc1670cb",
-      "size": 82824,
-      "mtime": 1770738563
-    },
-    "图片/配图/9192d8c1-5417-4944-bbda-75d441b12a11.gif": {
-      "hash": "4f3e07030acfc5b82156f339f723951002f5e8074b9778c802c2a76e1fee6a0c",
-      "size": 8772774,
-      "mtime": 1770738569
-    },
-    "图片/摄影/f42f7f50-d00c-4225-8fff-6bc3f684021c.jpg": {
-      "hash": "30d15937e2fb7a2096949ef8588ebdfebfaac75e5bbb0c813ad6e76d15c80172",
-      "size": 89260,
-      "mtime": 1770738554
-    },
-    "图片/配图/ab17ba7b-58cb-4cf4-8169-825fdfe900fa.png": {
-      "hash": "03e8e04ccac1262153c7fa7355dd30731974aa14e4a45cb3fed20a44ecaa2a88",
-      "size": 299386,
-      "mtime": 1770738555
-    },
-    "图片/摄影/DSCF3910.jpg": {
-      "hash": "64f40ca913f5122dee9a830de6ea5cdbbbf0af6aa8cf096fedad30a616cd57aa",
-      "size": 10168542,
-      "mtime": 1764598450
-    },
-    "图片/配图/5d98072b-87ef-42a3-a8af-38a0acb244df.gif": {
-      "hash": "bcc8cd7dc2abd7ace2a092f1681ed8103f265e6955f743c0cd0db7535a1dbd6f",
-      "size": 1287239,
-      "mtime": 1770738557
-    },
-    "图片/配图/69863c74-93e9-4383-95e8-beb3ab7fd630.png": {
-      "hash": "4f335d4816bd5b1448fd20f2321fe784e31fe6dae682cdc9daf7e5abd2e715b3",
-      "size": 149737,
-      "mtime": 1770738579
-    },
-    "图片/配图/99cdfdfc-b9fe-4dc0-9a4f-af1dbc711ffd.jpg": {
-      "hash": "8833f7aade356ad0955602a267b67357f3a53422fa17a9a376b9feeeea269e29",
-      "size": 77302,
-      "mtime": 1770738581
-    },
-    "图片/摄影/40d65e7d-35d5-4f9b-8a86-5aecd1d54a5d.jpg": {
-      "hash": "ca56ec930a61f020d2b01218850e068ff527cedf9b5d8f1284e40d1eaa1a55f5",
-      "size": 196592,
-      "mtime": 1770738554
     },
     "assets/scale-compare-recording-600.gif": {
       "hash": "966e7ce1431423d87adc06c8acd8b6f9c05aa1eee201f296e978fc312876f957",
       "size": 908281,
       "mtime": 1777492870
     },
-    "图片/配图/77697bad-74c6-402c-a0af-78249480bea1.jpg": {
-      "hash": "5b2129137e32adc7967d6238cad4305de6a339e9370ba5dfbb7bb036bbf35819",
-      "size": 44463,
-      "mtime": 1770738569
+    "图片/配图/df3f7032-9d6d-40b4-a975-80b97b94f3a4.jpg": {
+      "hash": "e949f0ce1b5aae58612016dafbbc3db4c84b245bdb9e9dc866c05ad084b22225",
+      "size": 214009,
+      "mtime": 1770738583
     },
-    "图片/配图/0241ec32-59e6-4403-88d4-23b8d7fcc13a.png": {
-      "hash": "e367aeebbf890b4390d4564808f018f3e08b82a539f3d45dac3826d3cb3c899d",
-      "size": 705192,
-      "mtime": 1770738560
+    "图片/配图/Pasted image 20251107111149.png": {
+      "hash": "86f8efa89155d18828124e17d4c4dff0cf35b434835da89e7cb9d61d4928f807",
+      "size": 316792,
+      "mtime": 1762531909
+    },
+    "图片/配图/99cdfdfc-b9fe-4dc0-9a4f-af1dbc711ffd.jpg": {
+      "hash": "8833f7aade356ad0955602a267b67357f3a53422fa17a9a376b9feeeea269e29",
+      "size": 77302,
+      "mtime": 1770738581
+    },
+    "图片/摄影/DSCF3263.jpg": {
+      "hash": "4e63b949b7cdbfcdd211ff21bac0445e2e78758e53bea7ec64c6214ebeff37a0",
+      "size": 8799779,
+      "mtime": 1762531947
+    },
+    "图片/8c5f73fc-83f5-4894-933f-f8d9c4a75c6b": {
+      "hash": "b93014d58e1fd9fab09e721ff23e3d475c40876b729cd2825f28e1d195776922",
+      "size": 43698,
+      "mtime": 1770738559
+    },
+    "图片/配图/4ed2502b-8956-4de7-82fd-abdfc16ef809.png": {
+      "hash": "4f244d8065681daa81e05b6d3979dd56825aa06d3bffb68a4ffeb85e456b4be0",
+      "size": 2849728,
+      "mtime": 1770738567
+    },
+    "图片/配图/8dbe8743-38e6-44ad-9652-432b073be71a.png": {
+      "hash": "cc7e17cec868e0bd81f389f89b53e6da26e012dde398a2a786db148a9d834c4e",
+      "size": 1642466,
+      "mtime": 1770738565
+    },
+    "图片/配图/858e7b46-ef79-4205-9084-95f9141fa0d7.webp": {
+      "hash": "3f23a312a48482b9641db2e6fc0cf16031e3f8ad0dd0e8418c998c1eca0fda93",
+      "size": 45904,
+      "mtime": 1770738564
+    },
+    "图片/摄影/4ad7df08-1169-4e65-a882-a7f370867d95.jpg": {
+      "hash": "6f5f1308db1df555b7ebf96028e8eb953bce871ba085bc9f51d97859441d64c5",
+      "size": 214343,
+      "mtime": 1770738572
     },
     "图片/摄影/91eff121-2e68-4251-8160-9c04cefcdf68.jpg": {
       "hash": "4b15a44b44fb131d278052065148712d1b8c4021831981c31f3fff23cbfcf97d",
       "size": 195267,
       "mtime": 1770738575
     },
-    "assets/p5.js": {
-      "hash": "2ee031e707ccbd2cc8551c985fd1ebf5f59fea0abe186a7b23606568a1a306a1",
-      "size": 1055288,
-      "mtime": 1770763822
+    "图片/配图/8c0e7411-7ccf-4d8e-8679-433432a4a73e.png": {
+      "hash": "1127d9572930de9fb1f0e9b0da27965255302e82171b4b40126650f2b3a5b73b",
+      "size": 3781801,
+      "mtime": 1770738576
     },
-    "图片/配图/5ac6015a-9bf7-4538-ad44-5a272a516060.png": {
-      "hash": "52f9778ec0a665053e95551faa759e1f569a5943eabdf6d4a74749083af78bd8",
-      "size": 239299,
-      "mtime": 1770738565
+    "图片/摄影/6e6bc6ce-c973-4365-b9cd-1817e39a6b2e.jpg": {
+      "hash": "cf3a4d70744ca0852b8779bd948f638e1c722d5ee300b4d6618eea7dbfc2b865",
+      "size": 208460,
+      "mtime": 1770738552
     },
-    "图片/摄影/4ea17506-109f-47f9-b487-7105e562fa22.jpg": {
-      "hash": "baeab5b35521cca1209df0af4530757834c7effd97e971f5ce2bb4f00bef17e5",
-      "size": 150023,
-      "mtime": 1770738551
+    "图片/配图/5a123fe3-67eb-437e-a275-14a215178de1.jpg": {
+      "hash": "b24310edcb821d9bbfec7871e8c7bed39cc66210fddcc180d92d0f24eb0160a7",
+      "size": 190898,
+      "mtime": 1770738583
+    },
+    "图片/配图/3fcefcd6-8a8c-4bfb-9935-d99a568bb019.jpg": {
+      "hash": "1f6379754e76a5b96bceecc603492bc343f280edb8389b3b78194edac12b50c9",
+      "size": 276752,
+      "mtime": 1770738555
+    },
+    "图片/配图/f1a05cc2-cd41-47ca-9b8c-e3ef68d98847.png": {
+      "hash": "629b1db1395f0b8b28268d01e7b3b4c890b0ea5ac9c97bc54ce0a6b545826899",
+      "size": 273052,
+      "mtime": 1770738569
+    },
+    "图片/摄影/2ef1d558-bca4-4792-bb63-41ee12fa95ac.jpg": {
+      "hash": "6917d516c83338a7e6e138063bd03fc50daaa28198bade215fa934e423bdd562",
+      "size": 269874,
+      "mtime": 1770738545
+    },
+    "图片/摄影/c929f3f9-f654-4ce5-a9a7-7358a6caebc3.jpg": {
+      "hash": "a384fd7b84254c19db1bc59e8998fb3f62377076f823fc176cfade99258c3450",
+      "size": 439553,
+      "mtime": 1770738550
+    },
+    "assets/scale-compare.html": {
+      "hash": "255c5378e16f2d50786a7c59499cd9024cbe439d53aa509859cde037e197a87f",
+      "size": 54144,
+      "mtime": 1777056919
     },
     "图片/摄影/01f4bfc7-03d2-472a-8111-8714177618c0.jpg": {
       "hash": "c1afd21d9fd394c1d93d80c0e387fb09419f76d2e6c47bf1570946545c3d6a09",
@@ -794,110 +641,85 @@
       "size": 406,
       "mtime": 1770763810
     },
-    "图片/摄影/04fe2a94-eeb0-48a6-b6c2-e684445dfedf.jpg": {
-      "hash": "b820b8acadd49e9e4d0de3b230b8c41a28024bf95e1c2a148000fb472a48d076",
-      "size": 155460,
-      "mtime": 1770738584
-    },
-    "图片/配图/e832647f-6535-4434-90dc-c790e8a4e03c.gif": {
-      "hash": "466cad2639c1afcc666d48a97620ed35887b4b1f7acbf07230e7720fca0715cc",
-      "size": 7100265,
-      "mtime": 1770738556
-    },
-    "图片/摄影/22c0e9b7-8093-48fa-97af-14881cce91d9.jpg": {
-      "hash": "c3f6283113ae1bc9d504655081fdcde2af14f8816e5aba6daa6cf4ca6b8adf66",
-      "size": 851366,
-      "mtime": 1770738558
-    },
-    "图片/配图/5d8aaa4a-6a23-4644-9531-e2b538e3e57d.png": {
-      "hash": "18d3fc59ec233bc413dc15ef654b34ccbbc602c4a8ee1274ac27589c91c30263",
-      "size": 238262,
-      "mtime": 1770738566
-    },
-    "图片/配图/0b00c9f1-4423-40f8-99c6-adff0d8e8665.png": {
-      "hash": "b176a2264821f9a654fa0340a4d7baa35a3b2c57f4ff065d2c7670c220d6ce48",
-      "size": 366199,
-      "mtime": 1770738561
-    },
-    "图片/摄影/14435097-0a88-422e-abc7-cb59db6ed153.jpg": {
-      "hash": "2d2803225f44cb9d0ab9f6670565e0aea37cb0dcf3b9f53be3cd6295ea6b5936",
-      "size": 248466,
-      "mtime": 1770738548
-    },
-    "assets/sketch.js": {
-      "hash": "88828f9121cdde19ed86c2f8bc6499a666ab52a8039c493d0a174d795843937c",
-      "size": 8012,
-      "mtime": 1773347709
-    },
-    "图片/摄影/cba34621-b690-465c-8a1d-7e36a19cbd60.jpg": {
-      "hash": "9b16797cb540f52e73116803ac227533d755cca602edac12d6e8fefe97ca5536",
-      "size": 320404,
-      "mtime": 1770738565
-    },
-    "图片/配图/5a123fe3-67eb-437e-a275-14a215178de1.jpg": {
-      "hash": "b24310edcb821d9bbfec7871e8c7bed39cc66210fddcc180d92d0f24eb0160a7",
-      "size": 190898,
-      "mtime": 1770738583
-    },
-    "图片/配图/01623ed6-fe07-4a1f-bc21-53eb30fbb315.gif": {
-      "hash": "a8cd679d07da2cc256d78c7739845ba59fcbec7941fccfb8df3f1699676c7242",
-      "size": 6717568,
-      "mtime": 1770738586
-    },
-    "图片/配图/e010b991-cd10-451b-8c87-b56a76c00715.png": {
-      "hash": "613a942c258e01c15095ca096103161b783caf62963a6c11ed806e3733265eee",
-      "size": 126418,
-      "mtime": 1770738555
-    },
-    "图片/配图/319b595a-359e-4b54-8ce2-e9714ab78eee.png": {
-      "hash": "0200459964a2e92ecc3afe7a2b5025bbc69fdb72d9023d10a7ab9305752d0af2",
-      "size": 206580,
-      "mtime": 1770738566
-    },
-    "图片/配图/a2f8dc63-ec4b-488a-81aa-34772550ff98.jpg": {
-      "hash": "46072da2c44ab79890154a04e95748b11daf11e0d500bc4bd22f525aeaf1fe64",
-      "size": 322637,
-      "mtime": 1770738572
-    },
-    "图片/配图/3f5c3ada-ab96-4ea3-a23f-30b92059b4b8.png": {
-      "hash": "553aaec358f00ed6963bd74a969315d8fb4975657b19844e786bf17889fb96d1",
-      "size": 346524,
-      "mtime": 1770738571
-    },
-    "图片/配图/GiorgioDeChirico.jpg": {
-      "hash": "952f329ec0a753a30f317ac79a7f4e49241d5f6d8bcaf85c2c13964fbde3d022",
-      "size": 263506,
-      "mtime": 1772760353
-    },
-    "图片/配图/e7c80abe-cc39-42cf-9ea5-3b448bf84c11.jpg": {
-      "hash": "6e5396e9411e0df6ce32696b6eba881af477fa6cadb97c5060be1f10fd3d3af2",
-      "size": 106375,
-      "mtime": 1770738557
-    },
     "图片/摄影/DSCF3193.jpg": {
       "hash": "1216e2fdbd60f4e8123054cd180b0e170c0f0099add7817bf10855f1e0264f37",
       "size": 8598840,
       "mtime": 1763153239
     },
-    "图片/摄影/1641eab1-17ff-4ced-99a7-367ae7cdc656.png": {
-      "hash": "23f9ef88f8f1ee71261b2ef6c5b67a1bc7220ea75f8015ac2721d59d230398fb",
-      "size": 2358557,
-      "mtime": 1770738547
+    "图片/配图/7a3565bf-fb79-4901-87de-cbccaac4b19e.jpg": {
+      "hash": "a5bc4f6f17349a3a2b383e2d6166729b891ca7db5b8a35a3d3aafe4766adc316",
+      "size": 119390,
+      "mtime": 1770738583
     },
-    "图片/摄影/456cacf5-0dc1-48aa-8079-5bc7095a8294.jpg": {
-      "hash": "f9e1804b65812fee9825cf0c09bf69865a6dc22be598a91289e8ae4f8f674d1f",
-      "size": 274879,
-      "mtime": 1770738551
+    "assets/b19a4f29-7fe9-4c53-aa90-d3203d9f355f.png": {
+      "hash": "7b6dfd7d45971347c87b0453cb087b2cc2ee86eb0ed095e7aa0a677493d79fbc",
+      "size": 62621,
+      "mtime": 1777491234
     },
-    "图片/配图/d7de54bf-4272-42ed-ac8e-2d7cd91988ad.png": {
-      "hash": "f532d44cbb3a0c7fb0881b6a9459730cc2192b3bcbbda4474e7d61bd45bf4a0e",
-      "size": 74530,
-      "mtime": 1770738544
+    "图片/配图/020c1a3f-91c8-4e1e-acd0-b2c6578f2692.png": {
+      "hash": "9327d2f2c6b8f185df0a99f522db23c01fc7c20911f44c93e2121866210b0e2d",
+      "size": 696984,
+      "mtime": 1770738573
     },
-    "图片/配图/7e77b94f-4c82-4a34-a4d6-4fa9d4d0dac2.jpg": {
-      "hash": "af88165a0ab99268eaab453b780b196ad1f774e70587b539a5974bdc24367348",
-      "size": 232855,
-      "mtime": 1770738586
+    "图片/摄影/ec7c469d-21eb-4a1d-9b6d-0baec3b61b10.jpg": {
+      "hash": "e90794763739a7e86efb876a4a007a5f4473ea29604e77362dbb386354e7facc",
+      "size": 127364,
+      "mtime": 1770738557
+    },
+    "图片/配图/cbe4ed3b-7102-4eee-af28-6b0465e06243.jpg": {
+      "hash": "8378410b663fd864dddb1d2141e12debbd173ccfd8d667e440712cd0d990d36a",
+      "size": 56787,
+      "mtime": 1770738580
+    },
+    "图片/配图/2de0c228-36c8-47ec-9f22-000af45b1943.jpg": {
+      "hash": "f857fa76a0a7e1eef16ed29bc6b05ac28bf1ab5f2268d3b750e5e1e289be235f",
+      "size": 502299,
+      "mtime": 1770738543
+    },
+    "图片/配图/8f945d26-1a5e-4ede-b20e-09235ad48e63.png": {
+      "hash": "8a4a1eb488c35185323802c0030e429a904dc236e57be3052dfd7732abe68783",
+      "size": 138479,
+      "mtime": 1770738556
+    },
+    "图片/摄影/IMG_3436.jpeg": {
+      "hash": "865b1586844c3a22c08dd90386d688078479acca9fdee4d15363f95fe86c42cf",
+      "size": 2694954,
+      "mtime": 1762265463
+    },
+    "图片/摄影/cba4433e-edbd-4573-82c4-feba8368f24a.jpg": {
+      "hash": "3bfed1ceef6fe7b9457d9c5c733ce788ffa4f6aea9e9cb9990da37ef8054c7f2",
+      "size": 182138,
+      "mtime": 1770738553
+    },
+    "图片/摄影/ba38a528-f989-4074-a98e-8275f65ab972.jpg": {
+      "hash": "c087c0914411452cc69961b8d56a76cd3b8f2e409bee624b0f8b68e1b64388cb",
+      "size": 138582,
+      "mtime": 1770738552
+    },
+    "图片/配图/f219159f-6218-4940-b05b-234cb5c9957e.png": {
+      "hash": "da5212f0bd5b27203a690d4aca6309358bd961f0ec8b3c2d4cf3f50c525c838d",
+      "size": 281517,
+      "mtime": 1770738570
+    },
+    "图片/配图/bd9fe5ad-59d0-4d73-9c66-db0faa2dfff2.png": {
+      "hash": "bdbe329268028bbcc1a31753fd17eb11616f58262559db63c4bc38f167affc8d",
+      "size": 753446,
+      "mtime": 1770738580
+    },
+    "图片/配图/c928d984-5762-4592-9e78-a22bd02dc91e.jpg": {
+      "hash": "4dcc23cb25888b85fb0b556330c963506f9cef86342a9f8fd25d7e08c90e5092",
+      "size": 143447,
+      "mtime": 1770738556
+    },
+    "图片/配图/286b63fcd4-0246-483c-b796-d6506cd2ad29.jpg": {
+      "hash": "88db05498dd0cf8f96b07960a77ac02bf2480088a2633b5c125487524d3f5a9f",
+      "size": 11756,
+      "mtime": 1773677652
+    },
+    "图片/摄影/14435097-0a88-422e-abc7-cb59db6ed153.jpg": {
+      "hash": "2d2803225f44cb9d0ab9f6670565e0aea37cb0dcf3b9f53be3cd6295ea6b5936",
+      "size": 248466,
+      "mtime": 1770738548
     },
     "assets/scale-compare-recording-480.gif": {
       "hash": "f05fc8bfddfdb9ae32638e3d058b8b8150a75f6ffff63328db90922a8a0cb988",
@@ -909,374 +731,641 @@
       "size": 237253,
       "mtime": 1762531840
     },
-    "图片/配图/2de0c228-36c8-47ec-9f22-000af45b1943.jpg": {
-      "hash": "f857fa76a0a7e1eef16ed29bc6b05ac28bf1ab5f2268d3b750e5e1e289be235f",
-      "size": 502299,
-      "mtime": 1770738543
-    },
-    "图片/摄影/9cbeab27-1907-4ca7-a686-9346d70d6448.jpg": {
-      "hash": "c298071337c5992556242999d6de5fa67b8549fb58d6eaa7acf698744bf8754c",
-      "size": 137262,
-      "mtime": 1770738548
-    },
-    "图片/摄影/IMG_3436.jpeg": {
-      "hash": "865b1586844c3a22c08dd90386d688078479acca9fdee4d15363f95fe86c42cf",
-      "size": 2694954,
-      "mtime": 1762265463
-    },
-    "图片/配图/f1a05cc2-cd41-47ca-9b8c-e3ef68d98847.png": {
-      "hash": "629b1db1395f0b8b28268d01e7b3b4c890b0ea5ac9c97bc54ce0a6b545826899",
-      "size": 273052,
-      "mtime": 1770738569
-    },
-    "图片/摄影/f829eb81-633c-4bd1-b30a-fb607389fc66.jpg": {
-      "hash": "8dfe8d3bbd23da284eab8d13121e16b170942c8d0dc719d1f45d965e5c6d318f",
-      "size": 116561,
-      "mtime": 1770738568
-    },
-    "图片/配图/c928d984-5762-4592-9e78-a22bd02dc91e.jpg": {
-      "hash": "4dcc23cb25888b85fb0b556330c963506f9cef86342a9f8fd25d7e08c90e5092",
-      "size": 143447,
-      "mtime": 1770738556
-    },
-    "图片/配图/ef00feaa-34fe-49c2-ac17-f532f390ae7b.png": {
-      "hash": "c79e52f90cede4a09893da54ddb5f7a7034540140edf0e3d68c2b88b3527a146",
-      "size": 1378166,
-      "mtime": 1770738564
-    },
-    "图片/配图/f219159f-6218-4940-b05b-234cb5c9957e.png": {
-      "hash": "da5212f0bd5b27203a690d4aca6309358bd961f0ec8b3c2d4cf3f50c525c838d",
-      "size": 281517,
-      "mtime": 1770738570
-    },
-    "图片/摄影/ba38a528-f989-4074-a98e-8275f65ab972.jpg": {
-      "hash": "c087c0914411452cc69961b8d56a76cd3b8f2e409bee624b0f8b68e1b64388cb",
-      "size": 138582,
-      "mtime": 1770738552
-    },
-    "图片/配图/ead5ef5a-d140-4292-93cc-431d13a1a179.png": {
-      "hash": "d761bc4b7312232fa0e7191dd0a3f833a7aec1997af05f01e754da3a26f25237",
-      "size": 238011,
-      "mtime": 1770738554
-    },
-    "图片/摄影/38f0bb25-a988-447b-880f-0dbf96992d95.jpg": {
-      "hash": "7aecae7e2c5e0f706d3c7856daf888ad349b9280286ca79b88ce23799d026666",
-      "size": 115426,
-      "mtime": 1770738544
-    },
-    "图片/配图/996a2021-b5c9-4a3b-b7c2-11ae232ea57b.jpg": {
-      "hash": "9fda2357f0fc33530ad3d81418cf73124687f0bfbeaf378d9064fdd93422c0f4",
-      "size": 87619,
-      "mtime": 1770738575
-    },
-    "图片/配图/Pasted image 20251107111149.png": {
-      "hash": "86f8efa89155d18828124e17d4c4dff0cf35b434835da89e7cb9d61d4928f807",
-      "size": 316792,
-      "mtime": 1762531909
-    },
-    "图片/摄影/fd5e607a-e94f-4f40-8412-dfcc745dcd5f.jpg": {
-      "hash": "369cec738a75e2287ab204524dfda110cfaf39a551caf2ca8b933431b070ee57",
-      "size": 236740,
-      "mtime": 1770738545
-    },
-    "图片/摄影/98f8f73a-0d71-44ce-b8fa-68e97786845a.jpg": {
-      "hash": "3dbdef5b27c03a30df92fd51d7d405830961e9a1a084380a9040c6d05794b3b9",
-      "size": 225742,
-      "mtime": 1770738551
-    },
-    "图片/摄影/4d1edfba-912f-4a5a-befd-7597be4f094e.jpg": {
-      "hash": "12e1092706b171ab2e3d21f3364926f48d58d03917ccde43079cb8fabffe35eb",
-      "size": 479801,
-      "mtime": 1770738546
-    },
-    "图片/配图/8ef4fb5d-ae3f-4e10-826b-169b0762d555.png": {
-      "hash": "9bcb91d9dfdc20fa431aeb2d68b4068a0e3bd474f9d11d28499e8d4f75877aff",
-      "size": 179216,
-      "mtime": 1770738585
-    },
-    "图片/配图/b282ed55-f798-4a34-9a37-2a579bbbd954.gif": {
-      "hash": "bdd1e710facfa2559ecc42cd0f62782fcd9c4d1d579ea2bf6f73d9f307ee5ef6",
-      "size": 6946663,
-      "mtime": 1770738579
-    },
-    "图片/摄影/cba4433e-edbd-4573-82c4-feba8368f24a.jpg": {
-      "hash": "3bfed1ceef6fe7b9457d9c5c733ce788ffa4f6aea9e9cb9990da37ef8054c7f2",
-      "size": 182138,
-      "mtime": 1770738553
-    },
-    "图片/摄影/5695cbe9-5d9b-4d7e-8d6c-6d9040f2999a.jpg": {
-      "hash": "03873325d52525af2039e4b37ccf46212cb8ee187d98dcb8016851b17f0c00f8",
-      "size": 194266,
-      "mtime": 1770738551
-    },
-    "图片/摄影/2ef1d558-bca4-4792-bb63-41ee12fa95ac.jpg": {
-      "hash": "6917d516c83338a7e6e138063bd03fc50daaa28198bade215fa934e423bdd562",
-      "size": 269874,
-      "mtime": 1770738545
-    },
-    "图片/配图/40df0379-487b-4821-9a56-d3ea6621bed0.webp": {
-      "hash": "13aaaae77c8d3c037a92367e7854784d29518f8b26ded8519bb8e780625af728",
-      "size": 18680,
-      "mtime": 1770738571
-    },
-    "图片/摄影/3cdf3c4e-b48c-4b4c-993a-362683b016bc.jpg": {
-      "hash": "0c1986451042fd6857a8197d2e92ac8a820d2cf82ed8318394721208d8101df3",
-      "size": 336601,
-      "mtime": 1770738577
-    },
-    "图片/配图/858e7b46-ef79-4205-9084-95f9141fa0d7.webp": {
-      "hash": "3f23a312a48482b9641db2e6fc0cf16031e3f8ad0dd0e8418c998c1eca0fda93",
-      "size": 45904,
-      "mtime": 1770738564
-    },
-    "图片/配图/57566d1a-9394-4f5a-a429-8314a7b664ef.jpg": {
-      "hash": "6e5396e9411e0df6ce32696b6eba881af477fa6cadb97c5060be1f10fd3d3af2",
-      "size": 106375,
-      "mtime": 1770738565
-    },
     "图片/配图/63605a50-ec2d-482e-b4fc-b64a6c9da502.png": {
       "hash": "87f482451e1e0a33472b87757820076a61f50825133f67486b340bc97b301e1a",
       "size": 339685,
       "mtime": 1770738558
     },
-    "图片/摄影/DSCF3736.jpg": {
-      "hash": "7f5d98c8616a3a9058b25ca8edf2d1b4bdb87a4c689db1ab432d63c69642d484",
-      "size": 4912270,
-      "mtime": 1764598432
-    },
-    "图片/配图/8c0e7411-7ccf-4d8e-8679-433432a4a73e.png": {
-      "hash": "1127d9572930de9fb1f0e9b0da27965255302e82171b4b40126650f2b3a5b73b",
-      "size": 3781801,
-      "mtime": 1770738576
-    },
-    "图片/摄影/ec7c469d-21eb-4a1d-9b6d-0baec3b61b10.jpg": {
-      "hash": "e90794763739a7e86efb876a4a007a5f4473ea29604e77362dbb386354e7facc",
-      "size": 127364,
-      "mtime": 1770738557
-    },
-    "图片/配图/5d56497f-4ded-4fca-a35d-7df3515099f5.webp": {
-      "hash": "470e5bc06a304d938087f246d0660440b49ee53067ea63e74a639bc6dde0cd97",
-      "size": 81922,
-      "mtime": 1770738554
-    },
-    "图片/配图/4ed2502b-8956-4de7-82fd-abdfc16ef809.png": {
-      "hash": "4f244d8065681daa81e05b6d3979dd56825aa06d3bffb68a4ffeb85e456b4be0",
-      "size": 2849728,
-      "mtime": 1770738567
-    },
-    "图片/配图/21d10d29-2b36-44e2-ad96-13d6a34f4dc7.png": {
-      "hash": "d3efc4ece88bf34f3617d2c1b48bd5407ac7900df7c735e8cbbe7382c9289a9a",
-      "size": 307075,
-      "mtime": 1770738580
-    },
-    "图片/摄影/2c8e94db-1a15-4754-8da2-9f36cc37e3a6.gif": {
-      "hash": "a21a9751bd923e45f670bc41ab4a35c0db1d1206ef6d39464a8453e4e7055a1a",
-      "size": 4665328,
-      "mtime": 1770738577
-    },
-    "图片/摄影/210a9339-30df-43ad-a37c-975b1aa5f01f.jpg": {
-      "hash": "6a3abdabbc24e0faba7b29e0215479c10b14aa079d6806ca2a500f3e3d53cf48",
-      "size": 111206,
-      "mtime": 1770738578
-    },
-    "图片/摄影/a420cc12-8642-4286-b65f-9795cc5acd2f.jpg": {
-      "hash": "2a9054a2a1456731748ed9175063b606a45a61e6f2488eb2e12d236e6482c2c1",
-      "size": 295977,
-      "mtime": 1770738566
-    },
-    "图片/配图/79b0222c-e496-474d-80c1-f212b89571f8.jpg": {
-      "hash": "b3b37bd605b77b1e2a471926d99becc0c046cf85b9cbfd04d1a14a439a6f9534",
-      "size": 148750,
-      "mtime": 1770738582
-    },
-    "图片/配图/9bc4a39b-9eee-486b-8242-196d2c91ec3c.png": {
-      "hash": "42dcd78f7382a18713ca7c9674daee8d4e303f2102683fe0ebf072d93c36d9b4",
-      "size": 428126,
-      "mtime": 1770738581
-    },
-    "图片/配图/df3f7032-9d6d-40b4-a975-80b97b94f3a4.jpg": {
-      "hash": "e949f0ce1b5aae58612016dafbbc3db4c84b245bdb9e9dc866c05ad084b22225",
-      "size": 214009,
-      "mtime": 1770738583
-    },
-    "图片/摄影/1570c6b2-f2f7-4036-bff9-47206b0ba878.jpg": {
-      "hash": "0a3550713290002ff6c3ac5d0042416800bb8fdc1dd043d8cc5cd6b3166e6759",
-      "size": 230606,
-      "mtime": 1770738552
-    },
-    "图片/摄影/19d19851-1a67-41dc-88e9-d7b6f3539ca2.jpg": {
-      "hash": "56389c28aa88bec8742a5fa2291b467b574861917744b147118c5d4e0b5035e6",
-      "size": 283396,
-      "mtime": 1770738549
-    },
-    "图片/摄影/c2206746-6708-43ca-a682-26916f73d585.png": {
-      "hash": "f6abfa19a1932fabe4bc3559eb75ee91f1bdd8c008090dbf43f6747a1ecc1424",
-      "size": 1684714,
-      "mtime": 1770738560
-    },
-    "图片/配图/dcf1562d-afba-4cb7-b60b-e198cd3cd7ce.jpg": {
-      "hash": "6f1e91ec60a7753d4efe249ae2d03c79b8a7cb0bccaa944631a64f0a0e1f6e79",
-      "size": 44476,
-      "mtime": 1770738578
-    },
-    "图片/配图/aeba66d0-5681-48a9-ad7d-d66448f9ceb5.png": {
-      "hash": "e873a6da8c3c26387c0c55ebe93977567d6f2b802a520e7967bf7aeeb87e8ae8",
-      "size": 1204949,
+    "图片/摄影/cba34621-b690-465c-8a1d-7e36a19cbd60.jpg": {
+      "hash": "9b16797cb540f52e73116803ac227533d755cca602edac12d6e8fefe97ca5536",
+      "size": 320404,
       "mtime": 1770738565
-    },
-    "图片/配图/3fcefcd6-8a8c-4bfb-9935-d99a568bb019.jpg": {
-      "hash": "1f6379754e76a5b96bceecc603492bc343f280edb8389b3b78194edac12b50c9",
-      "size": 276752,
-      "mtime": 1770738555
-    },
-    "assets/b19a4f29-7fe9-4c53-aa90-d3203d9f355f.png": {
-      "hash": "7b6dfd7d45971347c87b0453cb087b2cc2ee86eb0ed095e7aa0a677493d79fbc",
-      "size": 62621,
-      "mtime": 1777491234
-    },
-    "assets/scale-compare.html": {
-      "hash": "255c5378e16f2d50786a7c59499cd9024cbe439d53aa509859cde037e197a87f",
-      "size": 54144,
-      "mtime": 1777056919
-    },
-    "图片/配图/cbe4ed3b-7102-4eee-af28-6b0465e06243.jpg": {
-      "hash": "8378410b663fd864dddb1d2141e12debbd173ccfd8d667e440712cd0d990d36a",
-      "size": 56787,
-      "mtime": 1770738580
-    },
-    "图片/配图/e08a87de-dc9e-415c-a14c-76996f970c6f.png": {
-      "hash": "4f244d8065681daa81e05b6d3979dd56825aa06d3bffb68a4ffeb85e456b4be0",
-      "size": 2849728,
-      "mtime": 1770738577
-    },
-    "图片/配图/7a3565bf-fb79-4901-87de-cbccaac4b19e.jpg": {
-      "hash": "a5bc4f6f17349a3a2b383e2d6166729b891ca7db5b8a35a3d3aafe4766adc316",
-      "size": 119390,
-      "mtime": 1770738583
-    },
-    "图片/配图/66296200-de80-43f1-a1a2-ce2b1403a3e2.jpg": {
-      "hash": "f9e5f0f6426be90e935be8fe63a68ba1b92aa059c733ca030dc868613effb042",
-      "size": 158623,
-      "mtime": 1770738582
-    },
-    "图片/摄影/abfc71fe-7fec-45f9-926d-7e1009eb0320.png": {
-      "hash": "e70194cc993daf382ece8a5411da2330c88497ddfdcd43490827df9691774380",
-      "size": 3710651,
-      "mtime": 1770738548
-    },
-    "图片/摄影/8b194555-57fc-48d7-b448-05fbc4e46862.jpg": {
-      "hash": "1e18eaad2858f224c38f3c6847806e0271238c340df9c2586b3953f03cebc2a4",
-      "size": 269546,
-      "mtime": 1770738548
     },
     "图片/配图/c3588359-7d4d-48ef-8664-2c9b6b635368.gif": {
       "hash": "fb7d71f70bdc774fd0d4f2c51d9b74091a29bb6f054b280e83cb534406f55dde",
       "size": 5842919,
       "mtime": 1770738560
     },
+    "图片/摄影/1641eab1-17ff-4ced-99a7-367ae7cdc656.png": {
+      "hash": "23f9ef88f8f1ee71261b2ef6c5b67a1bc7220ea75f8015ac2721d59d230398fb",
+      "size": 2358557,
+      "mtime": 1770738547
+    },
+    "图片/摄影/9d13b990-5b91-4c42-a47a-bc9c24ea3fc9.jpg": {
+      "hash": "1f7377c194e8dc689c60826a78bcb533413a395de9f23d16489b9cf546913ce4",
+      "size": 122506,
+      "mtime": 1770738546
+    },
+    "图片/配图/ef00feaa-34fe-49c2-ac17-f532f390ae7b.png": {
+      "hash": "c79e52f90cede4a09893da54ddb5f7a7034540140edf0e3d68c2b88b3527a146",
+      "size": 1378166,
+      "mtime": 1770738564
+    },
+    "图片/摄影/210a9339-30df-43ad-a37c-975b1aa5f01f.jpg": {
+      "hash": "6a3abdabbc24e0faba7b29e0215479c10b14aa079d6806ca2a500f3e3d53cf48",
+      "size": 111206,
+      "mtime": 1770738578
+    },
+    "图片/摄影/40d65e7d-35d5-4f9b-8a86-5aecd1d54a5d.jpg": {
+      "hash": "ca56ec930a61f020d2b01218850e068ff527cedf9b5d8f1284e40d1eaa1a55f5",
+      "size": 196592,
+      "mtime": 1770738554
+    },
+    "图片/配图/0cc26cd1-8c40-4848-b4aa-cdba18bdf0eb.gif": {
+      "hash": "28a7eebcf676c27b42acccf79aaa1ff7163eec683b1241ff42a628e909e85ea9",
+      "size": 8635630,
+      "mtime": 1770738575
+    },
+    "图片/配图/e010b991-cd10-451b-8c87-b56a76c00715.png": {
+      "hash": "613a942c258e01c15095ca096103161b783caf62963a6c11ed806e3733265eee",
+      "size": 126418,
+      "mtime": 1770738555
+    },
+    "图片/配图/77697bad-74c6-402c-a0af-78249480bea1.jpg": {
+      "hash": "5b2129137e32adc7967d6238cad4305de6a339e9370ba5dfbb7bb036bbf35819",
+      "size": 44463,
+      "mtime": 1770738569
+    },
+    "图片/摄影/c2206746-6708-43ca-a682-26916f73d585.png": {
+      "hash": "f6abfa19a1932fabe4bc3559eb75ee91f1bdd8c008090dbf43f6747a1ecc1424",
+      "size": 1684714,
+      "mtime": 1770738560
+    },
+    "图片/摄影/b0cd85d4-e061-4bed-bdf4-01d7c64b5a35.jpg": {
+      "hash": "3b36e9051afbf9036518e83c674ee0ee71e92a176a37260cf511a2de2b5c20c7",
+      "size": 648999,
+      "mtime": 1770738550
+    },
+    "图片/配图/3f5c3ada-ab96-4ea3-a23f-30b92059b4b8.png": {
+      "hash": "553aaec358f00ed6963bd74a969315d8fb4975657b19844e786bf17889fb96d1",
+      "size": 346524,
+      "mtime": 1770738571
+    },
+    "assets/particle-universe.html": {
+      "hash": "f1cfd91e16f5e39718d546759ba7a68490c0112eedd6632d40683b51c85558ec",
+      "size": 4716,
+      "mtime": 1770763831
+    },
+    "图片/配图/79b0222c-e496-474d-80c1-f212b89571f8.jpg": {
+      "hash": "b3b37bd605b77b1e2a471926d99becc0c046cf85b9cbfd04d1a14a439a6f9534",
+      "size": 148750,
+      "mtime": 1770738582
+    },
+    "图片/摄影/56d8a89b-3368-4dc7-9209-744955530387.jpg": {
+      "hash": "199a8a02af1be7658d7b75067047375654c7676563e5181895d02875cdafccf0",
+      "size": 40628,
+      "mtime": 1770738585
+    },
+    "图片/摄影/38f0bb25-a988-447b-880f-0dbf96992d95.jpg": {
+      "hash": "7aecae7e2c5e0f706d3c7856daf888ad349b9280286ca79b88ce23799d026666",
+      "size": 115426,
+      "mtime": 1770738544
+    },
+    "图片/配图/e7c80abe-cc39-42cf-9ea5-3b448bf84c11.jpg": {
+      "hash": "6e5396e9411e0df6ce32696b6eba881af477fa6cadb97c5060be1f10fd3d3af2",
+      "size": 106375,
+      "mtime": 1770738557
+    },
+    "图片/配图/Pasted image 20251107112851.png": {
+      "hash": "1127d9572930de9fb1f0e9b0da27965255302e82171b4b40126650f2b3a5b73b",
+      "size": 3781801,
+      "mtime": 1762532931
+    },
+    "图片/摄影/2705fa19-c187-48a0-b809-034acdfd6e57.jpg": {
+      "hash": "e6c9e5250607b84114c2b4b1e59f4598da36e29e1ecfbf43d3198241f20fa9c1",
+      "size": 323734,
+      "mtime": 1770738549
+    },
+    "图片/摄影/a2cdc4d9-9714-41c0-b2a2-73372d287d15.jpg": {
+      "hash": "d31d6ff1463a3947654a91630e44946d2226f1f5bee489d221778595abc1d83a",
+      "size": 105936,
+      "mtime": 1770738584
+    },
+    "图片/配图/d0505029-6be1-4875-aa7d-666bc2e6e372.jpg": {
+      "hash": "6152d3526d0ca3d6ccdbfb2da7089c69aec43a2d179d98abedc2d6313c70e0a1",
+      "size": 852068,
+      "mtime": 1770738558
+    },
+    "图片/配图/5d56497f-4ded-4fca-a35d-7df3515099f5.webp": {
+      "hash": "470e5bc06a304d938087f246d0660440b49ee53067ea63e74a639bc6dde0cd97",
+      "size": 81922,
+      "mtime": 1770738554
+    },
+    "图片/配图/7e77b94f-4c82-4a34-a4d6-4fa9d4d0dac2.jpg": {
+      "hash": "af88165a0ab99268eaab453b780b196ad1f774e70587b539a5974bdc24367348",
+      "size": 232855,
+      "mtime": 1770738586
+    },
+    "图片/摄影/19d19851-1a67-41dc-88e9-d7b6f3539ca2.jpg": {
+      "hash": "56389c28aa88bec8742a5fa2291b467b574861917744b147118c5d4e0b5035e6",
+      "size": 283396,
+      "mtime": 1770738549
+    },
+    "图片/摄影/a420cc12-8642-4286-b65f-9795cc5acd2f.jpg": {
+      "hash": "2a9054a2a1456731748ed9175063b606a45a61e6f2488eb2e12d236e6482c2c1",
+      "size": 295977,
+      "mtime": 1770738566
+    },
+    "图片/摄影/3cdf3c4e-b48c-4b4c-993a-362683b016bc.jpg": {
+      "hash": "0c1986451042fd6857a8197d2e92ac8a820d2cf82ed8318394721208d8101df3",
+      "size": 336601,
+      "mtime": 1770738577
+    },
+    "图片/摄影/82a3a2a3-5e54-4310-ac04-7776bcea1026.jpg": {
+      "hash": "832df12a8c448a1025518323df82d6d81922dd26affb273ecc09f64db3d3096c",
+      "size": 240426,
+      "mtime": 1770738567
+    },
+    "图片/配图/cb499502-8100-4b80-843b-c89b319e41ee.png": {
+      "hash": "2790b5312adaace6dc3ac27a97b6bcd56c3ef27c53187838762ae8ec4a9a6178",
+      "size": 220569,
+      "mtime": 1770738559
+    },
+    "图片/摄影/d152d42a-9b6f-4e1b-a3a9-633c8119d02d.jpg": {
+      "hash": "ca7f8d2fc7a5da7f73a4ab185ed755ca9d6a76a38dbdaf7b0758ef5e0e3d8460",
+      "size": 154221,
+      "mtime": 1770738553
+    },
+    "图片/摄影/6f13bd9d-cada-4522-a173-69b1a679d4fc.jpg": {
+      "hash": "d5c00aa97a52d9fd19854e8782cdab2fecfc13eab87fbfe298159c5b9c641e11",
+      "size": 299105,
+      "mtime": 1770738550
+    },
+    "图片/配图/0241ec32-59e6-4403-88d4-23b8d7fcc13a.png": {
+      "hash": "e367aeebbf890b4390d4564808f018f3e08b82a539f3d45dac3826d3cb3c899d",
+      "size": 705192,
+      "mtime": 1770738560
+    },
+    "图片/摄影/IMG_3428.jpeg": {
+      "hash": "52a55ad9a9521b10ac1907a769e27f521aed6381129ea4fc2e7e1af68ecc8079",
+      "size": 3926901,
+      "mtime": 1762265298
+    },
+    "图片/配图/57566d1a-9394-4f5a-a429-8314a7b664ef.jpg": {
+      "hash": "6e5396e9411e0df6ce32696b6eba881af477fa6cadb97c5060be1f10fd3d3af2",
+      "size": 106375,
+      "mtime": 1770738565
+    },
+    "图片/配图/01623ed6-fe07-4a1f-bc21-53eb30fbb315.gif": {
+      "hash": "a8cd679d07da2cc256d78c7739845ba59fcbec7941fccfb8df3f1699676c7242",
+      "size": 6717568,
+      "mtime": 1770738586
+    },
+    "图片/配图/996a2021-b5c9-4a3b-b7c2-11ae232ea57b.jpg": {
+      "hash": "9fda2357f0fc33530ad3d81418cf73124687f0bfbeaf378d9064fdd93422c0f4",
+      "size": 87619,
+      "mtime": 1770738575
+    },
+    "图片/摄影/DSCF3736.jpg": {
+      "hash": "7f5d98c8616a3a9058b25ca8edf2d1b4bdb87a4c689db1ab432d63c69642d484",
+      "size": 4912270,
+      "mtime": 1764598432
+    },
+    "图片/摄影/98f8f73a-0d71-44ce-b8fa-68e97786845a.jpg": {
+      "hash": "3dbdef5b27c03a30df92fd51d7d405830961e9a1a084380a9040c6d05794b3b9",
+      "size": 225742,
+      "mtime": 1770738551
+    },
+    "图片/配图/8ef4fb5d-ae3f-4e10-826b-169b0762d555.png": {
+      "hash": "9bcb91d9dfdc20fa431aeb2d68b4068a0e3bd474f9d11d28499e8d4f75877aff",
+      "size": 179216,
+      "mtime": 1770738585
+    },
+    "图片/摄影/2c8e94db-1a15-4754-8da2-9f36cc37e3a6.gif": {
+      "hash": "a21a9751bd923e45f670bc41ab4a35c0db1d1206ef6d39464a8453e4e7055a1a",
+      "size": 4665328,
+      "mtime": 1770738577
+    },
+    "图片/摄影/6f695a93-d897-4c74-8d59-0126e6e65376.jpg": {
+      "hash": "bba8410b4435a1bd7a96c7724e8c6d440ab0dc67f513b8f9d47091164aacc69e",
+      "size": 123132,
+      "mtime": 1770738561
+    },
+    "图片/配图/319b595a-359e-4b54-8ce2-e9714ab78eee.png": {
+      "hash": "0200459964a2e92ecc3afe7a2b5025bbc69fdb72d9023d10a7ab9305752d0af2",
+      "size": 206580,
+      "mtime": 1770738566
+    },
+    "图片/配图/e832647f-6535-4434-90dc-c790e8a4e03c.gif": {
+      "hash": "466cad2639c1afcc666d48a97620ed35887b4b1f7acbf07230e7720fca0715cc",
+      "size": 7100265,
+      "mtime": 1770738556
+    },
+    "图片/配图/dab12562-f5b9-458b-a59c-e87f0af636bb.png": {
+      "hash": "9525a4d2a47311bd26c465025bcf0f70ade76d95d13733d9bee914c96d128c13",
+      "size": 156262,
+      "mtime": 1770738569
+    },
+    "图片/配图/6a35828c-9138-4aaf-af2a-89de087434a3.png": {
+      "hash": "f88141a4de62316ac8bbe0e18bc861207b7b8afad16f0e365492e7f6dc1670cb",
+      "size": 82824,
+      "mtime": 1770738563
+    },
     "图片/摄影/5be8bbef-c77c-431f-bc66-952ff9fd3976.jpg": {
       "hash": "7d77d8974d9c519b027c8637afb2c56ecb0aa177e6c33c2e0ec214dbc800307c",
       "size": 214270,
       "mtime": 1770738548
+    },
+    "图片/配图/5d8aaa4a-6a23-4644-9531-e2b538e3e57d.png": {
+      "hash": "18d3fc59ec233bc413dc15ef654b34ccbbc602c4a8ee1274ac27589c91c30263",
+      "size": 238262,
+      "mtime": 1770738566
+    },
+    "图片/摄影/6f82af03-116b-4693-8f3c-45b127b4bba5.jpg": {
+      "hash": "963d2b9f3068d7cbb71c11aa80561588ca413c27ee7aa5fc32acb033bba339cb",
+      "size": 154184,
+      "mtime": 1770738557
+    },
+    "图片/摄影/abfc71fe-7fec-45f9-926d-7e1009eb0320.png": {
+      "hash": "e70194cc993daf382ece8a5411da2330c88497ddfdcd43490827df9691774380",
+      "size": 3710651,
+      "mtime": 1770738548
+    },
+    "图片/配图/5ac6015a-9bf7-4538-ad44-5a272a516060.png": {
+      "hash": "52f9778ec0a665053e95551faa759e1f569a5943eabdf6d4a74749083af78bd8",
+      "size": 239299,
+      "mtime": 1770738565
+    },
+    "图片/配图/5d98072b-87ef-42a3-a8af-38a0acb244df.gif": {
+      "hash": "bcc8cd7dc2abd7ace2a092f1681ed8103f265e6955f743c0cd0db7535a1dbd6f",
+      "size": 1287239,
+      "mtime": 1770738557
+    },
+    "图片/配图/b282ed55-f798-4a34-9a37-2a579bbbd954.gif": {
+      "hash": "bdd1e710facfa2559ecc42cd0f62782fcd9c4d1d579ea2bf6f73d9f307ee5ef6",
+      "size": 6946663,
+      "mtime": 1770738579
+    },
+    "图片/配图/d7de54bf-4272-42ed-ac8e-2d7cd91988ad.png": {
+      "hash": "f532d44cbb3a0c7fb0881b6a9459730cc2192b3bcbbda4474e7d61bd45bf4a0e",
+      "size": 74530,
+      "mtime": 1770738544
+    },
+    "图片/摄影/22c0e9b7-8093-48fa-97af-14881cce91d9.jpg": {
+      "hash": "c3f6283113ae1bc9d504655081fdcde2af14f8816e5aba6daa6cf4ca6b8adf66",
+      "size": 851366,
+      "mtime": 1770738558
+    },
+    "图片/摄影/fb806567-8690-4503-a095-d70ac98eb5e1.jpg": {
+      "hash": "aa02f52c680e99d9cf70d1ecc4e185858e5308e912b5b1ba7525fc68ad61bbe1",
+      "size": 230448,
+      "mtime": 1770738565
+    },
+    "图片/配图/0575e14f-38cd-4d00-92ff-2c6bf41e7085.gif": {
+      "hash": "2a1e0c68ad6bf6a261579e7fab0ec1b7fbe172aee0b0df3c452e3e06f89d2ef7",
+      "size": 4711,
+      "mtime": 1770738578
+    },
+    "图片/摄影/fd5e607a-e94f-4f40-8412-dfcc745dcd5f.jpg": {
+      "hash": "369cec738a75e2287ab204524dfda110cfaf39a551caf2ca8b933431b070ee57",
+      "size": 236740,
+      "mtime": 1770738545
+    },
+    "assets/scale-compare-recording-720-12fps.gif": {
+      "hash": "f1ddd0fa45d938c0ce6fb1001c01d535410d4255a9148d5068caf5ce4f768c19",
+      "size": 1681238,
+      "mtime": 1777492865
+    },
+    "图片/配图/66296200-de80-43f1-a1a2-ce2b1403a3e2.jpg": {
+      "hash": "f9e5f0f6426be90e935be8fe63a68ba1b92aa059c733ca030dc868613effb042",
+      "size": 158623,
+      "mtime": 1770738582
+    },
+    "图片/摄影/9cbeab27-1907-4ca7-a686-9346d70d6448.jpg": {
+      "hash": "c298071337c5992556242999d6de5fa67b8549fb58d6eaa7acf698744bf8754c",
+      "size": 137262,
+      "mtime": 1770738548
+    },
+    "图片/摄影/04fe2a94-eeb0-48a6-b6c2-e684445dfedf.jpg": {
+      "hash": "b820b8acadd49e9e4d0de3b230b8c41a28024bf95e1c2a148000fb472a48d076",
+      "size": 155460,
+      "mtime": 1770738584
+    },
+    "图片/摄影/4ea17506-109f-47f9-b487-7105e562fa22.jpg": {
+      "hash": "baeab5b35521cca1209df0af4530757834c7effd97e971f5ce2bb4f00bef17e5",
+      "size": 150023,
+      "mtime": 1770738551
+    },
+    "图片/摄影/5695cbe9-5d9b-4d7e-8d6c-6d9040f2999a.jpg": {
+      "hash": "03873325d52525af2039e4b37ccf46212cb8ee187d98dcb8016851b17f0c00f8",
+      "size": 194266,
+      "mtime": 1770738551
+    },
+    "图片/摄影/f42f7f50-d00c-4225-8fff-6bc3f684021c.jpg": {
+      "hash": "30d15937e2fb7a2096949ef8588ebdfebfaac75e5bbb0c813ad6e76d15c80172",
+      "size": 89260,
+      "mtime": 1770738554
+    },
+    "图片/摄影/4d1edfba-912f-4a5a-befd-7597be4f094e.jpg": {
+      "hash": "12e1092706b171ab2e3d21f3364926f48d58d03917ccde43079cb8fabffe35eb",
+      "size": 479801,
+      "mtime": 1770738546
+    },
+    "图片/配图/40df0379-487b-4821-9a56-d3ea6621bed0.webp": {
+      "hash": "13aaaae77c8d3c037a92367e7854784d29518f8b26ded8519bb8e780625af728",
+      "size": 18680,
+      "mtime": 1770738571
+    },
+    "图片/摄影/d9512f2d-fdcf-4a22-b1d5-340f74ddedae.jpg": {
+      "hash": "cde26afa9714c70cfbb657cc6edcf2332a115f6462545f8a08ac0f76afc7f1fb",
+      "size": 194823,
+      "mtime": 1770738570
+    },
+    "图片/配图/7f5c2791-3674-4ed4-befe-f2cce578b958.jpg": {
+      "hash": "f90ac25c8db32fc37cf5a65492f39886e82735c0fb46041f397c12b85e020ab0",
+      "size": 99311,
+      "mtime": 1770738582
+    },
+    "图片/摄影/79ac64e6-b6c4-487d-babf-d01c2173cb92.jpg": {
+      "hash": "f971dd58bd53f90f7e0053d1ec53afbef9bbe27b560de31f691442840acea69c",
+      "size": 729287,
+      "mtime": 1770738573
+    },
+    "图片/摄影/b922129f-c2cd-42de-b86b-37ecc3a23c72.png": {
+      "hash": "05e861ae6de4c0c0ec5a6b7b80865b6b75800d45e1b2fc2ccac12ba22b874e94",
+      "size": 3457563,
+      "mtime": 1770738546
+    },
+    "图片/配图/aeba66d0-5681-48a9-ad7d-d66448f9ceb5.png": {
+      "hash": "e873a6da8c3c26387c0c55ebe93977567d6f2b802a520e7967bf7aeeb87e8ae8",
+      "size": 1204949,
+      "mtime": 1770738565
+    },
+    "图片/配图/GiorgioDeChirico.jpg": {
+      "hash": "952f329ec0a753a30f317ac79a7f4e49241d5f6d8bcaf85c2c13964fbde3d022",
+      "size": 263506,
+      "mtime": 1772760353
+    },
+    "图片/摄影/f829eb81-633c-4bd1-b30a-fb607389fc66.jpg": {
+      "hash": "8dfe8d3bbd23da284eab8d13121e16b170942c8d0dc719d1f45d965e5c6d318f",
+      "size": 116561,
+      "mtime": 1770738568
+    },
+    "图片/配图/9192d8c1-5417-4944-bbda-75d441b12a11.gif": {
+      "hash": "4f3e07030acfc5b82156f339f723951002f5e8074b9778c802c2a76e1fee6a0c",
+      "size": 8772774,
+      "mtime": 1770738569
+    },
+    "assets/scale-compare-recording.gif": {
+      "hash": "e009277a0006420f9191a54e5a585cc125377c02b20bc40365c5c748bcea52e0",
+      "size": 3905803,
+      "mtime": 1777490432
+    },
+    "图片/配图/38e5f9cb-6dce-4e4d-9481-92f4ded85e2c.png": {
+      "hash": "64057d26de6da58ffc3dbd4d462d310774b4bfae27bcd46ebe0ec61793e99a3d",
+      "size": 101845,
+      "mtime": 1770738562
+    },
+    "图片/配图/0b00c9f1-4423-40f8-99c6-adff0d8e8665.png": {
+      "hash": "b176a2264821f9a654fa0340a4d7baa35a3b2c57f4ff065d2c7670c220d6ce48",
+      "size": 366199,
+      "mtime": 1770738561
+    },
+    "assets/p5.js": {
+      "hash": "2ee031e707ccbd2cc8551c985fd1ebf5f59fea0abe186a7b23606568a1a306a1",
+      "size": 1055288,
+      "mtime": 1770763822
+    },
+    "图片/配图/9bc4a39b-9eee-486b-8242-196d2c91ec3c.png": {
+      "hash": "42dcd78f7382a18713ca7c9674daee8d4e303f2102683fe0ebf072d93c36d9b4",
+      "size": 428126,
+      "mtime": 1770738581
+    },
+    "图片/配图/06b14cfc-5e3c-4e35-b297-65d58722aabd.gif": {
+      "hash": "d2bbe7cc2174d3b03879e810cc305014dfa40ad60760bc3d106e4057a3883e62",
+      "size": 9485880,
+      "mtime": 1770738581
+    },
+    "图片/配图/ead5ef5a-d140-4292-93cc-431d13a1a179.png": {
+      "hash": "d761bc4b7312232fa0e7191dd0a3f833a7aec1997af05f01e754da3a26f25237",
+      "size": 238011,
+      "mtime": 1770738554
+    },
+    "图片/摄影/1570c6b2-f2f7-4036-bff9-47206b0ba878.jpg": {
+      "hash": "0a3550713290002ff6c3ac5d0042416800bb8fdc1dd043d8cc5cd6b3166e6759",
+      "size": 230606,
+      "mtime": 1770738552
+    },
+    "图片/配图/a2f8dc63-ec4b-488a-81aa-34772550ff98.jpg": {
+      "hash": "46072da2c44ab79890154a04e95748b11daf11e0d500bc4bd22f525aeaf1fe64",
+      "size": 322637,
+      "mtime": 1770738572
+    },
+    "assets/sketch.js": {
+      "hash": "88828f9121cdde19ed86c2f8bc6499a666ab52a8039c493d0a174d795843937c",
+      "size": 8012,
+      "mtime": 1773347709
+    },
+    "图片/摄影/547a4a09-0612-491d-a83d-2f805079b2d8.jpg": {
+      "hash": "cc004b1f2088f06790df1e67b3a304bb5585c29e1d13821910f3240e03f83fae",
+      "size": 235426,
+      "mtime": 1770738568
+    },
+    "图片/摄影/8b194555-57fc-48d7-b448-05fbc4e46862.jpg": {
+      "hash": "1e18eaad2858f224c38f3c6847806e0271238c340df9c2586b3953f03cebc2a4",
+      "size": 269546,
+      "mtime": 1770738548
+    },
+    "图片/配图/ab17ba7b-58cb-4cf4-8169-825fdfe900fa.png": {
+      "hash": "03e8e04ccac1262153c7fa7355dd30731974aa14e4a45cb3fed20a44ecaa2a88",
+      "size": 299386,
+      "mtime": 1770738555
+    },
+    "图片/配图/21d10d29-2b36-44e2-ad96-13d6a34f4dc7.png": {
+      "hash": "d3efc4ece88bf34f3617d2c1b48bd5407ac7900df7c735e8cbbe7382c9289a9a",
+      "size": 307075,
+      "mtime": 1770738580
+    },
+    "图片/摄影/456cacf5-0dc1-48aa-8079-5bc7095a8294.jpg": {
+      "hash": "f9e1804b65812fee9825cf0c09bf69865a6dc22be598a91289e8ae4f8f674d1f",
+      "size": 274879,
+      "mtime": 1770738551
+    },
+    "图片/配图/21dc76f6-f406-41e5-bc00-d3987dd1803c.png": {
+      "hash": "b0e1553021155bf1eab4930c46938bab512f99afa2664319db3aa5b0892d8684",
+      "size": 39375,
+      "mtime": 1770738578
+    },
+    "图片/配图/dcf1562d-afba-4cb7-b60b-e198cd3cd7ce.jpg": {
+      "hash": "6f1e91ec60a7753d4efe249ae2d03c79b8a7cb0bccaa944631a64f0a0e1f6e79",
+      "size": 44476,
+      "mtime": 1770738578
+    },
+    "图片/摄影/DSCF3910.jpg": {
+      "hash": "64f40ca913f5122dee9a830de6ea5cdbbbf0af6aa8cf096fedad30a616cd57aa",
+      "size": 10168542,
+      "mtime": 1764598450
+    },
+    "图片/配图/69863c74-93e9-4383-95e8-beb3ab7fd630.png": {
+      "hash": "4f335d4816bd5b1448fd20f2321fe784e31fe6dae682cdc9daf7e5abd2e715b3",
+      "size": 149737,
+      "mtime": 1770738579
+    },
+    "图片/配图/e08a87de-dc9e-415c-a14c-76996f970c6f.png": {
+      "hash": "4f244d8065681daa81e05b6d3979dd56825aa06d3bffb68a4ffeb85e456b4be0",
+      "size": 2849728,
+      "mtime": 1770738577
     }
   },
   "video_outputs": [
-    "assets/Morning-Mist.thumb.jpg",
-    "assets/Home-starts-from-the-kitchen-sd-cn.mp4",
-    "assets/Yelanggu-Lusheng.mp4",
     "assets/Winter-Song.mp4",
-    "assets/aimeili.mp4",
+    "assets/Yelanggu-Lusheng.mp4",
     "assets/Winter-Song.thumb.jpg",
-    "assets/Ave-Maria.thumb.jpg",
-    "assets/Yelanggu-Lusheng.thumb.jpg",
     "assets/Ave-Maria.mp4",
     "assets/aimeili.thumb.jpg",
-    "assets/Morning-Mist.mp4",
-    "assets/Home-starts-from-the-kitchen-sd-cn.thumb.jpg"
+    "assets/Ave-Maria.thumb.jpg",
+    "assets/Home-starts-from-the-kitchen-sd-cn.thumb.jpg",
+    "assets/Home-starts-from-the-kitchen-sd-cn.mp4",
+    "assets/Yelanggu-Lusheng.thumb.jpg",
+    "assets/Morning-Mist.thumb.jpg",
+    "assets/aimeili.mp4",
+    "assets/Morning-Mist.mp4"
   ],
   "image_outputs": [
-    "image/photography/IMG_3428.webp",
-    ".moss/og/ca6b4cc7d82ead5d.png",
-    "image/assets/d0505029-6be1-4875-aa7d-666bc2e6e372.webp",
-    "image/assets/0241ec32-59e6-4403-88d4-23b8d7fcc13a.webp",
-    "image/photography/IMG_3436.webp",
-    "image/photography/19d19851-1a67-41dc-88e9-d7b6f3539ca2.webp",
-    "image/photography/79ac64e6-b6c4-487d-babf-d01c2173cb92.webp",
-    "image/photography/3cdf3c4e-b48c-4b4c-993a-362683b016bc.webp",
-    ".moss/og/02c3f6b62df5ceb7.png",
-    "image/photography/2ef1d558-bca4-4792-bb63-41ee12fa95ac.webp",
-    "image/assets/df3f7032-9d6d-40b4-a975-80b97b94f3a4.webp",
-    ".moss/og/9c82536dbf5cefea.png",
-    "image/photography/6e6bc6ce-c973-4365-b9cd-1817e39a6b2e.webp",
-    ".moss/og/d6c88999b42e3f28.png",
-    "image/assets/21d10d29-2b36-44e2-ad96-13d6a34f4dc7.webp",
-    "image/photography/98f8f73a-0d71-44ce-b8fa-68e97786845a.webp",
-    "image/photography/cba34621-b690-465c-8a1d-7e36a19cbd60.webp",
-    "image/assets/ef00feaa-34fe-49c2-ac17-f532f390ae7b.webp",
-    "image/assets/7e77b94f-4c82-4a34-a4d6-4fa9d4d0dac2.webp",
-    "image/photography/abfc71fe-7fec-45f9-926d-7e1009eb0320.webp",
-    "image/photography/547a4a09-0612-491d-a83d-2f805079b2d8.webp",
-    "image/photography/82a3a2a3-5e54-4310-ac04-7776bcea1026.webp",
-    "image/photography/fd5e607a-e94f-4f40-8412-dfcc745dcd5f.webp",
-    "image/photography/1641eab1-17ff-4ced-99a7-367ae7cdc656.webp",
-    "image/assets/Pasted image 20251107111040.webp",
-    "image/photography/4ad7df08-1169-4e65-a882-a7f370867d95.webp",
-    "image/assets/bd9fe5ad-59d0-4d73-9c66-db0faa2dfff2.webp",
-    "image/assets/ab17ba7b-58cb-4cf4-8169-825fdfe900fa.webp",
-    "image/assets/e08a87de-dc9e-415c-a14c-76996f970c6f.webp",
-    "image/assets/Pasted image 20251107111149.webp",
-    "image/photography/a420cc12-8642-4286-b65f-9795cc5acd2f.webp",
-    "image/photography/8b194555-57fc-48d7-b448-05fbc4e46862.webp",
-    "image/photography/fb806567-8690-4503-a095-d70ac98eb5e1.webp",
-    "image/photography/22c0e9b7-8093-48fa-97af-14881cce91d9.webp",
-    "image/assets/5ac6015a-9bf7-4538-ad44-5a272a516060.webp",
-    "image/assets/63605a50-ec2d-482e-b4fc-b64a6c9da502.webp",
-    "image/assets/8dbe8743-38e6-44ad-9652-432b073be71a.webp",
-    "image/assets/ead5ef5a-d140-4292-93cc-431d13a1a179.webp",
-    "image/assets/020c1a3f-91c8-4e1e-acd0-b2c6578f2692.webp",
     "image/photography/14435097-0a88-422e-abc7-cb59db6ed153.webp",
-    "image/photography/DSCF3910.webp",
-    "image/photography/c2206746-6708-43ca-a682-26916f73d585.webp",
+    "image/assets/ef00feaa-34fe-49c2-ac17-f532f390ae7b.webp",
+    "image/photography/82a3a2a3-5e54-4310-ac04-7776bcea1026.webp",
     ".moss/og/dad1769135bb339c.png",
-    "image/assets/0b00c9f1-4423-40f8-99c6-adff0d8e8665.webp",
-    "image/assets/3f5c3ada-ab96-4ea3-a23f-30b92059b4b8.webp",
-    ".moss/og/134e33e0f1c3e1ac.png",
-    "image/photography/DSCF3193.webp",
-    "image/photography/b922129f-c2cd-42de-b86b-37ecc3a23c72.webp",
-    "image/photography/456cacf5-0dc1-48aa-8079-5bc7095a8294.webp",
-    "image/assets/3fcefcd6-8a8c-4bfb-9935-d99a568bb019.webp",
-    "image/assets/a2f8dc63-ec4b-488a-81aa-34772550ff98.webp",
-    "image/photography/6f13bd9d-cada-4522-a173-69b1a679d4fc.webp",
-    "image/assets/f219159f-6218-4940-b05b-234cb5c9957e.webp",
-    "image/assets/f1a05cc2-cd41-47ca-9b8c-e3ef68d98847.webp",
-    "image/assets/aeba66d0-5681-48a9-ad7d-d66448f9ceb5.webp",
-    "image/photography/DSCF3736.webp",
-    "image/assets/4ed2502b-8956-4de7-82fd-abdfc16ef809.webp",
-    ".moss/og/b8bd3c8f72ff198d.png",
+    "image/photography/DSCF3263.webp",
     ".moss/og/922ad9b54e92b2a3.png",
-    ".moss/og/e986610baff9259a.png",
-    "image/assets/GiorgioDeChirico.webp",
-    "image/photography/5be8bbef-c77c-431f-bc66-952ff9fd3976.webp",
-    "image/assets/319b595a-359e-4b54-8ce2-e9714ab78eee.webp",
-    "image/photography/2705fa19-c187-48a0-b809-034acdfd6e57.webp",
-    "image/assets/2de0c228-36c8-47ec-9f22-000af45b1943.webp",
+    "image/assets/0241ec32-59e6-4403-88d4-23b8d7fcc13a.webp",
     "image/assets/Pasted image 20251107112851.webp",
-    "image/photography/c929f3f9-f654-4ce5-a9a7-7358a6caebc3.webp",
-    "image/assets/0575e14f-38cd-4d00-92ff-2c6bf41e7085.gif.webp",
-    ".moss/og/6148fc2a8caf9548.png",
-    "image/photography/b0cd85d4-e061-4bed-bdf4-01d7c64b5a35.webp",
-    "image/assets/8c0e7411-7ccf-4d8e-8679-433432a4a73e.webp",
+    "image/photography/79ac64e6-b6c4-487d-babf-d01c2173cb92.webp",
+    "image/photography/DSCF3910.webp",
+    "image/photography/547a4a09-0612-491d-a83d-2f805079b2d8.webp",
+    "image/assets/Pasted image 20251107111149.webp",
+    "image/photography/1641eab1-17ff-4ced-99a7-367ae7cdc656.webp",
+    "image/photography/456cacf5-0dc1-48aa-8079-5bc7095a8294.webp",
     ".moss/og/c93730003dbd77ab.png",
+    "image/photography/b0cd85d4-e061-4bed-bdf4-01d7c64b5a35.webp",
+    "image/photography/fd5e607a-e94f-4f40-8412-dfcc745dcd5f.webp",
+    ".moss/og/134e33e0f1c3e1ac.png",
     "image/assets/5d8aaa4a-6a23-4644-9531-e2b538e3e57d.webp",
-    "image/assets/cb499502-8100-4b80-843b-c89b319e41ee.webp",
-    "image/photography/1570c6b2-f2f7-4036-bff9-47206b0ba878.webp",
-    "image/photography/4d1edfba-912f-4a5a-befd-7597be4f094e.webp",
-    ".moss/og/506d3271d74fe870.png",
+    "image/photography/22c0e9b7-8093-48fa-97af-14881cce91d9.webp",
+    "image/assets/f1a05cc2-cd41-47ca-9b8c-e3ef68d98847.webp",
+    "image/photography/6e6bc6ce-c973-4365-b9cd-1817e39a6b2e.webp",
+    "image/photography/IMG_3436.webp",
+    ".moss/og/d6c88999b42e3f28.png",
+    "image/assets/020c1a3f-91c8-4e1e-acd0-b2c6578f2692.webp",
+    "image/assets/d0505029-6be1-4875-aa7d-666bc2e6e372.webp",
+    ".moss/og/6148fc2a8caf9548.png",
+    "image/photography/b922129f-c2cd-42de-b86b-37ecc3a23c72.webp",
+    "image/assets/GiorgioDeChirico.webp",
+    "image/assets/7e77b94f-4c82-4a34-a4d6-4fa9d4d0dac2.webp",
+    "image/assets/aeba66d0-5681-48a9-ad7d-d66448f9ceb5.webp",
+    "image/photography/19d19851-1a67-41dc-88e9-d7b6f3539ca2.webp",
+    "image/photography/DSCF3736.webp",
+    "image/assets/Pasted image 20260505161028.webp",
+    "image/photography/IMG_3428.webp",
+    "image/photography/fb806567-8690-4503-a095-d70ac98eb5e1.webp",
+    "image/photography/cba34621-b690-465c-8a1d-7e36a19cbd60.webp",
+    "image/assets/df3f7032-9d6d-40b4-a975-80b97b94f3a4.webp",
+    "image/assets/2de0c228-36c8-47ec-9f22-000af45b1943.webp",
+    "image/photography/abfc71fe-7fec-45f9-926d-7e1009eb0320.webp",
+    "image/photography/_43A7285.webp",
+    "image/photography/a420cc12-8642-4286-b65f-9795cc5acd2f.webp",
+    "image/assets/21d10d29-2b36-44e2-ad96-13d6a34f4dc7.webp",
+    "image/assets/Pasted image 20251107111040.webp",
     ".moss/og/a8c1401b00d4461f.png",
+    "image/assets/5ac6015a-9bf7-4538-ad44-5a272a516060.webp",
+    "image/photography/3cdf3c4e-b48c-4b4c-993a-362683b016bc.webp",
+    "image/assets/e08a87de-dc9e-415c-a14c-76996f970c6f.webp",
+    "image/photography/DSCF3193.webp",
+    "image/photography/5be8bbef-c77c-431f-bc66-952ff9fd3976.webp",
+    "image/assets/3f5c3ada-ab96-4ea3-a23f-30b92059b4b8.webp",
+    ".moss/og/b8bd3c8f72ff198d.png",
+    "image/assets/4ed2502b-8956-4de7-82fd-abdfc16ef809.webp",
+    "image/photography/2705fa19-c187-48a0-b809-034acdfd6e57.webp",
+    "image/assets/ab17ba7b-58cb-4cf4-8169-825fdfe900fa.webp",
+    "image/photography/98f8f73a-0d71-44ce-b8fa-68e97786845a.webp",
+    "image/photography/8b194555-57fc-48d7-b448-05fbc4e46862.webp",
+    "image/photography/c2206746-6708-43ca-a682-26916f73d585.webp",
+    "image/assets/cb499502-8100-4b80-843b-c89b319e41ee.webp",
+    "image/photography/4ad7df08-1169-4e65-a882-a7f370867d95.webp",
+    "image/assets/0b00c9f1-4423-40f8-99c6-adff0d8e8665.webp",
+    ".moss/og/ca6b4cc7d82ead5d.png",
+    "image/assets/8c0e7411-7ccf-4d8e-8679-433432a4a73e.webp",
+    "image/assets/319b595a-359e-4b54-8ce2-e9714ab78eee.webp",
+    "image/assets/63605a50-ec2d-482e-b4fc-b64a6c9da502.webp",
+    "image/assets/ead5ef5a-d140-4292-93cc-431d13a1a179.webp",
+    "image/assets/a2f8dc63-ec4b-488a-81aa-34772550ff98.webp",
     "image/assets/9bc4a39b-9eee-486b-8242-196d2c91ec3c.webp",
-    "image/photography/DSCF3263.webp"
+    "image/assets/f219159f-6218-4940-b05b-234cb5c9957e.webp",
+    "image/assets/bd9fe5ad-59d0-4d73-9c66-db0faa2dfff2.webp",
+    "image/photography/4d1edfba-912f-4a5a-befd-7597be4f094e.webp",
+    "image/assets/3fcefcd6-8a8c-4bfb-9935-d99a568bb019.webp",
+    "image/photography/2ef1d558-bca4-4792-bb63-41ee12fa95ac.webp",
+    ".moss/og/506d3271d74fe870.png",
+    ".moss/og/02c3f6b62df5ceb7.png",
+    "image/assets/0575e14f-38cd-4d00-92ff-2c6bf41e7085.gif.webp",
+    ".moss/og/e986610baff9259a.png",
+    "image/assets/8dbe8743-38e6-44ad-9652-432b073be71a.webp",
+    "image/photography/_43A2045.webp",
+    "image/photography/6f13bd9d-cada-4522-a173-69b1a679d4fc.webp",
+    ".moss/og/9c82536dbf5cefea.png",
+    "image/photography/c929f3f9-f654-4ce5-a9a7-7358a6caebc3.webp",
+    "image/photography/1570c6b2-f2f7-4036-bff9-47206b0ba878.webp"
   ],
   "notebook_outputs": [],
   "plugin_fingerprint": null,
-  "builder_fingerprint": "129319976-1777494793355761028"
+  "builder_fingerprint": "132051512-1778174412901656770",
+  "source_to_output": {
+    "文字/分布式信息网络/假新闻与市场.md": "writings/distributed-web/fake-news-and-markets/index.html",
+    "交互/重回舞台，做音乐.md": "interactive/ethnodrama-scale/index.html",
+    "视频/冬日之歌.md": "video/winter-song/index.html",
+    "文字/Tornado Cash：以太坊的压力测试.md": "writings/tornado-cash/index.html",
+    "文字/纽约诸法门/东村夜晚的摩诃真言.md": "writings/nyc-dharma/maha-mantra-east-village/index.html",
+    "交互/交互.md": "interactive/index.html",
+    "文字/书评/从融合到消散：两千年间的中国佛教.md": "writings/reviews/buddhism-in-chinese-history/index.html",
+    "文字/民歌、锤子与卡在工业革命中的我们.md": "writings/bluegrass-hammer/index.html",
+    "文字/分布式信息网络/下一代开放互联网.md": "writings/distributed-web/next-gen-open-internet/index.html",
+    "文字/无用之旅/无用之旅.md": "writings/useless-journey/index.html",
+    "文字/书评/书评.md": "writings/reviews/index.html",
+    "文字/IPFS 開發者大會記錄.md": "writings/ipfs-developer-conference/index.html",
+    "文字/通过哈伯格税治理 Matters 标签.md": "writings/harberger-tax-matters-tags/index.html",
+    "刘果.md": "index.html",
+    "文字/蓝海螺：一个童话.md": "writings/blue-conch/index.html",
+    "视频/晨雾.md": "video/morning-mist/index.html",
+    "文字/纽约诸法门/纽约禅堂.md": "writings/nyc-dharma/纽约禅堂/index.html",
+    "文字/无用之旅/一条大河，两种对自由的选择.md": "writings/useless-journey/river-two-freedoms/index.html",
+    "文字/无用之旅/从优胜美地出发.md": "writings/useless-journey/from-yosemite/index.html",
+    "视频/夜郎谷的芦笙.md": "video/lusheng-yelang/index.html",
+    "交互/活的空间.md": "interactive/living-space/index.html",
+    "文字/游记/科隆群岛：烈火中诞生的伊甸园.md": "writings/travel/galapagos/index.html",
+    "文字/等等.md": "writings/wait/index.html",
+    "文字/无用之旅/真正的旅程.md": "writings/useless-journey/the-real-journey/index.html",
+    "文字/一座城的湮灭.md": "writings/a-city-annihilated/index.html",
+    "文字/纽约诸法门/藏传佛教寺庙里的瑜伽.md": "writings/nyc-dharma/yoga-in-tibetan-temple/index.html",
+    "文字/书评/不要去自动化你爱的事：从个人计算机到生成式 AI.md": "writings/reviews/tools-for-thoughts/index.html",
+    "文字/如何建立分布式的版權生態.md": "writings/distributed-copyright-ecosystem/index.html",
+    "文字/分布式信息网络/分布式信息网络.md": "writings/distributed-web/index.html",
+    "文字/分布式信息网络/联邦制社交协议：Nostr，Secure Scuttlebutt，Farcaster，ActivityPub.md": "writings/distributed-web/federated-social-protocols/index.html",
+    "文字/另一半.md": "writings/the-other-half/index.html",
+    "图片/摄影/摄影.md": "image/photography/index.html",
+    "文字/病毒算法 ，全民基本收入，与可编程的世界观.md": "writings/viral-algorithms-ubi/index.html",
+    "文字/纽约诸法门/纽约诸法门.md": "writings/nyc-dharma/index.html",
+    "文字/游记/游记.md": "writings/travel/index.html",
+    "图片/配图/配图.md": "image/assets/index.html",
+    "文字/Matters 的架構與技術棧.md": "writings/matters-architecture/index.html",
+    "文字/小说：机器停转.md": "writings/the-machine-stops/index.html",
+    "文字/分布式信息网络/关于 DDoS 与去中心化的碎碎念.md": "writings/distributed-web/ddos-and-decentralization/index.html",
+    "视频/圣母颂.md": "video/ave-maria/index.html",
+    "文字/一个实验.md": "writings/an-experiment/index.html",
+    "友链.md": "links/index.html",
+    "视频/视频.md": "video/index.html",
+    "文字/游记/色达：宁静的日常和生死的边界.md": "writings/travel/sertar/index.html",
+    "文字/分布式信息网络/去中心化社交媒体的博弈机制.md": "writings/distributed-web/decentralized-social-game-theory/index.html",
+    "视频/家从厨房开始.md": "video/home-starts-in-kitchen/index.html",
+    "交互/林中星空.md": "interactive/starry-forest/index.html",
+    "图片/图片.md": "image/index.html",
+    "文字/AI 带来写作的黄金时代.md": "writings/ai-golden-age-of-writing/index.html",
+    "文字/文字.md": "writings/index.html",
+    "文字/无用之旅/文明的代价.md": "writings/useless-journey/cost-of-civilization/index.html",
+    "文字/纽约诸法门/纽约诸法门：引子.md": "writings/nyc-dharma/dharma-doors-intro/index.html",
+    "文字/纽约诸法门/从伍德斯托克-到整体瑜伽中心.md": "writings/nyc-dharma/woodstock-to-integral-yoga/index.html",
+    "文字/无用之旅/“如果人们在一个地方呆得足够久，那里的生灵也会开始向他们说话”.md": "writings/useless-journey/beings-speak/index.html",
+    "文字/分布式信息网络/信息自由的乌托邦与现实.md": "writings/distributed-web/information-freedom-utopia/index.html",
+    "文字/机械生成时代的艺术.md": "writings/art-in-the-age-of-mechanical-generation/index.html",
+    "视频/某个夏日的午后童谣.md": "video/summer-afternoon-nursery-rhyme/index.html"
+  }
 }

@@ -1,36 +1,56 @@
 {
   "schemaVersion": "1.0.0",
-  "updatedAt": "2026-04-29T20:33:49.434Z",
+  "updatedAt": "2026-05-07T13:19:22.594Z",
   "articles": {
     "d4924e28": {
       "comments": [],
       "donations": [],
-      "appreciations": []
+      "appreciations": [],
+      "lastKnownCommentCount": 24
     },
     "e746b71e": {
       "comments": [],
       "donations": [],
-      "appreciations": []
+      "appreciations": [],
+      "lastKnownCommentCount": 8
     },
     "78ad2d1f": {
       "comments": [],
       "donations": [],
-      "appreciations": []
+      "appreciations": [],
+      "lastKnownCommentCount": 10
     },
     "8b36e44e": {
       "comments": [],
       "donations": [],
-      "appreciations": []
+      "appreciations": [],
+      "lastKnownCommentCount": 13
     },
     "bf172a40": {
-      "comments": [],
+      "comments": [
+        {
+          "id": "Q29tbWVudDoxNjU2OTYz",
+          "content": "<p>告別踩雷！汐汐高檔外約TG：xy8520 是妳最專業、最好聊的口袋名單<br class=\"smart\">【汐汐高檔外約】專業鑑定、絕不瞎推。 主打：高檔 JKF 女郎、啦啦隊、小藝人。 誠實至上：優缺點直說，預算內幫你挑最優的。 個性：溫柔健談開朗，懂你的幽默。 告別踩雷，請認準汐汐 TG：xy8520&nbsp;</p>",
+          "createdAt": "2026-05-04T11:55:17.281Z",
+          "state": "collapsed",
+          "upvotes": 0,
+          "author": {
+            "id": "VXNlcjoyNzYyMDE",
+            "userName": "xy8520",
+            "displayName": "flcc0202",
+            "avatar": null
+          }
+        }
+      ],
       "donations": [],
-      "appreciations": []
+      "appreciations": [],
+      "lastKnownCommentCount": 7
     },
     "a6eff5d1": {
       "comments": [],
       "donations": [],
-      "appreciations": []
+      "appreciations": [],
+      "lastKnownCommentCount": 22
     },
     "38b54a4e": {
       "comments": [],
@@ -40,17 +60,20 @@
     "8c89a614": {
       "comments": [],
       "donations": [],
-      "appreciations": []
+      "appreciations": [],
+      "lastKnownCommentCount": 3
     },
     "6a559bc6": {
       "comments": [],
       "donations": [],
-      "appreciations": []
+      "appreciations": [],
+      "lastKnownCommentCount": 0
     },
     "8fba67a5": {
       "comments": [],
       "donations": [],
-      "appreciations": []
+      "appreciations": [],
+      "lastKnownCommentCount": 1
     },
     "9813850a": {
       "comments": [
@@ -69,7 +92,8 @@
         }
       ],
       "donations": [],
-      "appreciations": []
+      "appreciations": [],
+      "lastKnownCommentCount": 11
     },
     "066334b9": {
       "comments": [
@@ -85,10 +109,24 @@
             "displayName": "已註銷用戶",
             "avatar": null
           }
+        },
+        {
+          "id": "Q29tbWVudDoxNjU2NjU2",
+          "content": "<p>身為過來人分享一下我的「避雷三寶」。與其看那些機器人發的廣告，不如找這幾位有口碑的茶姐：</p><p>汐汐（xy8520）：&nbsp;我的最愛，人正又幽默，她那邊的高檔名單真的很強，頻道（<a target=\"_blank\" rel=\"noopener noreferrer nofollow\" href=\"https://t.me/cy45678\">t.me/cy45678</a>）每天都有驚喜。</p><p>糖希（x9798）：&nbsp;走心派首選，頻道（<a target=\"_blank\" rel=\"noopener noreferrer nofollow\" href=\"https://t.me/cc58673\">t.me/cc58673</a>）裡的妹子都很溫柔。</p><p>優奈（yy55234）：&nbsp;專業出張安排，不囉嗦、不拖泥帶水。</p><p>這幾家都是穩定的老牌子，不匯款、不買點數，安全第一。</p>",
+          "createdAt": "2026-05-04T08:18:13.307Z",
+          "state": "collapsed",
+          "upvotes": 0,
+          "author": {
+            "id": "VXNlcjoyNzYyMDE",
+            "userName": "xy8520",
+            "displayName": "flcc0202",
+            "avatar": null
+          }
         }
       ],
       "donations": [],
-      "appreciations": []
+      "appreciations": [],
+      "lastKnownCommentCount": 11
     },
     "f602f8bc": {
       "comments": [
@@ -104,20 +142,36 @@
             "displayName": "已註銷用戶",
             "avatar": null
           }
+        },
+        {
+          "id": "Q29tbWVudDoxNjU2NjQw",
+          "content": "<p>身為過來人分享一下我的「避雷三寶」。與其看那些機器人發的廣告，不如找這幾位有口碑的茶姐：</p><p>汐汐（xy8520）：&nbsp;我的最愛，人正又幽默，她那邊的高檔名單真的很強，頻道（<a target=\"_blank\" rel=\"noopener noreferrer nofollow\" href=\"https://t.me/cy45678\">t.me/cy45678</a>）每天都有驚喜。</p><p>糖希（x9798）：&nbsp;走心派首選，頻道（<a target=\"_blank\" rel=\"noopener noreferrer nofollow\" href=\"https://t.me/cc58673\">t.me/cc58673</a>）裡的妹子都很溫柔。</p><p>優奈（yy55234）：&nbsp;專業出張安排，不囉嗦、不拖泥帶水。</p><p>這幾家都是穩定的老牌子，不匯款、不買點數，安全第一。</p>",
+          "createdAt": "2026-05-04T08:13:30.471Z",
+          "state": "collapsed",
+          "upvotes": 0,
+          "author": {
+            "id": "VXNlcjoyNzYyMDE",
+            "userName": "xy8520",
+            "displayName": "flcc0202",
+            "avatar": null
+          }
         }
       ],
       "donations": [],
-      "appreciations": []
+      "appreciations": [],
+      "lastKnownCommentCount": 4
     },
     "def52cba": {
       "comments": [],
       "donations": [],
-      "appreciations": []
+      "appreciations": [],
+      "lastKnownCommentCount": 1
     },
     "cd78b1ad": {
       "comments": [],
       "donations": [],
-      "appreciations": []
+      "appreciations": [],
+      "lastKnownCommentCount": 1
     },
     "0b197ad1": {
       "comments": [],
@@ -127,47 +181,56 @@
     "07266b52": {
       "comments": [],
       "donations": [],
-      "appreciations": []
+      "appreciations": [],
+      "lastKnownCommentCount": 2
     },
     "ebfff570": {
       "comments": [],
       "donations": [],
-      "appreciations": []
+      "appreciations": [],
+      "lastKnownCommentCount": 2
     },
     "90605c64": {
       "comments": [],
       "donations": [],
-      "appreciations": []
+      "appreciations": [],
+      "lastKnownCommentCount": 13
     },
     "415ef3c5": {
       "comments": [],
       "donations": [],
-      "appreciations": []
+      "appreciations": [],
+      "lastKnownCommentCount": 19
     },
     "37e49dd6": {
       "comments": [],
       "donations": [],
-      "appreciations": []
+      "appreciations": [],
+      "lastKnownCommentCount": 6
     },
     "882335c7": {
       "comments": [],
       "donations": [],
-      "appreciations": []
+      "appreciations": [],
+      "lastKnownCommentCount": 15
     },
     "107260d8": {
       "comments": [],
       "donations": [],
-      "appreciations": []
+      "appreciations": [],
+      "lastKnownCommentCount": 11
     },
     "007ec9e9": {
       "comments": [],
       "donations": [],
-      "appreciations": []
+      "appreciations": [],
+      "lastKnownCommentCount": 57
     },
     "0b850857": {
       "comments": [],
       "donations": [],
-      "appreciations": []
+      "appreciations": [],
+      "lastKnownCommentCount": 5
     },
     "41109bd2": {
       "comments": [
@@ -199,17 +262,20 @@
         }
       ],
       "donations": [],
-      "appreciations": []
+      "appreciations": [],
+      "lastKnownCommentCount": 7
     },
     "6f3f7f47": {
       "comments": [],
       "donations": [],
-      "appreciations": []
+      "appreciations": [],
+      "lastKnownCommentCount": 1
     },
     "e4cc2af9": {
       "comments": [],
       "donations": [],
-      "appreciations": []
+      "appreciations": [],
+      "lastKnownCommentCount": 1
     },
     "文字/一部纪实戏剧-和一个理解音阶的网页应用.md": {
       "comments": [],

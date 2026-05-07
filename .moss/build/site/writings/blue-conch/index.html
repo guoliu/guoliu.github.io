@@ -20,6 +20,7 @@
     <meta property="article:tag" content="小说">
     <meta property="article:tag" content="童话">
     <link rel="canonical" href="https://liu-guo.com/writings/blue-conch/">
+    
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="蓝海螺：一个童话">
     <meta name="twitter:description" content="晚上读完书关上灯，多多不肯睡，说还想读。我说，要不，我们来编故事吧。多多说，好呀！于是我们编了几个故事，其中一个叫《蓝海螺》。等多多睡着，我赶紧爬起来记下来。 从前有一只小熊，和外公一起住在一个小岛上。 有一年过年，外公问，小熊，你的新年愿望是什么呀？ 小熊说，小岛上就我自己，也没有其他孩子和我一起玩。要是有什么办法，不这么孤单就好…">
@@ -46,7 +47,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16.png">
     <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml">
     <script data-goatcounter="https://guo.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-    <link rel="stylesheet" href="/style.css?v=83b6d32641fd5485">
+    <link rel="stylesheet" href="/style.css?v=3abb9ff9e247504f">
     <script data-goatcounter="https://guo.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 <style class="moss-review-style">/* Review plugin — header and colophon styles
  * Uses moss design tokens. Works in light and dark mode.
@@ -223,15 +224,33 @@
    - ResultFirst 2026 trends — "stripping away non-essential frills"
    ========================================================================== */
 
-/* Comment Section — width controlled by site theme (main > .moss-comments) */
-.moss-comments {
+/* Comment Section — width controlled by site theme.
+   The comment toggle becomes the top edge of the footer chrome: it sits with
+   generous breathing room below the article body, then the footer divider
+   sits a `space-md` (1.5rem) gap below the toggle — mirroring the `space-md`
+   gap below the divider before the footer items.
+   Selector specificity (main >) is required to win over site.css's
+   `main > .moss-comments { margin: 0 auto }` rule, which would otherwise
+   reset margin-top to 0 and erase the breathing room. */
+main > .moss-comments {
   margin-top: 6rem;
 }
 
-/* Divider above comment section */
-.moss-comments > details {
-  padding-top: var(--moss-space-lg, 2rem);
-  border-top: 1px solid var(--moss-border-light, #e6e2db);
+/* When .moss-comments is present, retune the gap between main and the footer
+   divider so the toggle sits as part of the footer chrome:
+     - `main { padding-bottom: 60px }` — drop entirely; .moss-comments owns
+       its own top breathing room (margin-top above) and the toggle should
+       sit directly above the footer's standoff.
+     - `footer.container { margin-top: 2xl }` — replace with `space-md` so
+       the toggle→divider gap mirrors the divider→items gap (also `space-md`,
+       see `footer.container::before { margin-bottom: var(--moss-space-md) }`
+       in site.css). Footer items are visually heavier (larger font), so an
+       optically symmetric gap settles to numerically equal here. */
+main:has(> .moss-comments) {
+  padding-bottom: 0;
+}
+main:has(.moss-comments) + footer.container {
+  margin-top: var(--moss-space-md);
 }
 
 /* ==========================================================================
@@ -704,33 +723,159 @@ a.comment-author:hover {
   background: rgba(0, 0, 0, 0.35);
 }
 </style>
-<style class="moss-email-style">/* Email subscribe form — injected by email plugin enhance hook */
-.footer-subscribe-form {
-  display: flex;
-  gap: var(--moss-space-sm);
-  align-items: baseline;
-  max-width: 24rem;
-}
-
-.footer-subscribe-form .moss-input {
-  flex: 1;
-}
-
-.footer-subscribe-form .moss-btn {
-  font-size: inherit;
-}
-
-@media (max-width: 48rem) {
-  .footer-subscribe-form {
-    max-width: none;
+<style class="moss-email-style">@layer shortcodes {
+  /* Email subscribe form — injected by email plugin enhance hook.
+     The footer form sits in slot:footer-end, AFTER the default link list
+     (design B, 2026-05-06). Spacing between the form and the link list
+     above it is provided by the flex `gap` on `footer.container` when
+     the default-shape footer rule kicks in (see site.css
+     `footer.container:has(> p.footer-default + ...)`). No margin-top
+     here — it would compound the gap when wrapped, and the side-by-side
+     layout doesn't want one at all. */
+  .moss-subscribe-form[data-position="footer"] {
+    display: flex;
+    gap: var(--moss-space-sm);
+    align-items: baseline;
+    max-width: 24rem;
   }
 
-  .footer-subscribe-form .moss-input {
+  .moss-subscribe-form[data-position="footer"] .moss-input {
+    flex: 1;
+  }
+
+  .moss-subscribe-form[data-position="footer"] .moss-btn {
+    font-size: inherit;
+  }
+
+  @media (max-width: 48rem) {
+    .moss-subscribe-form[data-position="footer"] {
+      max-width: none;
+    }
+
+    .moss-subscribe-form[data-position="footer"] .moss-input {
+      flex: 1;
+      min-width: 0;
+    }
+  }
+
+  /* Inline `:::subscribe` shortcode wrapper.
+     Card-styled container for in-page subscribe forms. Token-only; no
+     hardcoded colors. See spec
+     docs/superpowers/specs/2026-04-30-subscribe-shortcode-design.md. */
+  .moss-subscribe {
+    max-width: 32rem;
+    margin: var(--moss-space-lg) 0;
+    padding: var(--moss-space-md) var(--moss-space-lg);
+    border: 1px solid var(--moss-border-light);
+    border-radius: var(--moss-radius-md, 0.5rem);
+  }
+
+  .moss-subscribe-description {
+    margin: 0 0 var(--moss-space-md) 0;
+    color: var(--moss-color-muted);
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  .moss-subscribe-form[data-position="inline"] {
+    display: flex;
+    gap: var(--moss-space-sm);
+    align-items: baseline;
+  }
+
+  .moss-subscribe-form[data-position="inline"] .moss-input {
     flex: 1;
     min-width: 0;
   }
+
+  @media (max-width: 32rem) {
+    .moss-subscribe-form[data-position="inline"] {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .moss-subscribe-form[data-position="inline"] .moss-btn {
+      width: 100%;
+    }
+  }
 }
 </style>
+<style class="moss-email-style">@layer shortcodes {
+  /* Email subscribe form — injected by email plugin enhance hook.
+     The footer form sits in slot:footer-end, AFTER the default link list
+     (design B, 2026-05-06). Spacing between the form and the link list
+     above it is provided by the flex `gap` on `footer.container` when
+     the default-shape footer rule kicks in (see site.css
+     `footer.container:has(> p.footer-default + ...)`). No margin-top
+     here — it would compound the gap when wrapped, and the side-by-side
+     layout doesn't want one at all. */
+  .moss-subscribe-form[data-position="footer"] {
+    display: flex;
+    gap: var(--moss-space-sm);
+    align-items: baseline;
+    max-width: 24rem;
+  }
+
+  .moss-subscribe-form[data-position="footer"] .moss-input {
+    flex: 1;
+  }
+
+  .moss-subscribe-form[data-position="footer"] .moss-btn {
+    font-size: inherit;
+  }
+
+  @media (max-width: 48rem) {
+    .moss-subscribe-form[data-position="footer"] {
+      max-width: none;
+    }
+
+    .moss-subscribe-form[data-position="footer"] .moss-input {
+      flex: 1;
+      min-width: 0;
+    }
+  }
+
+  /* Inline `:::subscribe` shortcode wrapper.
+     Card-styled container for in-page subscribe forms. Token-only; no
+     hardcoded colors. See spec
+     docs/superpowers/specs/2026-04-30-subscribe-shortcode-design.md. */
+  .moss-subscribe {
+    max-width: 32rem;
+    margin: var(--moss-space-lg) 0;
+    padding: var(--moss-space-md) var(--moss-space-lg);
+    border: 1px solid var(--moss-border-light);
+    border-radius: var(--moss-radius-md, 0.5rem);
+  }
+
+  .moss-subscribe-description {
+    margin: 0 0 var(--moss-space-md) 0;
+    color: var(--moss-color-muted);
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  .moss-subscribe-form[data-position="inline"] {
+    display: flex;
+    gap: var(--moss-space-sm);
+    align-items: baseline;
+  }
+
+  .moss-subscribe-form[data-position="inline"] .moss-input {
+    flex: 1;
+    min-width: 0;
+  }
+
+  @media (max-width: 32rem) {
+    .moss-subscribe-form[data-position="inline"] {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .moss-subscribe-form[data-position="inline"] .moss-btn {
+      width: 100%;
+    }
+  }
+}
+</style><script class="moss-subscribe-script">"use strict";(()=>{var b={en:{placeholder:"your@email.com",label:"Subscribe",checkEmail:"Check your email to confirm.",alreadySubscribed:"You're already subscribed.",error:"Something went wrong. Try again?"},"zh-hans":{placeholder:"\u90AE\u7BB1",label:"\u8BA2\u9605",checkEmail:"\u8BF7\u5728\u90AE\u7BB1\u4E2D\u786E\u8BA4\u8BA2\u9605",alreadySubscribed:"\u4F60\u5DF2\u8BA2\u9605\u3002",error:"\u51FA\u9519\u4E86\uFF0C\u8BF7\u91CD\u8BD5\u3002"},"zh-hant":{placeholder:"\u96FB\u90F5",label:"\u8A02\u95B1",checkEmail:"\u8ACB\u5728\u96FB\u90F5\u4E2D\u78BA\u8A8D\u8A02\u95B1",alreadySubscribed:"\u4F60\u5DF2\u8A02\u95B1\u3002",error:"\u51FA\u932F\u4E86\uFF0C\u8ACB\u91CD\u8A66\u3002"}};function h(e){let t=(e??"").toLowerCase();return t.startsWith("zh-hant")||t.startsWith("zh-tw")||t.startsWith("zh-hk")||t.startsWith("zh-mo")?"zh-hant":t.startsWith("zh")?"zh-hans":"en"}var f=4e3,l=new WeakMap;function g(e){if(e.dataset.mossHydrated==="true")return;let t=e.querySelector('input[type="email"]'),n=e.querySelector('button[type="submit"]');if(!t||!n)return;e.dataset.mossHydrated="true";let r=h(document.documentElement.lang),a=b[r];if(t.placeholder=a.placeholder,!(e.dataset.position==="inline")){let s=n.querySelector(".moss-btn__label");s&&(s.textContent=a.label)}e.addEventListener("submit",async s=>{if(s.preventDefault(),e.dataset.state==="loading")return;let u=(t.value??"").trim();if(!u){t.focus();return}T(e,n),i(e,"loading");try{let d=await fetch(e.action,{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},body:JSON.stringify({email:u})}),S=await d.json().catch(()=>({}));if(!d.ok){c(e,"error",a),i(e,"error");return}let E=S.alreadySubscribed?"already-subscribed":"check-email";c(e,E,a),i(e,"success"),H(e,t)}catch{c(e,"error",a),i(e,"error")}}),n.addEventListener("click",s=>{e.dataset.state==="success"&&(s.preventDefault(),p(e,t))})}function i(e,t){e.dataset.state=t}function c(e,t,n){let r=e.querySelector(".moss-subscribe-status");if(!r)return;r.querySelectorAll("[data-copy]").forEach(o=>{o.dataset.copy===t?(o.hidden=!1,o.textContent=L(t,n)):o.hidden=!0}),r.dataset.state=t}function L(e,t){switch(e){case"check-email":return t.checkEmail;case"already-subscribed":return t.alreadySubscribed;case"error":return t.error}}function T(e,t){let n=t.parentElement;if(!n||!n.classList.contains("moss-subscribe-btn-slot")||n.style.width)return;let r=t.offsetWidth;r<=0||(n.style.width=`${r}px`)}function H(e,t){y(e);let n=window.setTimeout(()=>p(e,t),f);l.set(e,n)}function y(e){let t=l.get(e);t!==void 0&&(clearTimeout(t),l.delete(e))}function p(e,t){y(e),e.isConnected&&(t.value="",i(e,"idle"))}function m(){document.querySelectorAll('form.moss-subscribe-form[data-moss-hosted="true"]').forEach(g)}typeof document<"u"&&(document.readyState==="loading"?document.addEventListener("DOMContentLoaded",m):m());})();
+</script>
 </head>
 <body class="">
     <header>
@@ -751,7 +896,7 @@ a.comment-author:hover {
 <p>从前有一只小熊，和外公一起住在一个小岛上。</p><p>有一年过年，外公问，小熊，你的新年愿望是什么呀？</p><p>小熊说，小岛上就我自己，也没有其他孩子和我一起玩。要是有什么办法，不这么孤单就好了！</p><p>外公想了想，说，我听说呀，海平线的那头，有一座全是礁石的小岛，小岛上有一只大大的蓝海螺。如果吹响了蓝海螺，就再也不会孤单啦。</p><p>外公指了指码头上的船，你看，你现在长大了，也也会开船了，那天等你准备好的时候，你就挂起帆，去找蓝海螺吧！不过你要记住，你要给路上遇见的每一个动物讲蓝海螺的故事，这样，他们才能给你指路。</p><p>于是在一个晴天，小熊在船上装满爱吃的玉米，满怀期待地挂上了帆，启程开往海平线。</p><p>开了很久之后，小熊路过一座小岛。小岛上有小溪，小溪边有一只长颈鹿，正在费力地岔开四条腿，低头喝着水。小熊停下船，说，你好呀长颈鹿！我还要继续去海平线的那头，我可以在你这里装一点水，在路上喝吗？</p><p>长颈鹿说，好呀，我来帮你，我有长脖子可以把水桶吊到船上。不过，你可以告诉我，你去海平线的那头做什么吗？小熊说，我去找一个蓝海螺，等我吹响蓝海螺，在我的小岛上我就不会再孤单啦。</p><p>长颈鹿说，听起来很神奇诶！在我的小岛上，也只有我一只长颈鹿，我也想和你一起去，吹蓝海螺。小熊说，太好啦！来吧，我们一起去找蓝海螺吧。</p><p>过了很多天，小熊和长颈鹿看见远方黑压压的一片风暴，不知如何是好。正好看见两只嬉戏的海豚，于是小熊说，海豚海豚，你们好！我们想要绕过这片风暴，去到海平线的那头，该怎么走呢？海豚们说，可是你们要去哪里呢？小熊和长颈鹿说，我们要去一座全是礁石的小岛，小岛上有一只大大的蓝海螺，如果吹响了它，我们就都不会再孤单啦。</p><p>海豚们说，我们没有听说过蓝海螺呢，不过如果你们要去前面那座全是礁石的小岛，我们知道怎么走。我们也想看看这个神奇的海螺，我们可以和你们一起去吗？小熊和长颈鹿说，太好啦！来吧，我们一起去找蓝海螺吧。</p><p>过了很多天，小熊、长颈鹿和海豚们路过了一个满是青草的小岛，上面有两只野牛在打架。它们在船上和野牛们挥挥手，说，野牛野牛，不要打架啦，你们想吃好吃的玉米吗？于是野牛们停了下来，吃起了香甜的玉米。吃完之后，小熊、长颈鹿和海豚们说，我们可以带一点青草走吗，这样我们在路上就有青草吃啦。野牛们说好呀，于是搬了一捆青草放在船上。</p><p>放完之后，野牛们问，那你们要去哪里呢？小熊、长颈鹿和海豚们说，我们去找一个蓝海螺，如果吹响了它，我们就都不会再孤单啦。野牛们想了想，说，我们也想看看这个神奇的海螺，我们可以和你们一起去吗？小熊、长颈鹿和海豚们说，太好啦！来吧，我们一起去找蓝海螺吧。</p><p>过了很多天，小熊、长颈鹿、海豚们和野牛们路过了一个全是泥巴和水塘的小岛，泥巴上趴着一只犀牛，看起来很难过，见到他们来了也不说话。小熊、长颈鹿、海豚们和野牛们说，犀牛犀牛，你为什么这么难过，也不和我们说话？犀牛说，我已经很久没有见过其他动物了，我已经快忘记怎么说话了。</p><p>小熊、长颈鹿、海豚们和野牛们说，我们去找一个蓝海螺，如果吹响了它，我们就都不会再孤单啦。你要和我们一起去吗，这样你也可以吹响蓝海螺！犀牛愣了愣，说，好呀，我和你们一起去。</p><p>过了很多天，小熊、长颈鹿、海豚、野牛和犀牛路过了一个满是椰子树的小岛。小岛上有一只河马，衔着一颗椰子，在地下打滚，嘴里哼哼。小熊、长颈鹿、海豚、野牛和犀牛问，河马河马，你为什么在地下哼哼呀？河马口齿不清地说，因为椰子卡在我的牙齿里啦，我想把它拔出来，可是我拔不到呀。于是小动物们齐心协力，帮河马把椰子拔了出来。</p><p>河马说，谢谢你们！我送你们好多椰子吧，这样你们在路上就不会饿也不会渴啦。不过，你们要去哪里呢？小熊、长颈鹿、海豚、野牛和犀牛说，我们去找一个蓝海螺，如果吹响了它，我们就都不会再孤单啦。河马说，我也很想去，也许我也可以吹响蓝海螺，这样我就不会孤单地卡住椰子了。小熊、长颈鹿、海豚、野牛和犀牛说，太好啦！来吧，我们一起去找蓝海螺吧。</p><p>小船航行了许多许多天，经过了风暴和海啸，路过像山一样大的章鱼，穿过冰雹、有穿过彩虹，小动物们在船上度过了许多晴天和雨天，经历了许多困难。很久之后，他们终于来到了地平线那头全是礁石的小岛。</p><p>可是他们在小岛上找呀找，找遍了所有的礁石石缝，所有的贝壳所有的海星和所有的岩洞，都没有看见蓝海螺。小熊想，也许是外公搞错了，没有人听说过蓝海螺，外公也没有来过这里呀！可以是，这么多朋友都为了找蓝海螺，一起来到了这里，结果什么也找不到，于是小熊难过地哭了。</p><p>其他动物们也很难过，因为他们看到小熊走了这么远，却找不到想找的蓝海螺。他们轮流拍了拍小熊，对他说，没关系的，也许蓝海螺会在其他地方呢。你回去再问问你的外公，也许的确是他记错了。我们会陪你一起回你的小岛的，这样路上你就不会难过啦。小熊擦了擦眼泪，点点头。</p><p>于是又多了许多许多天，经历了许多许多风暴和彩虹、晴天和雨天，小船回到了小熊的小岛。小熊从船上下来，抱了抱外公，说，外公，我到了全是礁石的小岛，但是我没有找到蓝海螺，会不会是你记错了呀？</p><p>外公看着小熊身后载满朋友们的小船，小船在橘红的夕阳下，映着蓝色的波光，挂起的帆仿佛像一只海螺。外公指了指小船，对小熊说，我想你已经找到了蓝海螺了呢。</p><p>小熊回头看了眼小船，紧紧地抱住了外公。</p>
             
         </article>
-        <section class="moss-comments" id="moss-comments" data-built-at="2026-04-29T20:33:59.834599+00:00">
+        <section class="moss-comments" id="moss-comments" data-built-at="2026-05-07T17:21:52.514350+00:00">
   <details>
     <summary class="comments-toggle"><svg class="comments-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></svg><span>1条评论</span><svg class="comments-chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></summary>
     <div class="comment-form-slot" id="default-form-slot"><form class="comment-form" id="moss-comment-form" data-server-url="https://api.moss.host/comments" data-site-name="liu-guo.com" data-page-key="writings/blue-conch/" data-page-title="蓝海螺：一个童话">
@@ -775,22 +920,21 @@ a.comment-author:hover {
         <div class="comment-body"><p>.</p></div>
       </li>
     </ol>
-    <script>"use strict";(()=>{(function(){"use strict";let e=document.getElementById("moss-comment-form");if(!e)return;let f=e.dataset.serverUrl,E=e.dataset.siteName,h=e.dataset.pageKey,g=e.dataset.pageTitle,m=document.getElementById("moss-comment-status"),n=document.getElementById("moss-comment-text"),u="moss-commenter",i=null;try{let t=JSON.parse(localStorage.getItem(u)||"{}");t.name&&(e.querySelector('[name="name"]').value=t.name),t.email&&(e.querySelector('[name="email"]').value=t.email),t.link&&(e.querySelector('[name="link"]').value=t.link)}catch{}n&&n.addEventListener("input",function(){this.style.height="auto",this.style.height=this.scrollHeight+"px"}),document.querySelectorAll(".comment-reply-btn").forEach(t=>{t.addEventListener("click",function(){let a=this.dataset.replyId,o=this.dataset.replyName;i=a;let l=document.getElementById("comment-"+a);l&&(l.querySelector(".comment-replies")??l).appendChild(e.parentNode),n&&(n.placeholder="@"+o+" ",n.focus())})}),e.addEventListener("submit",function(t){if(t.preventDefault(),!n)return;let a=n.value.trim();if(!a)return;let o=e.querySelector('[name="name"]').value.trim(),l=e.querySelector('[name="email"]').value.trim(),r=e.querySelector('[name="link"]').value.trim();if(!o){m.textContent="Name is required";return}try{localStorage.setItem(u,JSON.stringify({name:o,email:l,link:r}))}catch{}m.textContent="Submitting...",e.querySelector('[type="submit"]').disabled=!0;let d={content:a,nick:o,email:l,link:r,page_key:h,page_title:g,site_name:E};i&&(d.rid=parseInt(i,10)),fetch(f.replace(/\/+$/,"")+"/api/v2/comments",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(d)}).then(s=>{if(!s.ok)throw new Error("HTTP "+s.status);return s.json()}).then(s=>{m.textContent="Comment posted!",n.value="",i=null;let p=document.getElementById("default-form-slot");p&&p.appendChild(e);let y=document.querySelector(".comment-list");if(y){let c=document.createElement("li");c.className="comment-item",c.innerHTML='<div class="comment-header"><span class="comment-author">'+(o||"Anonymous")+'</span><time class="comment-date">just now</time></div><div class="comment-body">'+(s.content||a)+"</div>",y.appendChild(c)}setTimeout(()=>{m.textContent=""},3e3)}).catch(s=>{m.textContent="Error: "+s.message}).finally(()=>{e.querySelector('[type="submit"]').disabled=!1})})})();})();
+    <script>"use strict";(()=>{var H="moss:quote-comment";function M(e){let a=c=>{let u=c.detail;u&&e(u)};return document.addEventListener(H,a),()=>document.removeEventListener(H,a)}var v=null,S=null;function Q(e){if(v)return v;let{form:a,textarea:c,defaultSlot:u,onBeforeOpen:y}=e,l=null,t=null,o="";function f(){if(!t){l=document.createElement("div"),l.className="comment-float-backdrop",l.addEventListener("click",()=>m()),document.body.appendChild(l),t=document.createElement("div"),t.className="comment-float-shell";let i=document.createElement("div");i.className="comment-float-inner",t.appendChild(i),document.body.appendChild(t)}let n=t.querySelector(".comment-float-inner");return{shell:t,inner:n}}function h(n){if(!n)return;y?.();let{shell:i,inner:s}=f();s.innerHTML="";let r=document.createElement("div");r.className="comment-float-quote",r.textContent=n,s.appendChild(r),s.appendChild(a),o=n,l.classList.add("visible"),i.classList.add("open"),c.focus()}function m(){!t||!t.classList.contains("open")||(t.classList.remove("open"),l?.classList.remove("visible"),a.parentElement!==u&&u.appendChild(a),o="")}function E(n){n.key==="Escape"&&t?.classList.contains("open")&&m()}document.addEventListener("keydown",E);let p=M(({text:n})=>h(n));return S=()=>{document.removeEventListener("keydown",E),p(),l?.remove(),t?.remove()},v={cancel:m,getQuoteText:()=>o,getQuotePrefix:()=>q(o)},v}function q(e){if(!e)return"";let a=e.replace(/\n+$/,"");return a?a.split(`
+`).map(c=>"> "+c).join(`
+`)+`
+
+`:""}(function(){"use strict";let e=document.getElementById("moss-comment-form");if(!e)return;let a=e.dataset.serverUrl,c=e.dataset.siteName,u=e.dataset.pageKey,y=e.dataset.pageTitle,l=document.getElementById("moss-comment-status"),t=document.getElementById("moss-comment-text"),o=document.getElementById("default-form-slot"),f="moss-commenter",h=t?.placeholder??"",m=null;function E(){m=null,t&&(t.placeholder=h),o&&e.parentElement!==o&&o.appendChild(e)}let p=t&&o?Q({form:e,textarea:t,defaultSlot:o,onBeforeOpen:E}):null;try{let n=JSON.parse(localStorage.getItem(f)||"{}");n.name&&(e.querySelector('[name="name"]').value=n.name),n.email&&(e.querySelector('[name="email"]').value=n.email),n.link&&(e.querySelector('[name="link"]').value=n.link)}catch{}t&&t.addEventListener("input",function(){this.style.height="auto",this.style.height=this.scrollHeight+"px"}),document.querySelectorAll(".comment-reply-btn").forEach(n=>{n.addEventListener("click",function(){p?.cancel();let i=this.dataset.replyId,s=this.dataset.replyName;m=i;let r=document.getElementById("comment-"+i);r&&o&&(r.querySelector(".comment-replies")??r).appendChild(o),t&&(t.placeholder="@"+s+" ",t.focus())})}),e.addEventListener("submit",function(n){if(n.preventDefault(),!t)return;let i=t.value.trim();if(!i)return;let s=e.querySelector('[name="name"]').value.trim(),r=e.querySelector('[name="email"]').value.trim(),T=e.querySelector('[name="link"]').value.trim();if(!s){l.textContent="Name is required";return}try{localStorage.setItem(f,JSON.stringify({name:s,email:r,link:T}))}catch{}let L=(p?.getQuotePrefix()??"")+i;l.textContent="Submitting...",e.querySelector('[type="submit"]').disabled=!0;let C={content:L,nick:s,email:r,link:T,page_key:u,page_title:y,site_name:c};m&&(C.rid=parseInt(m,10)),fetch(a.replace(/\/+$/,"")+"/api/v2/comments",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(C)}).then(d=>{if(!d.ok)throw new Error("HTTP "+d.status);return d.json()}).then(d=>{l.textContent="Comment posted!",t.value="",p?p.cancel():o&&e.parentElement!==o&&o.appendChild(e),m=null;let x=document.querySelector(".comment-list");if(x){let g=document.createElement("li");g.className="comment-item",g.innerHTML='<div class="comment-header"><span class="comment-author">'+(s||"Anonymous")+'</span><time class="comment-date">just now</time></div><div class="comment-body">'+(d.content||L)+"</div>",x.appendChild(g)}setTimeout(()=>{l.textContent=""},3e3)}).catch(d=>{l.textContent="Error: "+d.message}).finally(()=>{e.querySelector('[type="submit"]').disabled=!1})})})();})();
 </script>
   </details>
 </section>
+        
     </main>
 
     <footer class="container">
-    <div class="footer-content">
-        <div class="footer-left">
-            <a href="/links/" class="footer-link">友链</a>
-            <a href="/feed.xml" class="footer-link" data-external>RSS</a>
-        </div>
-        <div class="footer-right">
-            <form action="https://buttondown.com/api/emails/embed-subscribe/liuguo" method="post" class="footer-subscribe-form"><input type="email" name="email" class="moss-input" placeholder="邮箱" required /><input type="hidden" value="1" name="embed" /><button type="submit" class="moss-btn">订阅</button></form>
-        </div>
-    </div>
+        
+        <p class="footer-default"><a href="/links/" class="footer-link">友链</a> · <a href="/feed.xml" class="footer-link" data-external>RSS</a></p>
+        <form action="https://buttondown.com/api/emails/embed-subscribe/liuguo" method="post" class="moss-subscribe-form" data-position="footer"><input type="email" name="email" class="moss-input" placeholder="邮箱" required /><input type="hidden" value="1" name="embed" /><button type="submit" class="moss-btn">订阅</button></form>
 </footer>
 
     <div class="moss-colophon">
@@ -803,8 +947,9 @@ a.comment-author:hover {
         </a>
     </div>
 
-    <script src="/js/theme.js?v=55cfb8c997a6f4b4"></script>
+    <script src="/js/theme.js?v=2cdc2065ab56e04a"></script>
     <script src="/js/preview.js"></script>
+    <script src="/js/thumb-swap.js"></script>
     
 </body>
 </html>

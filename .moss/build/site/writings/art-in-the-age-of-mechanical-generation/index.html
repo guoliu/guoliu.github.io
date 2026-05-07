@@ -19,6 +19,7 @@
     <meta property="article:tag" content="数字艺术">
     <meta property="article:tag" content="人工智能">
     <link rel="canonical" href="https://liu-guo.com/writings/art-in-the-age-of-mechanical-generation/">
+    
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="机械生成时代的艺术">
     <meta name="twitter:description" content="1瑞士人工智能專家 Jurgen Schmidhuber 一次演講中說，我們不該把自己和飛速發展的人工智能看做“我們”和“他們”，而該把自己和人性當做宇宙通往更高復雜度路上的墊腳石。在這充滿超人哲學意味的言論背後，Schmidhuber 有自己的一套理論。">
@@ -46,7 +47,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16.png">
     <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml">
     <script data-goatcounter="https://guo.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-    <link rel="stylesheet" href="/style.css?v=83b6d32641fd5485">
+    <link rel="stylesheet" href="/style.css?v=3abb9ff9e247504f">
     <script data-goatcounter="https://guo.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 <style class="moss-review-style">/* Review plugin — header and colophon styles
  * Uses moss design tokens. Works in light and dark mode.
@@ -223,15 +224,33 @@
    - ResultFirst 2026 trends — "stripping away non-essential frills"
    ========================================================================== */
 
-/* Comment Section — width controlled by site theme (main > .moss-comments) */
-.moss-comments {
+/* Comment Section — width controlled by site theme.
+   The comment toggle becomes the top edge of the footer chrome: it sits with
+   generous breathing room below the article body, then the footer divider
+   sits a `space-md` (1.5rem) gap below the toggle — mirroring the `space-md`
+   gap below the divider before the footer items.
+   Selector specificity (main >) is required to win over site.css's
+   `main > .moss-comments { margin: 0 auto }` rule, which would otherwise
+   reset margin-top to 0 and erase the breathing room. */
+main > .moss-comments {
   margin-top: 6rem;
 }
 
-/* Divider above comment section */
-.moss-comments > details {
-  padding-top: var(--moss-space-lg, 2rem);
-  border-top: 1px solid var(--moss-border-light, #e6e2db);
+/* When .moss-comments is present, retune the gap between main and the footer
+   divider so the toggle sits as part of the footer chrome:
+     - `main { padding-bottom: 60px }` — drop entirely; .moss-comments owns
+       its own top breathing room (margin-top above) and the toggle should
+       sit directly above the footer's standoff.
+     - `footer.container { margin-top: 2xl }` — replace with `space-md` so
+       the toggle→divider gap mirrors the divider→items gap (also `space-md`,
+       see `footer.container::before { margin-bottom: var(--moss-space-md) }`
+       in site.css). Footer items are visually heavier (larger font), so an
+       optically symmetric gap settles to numerically equal here. */
+main:has(> .moss-comments) {
+  padding-bottom: 0;
+}
+main:has(.moss-comments) + footer.container {
+  margin-top: var(--moss-space-md);
 }
 
 /* ==========================================================================
@@ -704,33 +723,159 @@ a.comment-author:hover {
   background: rgba(0, 0, 0, 0.35);
 }
 </style>
-<style class="moss-email-style">/* Email subscribe form — injected by email plugin enhance hook */
-.footer-subscribe-form {
-  display: flex;
-  gap: var(--moss-space-sm);
-  align-items: baseline;
-  max-width: 24rem;
-}
-
-.footer-subscribe-form .moss-input {
-  flex: 1;
-}
-
-.footer-subscribe-form .moss-btn {
-  font-size: inherit;
-}
-
-@media (max-width: 48rem) {
-  .footer-subscribe-form {
-    max-width: none;
+<style class="moss-email-style">@layer shortcodes {
+  /* Email subscribe form — injected by email plugin enhance hook.
+     The footer form sits in slot:footer-end, AFTER the default link list
+     (design B, 2026-05-06). Spacing between the form and the link list
+     above it is provided by the flex `gap` on `footer.container` when
+     the default-shape footer rule kicks in (see site.css
+     `footer.container:has(> p.footer-default + ...)`). No margin-top
+     here — it would compound the gap when wrapped, and the side-by-side
+     layout doesn't want one at all. */
+  .moss-subscribe-form[data-position="footer"] {
+    display: flex;
+    gap: var(--moss-space-sm);
+    align-items: baseline;
+    max-width: 24rem;
   }
 
-  .footer-subscribe-form .moss-input {
+  .moss-subscribe-form[data-position="footer"] .moss-input {
+    flex: 1;
+  }
+
+  .moss-subscribe-form[data-position="footer"] .moss-btn {
+    font-size: inherit;
+  }
+
+  @media (max-width: 48rem) {
+    .moss-subscribe-form[data-position="footer"] {
+      max-width: none;
+    }
+
+    .moss-subscribe-form[data-position="footer"] .moss-input {
+      flex: 1;
+      min-width: 0;
+    }
+  }
+
+  /* Inline `:::subscribe` shortcode wrapper.
+     Card-styled container for in-page subscribe forms. Token-only; no
+     hardcoded colors. See spec
+     docs/superpowers/specs/2026-04-30-subscribe-shortcode-design.md. */
+  .moss-subscribe {
+    max-width: 32rem;
+    margin: var(--moss-space-lg) 0;
+    padding: var(--moss-space-md) var(--moss-space-lg);
+    border: 1px solid var(--moss-border-light);
+    border-radius: var(--moss-radius-md, 0.5rem);
+  }
+
+  .moss-subscribe-description {
+    margin: 0 0 var(--moss-space-md) 0;
+    color: var(--moss-color-muted);
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  .moss-subscribe-form[data-position="inline"] {
+    display: flex;
+    gap: var(--moss-space-sm);
+    align-items: baseline;
+  }
+
+  .moss-subscribe-form[data-position="inline"] .moss-input {
     flex: 1;
     min-width: 0;
   }
+
+  @media (max-width: 32rem) {
+    .moss-subscribe-form[data-position="inline"] {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .moss-subscribe-form[data-position="inline"] .moss-btn {
+      width: 100%;
+    }
+  }
 }
 </style>
+<style class="moss-email-style">@layer shortcodes {
+  /* Email subscribe form — injected by email plugin enhance hook.
+     The footer form sits in slot:footer-end, AFTER the default link list
+     (design B, 2026-05-06). Spacing between the form and the link list
+     above it is provided by the flex `gap` on `footer.container` when
+     the default-shape footer rule kicks in (see site.css
+     `footer.container:has(> p.footer-default + ...)`). No margin-top
+     here — it would compound the gap when wrapped, and the side-by-side
+     layout doesn't want one at all. */
+  .moss-subscribe-form[data-position="footer"] {
+    display: flex;
+    gap: var(--moss-space-sm);
+    align-items: baseline;
+    max-width: 24rem;
+  }
+
+  .moss-subscribe-form[data-position="footer"] .moss-input {
+    flex: 1;
+  }
+
+  .moss-subscribe-form[data-position="footer"] .moss-btn {
+    font-size: inherit;
+  }
+
+  @media (max-width: 48rem) {
+    .moss-subscribe-form[data-position="footer"] {
+      max-width: none;
+    }
+
+    .moss-subscribe-form[data-position="footer"] .moss-input {
+      flex: 1;
+      min-width: 0;
+    }
+  }
+
+  /* Inline `:::subscribe` shortcode wrapper.
+     Card-styled container for in-page subscribe forms. Token-only; no
+     hardcoded colors. See spec
+     docs/superpowers/specs/2026-04-30-subscribe-shortcode-design.md. */
+  .moss-subscribe {
+    max-width: 32rem;
+    margin: var(--moss-space-lg) 0;
+    padding: var(--moss-space-md) var(--moss-space-lg);
+    border: 1px solid var(--moss-border-light);
+    border-radius: var(--moss-radius-md, 0.5rem);
+  }
+
+  .moss-subscribe-description {
+    margin: 0 0 var(--moss-space-md) 0;
+    color: var(--moss-color-muted);
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  .moss-subscribe-form[data-position="inline"] {
+    display: flex;
+    gap: var(--moss-space-sm);
+    align-items: baseline;
+  }
+
+  .moss-subscribe-form[data-position="inline"] .moss-input {
+    flex: 1;
+    min-width: 0;
+  }
+
+  @media (max-width: 32rem) {
+    .moss-subscribe-form[data-position="inline"] {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .moss-subscribe-form[data-position="inline"] .moss-btn {
+      width: 100%;
+    }
+  }
+}
+</style><script class="moss-subscribe-script">"use strict";(()=>{var b={en:{placeholder:"your@email.com",label:"Subscribe",checkEmail:"Check your email to confirm.",alreadySubscribed:"You're already subscribed.",error:"Something went wrong. Try again?"},"zh-hans":{placeholder:"\u90AE\u7BB1",label:"\u8BA2\u9605",checkEmail:"\u8BF7\u5728\u90AE\u7BB1\u4E2D\u786E\u8BA4\u8BA2\u9605",alreadySubscribed:"\u4F60\u5DF2\u8BA2\u9605\u3002",error:"\u51FA\u9519\u4E86\uFF0C\u8BF7\u91CD\u8BD5\u3002"},"zh-hant":{placeholder:"\u96FB\u90F5",label:"\u8A02\u95B1",checkEmail:"\u8ACB\u5728\u96FB\u90F5\u4E2D\u78BA\u8A8D\u8A02\u95B1",alreadySubscribed:"\u4F60\u5DF2\u8A02\u95B1\u3002",error:"\u51FA\u932F\u4E86\uFF0C\u8ACB\u91CD\u8A66\u3002"}};function h(e){let t=(e??"").toLowerCase();return t.startsWith("zh-hant")||t.startsWith("zh-tw")||t.startsWith("zh-hk")||t.startsWith("zh-mo")?"zh-hant":t.startsWith("zh")?"zh-hans":"en"}var f=4e3,l=new WeakMap;function g(e){if(e.dataset.mossHydrated==="true")return;let t=e.querySelector('input[type="email"]'),n=e.querySelector('button[type="submit"]');if(!t||!n)return;e.dataset.mossHydrated="true";let r=h(document.documentElement.lang),a=b[r];if(t.placeholder=a.placeholder,!(e.dataset.position==="inline")){let s=n.querySelector(".moss-btn__label");s&&(s.textContent=a.label)}e.addEventListener("submit",async s=>{if(s.preventDefault(),e.dataset.state==="loading")return;let u=(t.value??"").trim();if(!u){t.focus();return}T(e,n),i(e,"loading");try{let d=await fetch(e.action,{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},body:JSON.stringify({email:u})}),S=await d.json().catch(()=>({}));if(!d.ok){c(e,"error",a),i(e,"error");return}let E=S.alreadySubscribed?"already-subscribed":"check-email";c(e,E,a),i(e,"success"),H(e,t)}catch{c(e,"error",a),i(e,"error")}}),n.addEventListener("click",s=>{e.dataset.state==="success"&&(s.preventDefault(),p(e,t))})}function i(e,t){e.dataset.state=t}function c(e,t,n){let r=e.querySelector(".moss-subscribe-status");if(!r)return;r.querySelectorAll("[data-copy]").forEach(o=>{o.dataset.copy===t?(o.hidden=!1,o.textContent=L(t,n)):o.hidden=!0}),r.dataset.state=t}function L(e,t){switch(e){case"check-email":return t.checkEmail;case"already-subscribed":return t.alreadySubscribed;case"error":return t.error}}function T(e,t){let n=t.parentElement;if(!n||!n.classList.contains("moss-subscribe-btn-slot")||n.style.width)return;let r=t.offsetWidth;r<=0||(n.style.width=`${r}px`)}function H(e,t){y(e);let n=window.setTimeout(()=>p(e,t),f);l.set(e,n)}function y(e){let t=l.get(e);t!==void 0&&(clearTimeout(t),l.delete(e))}function p(e,t){y(e),e.isConnected&&(t.value="",i(e,"idle"))}function m(){document.querySelectorAll('form.moss-subscribe-form[data-moss-hosted="true"]').forEach(g)}typeof document<"u"&&(document.readyState==="loading"?document.addEventListener("DOMContentLoaded",m):m());})();
+</script>
 </head>
 <body class="">
     <header>
@@ -747,37 +892,13 @@ a.comment-author:hover {
             
             <h1 class="moss-article-title">机械生成时代的艺术</h1>
 <div class="date-line"><span class="date">2018 · 3 · 10</span><div class="font-anchor"><button class="font-trigger size-std" aria-label="Reading preferences" aria-expanded="false" type="button"></button><div class="font-pill" id="fontPill"><button data-scale="small" aria-label="Small text"></button><button data-scale="" class="active" aria-label="Standard text"></button><button data-scale="large" aria-label="Large text"></button><button data-scale="xlarge" aria-label="Extra large text"></button></div></div></div>
-<h2 id="1">1</h2><p>瑞士人工智能专家 Jürgen Schmidhuber 一次演讲中说，我们不该把自己和飞速发展的人工智能看做“我们”和“他们”，而应当把自己和人性当做宇宙通往更高复杂度路上的垫脚石。</p><p>在这充满超人哲学意味的言论背后，Schmidhuber 有自己的一套理论。</p><p>笛卡尔说“我思故我在”，人类向来为自身独一无二的理解力和创造力而自豪。Schmidhuber 则认为，“理解”和“创造”实质上是压缩信息的过程，而美感和幽默都是不同的信息压缩方式，机器同样能够掌握。不仅如此，算法还可以自我进化，不断依据外界信息优化自己的代码，逐渐超越人类。</p><p>这种不断迭代、进化自我的算法属于一类被称作“种子 AI”（Seed AI）的构架，它的实现意味着强人工智能的诞生。人工智能研究者们对于强人工智能是否能够出现有所争议，但是都认为它标志着机器在智能上全面超过人类。</p><p>Schmidhuber 是个坚定的奇点论者，相信技术的指数增长会让人类社会在短期内发生生产方式的巨变。这些想法也并非他独有，不少奇点论者同样认为，人类只是智能进化中的一步。人们历来热衷于探索世界，而人工智能也只是这种无止尽探索的自然延展。</p><p>这种无止尽的探索，也在艺术创作中催生了日新月异的表达方式。人性与机械性交汇的典型，也许正是融入了技术的艺术创作。</p><p>例如艺术家 Anna Ridler，期望将视觉与听觉的表达相互关联，扩展人表达的能力。于是她用自己多年的绘画作品训练了一个人工智能模型，让它能够分析和归类自己的一笔一式。然后与作曲家合作，为各种绘画方式编配不同女高音声音样本。最后，Ridler 利用眼镜上的摄像头获取笔式信息，让笔触藉由人工智能同时<a href="https://annaridler.com/works/drawing-sound">生成绘画与音乐</a>。</p><p>Mario Klingemann 则尝试让机器学习模型自己进行“表达”，生成“艺术品”。Klingemann 将生成对抗网络（Generative Adversarial Networks，GANs）应用到从文艺复兴时期的画作到 21 世纪的自拍照片等各种图像，学习画作与照片中的构图、颜色、形态与审美，并自己生成新的创作。</p><figure>
-<img src="../../image/assets/5b8621dd-6acb-4054-a0af-2ab53145aac7.webp" data-placeholder-src="../../image/assets/5b8621dd-6acb-4054-a0af-2ab53145aac7.webp" width="1048" height="506" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAAKABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwBYYlWQ4BYMc8jgDHrXHKbNOo8kCNdp4IAFboB4wBzQBTUnyiMnHpUNK4D5OI4sf3a2RJLDynPrUsZ//9k=);background-size:cover" alt="" />
-<figcaption>Mario Klingemann，AI生成肖像，2017。图片来源：Wired</figcaption>
-</figure><p>因为由算法产生，观众可以挑战 Klingemann 的图画是否算是真的作品。而他的朋友 Albert Barqué-Duran 则基于 Klingemann 生成的图像重新创作绘画，避免了这个问题，顺便玩笑似地挑战了艺术品中艺术性的定义。</p><figure>
-<img src="../../image/assets/5d56497f-4ded-4fca-a35d-7df3515099f5.webp" data-placeholder-src="../../image/assets/5d56497f-4ded-4fca-a35d-7df3515099f5.webp" width="1080" height="807" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAAPABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCaMblyWBBPcVFyrDn+VDt9KpagUmNyD+8HPuQau5na5KPMIAU49+KzsWAgkZjmVxkYwDTEN+z44wD9aY012P/Z);background-size:cover" alt="" />
-<figcaption>Albert Barqué-Duran 躺在自己的画作面前。 图片来源：Albert Barqué-Duran 推特账号</figcaption>
-</figure><h2 id="2">2</h2><p>在创作者手中，人工智能不再是一种简单的工具，而是可以以不同方式参与创造过程的智能，成为创作者智能的延展。在未来，人工智能将渗入生活的各个环节，我们需要学会与这种智能共存。但是这种智能，和我们自己的非常不同，并且让人难以理解。</p><p>回溯到八十年代，人工智能领域流行的是一种称为“专家系统”的构架，依赖于逻辑推理与数据化的知识库。这种系统是对人类已有知识和思维模式的模仿，符合对“智能”的直观认识，却在简单的认知任务面前一筹莫展。</p><p>真正让人工智能在应用上突飞猛进的，是与人类思维方式关系不大的机器学习模型。这些模型是一个个充满旋钮的黑箱，每个旋钮将接收信号转换成输出信号。优化不断地调整这些旋钮，直到整个黑箱能够将收到的信息转换为正确的输出信息。</p><p>但是，使用者无法知晓每一个旋钮旋转的原因，也无法理解黑箱如何做出决定。</p><figure>
-<img src="../../image/assets/5d98072b-87ef-42a3-a8af-38a0acb244df.gif" data-placeholder-src="../../image/assets/5d98072b-87ef-42a3-a8af-38a0acb244df.gif" width="800" height="407" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAAKABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDY/GgA/GgAoAO9AB6UAFAH/9k=);background-size:cover" alt="" />
-<figcaption>Schmidhuber 等人设计的 LSTM（Long-Short Term Memory）模型是一种特殊的神经网络，被广泛用于自然语言识别，同样是一个充满旋钮的黑箱。区别于传统的神经网络，LSTM 可以根据输入形成“记忆”，输出收到输入的次序影响。这使得LSTM得以将输入的序列转换为输出序列，适合处理语言、音乐或其他序列数据。</figcaption>
-</figure><p>许多人会觉得，以这种方式运作的机器学习模型还算不上智能。但是， 鸟类虽不同于飞机，却同样具有飞行的能力。人们曾从鸟类得来飞行的灵感，试图制造扇翅飞行的机械鸟，却一直没有获得成功。只有放弃了对鸟类的模仿之后，才造出了现代意义上的飞机。</p><figure>
-<img src="../../image/assets/858e7b46-ef79-4205-9084-95f9141fa0d7.webp" data-placeholder-src="../../image/assets/858e7b46-ef79-4205-9084-95f9141fa0d7.webp" width="477" height="592" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAAUABADAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCcKfbFZlD/AC8UATeUi/ecj3IxVcoriYjJwrlif7ozRyhcpNeztJsLDae20etUIdb3kpAGVA9hQB//2Q==);background-size:cover" alt="" />
-<figcaption>在莱特兄弟发明现代意义上的飞机以前，许多人曾试图模仿鸟类来制造飞行器。上图是达芬奇 15 世纪时对鸟类飞行的研究和对飞行器的设计，下图是 1884 年德国航空先驱奥托·李林塔尔制作的飞行器。图片来源：维基百科。</figcaption>
-</figure><p>人工智能的研究也正是放弃了对人类意识的模仿，才产生出了能够解决实际问题的机器学习模型。这种“智能”即使不同于我们，却同样能够解决问题、进行创造，成为与我们类似而不同的“智能”。</p><h2 id="3">3</h2><p>这种类似与不同，在 Nao Tokui 的一个 DJ 表演中被展现得淋漓尽致。</p><p>在这个表演中，学习了无数音乐样本的人工智能担任 DJ，与 Tokui 合作一起打碟，人工智能会根据上一首曲子的风格选择下一首音乐，并调整碟机转动速度来匹配之前的音调音高。人工智能的选择有时候让 Tokui 感觉惊喜，如同 Klingemann 痴迷于 AI 在几千张生成图片中有时会绘制出来独特的效果一样，这种不可预期不可控的部分产生了新的灵感与创造力。</p><iframe title="vimeo-player" src="https://player.vimeo.com/video/206543158?h=b64ad3db66" width="640" height="360" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"   allowfullscreen></iframe>*Nao Tokui，AI DJ*
-<p>创造的能力无疑是通向更高“智能”的一步。物理学家费曼曾说，“我不能创造的，便不能理解”。学会了创造的人工智能，是否也拥有了某种形式的理解呢？</p><p>Klingemann 用于生成图像的 GANs 模型，正是利用“创造”来教会模型“理解”。GANs 由两个神经网络组成，一个神经网络负责生成以假乱真的图片，另一个神经网络则负责判别图片的真假。两个网络在相互对抗中进行训练，最终使整个模型同时获得了生成逼真图片和判别图片真假的能力。</p><figure>
-<img src="../../image/assets/40df0379-487b-4821-9a56-d3ea6621bed0.webp" data-placeholder-src="../../image/assets/40df0379-487b-4821-9a56-d3ea6621bed0.webp" width="1080" height="310" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAAGABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwC79mk29UytJjRDLYSOTjy8kg5J/wDrUBcjbTJWwQYhxg9aAZ//2Q==);background-size:cover" alt="" />
-<figcaption>从 2014 年到 2017 年，GANs 模型生成以假乱真图像的能力突飞猛进。图片来源：The Malicious Use of Artificial Intelligence: Forecasting, Prevention, and Mitigation, 2018</figcaption>
-</figure><p>技术是双刃剑，能力强大如此的人工智能，必定两边都是利刃。</p><p>比如，人工智能与数字化制造的发展，实现了自动化生产的巨大潜力，同时也取代大量岗位。乐观的展望中，更高的生产力使得社会朝高福利方向转型，甚至进入某种社会主义社会。普通人得以从重复劳作中解放，得以从事创造性活动。</p><p>然而更可能的是，财富的积累快过财富的分配，技能的更新快过教育的改良。社会与政府转型的速度跟不上技术的进步，最终导致大规模的失业和动荡。</p><p>同时，人工智能也会直接带来对人类的威胁。在埃隆 - 马斯克（Elon Musk）和霍金等人签署公开信督促人们关心人工智能的安全问题之后，许多人工智能从业者则一同起草了报告，论述人工智能潜在的威胁。</p><p>人工智能可以自动化并优化信息攻击，扩大攻击规模。手机、无人机、自动驾驶汽车等联网机器普及之后，信息攻击则可以超出电子和经济系统，造成物理世界的直接伤害。</p><p>而人工智能与社交网络的结合，则已经以意想不到的方式改变着舆论与政治。在社交网络中，我们每个人都是一个节点，接受并传播着信息。人工智能可以分析网络传播结构，确认影响舆论的重要节点，控制者得以进而引导舆论。</p><p>同时，人工智能可以模仿人类，生成虚拟水军，直接改变舆论演变方向。这些技巧已经开始被广泛使用，不管是公司用于营销，还是政府对内和对外进行舆论导向。</p><p>不光可以伪造用户，人工智能还可以伪造证据。借助 GANs、LSTM 等模型生成的声音、图像和视频已经能够以假乱真，产生难以辨别的假新闻。然而，无论从技术层面还是法律层面，都没有好的解决办法。</p><p><img src="../../image/assets/e832647f-6535-4434-90dc-c790e8a4e03c.gif" data-placeholder-src="../../image/assets/e832647f-6535-4434-90dc-c790e8a4e03c.gif" width="480" height="254" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAALABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwC3PIk0eInBZPmPtigZDYyO0rk/d2jOT/n1pDZmSQRhz+93c9aYrG3khX/3aARUtf8AVOPUmkMy24Y01sXLc//Z);background-size:cover" alt="" /></p><figure>
-<img src="../../image/assets/c3588359-7d4d-48ef-8664-2c9b6b635368.gif" data-placeholder-src="../../image/assets/c3588359-7d4d-48ef-8664-2c9b6b635368.gif" width="788" height="370" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAAJABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCpp0hhhuJR1Xb+PJoAlu7lpbd4+gXBz657UgE03/j3b/f/AKCmBBZ/6ib/AHk/rQBJfffb/d/rSAfpv/Hu3+//AEFMD//Z);background-size:cover" alt="" />
-<figcaption>人工智能伪造视频的能力，既可以用来给成人录像安上女明星的脸（上图），也可以用来给政治人物安上希特勒的胡子（下图），而人眼完全无法分辨真假。图片来源：Motherboard</figcaption>
-</figure><h2 id="4">4</h2><p>人工智能正逐步理解我们的言论、行为和想法，我们也可以同样去理解人工智能。但是，理解一门复杂的技术，则需要许多背景知识，特别是人工智能这样涉及许多不同学科的领域。</p><p>将技术的权力交还给普通人，意味着降低技术的门槛。但是，在传统的教育体系下，积累这些背景知识需要完成从小学到专业研究生阶段的学习。</p><p>在技术的不断发展面前，传统教育方式即使能够即时更新知识，也仅能保证学生记住枯燥的知识点，无法让学生反思和探索相关的社会问题，也无法为快速变迁的社会结构做出准备。</p><p>而新媒体艺术正好能提供了探索式学习技术的机会。例如，许多国家的不同团体，逐渐开始将数字艺术创作常用的 Processing 和 p5.js 等工具融入中小学生的计算机教育中，让编程不仅仅是枯燥的逻辑推演，也让孩子们保留了自然的创造力。同时。信息收集和自我表达能力的加强，弥补了技术培训中缺失的反思与探索，也使更多人可以参与对技术的讨论和使用。</p><p>对于观者而言，这些新兴的艺术形式，不仅能让我们以不同的视角认知和审视艺术，也能让我们重新认识自己，和自身所处的这个处处联通的世界。这种联通的网络让我们的行为相互影响，但是在个体层面，却很难理解这种网络的结构和功能，不管是一个话题在社交网络中的扩散，还是一个小商品遍布各地的原料和销售网络。</p><figure>
-<img src="../../image/assets/9192d8c1-5417-4944-bbda-75d441b12a11.gif" data-placeholder-src="../../image/assets/9192d8c1-5417-4944-bbda-75d441b12a11.gif" width="640" height="323" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAAKABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCr60AGAeDk0ACqMdKAAdaADsaAFXpQB//Z);background-size:cover" alt="" />
-<figcaption>Jer Thorp 等人通过可视化推特（Twitter）的数据，展示了一个话题在社交网络中如何出现、扩散、放大，以及这些网络中不同角色的用户如何影响话题的生长于演变。图片来源：New York Times Lab, Cascade项目</figcaption>
-</figure><figure>
-<img src="../../image/assets/0cc26cd1-8c40-4848-b4aa-cdba18bdf0eb.gif" data-placeholder-src="../../image/assets/0cc26cd1-8c40-4848-b4aa-cdba18bdf0eb.gif" width="640" height="262" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAAIABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDKgZUk3MgcDselAFjEPmFnIKsCQM9KAexTFAH/2Q==);background-size:cover" alt="" />
-<figcaption>Owen Cornec等人通过可视化国家之间进出口的商品种类和数量，展示了不同的国家如何相互交互和依存，形成全球货物流通的网络。图片来源：Harvard CID</figcaption>
-</figure><p>算法与美感的结合，也许能够触发新的审美，从另一种方式理解机械，也让我们更习惯逐渐机械化的世界。冷冰冰的算法看上去与充满情绪的艺术品相去甚远，然而从 17 世纪的巴赫到 20 世纪的约翰·凯奇都利用算法与规则来创作动人心弦的作品。Memo Akten 的作品 Simple Harmonic Motion 则将两者的冲突与融合展露无遗，模拟的摆锤以规律的方式运动，通过简单的规则组合出古典音乐般的丰厚与动人。</p><p>https://vimeo.com/80491762?fl=pl&amp;fe=sh</p><iframe src="https://player.vimeo.com/video/80491762" width="640" height="360" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>*Memo Akten, simple harmonic motion-9*
+<h2 id="1">1</h2><p>瑞士人工智能专家 Jürgen Schmidhuber 一次演讲中说，我们不该把自己和飞速发展的人工智能看做“我们”和“他们”，而应当把自己和人性当做宇宙通往更高复杂度路上的垫脚石。</p><p>在这充满超人哲学意味的言论背后，Schmidhuber 有自己的一套理论。</p><p>笛卡尔说“我思故我在”，人类向来为自身独一无二的理解力和创造力而自豪。Schmidhuber 则认为，“理解”和“创造”实质上是压缩信息的过程，而美感和幽默都是不同的信息压缩方式，机器同样能够掌握。不仅如此，算法还可以自我进化，不断依据外界信息优化自己的代码，逐渐超越人类。</p><p>这种不断迭代、进化自我的算法属于一类被称作“种子 AI”（Seed AI）的构架，它的实现意味着强人工智能的诞生。人工智能研究者们对于强人工智能是否能够出现有所争议，但是都认为它标志着机器在智能上全面超过人类。</p><p>Schmidhuber 是个坚定的奇点论者，相信技术的指数增长会让人类社会在短期内发生生产方式的巨变。这些想法也并非他独有，不少奇点论者同样认为，人类只是智能进化中的一步。人们历来热衷于探索世界，而人工智能也只是这种无止尽探索的自然延展。</p><p>这种无止尽的探索，也在艺术创作中催生了日新月异的表达方式。人性与机械性交汇的典型，也许正是融入了技术的艺术创作。</p><p>例如艺术家 Anna Ridler，期望将视觉与听觉的表达相互关联，扩展人表达的能力。于是她用自己多年的绘画作品训练了一个人工智能模型，让它能够分析和归类自己的一笔一式。然后与作曲家合作，为各种绘画方式编配不同女高音声音样本。最后，Ridler 利用眼镜上的摄像头获取笔式信息，让笔触藉由人工智能同时<a href="https://annaridler.com/works/drawing-sound">生成绘画与音乐</a>。</p><p>Mario Klingemann 则尝试让机器学习模型自己进行“表达”，生成“艺术品”。Klingemann 将生成对抗网络（Generative Adversarial Networks，GANs）应用到从文艺复兴时期的画作到 21 世纪的自拍照片等各种图像，学习画作与照片中的构图、颜色、形态与审美，并自己生成新的创作。</p><p><img src="../../image/assets/5b8621dd-6acb-4054-a0af-2ab53145aac7.webp" data-placeholder-src="../../image/assets/5b8621dd-6acb-4054-a0af-2ab53145aac7.webp" width="1048" height="506" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAAKABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwBYYlWQ4BYMc8jgDHrXHKbNOo8kCNdp4IAFboB4wBzQBTUnyiMnHpUNK4D5OI4sf3a2RJLDynPrUsZ//9k=);background-size:cover" alt="" /><em>Mario Klingemann，AI生成肖像，2017。图片来源：Wired</em></p><p>因为由算法产生，观众可以挑战 Klingemann 的图画是否算是真的作品。而他的朋友 Albert Barqué-Duran 则基于 Klingemann 生成的图像重新创作绘画，避免了这个问题，顺便玩笑似地挑战了艺术品中艺术性的定义。</p><p><img src="../../image/assets/5d56497f-4ded-4fca-a35d-7df3515099f5.webp" data-placeholder-src="../../image/assets/5d56497f-4ded-4fca-a35d-7df3515099f5.webp" width="1080" height="807" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAAPABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCaMblyWBBPcVFyrDn+VDt9KpagUmNyD+8HPuQau5na5KPMIAU49+KzsWAgkZjmVxkYwDTEN+z44wD9aY012P/Z);background-size:cover" alt="" /><em>Albert Barqué-Duran 躺在自己的画作面前。 图片来源：Albert Barqué-Duran 推特账号</em></p><h2 id="2">2</h2><p>在创作者手中，人工智能不再是一种简单的工具，而是可以以不同方式参与创造过程的智能，成为创作者智能的延展。在未来，人工智能将渗入生活的各个环节，我们需要学会与这种智能共存。但是这种智能，和我们自己的非常不同，并且让人难以理解。</p><p>回溯到八十年代，人工智能领域流行的是一种称为“专家系统”的构架，依赖于逻辑推理与数据化的知识库。这种系统是对人类已有知识和思维模式的模仿，符合对“智能”的直观认识，却在简单的认知任务面前一筹莫展。</p><p>真正让人工智能在应用上突飞猛进的，是与人类思维方式关系不大的机器学习模型。这些模型是一个个充满旋钮的黑箱，每个旋钮将接收信号转换成输出信号。优化不断地调整这些旋钮，直到整个黑箱能够将收到的信息转换为正确的输出信息。</p><p>但是，使用者无法知晓每一个旋钮旋转的原因，也无法理解黑箱如何做出决定。</p><p><img src="../../image/assets/5d98072b-87ef-42a3-a8af-38a0acb244df.gif" data-placeholder-src="../../image/assets/5d98072b-87ef-42a3-a8af-38a0acb244df.gif" width="800" height="407" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAAKABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDY/GgA/GgAoAO9AB6UAFAH/9k=);background-size:cover" alt="" /><em>Schmidhuber 等人设计的 LSTM（Long-Short Term Memory）模型是一种特殊的神经网络，被广泛用于自然语言识别，同样是一个充满旋钮的黑箱。区别于传统的神经网络，LSTM 可以根据输入形成“记忆”，输出收到输入的次序影响。这使得LSTM得以将输入的序列转换为输出序列，适合处理语言、音乐或其他序列数据。</em></p><p>许多人会觉得，以这种方式运作的机器学习模型还算不上智能。但是， 鸟类虽不同于飞机，却同样具有飞行的能力。人们曾从鸟类得来飞行的灵感，试图制造扇翅飞行的机械鸟，却一直没有获得成功。只有放弃了对鸟类的模仿之后，才造出了现代意义上的飞机。</p><p><img src="../../image/assets/858e7b46-ef79-4205-9084-95f9141fa0d7.webp" data-placeholder-src="../../image/assets/858e7b46-ef79-4205-9084-95f9141fa0d7.webp" width="477" height="592" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAAUABADAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCcKfbFZlD/AC8UATeUi/ecj3IxVcoriYjJwrlif7ozRyhcpNeztJsLDae20etUIdb3kpAGVA9hQB//2Q==);background-size:cover" alt="" /><em>在莱特兄弟发明现代意义上的飞机以前，许多人曾试图模仿鸟类来制造飞行器。上图是达芬奇 15 世纪时对鸟类飞行的研究和对飞行器的设计，下图是 1884 年德国航空先驱奥托·李林塔尔制作的飞行器。图片来源：维基百科。</em></p><p>人工智能的研究也正是放弃了对人类意识的模仿，才产生出了能够解决实际问题的机器学习模型。这种“智能”即使不同于我们，却同样能够解决问题、进行创造，成为与我们类似而不同的“智能”。</p><h2 id="3">3</h2><p>这种类似与不同，在 Nao Tokui 的一个 DJ 表演中被展现得淋漓尽致。</p><p>在这个表演中，学习了无数音乐样本的人工智能担任 DJ，与 Tokui 合作一起打碟，人工智能会根据上一首曲子的风格选择下一首音乐，并调整碟机转动速度来匹配之前的音调音高。人工智能的选择有时候让 Tokui 感觉惊喜，如同 Klingemann 痴迷于 AI 在几千张生成图片中有时会绘制出来独特的效果一样，这种不可预期不可控的部分产生了新的灵感与创造力。</p><iframe title="vimeo-player" src="https://player.vimeo.com/video/206543158?h=b64ad3db66" width="640" height="360" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"   allowfullscreen></iframe>*Nao Tokui，AI DJ*
+<p>创造的能力无疑是通向更高“智能”的一步。物理学家费曼曾说，“我不能创造的，便不能理解”。学会了创造的人工智能，是否也拥有了某种形式的理解呢？</p><p>Klingemann 用于生成图像的 GANs 模型，正是利用“创造”来教会模型“理解”。GANs 由两个神经网络组成，一个神经网络负责生成以假乱真的图片，另一个神经网络则负责判别图片的真假。两个网络在相互对抗中进行训练，最终使整个模型同时获得了生成逼真图片和判别图片真假的能力。</p><p><img src="../../image/assets/40df0379-487b-4821-9a56-d3ea6621bed0.webp" data-placeholder-src="../../image/assets/40df0379-487b-4821-9a56-d3ea6621bed0.webp" width="1080" height="310" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAAGABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwC79mk29UytJjRDLYSOTjy8kg5J/wDrUBcjbTJWwQYhxg9aAZ//2Q==);background-size:cover" alt="" /><em>从 2014 年到 2017 年，GANs 模型生成以假乱真图像的能力突飞猛进。图片来源：The Malicious Use of Artificial Intelligence: Forecasting, Prevention, and Mitigation, 2018</em></p><p>技术是双刃剑，能力强大如此的人工智能，必定两边都是利刃。</p><p>比如，人工智能与数字化制造的发展，实现了自动化生产的巨大潜力，同时也取代大量岗位。乐观的展望中，更高的生产力使得社会朝高福利方向转型，甚至进入某种社会主义社会。普通人得以从重复劳作中解放，得以从事创造性活动。</p><p>然而更可能的是，财富的积累快过财富的分配，技能的更新快过教育的改良。社会与政府转型的速度跟不上技术的进步，最终导致大规模的失业和动荡。</p><p>同时，人工智能也会直接带来对人类的威胁。在埃隆 - 马斯克（Elon Musk）和霍金等人签署公开信督促人们关心人工智能的安全问题之后，许多人工智能从业者则一同起草了报告，论述人工智能潜在的威胁。</p><p>人工智能可以自动化并优化信息攻击，扩大攻击规模。手机、无人机、自动驾驶汽车等联网机器普及之后，信息攻击则可以超出电子和经济系统，造成物理世界的直接伤害。</p><p>而人工智能与社交网络的结合，则已经以意想不到的方式改变着舆论与政治。在社交网络中，我们每个人都是一个节点，接受并传播着信息。人工智能可以分析网络传播结构，确认影响舆论的重要节点，控制者得以进而引导舆论。</p><p>同时，人工智能可以模仿人类，生成虚拟水军，直接改变舆论演变方向。这些技巧已经开始被广泛使用，不管是公司用于营销，还是政府对内和对外进行舆论导向。</p><p>不光可以伪造用户，人工智能还可以伪造证据。借助 GANs、LSTM 等模型生成的声音、图像和视频已经能够以假乱真，产生难以辨别的假新闻。然而，无论从技术层面还是法律层面，都没有好的解决办法。</p><p><img src="../../image/assets/e832647f-6535-4434-90dc-c790e8a4e03c.gif" data-placeholder-src="../../image/assets/e832647f-6535-4434-90dc-c790e8a4e03c.gif" width="480" height="254" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAALABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwC3PIk0eInBZPmPtigZDYyO0rk/d2jOT/n1pDZmSQRhz+93c9aYrG3khX/3aARUtf8AVOPUmkMy24Y01sXLc//Z);background-size:cover" alt="" /></p><p><img src="../../image/assets/c3588359-7d4d-48ef-8664-2c9b6b635368.gif" data-placeholder-src="../../image/assets/c3588359-7d4d-48ef-8664-2c9b6b635368.gif" width="788" height="370" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAAJABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCpp0hhhuJR1Xb+PJoAlu7lpbd4+gXBz657UgE03/j3b/f/AKCmBBZ/6ib/AHk/rQBJfffb/d/rSAfpv/Hu3+//AEFMD//Z);background-size:cover" alt="" /><em>人工智能伪造视频的能力，既可以用来给成人录像安上女明星的脸（上图），也可以用来给政治人物安上希特勒的胡子（下图），而人眼完全无法分辨真假。图片来源：Motherboard</em></p><h2 id="4">4</h2><p>人工智能正逐步理解我们的言论、行为和想法，我们也可以同样去理解人工智能。但是，理解一门复杂的技术，则需要许多背景知识，特别是人工智能这样涉及许多不同学科的领域。</p><p>将技术的权力交还给普通人，意味着降低技术的门槛。但是，在传统的教育体系下，积累这些背景知识需要完成从小学到专业研究生阶段的学习。</p><p>在技术的不断发展面前，传统教育方式即使能够即时更新知识，也仅能保证学生记住枯燥的知识点，无法让学生反思和探索相关的社会问题，也无法为快速变迁的社会结构做出准备。</p><p>而新媒体艺术正好能提供了探索式学习技术的机会。例如，许多国家的不同团体，逐渐开始将数字艺术创作常用的 Processing 和 p5.js 等工具融入中小学生的计算机教育中，让编程不仅仅是枯燥的逻辑推演，也让孩子们保留了自然的创造力。同时。信息收集和自我表达能力的加强，弥补了技术培训中缺失的反思与探索，也使更多人可以参与对技术的讨论和使用。</p><p>对于观者而言，这些新兴的艺术形式，不仅能让我们以不同的视角认知和审视艺术，也能让我们重新认识自己，和自身所处的这个处处联通的世界。这种联通的网络让我们的行为相互影响，但是在个体层面，却很难理解这种网络的结构和功能，不管是一个话题在社交网络中的扩散，还是一个小商品遍布各地的原料和销售网络。</p><p><img src="../../image/assets/9192d8c1-5417-4944-bbda-75d441b12a11.gif" data-placeholder-src="../../image/assets/9192d8c1-5417-4944-bbda-75d441b12a11.gif" width="640" height="323" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAAKABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCr60AGAeDk0ACqMdKAAdaADsaAFXpQB//Z);background-size:cover" alt="" /><em>Jer Thorp 等人通过可视化推特（Twitter）的数据，展示了一个话题在社交网络中如何出现、扩散、放大，以及这些网络中不同角色的用户如何影响话题的生长于演变。图片来源：New York Times Lab, Cascade项目</em></p><p><img src="../../image/assets/0cc26cd1-8c40-4848-b4aa-cdba18bdf0eb.gif" data-placeholder-src="../../image/assets/0cc26cd1-8c40-4848-b4aa-cdba18bdf0eb.gif" width="640" height="262" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAAIABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDKgZUk3MgcDselAFjEPmFnIKsCQM9KAexTFAH/2Q==);background-size:cover" alt="" /><em>Owen Cornec等人通过可视化国家之间进出口的商品种类和数量，展示了不同的国家如何相互交互和依存，形成全球货物流通的网络。图片来源：Harvard CID</em></p><p>算法与美感的结合，也许能够触发新的审美，从另一种方式理解机械，也让我们更习惯逐渐机械化的世界。冷冰冰的算法看上去与充满情绪的艺术品相去甚远，然而从 17 世纪的巴赫到 20 世纪的约翰·凯奇都利用算法与规则来创作动人心弦的作品。Memo Akten 的作品 Simple Harmonic Motion 则将两者的冲突与融合展露无遗，模拟的摆锤以规律的方式运动，通过简单的规则组合出古典音乐般的丰厚与动人。</p><p>https://vimeo.com/80491762?fl=pl&amp;fe=sh</p><iframe src="https://player.vimeo.com/video/80491762" width="640" height="360" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>*Memo Akten, simple harmonic motion-9*
 <p>尽管人工智能带来的自动化势不可挡，随之而来的道德和社会问题也会一步步展开，但这些把技术与艺术相融合的努力可能是希望之一。不管未来如何不确定，技术的发展和知识的流通至少会让人与人之间的机会与选择更加平等。而艺术化的技术会唤起更多人对技术的关注和思考，并且将技术教育带到不同的领域。这也许是机械化未来诸多挑战中的一丝光亮。</p><hr />
 <p>原載於<a href="http://perspiceremagazine.org/generated-art.html">視角雜誌</a></p>
             
         </article>
-        <section class="moss-comments" id="moss-comments" data-built-at="2026-04-29T20:33:59.835335+00:00">
+        <section class="moss-comments" id="moss-comments" data-built-at="2026-05-07T17:21:52.514661+00:00">
   <details>
     <summary class="comments-toggle"><svg class="comments-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></svg><span>3条评论</span><svg class="comments-chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></summary>
     <div class="comment-form-slot" id="default-form-slot"><form class="comment-form" id="moss-comment-form" data-server-url="https://api.moss.host/comments" data-site-name="liu-guo.com" data-page-key="writings/art-in-the-age-of-mechanical-generation/" data-page-title="机械生成时代的艺术">
@@ -819,22 +940,21 @@ a.comment-author:hover {
         <div class="comment-body"><p>這個深度文讓我大開眼界！</p></div>
       </li>
     </ol>
-    <script>"use strict";(()=>{(function(){"use strict";let e=document.getElementById("moss-comment-form");if(!e)return;let f=e.dataset.serverUrl,E=e.dataset.siteName,h=e.dataset.pageKey,g=e.dataset.pageTitle,m=document.getElementById("moss-comment-status"),n=document.getElementById("moss-comment-text"),u="moss-commenter",i=null;try{let t=JSON.parse(localStorage.getItem(u)||"{}");t.name&&(e.querySelector('[name="name"]').value=t.name),t.email&&(e.querySelector('[name="email"]').value=t.email),t.link&&(e.querySelector('[name="link"]').value=t.link)}catch{}n&&n.addEventListener("input",function(){this.style.height="auto",this.style.height=this.scrollHeight+"px"}),document.querySelectorAll(".comment-reply-btn").forEach(t=>{t.addEventListener("click",function(){let a=this.dataset.replyId,o=this.dataset.replyName;i=a;let l=document.getElementById("comment-"+a);l&&(l.querySelector(".comment-replies")??l).appendChild(e.parentNode),n&&(n.placeholder="@"+o+" ",n.focus())})}),e.addEventListener("submit",function(t){if(t.preventDefault(),!n)return;let a=n.value.trim();if(!a)return;let o=e.querySelector('[name="name"]').value.trim(),l=e.querySelector('[name="email"]').value.trim(),r=e.querySelector('[name="link"]').value.trim();if(!o){m.textContent="Name is required";return}try{localStorage.setItem(u,JSON.stringify({name:o,email:l,link:r}))}catch{}m.textContent="Submitting...",e.querySelector('[type="submit"]').disabled=!0;let d={content:a,nick:o,email:l,link:r,page_key:h,page_title:g,site_name:E};i&&(d.rid=parseInt(i,10)),fetch(f.replace(/\/+$/,"")+"/api/v2/comments",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(d)}).then(s=>{if(!s.ok)throw new Error("HTTP "+s.status);return s.json()}).then(s=>{m.textContent="Comment posted!",n.value="",i=null;let p=document.getElementById("default-form-slot");p&&p.appendChild(e);let y=document.querySelector(".comment-list");if(y){let c=document.createElement("li");c.className="comment-item",c.innerHTML='<div class="comment-header"><span class="comment-author">'+(o||"Anonymous")+'</span><time class="comment-date">just now</time></div><div class="comment-body">'+(s.content||a)+"</div>",y.appendChild(c)}setTimeout(()=>{m.textContent=""},3e3)}).catch(s=>{m.textContent="Error: "+s.message}).finally(()=>{e.querySelector('[type="submit"]').disabled=!1})})})();})();
+    <script>"use strict";(()=>{var H="moss:quote-comment";function M(e){let a=c=>{let u=c.detail;u&&e(u)};return document.addEventListener(H,a),()=>document.removeEventListener(H,a)}var v=null,S=null;function Q(e){if(v)return v;let{form:a,textarea:c,defaultSlot:u,onBeforeOpen:y}=e,l=null,t=null,o="";function f(){if(!t){l=document.createElement("div"),l.className="comment-float-backdrop",l.addEventListener("click",()=>m()),document.body.appendChild(l),t=document.createElement("div"),t.className="comment-float-shell";let i=document.createElement("div");i.className="comment-float-inner",t.appendChild(i),document.body.appendChild(t)}let n=t.querySelector(".comment-float-inner");return{shell:t,inner:n}}function h(n){if(!n)return;y?.();let{shell:i,inner:s}=f();s.innerHTML="";let r=document.createElement("div");r.className="comment-float-quote",r.textContent=n,s.appendChild(r),s.appendChild(a),o=n,l.classList.add("visible"),i.classList.add("open"),c.focus()}function m(){!t||!t.classList.contains("open")||(t.classList.remove("open"),l?.classList.remove("visible"),a.parentElement!==u&&u.appendChild(a),o="")}function E(n){n.key==="Escape"&&t?.classList.contains("open")&&m()}document.addEventListener("keydown",E);let p=M(({text:n})=>h(n));return S=()=>{document.removeEventListener("keydown",E),p(),l?.remove(),t?.remove()},v={cancel:m,getQuoteText:()=>o,getQuotePrefix:()=>q(o)},v}function q(e){if(!e)return"";let a=e.replace(/\n+$/,"");return a?a.split(`
+`).map(c=>"> "+c).join(`
+`)+`
+
+`:""}(function(){"use strict";let e=document.getElementById("moss-comment-form");if(!e)return;let a=e.dataset.serverUrl,c=e.dataset.siteName,u=e.dataset.pageKey,y=e.dataset.pageTitle,l=document.getElementById("moss-comment-status"),t=document.getElementById("moss-comment-text"),o=document.getElementById("default-form-slot"),f="moss-commenter",h=t?.placeholder??"",m=null;function E(){m=null,t&&(t.placeholder=h),o&&e.parentElement!==o&&o.appendChild(e)}let p=t&&o?Q({form:e,textarea:t,defaultSlot:o,onBeforeOpen:E}):null;try{let n=JSON.parse(localStorage.getItem(f)||"{}");n.name&&(e.querySelector('[name="name"]').value=n.name),n.email&&(e.querySelector('[name="email"]').value=n.email),n.link&&(e.querySelector('[name="link"]').value=n.link)}catch{}t&&t.addEventListener("input",function(){this.style.height="auto",this.style.height=this.scrollHeight+"px"}),document.querySelectorAll(".comment-reply-btn").forEach(n=>{n.addEventListener("click",function(){p?.cancel();let i=this.dataset.replyId,s=this.dataset.replyName;m=i;let r=document.getElementById("comment-"+i);r&&o&&(r.querySelector(".comment-replies")??r).appendChild(o),t&&(t.placeholder="@"+s+" ",t.focus())})}),e.addEventListener("submit",function(n){if(n.preventDefault(),!t)return;let i=t.value.trim();if(!i)return;let s=e.querySelector('[name="name"]').value.trim(),r=e.querySelector('[name="email"]').value.trim(),T=e.querySelector('[name="link"]').value.trim();if(!s){l.textContent="Name is required";return}try{localStorage.setItem(f,JSON.stringify({name:s,email:r,link:T}))}catch{}let L=(p?.getQuotePrefix()??"")+i;l.textContent="Submitting...",e.querySelector('[type="submit"]').disabled=!0;let C={content:L,nick:s,email:r,link:T,page_key:u,page_title:y,site_name:c};m&&(C.rid=parseInt(m,10)),fetch(a.replace(/\/+$/,"")+"/api/v2/comments",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(C)}).then(d=>{if(!d.ok)throw new Error("HTTP "+d.status);return d.json()}).then(d=>{l.textContent="Comment posted!",t.value="",p?p.cancel():o&&e.parentElement!==o&&o.appendChild(e),m=null;let x=document.querySelector(".comment-list");if(x){let g=document.createElement("li");g.className="comment-item",g.innerHTML='<div class="comment-header"><span class="comment-author">'+(s||"Anonymous")+'</span><time class="comment-date">just now</time></div><div class="comment-body">'+(d.content||L)+"</div>",x.appendChild(g)}setTimeout(()=>{l.textContent=""},3e3)}).catch(d=>{l.textContent="Error: "+d.message}).finally(()=>{e.querySelector('[type="submit"]').disabled=!1})})})();})();
 </script>
   </details>
 </section>
+        
     </main>
 
     <footer class="container">
-    <div class="footer-content">
-        <div class="footer-left">
-            <a href="/links/" class="footer-link">友链</a>
-            <a href="/feed.xml" class="footer-link" data-external>RSS</a>
-        </div>
-        <div class="footer-right">
-            <form action="https://buttondown.com/api/emails/embed-subscribe/liuguo" method="post" class="footer-subscribe-form"><input type="email" name="email" class="moss-input" placeholder="邮箱" required /><input type="hidden" value="1" name="embed" /><button type="submit" class="moss-btn">订阅</button></form>
-        </div>
-    </div>
+        
+        <p class="footer-default"><a href="/links/" class="footer-link">友链</a> · <a href="/feed.xml" class="footer-link" data-external>RSS</a></p>
+        <form action="https://buttondown.com/api/emails/embed-subscribe/liuguo" method="post" class="moss-subscribe-form" data-position="footer"><input type="email" name="email" class="moss-input" placeholder="邮箱" required /><input type="hidden" value="1" name="embed" /><button type="submit" class="moss-btn">订阅</button></form>
 </footer>
 
     <div class="moss-colophon">
@@ -847,8 +967,9 @@ a.comment-author:hover {
         </a>
     </div>
 
-    <script src="/js/theme.js?v=55cfb8c997a6f4b4"></script>
+    <script src="/js/theme.js?v=2cdc2065ab56e04a"></script>
     <script src="/js/preview.js"></script>
+    <script src="/js/thumb-swap.js"></script>
     
 </body>
 </html>

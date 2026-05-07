@@ -19,6 +19,7 @@
     <meta property="article:tag" content="地理">
     <meta property="article:tag" content="游记">
     <link rel="canonical" href="https://liu-guo.com/writings/useless-journey/beings-speak/">
+    
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="“如果人们在一个地方呆得足够久，那里的生灵也会开始向他们说话”">
     <meta name="twitter:description" content="在文明的废墟里，生命会再次涌出，交织着指向天空，如同一条河流汇入另一条河流。">
@@ -46,7 +47,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16.png">
     <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml">
     <script data-goatcounter="https://guo.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-    <link rel="stylesheet" href="/style.css?v=83b6d32641fd5485">
+    <link rel="stylesheet" href="/style.css?v=3abb9ff9e247504f">
     <script data-goatcounter="https://guo.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 <style class="moss-review-style">/* Review plugin — header and colophon styles
  * Uses moss design tokens. Works in light and dark mode.
@@ -223,15 +224,33 @@
    - ResultFirst 2026 trends — "stripping away non-essential frills"
    ========================================================================== */
 
-/* Comment Section — width controlled by site theme (main > .moss-comments) */
-.moss-comments {
+/* Comment Section — width controlled by site theme.
+   The comment toggle becomes the top edge of the footer chrome: it sits with
+   generous breathing room below the article body, then the footer divider
+   sits a `space-md` (1.5rem) gap below the toggle — mirroring the `space-md`
+   gap below the divider before the footer items.
+   Selector specificity (main >) is required to win over site.css's
+   `main > .moss-comments { margin: 0 auto }` rule, which would otherwise
+   reset margin-top to 0 and erase the breathing room. */
+main > .moss-comments {
   margin-top: 6rem;
 }
 
-/* Divider above comment section */
-.moss-comments > details {
-  padding-top: var(--moss-space-lg, 2rem);
-  border-top: 1px solid var(--moss-border-light, #e6e2db);
+/* When .moss-comments is present, retune the gap between main and the footer
+   divider so the toggle sits as part of the footer chrome:
+     - `main { padding-bottom: 60px }` — drop entirely; .moss-comments owns
+       its own top breathing room (margin-top above) and the toggle should
+       sit directly above the footer's standoff.
+     - `footer.container { margin-top: 2xl }` — replace with `space-md` so
+       the toggle→divider gap mirrors the divider→items gap (also `space-md`,
+       see `footer.container::before { margin-bottom: var(--moss-space-md) }`
+       in site.css). Footer items are visually heavier (larger font), so an
+       optically symmetric gap settles to numerically equal here. */
+main:has(> .moss-comments) {
+  padding-bottom: 0;
+}
+main:has(.moss-comments) + footer.container {
+  margin-top: var(--moss-space-md);
 }
 
 /* ==========================================================================
@@ -704,33 +723,159 @@ a.comment-author:hover {
   background: rgba(0, 0, 0, 0.35);
 }
 </style>
-<style class="moss-email-style">/* Email subscribe form — injected by email plugin enhance hook */
-.footer-subscribe-form {
-  display: flex;
-  gap: var(--moss-space-sm);
-  align-items: baseline;
-  max-width: 24rem;
-}
-
-.footer-subscribe-form .moss-input {
-  flex: 1;
-}
-
-.footer-subscribe-form .moss-btn {
-  font-size: inherit;
-}
-
-@media (max-width: 48rem) {
-  .footer-subscribe-form {
-    max-width: none;
+<style class="moss-email-style">@layer shortcodes {
+  /* Email subscribe form — injected by email plugin enhance hook.
+     The footer form sits in slot:footer-end, AFTER the default link list
+     (design B, 2026-05-06). Spacing between the form and the link list
+     above it is provided by the flex `gap` on `footer.container` when
+     the default-shape footer rule kicks in (see site.css
+     `footer.container:has(> p.footer-default + ...)`). No margin-top
+     here — it would compound the gap when wrapped, and the side-by-side
+     layout doesn't want one at all. */
+  .moss-subscribe-form[data-position="footer"] {
+    display: flex;
+    gap: var(--moss-space-sm);
+    align-items: baseline;
+    max-width: 24rem;
   }
 
-  .footer-subscribe-form .moss-input {
+  .moss-subscribe-form[data-position="footer"] .moss-input {
+    flex: 1;
+  }
+
+  .moss-subscribe-form[data-position="footer"] .moss-btn {
+    font-size: inherit;
+  }
+
+  @media (max-width: 48rem) {
+    .moss-subscribe-form[data-position="footer"] {
+      max-width: none;
+    }
+
+    .moss-subscribe-form[data-position="footer"] .moss-input {
+      flex: 1;
+      min-width: 0;
+    }
+  }
+
+  /* Inline `:::subscribe` shortcode wrapper.
+     Card-styled container for in-page subscribe forms. Token-only; no
+     hardcoded colors. See spec
+     docs/superpowers/specs/2026-04-30-subscribe-shortcode-design.md. */
+  .moss-subscribe {
+    max-width: 32rem;
+    margin: var(--moss-space-lg) 0;
+    padding: var(--moss-space-md) var(--moss-space-lg);
+    border: 1px solid var(--moss-border-light);
+    border-radius: var(--moss-radius-md, 0.5rem);
+  }
+
+  .moss-subscribe-description {
+    margin: 0 0 var(--moss-space-md) 0;
+    color: var(--moss-color-muted);
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  .moss-subscribe-form[data-position="inline"] {
+    display: flex;
+    gap: var(--moss-space-sm);
+    align-items: baseline;
+  }
+
+  .moss-subscribe-form[data-position="inline"] .moss-input {
     flex: 1;
     min-width: 0;
   }
+
+  @media (max-width: 32rem) {
+    .moss-subscribe-form[data-position="inline"] {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .moss-subscribe-form[data-position="inline"] .moss-btn {
+      width: 100%;
+    }
+  }
 }
 </style>
+<style class="moss-email-style">@layer shortcodes {
+  /* Email subscribe form — injected by email plugin enhance hook.
+     The footer form sits in slot:footer-end, AFTER the default link list
+     (design B, 2026-05-06). Spacing between the form and the link list
+     above it is provided by the flex `gap` on `footer.container` when
+     the default-shape footer rule kicks in (see site.css
+     `footer.container:has(> p.footer-default + ...)`). No margin-top
+     here — it would compound the gap when wrapped, and the side-by-side
+     layout doesn't want one at all. */
+  .moss-subscribe-form[data-position="footer"] {
+    display: flex;
+    gap: var(--moss-space-sm);
+    align-items: baseline;
+    max-width: 24rem;
+  }
+
+  .moss-subscribe-form[data-position="footer"] .moss-input {
+    flex: 1;
+  }
+
+  .moss-subscribe-form[data-position="footer"] .moss-btn {
+    font-size: inherit;
+  }
+
+  @media (max-width: 48rem) {
+    .moss-subscribe-form[data-position="footer"] {
+      max-width: none;
+    }
+
+    .moss-subscribe-form[data-position="footer"] .moss-input {
+      flex: 1;
+      min-width: 0;
+    }
+  }
+
+  /* Inline `:::subscribe` shortcode wrapper.
+     Card-styled container for in-page subscribe forms. Token-only; no
+     hardcoded colors. See spec
+     docs/superpowers/specs/2026-04-30-subscribe-shortcode-design.md. */
+  .moss-subscribe {
+    max-width: 32rem;
+    margin: var(--moss-space-lg) 0;
+    padding: var(--moss-space-md) var(--moss-space-lg);
+    border: 1px solid var(--moss-border-light);
+    border-radius: var(--moss-radius-md, 0.5rem);
+  }
+
+  .moss-subscribe-description {
+    margin: 0 0 var(--moss-space-md) 0;
+    color: var(--moss-color-muted);
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  .moss-subscribe-form[data-position="inline"] {
+    display: flex;
+    gap: var(--moss-space-sm);
+    align-items: baseline;
+  }
+
+  .moss-subscribe-form[data-position="inline"] .moss-input {
+    flex: 1;
+    min-width: 0;
+  }
+
+  @media (max-width: 32rem) {
+    .moss-subscribe-form[data-position="inline"] {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .moss-subscribe-form[data-position="inline"] .moss-btn {
+      width: 100%;
+    }
+  }
+}
+</style><script class="moss-subscribe-script">"use strict";(()=>{var b={en:{placeholder:"your@email.com",label:"Subscribe",checkEmail:"Check your email to confirm.",alreadySubscribed:"You're already subscribed.",error:"Something went wrong. Try again?"},"zh-hans":{placeholder:"\u90AE\u7BB1",label:"\u8BA2\u9605",checkEmail:"\u8BF7\u5728\u90AE\u7BB1\u4E2D\u786E\u8BA4\u8BA2\u9605",alreadySubscribed:"\u4F60\u5DF2\u8BA2\u9605\u3002",error:"\u51FA\u9519\u4E86\uFF0C\u8BF7\u91CD\u8BD5\u3002"},"zh-hant":{placeholder:"\u96FB\u90F5",label:"\u8A02\u95B1",checkEmail:"\u8ACB\u5728\u96FB\u90F5\u4E2D\u78BA\u8A8D\u8A02\u95B1",alreadySubscribed:"\u4F60\u5DF2\u8A02\u95B1\u3002",error:"\u51FA\u932F\u4E86\uFF0C\u8ACB\u91CD\u8A66\u3002"}};function h(e){let t=(e??"").toLowerCase();return t.startsWith("zh-hant")||t.startsWith("zh-tw")||t.startsWith("zh-hk")||t.startsWith("zh-mo")?"zh-hant":t.startsWith("zh")?"zh-hans":"en"}var f=4e3,l=new WeakMap;function g(e){if(e.dataset.mossHydrated==="true")return;let t=e.querySelector('input[type="email"]'),n=e.querySelector('button[type="submit"]');if(!t||!n)return;e.dataset.mossHydrated="true";let r=h(document.documentElement.lang),a=b[r];if(t.placeholder=a.placeholder,!(e.dataset.position==="inline")){let s=n.querySelector(".moss-btn__label");s&&(s.textContent=a.label)}e.addEventListener("submit",async s=>{if(s.preventDefault(),e.dataset.state==="loading")return;let u=(t.value??"").trim();if(!u){t.focus();return}T(e,n),i(e,"loading");try{let d=await fetch(e.action,{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},body:JSON.stringify({email:u})}),S=await d.json().catch(()=>({}));if(!d.ok){c(e,"error",a),i(e,"error");return}let E=S.alreadySubscribed?"already-subscribed":"check-email";c(e,E,a),i(e,"success"),H(e,t)}catch{c(e,"error",a),i(e,"error")}}),n.addEventListener("click",s=>{e.dataset.state==="success"&&(s.preventDefault(),p(e,t))})}function i(e,t){e.dataset.state=t}function c(e,t,n){let r=e.querySelector(".moss-subscribe-status");if(!r)return;r.querySelectorAll("[data-copy]").forEach(o=>{o.dataset.copy===t?(o.hidden=!1,o.textContent=L(t,n)):o.hidden=!0}),r.dataset.state=t}function L(e,t){switch(e){case"check-email":return t.checkEmail;case"already-subscribed":return t.alreadySubscribed;case"error":return t.error}}function T(e,t){let n=t.parentElement;if(!n||!n.classList.contains("moss-subscribe-btn-slot")||n.style.width)return;let r=t.offsetWidth;r<=0||(n.style.width=`${r}px`)}function H(e,t){y(e);let n=window.setTimeout(()=>p(e,t),f);l.set(e,n)}function y(e){let t=l.get(e);t!==void 0&&(clearTimeout(t),l.delete(e))}function p(e,t){y(e),e.isConnected&&(t.value="",i(e,"idle"))}function m(){document.querySelectorAll('form.moss-subscribe-form[data-moss-hosted="true"]').forEach(g)}typeof document<"u"&&(document.readyState==="loading"?document.addEventListener("DOMContentLoaded",m):m());})();
+</script>
 </head>
 <body class="">
     <header>
@@ -747,22 +892,10 @@ a.comment-author:hover {
             
             <h1 class="moss-article-title">“如果人们在一个地方呆得足够久，那里的生灵也会开始向他们说话”</h1>
 <div class="date-line"><span class="date">2025 · 11 · 17</span><div class="font-anchor"><button class="font-trigger size-std" aria-label="Reading preferences" aria-expanded="false" type="button"></button><div class="font-pill" id="fontPill"><button data-scale="small" aria-label="Small text"></button><button data-scale="" class="active" aria-label="Standard text"></button><button data-scale="large" aria-label="Large text"></button><button data-scale="xlarge" aria-label="Extra large text"></button></div></div></div>
-<p><picture><source srcset="../../../image/photography/a420cc12-8642-4286-b65f-9795cc5acd2f.webp" type="image/webp"><img src="../../../image/photography/a420cc12-8642-4286-b65f-9795cc5acd2f.jpg" data-placeholder-src="../../../image/photography/a420cc12-8642-4286-b65f-9795cc5acd2f.jpg" width="1366" height="910" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAANABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCjCQGTn1/kakRJcsHcMOg4FDEU5f8AWtxjnNNbFE8arnJGcVVibizsMAhQPzokgRVY7mzSKP/Z);background-size:cover" alt="" /></picture></p><p>旧金山以北的海岸山脉上，常常能看见巨大的海岸红杉。这些世上最高的树，暗红的树干，深绿的树叶，于不经意间从路边升起，指向天空。</p><p>接近洪堡红杉州立公园时，我们拐下高速，顺着一条叫“巨人大道”的小路，径直开进了红杉林。穿梭在巨人的脚下，硕大粗粝的树根在车窗外掠过，我放慢速度，摇下车窗。天上细叶婆娑，细碎的声音让林子显得更加安静。</p><p>小路弯弯曲曲，爬过山丘，越过小河。我们在找洛克菲勒森林，一片最大的、未被破坏的海岸红杉林。</p><p>一下车，双脚就踩上了红色、松软的大地。大地是层层叠叠的树皮，降解成了细细密密的地毯，每一步都搅动起杉木的味道。头顶枝叶遮天蔽日，四周巨树笔直，如教堂里的立柱，撑起开阔的空间。有光柱穿过枝叶，穿过林间的薄雾，把林下静默的蕨叶打得透亮。倒下的树干高大如房屋，嫩绿的新枝从半朽的树干上兀自长出，依旧指向天空。林冠层上掉落的粗枝，卡在了树干上，重新与树干融合，像一条河流汇入另一条河流。生命从地下源源不断地涌出，汇成这一棵棵立柱，和这座生的圣殿。</p><p>这条南北四百多英里的狭长地带，是海岸红杉最后的生境。湿润的海风吹向大地，海岸山脉将海风抬起，成为降雨。充足的雨水、充足的阳光，让红杉在两千年的寿命中，笔直而持续地生长。但海岸红杉的保护区并不是一整片，而是切割成了许许多多不同的区域，散落在山脉间。破碎的生境背后，是近两百年来许多力量的拉锯。</p><p>原先居住在这里的，是那些崇尚平等的加州原住民。在当地人的信仰中，红杉是神圣的。人们无法砍倒红杉，只能从倒下的树干中取材，筑屋、造船、生火。红杉木轻盈而耐腐蚀，木纹笔直，是建造房屋的好材料。一直到两百年前，这一片区域没有欧洲移民踏足，人与自然的关系千百年来几乎未变。</p><p>1850年，附近的小镇上发现了金矿。此时，加州淘金热已经开始，美国本土的欧洲移民后裔，加上从欧洲、夏威仪、中国、拉丁美洲等地新来的掘金者，已经大批涌向了加州。红杉林金矿发现后，淘金者们掉头北上，来到红杉的脚下，并在加州政府的支持下，屠杀、强暴、奴役和驱赶当地居民。这仅仅是当时遍布加州的大屠杀中的一小部分，但对于经历的人们则是灭顶之灾。接下来半个多世纪的杀戮、疾病和同化，大一点的部族，比如 Yoruk 人，失去了75%到95%的人口，而小一点的部族，比如 Chilula 人，则完全消失了。</p><p>在这半个多世纪里，掘金热慢慢退潮，矿业公司把目光转向红杉。最开始，人们用手锯和斧头，花费几周时间锯倒一棵红杉，然后用牛车将杉木拉到河道和铁路。等到蒸汽机车和柴油车技术成熟，为了让机器们进入山地，人们开始皆伐，砍倒路上所有的红杉。于是成片的红杉林倒下，成片的山头变为荒原。在机器的轰鸣中，那旺盛的生命力，再无法从地下涌起。</p><p>也许不管是任何时代，在红杉林里静静待过的人都能明白，这些巨大生灵的意义，远远不止它们身躯所对应的经济价值。到了20世纪，许多见过红杉林的人，开始以各自的方式为保护区奔走。有画家借助自己影响力筹钱、游说，促成了加州第一个州立公园；有政客通过贷款购买私人土地，捐赠给联邦政府；约翰·穆尔等人成立的高山社，和民间组织保护红杉联盟，也开始在政府、企业和居民之间斡旋，寻找如何保护红杉。</p><p>在这些人的努力下，到了20年代初，加州成立了五个保护海岸红杉林的州立公园。60年代，民间社会的生态意识觉醒，科学界也逐渐明白，保护一片森林需要保护一整片流域，才能有效地停止水土流失。在各方的支持与游说下，联邦政府在68年成立了红杉国家公园，又在10年后增加了近一倍的面积。</p><p>然而想要保护的始终是少数，更普世的动力还是致富。在经过经济大萧条和第二次世界大战之后，美国经济腾飞，建房拉动了对木材的需求。此时上场的不再是手锯、斧头和蒸汽机车，而是链锯、柴油机和履带推土机。60年代的时候，90%的红杉已经消失了，赚饱了的林业公司游说政府，继续着砍伐。虽然有了这许多的保护区，但它们是孤岛般的避难所，在一个相互连接的生态系统中，无法独立存活。</p><p>相较“旧大陆”许多其他地方，红杉林开发与保护拉锯过程很特别。在中国、日本，甚至南美洲一些原住民聚集的地方，常常是中央政府主导开发资源，世世代代生于斯长于斯的人们则试图保护自然。但对于红杉林，支持保护的常常是远方的各界人士和联邦政府，反对保护的则是当地居民和政府。这是因为那些真正的定居者，那些世世代代生活在这里的原住民们，已经和红杉一样，所剩无几了。红杉林失去了本来会保护她的人，取而代之的是为了淘金和伐木而来的移民。而这些人们，还未成为真正的定居者。</p><p>出发前的几个月，我一直在读加里·施耐德的文字。这个出生在大萧条时代的诗人，在西海岸山林里生长，看见了林业的扩张，与另一种生活的逝去。在他眼中，为伐木而来的移民，是这动荡世界的缩影。“现在，许多在这星球上生活的人，并不是真的定居者。他们远离了自己的家乡，从祖辈的土地上迁走，从农村搬家到城市。去加州挖金子，去给输油管打工，去给在伊朗建房的比奇特尔公司打工。“而那些世代扎根在土地上的人们，”农户、猎户、山民，几个世纪以来被轻蔑、被嘲笑，被城里的统治精英们以税收压榨。对于‘种粮食’所需的复杂、专注和富有创造力的智慧，知识分子们一无所知。”</p><p>施耐德记得童年时偶遇的原住民老人，身上带着自己和祖辈从来没有过的，关于周遭世界的记忆。那是一种他向往的记忆，“美国白人或者欧州后裔的传统，我无意以之作为自己的身份；我以我和此地的关系，定义我自己。”然而此地又是哪里？此地的生灵有哪些，彼此关系如何，又缘何进入我们的心灵？千万年以来，每一个地方的人以自己所有的理性、感性、智力、灵力去理解“这里”。无数代人因此而体验过的世界，随着这些原住民的逝去，消失在我们心灵之外。</p><p>这整个逝去的世界，人们无法以之作为保护生灵的原因，转而寻找可持续发展、观光甚至健康等各种有用之处，让最后的红杉得以存活。可这些有用之处，在许多年代里，却是那么的无关紧要。</p><p>美国资本主义黄金三十年后，是七十年代经济衰退。到了八十年代，海岸红杉林只剩下了最后5%。随着经济活动减缓，当地最大的伐木公司，太平洋木材公司，已经不再实施皆伐，转而以可持续的方式间伐。但这也意味着，其中有额外的利润可榨取。于是八十年代末，一个远在德州的富豪 Charles Hurwitz，这个年轻有为、善于找漏洞、狙击低价公司的对冲基金经理，迅速收购了太平洋木材公司股份，并将其吞并。公司到手之后，Hurwitz 重新启动皆伐，要把原本计划100年间砍伐的红杉林在20年内砍光，以偿还吞并公司带来的债务。</p><p>成片的红杉林再次倒下，成片的山头再次光秃得只剩砂石瓦砾。山体在暴雨中滑坡，泥石流汇入河流，吞没山脚下的村庄。联合国已将红杉林作为世界遗产，又将它作为国际生物圈保护区，然而这些名头都无助于红杉的幸存。不同于保护运动第一次兴起的20年代，此时新闻以光速传播到各地，远方成为了这里。当初介入环境保护的是社会精英，有的为了审美、有的为了科学、有的为了持续开发。这次行动起来的是全国各地的年轻人，读了 Rachel Carson 的《寂静的春天》、Edward Abbey 的《扳手帮》、Aldo Leopold 与 E. O. Wilson 的生态学理论，听过了许许多多的道理，也不再需要道理去保护这些远古的生灵。</p><p>抗议活动在加州此起彼伏，汇聚在了90年的“红杉之夏”。抗议者先是用钢钉插入树干，阻止伐木工人使用电锯。随着一位伐木工人受伤，抗议者放弃了这样的手段，而直接用身躯阻挡机器。有一天，活动组织者 Judi Bari 与 Darryl Cherney 在旧金山附近筹备活动时，一个炸弹从他们的车中爆炸，重伤 Bari、轻伤 Cherney。FBI 没有去调查伐木公司，而是逮捕了 Bari 与 Cherney，试图证明两人制作炸弹，而在运输过程中不慎炸伤自己。最终因为缺乏证据，又不得不释放了两人。</p><p>这场汽车爆炸案触动了社会各界的神经，对红杉林的支持在接下来的几年中继续发酵。活动者们开始“坐树”，坐在红杉的树冠中，以阻止伐木。最长的一次是在 1997 年，为了一棵名为 Luna 的千年红杉，与周遭一小片还残留的红杉，逃避皆伐的命运。年轻的活动者 Julia Hill 爬上了 Luna，在上面一呆就是两年多。这两年间，另一位活动者 David Chain，在阻止伐木的抗议中被倒下的红杉砸死，无人知道是过失还是谋杀。而 Hill 一直呆在树上，直到太平洋木材公司同意不砍伐 Luna 与周边的红杉，并将近万英亩原始森林卖给联邦政府，换取近五亿美元纳税人的钱。</p><p>在 Hurwitz 赚饱了之后，官司缠身的太平洋木材公司再无树可砍，于是在2007年宣告破产，留下许多失业的伐木工人。</p><p>在这场漫长的拉锯中，加州州立公园与国家公园逐渐开始联手，将这许多个分离的保护区统一管理。经历了许多灾难与斗争，皆伐已不再被人们接受，保护基本成为了共识。这最后5%的红杉，算是留了下来。</p><p>但红杉林的故事还没有结束，也不会结束。2017年，特朗普上台后，将17个保护区从联合国生物圈保护区中撤出，其中就包含红杉林。下一步会是什么，没有人知道。</p><figure>
-<picture><source srcset="../../../image/assets/8c0e7411-7ccf-4d8e-8679-433432a4a73e.webp" type="image/webp"><img src="../../../image/assets/8c0e7411-7ccf-4d8e-8679-433432a4a73e.png" data-placeholder-src="../../../image/assets/8c0e7411-7ccf-4d8e-8679-433432a4a73e.png" width="1190" height="1500" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAAUABADAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCvGoMeKyb1LIW/mP61QgSQhQKGguJgnJ6YoGKVAB4oENYYpoD/2Q==);background-size:cover" alt="" /></picture>
-<figcaption>比尔施塔特1874年绘制的红杉林</figcaption>
-</figure><p>在洪堡红杉州立公园，有一个小而温馨的访客中心，展示红杉的进化过程和生态角色，也纪念当地从砍伐到保护的历史。门口展示着一个巨大的红杉横切面，一圈圈的树轮上，标记着这棵红杉经历过的时代：一千多年前牛津大学建立，然后巴黎大学建立、成吉思汗征服波斯、明朝建立、文艺复兴开始、印刷术发明、科尔特斯摧毁阿兹特克帝国，一直到二十世纪红杉林公园的建立。</p><p>访客中心里，我和几个友好的工作人员聊天，询问周边值得的去处。他们几乎全是退休的老人，作为志愿者帮助来自世界各地的访客们。每个人都有自己最喜欢的去处，讲着讲着就掏出一张最适合的地图，转过来面朝我，自己倒着在地图上标出每一个转弯，甚至具体一棵树的位置。等我转过头去，他们又用同样的热情向其他访客介绍，这片如自己手心般熟悉的土地。</p><p>施耐德记得在70年代时，一个克罗族的老人说，“我觉得，如果人们在一个地方呆得足够久，哪怕是白人，那里的生灵也会开始向他们说话。那些生灵和古老的力量没有消失，它们只是需要人们呆在那里足够久，这些生灵就会开始影响他们。”</p><p>人类的社会里，对财富和权力的渴望会永远存在，资本的意志、机器的意志也会继续驱动着一代又一代脱离了土地的游魂们。然而大自然，一如既往地在更长的时间尺度上运行。当红杉在两亿年前第一次出现在地球上时，恐龙还未称霸海陆空，人类的祖先是状如老鼠、在夜间捕捉昆虫的小动物。红杉有足够的耐心，这些生灵们有足够的耐心，等人们在一个地方呆得足够久，等我们这一代代移民们真正定居下来，向我们说话。</p><p>也许有的人会听见，有的人不会；但也许这并不重要。在红杉漫长的一生中，想必见证过不少被贪婪与无知裹挟的人类文明。在文明的废墟里，生命会再次涌出，交织着指向天空，如同一条河流汇入另一条河流。</p><p><picture><source srcset="../../../image/photography/22c0e9b7-8093-48fa-97af-14881cce91d9.webp" type="image/webp"><img src="../../../image/photography/22c0e9b7-8093-48fa-97af-14881cce91d9.jpg" data-placeholder-src="../../../image/photography/22c0e9b7-8093-48fa-97af-14881cce91d9.jpg" width="1366" height="2049" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAAUAA0DAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCnA227V2PBIP60rklmRg5zsLfQVDuMzopMSKTzgirCxMjPLnAHHrQBBAMyr9aYzajXKBiTk9aljZ//2Q==);background-size:cover" alt="" /></picture></p><nav class="moss-series-nav">
-  <div class="moss-series-nav-links">
-    <a href="/writings/useless-journey/river-two-freedoms/index.html" class="moss-series-nav-link moss-series-nav-prev"><span class="moss-series-nav-arrow">&lt;</span> <span class="moss-series-nav-title">一条大河，两种对自由的选择</span></a>
-    <a href="/writings/useless-journey/the-real-journey/index.html" class="moss-series-nav-link moss-series-nav-next"><span class="moss-series-nav-title">真正的旅程</span> <span class="moss-series-nav-arrow">&gt;</span></a>
-  </div>
-  <div class="moss-series-nav-collection-row">
-    <a href="/writings/useless-journey/index.html" class="moss-series-nav-collection">无用之旅</a>
-  </div>
-</nav>
-<link rel="prefetch" href="/writings/useless-journey/the-real-journey/index.html">
+<p><picture><source srcset="../../../image/photography/a420cc12-8642-4286-b65f-9795cc5acd2f.webp" type="image/webp"><img src="../../../image/photography/a420cc12-8642-4286-b65f-9795cc5acd2f.jpg" data-placeholder-src="../../../image/photography/a420cc12-8642-4286-b65f-9795cc5acd2f.jpg" width="1366" height="910" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAANABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCjCQGTn1/kakRJcsHcMOg4FDEU5f8AWtxjnNNbFE8arnJGcVVibizsMAhQPzokgRVY7mzSKP/Z);background-size:cover" alt="" /></picture></p><p>旧金山以北的海岸山脉上，常常能看见巨大的海岸红杉。这些世上最高的树，暗红的树干，深绿的树叶，于不经意间从路边升起，指向天空。</p><p>接近洪堡红杉州立公园时，我们拐下高速，顺着一条叫“巨人大道”的小路，径直开进了红杉林。穿梭在巨人的脚下，硕大粗粝的树根在车窗外掠过，我放慢速度，摇下车窗。天上细叶婆娑，细碎的声音让林子显得更加安静。</p><p>小路弯弯曲曲，爬过山丘，越过小河。我们在找洛克菲勒森林，一片最大的、未被破坏的海岸红杉林。</p><p>一下车，双脚就踩上了红色、松软的大地。大地是层层叠叠的树皮，降解成了细细密密的地毯，每一步都搅动起杉木的味道。头顶枝叶遮天蔽日，四周巨树笔直，如教堂里的立柱，撑起开阔的空间。有光柱穿过枝叶，穿过林间的薄雾，把林下静默的蕨叶打得透亮。倒下的树干高大如房屋，嫩绿的新枝从半朽的树干上兀自长出，依旧指向天空。林冠层上掉落的粗枝，卡在了树干上，重新与树干融合，像一条河流汇入另一条河流。生命从地下源源不断地涌出，汇成这一棵棵立柱，和这座生的圣殿。</p><p>这条南北四百多英里的狭长地带，是海岸红杉最后的生境。湿润的海风吹向大地，海岸山脉将海风抬起，成为降雨。充足的雨水、充足的阳光，让红杉在两千年的寿命中，笔直而持续地生长。但海岸红杉的保护区并不是一整片，而是切割成了许许多多不同的区域，散落在山脉间。破碎的生境背后，是近两百年来许多力量的拉锯。</p><p>原先居住在这里的，是那些崇尚平等的加州原住民。在当地人的信仰中，红杉是神圣的。人们无法砍倒红杉，只能从倒下的树干中取材，筑屋、造船、生火。红杉木轻盈而耐腐蚀，木纹笔直，是建造房屋的好材料。一直到两百年前，这一片区域没有欧洲移民踏足，人与自然的关系千百年来几乎未变。</p><p>1850年，附近的小镇上发现了金矿。此时，加州淘金热已经开始，美国本土的欧洲移民后裔，加上从欧洲、夏威仪、中国、拉丁美洲等地新来的掘金者，已经大批涌向了加州。红杉林金矿发现后，淘金者们掉头北上，来到红杉的脚下，并在加州政府的支持下，屠杀、强暴、奴役和驱赶当地居民。这仅仅是当时遍布加州的大屠杀中的一小部分，但对于经历的人们则是灭顶之灾。接下来半个多世纪的杀戮、疾病和同化，大一点的部族，比如 Yoruk 人，失去了75%到95%的人口，而小一点的部族，比如 Chilula 人，则完全消失了。</p><p>在这半个多世纪里，掘金热慢慢退潮，矿业公司把目光转向红杉。最开始，人们用手锯和斧头，花费几周时间锯倒一棵红杉，然后用牛车将杉木拉到河道和铁路。等到蒸汽机车和柴油车技术成熟，为了让机器们进入山地，人们开始皆伐，砍倒路上所有的红杉。于是成片的红杉林倒下，成片的山头变为荒原。在机器的轰鸣中，那旺盛的生命力，再无法从地下涌起。</p><p>也许不管是任何时代，在红杉林里静静待过的人都能明白，这些巨大生灵的意义，远远不止它们身躯所对应的经济价值。到了20世纪，许多见过红杉林的人，开始以各自的方式为保护区奔走。有画家借助自己影响力筹钱、游说，促成了加州第一个州立公园；有政客通过贷款购买私人土地，捐赠给联邦政府；约翰·穆尔等人成立的高山社，和民间组织保护红杉联盟，也开始在政府、企业和居民之间斡旋，寻找如何保护红杉。</p><p>在这些人的努力下，到了20年代初，加州成立了五个保护海岸红杉林的州立公园。60年代，民间社会的生态意识觉醒，科学界也逐渐明白，保护一片森林需要保护一整片流域，才能有效地停止水土流失。在各方的支持与游说下，联邦政府在68年成立了红杉国家公园，又在10年后增加了近一倍的面积。</p><p>然而想要保护的始终是少数，更普世的动力还是致富。在经过经济大萧条和第二次世界大战之后，美国经济腾飞，建房拉动了对木材的需求。此时上场的不再是手锯、斧头和蒸汽机车，而是链锯、柴油机和履带推土机。60年代的时候，90%的红杉已经消失了，赚饱了的林业公司游说政府，继续着砍伐。虽然有了这许多的保护区，但它们是孤岛般的避难所，在一个相互连接的生态系统中，无法独立存活。</p><p>相较“旧大陆”许多其他地方，红杉林开发与保护拉锯过程很特别。在中国、日本，甚至南美洲一些原住民聚集的地方，常常是中央政府主导开发资源，世世代代生于斯长于斯的人们则试图保护自然。但对于红杉林，支持保护的常常是远方的各界人士和联邦政府，反对保护的则是当地居民和政府。这是因为那些真正的定居者，那些世世代代生活在这里的原住民们，已经和红杉一样，所剩无几了。红杉林失去了本来会保护她的人，取而代之的是为了淘金和伐木而来的移民。而这些人们，还未成为真正的定居者。</p><p>出发前的几个月，我一直在读加里·施耐德的文字。这个出生在大萧条时代的诗人，在西海岸山林里生长，看见了林业的扩张，与另一种生活的逝去。在他眼中，为伐木而来的移民，是这动荡世界的缩影。“现在，许多在这星球上生活的人，并不是真的定居者。他们远离了自己的家乡，从祖辈的土地上迁走，从农村搬家到城市。去加州挖金子，去给输油管打工，去给在伊朗建房的比奇特尔公司打工。“而那些世代扎根在土地上的人们，”农户、猎户、山民，几个世纪以来被轻蔑、被嘲笑，被城里的统治精英们以税收压榨。对于‘种粮食’所需的复杂、专注和富有创造力的智慧，知识分子们一无所知。”</p><p>施耐德记得童年时偶遇的原住民老人，身上带着自己和祖辈从来没有过的，关于周遭世界的记忆。那是一种他向往的记忆，“美国白人或者欧州后裔的传统，我无意以之作为自己的身份；我以我和此地的关系，定义我自己。”然而此地又是哪里？此地的生灵有哪些，彼此关系如何，又缘何进入我们的心灵？千万年以来，每一个地方的人以自己所有的理性、感性、智力、灵力去理解“这里”。无数代人因此而体验过的世界，随着这些原住民的逝去，消失在我们心灵之外。</p><p>这整个逝去的世界，人们无法以之作为保护生灵的原因，转而寻找可持续发展、观光甚至健康等各种有用之处，让最后的红杉得以存活。可这些有用之处，在许多年代里，却是那么的无关紧要。</p><p>美国资本主义黄金三十年后，是七十年代经济衰退。到了八十年代，海岸红杉林只剩下了最后5%。随着经济活动减缓，当地最大的伐木公司，太平洋木材公司，已经不再实施皆伐，转而以可持续的方式间伐。但这也意味着，其中有额外的利润可榨取。于是八十年代末，一个远在德州的富豪 Charles Hurwitz，这个年轻有为、善于找漏洞、狙击低价公司的对冲基金经理，迅速收购了太平洋木材公司股份，并将其吞并。公司到手之后，Hurwitz 重新启动皆伐，要把原本计划100年间砍伐的红杉林在20年内砍光，以偿还吞并公司带来的债务。</p><p>成片的红杉林再次倒下，成片的山头再次光秃得只剩砂石瓦砾。山体在暴雨中滑坡，泥石流汇入河流，吞没山脚下的村庄。联合国已将红杉林作为世界遗产，又将它作为国际生物圈保护区，然而这些名头都无助于红杉的幸存。不同于保护运动第一次兴起的20年代，此时新闻以光速传播到各地，远方成为了这里。当初介入环境保护的是社会精英，有的为了审美、有的为了科学、有的为了持续开发。这次行动起来的是全国各地的年轻人，读了 Rachel Carson 的《寂静的春天》、Edward Abbey 的《扳手帮》、Aldo Leopold 与 E. O. Wilson 的生态学理论，听过了许许多多的道理，也不再需要道理去保护这些远古的生灵。</p><p>抗议活动在加州此起彼伏，汇聚在了90年的“红杉之夏”。抗议者先是用钢钉插入树干，阻止伐木工人使用电锯。随着一位伐木工人受伤，抗议者放弃了这样的手段，而直接用身躯阻挡机器。有一天，活动组织者 Judi Bari 与 Darryl Cherney 在旧金山附近筹备活动时，一个炸弹从他们的车中爆炸，重伤 Bari、轻伤 Cherney。FBI 没有去调查伐木公司，而是逮捕了 Bari 与 Cherney，试图证明两人制作炸弹，而在运输过程中不慎炸伤自己。最终因为缺乏证据，又不得不释放了两人。</p><p>这场汽车爆炸案触动了社会各界的神经，对红杉林的支持在接下来的几年中继续发酵。活动者们开始“坐树”，坐在红杉的树冠中，以阻止伐木。最长的一次是在 1997 年，为了一棵名为 Luna 的千年红杉，与周遭一小片还残留的红杉，逃避皆伐的命运。年轻的活动者 Julia Hill 爬上了 Luna，在上面一呆就是两年多。这两年间，另一位活动者 David Chain，在阻止伐木的抗议中被倒下的红杉砸死，无人知道是过失还是谋杀。而 Hill 一直呆在树上，直到太平洋木材公司同意不砍伐 Luna 与周边的红杉，并将近万英亩原始森林卖给联邦政府，换取近五亿美元纳税人的钱。</p><p>在 Hurwitz 赚饱了之后，官司缠身的太平洋木材公司再无树可砍，于是在2007年宣告破产，留下许多失业的伐木工人。</p><p>在这场漫长的拉锯中，加州州立公园与国家公园逐渐开始联手，将这许多个分离的保护区统一管理。经历了许多灾难与斗争，皆伐已不再被人们接受，保护基本成为了共识。这最后5%的红杉，算是留了下来。</p><p>但红杉林的故事还没有结束，也不会结束。2017年，特朗普上台后，将17个保护区从联合国生物圈保护区中撤出，其中就包含红杉林。下一步会是什么，没有人知道。</p><p><picture><source srcset="../../../image/assets/8c0e7411-7ccf-4d8e-8679-433432a4a73e.webp" type="image/webp"><img src="../../../image/assets/8c0e7411-7ccf-4d8e-8679-433432a4a73e.png" data-placeholder-src="../../../image/assets/8c0e7411-7ccf-4d8e-8679-433432a4a73e.png" width="1190" height="1500" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAAUABADAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCvGoMeKyb1LIW/mP61QgSQhQKGguJgnJ6YoGKVAB4oENYYpoD/2Q==);background-size:cover" alt="" /></picture><em>比尔施塔特1874年绘制的红杉林</em></p><p>在洪堡红杉州立公园，有一个小而温馨的访客中心，展示红杉的进化过程和生态角色，也纪念当地从砍伐到保护的历史。门口展示着一个巨`大的红杉横切面，一圈圈的树轮上，标记着这棵红杉经历过的时代：一千多年前牛津大学建立，然后巴黎大学建立、成吉思汗征服波斯、明朝建立、文艺复兴开始、印刷术发明、科尔特斯摧毁阿兹特克帝国，一直到二十世纪红杉林公园的建立。</p><p>访客中心里，我和几个友好的工作人员聊天，询问周边值得的去处。他们几乎全是退休的老人，作为志愿者帮助来自世界各地的访客们。每个人都有自己最喜欢的去处，讲着讲着就掏出一张最适合的地图，转过来面朝我，自己倒着在地图上标出每一个转弯，甚至具体一棵树的位置。等我转过头去，他们又用同样的热情向其他访客介绍，这片如自己手心般熟悉的土地。</p><p>施耐德记得在70年代时，一个克罗族的老人说，“我觉得，如果人们在一个地方呆得足够久，哪怕是白人，那里的生灵也会开始向他们说话。那些生灵和古老的力量没有消失，它们只是需要人们呆在那里足够久，这些生灵就会开始影响他们。”</p><p>人类的社会里，对财富和权力的渴望会永远存在，资本的意志、机器的意志也会继续驱动着一代又一代脱离了土地的游魂们。然而大自然，一如既往地在更长的时间尺度上运行。当红杉在两亿年前第一次出现在地球上时，恐龙还未称霸海陆空，人类的祖先是状如老鼠、在夜间捕捉昆虫的小动物。红杉有足够的耐心，这些生灵们有足够的耐心，等人们在一个地方呆得足够久，等我们这一代代移民们真正定居下来，向我们说话。</p><p>也许有的人会听见，有的人不会；但也许这并不重要。在红杉漫长的一生中，想必见证过不少被贪婪与无知裹挟的人类文明。在文明的废墟里，生命会再次涌出，交织着指向天空，如同一条河流汇入另一条河流。</p><p><picture><source srcset="../../../image/photography/22c0e9b7-8093-48fa-97af-14881cce91d9.webp" type="image/webp"><img src="../../../image/photography/22c0e9b7-8093-48fa-97af-14881cce91d9.jpg" data-placeholder-src="../../../image/photography/22c0e9b7-8093-48fa-97af-14881cce91d9.jpg" width="1366" height="2049" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAAUAA0DAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCnA227V2PBIP60rklmRg5zsLfQVDuMzopMSKTzgirCxMjPLnAHHrQBBAMyr9aYzajXKBiTk9aljZ//2Q==);background-size:cover" alt="" /></picture></p>
             
         </article>
-        <section class="moss-comments" id="moss-comments" data-built-at="2026-04-29T20:33:59.833844+00:00">
+        <section class="moss-comments" id="moss-comments" data-built-at="2026-05-07T17:21:52.513339+00:00">
   <details>
     <summary class="comments-toggle"><svg class="comments-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></svg><span>11条评论</span><svg class="comments-chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></summary>
     <div class="comment-form-slot" id="default-form-slot"><form class="comment-form" id="moss-comment-form" data-server-url="https://api.moss.host/comments" data-site-name="liu-guo.com" data-page-key="writings/useless-journey/beings-speak/" data-page-title="“如果人们在一个地方呆得足够久，那里的生灵也会开始向他们说话”">
@@ -876,22 +1009,30 @@ a.comment-author:hover {
         <div class="comment-body"><p>孤独产生了幻觉</p></div>
       </li>
     </ol>
-    <script>"use strict";(()=>{(function(){"use strict";let e=document.getElementById("moss-comment-form");if(!e)return;let f=e.dataset.serverUrl,E=e.dataset.siteName,h=e.dataset.pageKey,g=e.dataset.pageTitle,m=document.getElementById("moss-comment-status"),n=document.getElementById("moss-comment-text"),u="moss-commenter",i=null;try{let t=JSON.parse(localStorage.getItem(u)||"{}");t.name&&(e.querySelector('[name="name"]').value=t.name),t.email&&(e.querySelector('[name="email"]').value=t.email),t.link&&(e.querySelector('[name="link"]').value=t.link)}catch{}n&&n.addEventListener("input",function(){this.style.height="auto",this.style.height=this.scrollHeight+"px"}),document.querySelectorAll(".comment-reply-btn").forEach(t=>{t.addEventListener("click",function(){let a=this.dataset.replyId,o=this.dataset.replyName;i=a;let l=document.getElementById("comment-"+a);l&&(l.querySelector(".comment-replies")??l).appendChild(e.parentNode),n&&(n.placeholder="@"+o+" ",n.focus())})}),e.addEventListener("submit",function(t){if(t.preventDefault(),!n)return;let a=n.value.trim();if(!a)return;let o=e.querySelector('[name="name"]').value.trim(),l=e.querySelector('[name="email"]').value.trim(),r=e.querySelector('[name="link"]').value.trim();if(!o){m.textContent="Name is required";return}try{localStorage.setItem(u,JSON.stringify({name:o,email:l,link:r}))}catch{}m.textContent="Submitting...",e.querySelector('[type="submit"]').disabled=!0;let d={content:a,nick:o,email:l,link:r,page_key:h,page_title:g,site_name:E};i&&(d.rid=parseInt(i,10)),fetch(f.replace(/\/+$/,"")+"/api/v2/comments",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(d)}).then(s=>{if(!s.ok)throw new Error("HTTP "+s.status);return s.json()}).then(s=>{m.textContent="Comment posted!",n.value="",i=null;let p=document.getElementById("default-form-slot");p&&p.appendChild(e);let y=document.querySelector(".comment-list");if(y){let c=document.createElement("li");c.className="comment-item",c.innerHTML='<div class="comment-header"><span class="comment-author">'+(o||"Anonymous")+'</span><time class="comment-date">just now</time></div><div class="comment-body">'+(s.content||a)+"</div>",y.appendChild(c)}setTimeout(()=>{m.textContent=""},3e3)}).catch(s=>{m.textContent="Error: "+s.message}).finally(()=>{e.querySelector('[type="submit"]').disabled=!1})})})();})();
+    <script>"use strict";(()=>{var H="moss:quote-comment";function M(e){let a=c=>{let u=c.detail;u&&e(u)};return document.addEventListener(H,a),()=>document.removeEventListener(H,a)}var v=null,S=null;function Q(e){if(v)return v;let{form:a,textarea:c,defaultSlot:u,onBeforeOpen:y}=e,l=null,t=null,o="";function f(){if(!t){l=document.createElement("div"),l.className="comment-float-backdrop",l.addEventListener("click",()=>m()),document.body.appendChild(l),t=document.createElement("div"),t.className="comment-float-shell";let i=document.createElement("div");i.className="comment-float-inner",t.appendChild(i),document.body.appendChild(t)}let n=t.querySelector(".comment-float-inner");return{shell:t,inner:n}}function h(n){if(!n)return;y?.();let{shell:i,inner:s}=f();s.innerHTML="";let r=document.createElement("div");r.className="comment-float-quote",r.textContent=n,s.appendChild(r),s.appendChild(a),o=n,l.classList.add("visible"),i.classList.add("open"),c.focus()}function m(){!t||!t.classList.contains("open")||(t.classList.remove("open"),l?.classList.remove("visible"),a.parentElement!==u&&u.appendChild(a),o="")}function E(n){n.key==="Escape"&&t?.classList.contains("open")&&m()}document.addEventListener("keydown",E);let p=M(({text:n})=>h(n));return S=()=>{document.removeEventListener("keydown",E),p(),l?.remove(),t?.remove()},v={cancel:m,getQuoteText:()=>o,getQuotePrefix:()=>q(o)},v}function q(e){if(!e)return"";let a=e.replace(/\n+$/,"");return a?a.split(`
+`).map(c=>"> "+c).join(`
+`)+`
+
+`:""}(function(){"use strict";let e=document.getElementById("moss-comment-form");if(!e)return;let a=e.dataset.serverUrl,c=e.dataset.siteName,u=e.dataset.pageKey,y=e.dataset.pageTitle,l=document.getElementById("moss-comment-status"),t=document.getElementById("moss-comment-text"),o=document.getElementById("default-form-slot"),f="moss-commenter",h=t?.placeholder??"",m=null;function E(){m=null,t&&(t.placeholder=h),o&&e.parentElement!==o&&o.appendChild(e)}let p=t&&o?Q({form:e,textarea:t,defaultSlot:o,onBeforeOpen:E}):null;try{let n=JSON.parse(localStorage.getItem(f)||"{}");n.name&&(e.querySelector('[name="name"]').value=n.name),n.email&&(e.querySelector('[name="email"]').value=n.email),n.link&&(e.querySelector('[name="link"]').value=n.link)}catch{}t&&t.addEventListener("input",function(){this.style.height="auto",this.style.height=this.scrollHeight+"px"}),document.querySelectorAll(".comment-reply-btn").forEach(n=>{n.addEventListener("click",function(){p?.cancel();let i=this.dataset.replyId,s=this.dataset.replyName;m=i;let r=document.getElementById("comment-"+i);r&&o&&(r.querySelector(".comment-replies")??r).appendChild(o),t&&(t.placeholder="@"+s+" ",t.focus())})}),e.addEventListener("submit",function(n){if(n.preventDefault(),!t)return;let i=t.value.trim();if(!i)return;let s=e.querySelector('[name="name"]').value.trim(),r=e.querySelector('[name="email"]').value.trim(),T=e.querySelector('[name="link"]').value.trim();if(!s){l.textContent="Name is required";return}try{localStorage.setItem(f,JSON.stringify({name:s,email:r,link:T}))}catch{}let L=(p?.getQuotePrefix()??"")+i;l.textContent="Submitting...",e.querySelector('[type="submit"]').disabled=!0;let C={content:L,nick:s,email:r,link:T,page_key:u,page_title:y,site_name:c};m&&(C.rid=parseInt(m,10)),fetch(a.replace(/\/+$/,"")+"/api/v2/comments",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(C)}).then(d=>{if(!d.ok)throw new Error("HTTP "+d.status);return d.json()}).then(d=>{l.textContent="Comment posted!",t.value="",p?p.cancel():o&&e.parentElement!==o&&o.appendChild(e),m=null;let x=document.querySelector(".comment-list");if(x){let g=document.createElement("li");g.className="comment-item",g.innerHTML='<div class="comment-header"><span class="comment-author">'+(s||"Anonymous")+'</span><time class="comment-date">just now</time></div><div class="comment-body">'+(d.content||L)+"</div>",x.appendChild(g)}setTimeout(()=>{l.textContent=""},3e3)}).catch(d=>{l.textContent="Error: "+d.message}).finally(()=>{e.querySelector('[type="submit"]').disabled=!1})})})();})();
 </script>
   </details>
 </section>
+        <nav class="moss-series-nav">
+  <div class="moss-series-nav-links">
+    <a href="/writings/useless-journey/river-two-freedoms/index.html" class="moss-series-nav-link moss-series-nav-prev"><span class="moss-series-nav-arrow">&lt;</span> <span class="moss-series-nav-title">一条大河，两种对自由的选择</span></a>
+    <a href="/writings/useless-journey/the-real-journey/index.html" class="moss-series-nav-link moss-series-nav-next"><span class="moss-series-nav-title">真正的旅程</span> <span class="moss-series-nav-arrow">&gt;</span></a>
+  </div>
+  <div class="moss-series-nav-collection-row">
+    <a href="/writings/useless-journey/index.html" class="moss-series-nav-collection">无用之旅</a>
+  </div>
+</nav>
+<link rel="prefetch" href="/writings/useless-journey/the-real-journey/index.html">
     </main>
 
     <footer class="container">
-    <div class="footer-content">
-        <div class="footer-left">
-            <a href="/links/" class="footer-link">友链</a>
-            <a href="/feed.xml" class="footer-link" data-external>RSS</a>
-        </div>
-        <div class="footer-right">
-            <form action="https://buttondown.com/api/emails/embed-subscribe/liuguo" method="post" class="footer-subscribe-form"><input type="email" name="email" class="moss-input" placeholder="邮箱" required /><input type="hidden" value="1" name="embed" /><button type="submit" class="moss-btn">订阅</button></form>
-        </div>
-    </div>
+        
+        <p class="footer-default"><a href="/links/" class="footer-link">友链</a> · <a href="/feed.xml" class="footer-link" data-external>RSS</a></p>
+        <form action="https://buttondown.com/api/emails/embed-subscribe/liuguo" method="post" class="moss-subscribe-form" data-position="footer"><input type="email" name="email" class="moss-input" placeholder="邮箱" required /><input type="hidden" value="1" name="embed" /><button type="submit" class="moss-btn">订阅</button></form>
 </footer>
 
     <div class="moss-colophon">
@@ -904,8 +1045,9 @@ a.comment-author:hover {
         </a>
     </div>
 
-    <script src="/js/theme.js?v=55cfb8c997a6f4b4"></script>
+    <script src="/js/theme.js?v=2cdc2065ab56e04a"></script>
     <script src="/js/preview.js"></script>
+    <script src="/js/thumb-swap.js"></script>
     
 </body>
 </html>

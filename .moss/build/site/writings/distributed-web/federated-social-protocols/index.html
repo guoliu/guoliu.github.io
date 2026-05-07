@@ -24,6 +24,7 @@
     <meta property="article:tag" content="Nostr">
     <meta property="article:tag" content="去中心化">
     <link rel="canonical" href="https://liu-guo.com/writings/distributed-web/federated-social-protocols/">
+    
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="联邦制社交协议：Nostr，Secure Scuttlebutt，Farcaster，ActivityPub">
     <meta name="twitter:description" content="Nostr 最近引起很多关注。获得了 Twitter 前 CEO Jack Dorsey 的支持，客户端 Damus 一度进入 Apple store 下载前十，注册用户据说已经超过一百万。前几天在 Web3 101 播客聊了聊它和 Farcaster、Secure Scuttlebutt、ActivityPub...">
@@ -51,7 +52,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16.png">
     <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml">
     <script data-goatcounter="https://guo.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-    <link rel="stylesheet" href="/style.css?v=83b6d32641fd5485">
+    <link rel="stylesheet" href="/style.css?v=3abb9ff9e247504f">
     <script data-goatcounter="https://guo.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 <style class="moss-review-style">/* Review plugin — header and colophon styles
  * Uses moss design tokens. Works in light and dark mode.
@@ -228,15 +229,33 @@
    - ResultFirst 2026 trends — "stripping away non-essential frills"
    ========================================================================== */
 
-/* Comment Section — width controlled by site theme (main > .moss-comments) */
-.moss-comments {
+/* Comment Section — width controlled by site theme.
+   The comment toggle becomes the top edge of the footer chrome: it sits with
+   generous breathing room below the article body, then the footer divider
+   sits a `space-md` (1.5rem) gap below the toggle — mirroring the `space-md`
+   gap below the divider before the footer items.
+   Selector specificity (main >) is required to win over site.css's
+   `main > .moss-comments { margin: 0 auto }` rule, which would otherwise
+   reset margin-top to 0 and erase the breathing room. */
+main > .moss-comments {
   margin-top: 6rem;
 }
 
-/* Divider above comment section */
-.moss-comments > details {
-  padding-top: var(--moss-space-lg, 2rem);
-  border-top: 1px solid var(--moss-border-light, #e6e2db);
+/* When .moss-comments is present, retune the gap between main and the footer
+   divider so the toggle sits as part of the footer chrome:
+     - `main { padding-bottom: 60px }` — drop entirely; .moss-comments owns
+       its own top breathing room (margin-top above) and the toggle should
+       sit directly above the footer's standoff.
+     - `footer.container { margin-top: 2xl }` — replace with `space-md` so
+       the toggle→divider gap mirrors the divider→items gap (also `space-md`,
+       see `footer.container::before { margin-bottom: var(--moss-space-md) }`
+       in site.css). Footer items are visually heavier (larger font), so an
+       optically symmetric gap settles to numerically equal here. */
+main:has(> .moss-comments) {
+  padding-bottom: 0;
+}
+main:has(.moss-comments) + footer.container {
+  margin-top: var(--moss-space-md);
 }
 
 /* ==========================================================================
@@ -709,33 +728,159 @@ a.comment-author:hover {
   background: rgba(0, 0, 0, 0.35);
 }
 </style>
-<style class="moss-email-style">/* Email subscribe form — injected by email plugin enhance hook */
-.footer-subscribe-form {
-  display: flex;
-  gap: var(--moss-space-sm);
-  align-items: baseline;
-  max-width: 24rem;
-}
-
-.footer-subscribe-form .moss-input {
-  flex: 1;
-}
-
-.footer-subscribe-form .moss-btn {
-  font-size: inherit;
-}
-
-@media (max-width: 48rem) {
-  .footer-subscribe-form {
-    max-width: none;
+<style class="moss-email-style">@layer shortcodes {
+  /* Email subscribe form — injected by email plugin enhance hook.
+     The footer form sits in slot:footer-end, AFTER the default link list
+     (design B, 2026-05-06). Spacing between the form and the link list
+     above it is provided by the flex `gap` on `footer.container` when
+     the default-shape footer rule kicks in (see site.css
+     `footer.container:has(> p.footer-default + ...)`). No margin-top
+     here — it would compound the gap when wrapped, and the side-by-side
+     layout doesn't want one at all. */
+  .moss-subscribe-form[data-position="footer"] {
+    display: flex;
+    gap: var(--moss-space-sm);
+    align-items: baseline;
+    max-width: 24rem;
   }
 
-  .footer-subscribe-form .moss-input {
+  .moss-subscribe-form[data-position="footer"] .moss-input {
+    flex: 1;
+  }
+
+  .moss-subscribe-form[data-position="footer"] .moss-btn {
+    font-size: inherit;
+  }
+
+  @media (max-width: 48rem) {
+    .moss-subscribe-form[data-position="footer"] {
+      max-width: none;
+    }
+
+    .moss-subscribe-form[data-position="footer"] .moss-input {
+      flex: 1;
+      min-width: 0;
+    }
+  }
+
+  /* Inline `:::subscribe` shortcode wrapper.
+     Card-styled container for in-page subscribe forms. Token-only; no
+     hardcoded colors. See spec
+     docs/superpowers/specs/2026-04-30-subscribe-shortcode-design.md. */
+  .moss-subscribe {
+    max-width: 32rem;
+    margin: var(--moss-space-lg) 0;
+    padding: var(--moss-space-md) var(--moss-space-lg);
+    border: 1px solid var(--moss-border-light);
+    border-radius: var(--moss-radius-md, 0.5rem);
+  }
+
+  .moss-subscribe-description {
+    margin: 0 0 var(--moss-space-md) 0;
+    color: var(--moss-color-muted);
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  .moss-subscribe-form[data-position="inline"] {
+    display: flex;
+    gap: var(--moss-space-sm);
+    align-items: baseline;
+  }
+
+  .moss-subscribe-form[data-position="inline"] .moss-input {
     flex: 1;
     min-width: 0;
   }
+
+  @media (max-width: 32rem) {
+    .moss-subscribe-form[data-position="inline"] {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .moss-subscribe-form[data-position="inline"] .moss-btn {
+      width: 100%;
+    }
+  }
 }
 </style>
+<style class="moss-email-style">@layer shortcodes {
+  /* Email subscribe form — injected by email plugin enhance hook.
+     The footer form sits in slot:footer-end, AFTER the default link list
+     (design B, 2026-05-06). Spacing between the form and the link list
+     above it is provided by the flex `gap` on `footer.container` when
+     the default-shape footer rule kicks in (see site.css
+     `footer.container:has(> p.footer-default + ...)`). No margin-top
+     here — it would compound the gap when wrapped, and the side-by-side
+     layout doesn't want one at all. */
+  .moss-subscribe-form[data-position="footer"] {
+    display: flex;
+    gap: var(--moss-space-sm);
+    align-items: baseline;
+    max-width: 24rem;
+  }
+
+  .moss-subscribe-form[data-position="footer"] .moss-input {
+    flex: 1;
+  }
+
+  .moss-subscribe-form[data-position="footer"] .moss-btn {
+    font-size: inherit;
+  }
+
+  @media (max-width: 48rem) {
+    .moss-subscribe-form[data-position="footer"] {
+      max-width: none;
+    }
+
+    .moss-subscribe-form[data-position="footer"] .moss-input {
+      flex: 1;
+      min-width: 0;
+    }
+  }
+
+  /* Inline `:::subscribe` shortcode wrapper.
+     Card-styled container for in-page subscribe forms. Token-only; no
+     hardcoded colors. See spec
+     docs/superpowers/specs/2026-04-30-subscribe-shortcode-design.md. */
+  .moss-subscribe {
+    max-width: 32rem;
+    margin: var(--moss-space-lg) 0;
+    padding: var(--moss-space-md) var(--moss-space-lg);
+    border: 1px solid var(--moss-border-light);
+    border-radius: var(--moss-radius-md, 0.5rem);
+  }
+
+  .moss-subscribe-description {
+    margin: 0 0 var(--moss-space-md) 0;
+    color: var(--moss-color-muted);
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  .moss-subscribe-form[data-position="inline"] {
+    display: flex;
+    gap: var(--moss-space-sm);
+    align-items: baseline;
+  }
+
+  .moss-subscribe-form[data-position="inline"] .moss-input {
+    flex: 1;
+    min-width: 0;
+  }
+
+  @media (max-width: 32rem) {
+    .moss-subscribe-form[data-position="inline"] {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .moss-subscribe-form[data-position="inline"] .moss-btn {
+      width: 100%;
+    }
+  }
+}
+</style><script class="moss-subscribe-script">"use strict";(()=>{var b={en:{placeholder:"your@email.com",label:"Subscribe",checkEmail:"Check your email to confirm.",alreadySubscribed:"You're already subscribed.",error:"Something went wrong. Try again?"},"zh-hans":{placeholder:"\u90AE\u7BB1",label:"\u8BA2\u9605",checkEmail:"\u8BF7\u5728\u90AE\u7BB1\u4E2D\u786E\u8BA4\u8BA2\u9605",alreadySubscribed:"\u4F60\u5DF2\u8BA2\u9605\u3002",error:"\u51FA\u9519\u4E86\uFF0C\u8BF7\u91CD\u8BD5\u3002"},"zh-hant":{placeholder:"\u96FB\u90F5",label:"\u8A02\u95B1",checkEmail:"\u8ACB\u5728\u96FB\u90F5\u4E2D\u78BA\u8A8D\u8A02\u95B1",alreadySubscribed:"\u4F60\u5DF2\u8A02\u95B1\u3002",error:"\u51FA\u932F\u4E86\uFF0C\u8ACB\u91CD\u8A66\u3002"}};function h(e){let t=(e??"").toLowerCase();return t.startsWith("zh-hant")||t.startsWith("zh-tw")||t.startsWith("zh-hk")||t.startsWith("zh-mo")?"zh-hant":t.startsWith("zh")?"zh-hans":"en"}var f=4e3,l=new WeakMap;function g(e){if(e.dataset.mossHydrated==="true")return;let t=e.querySelector('input[type="email"]'),n=e.querySelector('button[type="submit"]');if(!t||!n)return;e.dataset.mossHydrated="true";let r=h(document.documentElement.lang),a=b[r];if(t.placeholder=a.placeholder,!(e.dataset.position==="inline")){let s=n.querySelector(".moss-btn__label");s&&(s.textContent=a.label)}e.addEventListener("submit",async s=>{if(s.preventDefault(),e.dataset.state==="loading")return;let u=(t.value??"").trim();if(!u){t.focus();return}T(e,n),i(e,"loading");try{let d=await fetch(e.action,{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},body:JSON.stringify({email:u})}),S=await d.json().catch(()=>({}));if(!d.ok){c(e,"error",a),i(e,"error");return}let E=S.alreadySubscribed?"already-subscribed":"check-email";c(e,E,a),i(e,"success"),H(e,t)}catch{c(e,"error",a),i(e,"error")}}),n.addEventListener("click",s=>{e.dataset.state==="success"&&(s.preventDefault(),p(e,t))})}function i(e,t){e.dataset.state=t}function c(e,t,n){let r=e.querySelector(".moss-subscribe-status");if(!r)return;r.querySelectorAll("[data-copy]").forEach(o=>{o.dataset.copy===t?(o.hidden=!1,o.textContent=L(t,n)):o.hidden=!0}),r.dataset.state=t}function L(e,t){switch(e){case"check-email":return t.checkEmail;case"already-subscribed":return t.alreadySubscribed;case"error":return t.error}}function T(e,t){let n=t.parentElement;if(!n||!n.classList.contains("moss-subscribe-btn-slot")||n.style.width)return;let r=t.offsetWidth;r<=0||(n.style.width=`${r}px`)}function H(e,t){y(e);let n=window.setTimeout(()=>p(e,t),f);l.set(e,n)}function y(e){let t=l.get(e);t!==void 0&&(clearTimeout(t),l.delete(e))}function p(e,t){y(e),e.isConnected&&(t.value="",i(e,"idle"))}function m(){document.querySelectorAll('form.moss-subscribe-form[data-moss-hosted="true"]').forEach(g)}typeof document<"u"&&(document.readyState==="loading"?document.addEventListener("DOMContentLoaded",m):m());})();
+</script>
 </head>
 <body class="">
     <header>
@@ -752,13 +897,10 @@ a.comment-author:hover {
             
             <h1 class="moss-article-title">联邦制社交协议：Nostr，Secure Scuttlebutt，Farcaster，ActivityPub</h1>
 <div class="date-line"><span class="date">2023 · 2 · 16</span><div class="font-anchor"><button class="font-trigger size-std" aria-label="Reading preferences" aria-expanded="false" type="button"></button><div class="font-pill" id="fontPill"><button data-scale="small" aria-label="Small text"></button><button data-scale="" class="active" aria-label="Standard text"></button><button data-scale="large" aria-label="Large text"></button><button data-scale="xlarge" aria-label="Extra large text"></button></div></div></div>
-<p>Nostr 最近引起很多关注。获得了 Twitter 前 CEO Jack Dorsey 的支持，客户端 Damus 一度进入 Apple store 下载前十，注册用户据说已经超过一百万。前几天在 Web3 101 播客聊了聊它和 Farcaster、Secure Scuttlebutt、ActivityPub 这几个联邦制社交协议，正好把一些背景和想法记下来。</p><figure>
-<picture><source srcset="../../../image/assets/020c1a3f-91c8-4e1e-acd0-b2c6578f2692.webp" type="image/webp"><img src="../../../image/assets/020c1a3f-91c8-4e1e-acd0-b2c6578f2692.png" data-placeholder-src="../../../image/assets/020c1a3f-91c8-4e1e-acd0-b2c6578f2692.png" width="1400" height="922" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAANABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDYJOaADPFAADxQAtACAetAC0Af/9k=);background-size:cover" alt="" /></picture>
-<figcaption>联邦制（federated）网络结构。网络由许多自由加入的服务器组成，用户通过自己的客户端和一个或多个服务器相连。</figcaption>
-</figure><h2 id="nostr"><strong>Nostr</strong></h2><p>Nostr 由比特币社区的匿名开发者发起，早期开发者和使用者很多都是比特币支持者，一些客户端也整合了比特币的闪电网络。这导致有人误以为 Nostr 是基于比特币网络，也让不少人开始关注起比特币生态。</p><p>Nostr 形成的网络结构是联邦制的（federated），和另外几个协议形成的结构一样。联邦制网络由许多自由加入的服务器组成，用户通过自己的客户端和一个或多个服务器相连。电子邮件系统就是一个联邦制网络，区块链其实也是，不过各个系统中对服务器的叫法不同。Nostr 中叫 relay，Farcaster 中叫 hub，Secure Scuttlebutt 中叫 pub，ActivityPub 中叫 instance。</p><p>Nostr 的设计极为简洁，不惜以灵活性为代价。基本思想是，客户端之间的通讯以中继服务器（relay）为桥梁，通过密码学确认彼此身份。中继服务器替用户 24 小时在线，但因为身份由公钥得来，用户替换服务器非常容易，并且可以同时使用多个。</p><p>它最特别的地方是，服务器之间不进行通讯。这意味着，两个用户只有在用同一个服务器时才能相互通讯。这一方面简化了协议，不需要全局共识，也不需要服务器之间的信任。另一方面，这也意味着服务器会有很强的马太效应，因为人们在共用同一个服务器时才能沟通。</p><p>相比 Nostr，另一个最近兴起的协议 Farcaster 就要复杂很多，想解决的问题也多很多。</p><h2 id="farcaster">Farcaster</h2><p>Farcaster 中，服务器之间以流言协议（<a href="https://github.com/libp2p/specs/blob/master/pubsub/gossipsub/gossipsub-v1.0.md">gossipsub protocol</a>）通讯，通过更新 <a href="https://github.com/farcasterxyz/protocol/blob/main/README.md#3-delta-graph">delta graph</a> 共同维护社交网络的状态。delta graph 是一种 Farcaster 设计的数据结构，也是一种新的共识算法，让整个网络具备一致的状态，同时每个服务器只需要保存部分数据。</p><p>除了 delta graph 之外，Farcaster 另一个有趣的地方是它的身份系统。通过与以太坊整合，Farcaster 中用户身份由以太坊地址和类似 ENS 的域名系统组成，同时还有一个 <a href="https://github.com/farcasterxyz/contracts/">Farcaster 智能合约</a>中的 ID。这个 ID 的设计是为了让用户丢失私钥时，能够通过社交关系等方式找回自己的身份。</p><p>Farcaster 中不管是新的共识算法，还是内置找回机制的分布式身份，都很有野心，但实际效果也都还未知。另一个协议 Secure Scuttlebutt（SSB），在 Web3 概念出现之前就已经逐步成熟了。</p><h2 id="ssb">SSB</h2><p><a href="https://www.scuttlebutt.nz/">SSB</a> 的设计非常优雅巧妙，受到许多开发者的喜爱。它主要为了点对点通讯设计，网络节点都是用户的客户端，在本地存储用户和朋友的信息，并通过流言协议发送和获取信息。实际使用中，用户常常与被称作“<a href="https://ssbc.github.io/scuttlebutt-protocol-guide/#pubs">pub</a>”的超级节点相互关注，pub 为用户中继信息、发现新的内容。这实际上形成了和 Nostr 类似的联邦结构，只是用户仍然可以点对点通讯。</p><p>SSB 针对点对点通讯的设计使得它比 Nostr 复杂，这一方面增加了客户端的门槛，另一方面对联邦制的使用场景增加了束缚。比如，如果客户端是网页型态，就需要大幅改动 SSB 客户端本地优先的思路。那些 SSB 真正不可替代的场景，都比较极端，比如当互联网完全无法使用时，它的点对点通讯仍然可用。</p><p>SBB 第一个版本 14 年发布，许多年来一直有稳定的用户群体，并且是在进行真实的交流，而不是只关注使用的产品和协议。不过从落地场景和使用者的角度，更为成功的协议是 ActivityPub，特别是采用 ActivityPub 的软件长毛象（Mastodon）。</p><h2 id="activitypub">ActivityPub</h2><p>ActivityPub 第一版是 18 年发布，设计时吸取了 <a href="https://en.wikipedia.org/wiki/Fediverse">Fediverse</a> 中 GNU social 等软件和 OStatus 等协议的经验，并作为 W3C 的推荐标准。 现在，仅 Mastodon 的使用者就已经超过了 6m，人们可以在上面找到围绕各种话题形成的活跃社群。</p><p>ActivityPub 的思路很简单直接，每个服务器（instance）类似电子邮件服务器，帮用户收信、发信，并托管身份。它标准化了服务器之间的通讯，让自由加入的服务器彼此之间可以联通；它也标准化了客户端与服务器之间的通讯，让用户可以在同一个 APP 上接入不同的服务器。这给了服务器运维者和用户都提供了很大的自由度。</p><p>ActivityPub 有个问题是，用户的身份和数据与服务器绑定，难以迁移。服务器一般都是志愿运行的，没有商业模式，不太持久。服务器一旦停止，用户的身份和数据也就丢失了。相比之下，其他三个协议都以用户的公钥为身份，并且在多个服务器中保存数据，迁移也比较容易。</p><p>ActivityPub / Mastodon 还有个特点，每个服务器就是一个社群；社群是非常有效的自组织方式，但服务器作为社群基础，提高了创建社群的门槛，因为创建社群就意味着运维服务器。这导致 Mastodon 上的社群多样性还是不如 Reddit、豆瓣小组等中心化的产品高。</p><p>不过，这里提到的另外三个协议还没有演变出社群的形态。理论上 SSB 的 pub 和 Nostr 的 relay 也可以当成社群使用，但这样的话同样会面临社群门槛的问题。</p><h2 id="什么样的协议对于分布式应用有价值？">什么样的协议对于分布式应用有价值？</h2><p>Matters 的团队和用户都提出过设想，如何将 Matters 的社交网络转成邦联制结构，让用户自行架设服务器加入。一个自然的问题是，不同服务器之间的人和内容如何交互。在 Nostr 之前，最可靠的方式是 ActivityPub，标准成熟，采用广泛。</p><p>Nostr 则带来了一条新的思路：不同服务器之间可以不交互。社交网络被拆分成了许多重叠但又独立的切片，用户可以选择自己想要的切片。那些需要全局状态的地方，可以通过其他协议和技术来补充，比如通过内容寻址引用媒体文件，或者通过区块链运行经济系统、进行内容发现。Nostr 还没来得及在实际应用中慢慢成熟，但设计上的高度简洁，意味着有它有足够大的演变空间。</p><p>不过，对于已经有用户和社群的应用来说，似乎并没有动力采用 Nostr。采用 Nostr，功能上的迭代受到了 Nostr 现行标准和客户端的限制，用户更容易迁移到其他的客户端或者服务器；与此同时，并未扩大原有的社交网络，也不能为用户增加新的功能。</p><p>另一方面，采用 ActivityPub、特别是服务器间的通讯标准，是能够扩大原有社交网络的；因为能与其他服务器进行通讯，就能让用户触达到更多的人。但为了实现一个用户自主、方便迁移的全局身份系统和内容网络，又必须要大幅改动 ActivityPub，丢失了部分与其他客户端互操作的能力。不过这些问题大都可以通过其他比较成熟的协议来补足，比如以太坊地址为身份、IPFS 指纹为内容 ID。</p><p>ActivityPub 的设计思路来自 <a href="https://en.wikipedia.org/wiki/Fediverse">Fediverse</a>，社交网络伊始便已存在。这个思路也非常简单：一群服务器组成分治的网络，相互收发信息。这条思路从 GNU social 到 Mastadon 等不同的软件，从 OStatus 到 ActivityPub 等不同的协议，积累了近二十年来人们探索分布式社交网络的经验，有很强的可扩展性。</p><p>Nostr 的热度只持续了很短的时间，而短短时间内出现的话题和内容，仍然没有脱离 Nostr 本身。不够真实的使用场景，难以说明 Nostr 多大程度满足了需求。但短时间超过 1M 人来尝试，倒说明了许多人已经苦于传统的中心化社交网络，正在寻找新的选项。这是发展分布式社交网络的先决条件，也才是 Nostr 出圈故事中最有意思的一点。</p><p>Nostr 本身的极端简洁也让这个实验很有价值。不管最终能否形成新的社交网络范式，它已经做到了 Secure Scuttlebutt 的精妙设计和 Farcaster 的资本投入都没做到的事，给分布式社交应用提供了一条极端简洁的思路。</p>
+<p>Nostr 最近引起很多关注。获得了 Twitter 前 CEO Jack Dorsey 的支持，客户端 Damus 一度进入 Apple store 下载前十，注册用户据说已经超过一百万。前几天在 Web3 101 播客聊了聊它和 Farcaster、Secure Scuttlebutt、ActivityPub 这几个联邦制社交协议，正好把一些背景和想法记下来。</p><p><picture><source srcset="../../../image/assets/020c1a3f-91c8-4e1e-acd0-b2c6578f2692.webp" type="image/webp"><img src="../../../image/assets/020c1a3f-91c8-4e1e-acd0-b2c6578f2692.png" data-placeholder-src="../../../image/assets/020c1a3f-91c8-4e1e-acd0-b2c6578f2692.png" width="1400" height="922" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAANABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDYJOaADPFAADxQAtACAetAC0Af/9k=);background-size:cover" alt="" /></picture><em>联邦制（federated）网络结构。网络由许多自由加入的服务器组成，用户通过自己的客户端和一个或多个服务器相连。</em></p><h2 id="nostr"><strong>Nostr</strong></h2><p>Nostr 由比特币社区的匿名开发者发起，早期开发者和使用者很多都是比特币支持者，一些客户端也整合了比特币的闪电网络。这导致有人误以为 Nostr 是基于比特币网络，也让不少人开始关注起比特币生态。</p><p>Nostr 形成的网络结构是联邦制的（federated），和另外几个协议形成的结构一样。联邦制网络由许多自由加入的服务器组成，用户通过自己的客户端和一个或多个服务器相连。电子邮件系统就是一个联邦制网络，区块链其实也是，不过各个系统中对服务器的叫法不同。Nostr 中叫 relay，Farcaster 中叫 hub，Secure Scuttlebutt 中叫 pub，ActivityPub 中叫 instance。</p><p>Nostr 的设计极为简洁，不惜以灵活性为代价。基本思想是，客户端之间的通讯以中继服务器（relay）为桥梁，通过密码学确认彼此身份。中继服务器替用户 24 小时在线，但因为身份由公钥得来，用户替换服务器非常容易，并且可以同时使用多个。</p><p>它最特别的地方是，服务器之间不进行通讯。这意味着，两个用户只有在用同一个服务器时才能相互通讯。这一方面简化了协议，不需要全局共识，也不需要服务器之间的信任。另一方面，这也意味着服务器会有很强的马太效应，因为人们在共用同一个服务器时才能沟通。</p><p>相比 Nostr，另一个最近兴起的协议 Farcaster 就要复杂很多，想解决的问题也多很多。</p><h2 id="farcaster">Farcaster</h2><p>Farcaster 中，服务器之间以流言协议（<a href="https://github.com/libp2p/specs/blob/master/pubsub/gossipsub/gossipsub-v1.0.md">gossipsub protocol</a>）通讯，通过更新 <a href="https://github.com/farcasterxyz/protocol/blob/main/README.md#3-delta-graph">delta graph</a> 共同维护社交网络的状态。delta graph 是一种 Farcaster 设计的数据结构，也是一种新的共识算法，让整个网络具备一致的状态，同时每个服务器只需要保存部分数据。</p><p>除了 delta graph 之外，Farcaster 另一个有趣的地方是它的身份系统。通过与以太坊整合，Farcaster 中用户身份由以太坊地址和类似 ENS 的域名系统组成，同时还有一个 <a href="https://github.com/farcasterxyz/contracts/">Farcaster 智能合约</a>中的 ID。这个 ID 的设计是为了让用户丢失私钥时，能够通过社交关系等方式找回自己的身份。</p><p>Farcaster 中不管是新的共识算法，还是内置找回机制的分布式身份，都很有野心，但实际效果也都还未知。另一个协议 Secure Scuttlebutt（SSB），在 Web3 概念出现之前就已经逐步成熟了。</p><h2 id="ssb">SSB</h2><p><a href="https://www.scuttlebutt.nz/">SSB</a> 的设计非常优雅巧妙，受到许多开发者的喜爱。它主要为了点对点通讯设计，网络节点都是用户的客户端，在本地存储用户和朋友的信息，并通过流言协议发送和获取信息。实际使用中，用户常常与被称作“<a href="https://ssbc.github.io/scuttlebutt-protocol-guide/#pubs">pub</a>”的超级节点相互关注，pub 为用户中继信息、发现新的内容。这实际上形成了和 Nostr 类似的联邦结构，只是用户仍然可以点对点通讯。</p><p>SSB 针对点对点通讯的设计使得它比 Nostr 复杂，这一方面增加了客户端的门槛，另一方面对联邦制的使用场景增加了束缚。比如，如果客户端是网页型态，就需要大幅改动 SSB 客户端本地优先的思路。那些 SSB 真正不可替代的场景，都比较极端，比如当互联网完全无法使用时，它的点对点通讯仍然可用。</p><p>SBB 第一个版本 14 年发布，许多年来一直有稳定的用户群体，并且是在进行真实的交流，而不是只关注使用的产品和协议。不过从落地场景和使用者的角度，更为成功的协议是 ActivityPub，特别是采用 ActivityPub 的软件长毛象（Mastodon）。</p><h2 id="activitypub">ActivityPub</h2><p>ActivityPub 第一版是 18 年发布，设计时吸取了 <a href="https://en.wikipedia.org/wiki/Fediverse">Fediverse</a> 中 GNU social 等软件和 OStatus 等协议的经验，并作为 W3C 的推荐标准。 现在，仅 Mastodon 的使用者就已经超过了 6m，人们可以在上面找到围绕各种话题形成的活跃社群。</p><p>ActivityPub 的思路很简单直接，每个服务器（instance）类似电子邮件服务器，帮用户收信、发信，并托管身份。它标准化了服务器之间的通讯，让自由加入的服务器彼此之间可以联通；它也标准化了客户端与服务器之间的通讯，让用户可以在同一个 APP 上接入不同的服务器。这给了服务器运维者和用户都提供了很大的自由度。</p><p>ActivityPub 有个问题是，用户的身份和数据与服务器绑定，难以迁移。服务器一般都是志愿运行的，没有商业模式，不太持久。服务器一旦停止，用户的身份和数据也就丢失了。相比之下，其他三个协议都以用户的公钥为身份，并且在多个服务器中保存数据，迁移也比较容易。</p><p>ActivityPub / Mastodon 还有个特点，每个服务器就是一个社群；社群是非常有效的自组织方式，但服务器作为社群基础，提高了创建社群的门槛，因为创建社群就意味着运维服务器。这导致 Mastodon 上的社群多样性还是不如 Reddit、豆瓣小组等中心化的产品高。</p><p>不过，这里提到的另外三个协议还没有演变出社群的形态。理论上 SSB 的 pub 和 Nostr 的 relay 也可以当成社群使用，但这样的话同样会面临社群门槛的问题。</p><h2 id="什么样的协议对于分布式应用有价值？">什么样的协议对于分布式应用有价值？</h2><p>Matters 的团队和用户都提出过设想，如何将 Matters 的社交网络转成邦联制结构，让用户自行架设服务器加入。一个自然的问题是，不同服务器之间的人和内容如何交互。在 Nostr 之前，最可靠的方式是 ActivityPub，标准成熟，采用广泛。</p><p>Nostr 则带来了一条新的思路：不同服务器之间可以不交互。社交网络被拆分成了许多重叠但又独立的切片，用户可以选择自己想要的切片。那些需要全局状态的地方，可以通过其他协议和技术来补充，比如通过内容寻址引用媒体文件，或者通过区块链运行经济系统、进行内容发现。Nostr 还没来得及在实际应用中慢慢成熟，但设计上的高度简洁，意味着有它有足够大的演变空间。</p><p>不过，对于已经有用户和社群的应用来说，似乎并没有动力采用 Nostr。采用 Nostr，功能上的迭代受到了 Nostr 现行标准和客户端的限制，用户更容易迁移到其他的客户端或者服务器；与此同时，并未扩大原有的社交网络，也不能为用户增加新的功能。</p><p>另一方面，采用 ActivityPub、特别是服务器间的通讯标准，是能够扩大原有社交网络的；因为能与其他服务器进行通讯，就能让用户触达到更多的人。但为了实现一个用户自主、方便迁移的全局身份系统和内容网络，又必须要大幅改动 ActivityPub，丢失了部分与其他客户端互操作的能力。不过这些问题大都可以通过其他比较成熟的协议来补足，比如以太坊地址为身份、IPFS 指纹为内容 ID。</p><p>ActivityPub 的设计思路来自 <a href="https://en.wikipedia.org/wiki/Fediverse">Fediverse</a>，社交网络伊始便已存在。这个思路也非常简单：一群服务器组成分治的网络，相互收发信息。这条思路从 GNU social 到 Mastadon 等不同的软件，从 OStatus 到 ActivityPub 等不同的协议，积累了近二十年来人们探索分布式社交网络的经验，有很强的可扩展性。</p><p>Nostr 的热度只持续了很短的时间，而短短时间内出现的话题和内容，仍然没有脱离 Nostr 本身。不够真实的使用场景，难以说明 Nostr 多大程度满足了需求。但短时间超过 1M 人来尝试，倒说明了许多人已经苦于传统的中心化社交网络，正在寻找新的选项。这是发展分布式社交网络的先决条件，也才是 Nostr 出圈故事中最有意思的一点。</p><p>Nostr 本身的极端简洁也让这个实验很有价值。不管最终能否形成新的社交网络范式，它已经做到了 Secure Scuttlebutt 的精妙设计和 Farcaster 的资本投入都没做到的事，给分布式社交应用提供了一条极端简洁的思路。</p>
             
         </article>
-        <section class="moss-comments" id="moss-comments" data-built-at="2026-04-29T20:33:59.834537+00:00">
+        <section class="moss-comments" id="moss-comments" data-built-at="2026-05-07T17:21:52.514372+00:00">
   <details>
     <summary class="comments-toggle"><svg class="comments-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></svg><span>6条评论</span><svg class="comments-chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></summary>
     <div class="comment-form-slot" id="default-form-slot"><form class="comment-form" id="moss-comment-form" data-server-url="https://api.moss.host/comments" data-site-name="liu-guo.com" data-page-key="writings/distributed-web/federated-social-protocols/" data-page-title="联邦制社交协议：Nostr，Secure Scuttlebutt，Farcaster，ActivityPub">
@@ -824,22 +966,21 @@ a.comment-author:hover {
         <div class="comment-body"><p>精彩的分享！</p></div>
       </li>
     </ol>
-    <script>"use strict";(()=>{(function(){"use strict";let e=document.getElementById("moss-comment-form");if(!e)return;let f=e.dataset.serverUrl,E=e.dataset.siteName,h=e.dataset.pageKey,g=e.dataset.pageTitle,m=document.getElementById("moss-comment-status"),n=document.getElementById("moss-comment-text"),u="moss-commenter",i=null;try{let t=JSON.parse(localStorage.getItem(u)||"{}");t.name&&(e.querySelector('[name="name"]').value=t.name),t.email&&(e.querySelector('[name="email"]').value=t.email),t.link&&(e.querySelector('[name="link"]').value=t.link)}catch{}n&&n.addEventListener("input",function(){this.style.height="auto",this.style.height=this.scrollHeight+"px"}),document.querySelectorAll(".comment-reply-btn").forEach(t=>{t.addEventListener("click",function(){let a=this.dataset.replyId,o=this.dataset.replyName;i=a;let l=document.getElementById("comment-"+a);l&&(l.querySelector(".comment-replies")??l).appendChild(e.parentNode),n&&(n.placeholder="@"+o+" ",n.focus())})}),e.addEventListener("submit",function(t){if(t.preventDefault(),!n)return;let a=n.value.trim();if(!a)return;let o=e.querySelector('[name="name"]').value.trim(),l=e.querySelector('[name="email"]').value.trim(),r=e.querySelector('[name="link"]').value.trim();if(!o){m.textContent="Name is required";return}try{localStorage.setItem(u,JSON.stringify({name:o,email:l,link:r}))}catch{}m.textContent="Submitting...",e.querySelector('[type="submit"]').disabled=!0;let d={content:a,nick:o,email:l,link:r,page_key:h,page_title:g,site_name:E};i&&(d.rid=parseInt(i,10)),fetch(f.replace(/\/+$/,"")+"/api/v2/comments",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(d)}).then(s=>{if(!s.ok)throw new Error("HTTP "+s.status);return s.json()}).then(s=>{m.textContent="Comment posted!",n.value="",i=null;let p=document.getElementById("default-form-slot");p&&p.appendChild(e);let y=document.querySelector(".comment-list");if(y){let c=document.createElement("li");c.className="comment-item",c.innerHTML='<div class="comment-header"><span class="comment-author">'+(o||"Anonymous")+'</span><time class="comment-date">just now</time></div><div class="comment-body">'+(s.content||a)+"</div>",y.appendChild(c)}setTimeout(()=>{m.textContent=""},3e3)}).catch(s=>{m.textContent="Error: "+s.message}).finally(()=>{e.querySelector('[type="submit"]').disabled=!1})})})();})();
+    <script>"use strict";(()=>{var H="moss:quote-comment";function M(e){let a=c=>{let u=c.detail;u&&e(u)};return document.addEventListener(H,a),()=>document.removeEventListener(H,a)}var v=null,S=null;function Q(e){if(v)return v;let{form:a,textarea:c,defaultSlot:u,onBeforeOpen:y}=e,l=null,t=null,o="";function f(){if(!t){l=document.createElement("div"),l.className="comment-float-backdrop",l.addEventListener("click",()=>m()),document.body.appendChild(l),t=document.createElement("div"),t.className="comment-float-shell";let i=document.createElement("div");i.className="comment-float-inner",t.appendChild(i),document.body.appendChild(t)}let n=t.querySelector(".comment-float-inner");return{shell:t,inner:n}}function h(n){if(!n)return;y?.();let{shell:i,inner:s}=f();s.innerHTML="";let r=document.createElement("div");r.className="comment-float-quote",r.textContent=n,s.appendChild(r),s.appendChild(a),o=n,l.classList.add("visible"),i.classList.add("open"),c.focus()}function m(){!t||!t.classList.contains("open")||(t.classList.remove("open"),l?.classList.remove("visible"),a.parentElement!==u&&u.appendChild(a),o="")}function E(n){n.key==="Escape"&&t?.classList.contains("open")&&m()}document.addEventListener("keydown",E);let p=M(({text:n})=>h(n));return S=()=>{document.removeEventListener("keydown",E),p(),l?.remove(),t?.remove()},v={cancel:m,getQuoteText:()=>o,getQuotePrefix:()=>q(o)},v}function q(e){if(!e)return"";let a=e.replace(/\n+$/,"");return a?a.split(`
+`).map(c=>"> "+c).join(`
+`)+`
+
+`:""}(function(){"use strict";let e=document.getElementById("moss-comment-form");if(!e)return;let a=e.dataset.serverUrl,c=e.dataset.siteName,u=e.dataset.pageKey,y=e.dataset.pageTitle,l=document.getElementById("moss-comment-status"),t=document.getElementById("moss-comment-text"),o=document.getElementById("default-form-slot"),f="moss-commenter",h=t?.placeholder??"",m=null;function E(){m=null,t&&(t.placeholder=h),o&&e.parentElement!==o&&o.appendChild(e)}let p=t&&o?Q({form:e,textarea:t,defaultSlot:o,onBeforeOpen:E}):null;try{let n=JSON.parse(localStorage.getItem(f)||"{}");n.name&&(e.querySelector('[name="name"]').value=n.name),n.email&&(e.querySelector('[name="email"]').value=n.email),n.link&&(e.querySelector('[name="link"]').value=n.link)}catch{}t&&t.addEventListener("input",function(){this.style.height="auto",this.style.height=this.scrollHeight+"px"}),document.querySelectorAll(".comment-reply-btn").forEach(n=>{n.addEventListener("click",function(){p?.cancel();let i=this.dataset.replyId,s=this.dataset.replyName;m=i;let r=document.getElementById("comment-"+i);r&&o&&(r.querySelector(".comment-replies")??r).appendChild(o),t&&(t.placeholder="@"+s+" ",t.focus())})}),e.addEventListener("submit",function(n){if(n.preventDefault(),!t)return;let i=t.value.trim();if(!i)return;let s=e.querySelector('[name="name"]').value.trim(),r=e.querySelector('[name="email"]').value.trim(),T=e.querySelector('[name="link"]').value.trim();if(!s){l.textContent="Name is required";return}try{localStorage.setItem(f,JSON.stringify({name:s,email:r,link:T}))}catch{}let L=(p?.getQuotePrefix()??"")+i;l.textContent="Submitting...",e.querySelector('[type="submit"]').disabled=!0;let C={content:L,nick:s,email:r,link:T,page_key:u,page_title:y,site_name:c};m&&(C.rid=parseInt(m,10)),fetch(a.replace(/\/+$/,"")+"/api/v2/comments",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(C)}).then(d=>{if(!d.ok)throw new Error("HTTP "+d.status);return d.json()}).then(d=>{l.textContent="Comment posted!",t.value="",p?p.cancel():o&&e.parentElement!==o&&o.appendChild(e),m=null;let x=document.querySelector(".comment-list");if(x){let g=document.createElement("li");g.className="comment-item",g.innerHTML='<div class="comment-header"><span class="comment-author">'+(s||"Anonymous")+'</span><time class="comment-date">just now</time></div><div class="comment-body">'+(d.content||L)+"</div>",x.appendChild(g)}setTimeout(()=>{l.textContent=""},3e3)}).catch(d=>{l.textContent="Error: "+d.message}).finally(()=>{e.querySelector('[type="submit"]').disabled=!1})})})();})();
 </script>
   </details>
 </section>
+        
     </main>
 
     <footer class="container">
-    <div class="footer-content">
-        <div class="footer-left">
-            <a href="/links/" class="footer-link">友链</a>
-            <a href="/feed.xml" class="footer-link" data-external>RSS</a>
-        </div>
-        <div class="footer-right">
-            <form action="https://buttondown.com/api/emails/embed-subscribe/liuguo" method="post" class="footer-subscribe-form"><input type="email" name="email" class="moss-input" placeholder="邮箱" required /><input type="hidden" value="1" name="embed" /><button type="submit" class="moss-btn">订阅</button></form>
-        </div>
-    </div>
+        
+        <p class="footer-default"><a href="/links/" class="footer-link">友链</a> · <a href="/feed.xml" class="footer-link" data-external>RSS</a></p>
+        <form action="https://buttondown.com/api/emails/embed-subscribe/liuguo" method="post" class="moss-subscribe-form" data-position="footer"><input type="email" name="email" class="moss-input" placeholder="邮箱" required /><input type="hidden" value="1" name="embed" /><button type="submit" class="moss-btn">订阅</button></form>
 </footer>
 
     <div class="moss-colophon">
@@ -852,8 +993,9 @@ a.comment-author:hover {
         </a>
     </div>
 
-    <script src="/js/theme.js?v=55cfb8c997a6f4b4"></script>
+    <script src="/js/theme.js?v=2cdc2065ab56e04a"></script>
     <script src="/js/preview.js"></script>
+    <script src="/js/thumb-swap.js"></script>
     
 </body>
 </html>

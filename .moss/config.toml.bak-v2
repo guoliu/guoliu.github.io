@@ -1,0 +1,24 @@
+schema_version = 2
+
+[analytics]
+script = "https://guo.goatcounter.com/count"
+
+[channels.email]
+
+[channels.matters]
+
+[services.analytics]
+provider = "goatcounter"
+script = "https://guo.goatcounter.com/count"
+
+[services.comments]
+provider = "artalk"
+server_url = "https://api.moss.host/comments"
+
+[services.email]
+api_key = "71a1403a-7c4f-4818-aa5a-1d75366684c2"
+provider = "buttondown"
+
+[site]
+lang = "zh-hans"
+rss_footer = true

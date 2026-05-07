@@ -16,6 +16,7 @@
     <meta property="og:image" content="/image/assets/66296200-de80-43f1-a1a2-ce2b1403a3e2.jpg">
     <meta property="og:image:alt" content="IPFS 開發者大會記錄">
     <link rel="canonical" href="https://liu-guo.com/writings/ipfs-developer-conference/">
+    
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="IPFS 開發者大會記錄">
     <meta name="twitter:description" content="上週有幸與 ﻿@zeckli﻿ 一起去巴塞羅那參加了IPFS開發者大會。Matters正在建立一個分佈式的作品發佈网络，與其他分佈式应用一樣，核心問題是數據的存儲與傳輸。IPFS生態中提供了一系列通用的工具和協議，用於建立各種不同類型的分佈式應用，使得IPFS成為了許多分佈式項目關注的重點。">
@@ -42,7 +43,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16.png">
     <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml">
     <script data-goatcounter="https://guo.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-    <link rel="stylesheet" href="/style.css?v=83b6d32641fd5485">
+    <link rel="stylesheet" href="/style.css?v=3abb9ff9e247504f">
     <script data-goatcounter="https://guo.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 <style class="moss-review-style">/* Review plugin — header and colophon styles
  * Uses moss design tokens. Works in light and dark mode.
@@ -219,15 +220,33 @@
    - ResultFirst 2026 trends — "stripping away non-essential frills"
    ========================================================================== */
 
-/* Comment Section — width controlled by site theme (main > .moss-comments) */
-.moss-comments {
+/* Comment Section — width controlled by site theme.
+   The comment toggle becomes the top edge of the footer chrome: it sits with
+   generous breathing room below the article body, then the footer divider
+   sits a `space-md` (1.5rem) gap below the toggle — mirroring the `space-md`
+   gap below the divider before the footer items.
+   Selector specificity (main >) is required to win over site.css's
+   `main > .moss-comments { margin: 0 auto }` rule, which would otherwise
+   reset margin-top to 0 and erase the breathing room. */
+main > .moss-comments {
   margin-top: 6rem;
 }
 
-/* Divider above comment section */
-.moss-comments > details {
-  padding-top: var(--moss-space-lg, 2rem);
-  border-top: 1px solid var(--moss-border-light, #e6e2db);
+/* When .moss-comments is present, retune the gap between main and the footer
+   divider so the toggle sits as part of the footer chrome:
+     - `main { padding-bottom: 60px }` — drop entirely; .moss-comments owns
+       its own top breathing room (margin-top above) and the toggle should
+       sit directly above the footer's standoff.
+     - `footer.container { margin-top: 2xl }` — replace with `space-md` so
+       the toggle→divider gap mirrors the divider→items gap (also `space-md`,
+       see `footer.container::before { margin-bottom: var(--moss-space-md) }`
+       in site.css). Footer items are visually heavier (larger font), so an
+       optically symmetric gap settles to numerically equal here. */
+main:has(> .moss-comments) {
+  padding-bottom: 0;
+}
+main:has(.moss-comments) + footer.container {
+  margin-top: var(--moss-space-md);
 }
 
 /* ==========================================================================
@@ -700,33 +719,159 @@ a.comment-author:hover {
   background: rgba(0, 0, 0, 0.35);
 }
 </style>
-<style class="moss-email-style">/* Email subscribe form — injected by email plugin enhance hook */
-.footer-subscribe-form {
-  display: flex;
-  gap: var(--moss-space-sm);
-  align-items: baseline;
-  max-width: 24rem;
-}
-
-.footer-subscribe-form .moss-input {
-  flex: 1;
-}
-
-.footer-subscribe-form .moss-btn {
-  font-size: inherit;
-}
-
-@media (max-width: 48rem) {
-  .footer-subscribe-form {
-    max-width: none;
+<style class="moss-email-style">@layer shortcodes {
+  /* Email subscribe form — injected by email plugin enhance hook.
+     The footer form sits in slot:footer-end, AFTER the default link list
+     (design B, 2026-05-06). Spacing between the form and the link list
+     above it is provided by the flex `gap` on `footer.container` when
+     the default-shape footer rule kicks in (see site.css
+     `footer.container:has(> p.footer-default + ...)`). No margin-top
+     here — it would compound the gap when wrapped, and the side-by-side
+     layout doesn't want one at all. */
+  .moss-subscribe-form[data-position="footer"] {
+    display: flex;
+    gap: var(--moss-space-sm);
+    align-items: baseline;
+    max-width: 24rem;
   }
 
-  .footer-subscribe-form .moss-input {
+  .moss-subscribe-form[data-position="footer"] .moss-input {
+    flex: 1;
+  }
+
+  .moss-subscribe-form[data-position="footer"] .moss-btn {
+    font-size: inherit;
+  }
+
+  @media (max-width: 48rem) {
+    .moss-subscribe-form[data-position="footer"] {
+      max-width: none;
+    }
+
+    .moss-subscribe-form[data-position="footer"] .moss-input {
+      flex: 1;
+      min-width: 0;
+    }
+  }
+
+  /* Inline `:::subscribe` shortcode wrapper.
+     Card-styled container for in-page subscribe forms. Token-only; no
+     hardcoded colors. See spec
+     docs/superpowers/specs/2026-04-30-subscribe-shortcode-design.md. */
+  .moss-subscribe {
+    max-width: 32rem;
+    margin: var(--moss-space-lg) 0;
+    padding: var(--moss-space-md) var(--moss-space-lg);
+    border: 1px solid var(--moss-border-light);
+    border-radius: var(--moss-radius-md, 0.5rem);
+  }
+
+  .moss-subscribe-description {
+    margin: 0 0 var(--moss-space-md) 0;
+    color: var(--moss-color-muted);
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  .moss-subscribe-form[data-position="inline"] {
+    display: flex;
+    gap: var(--moss-space-sm);
+    align-items: baseline;
+  }
+
+  .moss-subscribe-form[data-position="inline"] .moss-input {
     flex: 1;
     min-width: 0;
   }
+
+  @media (max-width: 32rem) {
+    .moss-subscribe-form[data-position="inline"] {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .moss-subscribe-form[data-position="inline"] .moss-btn {
+      width: 100%;
+    }
+  }
 }
 </style>
+<style class="moss-email-style">@layer shortcodes {
+  /* Email subscribe form — injected by email plugin enhance hook.
+     The footer form sits in slot:footer-end, AFTER the default link list
+     (design B, 2026-05-06). Spacing between the form and the link list
+     above it is provided by the flex `gap` on `footer.container` when
+     the default-shape footer rule kicks in (see site.css
+     `footer.container:has(> p.footer-default + ...)`). No margin-top
+     here — it would compound the gap when wrapped, and the side-by-side
+     layout doesn't want one at all. */
+  .moss-subscribe-form[data-position="footer"] {
+    display: flex;
+    gap: var(--moss-space-sm);
+    align-items: baseline;
+    max-width: 24rem;
+  }
+
+  .moss-subscribe-form[data-position="footer"] .moss-input {
+    flex: 1;
+  }
+
+  .moss-subscribe-form[data-position="footer"] .moss-btn {
+    font-size: inherit;
+  }
+
+  @media (max-width: 48rem) {
+    .moss-subscribe-form[data-position="footer"] {
+      max-width: none;
+    }
+
+    .moss-subscribe-form[data-position="footer"] .moss-input {
+      flex: 1;
+      min-width: 0;
+    }
+  }
+
+  /* Inline `:::subscribe` shortcode wrapper.
+     Card-styled container for in-page subscribe forms. Token-only; no
+     hardcoded colors. See spec
+     docs/superpowers/specs/2026-04-30-subscribe-shortcode-design.md. */
+  .moss-subscribe {
+    max-width: 32rem;
+    margin: var(--moss-space-lg) 0;
+    padding: var(--moss-space-md) var(--moss-space-lg);
+    border: 1px solid var(--moss-border-light);
+    border-radius: var(--moss-radius-md, 0.5rem);
+  }
+
+  .moss-subscribe-description {
+    margin: 0 0 var(--moss-space-md) 0;
+    color: var(--moss-color-muted);
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  .moss-subscribe-form[data-position="inline"] {
+    display: flex;
+    gap: var(--moss-space-sm);
+    align-items: baseline;
+  }
+
+  .moss-subscribe-form[data-position="inline"] .moss-input {
+    flex: 1;
+    min-width: 0;
+  }
+
+  @media (max-width: 32rem) {
+    .moss-subscribe-form[data-position="inline"] {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .moss-subscribe-form[data-position="inline"] .moss-btn {
+      width: 100%;
+    }
+  }
+}
+</style><script class="moss-subscribe-script">"use strict";(()=>{var b={en:{placeholder:"your@email.com",label:"Subscribe",checkEmail:"Check your email to confirm.",alreadySubscribed:"You're already subscribed.",error:"Something went wrong. Try again?"},"zh-hans":{placeholder:"\u90AE\u7BB1",label:"\u8BA2\u9605",checkEmail:"\u8BF7\u5728\u90AE\u7BB1\u4E2D\u786E\u8BA4\u8BA2\u9605",alreadySubscribed:"\u4F60\u5DF2\u8BA2\u9605\u3002",error:"\u51FA\u9519\u4E86\uFF0C\u8BF7\u91CD\u8BD5\u3002"},"zh-hant":{placeholder:"\u96FB\u90F5",label:"\u8A02\u95B1",checkEmail:"\u8ACB\u5728\u96FB\u90F5\u4E2D\u78BA\u8A8D\u8A02\u95B1",alreadySubscribed:"\u4F60\u5DF2\u8A02\u95B1\u3002",error:"\u51FA\u932F\u4E86\uFF0C\u8ACB\u91CD\u8A66\u3002"}};function h(e){let t=(e??"").toLowerCase();return t.startsWith("zh-hant")||t.startsWith("zh-tw")||t.startsWith("zh-hk")||t.startsWith("zh-mo")?"zh-hant":t.startsWith("zh")?"zh-hans":"en"}var f=4e3,l=new WeakMap;function g(e){if(e.dataset.mossHydrated==="true")return;let t=e.querySelector('input[type="email"]'),n=e.querySelector('button[type="submit"]');if(!t||!n)return;e.dataset.mossHydrated="true";let r=h(document.documentElement.lang),a=b[r];if(t.placeholder=a.placeholder,!(e.dataset.position==="inline")){let s=n.querySelector(".moss-btn__label");s&&(s.textContent=a.label)}e.addEventListener("submit",async s=>{if(s.preventDefault(),e.dataset.state==="loading")return;let u=(t.value??"").trim();if(!u){t.focus();return}T(e,n),i(e,"loading");try{let d=await fetch(e.action,{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},body:JSON.stringify({email:u})}),S=await d.json().catch(()=>({}));if(!d.ok){c(e,"error",a),i(e,"error");return}let E=S.alreadySubscribed?"already-subscribed":"check-email";c(e,E,a),i(e,"success"),H(e,t)}catch{c(e,"error",a),i(e,"error")}}),n.addEventListener("click",s=>{e.dataset.state==="success"&&(s.preventDefault(),p(e,t))})}function i(e,t){e.dataset.state=t}function c(e,t,n){let r=e.querySelector(".moss-subscribe-status");if(!r)return;r.querySelectorAll("[data-copy]").forEach(o=>{o.dataset.copy===t?(o.hidden=!1,o.textContent=L(t,n)):o.hidden=!0}),r.dataset.state=t}function L(e,t){switch(e){case"check-email":return t.checkEmail;case"already-subscribed":return t.alreadySubscribed;case"error":return t.error}}function T(e,t){let n=t.parentElement;if(!n||!n.classList.contains("moss-subscribe-btn-slot")||n.style.width)return;let r=t.offsetWidth;r<=0||(n.style.width=`${r}px`)}function H(e,t){y(e);let n=window.setTimeout(()=>p(e,t),f);l.set(e,n)}function y(e){let t=l.get(e);t!==void 0&&(clearTimeout(t),l.delete(e))}function p(e,t){y(e),e.isConnected&&(t.value="",i(e,"idle"))}function m(){document.querySelectorAll('form.moss-subscribe-form[data-moss-hosted="true"]').forEach(g)}typeof document<"u"&&(document.readyState==="loading"?document.addEventListener("DOMContentLoaded",m):m());})();
+</script>
 </head>
 <body class="">
     <header>
@@ -743,31 +888,13 @@ a.comment-author:hover {
             
             <h1 class="moss-article-title">IPFS 開發者大會記錄</h1>
 <div class="date-line"><span class="date">2019 · 7 · 5</span><div class="font-anchor"><button class="font-trigger size-std" aria-label="Reading preferences" aria-expanded="false" type="button"></button><div class="font-pill" id="fontPill"><button data-scale="small" aria-label="Small text"></button><button data-scale="" class="active" aria-label="Standard text"></button><button data-scale="large" aria-label="Large text"></button><button data-scale="xlarge" aria-label="Extra large text"></button></div></div></div>
-<p>上週有幸與 <a href="https:/matters.town/@zeckli">﻿@zeckli﻿</a> 一起去巴塞羅那參加了IPFS開發者大會。</p><p>Matters正在建立一個分佈式的作品發佈网络，與其他分佈式应用一樣，核心問題是數據的存儲與傳輸。</p><p>IPFS生態中提供了一系列通用的工具和協議，用於建立各種不同類型的分佈式應用，使得IPFS成為了許多分佈式項目關注的重點。</p><p>這次與會的項目種類繁多，比如工廠中的物聯網、docker image分佈式分發、分佈式的npm與Guix、以太坊+IPFS域名管理、分佈式身份認證等等。我們也通過世界各地一百多位開發者，一窺分佈式技術與生態的進展。</p><figure>
-<img src="../../image/assets/66296200-de80-43f1-a1a2-ce2b1403a3e2.jpg" data-placeholder-src="../../image/assets/66296200-de80-43f1-a1a2-ce2b1403a3e2.jpg" width="1400" height="1050" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAAPABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwAkEpkdWLn02kigAEbruwGz/tN1pAASTuy0BqaON6sBwcdfSmBVMYTcFJz6k5pDGk465/CkB//Z);background-size:cover" alt="" />
-<figcaption>會場上有許多有趣的項目。圖中這一個，是用LED陣列可視化一個IPFS集群中每個機器存儲的數據情況。</figcaption>
-</figure><figure>
-<img src="../../image/assets/79b0222c-e496-474d-80c1-f212b89571f8.jpg" data-placeholder-src="../../image/assets/79b0222c-e496-474d-80c1-f212b89571f8.jpg" width="1400" height="1050" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAAPABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCrb3DI/wA/K+maLgaEd1D6n8qTYFhbyEDo1K4znd5piJoyCM5NAyUM2KQH/9k=);background-size:cover" alt="" />
-<figcaption>巴塞羅那的郊區每日陽光燦爛</figcaption>
-</figure><hr />
-<p>三天的大會中，最開始是幾門workshop形式的課程，介紹IPFS的基本結構與用法，讓與會者有基本的共識。</p><p>IPFS拆分下來，大體可以看做兩個子項目，<a href="https://github.com/ipld">IPLD</a>與<a href="https://github.com/libp2p">libp2p</a>。</p><p>一般通過加密算法驗證的系統，數據都會存儲在通過哈希算法（hash）構造的樹狀結構中，被稱作<a href="https://en.wikipedia.org/wiki/Merkle_tree">哈希樹</a>（hash tree，或默克爾樹 Merkle tree）。IPLD定義了數據之間相連的通用方式，負責建構、驗證及調取哈希樹，通用於以太坊、比特幣、git等數據結構。</p><p>libp2p則是IPFS之外應用最廣的一個子項目，從邊緣運算到新型的區塊鏈項目，都可以看到它的影子。libp2p主要負責處理客戶端之間通過不同端口和協議相互連接。這一部分原本非常繁瑣，而libp2p在不同的協議和算法之上建立了良好的抽象層，極大簡化了開發過程，也降低了不同協議之間轉換的成本。</p><figure>
-<img src="../../image/assets/5a123fe3-67eb-437e-a275-14a215178de1.jpg" data-placeholder-src="../../image/assets/5a123fe3-67eb-437e-a275-14a215178de1.jpg" width="1400" height="1050" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAAPABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCC5mSRflycfhSbBIdDfCFBGFBJyd2ORQmOxFNMzyFtrNnvik2gsRt5TYZ9+OMnvSSY20QuAGOD9KaBoclzJGMZP50OKYk7H//Z);background-size:cover" alt="" />
-<figcaption>workshop形式的課程，讓大家同步基礎概念。</figcaption>
-</figure><p>除了workshop形式的課程外，三天的大會中有許多lightning talk，簡短地介紹不同的分佈式項目。此外，還有許多不同形式的分組討論，以頭腦風暴和hackathon的方式，理解或者解決某個具體問題，是與世界各地高手一起協作的好機會。</p><p>有一次我參加了<a href="https://en.wikipedia.org/wiki/Distributed_hash_table">DHT</a>（distributed hash table，分佈式哈希表）的小組，同組的正好有<a href="https://openbazaar.org/">OpenBazaar</a>的開發者，向其他人很詳細地介紹了DHT的運作方式和局限。DHT是個分佈式key-value數據庫，也是“分佈式”的核心。目前IPFS採用的是<a href="https://en.wikipedia.org/wiki/Kademlia">Kademlia</a>算法，簡單直接、容易實現，但是也有一些問題，比如單個文件訪問評率過高會讓部分節點過載。<a href="https://en.wikipedia.org/wiki/Coral_Content_Distribution_Network">Coral DSHT</a>算法的一些設計可以解決這個問題，也會很快引入到IPFS中。</p><p>另一次參加了關於動態數據的討論，同組的是<a href="https://radicle.xyz/">radicle</a>（一個非常酷的項目！）的開發者和IIT Bombay的CS教授，一起討論目前IPFS處理動態數據上的局限及可能的改良措施。目前IPFS中的動態數據，主要是通過IPNS提供指針，指向不同的IPFS哈希值，并由IPNS發佈者私鑰簽署驗證。但目前IPNS的更新速度非常緩慢。解決IPNS效率問題的一個方案是整合進PubSub機制，目前已經開發完成，還在測試之中。</p><figure>
-<img src="../../image/assets/7f5c2791-3674-4ed4-befe-f2cce578b958.jpg" data-placeholder-src="../../image/assets/7f5c2791-3674-4ed4-befe-f2cce578b958.jpg" width="1400" height="1050" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAAPABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwB6EiNeAeO9IoU5PYD6CgCMrz0oGV4LwgESKGH8qQkWrbLxkk9zigZIY/ei4H//2Q==);background-size:cover" alt="" />
-<figcaption>有一些討論和頭腦風暴的結果，會整理為slides，向大家總結。</figcaption>
-</figure><p>從很多更有IPFS開發經驗的團隊那裡，我們也了解到了IPFS當前的其他局限，之後的計劃與設計中也會更加留心。</p><p>一個是<a href="https://en.wikipedia.org/wiki/Network_address_translation">網絡地址轉換</a>（NAT）。當節點在一個內網中時，節點的IP由內網的路由分配，與外部其他節點的聯通需要轉換IP地址。但是目前IPFS的NAT功能尚不夠完善，特別是在需要穿透多層路由時，有時無法連接上其他節點。</p><p>另一個問題是內置的匿名機制。節點最後相連仍然需要通過IP地址，所以目前DHT中也是可以看到其他節點的IP的。一種解決思路是通過Tor或者I2P進行傳輸，與其他暗網一樣掩蓋用戶IP。但是這樣的就會犧牲掉傳輸性能，特別是對於Tor。這一部分的功能開發剛剛開始，但應該比較容易修補和整合。</p><p>不過關於匿名機制，葡萄牙的一位開發者開發了<a href="https://github.com/hashmatter/p3lib">p3lib</a>，提供了另一個思路。p3lib不是去掩蓋IP，而是去混淆不同節點想要獲取的數據包。這樣監聽者雖然能夠看到節點的IP，但是無法知道哪個節點獲取了什麼數據。這個方案目前已經可用了，並且似乎效率不錯。</p><hr />
-<p>IPFS camp的與會項目中，像Matters這樣直接面向普通用戶、解決日常問題的項目占極少數。大部分項目仍然很“技術”，要麼面向開發者、解決開發過程的問題，要麼是從已有的技術出發、暢想能夠實現什麼。這些項目雖然能夠推動分佈式技術本身的發展，但是本身很難在市場上立足。</p><p>雖然對於每個思考過網絡結構的人，都知道分佈式網絡會帶來更好的未來，但是如果分佈式網絡無法提供中心化網絡沒有的功能，市場仍然沒有動力去完成這個轉變。所以在一個unconf環節，我們幾個人在一起頭腦風暴了一下哪些場景中分佈式網絡必不可少。</p><p>大家都想到最顯著的場景是突破信息封鎖，及保證信息的保存。比特幣的流行和黑市交易以及跨境轉賬是分不開的，也算需要突破金融機構的封鎖。隨著各國政治獨裁與民族主義的興起，能夠更好保障信息自由和安全的技術會更加重要。Matters也是因為這個原因決定打造分佈式應用。</p><p>另一個巨大的應用場景是物聯網。這次看到的項目中，數據規模最大的當屬<a href="https://www.actyx.io/">Actyx</a>，用IPFS解決工廠中物聯網的問題。因為在工廠中有大量機器相互協作，並且有強烈的電磁場干擾，用中心化的路由和服務器既浪費帶寬，又容易被屏蔽。於是這些機器之間直接相連，通過IPFS進行高效快速的互動。</p><figure>
-<img src="../../image/assets/7a3565bf-fb79-4901-87de-cbccaac4b19e.jpg" data-placeholder-src="../../image/assets/7a3565bf-fb79-4901-87de-cbccaac4b19e.jpg" width="1400" height="1050" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAAPABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCqq5pFEgiXPOcZ5ouIjdApwAaYFaGd0yNxxj8qEA9bhs/LuJzn5jSsFxzy5bIBFFhn/9k=);background-size:cover" alt="" />
-<figcaption>Actyx通過IPFS解決工廠中的物聯網問題</figcaption>
-</figure><p>類似的場景還有很多，自動駕駛是快速湧現的一個。自動駕駛的場景中，每一條車流都是一個天然的計算機集群，相互之間需要交流與互動，天然適合形成無線網狀網絡。這一方面可以降低信號延遲、加快反應速度，另一方面可以節省整個地區所需要的信號帶寬、降低開支。雖然中心化架構仍然是大部分工程師最熟悉的方案，但有一些自動駕駛公司已經開始試驗分佈式網絡了。</p><p>另一個場景是局域網。分佈式網絡在沒有互聯網運營商提供服務時，仍然可以運作。在大規模集會或者突發災害中，會成為最可靠的信息通道。現在<a href="https://berty.tech/">berty</a>等分佈式即時通訊項目在通過libp2p搭建這樣的網絡。<a href="https://nodle.io/">Nodle</a>這樣的項目則更進一步，將區塊鏈加入到流量分享之中，等於讓物聯網中的每個設備都成為了一個微型的互聯網提供商。</p><p>另一個大家討論到的問題是，分佈式項目如何生存。畢竟，中心化的平台持有了所有的數據與權力，不管是從數據間接獲取利潤，還是從用戶直接獲取利潤，都相對容易。分佈式項目則會難很多，團隊如何生存就成了很大的問題。</p><p>這次到場的<a href="https://qri.io/">qri</a>項目，為分佈式項目的生存提供了一個範例：讓軟件開源，并保證分佈式情況下可用；同時提供付費的中心化服務，用以增加效率，或者提供其他分佈式應用本身無法滿足的功能。</p><hr />
-<p>短短幾天下來，我對於IPFS團隊的能力和動機有了很多信任。Protocol Lab集結了一批分佈式領域有信仰、有能力的開發者，相信未來的網絡該是、也會是分佈式的，並聯手一步步把這個未來變成現實。</p><p>因為Filecoin的成功，IPFS社區已經開始有投機者出現，但總體還是維持了友善和純粹的技術氛圍。Protocol Lab的團隊本身也還沒有多少變現的想法，包括Filecoin獲得的資金也都依協議鎖死在Filecoin本身的開發上。</p><p>過去大半年我們在Matters網站上進行的牛刀小試，並未發現太大問題。但是下一步客戶端的開發，則一定會觸到IPFS的瓶頸，需要更多依賴和參與IPFS社區。Matters曾與IPFS團隊有過初步聯繫，這次也和IPFS瀏覽器部分的負責人專門討論了客戶端的計劃。他表示，因為IPFS團隊對中國的網絡環境了解有限，很需要我們來提issue，他也願意來推動Matters所需要的優化。</p><p>這三天初識社區，比較全面地了解了IPFS的進展，也建立了一些聯繫。客戶端的設計、後續與社區的協作，相信也都會因此更加順利。</p><figure>
-<picture><source srcset="../../image/assets/df3f7032-9d6d-40b4-a975-80b97b94f3a4.webp" type="image/webp"><img src="../../image/assets/df3f7032-9d6d-40b4-a975-80b97b94f3a4.jpg" data-placeholder-src="../../image/assets/df3f7032-9d6d-40b4-a975-80b97b94f3a4.jpg" width="1400" height="1050" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAAPABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwBPtEyxCNSFxwD3pahYhLyFcFyQeooCwxUYjPmIvtmiwFjYoZGIyG6c0x3AxoWPykEe/WmlclsozSESHZ93tSKd0f/Z);background-size:cover" alt="" /></picture>
-<figcaption>豐盛的離別晚宴</figcaption>
-</figure>
+<p>上週有幸與 <a href="https:/matters.town/@zeckli">﻿@zeckli﻿</a> 一起去巴塞羅那參加了IPFS開發者大會。</p><p>Matters正在建立一個分佈式的作品發佈网络，與其他分佈式应用一樣，核心問題是數據的存儲與傳輸。</p><p>IPFS生態中提供了一系列通用的工具和協議，用於建立各種不同類型的分佈式應用，使得IPFS成為了許多分佈式項目關注的重點。</p><p>這次與會的項目種類繁多，比如工廠中的物聯網、docker image分佈式分發、分佈式的npm與Guix、以太坊+IPFS域名管理、分佈式身份認證等等。我們也通過世界各地一百多位開發者，一窺分佈式技術與生態的進展。</p><p><img src="../../image/assets/66296200-de80-43f1-a1a2-ce2b1403a3e2.jpg" data-placeholder-src="../../image/assets/66296200-de80-43f1-a1a2-ce2b1403a3e2.jpg" width="1400" height="1050" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAAPABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwAkEpkdWLn02kigAEbruwGz/tN1pAASTuy0BqaON6sBwcdfSmBVMYTcFJz6k5pDGk465/CkB//Z);background-size:cover" alt="" /><em>會場上有許多有趣的項目。圖中這一個，是用LED陣列可視化一個IPFS集群中每個機器存儲的數據情況。</em></p><p><img src="../../image/assets/79b0222c-e496-474d-80c1-f212b89571f8.jpg" data-placeholder-src="../../image/assets/79b0222c-e496-474d-80c1-f212b89571f8.jpg" width="1400" height="1050" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAAPABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCrb3DI/wA/K+maLgaEd1D6n8qTYFhbyEDo1K4znd5piJoyCM5NAyUM2KQH/9k=);background-size:cover" alt="" /><em>巴塞羅那的郊區每日陽光燦爛</em></p><hr />
+<p>三天的大會中，最開始是幾門workshop形式的課程，介紹IPFS的基本結構與用法，讓與會者有基本的共識。</p><p>IPFS拆分下來，大體可以看做兩個子項目，<a href="https://github.com/ipld">IPLD</a>與<a href="https://github.com/libp2p">libp2p</a>。</p><p>一般通過加密算法驗證的系統，數據都會存儲在通過哈希算法（hash）構造的樹狀結構中，被稱作<a href="https://en.wikipedia.org/wiki/Merkle_tree">哈希樹</a>（hash tree，或默克爾樹 Merkle tree）。IPLD定義了數據之間相連的通用方式，負責建構、驗證及調取哈希樹，通用於以太坊、比特幣、git等數據結構。</p><p>libp2p則是IPFS之外應用最廣的一個子項目，從邊緣運算到新型的區塊鏈項目，都可以看到它的影子。libp2p主要負責處理客戶端之間通過不同端口和協議相互連接。這一部分原本非常繁瑣，而libp2p在不同的協議和算法之上建立了良好的抽象層，極大簡化了開發過程，也降低了不同協議之間轉換的成本。</p><p><img src="../../image/assets/5a123fe3-67eb-437e-a275-14a215178de1.jpg" data-placeholder-src="../../image/assets/5a123fe3-67eb-437e-a275-14a215178de1.jpg" width="1400" height="1050" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAAPABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCC5mSRflycfhSbBIdDfCFBGFBJyd2ORQmOxFNMzyFtrNnvik2gsRt5TYZ9+OMnvSSY20QuAGOD9KaBoclzJGMZP50OKYk7H//Z);background-size:cover" alt="" /><em>workshop形式的課程，讓大家同步基礎概念。</em></p><p>除了workshop形式的課程外，三天的大會中有許多lightning talk，簡短地介紹不同的分佈式項目。此外，還有許多不同形式的分組討論，以頭腦風暴和hackathon的方式，理解或者解決某個具體問題，是與世界各地高手一起協作的好機會。</p><p>有一次我參加了<a href="https://en.wikipedia.org/wiki/Distributed_hash_table">DHT</a>（distributed hash table，分佈式哈希表）的小組，同組的正好有<a href="https://openbazaar.org/">OpenBazaar</a>的開發者，向其他人很詳細地介紹了DHT的運作方式和局限。DHT是個分佈式key-value數據庫，也是“分佈式”的核心。目前IPFS採用的是<a href="https://en.wikipedia.org/wiki/Kademlia">Kademlia</a>算法，簡單直接、容易實現，但是也有一些問題，比如單個文件訪問評率過高會讓部分節點過載。<a href="https://en.wikipedia.org/wiki/Coral_Content_Distribution_Network">Coral DSHT</a>算法的一些設計可以解決這個問題，也會很快引入到IPFS中。</p><p>另一次參加了關於動態數據的討論，同組的是<a href="https://radicle.xyz/">radicle</a>（一個非常酷的項目！）的開發者和IIT Bombay的CS教授，一起討論目前IPFS處理動態數據上的局限及可能的改良措施。目前IPFS中的動態數據，主要是通過IPNS提供指針，指向不同的IPFS哈希值，并由IPNS發佈者私鑰簽署驗證。但目前IPNS的更新速度非常緩慢。解決IPNS效率問題的一個方案是整合進PubSub機制，目前已經開發完成，還在測試之中。</p><p><img src="../../image/assets/7f5c2791-3674-4ed4-befe-f2cce578b958.jpg" data-placeholder-src="../../image/assets/7f5c2791-3674-4ed4-befe-f2cce578b958.jpg" width="1400" height="1050" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAAPABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwB6EiNeAeO9IoU5PYD6CgCMrz0oGV4LwgESKGH8qQkWrbLxkk9zigZIY/ei4H//2Q==);background-size:cover" alt="" /><em>有一些討論和頭腦風暴的結果，會整理為slides，向大家總結。</em></p><p>從很多更有IPFS開發經驗的團隊那裡，我們也了解到了IPFS當前的其他局限，之後的計劃與設計中也會更加留心。</p><p>一個是<a href="https://en.wikipedia.org/wiki/Network_address_translation">網絡地址轉換</a>（NAT）。當節點在一個內網中時，節點的IP由內網的路由分配，與外部其他節點的聯通需要轉換IP地址。但是目前IPFS的NAT功能尚不夠完善，特別是在需要穿透多層路由時，有時無法連接上其他節點。</p><p>另一個問題是內置的匿名機制。節點最後相連仍然需要通過IP地址，所以目前DHT中也是可以看到其他節點的IP的。一種解決思路是通過Tor或者I2P進行傳輸，與其他暗網一樣掩蓋用戶IP。但是這樣的就會犧牲掉傳輸性能，特別是對於Tor。這一部分的功能開發剛剛開始，但應該比較容易修補和整合。</p><p>不過關於匿名機制，葡萄牙的一位開發者開發了<a href="https://github.com/hashmatter/p3lib">p3lib</a>，提供了另一個思路。p3lib不是去掩蓋IP，而是去混淆不同節點想要獲取的數據包。這樣監聽者雖然能夠看到節點的IP，但是無法知道哪個節點獲取了什麼數據。這個方案目前已經可用了，並且似乎效率不錯。</p><hr />
+<p>IPFS camp的與會項目中，像Matters這樣直接面向普通用戶、解決日常問題的項目占極少數。大部分項目仍然很“技術”，要麼面向開發者、解決開發過程的問題，要麼是從已有的技術出發、暢想能夠實現什麼。這些項目雖然能夠推動分佈式技術本身的發展，但是本身很難在市場上立足。</p><p>雖然對於每個思考過網絡結構的人，都知道分佈式網絡會帶來更好的未來，但是如果分佈式網絡無法提供中心化網絡沒有的功能，市場仍然沒有動力去完成這個轉變。所以在一個unconf環節，我們幾個人在一起頭腦風暴了一下哪些場景中分佈式網絡必不可少。</p><p>大家都想到最顯著的場景是突破信息封鎖，及保證信息的保存。比特幣的流行和黑市交易以及跨境轉賬是分不開的，也算需要突破金融機構的封鎖。隨著各國政治獨裁與民族主義的興起，能夠更好保障信息自由和安全的技術會更加重要。Matters也是因為這個原因決定打造分佈式應用。</p><p>另一個巨大的應用場景是物聯網。這次看到的項目中，數據規模最大的當屬<a href="https://www.actyx.io/">Actyx</a>，用IPFS解決工廠中物聯網的問題。因為在工廠中有大量機器相互協作，並且有強烈的電磁場干擾，用中心化的路由和服務器既浪費帶寬，又容易被屏蔽。於是這些機器之間直接相連，通過IPFS進行高效快速的互動。</p><p><img src="../../image/assets/7a3565bf-fb79-4901-87de-cbccaac4b19e.jpg" data-placeholder-src="../../image/assets/7a3565bf-fb79-4901-87de-cbccaac4b19e.jpg" width="1400" height="1050" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAAPABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCqq5pFEgiXPOcZ5ouIjdApwAaYFaGd0yNxxj8qEA9bhs/LuJzn5jSsFxzy5bIBFFhn/9k=);background-size:cover" alt="" /><em>Actyx通過IPFS解決工廠中的物聯網問題</em></p><p>類似的場景還有很多，自動駕駛是快速湧現的一個。自動駕駛的場景中，每一條車流都是一個天然的計算機集群，相互之間需要交流與互動，天然適合形成無線網狀網絡。這一方面可以降低信號延遲、加快反應速度，另一方面可以節省整個地區所需要的信號帶寬、降低開支。雖然中心化架構仍然是大部分工程師最熟悉的方案，但有一些自動駕駛公司已經開始試驗分佈式網絡了。</p><p>另一個場景是局域網。分佈式網絡在沒有互聯網運營商提供服務時，仍然可以運作。在大規模集會或者突發災害中，會成為最可靠的信息通道。現在<a href="https://berty.tech/">berty</a>等分佈式即時通訊項目在通過libp2p搭建這樣的網絡。<a href="https://nodle.io/">Nodle</a>這樣的項目則更進一步，將區塊鏈加入到流量分享之中，等於讓物聯網中的每個設備都成為了一個微型的互聯網提供商。</p><p>另一個大家討論到的問題是，分佈式項目如何生存。畢竟，中心化的平台持有了所有的數據與權力，不管是從數據間接獲取利潤，還是從用戶直接獲取利潤，都相對容易。分佈式項目則會難很多，團隊如何生存就成了很大的問題。</p><p>這次到場的<a href="https://qri.io/">qri</a>項目，為分佈式項目的生存提供了一個範例：讓軟件開源，并保證分佈式情況下可用；同時提供付費的中心化服務，用以增加效率，或者提供其他分佈式應用本身無法滿足的功能。</p><hr />
+<p>短短幾天下來，我對於IPFS團隊的能力和動機有了很多信任。Protocol Lab集結了一批分佈式領域有信仰、有能力的開發者，相信未來的網絡該是、也會是分佈式的，並聯手一步步把這個未來變成現實。</p><p>因為Filecoin的成功，IPFS社區已經開始有投機者出現，但總體還是維持了友善和純粹的技術氛圍。Protocol Lab的團隊本身也還沒有多少變現的想法，包括Filecoin獲得的資金也都依協議鎖死在Filecoin本身的開發上。</p><p>過去大半年我們在Matters網站上進行的牛刀小試，並未發現太大問題。但是下一步客戶端的開發，則一定會觸到IPFS的瓶頸，需要更多依賴和參與IPFS社區。Matters曾與IPFS團隊有過初步聯繫，這次也和IPFS瀏覽器部分的負責人專門討論了客戶端的計劃。他表示，因為IPFS團隊對中國的網絡環境了解有限，很需要我們來提issue，他也願意來推動Matters所需要的優化。</p><p>這三天初識社區，比較全面地了解了IPFS的進展，也建立了一些聯繫。客戶端的設計、後續與社區的協作，相信也都會因此更加順利。</p><p><picture><source srcset="../../image/assets/df3f7032-9d6d-40b4-a975-80b97b94f3a4.webp" type="image/webp"><img src="../../image/assets/df3f7032-9d6d-40b4-a975-80b97b94f3a4.jpg" data-placeholder-src="../../image/assets/df3f7032-9d6d-40b4-a975-80b97b94f3a4.jpg" width="1400" height="1050" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAAPABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwBPtEyxCNSFxwD3pahYhLyFcFyQeooCwxUYjPmIvtmiwFjYoZGIyG6c0x3AxoWPykEe/WmlclsozSESHZ93tSKd0f/Z);background-size:cover" alt="" /></picture><em>豐盛的離別晚宴</em></p>
             
         </article>
-        <section class="moss-comments" id="moss-comments" data-built-at="2026-04-29T20:33:59.836525+00:00">
+        <section class="moss-comments" id="moss-comments" data-built-at="2026-05-07T17:21:52.513113+00:00">
   <details>
     <summary class="comments-toggle"><svg class="comments-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></svg><span>11条评论</span><svg class="comments-chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></summary>
     <div class="comment-form-slot" id="default-form-slot"><form class="comment-form" id="moss-comment-form" data-server-url="https://api.moss.host/comments" data-site-name="liu-guo.com" data-page-key="writings/ipfs-developer-conference/" data-page-title="IPFS 開發者大會記錄">
@@ -881,22 +1008,21 @@ a.comment-author:hover {
         </ol>
       </li>
     </ol>
-    <script>"use strict";(()=>{(function(){"use strict";let e=document.getElementById("moss-comment-form");if(!e)return;let f=e.dataset.serverUrl,E=e.dataset.siteName,h=e.dataset.pageKey,g=e.dataset.pageTitle,m=document.getElementById("moss-comment-status"),n=document.getElementById("moss-comment-text"),u="moss-commenter",i=null;try{let t=JSON.parse(localStorage.getItem(u)||"{}");t.name&&(e.querySelector('[name="name"]').value=t.name),t.email&&(e.querySelector('[name="email"]').value=t.email),t.link&&(e.querySelector('[name="link"]').value=t.link)}catch{}n&&n.addEventListener("input",function(){this.style.height="auto",this.style.height=this.scrollHeight+"px"}),document.querySelectorAll(".comment-reply-btn").forEach(t=>{t.addEventListener("click",function(){let a=this.dataset.replyId,o=this.dataset.replyName;i=a;let l=document.getElementById("comment-"+a);l&&(l.querySelector(".comment-replies")??l).appendChild(e.parentNode),n&&(n.placeholder="@"+o+" ",n.focus())})}),e.addEventListener("submit",function(t){if(t.preventDefault(),!n)return;let a=n.value.trim();if(!a)return;let o=e.querySelector('[name="name"]').value.trim(),l=e.querySelector('[name="email"]').value.trim(),r=e.querySelector('[name="link"]').value.trim();if(!o){m.textContent="Name is required";return}try{localStorage.setItem(u,JSON.stringify({name:o,email:l,link:r}))}catch{}m.textContent="Submitting...",e.querySelector('[type="submit"]').disabled=!0;let d={content:a,nick:o,email:l,link:r,page_key:h,page_title:g,site_name:E};i&&(d.rid=parseInt(i,10)),fetch(f.replace(/\/+$/,"")+"/api/v2/comments",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(d)}).then(s=>{if(!s.ok)throw new Error("HTTP "+s.status);return s.json()}).then(s=>{m.textContent="Comment posted!",n.value="",i=null;let p=document.getElementById("default-form-slot");p&&p.appendChild(e);let y=document.querySelector(".comment-list");if(y){let c=document.createElement("li");c.className="comment-item",c.innerHTML='<div class="comment-header"><span class="comment-author">'+(o||"Anonymous")+'</span><time class="comment-date">just now</time></div><div class="comment-body">'+(s.content||a)+"</div>",y.appendChild(c)}setTimeout(()=>{m.textContent=""},3e3)}).catch(s=>{m.textContent="Error: "+s.message}).finally(()=>{e.querySelector('[type="submit"]').disabled=!1})})})();})();
+    <script>"use strict";(()=>{var H="moss:quote-comment";function M(e){let a=c=>{let u=c.detail;u&&e(u)};return document.addEventListener(H,a),()=>document.removeEventListener(H,a)}var v=null,S=null;function Q(e){if(v)return v;let{form:a,textarea:c,defaultSlot:u,onBeforeOpen:y}=e,l=null,t=null,o="";function f(){if(!t){l=document.createElement("div"),l.className="comment-float-backdrop",l.addEventListener("click",()=>m()),document.body.appendChild(l),t=document.createElement("div"),t.className="comment-float-shell";let i=document.createElement("div");i.className="comment-float-inner",t.appendChild(i),document.body.appendChild(t)}let n=t.querySelector(".comment-float-inner");return{shell:t,inner:n}}function h(n){if(!n)return;y?.();let{shell:i,inner:s}=f();s.innerHTML="";let r=document.createElement("div");r.className="comment-float-quote",r.textContent=n,s.appendChild(r),s.appendChild(a),o=n,l.classList.add("visible"),i.classList.add("open"),c.focus()}function m(){!t||!t.classList.contains("open")||(t.classList.remove("open"),l?.classList.remove("visible"),a.parentElement!==u&&u.appendChild(a),o="")}function E(n){n.key==="Escape"&&t?.classList.contains("open")&&m()}document.addEventListener("keydown",E);let p=M(({text:n})=>h(n));return S=()=>{document.removeEventListener("keydown",E),p(),l?.remove(),t?.remove()},v={cancel:m,getQuoteText:()=>o,getQuotePrefix:()=>q(o)},v}function q(e){if(!e)return"";let a=e.replace(/\n+$/,"");return a?a.split(`
+`).map(c=>"> "+c).join(`
+`)+`
+
+`:""}(function(){"use strict";let e=document.getElementById("moss-comment-form");if(!e)return;let a=e.dataset.serverUrl,c=e.dataset.siteName,u=e.dataset.pageKey,y=e.dataset.pageTitle,l=document.getElementById("moss-comment-status"),t=document.getElementById("moss-comment-text"),o=document.getElementById("default-form-slot"),f="moss-commenter",h=t?.placeholder??"",m=null;function E(){m=null,t&&(t.placeholder=h),o&&e.parentElement!==o&&o.appendChild(e)}let p=t&&o?Q({form:e,textarea:t,defaultSlot:o,onBeforeOpen:E}):null;try{let n=JSON.parse(localStorage.getItem(f)||"{}");n.name&&(e.querySelector('[name="name"]').value=n.name),n.email&&(e.querySelector('[name="email"]').value=n.email),n.link&&(e.querySelector('[name="link"]').value=n.link)}catch{}t&&t.addEventListener("input",function(){this.style.height="auto",this.style.height=this.scrollHeight+"px"}),document.querySelectorAll(".comment-reply-btn").forEach(n=>{n.addEventListener("click",function(){p?.cancel();let i=this.dataset.replyId,s=this.dataset.replyName;m=i;let r=document.getElementById("comment-"+i);r&&o&&(r.querySelector(".comment-replies")??r).appendChild(o),t&&(t.placeholder="@"+s+" ",t.focus())})}),e.addEventListener("submit",function(n){if(n.preventDefault(),!t)return;let i=t.value.trim();if(!i)return;let s=e.querySelector('[name="name"]').value.trim(),r=e.querySelector('[name="email"]').value.trim(),T=e.querySelector('[name="link"]').value.trim();if(!s){l.textContent="Name is required";return}try{localStorage.setItem(f,JSON.stringify({name:s,email:r,link:T}))}catch{}let L=(p?.getQuotePrefix()??"")+i;l.textContent="Submitting...",e.querySelector('[type="submit"]').disabled=!0;let C={content:L,nick:s,email:r,link:T,page_key:u,page_title:y,site_name:c};m&&(C.rid=parseInt(m,10)),fetch(a.replace(/\/+$/,"")+"/api/v2/comments",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(C)}).then(d=>{if(!d.ok)throw new Error("HTTP "+d.status);return d.json()}).then(d=>{l.textContent="Comment posted!",t.value="",p?p.cancel():o&&e.parentElement!==o&&o.appendChild(e),m=null;let x=document.querySelector(".comment-list");if(x){let g=document.createElement("li");g.className="comment-item",g.innerHTML='<div class="comment-header"><span class="comment-author">'+(s||"Anonymous")+'</span><time class="comment-date">just now</time></div><div class="comment-body">'+(d.content||L)+"</div>",x.appendChild(g)}setTimeout(()=>{l.textContent=""},3e3)}).catch(d=>{l.textContent="Error: "+d.message}).finally(()=>{e.querySelector('[type="submit"]').disabled=!1})})})();})();
 </script>
   </details>
 </section>
+        
     </main>
 
     <footer class="container">
-    <div class="footer-content">
-        <div class="footer-left">
-            <a href="/links/" class="footer-link">友链</a>
-            <a href="/feed.xml" class="footer-link" data-external>RSS</a>
-        </div>
-        <div class="footer-right">
-            <form action="https://buttondown.com/api/emails/embed-subscribe/liuguo" method="post" class="footer-subscribe-form"><input type="email" name="email" class="moss-input" placeholder="邮箱" required /><input type="hidden" value="1" name="embed" /><button type="submit" class="moss-btn">订阅</button></form>
-        </div>
-    </div>
+        
+        <p class="footer-default"><a href="/links/" class="footer-link">友链</a> · <a href="/feed.xml" class="footer-link" data-external>RSS</a></p>
+        <form action="https://buttondown.com/api/emails/embed-subscribe/liuguo" method="post" class="moss-subscribe-form" data-position="footer"><input type="email" name="email" class="moss-input" placeholder="邮箱" required /><input type="hidden" value="1" name="embed" /><button type="submit" class="moss-btn">订阅</button></form>
 </footer>
 
     <div class="moss-colophon">
@@ -909,8 +1035,9 @@ a.comment-author:hover {
         </a>
     </div>
 
-    <script src="/js/theme.js?v=55cfb8c997a6f4b4"></script>
+    <script src="/js/theme.js?v=2cdc2065ab56e04a"></script>
     <script src="/js/preview.js"></script>
+    <script src="/js/thumb-swap.js"></script>
     
 </body>
 </html>

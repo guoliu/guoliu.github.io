@@ -26,6 +26,7 @@
     <meta property="article:tag" content="去中心化">
     <meta property="article:tag" content="Web3">
     <link rel="canonical" href="https://liu-guo.com/writings/distributed-web/decentralized-social-game-theory/">
+    
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="去中心化社交媒体的博弈机制">
     <meta name="twitter:description" content="去中心化的应用或组织既然不依赖权力机构，便需要用博弈机制来替代权力机构。通过博弈，个体和组织以类似市场的方式来参与自治。能够实现如此高效和大规模的博弈，在历史上是第一次。该怎么设计这样的机制，我们还知之甚少。">
@@ -53,7 +54,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16.png">
     <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml">
     <script data-goatcounter="https://guo.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-    <link rel="stylesheet" href="/style.css?v=83b6d32641fd5485">
+    <link rel="stylesheet" href="/style.css?v=3abb9ff9e247504f">
     <script data-goatcounter="https://guo.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 <style class="moss-review-style">/* Review plugin — header and colophon styles
  * Uses moss design tokens. Works in light and dark mode.
@@ -230,15 +231,33 @@
    - ResultFirst 2026 trends — "stripping away non-essential frills"
    ========================================================================== */
 
-/* Comment Section — width controlled by site theme (main > .moss-comments) */
-.moss-comments {
+/* Comment Section — width controlled by site theme.
+   The comment toggle becomes the top edge of the footer chrome: it sits with
+   generous breathing room below the article body, then the footer divider
+   sits a `space-md` (1.5rem) gap below the toggle — mirroring the `space-md`
+   gap below the divider before the footer items.
+   Selector specificity (main >) is required to win over site.css's
+   `main > .moss-comments { margin: 0 auto }` rule, which would otherwise
+   reset margin-top to 0 and erase the breathing room. */
+main > .moss-comments {
   margin-top: 6rem;
 }
 
-/* Divider above comment section */
-.moss-comments > details {
-  padding-top: var(--moss-space-lg, 2rem);
-  border-top: 1px solid var(--moss-border-light, #e6e2db);
+/* When .moss-comments is present, retune the gap between main and the footer
+   divider so the toggle sits as part of the footer chrome:
+     - `main { padding-bottom: 60px }` — drop entirely; .moss-comments owns
+       its own top breathing room (margin-top above) and the toggle should
+       sit directly above the footer's standoff.
+     - `footer.container { margin-top: 2xl }` — replace with `space-md` so
+       the toggle→divider gap mirrors the divider→items gap (also `space-md`,
+       see `footer.container::before { margin-bottom: var(--moss-space-md) }`
+       in site.css). Footer items are visually heavier (larger font), so an
+       optically symmetric gap settles to numerically equal here. */
+main:has(> .moss-comments) {
+  padding-bottom: 0;
+}
+main:has(.moss-comments) + footer.container {
+  margin-top: var(--moss-space-md);
 }
 
 /* ==========================================================================
@@ -711,33 +730,159 @@ a.comment-author:hover {
   background: rgba(0, 0, 0, 0.35);
 }
 </style>
-<style class="moss-email-style">/* Email subscribe form — injected by email plugin enhance hook */
-.footer-subscribe-form {
-  display: flex;
-  gap: var(--moss-space-sm);
-  align-items: baseline;
-  max-width: 24rem;
-}
-
-.footer-subscribe-form .moss-input {
-  flex: 1;
-}
-
-.footer-subscribe-form .moss-btn {
-  font-size: inherit;
-}
-
-@media (max-width: 48rem) {
-  .footer-subscribe-form {
-    max-width: none;
+<style class="moss-email-style">@layer shortcodes {
+  /* Email subscribe form — injected by email plugin enhance hook.
+     The footer form sits in slot:footer-end, AFTER the default link list
+     (design B, 2026-05-06). Spacing between the form and the link list
+     above it is provided by the flex `gap` on `footer.container` when
+     the default-shape footer rule kicks in (see site.css
+     `footer.container:has(> p.footer-default + ...)`). No margin-top
+     here — it would compound the gap when wrapped, and the side-by-side
+     layout doesn't want one at all. */
+  .moss-subscribe-form[data-position="footer"] {
+    display: flex;
+    gap: var(--moss-space-sm);
+    align-items: baseline;
+    max-width: 24rem;
   }
 
-  .footer-subscribe-form .moss-input {
+  .moss-subscribe-form[data-position="footer"] .moss-input {
+    flex: 1;
+  }
+
+  .moss-subscribe-form[data-position="footer"] .moss-btn {
+    font-size: inherit;
+  }
+
+  @media (max-width: 48rem) {
+    .moss-subscribe-form[data-position="footer"] {
+      max-width: none;
+    }
+
+    .moss-subscribe-form[data-position="footer"] .moss-input {
+      flex: 1;
+      min-width: 0;
+    }
+  }
+
+  /* Inline `:::subscribe` shortcode wrapper.
+     Card-styled container for in-page subscribe forms. Token-only; no
+     hardcoded colors. See spec
+     docs/superpowers/specs/2026-04-30-subscribe-shortcode-design.md. */
+  .moss-subscribe {
+    max-width: 32rem;
+    margin: var(--moss-space-lg) 0;
+    padding: var(--moss-space-md) var(--moss-space-lg);
+    border: 1px solid var(--moss-border-light);
+    border-radius: var(--moss-radius-md, 0.5rem);
+  }
+
+  .moss-subscribe-description {
+    margin: 0 0 var(--moss-space-md) 0;
+    color: var(--moss-color-muted);
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  .moss-subscribe-form[data-position="inline"] {
+    display: flex;
+    gap: var(--moss-space-sm);
+    align-items: baseline;
+  }
+
+  .moss-subscribe-form[data-position="inline"] .moss-input {
     flex: 1;
     min-width: 0;
   }
+
+  @media (max-width: 32rem) {
+    .moss-subscribe-form[data-position="inline"] {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .moss-subscribe-form[data-position="inline"] .moss-btn {
+      width: 100%;
+    }
+  }
 }
 </style>
+<style class="moss-email-style">@layer shortcodes {
+  /* Email subscribe form — injected by email plugin enhance hook.
+     The footer form sits in slot:footer-end, AFTER the default link list
+     (design B, 2026-05-06). Spacing between the form and the link list
+     above it is provided by the flex `gap` on `footer.container` when
+     the default-shape footer rule kicks in (see site.css
+     `footer.container:has(> p.footer-default + ...)`). No margin-top
+     here — it would compound the gap when wrapped, and the side-by-side
+     layout doesn't want one at all. */
+  .moss-subscribe-form[data-position="footer"] {
+    display: flex;
+    gap: var(--moss-space-sm);
+    align-items: baseline;
+    max-width: 24rem;
+  }
+
+  .moss-subscribe-form[data-position="footer"] .moss-input {
+    flex: 1;
+  }
+
+  .moss-subscribe-form[data-position="footer"] .moss-btn {
+    font-size: inherit;
+  }
+
+  @media (max-width: 48rem) {
+    .moss-subscribe-form[data-position="footer"] {
+      max-width: none;
+    }
+
+    .moss-subscribe-form[data-position="footer"] .moss-input {
+      flex: 1;
+      min-width: 0;
+    }
+  }
+
+  /* Inline `:::subscribe` shortcode wrapper.
+     Card-styled container for in-page subscribe forms. Token-only; no
+     hardcoded colors. See spec
+     docs/superpowers/specs/2026-04-30-subscribe-shortcode-design.md. */
+  .moss-subscribe {
+    max-width: 32rem;
+    margin: var(--moss-space-lg) 0;
+    padding: var(--moss-space-md) var(--moss-space-lg);
+    border: 1px solid var(--moss-border-light);
+    border-radius: var(--moss-radius-md, 0.5rem);
+  }
+
+  .moss-subscribe-description {
+    margin: 0 0 var(--moss-space-md) 0;
+    color: var(--moss-color-muted);
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  .moss-subscribe-form[data-position="inline"] {
+    display: flex;
+    gap: var(--moss-space-sm);
+    align-items: baseline;
+  }
+
+  .moss-subscribe-form[data-position="inline"] .moss-input {
+    flex: 1;
+    min-width: 0;
+  }
+
+  @media (max-width: 32rem) {
+    .moss-subscribe-form[data-position="inline"] {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .moss-subscribe-form[data-position="inline"] .moss-btn {
+      width: 100%;
+    }
+  }
+}
+</style><script class="moss-subscribe-script">"use strict";(()=>{var b={en:{placeholder:"your@email.com",label:"Subscribe",checkEmail:"Check your email to confirm.",alreadySubscribed:"You're already subscribed.",error:"Something went wrong. Try again?"},"zh-hans":{placeholder:"\u90AE\u7BB1",label:"\u8BA2\u9605",checkEmail:"\u8BF7\u5728\u90AE\u7BB1\u4E2D\u786E\u8BA4\u8BA2\u9605",alreadySubscribed:"\u4F60\u5DF2\u8BA2\u9605\u3002",error:"\u51FA\u9519\u4E86\uFF0C\u8BF7\u91CD\u8BD5\u3002"},"zh-hant":{placeholder:"\u96FB\u90F5",label:"\u8A02\u95B1",checkEmail:"\u8ACB\u5728\u96FB\u90F5\u4E2D\u78BA\u8A8D\u8A02\u95B1",alreadySubscribed:"\u4F60\u5DF2\u8A02\u95B1\u3002",error:"\u51FA\u932F\u4E86\uFF0C\u8ACB\u91CD\u8A66\u3002"}};function h(e){let t=(e??"").toLowerCase();return t.startsWith("zh-hant")||t.startsWith("zh-tw")||t.startsWith("zh-hk")||t.startsWith("zh-mo")?"zh-hant":t.startsWith("zh")?"zh-hans":"en"}var f=4e3,l=new WeakMap;function g(e){if(e.dataset.mossHydrated==="true")return;let t=e.querySelector('input[type="email"]'),n=e.querySelector('button[type="submit"]');if(!t||!n)return;e.dataset.mossHydrated="true";let r=h(document.documentElement.lang),a=b[r];if(t.placeholder=a.placeholder,!(e.dataset.position==="inline")){let s=n.querySelector(".moss-btn__label");s&&(s.textContent=a.label)}e.addEventListener("submit",async s=>{if(s.preventDefault(),e.dataset.state==="loading")return;let u=(t.value??"").trim();if(!u){t.focus();return}T(e,n),i(e,"loading");try{let d=await fetch(e.action,{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},body:JSON.stringify({email:u})}),S=await d.json().catch(()=>({}));if(!d.ok){c(e,"error",a),i(e,"error");return}let E=S.alreadySubscribed?"already-subscribed":"check-email";c(e,E,a),i(e,"success"),H(e,t)}catch{c(e,"error",a),i(e,"error")}}),n.addEventListener("click",s=>{e.dataset.state==="success"&&(s.preventDefault(),p(e,t))})}function i(e,t){e.dataset.state=t}function c(e,t,n){let r=e.querySelector(".moss-subscribe-status");if(!r)return;r.querySelectorAll("[data-copy]").forEach(o=>{o.dataset.copy===t?(o.hidden=!1,o.textContent=L(t,n)):o.hidden=!0}),r.dataset.state=t}function L(e,t){switch(e){case"check-email":return t.checkEmail;case"already-subscribed":return t.alreadySubscribed;case"error":return t.error}}function T(e,t){let n=t.parentElement;if(!n||!n.classList.contains("moss-subscribe-btn-slot")||n.style.width)return;let r=t.offsetWidth;r<=0||(n.style.width=`${r}px`)}function H(e,t){y(e);let n=window.setTimeout(()=>p(e,t),f);l.set(e,n)}function y(e){let t=l.get(e);t!==void 0&&(clearTimeout(t),l.delete(e))}function p(e,t){y(e),e.isConnected&&(t.value="",i(e,"idle"))}function m(){document.querySelectorAll('form.moss-subscribe-form[data-moss-hosted="true"]').forEach(g)}typeof document<"u"&&(document.readyState==="loading"?document.addEventListener("DOMContentLoaded",m):m());})();
+</script>
 </head>
 <body class="">
     <header>
@@ -763,10 +908,7 @@ a.comment-author:hover {
 <li><strong>SBT 标记个人信任关系</strong>：每个人可以授予其他人自己的信任，当这种信任公开时，便能够开启许多在社群层面的机制。SBT 提供了在链上公开信任关系的方式，为其他信任机制提供了基础。</li>
 </ul>
 <p>以下是每种模式的讨论。</p><hr />
-<h2 id="用谢林点进行仲裁">用谢林点进行仲裁</h2><p>社群中常常有对于仲裁的需求，比如内容是否属于抄袭或假新闻，一个账号是否违反了社区规程、需要受到处罚。最直观的方式是，通过某种机制产生一个被人们信任的小团体，执行仲裁的权力和义务。这种机制有许多问题，一方面任何对小团体的选举过程都有低效和参与率低的问题，另一发面仲裁团体永远无法让所有人满意，也就需要承受来自其他成员的压力。</p><figure>
-<picture><source srcset="../../../image/assets/0241ec32-59e6-4403-88d4-23b8d7fcc13a.webp" type="image/webp"><img src="../../../image/assets/0241ec32-59e6-4403-88d4-23b8d7fcc13a.png" data-placeholder-src="../../../image/assets/0241ec32-59e6-4403-88d4-23b8d7fcc13a.png" width="1400" height="932" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAANABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDVAX1K/U0ALx/fP50AOHTrmgBuB1xQA4KMdBQAvSgD/9k=);background-size:cover" alt="" /></picture>
-<figcaption>前 Reddit CEO Yishan Wong 关于为什么无法通过仲裁团体进行内容治理</figcaption>
-</figure><p>如果我们可以通过博弈机制保证公允，就能够随机抽取成员参与决策，仲裁可以更加高效、结果也更容易获得共识。我们甚至可以让仲裁者的身份匿名，让决策过程不受社群舆论的压力。“谢林点”有可能能够成为这样仲裁机制的基础。</p><p>“谢林点”是指那些人们在不进行合作的情况下会共同选择的点。比如，某一天有一群人试图在纽约相遇，但又无法定下具体时间地点，大部分人可能会在中午十二点的时代广场相见；因为前者是一天的正中，后者是纽约的核心地标，分别是时间和空间上的谢林点。</p><p>我们可以据此<a href="https://blog.ethereum.org/2014/03/28/schellingcoin-a-minimal-trust-universal-data-feed">设计一种仲裁规则</a>：在质押一定代币后，仲裁参与者对一个问题的答案进行选择；与大多数人答案一致则获得奖励，与大多数人答案不一致则失去一定代币。此时，参与者倾向于选择自己认为其他人也会进行的选择，即这个问题的谢林点。</p><p>参与者之中任何形式的共同知识（<a href="https://www.lesswrong.com/tag/common-knowledge">Common Knowledge</a>），都是谢林点；如果一个问题的答案类似共同知识，便有可能<a href="https://kleros.io/whitepaper.pdf">以这种形式进行仲裁</a>。比如，当一个社区对人身攻击或者抄袭有明确定义后，便可以用于判断一篇文章是否属于人身攻击或者抄袭。一些更复杂的问题，比如假新闻，如果一个社群能够达成定义上的共识，也可能可以采用这样的机制。</p><p>在实际情况中，会出现“真理掌握在少数人手中”的情况，这些情况也是推动共识演变的机会。这样的仲裁就需要结合重新申诉的机制，让有争议的情况能够以更适合公开讨论、常常也更低效的方式<a href="https://forum.gnosis.io/t/the-ultimate-oracle/61">重新决议</a>。所以，谢林点并不会完全取代人治或者中心化决议，而是让常规决策更加去中心化。</p><p>除了针对处罚进行“负面决策”，谢林点的机制也可能用于针对奖励的“正面决策”。比如，如果一个社群每天都会选出当日的精选内容，那我们是否可以通过谢林点的机制，让社群成员轮流进行投票，选出公认的优秀作品？如果行得通的话，这样的内容精选也可以用于付费订阅，成为社群的收入。</p><h2 id="用预测市场进行内容筛选">用预测市场进行内容筛选</h2><p>仲裁机制是被动的，需要触发才能进行，同时每次仲裁需要一定的周期。而对内容的筛选，不管是推荐还是隐藏，常常都需要效率和连续。一旦有一种对内容筛选的最终方式，不管是前述谢林点仲裁机制，还是传统的中心化仲裁，我们都可以用预测市场对其进行扩展，使之更加去中心化和高效。</p><p>预测市场的思路是，当人们去押注一件还未发生的事情的结果时，每个结果的价格可以作为群体对这个结果的预测。比如，对“明天是否下雨”的预测，我们可以有“下雨币”和“不下雨币”，分别在明天下雨和不下雨的情况下能够兑换成1元钱。如果今天“下雨币”的市价为0.8元、“不下雨币”为0.2元，说明市场对明天下雨概率的预测为80%。如果“我”认为明天肯定会下雨，我就可以买入“下雨币”，期望在明天赚取差价，与此同时将“下雨币”价格推高。</p><p>因为利益相关，人们在决策时会更加慎重和理性，所以预测市场一般比问卷调查更加准确。预测市场既被用于总统大选等事件的预测，也用于公司等组织内部的去中心化决策，甚至有学者提出作为<a href="https://blog.ethereum.org/2014/08/21/introduction-futarchy">政府运作机制的一部分</a>。最近人们则预测 <a href="https://manifold.markets/mr22222222/sbf-convicted-of-a-felony-before-20">SBF 是否会进监狱</a>，<a href="https://manifold.markets/MP/will-twitter-suffer-a-major-outage">Twitter 是否会在今年宕机</a>。那我们是否可以将预测市场<a href="https://ethresear.ch/t/prediction-markets-for-content-curation-daos/1312">用于更高效的内容筛选</a>？</p><p>如果有了一种对违规内容进行仲裁的方式，我们便可以随机挑选内容应用这种机制；与此同时，任何人都可以押注任何内容的仲裁结果。比如，“我”看到一篇明显是假新闻的内容，而当前预测市场对它的预测不是100%被制裁，我就可以押注“被制裁”代币。如果这篇内容不被挑选仲裁，那我押注的代币全额返回；如果这篇内容受到仲裁，仲裁结果将决定“我”盈利还是亏损。</p><p>一旦有了对优质内容的筛选方式，就能够将预测市场用于筛选优质内容。这种筛选方式可以是前述的社群内容精选，也可以是其他的机制。比如，在 <a href="https://relevant.community/">Relevant</a> 中，具有 reputation 的用户可以对内容进行“精选”，而普通用户可以以预测市场的机制对内容进行<a href="https://blog.relevant.community/announcing-the-token-curated-hot-feed-6bdd36ba2963">质押</a>；质押的收益取决于最后内容是否被精选。</p><p>这样，预测市场的结果可以直接用于产品上对内容进行排序，或者决定是否隐藏。读者一方面得以对内容进行反馈，另一方面可以通过为社群筛选内容而获得奖励。</p><h2 id="广告位-nft-作为社群共有资产">广告位 NFT 作为社群共有资产</h2><p>许多社群需要外部收入来维持运转，除了前述精选内容的付费订阅外，广告是一个常见的收入方式。当广告与社群代币挂钩时，也有助于稳定代币价格。因为对社群的注意力来自于成员的共同努力，所以广告营收应当也为社群成员所共有。我们可以将广告位作为公有 NFT，并应用适合公有产权的市场规则来进行广告投放。</p><p>Vitalik 曾经提出过用“<a href="https://vitalik.ca/general/2019/12/07/quadratic.html">二次方支付</a>”的方式来购买广告，即投放广告的人可以花少量钱占据少量时间，但继续购买时间的话，价格会以二次方形式上涨。这样的机制能够降低普通人参与的成本，让非广告商也能参与进来。这个思路的问题在于，需要确保每个账号都是一个独立个体，否则注册小号就能够绕开这个规则。但在大部分社群中人们需要假名甚至匿名，所以这种思路很难行得通。</p><p>另一种思路是，类似于 <a href="https://wiki.thespace.game/introduction-to-the-space">TheSpace.Game 实验</a>，用<a href="https://medium.com/@simondlr/what-is-harberger-tax-where-does-the-blockchain-fit-in-1329046922c6">哈伯格税</a>来交易广告 NFT。此时，广告投放者以当前标价买过来 NFT，并标以新的价格、上缴对应税收；下一个广告投放者，则需要以新的价格买下 NFT。这种机制让广告投放者与社群的利益更加一致，因为广告位 NFT 的价格也是广告者的收益。</p><p>在现实生活中，广告投放者有诸多选择，并且大都不熟悉区块链相关操作，让广告投放者直接竞标 NFT 并不现实。此时，我们只需要将上述广告投放者替换为广告代理商，由广告代理商以传统、便捷的方式与广告投放者进行对接。广告代理商可以一开始由应用的开发者承担，但因为哈伯格税的机制，广告位仍然存在充分市场竞争，仍然能够保证社群的利益。</p><h2 id="通过代币质押与销毁遏制恶意评论">通过代币质押与销毁遏制恶意评论</h2><p>公开内容的一个常见问题，是恶意的评论或者回复。这在用户数量多的情况下尤为严重，Twitter 的币圈用户中非常常见，Matters 上也有很多例子。常见的处理方式是，内容原作者可以隐藏恶意回复，或者举报恶意回复者。但这个过程非常低效，且没有增加恶意回复的成本，也无法防止恶意回复造成的损害。</p><p>一种解决的思路是，评论者需要先为自己的评论质押少量代币，而被评论的原作者有权销毁这些代币。这增加了恶意评论者的成本，同时动态确定了一个社群对“恶意”的定义和边界。理论上，原作者也可以恶意销毁这些代币，但因为这些行为是公开的，这样会使得原作者失去读者和评论者。</p><p>这个思路可以有很多变体。比如，用户可以只有一笔“评论质押”，只要这笔质押还在，就可以评论他人的内容；但任何被评论过的原作者，都可以选择销毁这笔代币，此后该用户需要重新再质押一次。这样，我们可以达到同样的博弈结果，但正常情况下用户只需要进行一次质押。</p><h2 id="以小额捐赠进行社群内容策展">以小额捐赠进行社群内容策展</h2><p>社群策展非常常见，不管是 Reddit、Hacker News、Discourse、批踢踢、豆瓣小组还是微博热搜，内容都是通过“赞”等行为筛选出来的。在加密货币和小额支付普及之后，我们可以把“赞”替换成小额捐赠，一方面让创作者有了更多的收益，另一方面通过提高“赞”的成本来提高了筛选出来的内容质量。</p><p>除了 Matters.News 外，比特币社区 <a href="https://stacker.news/">Staker News</a> 和 Gitcoin 的<a href="https://gov.gitcoin.co/t/a-quadratic-funding-powered-social-network/9462">社交部分</a>也在实验这样的内容策展方式。如果能够大规模应用起来，这会成为比 PageRank 更加通用和准确的衡量内容价值的方式。但是，直接通过捐赠行为来呈现内容很容易被攻击，因为用户可以通过两个账号相互捐赠来控制社群注意力，小团体也可以通过相互之间高频捐赠来排挤掉其他内容。一些计算方式，比如二次方配捐中的 <a href="https://ethresear.ch/t/pairwise-coordination-subsidies-a-new-quadratic-funding-design/5553">pairwise coordination subsidies</a>，可以缓解这个问题，但无法完全解决。</p><p>一个解决思路是，让捐赠和策展行为有不同的权重，对应每个账号的某种“声望”；社群中受到信任人能够累积这种声望，而虚假账号则难以获得。比如，人们可以将自己的社群代币质押给自己信任的策展人，然后将质押数量作为声望和策展权重。这需要保证质押者、策展人和作者不是同一个人；我们可以通过前述仲裁机制，销毁不合规质押的代币、对作弊行为形成威慑，但是证明两个账号是否是同一个人是非常困难的。</p><p>另一个设计策展权重的思路是，人们将自己对一个账号的信任关系以 SBT（Soulbound Token，灵魂绑定代币）的方式记录在链，在呈现内容时通过某种算法映射成策展行为的权重。比如，人们可以认证自己在现实生活中见过的另一个用户，颁发对应的 SBT；策展时考虑策展人被多少人认证过，这些人又被多少其他人认证过。SBT 还开启了许多其他内容策展的可能性，后面会再继续讨论。</p><p>内容策展也许是社群博弈当中最有价值的部分，因为直接决定了什么样的内容被更多人看到，但也是最未知的部分。内容策展的背后是一个通用而影响深远的问题：我们如何评价一个公共物品的价值，并为之提供奖励？创作公开内容为社群提供了公共物品，对它的价值评价会对应发现机制、配捐机制的方面。但一旦提供了奖励，就需要防止作弊的方式，让注意力、金钱等资源的分配是公允的。</p><h2 id="sbt-标记个人信任关系">SBT 标记个人信任关系</h2><p>如果一个系统是开放的、同时支持匿名或假名，一个人就可以生成多个账号、发起女巫攻击，使得内容策展、仲裁等机制都有很多作弊的空间。我们无法保证（或许也不应该限制？）一个人只有一个账号，但是我们可以实现去中心化的认证，让每个人去信任其他账号，不管这些地址是一个个人，还是一个机构。这种信任关系能够成为整个系统安全的基础。</p><p>现有的社交网络已经有许多这样的信任关系。我追踪一个人是对他的信任，信任他的创作值得我的注意力和时间。捐赠的意义也不仅仅在于打赏，而也是一种信任，对这篇内容价值的信任。也有许多信任关系是跨越线上线下，比如我在线下见过的朋友，便会信任他的账号不是机器人账号。</p><p>类似这样的信任关系可以在链上以 Soulbound Token（灵魂绑定代币，SBT）的形式记录：SBT 和信任一样，可以单方面授予、也可以单方面撤销，但是不能转移。这些信任关系发生在任意用户之间，包含大量不同维度的信息。一旦将信任关系记录在链上，我们就可以设计出许多不同的机制，用于解决需要信任的场景。</p><p>比如，在前述社群内容策展中，我们可以用 <a href="https://gov.gitcoin.co/t/how-soulbound-tokens-can-make-gitcoin-grants-more-pluralistic/10077">SBT 的重合度</a>来计算两个账号之间的<a href="https://ethresear.ch/t/pairwise-coordination-subsidies-a-new-quadratic-funding-design/5553">相似度</a>，并对高度相似的地址的策展行为降低权重。这一方面增加了女巫攻击的难度，另一方面让受到不同社群认可的内容更容易被发现。再比如，一个紧密、半熟人性质的社群，可以将准入门槛放在 SBT 上，要求新成员在一定数量老成员见过后，才能加入社群。对 SBT 的验证可以结合 Zero Knowledge，保证信任关系的存在，但不暴露信任链条的另一端是谁。这种机制对于社会运动会很有帮助，因为既维护成员之间的信任，也保障了隐私和安全。</p><hr />
+<h2 id="用谢林点进行仲裁">用谢林点进行仲裁</h2><p>社群中常常有对于仲裁的需求，比如内容是否属于抄袭或假新闻，一个账号是否违反了社区规程、需要受到处罚。最直观的方式是，通过某种机制产生一个被人们信任的小团体，执行仲裁的权力和义务。这种机制有许多问题，一方面任何对小团体的选举过程都有低效和参与率低的问题，另一发面仲裁团体永远无法让所有人满意，也就需要承受来自其他成员的压力。</p><p><picture><source srcset="../../../image/assets/0241ec32-59e6-4403-88d4-23b8d7fcc13a.webp" type="image/webp"><img src="../../../image/assets/0241ec32-59e6-4403-88d4-23b8d7fcc13a.png" data-placeholder-src="../../../image/assets/0241ec32-59e6-4403-88d4-23b8d7fcc13a.png" width="1400" height="932" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAANABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDVAX1K/U0ALx/fP50AOHTrmgBuB1xQA4KMdBQAvSgD/9k=);background-size:cover" alt="" /></picture><em>前 Reddit CEO Yishan Wong 关于为什么无法通过仲裁团体进行内容治理</em></p><p>如果我们可以通过博弈机制保证公允，就能够随机抽取成员参与决策，仲裁可以更加高效、结果也更容易获得共识。我们甚至可以让仲裁者的身份匿名，让决策过程不受社群舆论的压力。“谢林点”有可能能够成为这样仲裁机制的基础。</p><p>“谢林点”是指那些人们在不进行合作的情况下会共同选择的点。比如，某一天有一群人试图在纽约相遇，但又无法定下具体时间地点，大部分人可能会在中午十二点的时代广场相见；因为前者是一天的正中，后者是纽约的核心地标，分别是时间和空间上的谢林点。</p><p>我们可以据此<a href="https://blog.ethereum.org/2014/03/28/schellingcoin-a-minimal-trust-universal-data-feed">设计一种仲裁规则</a>：在质押一定代币后，仲裁参与者对一个问题的答案进行选择；与大多数人答案一致则获得奖励，与大多数人答案不一致则失去一定代币。此时，参与者倾向于选择自己认为其他人也会进行的选择，即这个问题的谢林点。</p><p>参与者之中任何形式的共同知识（<a href="https://www.lesswrong.com/tag/common-knowledge">Common Knowledge</a>），都是谢林点；如果一个问题的答案类似共同知识，便有可能<a href="https://kleros.io/whitepaper.pdf">以这种形式进行仲裁</a>。比如，当一个社区对人身攻击或者抄袭有明确定义后，便可以用于判断一篇文章是否属于人身攻击或者抄袭。一些更复杂的问题，比如假新闻，如果一个社群能够达成定义上的共识，也可能可以采用这样的机制。</p><p>在实际情况中，会出现“真理掌握在少数人手中”的情况，这些情况也是推动共识演变的机会。这样的仲裁就需要结合重新申诉的机制，让有争议的情况能够以更适合公开讨论、常常也更低效的方式<a href="https://forum.gnosis.io/t/the-ultimate-oracle/61">重新决议</a>。所以，谢林点并不会完全取代人治或者中心化决议，而是让常规决策更加去中心化。</p><p>除了针对处罚进行“负面决策”，谢林点的机制也可能用于针对奖励的“正面决策”。比如，如果一个社群每天都会选出当日的精选内容，那我们是否可以通过谢林点的机制，让社群成员轮流进行投票，选出公认的优秀作品？如果行得通的话，这样的内容精选也可以用于付费订阅，成为社群的收入。</p><h2 id="用预测市场进行内容筛选">用预测市场进行内容筛选</h2><p>仲裁机制是被动的，需要触发才能进行，同时每次仲裁需要一定的周期。而对内容的筛选，不管是推荐还是隐藏，常常都需要效率和连续。一旦有一种对内容筛选的最终方式，不管是前述谢林点仲裁机制，还是传统的中心化仲裁，我们都可以用预测市场对其进行扩展，使之更加去中心化和高效。</p><p>预测市场的思路是，当人们去押注一件还未发生的事情的结果时，每个结果的价格可以作为群体对这个结果的预测。比如，对“明天是否下雨”的预测，我们可以有“下雨币”和“不下雨币”，分别在明天下雨和不下雨的情况下能够兑换成1元钱。如果今天“下雨币”的市价为0.8元、“不下雨币”为0.2元，说明市场对明天下雨概率的预测为80%。如果“我”认为明天肯定会下雨，我就可以买入“下雨币”，期望在明天赚取差价，与此同时将“下雨币”价格推高。</p><p>因为利益相关，人们在决策时会更加慎重和理性，所以预测市场一般比问卷调查更加准确。预测市场既被用于总统大选等事件的预测，也用于公司等组织内部的去中心化决策，甚至有学者提出作为<a href="https://blog.ethereum.org/2014/08/21/introduction-futarchy">政府运作机制的一部分</a>。最近人们则预测 <a href="https://manifold.markets/mr22222222/sbf-convicted-of-a-felony-before-20">SBF 是否会进监狱</a>，<a href="https://manifold.markets/MP/will-twitter-suffer-a-major-outage">Twitter 是否会在今年宕机</a>。那我们是否可以将预测市场<a href="https://ethresear.ch/t/prediction-markets-for-content-curation-daos/1312">用于更高效的内容筛选</a>？</p><p>如果有了一种对违规内容进行仲裁的方式，我们便可以随机挑选内容应用这种机制；与此同时，任何人都可以押注任何内容的仲裁结果。比如，“我”看到一篇明显是假新闻的内容，而当前预测市场对它的预测不是100%被制裁，我就可以押注“被制裁”代币。如果这篇内容不被挑选仲裁，那我押注的代币全额返回；如果这篇内容受到仲裁，仲裁结果将决定“我”盈利还是亏损。</p><p>一旦有了对优质内容的筛选方式，就能够将预测市场用于筛选优质内容。这种筛选方式可以是前述的社群内容精选，也可以是其他的机制。比如，在 <a href="https://relevant.community/">Relevant</a> 中，具有 reputation 的用户可以对内容进行“精选”，而普通用户可以以预测市场的机制对内容进行<a href="https://blog.relevant.community/announcing-the-token-curated-hot-feed-6bdd36ba2963">质押</a>；质押的收益取决于最后内容是否被精选。</p><p>这样，预测市场的结果可以直接用于产品上对内容进行排序，或者决定是否隐藏。读者一方面得以对内容进行反馈，另一方面可以通过为社群筛选内容而获得奖励。</p><h2 id="广告位-nft-作为社群共有资产">广告位 NFT 作为社群共有资产</h2><p>许多社群需要外部收入来维持运转，除了前述精选内容的付费订阅外，广告是一个常见的收入方式。当广告与社群代币挂钩时，也有助于稳定代币价格。因为对社群的注意力来自于成员的共同努力，所以广告营收应当也为社群成员所共有。我们可以将广告位作为公有 NFT，并应用适合公有产权的市场规则来进行广告投放。</p><p>Vitalik 曾经提出过用“<a href="https://vitalik.ca/general/2019/12/07/quadratic.html">二次方支付</a>”的方式来购买广告，即投放广告的人可以花少量钱占据少量时间，但继续购买时间的话，价格会以二次方形式上涨。这样的机制能够降低普通人参与的成本，让非广告商也能参与进来。这个思路的问题在于，需要确保每个账号都是一个独立个体，否则注册小号就能够绕开这个规则。但在大部分社群中人们需要假名甚至匿名，所以这种思路很难行得通。</p><p>另一种思路是，类似于 <a href="https://wiki.thespace.game/introduction-to-the-space">TheSpace.Game 实验</a>，用<a href="https://medium.com/@simondlr/what-is-harberger-tax-where-does-the-blockchain-fit-in-1329046922c6">哈伯格税</a>来交易广告 NFT。此时，广告投放者以当前标价买过来 NFT，并标以新的价格、上缴对应税收；下一个广告投放者，则需要以新的价格买下 NFT。这种机制让广告投放者与社群的利益更加一致，因为广告位 NFT 的价格也是广告者的收益。</p><p>在现实生活中，广告投放者有诸多选择，并且大都不熟悉区块链相关操作，让广告投放者直接竞标 NFT 并不现实。此时，我们只需要将上述广告投放者替换为广告代理商，由广告代理商以传统、便捷的方式与广告投放者进行对接。广告代理商可以一开始由应用的开发者承担，但因为哈伯格税的机制，广告位仍然存在充分市场竞争，仍然能够保证社群的利益。</p><h2 id="通过代币质押与销毁遏制恶意评论">通过代币质押与销毁遏制恶意评论</h2><p>公开内容的一个常见问题，是恶意的评论或者回复。这在用户数量多的情况下尤为严重，Twitter 的币圈用户中非常常见，Matters 上也有很多例子。常见的处理方式是，内容原作者可以隐藏恶意回复，或者举报恶意回复者。但这个过程非常低效，且没有增加恶意回复的成本，也无法防止恶意回复造成的损害。</p><p>一种解决的思路是，评论者需要先为自己的评论质押少量代币，而被评论的原作者有权销毁这些代币。这增加了恶意评论者的成本，同时动态确定了一个社群对“恶意”的定义和边界。理论上，原作者也可以恶意销毁这些代币，但因为这些行为是公开的，这样会使得原作者失去读者和评论者。</p><p>这个思路可以有很多变体。比如，用户可以只有一笔“评论质押”，只要这笔质押还在，就可以评论他人的内容；但任何被评论过的原作者，都可以选择销毁这笔代币，此后该用户需要重新再质押一次。这样，我们可以达到同样的博弈结果，但正常情况下用户只需要进行一次质押。</p><h2 id="以小额捐赠进行社群内容策展">以小额捐赠进行社群内容策展</h2><p>社群策展非常常见，不管是 Reddit、Hacker News、Discourse、批踢踢、豆瓣小组还是微博热搜，内容都是通过“赞”等行为筛选出来的。在加密货币和小额支付普及之后，我们可以把“赞”替换成小额捐赠，一方面让创作者有了更多的收益，另一方面通过提高“赞”的成本来提高了筛选出来的内容质量。</p><p>除了 Matters.News 外，比特币社区 <a href="https://stacker.news/">Staker News</a> 和 Gitcoin 的<a href="https://gov.gitcoin.co/t/a-quadratic-funding-powered-social-network/9462">社交部分</a>也在实验这样的内容策展方式。如果能够大规模应用起来，这会成为比 PageRank 更加通用和准确的衡量内容价值的方式。但是，直接通过捐赠行为来呈现内容很容易被攻击，因为用户可以通过两个账号相互捐赠来控制社群注意力，小团体也可以通过相互之间高频捐赠来排挤掉其他内容。一些计算方式，比如二次方配捐中的 <a href="https://ethresear.ch/t/pairwise-coordination-subsidies-a-new-quadratic-funding-design/5553">pairwise coordination subsidies</a>，可以缓解这个问题，但无法完全解决。</p><p>一个解决思路是，让捐赠和策展行为有不同的权重，对应每个账号的某种“声望”；社群中受到信任人能够累积这种声望，而虚假账号则难以获得。比如，人们可以将自己的社群代币质押给自己信任的策展人，然后将质押数量作为声望和策展权重。这需要保证质押者、策展人和作者不是同一个人；我们可以通过前述仲裁机制，销毁不合规质押的代币、对作弊行为形成威慑，但是证明两个账号是否是同一个人是非常困难的。</p><p>另一个设计策展权重的思路是，人们将自己对一个账号的信任关系以 SBT（Soulbound Token，灵魂绑定代币）的方式记录在链，在呈现内容时通过某种算法映射成策展行为的权重。比如，人们可以认证自己在现实生活中见过的另一个用户，颁发对应的 SBT；策展时考虑策展人被多少人认证过，这些人又被多少其他人认证过。SBT 还开启了许多其他内容策展的可能性，后面会再继续讨论。</p><p>内容策展也许是社群博弈当中最有价值的部分，因为直接决定了什么样的内容被更多人看到，但也是最未知的部分。内容策展的背后是一个通用而影响深远的问题：我们如何评价一个公共物品的价值，并为之提供奖励？创作公开内容为社群提供了公共物品，对它的价值评价会对应发现机制、配捐机制的方面。但一旦提供了奖励，就需要防止作弊的方式，让注意力、金钱等资源的分配是公允的。</p><h2 id="sbt-标记个人信任关系">SBT 标记个人信任关系</h2><p>如果一个系统是开放的、同时支持匿名或假名，一个人就可以生成多个账号、发起女巫攻击，使得内容策展、仲裁等机制都有很多作弊的空间。我们无法保证（或许也不应该限制？）一个人只有一个账号，但是我们可以实现去中心化的认证，让每个人去信任其他账号，不管这些地址是一个个人，还是一个机构。这种信任关系能够成为整个系统安全的基础。</p><p>现有的社交网络已经有许多这样的信任关系。我追踪一个人是对他的信任，信任他的创作值得我的注意力和时间。捐赠的意义也不仅仅在于打赏，而也是一种信任，对这篇内容价值的信任。也有许多信任关系是跨越线上线下，比如我在线下见过的朋友，便会信任他的账号不是机器人账号。</p><p>类似这样的信任关系可以在链上以 Soulbound Token（灵魂绑定代币，SBT）的形式记录：SBT 和信任一样，可以单方面授予、也可以单方面撤销，但是不能转移。这些信任关系发生在任意用户之间，包含大量不同维度的信息。一旦将信任关系记录在链上，我们就可以设计出许多不同的机制，用于解决需要信任的场景。</p><p>比如，在前述社群内容策展中，我们可以用 <a href="https://gov.gitcoin.co/t/how-soulbound-tokens-can-make-gitcoin-grants-more-pluralistic/10077">SBT 的重合度</a>来计算两个账号之间的<a href="https://ethresear.ch/t/pairwise-coordination-subsidies-a-new-quadratic-funding-design/5553">相似度</a>，并对高度相似的地址的策展行为降低权重。这一方面增加了女巫攻击的难度，另一方面让受到不同社群认可的内容更容易被发现。再比如，一个紧密、半熟人性质的社群，可以将准入门槛放在 SBT 上，要求新成员在一定数量老成员见过后，才能加入社群。对 SBT 的验证可以结合 Zero Knowledge，保证信任关系的存在，但不暴露信任链条的另一端是谁。这种机制对于社会运动会很有帮助，因为既维护成员之间的信任，也保障了隐私和安全。</p><hr />
 <h1 id="下一步的问题">下一步的问题</h1><p>以上模式要么还处于构想阶段，要么只有小范围的实验。距离一个主要以智能合约运行的社交网络，还有很长的距离。但这些涉及社群动态各个方面的模式，说明了一个去中心化的社交网络是可能的，我们有望通过博弈替代中心，来得到一种更好的组织形态。</p><p>要让这样的组织形态成为现实，需要区分这些模式中哪些是可靠的、能够作为底层模块直接使用的，哪些是需要持续讨论和演进的顶层机制。同时，也需要识别出哪些模式适合作为首先落地的应用逻辑。“以小额捐赠作为内容策展”在 Matters.News、GitCoin、Staker News 中都有自然的需求。那么其他的机制，比如“代币质押遏制恶意评论”，或者“用预测市场进行内容筛选”，是否能在应用中让使用者体验更好，为社群成员提供价值呢？</p><p>和所有其他组织一样，去中心化社群是否可持续，取决于是否有可持续的收入来源。广告是目前内容产业的主要收入来源，但注意力经济的内在动力与优秀内容的产生有诸多矛盾；直接支付能够带来更健康的内容产业，但对于公共内容并不适用，对于大部分创作者来说门槛太高。对于一个去中心化的社群，内部又了更多经济流动的渠道，但什么样的机制能够让外部的直接支付变得更容易，不管是捐赠、付费订阅还是介于两者之间的形态？</p><hr />
 <h2 id="参考">参考</h2><p><strong>用谢林点进行仲裁</strong></p><ul>
 <li><a href="https://blog.ethereum.org/2014/03/28/schellingcoin-a-minimal-trust-universal-data-feed">Vitalik Buterin, <em>SchellingCoin: A Minimal-Trust Universal Data Feed</em></a></li>
@@ -799,7 +941,7 @@ a.comment-author:hover {
 
             
         </article>
-        <section class="moss-comments" id="moss-comments" data-built-at="2026-04-29T20:33:59.834958+00:00">
+        <section class="moss-comments" id="moss-comments" data-built-at="2026-05-07T17:21:52.513591+00:00">
   <details>
     <summary class="comments-toggle"><svg class="comments-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></svg><span>15条评论</span><svg class="comments-chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></summary>
     <div class="comment-form-slot" id="default-form-slot"><form class="comment-form" id="moss-comment-form" data-server-url="https://api.moss.host/comments" data-site-name="liu-guo.com" data-page-key="writings/distributed-web/decentralized-social-game-theory/" data-page-title="去中心化社交媒体的博弈机制">
@@ -957,22 +1099,21 @@ a.comment-author:hover {
         </ol>
       </li>
     </ol>
-    <script>"use strict";(()=>{(function(){"use strict";let e=document.getElementById("moss-comment-form");if(!e)return;let f=e.dataset.serverUrl,E=e.dataset.siteName,h=e.dataset.pageKey,g=e.dataset.pageTitle,m=document.getElementById("moss-comment-status"),n=document.getElementById("moss-comment-text"),u="moss-commenter",i=null;try{let t=JSON.parse(localStorage.getItem(u)||"{}");t.name&&(e.querySelector('[name="name"]').value=t.name),t.email&&(e.querySelector('[name="email"]').value=t.email),t.link&&(e.querySelector('[name="link"]').value=t.link)}catch{}n&&n.addEventListener("input",function(){this.style.height="auto",this.style.height=this.scrollHeight+"px"}),document.querySelectorAll(".comment-reply-btn").forEach(t=>{t.addEventListener("click",function(){let a=this.dataset.replyId,o=this.dataset.replyName;i=a;let l=document.getElementById("comment-"+a);l&&(l.querySelector(".comment-replies")??l).appendChild(e.parentNode),n&&(n.placeholder="@"+o+" ",n.focus())})}),e.addEventListener("submit",function(t){if(t.preventDefault(),!n)return;let a=n.value.trim();if(!a)return;let o=e.querySelector('[name="name"]').value.trim(),l=e.querySelector('[name="email"]').value.trim(),r=e.querySelector('[name="link"]').value.trim();if(!o){m.textContent="Name is required";return}try{localStorage.setItem(u,JSON.stringify({name:o,email:l,link:r}))}catch{}m.textContent="Submitting...",e.querySelector('[type="submit"]').disabled=!0;let d={content:a,nick:o,email:l,link:r,page_key:h,page_title:g,site_name:E};i&&(d.rid=parseInt(i,10)),fetch(f.replace(/\/+$/,"")+"/api/v2/comments",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(d)}).then(s=>{if(!s.ok)throw new Error("HTTP "+s.status);return s.json()}).then(s=>{m.textContent="Comment posted!",n.value="",i=null;let p=document.getElementById("default-form-slot");p&&p.appendChild(e);let y=document.querySelector(".comment-list");if(y){let c=document.createElement("li");c.className="comment-item",c.innerHTML='<div class="comment-header"><span class="comment-author">'+(o||"Anonymous")+'</span><time class="comment-date">just now</time></div><div class="comment-body">'+(s.content||a)+"</div>",y.appendChild(c)}setTimeout(()=>{m.textContent=""},3e3)}).catch(s=>{m.textContent="Error: "+s.message}).finally(()=>{e.querySelector('[type="submit"]').disabled=!1})})})();})();
+    <script>"use strict";(()=>{var H="moss:quote-comment";function M(e){let a=c=>{let u=c.detail;u&&e(u)};return document.addEventListener(H,a),()=>document.removeEventListener(H,a)}var v=null,S=null;function Q(e){if(v)return v;let{form:a,textarea:c,defaultSlot:u,onBeforeOpen:y}=e,l=null,t=null,o="";function f(){if(!t){l=document.createElement("div"),l.className="comment-float-backdrop",l.addEventListener("click",()=>m()),document.body.appendChild(l),t=document.createElement("div"),t.className="comment-float-shell";let i=document.createElement("div");i.className="comment-float-inner",t.appendChild(i),document.body.appendChild(t)}let n=t.querySelector(".comment-float-inner");return{shell:t,inner:n}}function h(n){if(!n)return;y?.();let{shell:i,inner:s}=f();s.innerHTML="";let r=document.createElement("div");r.className="comment-float-quote",r.textContent=n,s.appendChild(r),s.appendChild(a),o=n,l.classList.add("visible"),i.classList.add("open"),c.focus()}function m(){!t||!t.classList.contains("open")||(t.classList.remove("open"),l?.classList.remove("visible"),a.parentElement!==u&&u.appendChild(a),o="")}function E(n){n.key==="Escape"&&t?.classList.contains("open")&&m()}document.addEventListener("keydown",E);let p=M(({text:n})=>h(n));return S=()=>{document.removeEventListener("keydown",E),p(),l?.remove(),t?.remove()},v={cancel:m,getQuoteText:()=>o,getQuotePrefix:()=>q(o)},v}function q(e){if(!e)return"";let a=e.replace(/\n+$/,"");return a?a.split(`
+`).map(c=>"> "+c).join(`
+`)+`
+
+`:""}(function(){"use strict";let e=document.getElementById("moss-comment-form");if(!e)return;let a=e.dataset.serverUrl,c=e.dataset.siteName,u=e.dataset.pageKey,y=e.dataset.pageTitle,l=document.getElementById("moss-comment-status"),t=document.getElementById("moss-comment-text"),o=document.getElementById("default-form-slot"),f="moss-commenter",h=t?.placeholder??"",m=null;function E(){m=null,t&&(t.placeholder=h),o&&e.parentElement!==o&&o.appendChild(e)}let p=t&&o?Q({form:e,textarea:t,defaultSlot:o,onBeforeOpen:E}):null;try{let n=JSON.parse(localStorage.getItem(f)||"{}");n.name&&(e.querySelector('[name="name"]').value=n.name),n.email&&(e.querySelector('[name="email"]').value=n.email),n.link&&(e.querySelector('[name="link"]').value=n.link)}catch{}t&&t.addEventListener("input",function(){this.style.height="auto",this.style.height=this.scrollHeight+"px"}),document.querySelectorAll(".comment-reply-btn").forEach(n=>{n.addEventListener("click",function(){p?.cancel();let i=this.dataset.replyId,s=this.dataset.replyName;m=i;let r=document.getElementById("comment-"+i);r&&o&&(r.querySelector(".comment-replies")??r).appendChild(o),t&&(t.placeholder="@"+s+" ",t.focus())})}),e.addEventListener("submit",function(n){if(n.preventDefault(),!t)return;let i=t.value.trim();if(!i)return;let s=e.querySelector('[name="name"]').value.trim(),r=e.querySelector('[name="email"]').value.trim(),T=e.querySelector('[name="link"]').value.trim();if(!s){l.textContent="Name is required";return}try{localStorage.setItem(f,JSON.stringify({name:s,email:r,link:T}))}catch{}let L=(p?.getQuotePrefix()??"")+i;l.textContent="Submitting...",e.querySelector('[type="submit"]').disabled=!0;let C={content:L,nick:s,email:r,link:T,page_key:u,page_title:y,site_name:c};m&&(C.rid=parseInt(m,10)),fetch(a.replace(/\/+$/,"")+"/api/v2/comments",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(C)}).then(d=>{if(!d.ok)throw new Error("HTTP "+d.status);return d.json()}).then(d=>{l.textContent="Comment posted!",t.value="",p?p.cancel():o&&e.parentElement!==o&&o.appendChild(e),m=null;let x=document.querySelector(".comment-list");if(x){let g=document.createElement("li");g.className="comment-item",g.innerHTML='<div class="comment-header"><span class="comment-author">'+(s||"Anonymous")+'</span><time class="comment-date">just now</time></div><div class="comment-body">'+(d.content||L)+"</div>",x.appendChild(g)}setTimeout(()=>{l.textContent=""},3e3)}).catch(d=>{l.textContent="Error: "+d.message}).finally(()=>{e.querySelector('[type="submit"]').disabled=!1})})})();})();
 </script>
   </details>
 </section>
+        
     </main>
 
     <footer class="container">
-    <div class="footer-content">
-        <div class="footer-left">
-            <a href="/links/" class="footer-link">友链</a>
-            <a href="/feed.xml" class="footer-link" data-external>RSS</a>
-        </div>
-        <div class="footer-right">
-            <form action="https://buttondown.com/api/emails/embed-subscribe/liuguo" method="post" class="footer-subscribe-form"><input type="email" name="email" class="moss-input" placeholder="邮箱" required /><input type="hidden" value="1" name="embed" /><button type="submit" class="moss-btn">订阅</button></form>
-        </div>
-    </div>
+        
+        <p class="footer-default"><a href="/links/" class="footer-link">友链</a> · <a href="/feed.xml" class="footer-link" data-external>RSS</a></p>
+        <form action="https://buttondown.com/api/emails/embed-subscribe/liuguo" method="post" class="moss-subscribe-form" data-position="footer"><input type="email" name="email" class="moss-input" placeholder="邮箱" required /><input type="hidden" value="1" name="embed" /><button type="submit" class="moss-btn">订阅</button></form>
 </footer>
 
     <div class="moss-colophon">
@@ -985,8 +1126,9 @@ a.comment-author:hover {
         </a>
     </div>
 
-    <script src="/js/theme.js?v=55cfb8c997a6f4b4"></script>
+    <script src="/js/theme.js?v=2cdc2065ab56e04a"></script>
     <script src="/js/preview.js"></script>
+    <script src="/js/thumb-swap.js"></script>
     
 </body>
 </html>

@@ -19,6 +19,7 @@
     <meta property="article:tag" content="历史">
     <meta property="article:tag" content="书摘">
     <link rel="canonical" href="https://liu-guo.com/writings/reviews/buddhism-in-chinese-history/">
+    
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="从融合到消散：两千年间的中国佛教">
     <meta name="twitter:description" content="《中国历史中的佛教》笔记">
@@ -46,7 +47,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16.png">
     <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml">
     <script data-goatcounter="https://guo.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-    <link rel="stylesheet" href="/style.css?v=83b6d32641fd5485">
+    <link rel="stylesheet" href="/style.css?v=3abb9ff9e247504f">
     <script data-goatcounter="https://guo.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 <style class="moss-review-style">/* Review plugin — header and colophon styles
  * Uses moss design tokens. Works in light and dark mode.
@@ -223,15 +224,33 @@
    - ResultFirst 2026 trends — "stripping away non-essential frills"
    ========================================================================== */
 
-/* Comment Section — width controlled by site theme (main > .moss-comments) */
-.moss-comments {
+/* Comment Section — width controlled by site theme.
+   The comment toggle becomes the top edge of the footer chrome: it sits with
+   generous breathing room below the article body, then the footer divider
+   sits a `space-md` (1.5rem) gap below the toggle — mirroring the `space-md`
+   gap below the divider before the footer items.
+   Selector specificity (main >) is required to win over site.css's
+   `main > .moss-comments { margin: 0 auto }` rule, which would otherwise
+   reset margin-top to 0 and erase the breathing room. */
+main > .moss-comments {
   margin-top: 6rem;
 }
 
-/* Divider above comment section */
-.moss-comments > details {
-  padding-top: var(--moss-space-lg, 2rem);
-  border-top: 1px solid var(--moss-border-light, #e6e2db);
+/* When .moss-comments is present, retune the gap between main and the footer
+   divider so the toggle sits as part of the footer chrome:
+     - `main { padding-bottom: 60px }` — drop entirely; .moss-comments owns
+       its own top breathing room (margin-top above) and the toggle should
+       sit directly above the footer's standoff.
+     - `footer.container { margin-top: 2xl }` — replace with `space-md` so
+       the toggle→divider gap mirrors the divider→items gap (also `space-md`,
+       see `footer.container::before { margin-bottom: var(--moss-space-md) }`
+       in site.css). Footer items are visually heavier (larger font), so an
+       optically symmetric gap settles to numerically equal here. */
+main:has(> .moss-comments) {
+  padding-bottom: 0;
+}
+main:has(.moss-comments) + footer.container {
+  margin-top: var(--moss-space-md);
 }
 
 /* ==========================================================================
@@ -704,33 +723,159 @@ a.comment-author:hover {
   background: rgba(0, 0, 0, 0.35);
 }
 </style>
-<style class="moss-email-style">/* Email subscribe form — injected by email plugin enhance hook */
-.footer-subscribe-form {
-  display: flex;
-  gap: var(--moss-space-sm);
-  align-items: baseline;
-  max-width: 24rem;
-}
-
-.footer-subscribe-form .moss-input {
-  flex: 1;
-}
-
-.footer-subscribe-form .moss-btn {
-  font-size: inherit;
-}
-
-@media (max-width: 48rem) {
-  .footer-subscribe-form {
-    max-width: none;
+<style class="moss-email-style">@layer shortcodes {
+  /* Email subscribe form — injected by email plugin enhance hook.
+     The footer form sits in slot:footer-end, AFTER the default link list
+     (design B, 2026-05-06). Spacing between the form and the link list
+     above it is provided by the flex `gap` on `footer.container` when
+     the default-shape footer rule kicks in (see site.css
+     `footer.container:has(> p.footer-default + ...)`). No margin-top
+     here — it would compound the gap when wrapped, and the side-by-side
+     layout doesn't want one at all. */
+  .moss-subscribe-form[data-position="footer"] {
+    display: flex;
+    gap: var(--moss-space-sm);
+    align-items: baseline;
+    max-width: 24rem;
   }
 
-  .footer-subscribe-form .moss-input {
+  .moss-subscribe-form[data-position="footer"] .moss-input {
+    flex: 1;
+  }
+
+  .moss-subscribe-form[data-position="footer"] .moss-btn {
+    font-size: inherit;
+  }
+
+  @media (max-width: 48rem) {
+    .moss-subscribe-form[data-position="footer"] {
+      max-width: none;
+    }
+
+    .moss-subscribe-form[data-position="footer"] .moss-input {
+      flex: 1;
+      min-width: 0;
+    }
+  }
+
+  /* Inline `:::subscribe` shortcode wrapper.
+     Card-styled container for in-page subscribe forms. Token-only; no
+     hardcoded colors. See spec
+     docs/superpowers/specs/2026-04-30-subscribe-shortcode-design.md. */
+  .moss-subscribe {
+    max-width: 32rem;
+    margin: var(--moss-space-lg) 0;
+    padding: var(--moss-space-md) var(--moss-space-lg);
+    border: 1px solid var(--moss-border-light);
+    border-radius: var(--moss-radius-md, 0.5rem);
+  }
+
+  .moss-subscribe-description {
+    margin: 0 0 var(--moss-space-md) 0;
+    color: var(--moss-color-muted);
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  .moss-subscribe-form[data-position="inline"] {
+    display: flex;
+    gap: var(--moss-space-sm);
+    align-items: baseline;
+  }
+
+  .moss-subscribe-form[data-position="inline"] .moss-input {
     flex: 1;
     min-width: 0;
   }
+
+  @media (max-width: 32rem) {
+    .moss-subscribe-form[data-position="inline"] {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .moss-subscribe-form[data-position="inline"] .moss-btn {
+      width: 100%;
+    }
+  }
 }
 </style>
+<style class="moss-email-style">@layer shortcodes {
+  /* Email subscribe form — injected by email plugin enhance hook.
+     The footer form sits in slot:footer-end, AFTER the default link list
+     (design B, 2026-05-06). Spacing between the form and the link list
+     above it is provided by the flex `gap` on `footer.container` when
+     the default-shape footer rule kicks in (see site.css
+     `footer.container:has(> p.footer-default + ...)`). No margin-top
+     here — it would compound the gap when wrapped, and the side-by-side
+     layout doesn't want one at all. */
+  .moss-subscribe-form[data-position="footer"] {
+    display: flex;
+    gap: var(--moss-space-sm);
+    align-items: baseline;
+    max-width: 24rem;
+  }
+
+  .moss-subscribe-form[data-position="footer"] .moss-input {
+    flex: 1;
+  }
+
+  .moss-subscribe-form[data-position="footer"] .moss-btn {
+    font-size: inherit;
+  }
+
+  @media (max-width: 48rem) {
+    .moss-subscribe-form[data-position="footer"] {
+      max-width: none;
+    }
+
+    .moss-subscribe-form[data-position="footer"] .moss-input {
+      flex: 1;
+      min-width: 0;
+    }
+  }
+
+  /* Inline `:::subscribe` shortcode wrapper.
+     Card-styled container for in-page subscribe forms. Token-only; no
+     hardcoded colors. See spec
+     docs/superpowers/specs/2026-04-30-subscribe-shortcode-design.md. */
+  .moss-subscribe {
+    max-width: 32rem;
+    margin: var(--moss-space-lg) 0;
+    padding: var(--moss-space-md) var(--moss-space-lg);
+    border: 1px solid var(--moss-border-light);
+    border-radius: var(--moss-radius-md, 0.5rem);
+  }
+
+  .moss-subscribe-description {
+    margin: 0 0 var(--moss-space-md) 0;
+    color: var(--moss-color-muted);
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  .moss-subscribe-form[data-position="inline"] {
+    display: flex;
+    gap: var(--moss-space-sm);
+    align-items: baseline;
+  }
+
+  .moss-subscribe-form[data-position="inline"] .moss-input {
+    flex: 1;
+    min-width: 0;
+  }
+
+  @media (max-width: 32rem) {
+    .moss-subscribe-form[data-position="inline"] {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .moss-subscribe-form[data-position="inline"] .moss-btn {
+      width: 100%;
+    }
+  }
+}
+</style><script class="moss-subscribe-script">"use strict";(()=>{var b={en:{placeholder:"your@email.com",label:"Subscribe",checkEmail:"Check your email to confirm.",alreadySubscribed:"You're already subscribed.",error:"Something went wrong. Try again?"},"zh-hans":{placeholder:"\u90AE\u7BB1",label:"\u8BA2\u9605",checkEmail:"\u8BF7\u5728\u90AE\u7BB1\u4E2D\u786E\u8BA4\u8BA2\u9605",alreadySubscribed:"\u4F60\u5DF2\u8BA2\u9605\u3002",error:"\u51FA\u9519\u4E86\uFF0C\u8BF7\u91CD\u8BD5\u3002"},"zh-hant":{placeholder:"\u96FB\u90F5",label:"\u8A02\u95B1",checkEmail:"\u8ACB\u5728\u96FB\u90F5\u4E2D\u78BA\u8A8D\u8A02\u95B1",alreadySubscribed:"\u4F60\u5DF2\u8A02\u95B1\u3002",error:"\u51FA\u932F\u4E86\uFF0C\u8ACB\u91CD\u8A66\u3002"}};function h(e){let t=(e??"").toLowerCase();return t.startsWith("zh-hant")||t.startsWith("zh-tw")||t.startsWith("zh-hk")||t.startsWith("zh-mo")?"zh-hant":t.startsWith("zh")?"zh-hans":"en"}var f=4e3,l=new WeakMap;function g(e){if(e.dataset.mossHydrated==="true")return;let t=e.querySelector('input[type="email"]'),n=e.querySelector('button[type="submit"]');if(!t||!n)return;e.dataset.mossHydrated="true";let r=h(document.documentElement.lang),a=b[r];if(t.placeholder=a.placeholder,!(e.dataset.position==="inline")){let s=n.querySelector(".moss-btn__label");s&&(s.textContent=a.label)}e.addEventListener("submit",async s=>{if(s.preventDefault(),e.dataset.state==="loading")return;let u=(t.value??"").trim();if(!u){t.focus();return}T(e,n),i(e,"loading");try{let d=await fetch(e.action,{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},body:JSON.stringify({email:u})}),S=await d.json().catch(()=>({}));if(!d.ok){c(e,"error",a),i(e,"error");return}let E=S.alreadySubscribed?"already-subscribed":"check-email";c(e,E,a),i(e,"success"),H(e,t)}catch{c(e,"error",a),i(e,"error")}}),n.addEventListener("click",s=>{e.dataset.state==="success"&&(s.preventDefault(),p(e,t))})}function i(e,t){e.dataset.state=t}function c(e,t,n){let r=e.querySelector(".moss-subscribe-status");if(!r)return;r.querySelectorAll("[data-copy]").forEach(o=>{o.dataset.copy===t?(o.hidden=!1,o.textContent=L(t,n)):o.hidden=!0}),r.dataset.state=t}function L(e,t){switch(e){case"check-email":return t.checkEmail;case"already-subscribed":return t.alreadySubscribed;case"error":return t.error}}function T(e,t){let n=t.parentElement;if(!n||!n.classList.contains("moss-subscribe-btn-slot")||n.style.width)return;let r=t.offsetWidth;r<=0||(n.style.width=`${r}px`)}function H(e,t){y(e);let n=window.setTimeout(()=>p(e,t),f);l.set(e,n)}function y(e){let t=l.get(e);t!==void 0&&(clearTimeout(t),l.delete(e))}function p(e,t){y(e),e.isConnected&&(t.value="",i(e,"idle"))}function m(){document.querySelectorAll('form.moss-subscribe-form[data-moss-hosted="true"]').forEach(g)}typeof document<"u"&&(document.readyState==="loading"?document.addEventListener("DOMContentLoaded",m):m());})();
+</script>
 </head>
 <body class="">
     <header>
@@ -755,7 +900,7 @@ a.comment-author:hover {
 </footer>
             <h1 class="moss-article-title">从融合到消散：两千年间的中国佛教</h1>
 <div class="date-line"><span class="date">2025 · 5 · 8</span><div class="font-anchor"><button class="font-trigger size-std" aria-label="Reading preferences" aria-expanded="false" type="button"></button><div class="font-pill" id="fontPill"><button data-scale="small" aria-label="Small text"></button><button data-scale="" class="active" aria-label="Standard text"></button><button data-scale="large" aria-label="Large text"></button><button data-scale="xlarge" aria-label="Extra large text"></button></div></div></div>
-<p>最近在<a class="wikilink" href="../../nyc-dharma-doors/yoga-in-tibetan-temple/">西藏之家</a>的图书馆里，找到了一本小书，Arthur Wright（芮沃寿）的 <strong>Buddhism in Chinese History</strong>（《中国历史中的佛教》）。芮沃寿是耶鲁著名的历史学家，与哈佛的费正清同为美国学术界中国研究的奠基人。</p><p>这本小书出版于1957年，以佛教为线索串起了中国历史上的文化变迁，有许多有意思的观点和视角。这本书回应了我一段时间以来的两个疑问。</p><p>在美国，我遇到许多研究佛教的人，也看见佛教逐渐融入城市居民的心智，成为身心灵文化的一部分。追溯其短短历史，我发美国的佛教影响多来自于日本、韩国、流亡藏人、越南和缅甸。历史上这些地区的佛教要么直接源于中国，要么极大受到了中国佛教、特别是禅宗的影响。但在美国文化中，我却很少看见中国佛教的踪迹。</p><p>我虽然知道在近现代的中国，佛教和许多其他宗教、传统文化一样，遭受了毁灭性打击。但是，我依然能从当下中国的文字、故事、审美与世界观中，看到佛教的巨大影响。所以我不禁好奇，从五十年代到八十年代这三十年间，佛学不断从亚洲传往西方之时，中国的流派作为鼻祖，为何缺席。</p><p>芮沃寿的梳理展示了，近现代中国佛教组织的衰落，是八世纪以来漫长过程的一部分。这本书出版时，中国还没经历文革，更没经历现代的网格化管理，芮沃寿就已经断言，我们见证着中国佛教作为有组织宗教的余晖。这余晖，正对应着佛教组织和思想从东亚、东南亚其他国家的不断西行和东渐。而在中国，正如这本书详述的历程，佛教已经在漫长历史中裂解、重组，成为了中国文化的有机部分，但无法再作为独立的宗教组织存在。</p><p>另一个更宏大的问题，是我注意到在中国历史中，诞生了最多思想的年代，往往是那些政权割据的时期。典型如春秋时期百家争鸣，诸子在政权的相互制衡之中打开了思想和文化的缝隙。而在几千年的历史中，对天下统一的渴望一直延续着，形成了对创新和多样性的压制。这样的话题，在依然以大一统为主流的中文世界中，难以看见讨论。</p><p>这个悖论，也正是芮沃寿梳理中国佛教历史后得出的结论。芮沃寿认为，中国作为一个文化整体只是在遇到系统性的危机时，才会展现出对新思想的开放性，不管是春秋、战国，还是佛教扎根的东汉、三国。中国作为一个有着极强自我认同的文化，一直持续将自己重塑为一个完整、自洽的整体。只有当这个自洽被打破时，困局产生的裂缝才会成为新思想的空间；而在困局之后，对这个自洽整体的重塑又再次开始。以佛教作为例子，芮沃寿展现了这种重塑过程的肌理。</p><p>也许其他有强烈自我认同感的文化，甚至个人，都是类似的：危机与困顿，往往是创新和成长的契机。文化的边界永远是模糊和流动的，危机与平顺，则成为了边界流动的节律。近代中国面临的危机，也正是这样的成长契机，使得自然科学、社会科学、民主观念、以及共产主义能够传入并扎根。而当下中国重回世界强国之列，也许意味着这不再是新思想扎根和发展的时代，而是重塑自洽整体的时代。不过，正如芮沃寿所言，历史不会以一种可预测的方式重复。</p><p>北京大学出版社曾在2017年出版了中译本《中国历史中的佛教》，但因为我手边并没有该译本，以下摘抄中未能参考，但通过其他资料查证了相应史料。</p><p><picture><source srcset="../../../image/assets/2de0c228-36c8-47ec-9f22-000af45b1943.webp" type="image/webp"><img src="../../../image/assets/2de0c228-36c8-47ec-9f22-000af45b1943.jpg" data-placeholder-src="../../../image/assets/2de0c228-36c8-47ec-9f22-000af45b1943.jpg" width="1366" height="2056" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAAUAA0DAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCGXyobeQht8p+8enfoKQFQ7SAQv6UAX5IgvnpdMoL8x8ZI/H+lAGdudBsI6diOlAFi/dmkDEnIwQaACdFAjcjczoGYn1oA/9k=);background-size:cover" alt="" /></picture></p><h2 id="一世纪：扎根与发展">一世纪：扎根与发展</h2><p>芮沃寿在分析中国历史时借用了罗伯特·雷德菲尔德的理论，将精英阶层与农民阶层分开看待。佛教传入的过程，可以看成是这两层文化之间的动态。</p><blockquote>
+<p>最近在<a class="wikilink" href="../../nyc-dharma/yoga-in-tibetan-temple/">西藏之家</a>的图书馆里，找到了一本小书，Arthur Wright（芮沃寿）的 <strong>Buddhism in Chinese History</strong>（《中国历史中的佛教》）。芮沃寿是耶鲁著名的历史学家，与哈佛的费正清同为美国学术界中国研究的奠基人。</p><p>这本小书出版于1957年，以佛教为线索串起了中国历史上的文化变迁，有许多有意思的观点和视角。这本书回应了我一段时间以来的两个疑问。</p><p>在美国，我遇到许多研究佛教的人，也看见佛教逐渐融入城市居民的心智，成为身心灵文化的一部分。追溯其短短历史，我发美国的佛教影响多来自于日本、韩国、流亡藏人、越南和缅甸。历史上这些地区的佛教要么直接源于中国，要么极大受到了中国佛教、特别是禅宗的影响。但在美国文化中，我却很少看见中国佛教的踪迹。</p><p>我虽然知道在近现代的中国，佛教和许多其他宗教、传统文化一样，遭受了毁灭性打击。但是，我依然能从当下中国的文字、故事、审美与世界观中，看到佛教的巨大影响。所以我不禁好奇，从五十年代到八十年代这三十年间，佛学不断从亚洲传往西方之时，中国的流派作为鼻祖，为何缺席。</p><p>芮沃寿的梳理展示了，近现代中国佛教组织的衰落，是八世纪以来漫长过程的一部分。这本书出版时，中国还没经历文革，更没经历现代的网格化管理，芮沃寿就已经断言，我们见证着中国佛教作为有组织宗教的余晖。这余晖，正对应着佛教组织和思想从东亚、东南亚其他国家的不断西行和东渐。而在中国，正如这本书详述的历程，佛教已经在漫长历史中裂解、重组，成为了中国文化的有机部分，但无法再作为独立的宗教组织存在。</p><p>另一个更宏大的问题，是我注意到在中国历史中，诞生了最多思想的年代，往往是那些政权割据的时期。典型如春秋时期百家争鸣，诸子在政权的相互制衡之中打开了思想和文化的缝隙。而在几千年的历史中，对天下统一的渴望一直延续着，形成了对创新和多样性的压制。这样的话题，在依然以大一统为主流的中文世界中，难以看见讨论。</p><p>这个悖论，也正是芮沃寿梳理中国佛教历史后得出的结论。芮沃寿认为，中国作为一个文化整体只是在遇到系统性的危机时，才会展现出对新思想的开放性，不管是春秋、战国，还是佛教扎根的东汉、三国。中国作为一个有着极强自我认同的文化，一直持续将自己重塑为一个完整、自洽的整体。只有当这个自洽被打破时，困局产生的裂缝才会成为新思想的空间；而在困局之后，对这个自洽整体的重塑又再次开始。以佛教作为例子，芮沃寿展现了这种重塑过程的肌理。</p><p>也许其他有强烈自我认同感的文化，甚至个人，都是类似的：危机与困顿，往往是创新和成长的契机。文化的边界永远是模糊和流动的，危机与平顺，则成为了边界流动的节律。近代中国面临的危机，也正是这样的成长契机，使得自然科学、社会科学、民主观念、以及共产主义能够传入并扎根。而当下中国重回世界强国之列，也许意味着这不再是新思想扎根和发展的时代，而是重塑自洽整体的时代。不过，正如芮沃寿所言，历史不会以一种可预测的方式重复。</p><p>北京大学出版社曾在2017年出版了中译本《中国历史中的佛教》，但因为我手边并没有该译本，以下摘抄中未能参考，但通过其他资料查证了相应史料。</p><p><picture><source srcset="../../../image/assets/2de0c228-36c8-47ec-9f22-000af45b1943.webp" type="image/webp"><img src="../../../image/assets/2de0c228-36c8-47ec-9f22-000af45b1943.jpg" data-placeholder-src="../../../image/assets/2de0c228-36c8-47ec-9f22-000af45b1943.jpg" width="1366" height="2056" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAAUAA0DAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCGXyobeQht8p+8enfoKQFQ7SAQv6UAX5IgvnpdMoL8x8ZI/H+lAGdudBsI6diOlAFi/dmkDEnIwQaACdFAjcjczoGYn1oA/9k=);background-size:cover" alt="" /></picture></p><h2 id="一世纪：扎根与发展">一世纪：扎根与发展</h2><p>芮沃寿在分析中国历史时借用了罗伯特·雷德菲尔德的理论，将精英阶层与农民阶层分开看待。佛教传入的过程，可以看成是这两层文化之间的动态。</p><blockquote>
 <p>这两个社会阶层的文化分别可称作“大传统”和“小传统”。前者是识字的、理性的、自觉的，涵盖了艺术、哲学和制度形式中社会理想的继承与发展。后者则是不自觉、不批判的民间传统，包含世代相传的行为和信仰规范。</p></blockquote>
 <p>佛教最初的传入是在汉朝。东汉、三国、西晋（公元65-317）是佛教传入的准备时期，汉末开始的困局变成了新思想传入的契机。</p><blockquote>
 <p>随着农民经济危机的加剧，社会和政治体系的衰败显而易见，出现了三种反应：围绕皇权的斗争加剧；知识分子诊断时弊并开出对策；农民阶层的流离和起义。这三种反应集中出现于世人普遍绝望的汉末和继任的软弱政权，并深刻地动摇了社会的基础，为外来思想和制度的传播提供了肥沃的土壤。</p></blockquote>
@@ -812,7 +957,7 @@ a.comment-author:hover {
 
             
         </article>
-        <section class="moss-comments" id="moss-comments" data-built-at="2026-04-29T20:33:59.835374+00:00">
+        <section class="moss-comments" id="moss-comments" data-built-at="2026-05-07T17:21:52.514708+00:00">
   <details>
     <summary class="comments-toggle"><svg class="comments-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></svg><span>1条评论</span><svg class="comments-chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></summary>
     <div class="comment-form-slot" id="default-form-slot"><form class="comment-form" id="moss-comment-form" data-server-url="https://api.moss.host/comments" data-site-name="liu-guo.com" data-page-key="writings/reviews/buddhism-in-chinese-history/" data-page-title="从融合到消散：两千年间的中国佛教">
@@ -836,22 +981,21 @@ a.comment-author:hover {
         <div class="comment-body"><p>在美国，我遇到许多研究佛教的人，也看见佛教逐渐融入城市居民的心智，成为身心灵文化的一部分。追溯其短短历史，我发美国的佛教影响多来自于日本</p><p>最后一句，当为~我发现~少了一个~现~字</p></div>
       </li>
     </ol>
-    <script>"use strict";(()=>{(function(){"use strict";let e=document.getElementById("moss-comment-form");if(!e)return;let f=e.dataset.serverUrl,E=e.dataset.siteName,h=e.dataset.pageKey,g=e.dataset.pageTitle,m=document.getElementById("moss-comment-status"),n=document.getElementById("moss-comment-text"),u="moss-commenter",i=null;try{let t=JSON.parse(localStorage.getItem(u)||"{}");t.name&&(e.querySelector('[name="name"]').value=t.name),t.email&&(e.querySelector('[name="email"]').value=t.email),t.link&&(e.querySelector('[name="link"]').value=t.link)}catch{}n&&n.addEventListener("input",function(){this.style.height="auto",this.style.height=this.scrollHeight+"px"}),document.querySelectorAll(".comment-reply-btn").forEach(t=>{t.addEventListener("click",function(){let a=this.dataset.replyId,o=this.dataset.replyName;i=a;let l=document.getElementById("comment-"+a);l&&(l.querySelector(".comment-replies")??l).appendChild(e.parentNode),n&&(n.placeholder="@"+o+" ",n.focus())})}),e.addEventListener("submit",function(t){if(t.preventDefault(),!n)return;let a=n.value.trim();if(!a)return;let o=e.querySelector('[name="name"]').value.trim(),l=e.querySelector('[name="email"]').value.trim(),r=e.querySelector('[name="link"]').value.trim();if(!o){m.textContent="Name is required";return}try{localStorage.setItem(u,JSON.stringify({name:o,email:l,link:r}))}catch{}m.textContent="Submitting...",e.querySelector('[type="submit"]').disabled=!0;let d={content:a,nick:o,email:l,link:r,page_key:h,page_title:g,site_name:E};i&&(d.rid=parseInt(i,10)),fetch(f.replace(/\/+$/,"")+"/api/v2/comments",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(d)}).then(s=>{if(!s.ok)throw new Error("HTTP "+s.status);return s.json()}).then(s=>{m.textContent="Comment posted!",n.value="",i=null;let p=document.getElementById("default-form-slot");p&&p.appendChild(e);let y=document.querySelector(".comment-list");if(y){let c=document.createElement("li");c.className="comment-item",c.innerHTML='<div class="comment-header"><span class="comment-author">'+(o||"Anonymous")+'</span><time class="comment-date">just now</time></div><div class="comment-body">'+(s.content||a)+"</div>",y.appendChild(c)}setTimeout(()=>{m.textContent=""},3e3)}).catch(s=>{m.textContent="Error: "+s.message}).finally(()=>{e.querySelector('[type="submit"]').disabled=!1})})})();})();
+    <script>"use strict";(()=>{var H="moss:quote-comment";function M(e){let a=c=>{let u=c.detail;u&&e(u)};return document.addEventListener(H,a),()=>document.removeEventListener(H,a)}var v=null,S=null;function Q(e){if(v)return v;let{form:a,textarea:c,defaultSlot:u,onBeforeOpen:y}=e,l=null,t=null,o="";function f(){if(!t){l=document.createElement("div"),l.className="comment-float-backdrop",l.addEventListener("click",()=>m()),document.body.appendChild(l),t=document.createElement("div"),t.className="comment-float-shell";let i=document.createElement("div");i.className="comment-float-inner",t.appendChild(i),document.body.appendChild(t)}let n=t.querySelector(".comment-float-inner");return{shell:t,inner:n}}function h(n){if(!n)return;y?.();let{shell:i,inner:s}=f();s.innerHTML="";let r=document.createElement("div");r.className="comment-float-quote",r.textContent=n,s.appendChild(r),s.appendChild(a),o=n,l.classList.add("visible"),i.classList.add("open"),c.focus()}function m(){!t||!t.classList.contains("open")||(t.classList.remove("open"),l?.classList.remove("visible"),a.parentElement!==u&&u.appendChild(a),o="")}function E(n){n.key==="Escape"&&t?.classList.contains("open")&&m()}document.addEventListener("keydown",E);let p=M(({text:n})=>h(n));return S=()=>{document.removeEventListener("keydown",E),p(),l?.remove(),t?.remove()},v={cancel:m,getQuoteText:()=>o,getQuotePrefix:()=>q(o)},v}function q(e){if(!e)return"";let a=e.replace(/\n+$/,"");return a?a.split(`
+`).map(c=>"> "+c).join(`
+`)+`
+
+`:""}(function(){"use strict";let e=document.getElementById("moss-comment-form");if(!e)return;let a=e.dataset.serverUrl,c=e.dataset.siteName,u=e.dataset.pageKey,y=e.dataset.pageTitle,l=document.getElementById("moss-comment-status"),t=document.getElementById("moss-comment-text"),o=document.getElementById("default-form-slot"),f="moss-commenter",h=t?.placeholder??"",m=null;function E(){m=null,t&&(t.placeholder=h),o&&e.parentElement!==o&&o.appendChild(e)}let p=t&&o?Q({form:e,textarea:t,defaultSlot:o,onBeforeOpen:E}):null;try{let n=JSON.parse(localStorage.getItem(f)||"{}");n.name&&(e.querySelector('[name="name"]').value=n.name),n.email&&(e.querySelector('[name="email"]').value=n.email),n.link&&(e.querySelector('[name="link"]').value=n.link)}catch{}t&&t.addEventListener("input",function(){this.style.height="auto",this.style.height=this.scrollHeight+"px"}),document.querySelectorAll(".comment-reply-btn").forEach(n=>{n.addEventListener("click",function(){p?.cancel();let i=this.dataset.replyId,s=this.dataset.replyName;m=i;let r=document.getElementById("comment-"+i);r&&o&&(r.querySelector(".comment-replies")??r).appendChild(o),t&&(t.placeholder="@"+s+" ",t.focus())})}),e.addEventListener("submit",function(n){if(n.preventDefault(),!t)return;let i=t.value.trim();if(!i)return;let s=e.querySelector('[name="name"]').value.trim(),r=e.querySelector('[name="email"]').value.trim(),T=e.querySelector('[name="link"]').value.trim();if(!s){l.textContent="Name is required";return}try{localStorage.setItem(f,JSON.stringify({name:s,email:r,link:T}))}catch{}let L=(p?.getQuotePrefix()??"")+i;l.textContent="Submitting...",e.querySelector('[type="submit"]').disabled=!0;let C={content:L,nick:s,email:r,link:T,page_key:u,page_title:y,site_name:c};m&&(C.rid=parseInt(m,10)),fetch(a.replace(/\/+$/,"")+"/api/v2/comments",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(C)}).then(d=>{if(!d.ok)throw new Error("HTTP "+d.status);return d.json()}).then(d=>{l.textContent="Comment posted!",t.value="",p?p.cancel():o&&e.parentElement!==o&&o.appendChild(e),m=null;let x=document.querySelector(".comment-list");if(x){let g=document.createElement("li");g.className="comment-item",g.innerHTML='<div class="comment-header"><span class="comment-author">'+(s||"Anonymous")+'</span><time class="comment-date">just now</time></div><div class="comment-body">'+(d.content||L)+"</div>",x.appendChild(g)}setTimeout(()=>{l.textContent=""},3e3)}).catch(d=>{l.textContent="Error: "+d.message}).finally(()=>{e.querySelector('[type="submit"]').disabled=!1})})})();})();
 </script>
   </details>
 </section>
+        
     </main>
 
     <footer class="container">
-    <div class="footer-content">
-        <div class="footer-left">
-            <a href="/links/" class="footer-link">友链</a>
-            <a href="/feed.xml" class="footer-link" data-external>RSS</a>
-        </div>
-        <div class="footer-right">
-            <form action="https://buttondown.com/api/emails/embed-subscribe/liuguo" method="post" class="footer-subscribe-form"><input type="email" name="email" class="moss-input" placeholder="邮箱" required /><input type="hidden" value="1" name="embed" /><button type="submit" class="moss-btn">订阅</button></form>
-        </div>
-    </div>
+        
+        <p class="footer-default"><a href="/links/" class="footer-link">友链</a> · <a href="/feed.xml" class="footer-link" data-external>RSS</a></p>
+        <form action="https://buttondown.com/api/emails/embed-subscribe/liuguo" method="post" class="moss-subscribe-form" data-position="footer"><input type="email" name="email" class="moss-input" placeholder="邮箱" required /><input type="hidden" value="1" name="embed" /><button type="submit" class="moss-btn">订阅</button></form>
 </footer>
 
     <div class="moss-colophon">
@@ -864,8 +1008,9 @@ a.comment-author:hover {
         </a>
     </div>
 
-    <script src="/js/theme.js?v=55cfb8c997a6f4b4"></script>
+    <script src="/js/theme.js?v=2cdc2065ab56e04a"></script>
     <script src="/js/preview.js"></script>
+    <script src="/js/thumb-swap.js"></script>
     
 </body>
 </html>

@@ -28,6 +28,7 @@
     <meta property="article:tag" content="Nextjs">
     <meta property="article:tag" content="GraphQL">
     <link rel="canonical" href="https://liu-guo.com/writings/matters-architecture/">
+    
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Matters 的架構與技術棧">
     <meta name="twitter:description" content="photo credit: Ray Wenderlich隨著開源計劃的啓動，馬特市市民們可以直接看到馬特市的所有機制和邏輯。全面開放代碼倉庫後，任何人都可以提出建議和想法、提交功能和優化，也可以自行建立像馬特市一樣的平臺，參與到馬特市生態的演進中。">
@@ -55,7 +56,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16.png">
     <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml">
     <script data-goatcounter="https://guo.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-    <link rel="stylesheet" href="/style.css?v=83b6d32641fd5485">
+    <link rel="stylesheet" href="/style.css?v=3abb9ff9e247504f">
     <script data-goatcounter="https://guo.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 <style class="moss-review-style">/* Review plugin — header and colophon styles
  * Uses moss design tokens. Works in light and dark mode.
@@ -232,15 +233,33 @@
    - ResultFirst 2026 trends — "stripping away non-essential frills"
    ========================================================================== */
 
-/* Comment Section — width controlled by site theme (main > .moss-comments) */
-.moss-comments {
+/* Comment Section — width controlled by site theme.
+   The comment toggle becomes the top edge of the footer chrome: it sits with
+   generous breathing room below the article body, then the footer divider
+   sits a `space-md` (1.5rem) gap below the toggle — mirroring the `space-md`
+   gap below the divider before the footer items.
+   Selector specificity (main >) is required to win over site.css's
+   `main > .moss-comments { margin: 0 auto }` rule, which would otherwise
+   reset margin-top to 0 and erase the breathing room. */
+main > .moss-comments {
   margin-top: 6rem;
 }
 
-/* Divider above comment section */
-.moss-comments > details {
-  padding-top: var(--moss-space-lg, 2rem);
-  border-top: 1px solid var(--moss-border-light, #e6e2db);
+/* When .moss-comments is present, retune the gap between main and the footer
+   divider so the toggle sits as part of the footer chrome:
+     - `main { padding-bottom: 60px }` — drop entirely; .moss-comments owns
+       its own top breathing room (margin-top above) and the toggle should
+       sit directly above the footer's standoff.
+     - `footer.container { margin-top: 2xl }` — replace with `space-md` so
+       the toggle→divider gap mirrors the divider→items gap (also `space-md`,
+       see `footer.container::before { margin-bottom: var(--moss-space-md) }`
+       in site.css). Footer items are visually heavier (larger font), so an
+       optically symmetric gap settles to numerically equal here. */
+main:has(> .moss-comments) {
+  padding-bottom: 0;
+}
+main:has(.moss-comments) + footer.container {
+  margin-top: var(--moss-space-md);
 }
 
 /* ==========================================================================
@@ -713,33 +732,159 @@ a.comment-author:hover {
   background: rgba(0, 0, 0, 0.35);
 }
 </style>
-<style class="moss-email-style">/* Email subscribe form — injected by email plugin enhance hook */
-.footer-subscribe-form {
-  display: flex;
-  gap: var(--moss-space-sm);
-  align-items: baseline;
-  max-width: 24rem;
-}
-
-.footer-subscribe-form .moss-input {
-  flex: 1;
-}
-
-.footer-subscribe-form .moss-btn {
-  font-size: inherit;
-}
-
-@media (max-width: 48rem) {
-  .footer-subscribe-form {
-    max-width: none;
+<style class="moss-email-style">@layer shortcodes {
+  /* Email subscribe form — injected by email plugin enhance hook.
+     The footer form sits in slot:footer-end, AFTER the default link list
+     (design B, 2026-05-06). Spacing between the form and the link list
+     above it is provided by the flex `gap` on `footer.container` when
+     the default-shape footer rule kicks in (see site.css
+     `footer.container:has(> p.footer-default + ...)`). No margin-top
+     here — it would compound the gap when wrapped, and the side-by-side
+     layout doesn't want one at all. */
+  .moss-subscribe-form[data-position="footer"] {
+    display: flex;
+    gap: var(--moss-space-sm);
+    align-items: baseline;
+    max-width: 24rem;
   }
 
-  .footer-subscribe-form .moss-input {
+  .moss-subscribe-form[data-position="footer"] .moss-input {
+    flex: 1;
+  }
+
+  .moss-subscribe-form[data-position="footer"] .moss-btn {
+    font-size: inherit;
+  }
+
+  @media (max-width: 48rem) {
+    .moss-subscribe-form[data-position="footer"] {
+      max-width: none;
+    }
+
+    .moss-subscribe-form[data-position="footer"] .moss-input {
+      flex: 1;
+      min-width: 0;
+    }
+  }
+
+  /* Inline `:::subscribe` shortcode wrapper.
+     Card-styled container for in-page subscribe forms. Token-only; no
+     hardcoded colors. See spec
+     docs/superpowers/specs/2026-04-30-subscribe-shortcode-design.md. */
+  .moss-subscribe {
+    max-width: 32rem;
+    margin: var(--moss-space-lg) 0;
+    padding: var(--moss-space-md) var(--moss-space-lg);
+    border: 1px solid var(--moss-border-light);
+    border-radius: var(--moss-radius-md, 0.5rem);
+  }
+
+  .moss-subscribe-description {
+    margin: 0 0 var(--moss-space-md) 0;
+    color: var(--moss-color-muted);
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  .moss-subscribe-form[data-position="inline"] {
+    display: flex;
+    gap: var(--moss-space-sm);
+    align-items: baseline;
+  }
+
+  .moss-subscribe-form[data-position="inline"] .moss-input {
     flex: 1;
     min-width: 0;
   }
+
+  @media (max-width: 32rem) {
+    .moss-subscribe-form[data-position="inline"] {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .moss-subscribe-form[data-position="inline"] .moss-btn {
+      width: 100%;
+    }
+  }
 }
 </style>
+<style class="moss-email-style">@layer shortcodes {
+  /* Email subscribe form — injected by email plugin enhance hook.
+     The footer form sits in slot:footer-end, AFTER the default link list
+     (design B, 2026-05-06). Spacing between the form and the link list
+     above it is provided by the flex `gap` on `footer.container` when
+     the default-shape footer rule kicks in (see site.css
+     `footer.container:has(> p.footer-default + ...)`). No margin-top
+     here — it would compound the gap when wrapped, and the side-by-side
+     layout doesn't want one at all. */
+  .moss-subscribe-form[data-position="footer"] {
+    display: flex;
+    gap: var(--moss-space-sm);
+    align-items: baseline;
+    max-width: 24rem;
+  }
+
+  .moss-subscribe-form[data-position="footer"] .moss-input {
+    flex: 1;
+  }
+
+  .moss-subscribe-form[data-position="footer"] .moss-btn {
+    font-size: inherit;
+  }
+
+  @media (max-width: 48rem) {
+    .moss-subscribe-form[data-position="footer"] {
+      max-width: none;
+    }
+
+    .moss-subscribe-form[data-position="footer"] .moss-input {
+      flex: 1;
+      min-width: 0;
+    }
+  }
+
+  /* Inline `:::subscribe` shortcode wrapper.
+     Card-styled container for in-page subscribe forms. Token-only; no
+     hardcoded colors. See spec
+     docs/superpowers/specs/2026-04-30-subscribe-shortcode-design.md. */
+  .moss-subscribe {
+    max-width: 32rem;
+    margin: var(--moss-space-lg) 0;
+    padding: var(--moss-space-md) var(--moss-space-lg);
+    border: 1px solid var(--moss-border-light);
+    border-radius: var(--moss-radius-md, 0.5rem);
+  }
+
+  .moss-subscribe-description {
+    margin: 0 0 var(--moss-space-md) 0;
+    color: var(--moss-color-muted);
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  .moss-subscribe-form[data-position="inline"] {
+    display: flex;
+    gap: var(--moss-space-sm);
+    align-items: baseline;
+  }
+
+  .moss-subscribe-form[data-position="inline"] .moss-input {
+    flex: 1;
+    min-width: 0;
+  }
+
+  @media (max-width: 32rem) {
+    .moss-subscribe-form[data-position="inline"] {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .moss-subscribe-form[data-position="inline"] .moss-btn {
+      width: 100%;
+    }
+  }
+}
+</style><script class="moss-subscribe-script">"use strict";(()=>{var b={en:{placeholder:"your@email.com",label:"Subscribe",checkEmail:"Check your email to confirm.",alreadySubscribed:"You're already subscribed.",error:"Something went wrong. Try again?"},"zh-hans":{placeholder:"\u90AE\u7BB1",label:"\u8BA2\u9605",checkEmail:"\u8BF7\u5728\u90AE\u7BB1\u4E2D\u786E\u8BA4\u8BA2\u9605",alreadySubscribed:"\u4F60\u5DF2\u8BA2\u9605\u3002",error:"\u51FA\u9519\u4E86\uFF0C\u8BF7\u91CD\u8BD5\u3002"},"zh-hant":{placeholder:"\u96FB\u90F5",label:"\u8A02\u95B1",checkEmail:"\u8ACB\u5728\u96FB\u90F5\u4E2D\u78BA\u8A8D\u8A02\u95B1",alreadySubscribed:"\u4F60\u5DF2\u8A02\u95B1\u3002",error:"\u51FA\u932F\u4E86\uFF0C\u8ACB\u91CD\u8A66\u3002"}};function h(e){let t=(e??"").toLowerCase();return t.startsWith("zh-hant")||t.startsWith("zh-tw")||t.startsWith("zh-hk")||t.startsWith("zh-mo")?"zh-hant":t.startsWith("zh")?"zh-hans":"en"}var f=4e3,l=new WeakMap;function g(e){if(e.dataset.mossHydrated==="true")return;let t=e.querySelector('input[type="email"]'),n=e.querySelector('button[type="submit"]');if(!t||!n)return;e.dataset.mossHydrated="true";let r=h(document.documentElement.lang),a=b[r];if(t.placeholder=a.placeholder,!(e.dataset.position==="inline")){let s=n.querySelector(".moss-btn__label");s&&(s.textContent=a.label)}e.addEventListener("submit",async s=>{if(s.preventDefault(),e.dataset.state==="loading")return;let u=(t.value??"").trim();if(!u){t.focus();return}T(e,n),i(e,"loading");try{let d=await fetch(e.action,{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},body:JSON.stringify({email:u})}),S=await d.json().catch(()=>({}));if(!d.ok){c(e,"error",a),i(e,"error");return}let E=S.alreadySubscribed?"already-subscribed":"check-email";c(e,E,a),i(e,"success"),H(e,t)}catch{c(e,"error",a),i(e,"error")}}),n.addEventListener("click",s=>{e.dataset.state==="success"&&(s.preventDefault(),p(e,t))})}function i(e,t){e.dataset.state=t}function c(e,t,n){let r=e.querySelector(".moss-subscribe-status");if(!r)return;r.querySelectorAll("[data-copy]").forEach(o=>{o.dataset.copy===t?(o.hidden=!1,o.textContent=L(t,n)):o.hidden=!0}),r.dataset.state=t}function L(e,t){switch(e){case"check-email":return t.checkEmail;case"already-subscribed":return t.alreadySubscribed;case"error":return t.error}}function T(e,t){let n=t.parentElement;if(!n||!n.classList.contains("moss-subscribe-btn-slot")||n.style.width)return;let r=t.offsetWidth;r<=0||(n.style.width=`${r}px`)}function H(e,t){y(e);let n=window.setTimeout(()=>p(e,t),f);l.set(e,n)}function y(e){let t=l.get(e);t!==void 0&&(clearTimeout(t),l.delete(e))}function p(e,t){y(e),e.isConnected&&(t.value="",i(e,"idle"))}function m(){document.querySelectorAll('form.moss-subscribe-form[data-moss-hosted="true"]').forEach(g)}typeof document<"u"&&(document.readyState==="loading"?document.addEventListener("DOMContentLoaded",m):m());})();
+</script>
 </head>
 <body class="">
     <header>
@@ -756,14 +901,11 @@ a.comment-author:hover {
             
             <h1 class="moss-article-title">Matters 的架構與技術棧</h1>
 <div class="date-line"><span class="date">2020 · 8 · 9</span><div class="font-anchor"><button class="font-trigger size-std" aria-label="Reading preferences" aria-expanded="false" type="button"></button><div class="font-pill" id="fontPill"><button data-scale="small" aria-label="Small text"></button><button data-scale="" class="active" aria-label="Standard text"></button><button data-scale="large" aria-label="Large text"></button><button data-scale="xlarge" aria-label="Extra large text"></button></div></div></div>
-<figure>
-<img src="../../image/assets/d7de54bf-4272-42ed-ac8e-2d7cd91988ad.png" data-placeholder-src="../../image/assets/d7de54bf-4272-42ed-ac8e-2d7cd91988ad.png" width="1400" height="467" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAAHABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDHTAcbumeaTGrX1LV40ZRMD5qmNzWpaxTqzE//2Q==);background-size:cover" alt="" />
-<figcaption>photo credit: Ray Wenderlich</figcaption>
-</figure><p>隨著開源計劃的啓動，馬特市市民們可以直接看到馬特市的所有機制和邏輯。全面開放代碼倉庫後，任何人都可以提出建議和想法、提交功能和優化，也可以自行建立像馬特市一樣的平臺，參與到馬特市生態的演進中。</p><p>過去兩年的持續迭代後，馬特市有了越來越多的功能，也有了越來越大的容量。這使得整個系統變得越來越複雜，即使是職業的軟件開發者，也需要花上不少精力才能使用和參與。</p><p>之前，我們曾介紹過<a href="https://matters.news/@robertu/%E7%A4%BE%E5%8D%80%E9%96%8B%E6%94%BE%E4%B8%80%E5%B0%8F%E6%AD%A5-matters-api-zdpuAyovU8xL9sYsV5rQfe35XhmN6okTVbnogCFH2J8cqAXCs">馬特市 API 的文檔與測試環境</a>，現在也有了一個專門的倉庫用於<a href="https://github.com/thematters/developer-resource">技術文檔</a>、<a href="https://github.com/thematters/developer-resource/wiki">協作文檔</a>與 <a href="https://github.com/thematters/developer-resource/issues">issue 提交</a>。之後，我們將會繼續撰寫一系列文章，介紹馬特市整個系統的不同側面。</p><p>本文是這個系列的第一篇，介紹整個系統大致的結構與思路。一部分涉及的代碼倉庫尚未公開，如果你想搶先嘗試，可以報名<a href="https://matters.news/@hi176/matters%E9%96%8B%E6%BA%90%E8%A8%88%E7%95%AB%E5%95%9F%E5%8B%95-%E9%82%80%E8%AB%8B%E4%BD%A0%E4%BE%86%E5%85%B1%E5%BB%BA%E9%A6%AC%E7%89%B9%E5%B8%82-bafyreiadaxjjwxk6mhsx4u6ognhxw3atlwiloscyn7r2iff6tsz4rrc4by">馬特市開源計劃招募</a>。</p><h1 id="前端"><a href="https://github.com/thematters/matters-web">前端</a></h1><p>馬特市的網頁前端是一個 <a href="https://en.wikipedia.org/wiki/Progressive_web_application">Progressive Web App</a>，採用響應式設計適配不同的設備，並讓用戶在添加到桌面之後能夠獲得類似原生應用的體驗。前端與後端通過 <a href="https://graphql.org/">GraphQL</a> 來調用數據、定義數據結構，並均以 <a href="https://www.typescriptlang.org/">TypeScript</a> 寫成。</p><p>相比後端，前端更容易上手，也可能是社區設計者和開發者最能夠發揮想像力的地方。<a href="https://github.com/thematters/matters-web#start-local-dev">本地開發</a>時，我們可以將前端指向馬特市的生產環境、及時看到改動在真實數據上的效果，也可以通過 <a href="https://server-test.matters.news/playground">Apollo Playground</a> 查看API文檔、直接測試 query 語句。</p><p>借鑑 <a href="https://jamstack.wtf/">JAMstack 架構</a>，馬特市網頁的渲染大致分爲兩步：當用戶訪問馬特市的一個網頁時，會先從服務器的緩存中調取網頁的公開版本；在送達用戶的瀏覽器後，網頁會根據用戶的登錄狀態向後端請求個人數據，並更新網頁中個性化的部分。</p><p>網頁的服務端渲染由 <a href="https://nextjs.org/">Next.js</a> 實現，文檔結構也受到 Next.js 影響。每個網頁的入口位於 <code>src/pages</code> 中，通過 <a href="https://nextjs.org/docs/routing/dynamic-routes">Dynamic Routes</a> 將文檔路徑映射爲用戶使用的url。 <code>src/pages</code> 從 <code>src/views</code> 中調用可復用的視圖邏輯，<code>src/views</code>又再調用位於 <code>src/components</code> 的組件庫。</p><p>前端組件庫由 <a href="https://reactjs.org/">React</a> 寫成，遵循<a href="https://paper.dropbox.com/doc/Matters-3.0-Design-System--A46qkFNPV3eO8RwligsbqkDTAg-Sp6ANp5EXAdnzSK3adqNS">馬特市的設計系統</a>，並包含了很多通用的 <a href="https://reactjs.org/docs/context.html">context</a>（例如當前用戶信息、全局語言設定）與強大的 <a href="https://reactjs.org/docs/hooks-overview.html">hooks</a>（例如響應式設計、下拉更新）。後續我們將引入 <a href="https://storybook.js.org/">Storybook</a> 等工具，讓組件庫更加一目了然，方便開發者直接修改和使用。</p><p>在 React 代碼風格上，我們大量使用函數式編程，藉助 <a href="https://reactjs.org/docs/components-and-props.html#function-and-class-components">functional component</a> 讓代碼結構更加簡潔明瞭。需要調用數據的組件都有一個 <code>fragments</code> 欄位，包含了描述數據需求的 <a href="https://www.apollographql.com/docs/react/data/fragments/">GraphQL fragment</a>。這樣，父組件可以不必考慮子組件的具體數據需求，直接在 query 中調用 fragment 即可。</p><p>正如 React 組件的相互調用形成了一個樹形結構，GraphQL fragment 的層層調用也形成了這樣的樹形結構，與 React 樹相互貼合。在 fragment 樹的頂端，是整合之後的 <a href="https://graphql.org/learn/queries/">query與mutation</a>，均通過 <a href="https://www.apollographql.com/docs/react/">Apollo Client</a> 發起。</p><p>Apollo Client 的配置位於 <code>src/common/utils/withApollo.ts</code> 中，由不同的 <a href="https://www.apollographql.com/docs/link/">Apollo Link</a> 組成，包含了服務器 API 地址、身份校驗、<a href="https://www.apollographql.com/docs/apollo-server/performance/apq/">persisted queries</a> 等邏輯。同時，裏面還有一些<a href="https://www.apollographql.com/docs/react/local-state/client-side-schema/">客戶端的 GraphQL schema</a> 與 <a href="https://www.apollographql.com/docs/react/local-state/managing-state-with-field-policies/">resolver</a>，讓我們也能通過 GraphQL 讀寫客戶端本地的數據，例如首頁文章瀑布流的選擇、文章評論的草稿。</p><p>文章編輯器單獨作爲一個項目，位於 <a href="https://github.com/thematters/matters-editor">matters-editor</a> 中，基於 <a href="https://quilljs.com/">Quill.js</a> 搭建。這一部分是前端交互最爲複雜的地方，也是最需要優化與改進之處，之後我們會專門撰文進行介紹。目前編輯器有很多 bug 沒有辦法復現，我們隨後也會專門邀請馬特市的市民們和我們一起來抓 bug。</p><h1 id="後端"><a href="https://github.com/thematters/matters-server">後端</a></h1><p>馬特市的後端依賴不少服務，結構相對複雜，我們在 GitHub 上繪製了<a href="https://github.com/thematters/developer-resource/blob/master/doc/architecture-diagram.png">簡化的架構圖</a>。本地啓動時，<a href="https://github.com/thematters/matters-server#docker">用 docker 來安裝和管理不同的服務</a>會方便一些。</p><p>後端的 GraphQL API 基於 <a href="https://github.com/apollographql/apollo-server">Apollo Server</a>，提供了數據讀寫的入口，也定義了前後端共享的數據結構。決定API結構的 <a href="https://graphql.org/learn/schema/">GraphQL schema</a> 位於 <code>src/types</code> 路徑下，其中的備註則會作爲文檔出現在 <a href="https://server-test.matters.news/playground">Apollo Playground</a> 裡。</p><p>我們通過 <a href="https://graphql.org/learn/queries/#directives">GraphQL directives</a> 來實現一些 schema 層面的通用邏輯，例如權限管理、緩存、操作頻率限制，位於 <code>src/types/directives</code> 路徑下。GraphQL directives 並不是一個非常常見的功能，但其實<a href="https://blog.logrocket.com/graphql-directives-are-underrated/">非常強大</a>，能夠通過對聲明式的方式控制 schema 的解析過程，也能夠簡化代碼結構，我們後續也會增加對它的使用。</p><p>有句諺語說，計算機科學中最難的事莫過於緩存清理和命名；命名實在很難，不過我們花了不少精力調試緩存，並把實戰測試後的邏輯和代碼單獨抽到了<a href="https://github.com/thematters/apollo-response-cache">一個倉庫</a>之中。裏面有一個 <a href="https://www.apollographql.com/docs/apollo-server/integrations/plugins/">plugin</a> 和對應的幾個 directives ，實現了簡單的緩存與清理。GraphQL 服務器端緩存的精確清理一直比較薄弱，所以我們之後專門撰文介紹馬特市的解決方案，以方便其他項目直接使用。</p><p>GraphQL schema 的根節點分爲 <a href="https://graphql.org/learn/schema/#the-query-and-mutation-types">query 與 mutation</a>，query 用於讀取數據，而 mutation 用於寫入數據。兩者的<a href="https://graphql.org/learn/execution/">執行邏輯</a>都由 <a href="https://www.apollographql.com/docs/apollo-server/data/resolvers/">resolver</a> 定義，分別位於 <code>src/query</code> 與 <code>src/mutation</code> 中。resolver 在執行的時候，從 <a href="https://www.apollographql.com/docs/apollo-server/data/resolvers/#the-context-argument">context</a> 中調用 <a href="https://www.apollographql.com/docs/apollo-server/data/data-sources/">data source</a>，向數據庫等服務發起具體的請求、進行計算。</p><p>不同的 data source 由 <code>src/connector</code> 中的文件定義，其中也包含了其他對接服務所需要的接口，比如 s3、Google 翻譯、ElasticSearch 等。其中， <code>queue</code> 路徑下存放了基於 Redis 的隊列操作，包括定期執行的操作（如數據庫更新）、限制並行的操作（如讚賞、支持與提現）等。隨着馬特市容量的擴大，未來會有越來越多的操作在隊列中異步完成。</p><p>在收到請求時，Apollo Server <a href="https://github.com/thematters/matters-server/blob/develop/src/routes/graphql.ts#L95">將所有 data source 注入</a>到 context 中，由 resolver 進行調用。最頂層的這部分邏輯由 <code>src/routes</code> 中的文件定義，與 <code>oauth</code> 與 <code>pay</code> 兩個用於第三方認證和支付接入的 endpoint 並列。</p><h1 id="排序算法與數據庫"><a href="https://github.com/thematters/matters-server/tree/develop/db">排序算法與數據庫</a></h1><p>馬特市裡內容的呈現，是用戶創作與行爲涌現的結果，而內容排序的邏輯則是涌現的規則，直接決定了什麼樣的內容被讀者看見。這些邏輯既是『好內容』的定義，也是『公共空間』的質地。</p><p>排序使用的數據來源於每一個用戶的行爲：對於文章，是讚賞、支持、評論、關聯、閱讀、收藏和精選；對於標籤，是編輯、精選和追蹤；對於作者，則是追蹤，以及對作者文章或標籤的所有行爲。每一項行爲都是一條時間序列，包含無數種切分時間的窗口；同時，每一位用戶又有不同的加權方式，比如追蹤者數、收到支持數、給出支持數，能夠給行爲賦予不同的權重。</p><p>排序算法需要利用這些多維的數據，涌現出受到認可的內容和作者，既要保證一定頻率的更新，又要避免惡意用戶的刷屏攻擊。這使得排序算法變得複雜而精細，也使得我們需要不斷地以簡潔易懂的方式溝通和改善排序邏輯，讓公共空間的質地真正成爲社區的共識。之後我們也會專門撰文介紹排序算法的思路，方便馬特市市民們的參與。</p><p>這些不同的排序都以 <a href="https://en.wikipedia.org/wiki/Materialized_view">materialized view</a> 的形式存儲與數據庫中，通過 cron jobs 進行定期更新。數據庫的遷移、配置和 seeding 等文件存儲在 <code>db</code> 路徑下，與 <code>src</code> 路徑平行。排序方式的相關代碼則在 <code>db/migrations</code> 中，對應的 materialized view 經由不同的 resolver 調用呈現在 API 的返回結果中。</p><p>數據庫結構相對複雜，難以很快理解和上手。爲此，我們製作了<a href="https://github.com/thematters/developer-resource/tree/master/doc">數據庫的文檔與結構圖</a>，下載文檔之後可以點開網頁，直觀地理解目前的數據庫結構。</p><h1 id="開發環境與部署方式">開發環境與部署方式</h1><p>因為馬特市只有很小的工程師團隊，所以我們盡力標準化本地開發規範、自動化 DevOps 操作，以便提升開發效率。</p><p>不管是前端後端，GraphQL 類別均會在開發與建構時生成對應的 TypeScript 類別，實現數據結構校驗：後端採用 <a href="https://github.com/dangcuuson/graphql-schema-typescript#readme">graphql-schema-typescript 項目</a>，調用 <code>npm run gen</code> 來生成；前端則採用 <a href="https://github.com/apollographql/apollo-tooling#apollo-clientcodegen-output">apollo-tooling項目</a>實現，調用 <code>npm run gen:type</code> 來生成。本地開發時，這些類別都會及時自動生成。</p><p>前後端在開發工具配置上也大致相同：<a href="https://prettier.io/">Prettier</a> 用於自動規範代碼格式，<a href="http://commitizen.github.io/cz-cli/">Commitzen</a> 用於規範 git commit 格式，<a href="https://jestjs.io/">Jest</a> 則用於單元測試。前端倉庫 <code>[bdd](https://github.com/thematters/matters-web/tree/develop/bdd)</code><a href="https://github.com/thematters/matters-web/tree/develop/bdd">路徑</a>下還有 <a href="https://cucumber.io/">cucumber</a> 文檔，既可以作為產品功能的文檔，也作為前後端整合測試的腳本；不過這部分尚未發揮出潛力，還有待開發和完善。</p><p>新版本的部署通過 GitHub action 完成，一方面將新版本的 git commit 自動整合為 release note，另一方面將新版代碼上傳到服務器中。隨著馬特市依賴的服務越來越複雜，我們開始嘗試採用 <a href="https://www.terraform.io/">Terraform</a> 自動化基建的更改與調度，這一部分的進展會在之後更新。</p><hr />
+<p><img src="../../image/assets/d7de54bf-4272-42ed-ac8e-2d7cd91988ad.png" data-placeholder-src="../../image/assets/d7de54bf-4272-42ed-ac8e-2d7cd91988ad.png" width="1400" height="467" loading="lazy" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAAHABQDAREAAhEBAxEB/9sAQwAoHB4jHhkoIyEjLSsoMDxkQTw3Nzx7WF1JZJGAmZaPgIyKoLTmw6Cq2q2KjMj/y9ru9f///5vB////+v/m/f/4/9sAQwErLS08NTx2QUF2+KWMpfj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDHTAcbumeaTGrX1LV40ZRMD5qmNzWpaxTqzE//2Q==);background-size:cover" alt="" /><em>photo credit: Ray Wenderlich</em></p><p>隨著開源計劃的啓動，馬特市市民們可以直接看到馬特市的所有機制和邏輯。全面開放代碼倉庫後，任何人都可以提出建議和想法、提交功能和優化，也可以自行建立像馬特市一樣的平臺，參與到馬特市生態的演進中。</p><p>過去兩年的持續迭代後，馬特市有了越來越多的功能，也有了越來越大的容量。這使得整個系統變得越來越複雜，即使是職業的軟件開發者，也需要花上不少精力才能使用和參與。</p><p>之前，我們曾介紹過<a href="https://matters.news/@robertu/%E7%A4%BE%E5%8D%80%E9%96%8B%E6%94%BE%E4%B8%80%E5%B0%8F%E6%AD%A5-matters-api-zdpuAyovU8xL9sYsV5rQfe35XhmN6okTVbnogCFH2J8cqAXCs">馬特市 API 的文檔與測試環境</a>，現在也有了一個專門的倉庫用於<a href="https://github.com/thematters/developer-resource">技術文檔</a>、<a href="https://github.com/thematters/developer-resource/wiki">協作文檔</a>與 <a href="https://github.com/thematters/developer-resource/issues">issue 提交</a>。之後，我們將會繼續撰寫一系列文章，介紹馬特市整個系統的不同側面。</p><p>本文是這個系列的第一篇，介紹整個系統大致的結構與思路。一部分涉及的代碼倉庫尚未公開，如果你想搶先嘗試，可以報名<a href="https://matters.news/@hi176/matters%E9%96%8B%E6%BA%90%E8%A8%88%E7%95%AB%E5%95%9F%E5%8B%95-%E9%82%80%E8%AB%8B%E4%BD%A0%E4%BE%86%E5%85%B1%E5%BB%BA%E9%A6%AC%E7%89%B9%E5%B8%82-bafyreiadaxjjwxk6mhsx4u6ognhxw3atlwiloscyn7r2iff6tsz4rrc4by">馬特市開源計劃招募</a>。</p><h1 id="前端"><a href="https://github.com/thematters/matters-web">前端</a></h1><p>馬特市的網頁前端是一個 <a href="https://en.wikipedia.org/wiki/Progressive_web_application">Progressive Web App</a>，採用響應式設計適配不同的設備，並讓用戶在添加到桌面之後能夠獲得類似原生應用的體驗。前端與後端通過 <a href="https://graphql.org/">GraphQL</a> 來調用數據、定義數據結構，並均以 <a href="https://www.typescriptlang.org/">TypeScript</a> 寫成。</p><p>相比後端，前端更容易上手，也可能是社區設計者和開發者最能夠發揮想像力的地方。<a href="https://github.com/thematters/matters-web#start-local-dev">本地開發</a>時，我們可以將前端指向馬特市的生產環境、及時看到改動在真實數據上的效果，也可以通過 <a href="https://server-test.matters.news/playground">Apollo Playground</a> 查看API文檔、直接測試 query 語句。</p><p>借鑑 <a href="https://jamstack.wtf/">JAMstack 架構</a>，馬特市網頁的渲染大致分爲兩步：當用戶訪問馬特市的一個網頁時，會先從服務器的緩存中調取網頁的公開版本；在送達用戶的瀏覽器後，網頁會根據用戶的登錄狀態向後端請求個人數據，並更新網頁中個性化的部分。</p><p>網頁的服務端渲染由 <a href="https://nextjs.org/">Next.js</a> 實現，文檔結構也受到 Next.js 影響。每個網頁的入口位於 <code>src/pages</code> 中，通過 <a href="https://nextjs.org/docs/routing/dynamic-routes">Dynamic Routes</a> 將文檔路徑映射爲用戶使用的url。 <code>src/pages</code> 從 <code>src/views</code> 中調用可復用的視圖邏輯，<code>src/views</code>又再調用位於 <code>src/components</code> 的組件庫。</p><p>前端組件庫由 <a href="https://reactjs.org/">React</a> 寫成，遵循<a href="https://paper.dropbox.com/doc/Matters-3.0-Design-System--A46qkFNPV3eO8RwligsbqkDTAg-Sp6ANp5EXAdnzSK3adqNS">馬特市的設計系統</a>，並包含了很多通用的 <a href="https://reactjs.org/docs/context.html">context</a>（例如當前用戶信息、全局語言設定）與強大的 <a href="https://reactjs.org/docs/hooks-overview.html">hooks</a>（例如響應式設計、下拉更新）。後續我們將引入 <a href="https://storybook.js.org/">Storybook</a> 等工具，讓組件庫更加一目了然，方便開發者直接修改和使用。</p><p>在 React 代碼風格上，我們大量使用函數式編程，藉助 <a href="https://reactjs.org/docs/components-and-props.html#function-and-class-components">functional component</a> 讓代碼結構更加簡潔明瞭。需要調用數據的組件都有一個 <code>fragments</code> 欄位，包含了描述數據需求的 <a href="https://www.apollographql.com/docs/react/data/fragments/">GraphQL fragment</a>。這樣，父組件可以不必考慮子組件的具體數據需求，直接在 query 中調用 fragment 即可。</p><p>正如 React 組件的相互調用形成了一個樹形結構，GraphQL fragment 的層層調用也形成了這樣的樹形結構，與 React 樹相互貼合。在 fragment 樹的頂端，是整合之後的 <a href="https://graphql.org/learn/queries/">query與mutation</a>，均通過 <a href="https://www.apollographql.com/docs/react/">Apollo Client</a> 發起。</p><p>Apollo Client 的配置位於 <code>src/common/utils/withApollo.ts</code> 中，由不同的 <a href="https://www.apollographql.com/docs/link/">Apollo Link</a> 組成，包含了服務器 API 地址、身份校驗、<a href="https://www.apollographql.com/docs/apollo-server/performance/apq/">persisted queries</a> 等邏輯。同時，裏面還有一些<a href="https://www.apollographql.com/docs/react/local-state/client-side-schema/">客戶端的 GraphQL schema</a> 與 <a href="https://www.apollographql.com/docs/react/local-state/managing-state-with-field-policies/">resolver</a>，讓我們也能通過 GraphQL 讀寫客戶端本地的數據，例如首頁文章瀑布流的選擇、文章評論的草稿。</p><p>文章編輯器單獨作爲一個項目，位於 <a href="https://github.com/thematters/matters-editor">matters-editor</a> 中，基於 <a href="https://quilljs.com/">Quill.js</a> 搭建。這一部分是前端交互最爲複雜的地方，也是最需要優化與改進之處，之後我們會專門撰文進行介紹。目前編輯器有很多 bug 沒有辦法復現，我們隨後也會專門邀請馬特市的市民們和我們一起來抓 bug。</p><h1 id="後端"><a href="https://github.com/thematters/matters-server">後端</a></h1><p>馬特市的後端依賴不少服務，結構相對複雜，我們在 GitHub 上繪製了<a href="https://github.com/thematters/developer-resource/blob/master/doc/architecture-diagram.png">簡化的架構圖</a>。本地啓動時，<a href="https://github.com/thematters/matters-server#docker">用 docker 來安裝和管理不同的服務</a>會方便一些。</p><p>後端的 GraphQL API 基於 <a href="https://github.com/apollographql/apollo-server">Apollo Server</a>，提供了數據讀寫的入口，也定義了前後端共享的數據結構。決定API結構的 <a href="https://graphql.org/learn/schema/">GraphQL schema</a> 位於 <code>src/types</code> 路徑下，其中的備註則會作爲文檔出現在 <a href="https://server-test.matters.news/playground">Apollo Playground</a> 裡。</p><p>我們通過 <a href="https://graphql.org/learn/queries/#directives">GraphQL directives</a> 來實現一些 schema 層面的通用邏輯，例如權限管理、緩存、操作頻率限制，位於 <code>src/types/directives</code> 路徑下。GraphQL directives 並不是一個非常常見的功能，但其實<a href="https://blog.logrocket.com/graphql-directives-are-underrated/">非常強大</a>，能夠通過對聲明式的方式控制 schema 的解析過程，也能夠簡化代碼結構，我們後續也會增加對它的使用。</p><p>有句諺語說，計算機科學中最難的事莫過於緩存清理和命名；命名實在很難，不過我們花了不少精力調試緩存，並把實戰測試後的邏輯和代碼單獨抽到了<a href="https://github.com/thematters/apollo-response-cache">一個倉庫</a>之中。裏面有一個 <a href="https://www.apollographql.com/docs/apollo-server/integrations/plugins/">plugin</a> 和對應的幾個 directives ，實現了簡單的緩存與清理。GraphQL 服務器端緩存的精確清理一直比較薄弱，所以我們之後專門撰文介紹馬特市的解決方案，以方便其他項目直接使用。</p><p>GraphQL schema 的根節點分爲 <a href="https://graphql.org/learn/schema/#the-query-and-mutation-types">query 與 mutation</a>，query 用於讀取數據，而 mutation 用於寫入數據。兩者的<a href="https://graphql.org/learn/execution/">執行邏輯</a>都由 <a href="https://www.apollographql.com/docs/apollo-server/data/resolvers/">resolver</a> 定義，分別位於 <code>src/query</code> 與 <code>src/mutation</code> 中。resolver 在執行的時候，從 <a href="https://www.apollographql.com/docs/apollo-server/data/resolvers/#the-context-argument">context</a> 中調用 <a href="https://www.apollographql.com/docs/apollo-server/data/data-sources/">data source</a>，向數據庫等服務發起具體的請求、進行計算。</p><p>不同的 data source 由 <code>src/connector</code> 中的文件定義，其中也包含了其他對接服務所需要的接口，比如 s3、Google 翻譯、ElasticSearch 等。其中， <code>queue</code> 路徑下存放了基於 Redis 的隊列操作，包括定期執行的操作（如數據庫更新）、限制並行的操作（如讚賞、支持與提現）等。隨着馬特市容量的擴大，未來會有越來越多的操作在隊列中異步完成。</p><p>在收到請求時，Apollo Server <a href="https://github.com/thematters/matters-server/blob/develop/src/routes/graphql.ts#L95">將所有 data source 注入</a>到 context 中，由 resolver 進行調用。最頂層的這部分邏輯由 <code>src/routes</code> 中的文件定義，與 <code>oauth</code> 與 <code>pay</code> 兩個用於第三方認證和支付接入的 endpoint 並列。</p><h1 id="排序算法與數據庫"><a href="https://github.com/thematters/matters-server/tree/develop/db">排序算法與數據庫</a></h1><p>馬特市裡內容的呈現，是用戶創作與行爲涌現的結果，而內容排序的邏輯則是涌現的規則，直接決定了什麼樣的內容被讀者看見。這些邏輯既是『好內容』的定義，也是『公共空間』的質地。</p><p>排序使用的數據來源於每一個用戶的行爲：對於文章，是讚賞、支持、評論、關聯、閱讀、收藏和精選；對於標籤，是編輯、精選和追蹤；對於作者，則是追蹤，以及對作者文章或標籤的所有行爲。每一項行爲都是一條時間序列，包含無數種切分時間的窗口；同時，每一位用戶又有不同的加權方式，比如追蹤者數、收到支持數、給出支持數，能夠給行爲賦予不同的權重。</p><p>排序算法需要利用這些多維的數據，涌現出受到認可的內容和作者，既要保證一定頻率的更新，又要避免惡意用戶的刷屏攻擊。這使得排序算法變得複雜而精細，也使得我們需要不斷地以簡潔易懂的方式溝通和改善排序邏輯，讓公共空間的質地真正成爲社區的共識。之後我們也會專門撰文介紹排序算法的思路，方便馬特市市民們的參與。</p><p>這些不同的排序都以 <a href="https://en.wikipedia.org/wiki/Materialized_view">materialized view</a> 的形式存儲與數據庫中，通過 cron jobs 進行定期更新。數據庫的遷移、配置和 seeding 等文件存儲在 <code>db</code> 路徑下，與 <code>src</code> 路徑平行。排序方式的相關代碼則在 <code>db/migrations</code> 中，對應的 materialized view 經由不同的 resolver 調用呈現在 API 的返回結果中。</p><p>數據庫結構相對複雜，難以很快理解和上手。爲此，我們製作了<a href="https://github.com/thematters/developer-resource/tree/master/doc">數據庫的文檔與結構圖</a>，下載文檔之後可以點開網頁，直觀地理解目前的數據庫結構。</p><h1 id="開發環境與部署方式">開發環境與部署方式</h1><p>因為馬特市只有很小的工程師團隊，所以我們盡力標準化本地開發規範、自動化 DevOps 操作，以便提升開發效率。</p><p>不管是前端後端，GraphQL 類別均會在開發與建構時生成對應的 TypeScript 類別，實現數據結構校驗：後端採用 <a href="https://github.com/dangcuuson/graphql-schema-typescript#readme">graphql-schema-typescript 項目</a>，調用 <code>npm run gen</code> 來生成；前端則採用 <a href="https://github.com/apollographql/apollo-tooling#apollo-clientcodegen-output">apollo-tooling項目</a>實現，調用 <code>npm run gen:type</code> 來生成。本地開發時，這些類別都會及時自動生成。</p><p>前後端在開發工具配置上也大致相同：<a href="https://prettier.io/">Prettier</a> 用於自動規範代碼格式，<a href="http://commitizen.github.io/cz-cli/">Commitzen</a> 用於規範 git commit 格式，<a href="https://jestjs.io/">Jest</a> 則用於單元測試。前端倉庫 <code>[bdd](https://github.com/thematters/matters-web/tree/develop/bdd)</code><a href="https://github.com/thematters/matters-web/tree/develop/bdd">路徑</a>下還有 <a href="https://cucumber.io/">cucumber</a> 文檔，既可以作為產品功能的文檔，也作為前後端整合測試的腳本；不過這部分尚未發揮出潛力，還有待開發和完善。</p><p>新版本的部署通過 GitHub action 完成，一方面將新版本的 git commit 自動整合為 release note，另一方面將新版代碼上傳到服務器中。隨著馬特市依賴的服務越來越複雜，我們開始嘗試採用 <a href="https://www.terraform.io/">Terraform</a> 自動化基建的更改與調度，這一部分的進展會在之後更新。</p><hr />
 <p>以上便是馬特市目前的大致結構與思路，其中還有很多細節與側面，留待以後的文章介紹。歡迎你來提出自己的看法，不管是發現了什麼問題，還是有想進一步了解的部分。也歡迎報名<a href="https://matters.news/@hi176/matters%E9%96%8B%E6%BA%90%E8%A8%88%E7%95%AB%E5%95%9F%E5%8B%95-%E9%82%80%E8%AB%8B%E4%BD%A0%E4%BE%86%E5%85%B1%E5%BB%BA%E9%A6%AC%E7%89%B9%E5%B8%82-bafyreiadaxjjwxk6mhsx4u6ognhxw3atlwiloscyn7r2iff6tsz4rrc4by">馬特市開源計畫的第一步</a>，搶先進入代碼倉庫玩玩看。</p><p>Happy Hacking ❤️</p>
             
         </article>
-        <section class="moss-comments" id="moss-comments" data-built-at="2026-04-29T20:33:59.835150+00:00">
+        <section class="moss-comments" id="moss-comments" data-built-at="2026-05-07T17:21:52.515195+00:00">
   <details>
     <summary class="comments-toggle"><svg class="comments-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></svg><span>10条评论</span><svg class="comments-chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></summary>
     <div class="comment-form-slot" id="default-form-slot"><form class="comment-form" id="moss-comment-form" data-server-url="https://api.moss.host/comments" data-site-name="liu-guo.com" data-page-key="writings/matters-architecture/" data-page-title="Matters 的架構與技術棧">
@@ -871,22 +1013,21 @@ a.comment-author:hover {
         </ol>
       </li>
     </ol>
-    <script>"use strict";(()=>{(function(){"use strict";let e=document.getElementById("moss-comment-form");if(!e)return;let f=e.dataset.serverUrl,E=e.dataset.siteName,h=e.dataset.pageKey,g=e.dataset.pageTitle,m=document.getElementById("moss-comment-status"),n=document.getElementById("moss-comment-text"),u="moss-commenter",i=null;try{let t=JSON.parse(localStorage.getItem(u)||"{}");t.name&&(e.querySelector('[name="name"]').value=t.name),t.email&&(e.querySelector('[name="email"]').value=t.email),t.link&&(e.querySelector('[name="link"]').value=t.link)}catch{}n&&n.addEventListener("input",function(){this.style.height="auto",this.style.height=this.scrollHeight+"px"}),document.querySelectorAll(".comment-reply-btn").forEach(t=>{t.addEventListener("click",function(){let a=this.dataset.replyId,o=this.dataset.replyName;i=a;let l=document.getElementById("comment-"+a);l&&(l.querySelector(".comment-replies")??l).appendChild(e.parentNode),n&&(n.placeholder="@"+o+" ",n.focus())})}),e.addEventListener("submit",function(t){if(t.preventDefault(),!n)return;let a=n.value.trim();if(!a)return;let o=e.querySelector('[name="name"]').value.trim(),l=e.querySelector('[name="email"]').value.trim(),r=e.querySelector('[name="link"]').value.trim();if(!o){m.textContent="Name is required";return}try{localStorage.setItem(u,JSON.stringify({name:o,email:l,link:r}))}catch{}m.textContent="Submitting...",e.querySelector('[type="submit"]').disabled=!0;let d={content:a,nick:o,email:l,link:r,page_key:h,page_title:g,site_name:E};i&&(d.rid=parseInt(i,10)),fetch(f.replace(/\/+$/,"")+"/api/v2/comments",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(d)}).then(s=>{if(!s.ok)throw new Error("HTTP "+s.status);return s.json()}).then(s=>{m.textContent="Comment posted!",n.value="",i=null;let p=document.getElementById("default-form-slot");p&&p.appendChild(e);let y=document.querySelector(".comment-list");if(y){let c=document.createElement("li");c.className="comment-item",c.innerHTML='<div class="comment-header"><span class="comment-author">'+(o||"Anonymous")+'</span><time class="comment-date">just now</time></div><div class="comment-body">'+(s.content||a)+"</div>",y.appendChild(c)}setTimeout(()=>{m.textContent=""},3e3)}).catch(s=>{m.textContent="Error: "+s.message}).finally(()=>{e.querySelector('[type="submit"]').disabled=!1})})})();})();
+    <script>"use strict";(()=>{var H="moss:quote-comment";function M(e){let a=c=>{let u=c.detail;u&&e(u)};return document.addEventListener(H,a),()=>document.removeEventListener(H,a)}var v=null,S=null;function Q(e){if(v)return v;let{form:a,textarea:c,defaultSlot:u,onBeforeOpen:y}=e,l=null,t=null,o="";function f(){if(!t){l=document.createElement("div"),l.className="comment-float-backdrop",l.addEventListener("click",()=>m()),document.body.appendChild(l),t=document.createElement("div"),t.className="comment-float-shell";let i=document.createElement("div");i.className="comment-float-inner",t.appendChild(i),document.body.appendChild(t)}let n=t.querySelector(".comment-float-inner");return{shell:t,inner:n}}function h(n){if(!n)return;y?.();let{shell:i,inner:s}=f();s.innerHTML="";let r=document.createElement("div");r.className="comment-float-quote",r.textContent=n,s.appendChild(r),s.appendChild(a),o=n,l.classList.add("visible"),i.classList.add("open"),c.focus()}function m(){!t||!t.classList.contains("open")||(t.classList.remove("open"),l?.classList.remove("visible"),a.parentElement!==u&&u.appendChild(a),o="")}function E(n){n.key==="Escape"&&t?.classList.contains("open")&&m()}document.addEventListener("keydown",E);let p=M(({text:n})=>h(n));return S=()=>{document.removeEventListener("keydown",E),p(),l?.remove(),t?.remove()},v={cancel:m,getQuoteText:()=>o,getQuotePrefix:()=>q(o)},v}function q(e){if(!e)return"";let a=e.replace(/\n+$/,"");return a?a.split(`
+`).map(c=>"> "+c).join(`
+`)+`
+
+`:""}(function(){"use strict";let e=document.getElementById("moss-comment-form");if(!e)return;let a=e.dataset.serverUrl,c=e.dataset.siteName,u=e.dataset.pageKey,y=e.dataset.pageTitle,l=document.getElementById("moss-comment-status"),t=document.getElementById("moss-comment-text"),o=document.getElementById("default-form-slot"),f="moss-commenter",h=t?.placeholder??"",m=null;function E(){m=null,t&&(t.placeholder=h),o&&e.parentElement!==o&&o.appendChild(e)}let p=t&&o?Q({form:e,textarea:t,defaultSlot:o,onBeforeOpen:E}):null;try{let n=JSON.parse(localStorage.getItem(f)||"{}");n.name&&(e.querySelector('[name="name"]').value=n.name),n.email&&(e.querySelector('[name="email"]').value=n.email),n.link&&(e.querySelector('[name="link"]').value=n.link)}catch{}t&&t.addEventListener("input",function(){this.style.height="auto",this.style.height=this.scrollHeight+"px"}),document.querySelectorAll(".comment-reply-btn").forEach(n=>{n.addEventListener("click",function(){p?.cancel();let i=this.dataset.replyId,s=this.dataset.replyName;m=i;let r=document.getElementById("comment-"+i);r&&o&&(r.querySelector(".comment-replies")??r).appendChild(o),t&&(t.placeholder="@"+s+" ",t.focus())})}),e.addEventListener("submit",function(n){if(n.preventDefault(),!t)return;let i=t.value.trim();if(!i)return;let s=e.querySelector('[name="name"]').value.trim(),r=e.querySelector('[name="email"]').value.trim(),T=e.querySelector('[name="link"]').value.trim();if(!s){l.textContent="Name is required";return}try{localStorage.setItem(f,JSON.stringify({name:s,email:r,link:T}))}catch{}let L=(p?.getQuotePrefix()??"")+i;l.textContent="Submitting...",e.querySelector('[type="submit"]').disabled=!0;let C={content:L,nick:s,email:r,link:T,page_key:u,page_title:y,site_name:c};m&&(C.rid=parseInt(m,10)),fetch(a.replace(/\/+$/,"")+"/api/v2/comments",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(C)}).then(d=>{if(!d.ok)throw new Error("HTTP "+d.status);return d.json()}).then(d=>{l.textContent="Comment posted!",t.value="",p?p.cancel():o&&e.parentElement!==o&&o.appendChild(e),m=null;let x=document.querySelector(".comment-list");if(x){let g=document.createElement("li");g.className="comment-item",g.innerHTML='<div class="comment-header"><span class="comment-author">'+(s||"Anonymous")+'</span><time class="comment-date">just now</time></div><div class="comment-body">'+(d.content||L)+"</div>",x.appendChild(g)}setTimeout(()=>{l.textContent=""},3e3)}).catch(d=>{l.textContent="Error: "+d.message}).finally(()=>{e.querySelector('[type="submit"]').disabled=!1})})})();})();
 </script>
   </details>
 </section>
+        
     </main>
 
     <footer class="container">
-    <div class="footer-content">
-        <div class="footer-left">
-            <a href="/links/" class="footer-link">友链</a>
-            <a href="/feed.xml" class="footer-link" data-external>RSS</a>
-        </div>
-        <div class="footer-right">
-            <form action="https://buttondown.com/api/emails/embed-subscribe/liuguo" method="post" class="footer-subscribe-form"><input type="email" name="email" class="moss-input" placeholder="邮箱" required /><input type="hidden" value="1" name="embed" /><button type="submit" class="moss-btn">订阅</button></form>
-        </div>
-    </div>
+        
+        <p class="footer-default"><a href="/links/" class="footer-link">友链</a> · <a href="/feed.xml" class="footer-link" data-external>RSS</a></p>
+        <form action="https://buttondown.com/api/emails/embed-subscribe/liuguo" method="post" class="moss-subscribe-form" data-position="footer"><input type="email" name="email" class="moss-input" placeholder="邮箱" required /><input type="hidden" value="1" name="embed" /><button type="submit" class="moss-btn">订阅</button></form>
 </footer>
 
     <div class="moss-colophon">
@@ -899,8 +1040,9 @@ a.comment-author:hover {
         </a>
     </div>
 
-    <script src="/js/theme.js?v=55cfb8c997a6f4b4"></script>
+    <script src="/js/theme.js?v=2cdc2065ab56e04a"></script>
     <script src="/js/preview.js"></script>
+    <script src="/js/thumb-swap.js"></script>
     
 </body>
 </html>
